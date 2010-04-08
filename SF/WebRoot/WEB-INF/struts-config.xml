@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="dynaForm"
+			type="org.apache.struts.validator.LazyValidatorForm" />
+		<form-bean name="fileForm" type="sf.struts.FileForm" />
+	</form-beans>
+	<global-exceptions />
+	<global-forwards>
+		<forward name="login" path="/admin/login.jsp" redirect="true"></forward>
+	</global-forwards>
+	<action-mappings>
+		<!-- login & logout -->
+		<action path="/admin/LogonAction" name="dynaForm"
+			validate="false" parameter="method" type="sf.struts.LogonAction">
+			<forward name="login_succ" path="/admin/manage.jsp"
+				redirect="true">
+			</forward>
+			<forward name="login_fail" path="/admin/login.jsp"></forward>
+		</action>
+		<!-- content -->
+		<action path="/admin/ContentAction" name="dynaForm"
+			validate="false" parameter="method" type="sf.struts.ContentAction">
+			<forward name="catalog"
+				path="/admin/content/catalog_list.jsp" redirect="true">
+			</forward>
+			<forward name="content" path="/admin/content/content.jsp">
+			</forward>
+			<forward name="family" path="/admin/content/family.jsp">
+			</forward>
+			<forward name="divide" path="/admin/content/divide.jsp">
+			</forward>
+		</action>
+		<!-- download -->
+		<action path="/admin/DownloadAction" name="dynaForm"
+			validate="false" parameter="method"
+			type="sf.struts.DownloadAction">
+			<forward name="download_list"
+				path="/admin/content/download.jsp">
+			</forward>
+			<forward name="download_edit"
+				path="/admin/content/download_edit.jsp">
+			</forward>
+		</action>
+		
+		<!-- activity -->
+		<action path="/admin/ActivityAction" name="dynaForm"
+			validate="false" parameter="method"
+			type="sf.struts.ActivityAction">
+			<forward name="activity_list"
+				path="/admin/content/activity.jsp">
+			</forward>
+			<forward name="activity_edit"
+				path="/admin/content/activity_edit.jsp">
+			</forward>
+		</action>
+		
+		<!-- pic -->
+		<action path="/admin/PicAction" name="dynaForm"
+			validate="false" parameter="method"
+			type="sf.struts.PicAction">
+			<forward name="pic_list"
+				path="/admin/content/pic.jsp">
+			</forward>
+			<forward name="pic_edit"
+				path="/admin/content/pic_edit.jsp">
+			</forward>
+		</action>
+
+		<!-- file upload -->
+		<action path="/admin/FileAction" name="fileForm" type="sf.struts.FileAction">
+			<forward name="upload" path="/admin/upload.jsp"></forward>
+		</action>
+		
+	</action-mappings>
+	<message-resources parameter="sf.struts.ApplicationResources" />
+</struts-config>
+

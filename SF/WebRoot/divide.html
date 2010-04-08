@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>我爱传奇部落 - 传奇私服发布平台 【海量数据 实时更新 保证数据准确】</title>
+		<link href="res/index.css" type="text/css" rel="stylesheet" />
+		<script src="res/jquery.js"></script>
+		<script src="res/front.js"></script>
+	</head>
+
+	<body>
+		#parse("head.html")
+		<table width="1003" border="0" align="center" cellpadding="0"
+			cellspacing="0" class="title">
+			<tr style="height: 30px;background: url(res/dao.jpg); width: 1003px; text-align: center;">
+				<td width="25%" style="background: none;">
+					散人名字
+				</td>
+				<td width="25%">
+					散人ID号
+				</td>
+				<td width="20%">
+					散人版本类型
+				</td>
+				<td width="10%">
+					散人群号
+				</td>
+				<td width="20%">
+					RMD散人
+				</td>
+			</tr>
+			<tr>
+			</tr>
+		</table>
+		<table width="1003" border="0" align="center" cellpadding="1"
+			cellspacing="1" class="content">
+			 #foreach( $d in $apptool.divides)
+			<tr>
+				<td width="247">$d.name</td>
+				<td width="249">$d.idText</td>
+				<td width="197">$d.version</td>
+				<td width="97">$d.groupNum</td>
+				<td width="">
+					#if($d.type==1)
+			         是
+			       #else
+			         否
+			       #end
+				</td>
+			</tr>
+			#end
+		</table>
+		#parse("foot.html")
+	</body>
+</html>

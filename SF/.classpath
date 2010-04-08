@@ -3,5 +3,16 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.cross.easystruts.eclipse.STRUTS12_CONTAINER"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/FCKeditor-2.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-lang-2.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jettison-1.0-beta-1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.11.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/proxool-0.9.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/proxool-cglib.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/velocity-1.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/velocity-tools-view-1.4.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

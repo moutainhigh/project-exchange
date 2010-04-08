@@ -1,0 +1,1 @@
+document.writeln("<iframe frameborder=0 marginwidth=0 marginheight=0 scrolling=NO align=center width=1024 height=5510 src=\"adsf.htm\"></iframe>");

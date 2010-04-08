@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>我爱传奇部落 - 传奇私服发布平台 【海量数据 实时更新 保证数据准确】</title>
+		<link href="res/index.css" type="text/css" rel="stylesheet" />
+		<script src="res/jquery.js"></script>
+		<script src="res/front.js"></script>
+		<style>
+			ul{
+				list-style: none outside none;
+				margin: 20px auto;
+				width: 1003px;				
+				padding:0;
+				text-align: center;
+				display: block;
+				line-height: 100%;
+			}
+			ul li{
+				float: left;
+				margin: 20px 50px;
+				display: list-item;
+			}
+			li img{
+				border:0;
+			}
+		</style>
+	</head>
+
+	<body>
+		#parse("head.html")
+		<table width="1003" border="1" align="center" cellpadding="0"
+			cellspacing="0" class="content" style="border-collapse: collapse;">
+			<tr>
+				<td style="text-align: left;">
+					<ul>
+			          #foreach($p in $apptool.pics)
+			          <li>
+					  <div class="pic"><a href="pic_big.html?title=$p.title&file=$p.filePath" target="_blank"><img alt="$p.title" src="upload/$p.filePath" width="200" height="200"/></a></div>
+			          <p><a href="pic_big.html?title=$p.title&file=$p.filePath" target="_blank">$p.title</a></p>
+			          </li>
+			          #end
+			        </ul>
+				</td>
+			</tr>
+		</table>
+		#parse("foot.html")
+	</body>
+</html>

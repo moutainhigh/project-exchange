@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<tool>
+		<key>apptool</key>
+		<scope>application</scope>
+		<class>sf.vm.AppTool</class>
+	</tool>
+</toolbox>

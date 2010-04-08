@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<something-else-entirely>
+
+	<proxool>
+		<alias>auto_pool</alias>
+		<!--
+		<driver-url>jdbc:mysql://w05.163jsp.com:3306/jx00103</driver-url>
+		-->  
+		<driver-url>jdbc:mysql://localhost:3306/sf</driver-url>
+		
+		<driver-properties>
+			<!--
+			<property name="user" value="jx00103" />
+			<property name="password" value="6XZu4wDH" />
+			-->  
+			<property name="user" value="root" />
+			<property name="password" value="123" />
+			
+		</driver-properties>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<!-- set timeout -->
+		<house-keeping-sleep-time>90000</house-keeping-sleep-time>
+		<maximum-active-time>1200000</maximum-active-time>
+		<maximum-connection-count>100</maximum-connection-count>
+		<minimum-connection-count>2</minimum-connection-count>
+	</proxool>
+	
+</something-else-entirely>
+

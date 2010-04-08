@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/admin/LogonAction.do" location="50,50" dimension="134,62" />
+  <StrutsActivity path="/admin/ContentAction.do" location="950,50" dimension="184,84" />
+  <StrutsActivity path="/admin/DownloadAction.do" location="950,250" dimension="184,84" />
+  <StrutsActivity path="/admin/FileAction.do" location="50,450" dimension="190,84" />
+  <StrutsActivity path="login;6" location="50,250" dimension="142,72" />
+  <StrutsActivity path="/admin/manage.jsp" location="350,50" dimension="142,48" />
+  <StrutsActivity path="/admin/login.jsp" location="650,50" dimension="136,48" />
+  <StrutsActivity path="/admin/content/divide.jsp" location="650,250" dimension="190,48" />
+  <StrutsActivity path="/admin/content/family.jsp" location="350,250" dimension="190,48" />
+  <StrutsActivity path="/admin/content/content.jsp" location="650,150" dimension="196,48" />
+  <StrutsActivity path="/admin/content/catalog_list.jsp" location="350,150" dimension="226,48" />
+  <StrutsActivity path="/admin/content/download_edit.jsp" location="650,350" dimension="232,48" />
+  <StrutsActivity path="/admin/content/download.jsp" location="350,350" dimension="202,48" />
+  <StrutsActivity path="/admin/upload.jsp" location="350,450" dimension="142,48" />
+  <StrutsActivity path="/admin/ActivityAction.do" location="650,450" dimension="190,84" />
+  <StrutsActivity path="/admin/content/activity.jsp" location="950,450" dimension="202,48" />
+  <StrutsActivity path="/admin/content/activity_edit.jsp" location="350,550" dimension="232,48" />
+  <StrutsActivity path="/admin/PicAction.do" location="950,550" dimension="190,84" />
+  <StrutsActivity path="/admin/content/pic_edit.jsp" location="50,650" dimension="202,48" />
+  <StrutsActivity path="/admin/content/pic.jsp" location="350,650" dimension="172,48" />
+  <StrutsTransition id="/admin/FileAction.do,upload,/admin/upload.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="240,483" />
+      <AbsolutePoint location="350,483" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/PicAction.do,activity_list,/admin/content/pic.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1045,634" />
+      <AbsolutePoint location="1045,674" />
+      <AbsolutePoint location="522,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ContentAction.do,catalog,/admin/content/catalog_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1042,134" />
+      <AbsolutePoint location="1042,213" />
+      <AbsolutePoint location="463,213" />
+      <AbsolutePoint location="463,198" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/PicAction.do,activity_edit,/admin/content/pic_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,613" />
+      <AbsolutePoint location="151,613" />
+      <AbsolutePoint location="151,650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ActivityAction.do,download_list,/admin/content/download.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,483" />
+      <AbsolutePoint location="507,483" />
+      <AbsolutePoint location="507,398" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/LogonAction.do,login_fail,/admin/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="117,81" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/AcitivityAction.do,download_edit,/admin/content/download_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="745,450" />
+      <AbsolutePoint location="745,398" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/PicAction.do,pic_list,/admin/content/pic.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1045,592" />
+      <AbsolutePoint location="436,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ActivityAction.do,download_list,/admin/content/activity.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="840,483" />
+      <AbsolutePoint location="950,483" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ContentAction.do,family,/admin/content/family.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,83" />
+      <AbsolutePoint location="891,83" />
+      <AbsolutePoint location="891,313" />
+      <AbsolutePoint location="445,313" />
+      <AbsolutePoint location="445,298" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/PicAction.do,pic_edit,/admin/content/pic_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1045,592" />
+      <AbsolutePoint location="151,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/LogonAction.do,login_succ,/admin/manage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="117,81" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/PicAction.do,activity_edit,/admin/content/activity_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,613" />
+      <AbsolutePoint location="466,613" />
+      <AbsolutePoint location="466,598" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ContentAction.do,content,/admin/content/content.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1012,134" />
+      <AbsolutePoint location="1012,174" />
+      <AbsolutePoint location="846,174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ActivityAction.do,activity_edit,/admin/content/activity_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="745,534" />
+      <AbsolutePoint location="745,574" />
+      <AbsolutePoint location="582,574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="login;6,null,/admin/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="121,250" />
+      <AbsolutePoint location="121,127" />
+      <AbsolutePoint location="718,127" />
+      <AbsolutePoint location="718,98" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ActivityAction.do,download_edit,/admin/content/download_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="745,450" />
+      <AbsolutePoint location="745,398" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/DownloadAction.do,download_edit,/admin/content/download_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1012,334" />
+      <AbsolutePoint location="1012,374" />
+      <AbsolutePoint location="882,374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/PicAction.do,activity_list,/admin/content/activity.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1045,550" />
+      <AbsolutePoint location="1045,498" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ActivityAction.do,activity_list,/admin/content/activity.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="840,483" />
+      <AbsolutePoint location="950,483" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ContentAction.do,divide,/admin/content/divide.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1042,92" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/ActivityAction.do,download_edit,/admin/content/activity_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="745,534" />
+      <AbsolutePoint location="745,574" />
+      <AbsolutePoint location="582,574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/DownloadAction.do,download_list,/admin/content/download.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1042,334" />
+      <AbsolutePoint location="1042,413" />
+      <AbsolutePoint location="451,413" />
+      <AbsolutePoint location="451,398" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/AcitivityAction.do,download_list,/admin/content/download.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,483" />
+      <AbsolutePoint location="507,483" />
+      <AbsolutePoint location="507,398" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+
