@@ -73,10 +73,11 @@ function initTable(index){
 			str +=('  <td width="330"><div>'+info.versionDesc+'<font color="red">推荐</font></div></td>');
 			str +=('  <td width="138">'+info.serviceQQ+'</td>');
 			str +=('  <td width="69"><a href="'+info.website+'" target="_blank">[点击查看]</a></td>');
-			str +=('</tr>');
+			str +=('</tr>');			
 		}
 		//str += '</table>';  	
-		$("#dataTable").html($("#dataTable").html()+str);
+		//$("#dataTable").html($("#dataTable").html()+str);
+		$("#dataTable").append(str);
 		index++;
 		if(index > 0 && index < typeDataArr.length){
 			initTable(index);
