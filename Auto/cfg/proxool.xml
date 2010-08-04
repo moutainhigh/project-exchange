@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<something-else-entirely>
+	<proxool>
+		<alias>autoPool</alias>
+
+		<driver-url>jdbc:mysql://localhost:3306/agency</driver-url>
+		<driver-properties>
+			<property name="user" value="root" />
+			<property name="password" value="123" />
+		</driver-properties>
+
+		<!--<driver-url>jdbc:mysql://localhost:3306/agency</driver-url>
+		<driver-properties>
+			<property name="user" value="root" />
+			<property name="password" value="adminadmin" />
+		</driver-properties>
+		-->
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<maximum-connection-count>100</maximum-connection-count>
+		<minimum-connection-count>1</minimum-connection-count>
+	</proxool>
+</something-else-entirely>

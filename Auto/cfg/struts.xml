@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	
+    <package name="struts2" extends="struts-default">
+		<action name="index" class="com.throne212.auto.action.IndexAction">
+			<result name="index">/index.jsp</result>
+		</action>
+    </package>
+</struts>
