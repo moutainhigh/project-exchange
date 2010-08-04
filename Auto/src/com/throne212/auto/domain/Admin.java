@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="auto_admin")
-public class Admin extends User{
+public class Admin extends User{//π‹¿Ì‘±
 
 	
 	

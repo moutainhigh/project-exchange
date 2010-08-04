@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "auto_sales")
-public class Sale extends User {//æ±½è½¦4Såº—
+public class Sale extends User {//4sµê
 
 	@Column
 	protected String fullName;

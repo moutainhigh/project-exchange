@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="auto_car")
-public class Car extends MyEntity{//è½¦åž‹
+public class Car extends MyEntity{//³µÐÍ
 
 	@Column
 	private String image;
