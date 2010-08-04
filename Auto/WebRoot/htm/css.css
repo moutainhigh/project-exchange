@@ -1,0 +1,46 @@
+BODY {
+	FONT-SIZE: 14px; COLOR: #333333; FONT-FAMILY: "宋体", "仿宋_GB2312", "黑体"
+}
+TABLE {
+	FONT-SIZE: 14px; FONT-FAMILY: "宋体", "仿宋_GB2312", "黑体"
+}
+TR {
+	FONT-SIZE: 14px; FONT-FAMILY: "宋体", "仿宋_GB2312", "黑体"
+}
+TD {
+	FONT-SIZE: 14px; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体", "仿宋_GB2312", "黑体"
+}
+A:visited {
+	FONT-SIZE: 14px; COLOR: #1E3582; TEXT-DECORATION: none
+}
+A:link {
+	FONT-SIZE: 14px; COLOR: #2121C5; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 14px; COLOR: #8E381E; TEXT-DECORATION: underline
+}
+A:active {
+	FONT-SIZE: 14px; COLOR: #434343; TEXT-DECORATION: none
+}
+
+
+A.demo:link{FONT-SIZE: 12px; FONT-FAMILY: "宋体";COLOR: #333333; TEXT-DECORATION: none}
+A.demo:hover{FONT-SIZE: 12px; FONT-FAMILY: "宋体";COLOR: #333333; TEXT-DECORATION: underline}
+A.demo:active{FONT-SIZE: 12px; FONT-FAMILY: "宋体";COLOR: #333333; TEXT-DECORATION: none}
+A.demo:visited{FONT-SIZE: 12px; FONT-FAMILY: "宋体";COLOR: #333333; TEXT-DECORATION: none}
+
+.myfont{FONT-SIZE: 12px;LINE-HEIGHT: 22px }
+.myfontbig{FONT-SIZE: 14px;FONT-FAMILY: "宋体" }
+.myfontabout{FONT-SIZE: 12px;COLOR: #333333;LINE-HEIGHT: 18px }
+
+.tab_blue {
+	BORDER-RIGHT: #DCD7D7 1px solid; BORDER-TOP: #DCD7D7 1px solid; BORDER-LEFT: #DCD7D7 1px solid; BORDER-BOTTOM: #DCD7D7 1px solid
+}
+.tab_dot {
+	BORDER-RIGHT: #DCD7D7 0px solid; BORDER-TOP: #DCD7D7 0px solid; BORDER-LEFT: #DCD7D7 0px solid; BORDER-BOTTOM: #DCD7D7 1px solid}
+
+.STYLE1 {color: #993300}
+.STYLE2 {color: #FF0000}
+.STYLE3 {color: #990000}
+
+
