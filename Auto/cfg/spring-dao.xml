@@ -9,4 +9,7 @@
 	<bean id="userDao" class="com.throne212.auto.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="newsDao" class="com.throne212.auto.dao.impl.NewsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

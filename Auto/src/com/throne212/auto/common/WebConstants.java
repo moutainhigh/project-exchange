@@ -19,7 +19,8 @@ public class WebConstants {
 	public static final String REQ_MSG = "reqMsg";
 	
 	/* news type */
-	public static final int NEWS_ACTIVE = 1;//动态
-	public static final int NEWS_NEWS = 2;//新闻
+	public static final int NEWS_NEWS = 1;//新闻
+	public static final int NEWS_ACTIVE = 2;//动态
+	
 	
 }

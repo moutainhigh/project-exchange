@@ -11,7 +11,7 @@ import com.throne212.auto.domain.MyEntity;
 
 public class BaseBizImpl implements BaseBiz {
 
-	private BaseDao baseDao;
+	protected BaseDao baseDao;
 
 	protected Logger logger = Logger.getLogger(this.getClass());
 	

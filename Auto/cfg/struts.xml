@@ -47,6 +47,8 @@
 			<result name="main">/manage/manage.jsp</result>
 			<result name="welcome">/manage/welcome/welcome.jsp</result>
 			<result name="pwd">/manage/welcome/pwd.jsp</result>
+			<result name="news_list">/manage/news/news_list.jsp</result>
+			<result name="news_edit">/manage/news/news_edit.jsp</result>
 		</action>
     </package>
     

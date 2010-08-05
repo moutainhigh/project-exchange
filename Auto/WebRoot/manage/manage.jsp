@@ -232,7 +232,7 @@
 				<div id="mainNav">
 					<div><a href="${appPath}/manage/main.html" target="mainFrame" style="color:red">欢迎页</a></div>
 					<ul>
-						<li><a href="信息管理" target="mainFrame" <c:if test="${sess_curr_module.id==module.id}">style="color:red"</c:if>>${module.name }</a></li>
+						<li><a href="${appPath}/manage/main_news.html" target="mainFrame">文章管理</a></li>
 					</ul>
 				</div>
 				<div id="msgNav">

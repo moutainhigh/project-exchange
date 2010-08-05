@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.throne212.auto.common.WebConstants;
+
 @Entity
 @Table(name = "auto_news")
 public class News extends MyEntity{//消息
@@ -70,7 +72,17 @@ public class News extends MyEntity{//消息
 	public void setType(int type) {
 		this.type = type;
 	}
-	
+	public String getTypeText() {
+		switch (type) {
+		case WebConstants.NEWS_NEWS:
+			return "新闻";
+		case WebConstants.NEWS_ACTIVE:
+			return "动态";
+		default:
+			break;
+		}
+		return "";
+	}
 	
 	
 }

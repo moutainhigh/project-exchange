@@ -11,4 +11,9 @@
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	
+	<bean id="newsBiz" class="com.throne212.auto.biz.impl.NewsBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="newsDao" ref="newsDao"></property>
+	</bean>
+	
 </beans>
