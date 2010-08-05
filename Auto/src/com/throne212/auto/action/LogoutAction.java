@@ -14,7 +14,6 @@ public class LogoutAction extends BaseAction {
 		logger.info("logout-----username:[" + session.getAttribute(WebConstants.SESS_USER_NAME) + "]");
 		session.setAttribute(WebConstants.SESS_USER_NAME, null);
 		session.setAttribute(WebConstants.SESS_USER_OBJ, null);
-		session.invalidate();
 		return SUCCESS;
 	}
 

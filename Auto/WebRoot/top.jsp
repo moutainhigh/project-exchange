@@ -1,4 +1,23 @@
 <%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<script>
+	function formKeyPress(event){
+		if(event.keyCode == 13){
+			submitForm();
+		}else{
+			return false;
+		}
+	}
+	function submitForm(){
+		var username = document.forms['loginForm'].username.value;
+		var pwd = document.forms['loginForm'].password.value;
+		var rand = document.forms['loginForm'].rand.value;
+		if(username=='' || pwd=='' || rand==''){
+			alert('用户名、密码、验证码均为必填选项，请检查');
+			return false;
+		}
+		document.forms[0].submit();
+	}
+</script>
 <table width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
   <tr> 
     <td bgcolor="2C2F38"> 
@@ -7,13 +26,15 @@
           <td width="10" background="img/top-bg.jpg" height="24">&nbsp;</td>
           <td width="352" background="img/top-bg.jpg" height="24" ><a href="#"><font color="#FFFFFF">张家口汽车网</font></a><font color="#FFFFFF">,张家口汽车门户网站</font></td>
           <td background="img/top-bg.jpg" height="24" class="myfont" >
-          	<form action="LoginAction" method="post" id="loginForm">
+          	<form action="LoginAction.htm" method="post" id="loginForm" name="loginForm">
             <div align="center"><font color="#FFFFFF">用户名 
               <input maxlength=80 size=10 
                   name=username>
-              密码</font> 
+              密码
               <input maxlength=80 size=10 type="password"
                   name=password>
+                  验证码</font> <img src="${appPath}/rand" alt="验证码" id="yanzheng"/>
+              <input id="verification_code" type="text" size="4" name="rand" onkeypress="formKeyPress(event);"/>
               <img src="img/a1.gif" width="51" height="15" onclick="$('#loginForm').submit()"> <img src="img/a2.gif" width="72" height="15"></div>
               <form>
             <font color="#FFFFFF"> </font></td>

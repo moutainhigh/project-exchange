@@ -10,12 +10,19 @@
 	<constant name="struts.ui.templateSuffix" value="ftl" />
 	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
 	
-    <package name="struts2" extends="struts-default">
+    <package name="struts2" namespace="/" extends="struts-default">
 		<action name="index" class="com.throne212.auto.action.IndexAction">
 			<result name="index">/index.jsp</result>
 		</action>
 		<action name="LoginAction" class="com.throne212.auto.action.LoginAction">
-			<result name="success">/manage/welcome.htm</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">ManageAction_index</param>
+				<param name="namespace">/manage</param>
+			</result>
+			<result name="error" type="redirectAction">index</result>
+		</action>
+		<action name="LogoutAction" class="com.throne212.auto.action.LogoutAction">
+			<result name="success" type="chain">index</result>
 		</action>
     </package>
     
@@ -28,11 +35,18 @@
             </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="authStack"/>
+        
         <global-results>
-        	<result name="index">/index.htm</result>
+        	<result name="index" type="redirectAction">
+        		<param name="actionName">index</param>
+        		<param name="namespace">/</param>
+        	</result>
         </global-results>
+        
 		<action name="ManageAction_*" method="{1}" class="com.throne212.auto.action.ManageAction">
-			<result name="welcome">/manage/welcome.jsp</result>
+			<result name="main">/manage/manage.jsp</result>
+			<result name="welcome">/manage/welcome/welcome.jsp</result>
+			<result name="pwd">/manage/welcome/pwd.jsp</result>
 		</action>
     </package>
     

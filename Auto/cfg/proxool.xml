@@ -3,7 +3,7 @@
 	<proxool>
 		<alias>autoPool</alias>
 
-		<driver-url>jdbc:mysql://localhost:3306/agency</driver-url>
+		<driver-url>jdbc:mysql://localhost:3306/auto</driver-url>
 		<driver-properties>
 			<property name="user" value="root" />
 			<property name="password" value="123" />

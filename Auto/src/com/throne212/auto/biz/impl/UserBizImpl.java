@@ -3,6 +3,8 @@ package com.throne212.auto.biz.impl;
 import com.throne212.auto.biz.UserBiz;
 import com.throne212.auto.common.EncryptUtil;
 import com.throne212.auto.dao.UserDao;
+import com.throne212.auto.domain.Admin;
+import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.User;
 
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
@@ -25,9 +27,12 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 
 	public boolean changePwd(Long userId, String oldPwd, String newPwd) {
 		User user = userDao.getEntityById(User.class, userId);
-		if(user.getPassword().equals(oldPwd)){
+		if(user.getPassword().equals(oldPwd) || user.getPassword().equals(EncryptUtil.md5Encode(oldPwd))){
 			user.setPassword(EncryptUtil.md5Encode(newPwd));
-			userDao.saveOrUpdate(user);
+			if(user instanceof Admin)
+				userDao.saveOrUpdate((Admin)user);
+			else
+				userDao.saveOrUpdate((Sale)user);
 			return true;
 		}
 		return false;

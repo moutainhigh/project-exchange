@@ -28,6 +28,9 @@
 	<mapping class="com.throne212.auto.domain.Car" />
 	<mapping class="com.throne212.auto.domain.Sale" />
 	<mapping class="com.throne212.auto.domain.User" />
+	<mapping class="com.throne212.auto.domain.Category" />
+	<mapping class="com.throne212.auto.domain.Special" />
+	<mapping class="com.throne212.auto.domain.News" />
 	
 	
 </session-factory>
