@@ -22,4 +22,14 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		}
 		return null;
 	}
+
+	public boolean changePwd(Long userId, String oldPwd, String newPwd) {
+		User user = userDao.getEntityById(User.class, userId);
+		if(user.getPassword().equals(oldPwd)){
+			user.setPassword(EncryptUtil.md5Encode(newPwd));
+			userDao.saveOrUpdate(user);
+			return true;
+		}
+		return false;
+	}
 }

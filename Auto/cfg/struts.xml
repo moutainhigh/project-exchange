@@ -14,5 +14,26 @@
 		<action name="index" class="com.throne212.auto.action.IndexAction">
 			<result name="index">/index.jsp</result>
 		</action>
+		<action name="LoginAction" class="com.throne212.auto.action.LoginAction">
+			<result name="success">/manage/welcome.htm</result>
+		</action>
     </package>
+    
+    <package name="struts2-manange" namespace="/manage" extends="struts-default">
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.auto.filter.AccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <global-results>
+        	<result name="index">/index.htm</result>
+        </global-results>
+		<action name="ManageAction_*" method="{1}" class="com.throne212.auto.action.ManageAction">
+			<result name="welcome">/manage/welcome.jsp</result>
+		</action>
+    </package>
+    
 </struts>
