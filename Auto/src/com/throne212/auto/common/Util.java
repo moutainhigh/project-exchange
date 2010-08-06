@@ -1,17 +1,26 @@
 package com.throne212.auto.common;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
+
 import org.apache.log4j.Logger;
+
+import com.sun.image.codec.jpeg.ImageFormatException;
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class Util {
 	private static Logger logger = Logger.getLogger(Util.class);
@@ -95,6 +104,56 @@ public class Util {
 		addTime *= 60; 
 		addTime *= 1000;
 		return new Date(d.getTime() + addTime);
+	}
+	public static void writeImage(InputStream in, OutputStream out) throws Exception {
+		Image src = ImageIO.read(in); // 构造Image对象
+		int h = src.getHeight(null);
+		int w = src.getWidth(null);
+		BufferedImage tag = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+		tag.getGraphics().drawImage(src, 0, 0, w, h, null); // 绘制缩小后的图
+		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+		encoder.encode(tag); // 近JPEG编码
+	}
+	public static void writeImage(InputStream in, OutputStream out,int maxWidth, int maxHeight) {
+		try {
+			Image src = ImageIO.read(in); // 构造Image对象
+			int h = src.getHeight(null);
+			int w = src.getWidth(null);
+			// case 1
+			if(h <= maxHeight && w <= maxWidth){
+				
+			}
+			//case 2
+			else if(h > maxHeight && w <= maxWidth){
+				h = maxHeight;
+				w = h * (maxWidth/maxHeight);
+			}
+			//case 3
+			else if(h <= maxHeight && w > maxWidth){
+				w = maxWidth;
+				h = w * maxHeight / maxWidth;
+			}
+			//case 4
+			else if(h > maxHeight && w > maxWidth){
+				if(h/maxHeight > w/maxWidth){
+					w = w * maxHeight / h;
+					h = maxHeight;					
+				}else{
+					h = h * maxWidth / w;
+					w = maxWidth;					
+				}
+			}
+			BufferedImage tag = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+			tag.getGraphics().drawImage(src, 0, 0, w, h, null); // 绘制缩小后的图
+			JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+			encoder.encode(tag); // 近JPEG编码
+		} catch (ImageFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public static void main(String[] args) {
 		Date now = new Date();

@@ -63,6 +63,16 @@
 		<servlet-name>proxool</servlet-name> 
 		<url-pattern>/proxoolAdmin</url-pattern> 
 	</servlet-mapping>
+	<!-- image -->
+	<servlet>
+		<servlet-name>image</servlet-name>
+		<servlet-class>com.throne212.auto.servlet.ImageServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>image</servlet-name>
+		<url-pattern>/image</url-pattern>
+	</servlet-mapping>
 	<!-- welcome page -->
 	<welcome-file-list>
 		<welcome-file>default.jsp</welcome-file>

@@ -2,9 +2,9 @@ package com.throne212.auto.action;
 
 import org.apache.log4j.Logger;
 
-import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
-public abstract class BaseAction implements Action {
+public abstract class BaseAction extends ActionSupport {
 	protected Logger logger = Logger.getLogger(this.getClass());
 	
 	protected String reqStatus;
