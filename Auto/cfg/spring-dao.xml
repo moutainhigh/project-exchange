@@ -12,4 +12,7 @@
 	<bean id="newsDao" class="com.throne212.auto.dao.impl.NewsDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="saleDao" class="com.throne212.auto.dao.impl.SaleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

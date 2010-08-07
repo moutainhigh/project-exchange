@@ -49,18 +49,11 @@
 			<result name="pwd">/manage/welcome/pwd.jsp</result>
 			<result name="news_list">/manage/news/news_list.jsp</result>
 			<result name="news_edit">/manage/news/news_edit.jsp</result>
-		</action>
-		
-		<action name="SaleAction_*" method="{1}" class="com.throne212.auto.action.SaleAction">
-			<result name="saleAdd">/manage/sale_add.jsp</result>
-			<result name="saleList">/manage/sale_list.jsp</result>
+			<result name="sale_edit">/manage/sale/sale_edit.jsp</result>
+			<result name="sale_list">/manage/sale/sale_list.jsp</result>
 		</action>
 		<action name="FileUploadAction_*" method="{1}" class="com.throne212.auto.action.FileUploadAction">
-			<interceptor-ref name="fileUploadStack">
-				<param name="allowedTypes">
-					image/jpeg,image/bmp,image/gif,image/png
-				</param>
-			</interceptor-ref>
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
 			<result name="success">/manage/upload/success.jsp</result>
 			<result name="error">/manage/upload/fail.jsp</result>
 		</action>

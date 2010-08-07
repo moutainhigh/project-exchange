@@ -1,9 +1,13 @@
 package com.throne212.auto.dao;
 
+import java.util.List;
+
 import com.throne212.auto.domain.Sale;
 
-public interface SaleDao extends BaseDao{
+public interface SaleDao extends BaseDao {
 
-	public Sale getSaleByLoginName(String loginName);
-	
+	public List<Sale> getSaleList(int first, int max);
+
+	public long getSaleListCount();
+
 }
