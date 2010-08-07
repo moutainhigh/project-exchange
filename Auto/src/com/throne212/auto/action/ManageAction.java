@@ -6,6 +6,7 @@ import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.biz.UserBiz;
 import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.Util;
+import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.User;
@@ -112,6 +113,39 @@ public class ManageAction extends BaseAction {
 		return this.saleList();
 	}
 	
+	//4s sale car
+	private PageBean<Car> carPageBean;
+	public String carList(){
+		carPageBean = userBiz.getSales(page);
+		return "car_list";
+	}	
+	private Sale car;
+	public String saveSale(){
+		if(car == null)
+			return "car_edit";
+		if(car.getId() != null){
+			String pwd = userBiz.getEntityById(Sale.class, sale.getId()).getPassword();
+			sale.setPassword(pwd);
+		}
+		userBiz.saveOrUpdateEntity(sale);
+		if(sale.getId() != null)
+			this.setReqMsg("4S店资料保存成功");
+		else
+			this.setReqMsg("4S店资料保存失败，请联系管理员");
+		return "sale_edit";
+	}
+	public String sale(){
+		if(sale.getId() != null)
+			sale = userBiz.getEntityById(Sale.class, sale.getId());
+		return "sale_edit";
+	}
+	public String deleteSale(){
+		if(sale.getId() != null){
+			userBiz.deleteEntity(Sale.class, sale.getId());
+			this.setReqMsg("4S店删除成功");
+		}
+		return this.saleList();
+	}
 	
 	
 	public void setUserBiz(UserBiz userBiz) {

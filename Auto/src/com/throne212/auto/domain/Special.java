@@ -15,6 +15,9 @@ public class Special extends MyEntity{//се╩щ
 	
 	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	private Category category;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
+	private Sale sale;
 
 	@Column
 	private String title;
@@ -69,6 +72,12 @@ public class Special extends MyEntity{//се╩щ
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public Sale getSale() {
+		return sale;
+	}
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 	
 	
