@@ -1,9 +1,9 @@
 package com.throne212.auto.biz;
 
-import java.util.Date;
-
 import com.throne212.auto.common.PageBean;
+import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.Sale;
+import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
 
 public interface UserBiz extends BaseBiz{
@@ -14,10 +14,10 @@ public interface UserBiz extends BaseBiz{
 	
 	public PageBean<Sale> getSales(int page);
 	
-	public PageBean<Sale> getCars(int page);
-	public PageBean<Sale> getCarsBySale(int page);
+	public PageBean<Car> getCars(int page);
+	public PageBean<Car> getCarsBySale(long saleId,int page);
 	
-	public PageBean<Sale> getSpecails(int page);
-	public PageBean<Sale> getSpecailsBySale(int page);
+	public PageBean<Special> getSpecials(int page);
+	public PageBean<Special> getSpecialsBySale(long saleId,int page);
 	
 }

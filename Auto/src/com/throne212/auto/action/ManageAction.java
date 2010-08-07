@@ -9,6 +9,7 @@ import com.throne212.auto.common.Util;
 import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
+import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
 
 public class ManageAction extends BaseAction {
@@ -116,35 +117,67 @@ public class ManageAction extends BaseAction {
 	//4s sale car
 	private PageBean<Car> carPageBean;
 	public String carList(){
-		carPageBean = userBiz.getSales(page);
+		carPageBean = userBiz.getCars(page);
 		return "car_list";
 	}	
-	private Sale car;
-	public String saveSale(){
+	private Car car;
+	public String saveCar(){
 		if(car == null)
 			return "car_edit";
 		if(car.getId() != null){
-			String pwd = userBiz.getEntityById(Sale.class, sale.getId()).getPassword();
-			sale.setPassword(pwd);
+			
 		}
-		userBiz.saveOrUpdateEntity(sale);
-		if(sale.getId() != null)
-			this.setReqMsg("4S店资料保存成功");
+		userBiz.saveOrUpdateEntity(car);
+		if(car.getId() != null)
+			this.setReqMsg("车型保存成功");
 		else
-			this.setReqMsg("4S店资料保存失败，请联系管理员");
-		return "sale_edit";
+			this.setReqMsg("车型资料保存失败，请联系管理员");
+		return "car_edit";
 	}
-	public String sale(){
-		if(sale.getId() != null)
-			sale = userBiz.getEntityById(Sale.class, sale.getId());
-		return "sale_edit";
+	public String car(){
+		if(car.getId() != null)
+			car = userBiz.getEntityById(Car.class, car.getId());
+		return "car_edit";
 	}
-	public String deleteSale(){
-		if(sale.getId() != null){
-			userBiz.deleteEntity(Sale.class, sale.getId());
-			this.setReqMsg("4S店删除成功");
+	public String deleteCar(){
+		if(car.getId() != null){
+			userBiz.deleteEntity(Car.class, car.getId());
+			this.setReqMsg("车型删除成功");
 		}
-		return this.saleList();
+		return this.carList();
+	}
+	
+	//4s sale special
+	private PageBean<Special> specialPageBean;
+	public String specialList(){
+		specialPageBean = userBiz.getSpecials(page);
+		return "special_list";
+	}	
+	private Special special;
+	public String saveSpecial(){
+		if(special == null)
+			return "special_edit";
+		if(special.getId() != null){
+			
+		}
+		userBiz.saveOrUpdateEntity(special);
+		if(special.getId() != null)
+			this.setReqMsg("优惠信息保存成功");
+		else
+			this.setReqMsg("优惠信息保存失败，请联系管理员");
+		return "special_edit";
+	}
+	public String special(){
+		if(special.getId() != null)
+			special = userBiz.getEntityById(Special.class, special.getId());
+		return "special_edit";
+	}
+	public String deleteSpecial(){
+		if(special.getId() != null){
+			userBiz.deleteEntity(Special.class, special.getId());
+			this.setReqMsg("优惠信息删除成功");
+		}
+		return this.specialList();
 	}
 	
 	

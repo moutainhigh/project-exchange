@@ -9,7 +9,9 @@ import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.dao.SaleDao;
 import com.throne212.auto.dao.UserDao;
 import com.throne212.auto.domain.Admin;
+import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.Sale;
+import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
 
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
@@ -57,6 +59,66 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		PageBean<Sale> bean = new PageBean<Sale>();
 		bean.setPageIndex(pageIndex);
 		bean.setResultList(sales);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int)saleDao.getSaleListCount());
+		return bean;
+	}
+
+	//cars
+	public PageBean<Car> getCars(int pageIndex) {
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
+		List<Car> cars = saleDao.getSaleCarList(startIndex, WebConstants.maxRowPerPage);
+		PageBean<Car> bean = new PageBean<Car>();
+		bean.setPageIndex(pageIndex);
+		bean.setResultList(cars);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int)saleDao.getSaleListCount());
+		return bean;
+	}
+
+	public PageBean<Car> getCarsBySale(long saleId,int pageIndex) {
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
+		Sale sale = saleDao.getEntityById(Sale.class, saleId);
+		List<Car> cars = saleDao.getSaleCarList(sale,startIndex, WebConstants.maxRowPerPage);
+		PageBean<Car> bean = new PageBean<Car>();
+		bean.setPageIndex(pageIndex);
+		bean.setResultList(cars);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int)saleDao.getSaleListCount());
+		return bean;
+	}
+
+	//special
+	public PageBean<Special> getSpecials(int pageIndex) {
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
+		List<Special> s = saleDao.getSaleSpecialList(startIndex, WebConstants.maxRowPerPage);
+		PageBean<Special> bean = new PageBean<Special>();
+		bean.setPageIndex(pageIndex);
+		bean.setResultList(s);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int)saleDao.getSaleListCount());
+		return bean;
+	}
+
+	public PageBean<Special> getSpecialsBySale(long saleId,int pageIndex) {
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
+		Sale sale = saleDao.getEntityById(Sale.class, saleId);
+		List<Special> s = saleDao.getSaleSpecialList(sale,startIndex, WebConstants.maxRowPerPage);
+		PageBean<Special> bean = new PageBean<Special>();
+		bean.setPageIndex(pageIndex);
+		bean.setResultList(s);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
 		bean.setTotalRow((int)saleDao.getSaleListCount());
 		return bean;
