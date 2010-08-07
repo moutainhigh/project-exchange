@@ -25,6 +25,8 @@ public class Car extends MyEntity {// 车型
 	private Date priceDate;
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, targetEntity = Sale.class)
 	private Sale sale;
+	@Column(length=1024)
+	private String detail;
 
 	public String getImage() {
 		return image;
@@ -72,6 +74,14 @@ public class Car extends MyEntity {// 车型
 
 	public void setSale(Sale sale) {
 		this.sale = sale;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 }

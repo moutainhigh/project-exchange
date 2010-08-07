@@ -125,7 +125,12 @@ public class ManageAction extends BaseAction {
 		if(car == null)
 			return "car_edit";
 		if(car.getId() != null){
-			
+			Car oldCar = userBiz.getEntityById(Car.class, car.getId());
+			if(oldCar.getPrice() != car.getPrice()){
+				car.setPriceDate(new Date());
+			}
+		}else{
+			car.setPriceDate(new Date());
 		}
 		userBiz.saveOrUpdateEntity(car);
 		if(car.getId() != null)

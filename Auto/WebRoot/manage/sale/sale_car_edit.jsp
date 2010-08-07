@@ -97,8 +97,8 @@
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_saveSale.action" method="post">
-    	<input type="hidden" name="sale.id" value="${sale.id}"/>
+    <form action="ManageAction_saveCar.action" method="post">
+    	<input type="hidden" name="car.id" value="${car.id}"/>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
@@ -106,45 +106,26 @@
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>增加4S店会员</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">登录名：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.loginName" value="${sale.loginName}" /><span style="color:red;">*</span></td>
-			  </tr>
-			  <c:if test="${empty sale.id}">
-			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">初始登录密码：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.password" /><span style="color:red;">*</span></td>
-			  </tr>
-			  </c:if>
-			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">会员名称：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.fullName" value="${sale.fullName}"  /></td>
+			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型名称：</td>
+			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.fullName" value="${car.fullName}" /><span style="color:red;">*</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系电话：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.tel" value="${sale.tel}" /></td>
+			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型价格（￥）：</td>
+			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.price" value="${car.price}"  /><span style="color:red;">*</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">QQ号码：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.qq" value="${sale.qq}" /></td>
-			  </tr>
-			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">邮箱地址：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.email" value="${sale.email}" /></td>
-			  </tr>
-			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系地址：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.address" value="${sale.address}" /></td>
-			  </tr>
-			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">详细介绍：</td>
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型图片：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    	<textarea rows="5" cols="50" name="sale.description">${sale.description }</textarea>
+			    	
 			    </td>
+			  </tr>
+			  <tr style="background-color:#F7F8FA">
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型参数：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.detail" value="${car.detail}" /></td>
 			  </tr>
 			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
 			  </tr>
-
 			</table>
         </div>
         </form>
