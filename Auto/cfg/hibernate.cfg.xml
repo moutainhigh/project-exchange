@@ -31,6 +31,7 @@
 	<mapping class="com.throne212.auto.domain.Category" />
 	<mapping class="com.throne212.auto.domain.Special" />
 	<mapping class="com.throne212.auto.domain.News" />
+	<mapping class="com.throne212.auto.domain.Setting" />
 	
 	
 </session-factory>

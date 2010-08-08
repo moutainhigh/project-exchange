@@ -32,7 +32,20 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 		bean.setResultList(newsDao.getNewsList(startIndex, WebConstants.maxRowPerPage));
 		bean.setPageIndex(pageIndex);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
-		bean.setTotalRow((int)newsDao.getNewsListCount(startIndex, WebConstants.maxRowPerPage));
+		bean.setTotalRow((int)newsDao.getNewsListCount());
+		return bean;
+	}
+	
+	public PageBean<News> getNews(int pageIndex,int type) {
+		PageBean<News> bean = new PageBean<News>();
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
+		bean.setResultList(newsDao.getNewsList(startIndex, WebConstants.maxRowPerPage,type));
+		bean.setPageIndex(pageIndex);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int)newsDao.getNewsListCount());
 		return bean;
 	}
 	

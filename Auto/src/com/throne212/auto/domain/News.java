@@ -16,20 +16,31 @@ import com.throne212.auto.common.WebConstants;
 public class News extends MyEntity{//消息
 	
 	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
-	private Category category;
+	protected Category category;
 
 	@Column
-	private String title;
+	protected String title;
 	@Column
-	private String content;
+	protected String content;
 	@Column(name="fromWhere")
-	private String from;
+	protected String from;
 	@Column
-	private String author;
+	protected String author;
 	@Column
-	private Date publishDate;
+	protected Date publishDate;
 	@Column
-	private int type;
+	protected int type;
+	@Column
+	protected Boolean recommend;//推荐
+	@Column
+	protected Boolean passed;//通过审核
+	@Column
+	protected String seoTitle;
+	@Column
+	protected String seoDesc;
+	@Column
+	protected long click;//访问量
+	
 	public Category getCategory() {
 		return category;
 	}
@@ -72,14 +83,44 @@ public class News extends MyEntity{//消息
 	public void setType(int type) {
 		this.type = type;
 	}
+	public Boolean getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(Boolean recommend) {
+		this.recommend = recommend;
+	}
+	public Boolean getPassed() {
+		return passed;
+	}
+	public void setPassed(Boolean passed) {
+		this.passed = passed;
+	}
+	public String getSeoTitle() {
+		return seoTitle;
+	}
+	public void setSeoTitle(String seoTitle) {
+		this.seoTitle = seoTitle;
+	}
+	public String getSeoDesc() {
+		return seoDesc;
+	}
+	public void setSeoDesc(String seoDesc) {
+		this.seoDesc = seoDesc;
+	}
+	public long getClick() {
+		return click;
+	}
+	public void setClick(long click) {
+		this.click = click;
+	}
 	public String getTypeText() {
 		switch (type) {
 		case WebConstants.NEWS_NEWS:
 			return "新闻";
-		case WebConstants.NEWS_ACTIVE:
-			return "动态";
-		case WebConstants.NEWS_XINDE:
-			return "购车心得";
+		case WebConstants.NEWS_JINGJI_XINDE:
+			return "经济型车购车心得";
+		case WebConstants.NEWS_ZHONGJI_XINDE:
+			return "中型车购车心得";
 		case WebConstants.NEWS_CEPING:
 			return "专业测评";
 		case WebConstants.NEWS_BAOXIAN:
@@ -90,6 +131,8 @@ public class News extends MyEntity{//消息
 			return "养车成本";
 		case WebConstants.NEWS_ZHUANGSHI:
 			return "汽车装饰";
+		case WebConstants.NEWS_BEIJING:
+			return "北京降价";
 		default:
 			break;
 		}

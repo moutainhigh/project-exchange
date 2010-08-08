@@ -34,6 +34,8 @@ public class Sale extends User {// 4sµê
 	protected String address;
 	@Column
 	protected String qq;
+	@Column
+	protected String image;
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "sale", targetEntity = Car.class)
 	private Set<Car> cars = new HashSet<Car>();
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "sale", targetEntity = Car.class)
@@ -125,6 +127,14 @@ public class Sale extends User {// 4sµê
 
 	public void setSpecials(Set<Special> specials) {
 		this.specials = specials;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

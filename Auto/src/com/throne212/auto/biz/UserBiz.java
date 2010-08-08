@@ -13,6 +13,7 @@ public interface UserBiz extends BaseBiz{
 	public boolean changePwd(Long userId,String oldPwd,String newPwd);
 	
 	public PageBean<Sale> getSales(int page);
+	public PageBean<Sale> getSales(int page,int num);
 	
 	public PageBean<Car> getCars(int page);
 	public PageBean<Car> getCarsBySale(long saleId,int page);

@@ -63,6 +63,19 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		bean.setTotalRow((int)saleDao.getSaleListCount());
 		return bean;
 	}
+	public PageBean<Sale> getSales(int pageIndex,int num) {
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * num;
+		List<Sale> sales = saleDao.getSaleList(startIndex, num);
+		PageBean<Sale> bean = new PageBean<Sale>();
+		bean.setPageIndex(pageIndex);
+		bean.setResultList(sales);
+		bean.setRowPerPage(num);
+		bean.setTotalRow((int)saleDao.getSaleListCount());
+		return bean;
+	}
 
 	//cars
 	public PageBean<Car> getCars(int pageIndex) {

@@ -110,15 +110,18 @@
         </script>
     </head>
     <body>
-    	<c:if test="${empty sess_pages}">
-    		<jsp:forward page="/manage/left.html"></jsp:forward>
-    	</c:if>
-        <h2>${sess_curr_module.name}</h2>
+    	<h2>欢迎页面</h2>
         <div id="menu3">
             <ul>
-            	<c:forEach var="p" items="${sess_pages}">
-				<li><a href="${app_path }${p.url }" target="rightFrame">${p.name }</a></li>
-				</c:forEach>
+                <!-- CSS Tabs -->
+				<li>
+                    <a id="current" href="welcome/welcome.jsp" target="rightFrame">系统信息概况</a>
+                    <a id="current" href="welcome/pwd.jsp" target="rightFrame">修改密码</a>
+                    <c:if test="${isAdmin}">
+                    <a id="current" href="welcome/ManageAction_setting.htm" target="rightFrame">网站设置</a>
+                    <a id="current" href="welcome/ManageAction_link.htm" target="rightFrame">友情链接</a>
+                    </c:if>
+                </li>
             </ul>
         </div>
     </body>

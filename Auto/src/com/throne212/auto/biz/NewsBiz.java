@@ -10,4 +10,6 @@ public interface NewsBiz extends BaseBiz{
 	
 	public PageBean<News> getNews(int page);
 	
+	public PageBean<News> getNews(int page,int type);
+	
 }

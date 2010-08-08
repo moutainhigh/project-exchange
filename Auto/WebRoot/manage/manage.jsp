@@ -232,7 +232,9 @@
 				<div id="mainNav">
 					<div><a href="${appPath}/manage/main.html" target="mainFrame" style="color:red">欢迎页</a></div>
 					<ul>
+						<c:if test="${isAdmin}">
 						<li><a href="${appPath}/manage/main_news.html" target="mainFrame">文章管理</a></li>
+						</c:if>
 						<li><a href="${appPath}/manage/main_sale.html" target="mainFrame">会员管理</a></li>
 					</ul>
 				</div>

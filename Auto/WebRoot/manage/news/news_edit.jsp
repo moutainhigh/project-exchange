@@ -109,11 +109,13 @@
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
 			    	<input type="radio" name="news.type" value="1" <c:if test="${news.type == 1}">checked="checked"</c:if> />新闻
 			    	&nbsp;
-			    	<input type="radio" name="news.type" value="2" <c:if test="${news.type == 2}">checked="checked"</c:if> />动态
+			    	<input type="radio" name="news.type" value="2" <c:if test="${news.type == 2}">checked="checked"</c:if> />经济型购车心得
 			    	&nbsp;
-			    	<input type="radio" name="news.type" value="3" <c:if test="${news.type == 3}">checked="checked"</c:if> />购车心得
+			    	<input type="radio" name="news.type" value="3" <c:if test="${news.type == 3}">checked="checked"</c:if> />中级车购车心得
 			    	&nbsp;
 			    	<input type="radio" name="news.type" value="4" <c:if test="${news.type == 4}">checked="checked"</c:if> />专业测评
+			    	&nbsp;
+			    	<input type="radio" name="news.type" value="4" <c:if test="${news.type == 9}">checked="checked"</c:if> />北京降价
 			    	&nbsp;
 			    	<input type="radio" name="news.type" value="5" <c:if test="${news.type == 5}">checked="checked"</c:if> />汽车保险
 			    	&nbsp;
@@ -137,9 +139,29 @@
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.from" size="25" value="${news.from }" /></td>
 			  </tr>
 			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网页标题：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.seoTitle" size="35" value="${news.seoTitle}" /></td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网页描述：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.seoDesc" size="55" value="${news.seoDesc }" /></td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">推荐与否：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    <input type="radio" name="news.recommend" value="true" <c:if test="${!empty news.recommend && news.recommend}">checked="checked"</c:if> />推荐
+			    &nbsp;
+			    <input type="radio" name="news.recommend" value="false" <c:if test="${empty news.recommend || news.recommend==false}">checked="checked"</c:if> />不推荐
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">通过审核：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    <input type="checkbox" name="news.passed" value="true" <c:if test="${!empty news.passed && news.passed}">checked="checked"</c:if> />通过审核
+			  </tr>
+			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<textarea rows="10" cols="80" id="content" name="news.content">${news.content}</textarea>
+			    	<textarea rows="20" cols="80" id="content" name="news.content">${news.content}</textarea>
 			    	<script>
 			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn'});
 			    	</script>

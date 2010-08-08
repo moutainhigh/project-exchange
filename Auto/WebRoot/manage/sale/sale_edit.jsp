@@ -136,9 +136,23 @@
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.address" value="${sale.address}" /></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">详细介绍：</td>
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">公司图片：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    	<textarea rows="5" cols="50" name="sale.description">${sale.description }</textarea>
+			    	<input type="hidden" id="myImage" name="sale.image" value="${sale.image }"/>
+			    	<c:choose>
+			    		<c:when test="${empty sale.id || empty sale.image}">
+			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:when>
+			    		<c:otherwise>
+			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${sale.image}" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:otherwise>
+			    	</c:choose>
+			    </td>
+			  </tr>
+			  <tr style="background-color:#F7F8FA">
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">公司介绍：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    	<textarea rows="10" cols="80" name="sale.description">${sale.description }</textarea>
 			    </td>
 			  </tr>
 			  <tr>

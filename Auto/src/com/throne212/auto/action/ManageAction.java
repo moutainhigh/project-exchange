@@ -11,6 +11,7 @@ import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
+import com.throne212.auto.domain.Setting;
 import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
 
@@ -25,6 +26,16 @@ public class ManageAction extends BaseAction {
 
 	public String index() {
 		return "main";
+	}
+	
+	private Setting setting;
+	public String setting() {
+		if(setting == null || setting.getId() == null){
+			setting = userBiz.getAll(Setting.class).get(0);
+		}else{
+			userBiz.saveOrUpdateEntity(setting);
+		}
+		return "setting";
 	}
 
 	// news
@@ -103,6 +114,11 @@ public class ManageAction extends BaseAction {
 		if (sale.getId() != null) {
 			String pwd = userBiz.getEntityById(Sale.class, sale.getId()).getPassword();
 			sale.setPassword(pwd);
+		}
+		String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (image != null) {
+			sale.setImage(image);
+			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
 		}
 		userBiz.saveOrUpdateEntity(sale);
 		if (sale.getId() != null)

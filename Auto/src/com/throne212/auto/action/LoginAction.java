@@ -31,9 +31,9 @@ public class LoginAction extends BaseAction {
 			ActionContext.getContext().getSession().put(WebConstants.SESS_USER_NAME, user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 			if(user instanceof Admin){
-				
+				ActionContext.getContext().getSession().put(WebConstants.SESS_USER_IS_ADMIN,true);
 			}else if(user instanceof Sale){
-				
+				ActionContext.getContext().getSession().put(WebConstants.SESS_USER_IS_ADMIN,false);
 			}
 		} else {/* login failed */
 			logger.info("loginName=[" + username + "] login failed");

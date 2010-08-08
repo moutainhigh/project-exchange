@@ -1,584 +1,422 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
     <title>${appTitle}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-	<LINK href="css/css.css" rel=stylesheet>
-	<script type="text/javascript" src="js/jquery.js"></script>
-  </head>
+    <meta name="description" content="${appDesc}" />
+    <meta name="keywords"  content="${appKeywords}" />
+    <link href="Themes/basic.css" type="text/css" rel="stylesheet" />
+    <link href="Themes/pagestyle.css" type="text/css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/common.js"></script>
+</head>
+<body>
 
-<body bgcolor="F5F5F5" text="#000000" topmargin="0" leftmargin="0">
-<jsp:include page="top.jsp"></jsp:include>
-<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center" background="img/top-bg2.jpg">
-  <tr background="img/top-bg2.jpg"> 
-    <td width="684" >&nbsp;&nbsp;最新动态：热烈祝贺张家口汽车网开通！<font color="#990000">（调用本地动态中的最新一条推荐信息）</font></td>
-    <td height="44" width="316"><img src="img/search.jpg" width="341" height="33"></td>
-  </tr>
-</table>
-<table width="1000" border="0" cellspacing="2" cellpadding="0" align="center" bgcolor="#FFFFFF">
-  <tr>
-    <td width="347"><img src="img/ad.jpg" width="346" height="234"></td>
-    <td width="647" valign="top"> 
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="162">
-        <tr>
-          <td width="408" valign="top"> 
-            <table width="95%" border="0" cellspacing="3" cellpadding="0" align="center">
-              <tr> 
-                <td height="18" width="31%"> 
-                  <div align="center"><img src="img/today.jpg" width="86" height="18"></div>
-                </td>
-                <td height="18" width="69%">&nbsp;</td>
-              </tr>
-              <tr> 
-                <td colspan="2"> 
-                  <div align="center" class="myfontbig"><b><font color="#333333">张家口福特4S店开业！！</font></b></div>
-                </td>
-              </tr>
-              <tr> 
-                <td colspan="2" class="myfont">张家口<font color="#333333">福特4S张家口<font color="#333333">福特4S</font>张家口<font color="#333333">福特4S</font>张家口<font color="#333333">福特4S</font>张家口<font color="#333333">福特4S</font>张家口<font color="#333333">福特4S</font>张家口<font color="#333333">福特4S</font> 
-                  [<a href="#" class="demo">查看详细</a>]</font></td>
-              </tr>
-            </table>
-            <table width="95%" border="0" cellspacing="7" cellpadding="0">
-              <tr> 
-                <td>·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10<br>
-                  ·张家口汽车新闻(调用最新发布的文章) 2010-1-10</td>
-              </tr>
-            </table>
-          </td>
-          <td width="239" valign="top"> 
-            <table width="100%" border="0" cellspacing="2" cellpadding="0" bgcolor="EBECED">
-              <tr>
-                <td height="32" bgcolor="#FFFFFF" background="img/tio-right.jpg">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="24">
-                    <tr> 
-                      <td width="40%" valign="bottom"> 
-                        <div align="right">本地优惠</div>
-                      </td>
-                      <td width="49%" valign="bottom"> 
-                        <div align="center">本地新闻</div>
-                      </td>
-                      <td width="11%">&nbsp;</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td bgcolor="#FFFFFF" height="79" class="myfont">·张家口汽车新闻年11111<br>
-                  ·张家口汽车新闻年11111<br>
-                  ·张家口汽车新闻年11111<br>
-                  ·张家口汽车新闻年11111<br>
-                  ·张家口汽车新闻年11111 <br>
-                  ·张家口汽车新闻年11111<br>
-                  ·张家口汽车新闻年11111<br>
-                  ·张家口汽车新闻年11111</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
-  <tr> 
-    <td background="img/nav1.jpg" height="32">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
-          <td width="61%">&nbsp;</td>
-          <td width="39%"><font color="#FFFFFF">张家口车市动态 购车心得 专业测评 北京降价 汽车保险</font></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td height="235" valign="top"> 
-      <table width="1000" border="0" cellspacing="1" cellpadding="0" align="center" height="103" bgcolor="#DCD7D7" >
-        <tr bgcolor="#FFFFFF"> 
-          <td height="214" valign="top" width="350"> 
-            <table width="100%" border="0" cellspacing="3" cellpadding="0" >
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="3" cellpadding="0">
-                    <tr> 
-                      <td width="84%"><b>北京降价-经济车型</b></td>
-                      <td width="16%">&gt;&gt;更多</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <DIV id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></DIV>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
-                    <tr>
-                      <td width="28%"><img src="img/jiangjia.jpg" width="143" height="95"></td>
-                      <td width="72%" valign="top" class="myfontabout"><a href="#">北京瑞虎优惠</a><br>
-                        北京瑞虎在新年来临之季，全线优惠北京瑞虎在新年来临之季，全线优惠1000元,在新年来临之季（调用经济车头条推荐信息）[<a href="#">详细</a>]</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-            </table>
-            <table width="100%" border="0" cellspacing="3" cellpadding="0" >
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="3" cellpadding="0">
-                    <tr> 
-                      <td width="82%"><b>10万以上车型降价</b></td>
-                      <td width="18%">&gt;&gt;更多</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div>
-                </td>
-              </tr>
-              <tr> 
-                <td>·10-15万车型降价信息经济车型降价信 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-            </table>
+    <jsp:include page="top.jsp" flush="false"></jsp:include>
+    
+    <!---- begin正文框架 ---->
+<div class="wrapper mauto pad_5">
+      <div class="search_area">
+        <div class="fl ft14 w550 hide">最新动态：热烈祝贺张家口汽车网开通！（<span class="red">调用本地动态中的最新一荐信息</span>）</div>
+          <div class="fr w350 pad_l10 bls_gray">
+            <div class="fl blue">站内搜索</div>
+                        <div class="fl mar_l5">
+                          <select name="select" id="select">
+                            <option>请输入分类</option>
+                          </select>
+                        </div>
+            <div class="fl mar_l5">
+              <input type="text" class="gray input03" value="--请输入关键字--" />
+            </div>
+                        <div class="fl">
+                          <input class="hledat" type="image" src="Themes/images/search-button.gif" name="input" value="Search" alt="Search" />
+        </div></div>
+      <div class="clear"></div>
+      </div>
+      
+      <div class="part01 mar_t6">
+           <div class="fl w348 hide">
+      <div class="b_3gray">
+      <div class="pic-imgnews">
+        <img src="Themes/images/ad.jpg" alt="切换广告" width="340" height="230" />
+        <div class="txt">掌握安全——把握宝马冬季驾驶培训</div>
+      <ul>
+                <li class="current">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+          </ul></div>
+      </div>
+    </div>
+      
+      
+           <div class="fl w350 hide recommend mar_l20">
+             <div class="first">
+               <h1> <a href="#" target="_blank"><img class="mar_r10" src="Themes/images/label_recommend.jpg" alt="今日热点" width="86" height="18" />张家口福特4S店开业！！</a></h1>
+               <p class="gray">张家口福特4S张家口福特4S张家口福特4S张家口福特4S张家口福特4S张家口福特4S张家口福特4S ...<a href="http://www.babailin.com"
+                                    target="_blank">&gt;&gt;查看详细</a></p>
+             </div>
+             <div class="third">
+               <ul class="dotli01">
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠激情持原靠激情靠激情？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠激持原情持原著？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠持持原原激情持原著？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠激持原情持原著？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠激情持原持原持原著？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠激情持持原持原持原原著？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                 <li><a href="#" target="_blank">[报料]新版西游记竟靠激持原持原情持原著？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+               </ul>
+               <div class="clear"> </div>
+             </div>
+        </div>
+        
+        <div class="fl w240 hide recommend mar_l10">
+          <div class="section mar_t6">
+            <div class="ptitle02">
+              <ul class="tlboxtitle fl">
+                <li class="current"> <a href="#" title="推荐任务">本地优惠</a></li>
+                <li>本地新闻<a href="#" title="最新任务"></a></li>
+              </ul>
+              </div>
+            <div class=" pad_t5 pad_l10 pad_b10">
+            <ul class="dotli01">
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
+               </ul>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="clear"></div>
+      </div>
+      
+      <div class="part02 mar_t6">
+            <div class="purchase-title"><a href="#">张家口车市动态</a> | <a href="#">购车心得</a> | <a href="#">专业测评</a> | <a href="#">北京降价</a> | <a href="#">汽车保险</a></div>
             
-          </td>
-          <td height="214" width="350" valign="top"> 
-            <table width="100%" border="0" cellspacing="3" cellpadding="0" >
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="3" cellpadding="0">
-                    <tr> 
-                      <td width="84%"><b>网友购车感受-经济车型</b></td>
-                      <td width="16%">&gt;&gt;更多</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
-                    <tr> 
-                      <td width="28%"><img src="img/jiangjia.jpg" width="143" height="95"></td>
-                      <td width="72%" valign="top" class="myfontabout"><a href="#">网友用车感受</a><br>
-                        网友购车头条网友购车头条网友购车头条网友购车头条（调用网友购车经济车型头条推荐信息）[<a href="#">详细</a>]</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-            </table>  
-            <table width="100%" border="0" cellspacing="3" cellpadding="0" >
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="3" cellpadding="0">
-                    <tr> 
-                      <td width="84%"><b>网友购车感受-中级车型</b></td>
-                      <td width="16%">&gt;&gt;更多</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div>
-                </td>
-              </tr>
-              <tr> 
-                <td> ·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-            </table>
-          </td>
-          <td height="214" bgcolor="EEF1F5" valign="top"> 
-            <table width="100%" border="0" cellspacing="2" cellpadding="0">
-              <tr>
-                <td background="img/baoxian.jpg" height="21">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="7%">&nbsp;</td>
-                      <td width="93%" height="30" valign="middle"><b><font color="#333333">汽车保险</font></b></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
-                    <tr> 
-                      <td width="38%"><img src="img/daili1.jpg" width="102" height="77"></td>
-                      <td width="62%" class="myfontabout"><a href="#">张家口汽车保险推荐</a>1<br>
-                        热线电话0313-8888888<br>
-                        [<a href="#">详细</a>]</td>
-                    </tr>
-                    <tr> 
-                      <td width="38%"><img src="img/daili1.jpg" width="102" height="77"></td>
-                      <td width="62%" class="myfontabout"><a href="#">张家口汽车保险推荐</a>2<br>
-                        热线电话0313-8888888<br>
-                        [<a href="#">详细</a>]</td>
-                    </tr>
-                    <tr> 
-                      <td colspan="2"><div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <table width="100%" border="0" cellspacing="5" cellpadding="0">
-              <tr> 
-                <td class="myfont" width="81%"><b><font color="#990000"> &nbsp;&nbsp;保险知识 
-                  </font></b></td>
-                <td class="myfont" width="19%"><b><font color="#990000">更多&gt;&gt;</font></b></td>
-              </tr>
-              <tr> 
-                <td colspan="2" >·保险知识介绍1111111234234234234</td>
-              </tr>
-              <tr> 
-                <td colspan="2">·</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<table width="1000" border="0" align="center" class="tab_blue" cellspacing="0" cellpadding="0">
-  <tr>
-    <td height="44" background="img/4s.jpg">
-      <table width="100%" border="0">
-        <tr>
-          <td width="618">&nbsp;</td>
-          <td width="372"><b>张家口汽车4S店</b> | <b>张家口车市新闻 | 注册加盟</b></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td valign="top"> 
-      <table width="1000" border="0" cellspacing="2" cellpadding="0">
-        <tr> 
-          <td width="702" bgcolor="#FFFFFF" height="135"> 
-            <table width="996" border="0" cellspacing="1" cellpadding="0">
-              <tr> 
-                <td width="78"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119" class="myfontabout"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-8882222 </td>
-                <td width="78"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-                <td width="78"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-                <td width="78"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-                <td width="78"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="115"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-              </tr>
-            </table>
-            <table width="996" border="0" cellspacing="1" cellpadding="0">
-              <tr> 
-                <td width="78" height="65"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119" class="myfontabout" height="65"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-8882222 </td>
-                <td width="78" height="65"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119" height="65"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-                <td width="78" height="65"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119" height="65"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-                <td width="78" height="65"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="119" height="65"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-                <td width="78" height="65"><a href="#"><img src="img/4s11.jpg" width="78" height="57" border="0"></a></td>
-                <td width="115" height="65"><a href="#" class="demo">张家口奇瑞4S店</a><br>
-                  0313-888222</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
-  <tr> 
-    <td background="img/nav2.jpg" height="32">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
-          <td width="78%">&nbsp;</td>
-          <td width="22%"><font color="#FFFFFF">维修保养 养车费用 汽车装饰</font></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr> 
-    <td height="235">
-      <table width="1000" border="0" cellspacing="1" cellpadding="0" align="center" height="103" bgcolor="#DCD7D7" >
-        <tr bgcolor="#FFFFFF"> 
-          <td height="214" valign="top" width="350"> 
-            <table width="100%" border="0" cellspacing="3" cellpadding="0" >
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="3" cellpadding="0">
-                    <tr> 
-                      <td width="84%"><b>维修保养</b></td>
-                      <td width="16%">&gt;&gt;更多</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
-                    <tr> 
-                      <td width="28%"><img src="img/jiangjia.jpg" width="143" height="95"></td>
-                      <td width="72%" valign="top" class="myfontabout"><a href="#">北京瑞虎优惠</a><br>
-                        北京瑞虎在新年来临之季，全线优惠北京瑞虎在新年来临之季，全线优惠1000元,在新年来临之季（调用维修头条推荐信息）[<a href="#">详细</a>]</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-            </table>
+            <div class="fl w348 mar_t6">
+              <div class="section_purchase">
+                <div class="ptitle">
+                  <span class="more"><a href="#">更多</a> >></span>
+                  <div class="icon">北京降价-经济车型</div>
+                  
+                </div>
+                <div class="pad_10">
+                  <div class="index_tips">
+                    <div class="pic"> <a href="#" target="_blank"> <img src="Themes/images/pic-car.jpg"  width="136" height="86" alt="" /><strong>通过良好的沟通</strong></a><br />
+                          <span class="gray">北京瑞虎在新年来临之季，全线优惠北京瑞虎在新年来临之季，全线优惠1000元…</span><a href="http://www.babailin.com"
+                                    target="_blank">&gt;&gt;查看详细</a></div>
+                    <ul class="dotli01">
+                      <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="section_purchase mar_t6">
+                <div class="ptitle">
+                  <span class="more"><a href="#">更多</a> >></span>
+                  <div class="icon">10万以上车型降价</div>
+                  
+                </div>
+                <div class="pad_10">
+                    <ul class="dotli01">
+                      <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
             
-          </td>
-          <td height="214" width="350" valign="top"> 
-            <table width="100%" border="0" cellspacing="3" cellpadding="0" >
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="3" cellpadding="0">
-                    <tr> 
-                      <td width="84%"><b>养车费用</b></td>
-                      <td width="16%">&gt;&gt;更多</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
-                    <tr> 
-                      <td width="28%"><img src="img/jiangjia.jpg" width="143" height="95"></td>
-                      <td width="72%" valign="top" class="myfontabout"><a href="#">用车费用</a><br>
-                        网友购车头条网友购车头条网友购车头条网友购车头条（调用养车费用头条推荐信息）[<a href="#">详细</a>]</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-              <tr> 
-                <td>·经济车型 降价信息经济车型降价信息 2010-1-10</td>
-              </tr>
-            </table>
+            <div class="fl w350 hide recommend mar_l10 mar_t6 bls_gray pad_l10">
+              <div class="section_purchase">
+                <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+                    <div class="icon">网友购车感受-经济车型</div>
+                </div>
+                <div class="pad_10">
+                  <div class="index_tips">
+                    <div class="pic"> <a href="#" target="_blank"> <img src="Themes/images/pic-car.jpg"  width="136" height="86" alt="" /><strong>通过良好的沟通</strong></a><br />
+                        <span class="gray">北京瑞虎在新年来临之季，全线优惠北京瑞虎在新年来临之季，全线优惠1000元…</span><a href="http://www.babailin.com"
+                                    target="_blank">&gt;&gt;查看详细</a></div>
+                    <ul class="dotli01">
+                      <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                      <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="section_purchase mar_t6">
+                <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+                    <div class="icon">网友购车感受-中级车型</div>
+                </div>
+                <div class="pad_10">
+                  <ul class="dotli01">
+                    <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                    <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             
-          </td>
-          <td height="214" bgcolor="EEF1F5" valign="top"> 
-            <table width="100%" border="0" cellspacing="2" cellpadding="0">
-              <tr> 
-                <td background="img/baoxian.jpg" height="21"> 
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td width="7%">&nbsp;</td>
-                      <td width="93%" height="30" valign="middle"><b><font color="#333333">汽车装饰</font></b></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr> 
-                <td> 
-                  <table width="100%" border="0" cellspacing="2" cellpadding="0">
-                    <tr> 
-                      <td width="38%"> 
-                        <div align="center"><img src="img/zhuangshi.jpg" width="102" height="77"></div>
-                      </td>
-                      <td width="62%" class="myfontabout"><a href="#">汽车装饰商业家推荐</a><br>
-                        热线电话0313-8888888<br>
-                        [<a href="#">详细</a>]</td>
-                    </tr>
-                    <tr> 
-                      <td width="38%"> 
-                        <div align="center"><img src="img/zhuangshi.jpg" width="102" height="77"></div>
-                      </td>
-                      <td width="62%" class="myfontabout"><a href="#">汽车装饰商业家推荐</a><br>
-                        热线电话0313-8888888<br>
-                        [<a href="#">详细</a>]</td>
-                    </tr>
-                    <tr> 
-                      <td colspan="2"> 
-                        <div id=aaa 
-            style="OVERFLOW: hidden; BORDER-BOTTOM: #cccccc 1px dashed; HEIGHT: 1px"></div>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <table width="100%" border="0" cellspacing="5" cellpadding="0">
-              <tr> 
-                <td class="myfont" width="82%"><b><font color="#990000"> &nbsp;&nbsp;汽车装饰指南</font></b></td>
-                <td class="myfont" width="18%"><b><font color="#990000">更多&gt;&gt;</font></b></td>
-              </tr>
-              <tr> 
-                <td colspan="2" >·汽车装饰知识介绍1111111111111111</td>
-              </tr>
-              <tr> 
-                <td colspan="2">·汽车装饰知识介绍1111111111111111</td>
-              </tr>
-              <tr> 
-                <td colspan="2">·汽车装饰知识介绍1111111111111111</td>
-              </tr>
-              <tr> 
-                <td colspan="2">·汽车装饰知识介绍1111111111111111</td>
-              </tr>
-              <tr> 
-                <td colspan="2">·汽车装饰知识介绍1111111111111111</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<table width="1000" class="tab_blue" border="0" align="center" cellspacing="1" cellpadding="0">
-  <tr>
-    <td width="96" height="43" bgcolor="FBFAFA"> 
-      <table width="100%" border="0">
-        <tr>
-          <td width="23%"><img src="img/link.jpg" width="16" height="15"></td>
-          <td width="77%" bgcolor="FBFAFA"><b>友情链接</b></td>
-        </tr>
-      </table>
-    </td>
-    <td width="901" height="43">
-      <div align="center">计算机职称 张家口资讯网 张家口楼盘 张家口汽车 张家口</div>
-    </td>
-  </tr>
-</table>
+            <div class="fl w240 hide mar_t6 mar_l10 bg04">
+              <div class="section_purchase">
+                <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+                    <div class="icon">汽车保险</div>
+                </div>
+                <div class=" pad_t10 pad_l5">
+                  <div class="cardlist">
+                    <dl>
+                      <dt><a href="#"><img src="Themes/images/pic-card02.jpg" width="81" height="60" alt="" /></a></dt>
+                      <dd><b><a href="#">张家口汽车保险推荐1</a></b>
+                          <p>热线电话0313-8888888</p>
+                          <p>[<a href="#">详细</a>]</p>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><a href="#"><img src="Themes/images/pic-card02.jpg" width="81" height="60" alt="" /></a></dt>
+                      <dd><b><a href="#">张家口汽车保险推荐1</a></b>
+                          <p>热线电话0313-8888888</p>
+                        <p>[<a href="#">详细</a>]</p>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><a href="#"><img src="Themes/images/pic-card02.jpg" width="81" height="60" alt="" /></a></dt>
+                      <dd><b><a href="#">张家口汽车保险推荐1</a></b>
+                          <p>热线电话0313-8888888</p>
+                        <p>[<a href="#">详细</a>]</p>
+                      </dd>
+                    </dl>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="section_purchase mar_t6">
+                <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+                    <div class="icon">保险知识</div>
+                </div>
+                <div class="pad_10">
+                  <ul class="dotli01">
+                    <li><a href="#" target="_blank">新手金牌会员问题总结帖</a></li>
+                    <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a></li>
+                    <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a></li>
+                    <li><a href="#" target="_blank">如何提高充值的安全意识！</a></li>
+                    <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="clear"></div>
+  </div>
+
+
+      <div class="part03 mar_t6">
+        <div class="fix-title"><a href="#">张家口汽车4S店</a> | <a href="#">张家口车市新闻</a> | <a href="#">注册加盟</a></div>
+        <div class="pad_5">
+          <div class="shop_other">
+            <ul>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              </ul>
+            <ul>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+              <li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li><li>
+                <div class="w125 fl"> <a href="#" target="_blank"> <img src="Themes/images/pic-card04.jpg" width="78" height="57" class="b_gray" /></a></div>
+                <div class="fl w160 hide pad_l10">
+                  <p> <a href="#" target="_blank">张家口奇瑞4S店</a></p>
+                  <p class="mar_t5">0313-8882222</p>
+                </div>
+                <div class="clear"> </div>
+              </li>
+            </ul>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+  <div class="part04 mar_t6">
+    <div class="beauty-title"><a href="#">维修保养</a> | <a href="#">养车费用</a> | <a href="#">汽车装饰</a></div>
+        <div class="fl w348 mar_t6">
+          <div class="section_purchase">
+            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+              <div class="icon">维修保养</div>
+            </div>
+            <div class="pad_10">
+              <div class="index_tips">
+                <div class="pic"> <a href="#" target="_blank"> <img src="Themes/images/pic-car.jpg"  width="136" height="86" alt="" /><strong>通过良好的沟通</strong></a><br />
+                    <span class="gray">北京瑞虎在新年来临之季，全线优惠北京瑞虎在新年来临之季，全线优惠1000元…</span><a href="http://www.babailin.com"
+                                    target="_blank">&gt;&gt;查看详细</a></div>
+                <ul class="dotli01">
+                  <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fl w350 hide recommend mar_l10 mar_t6 bls_gray pad_l10">
+          <div class="section_purchase">
+            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+              <div class="icon">养车费用</div>
+            </div>
+            <div class="pad_10">
+              <div class="index_tips">
+                <div class="pic"> <a href="#" target="_blank"> <img src="Themes/images/pic-car.jpg"  width="136" height="86" alt="" /><strong>通过良好的沟通</strong></a><br />
+                    <span class="gray">北京瑞虎在新年来临之季，全线优惠北京瑞虎在新年来临之季，全线优惠1000元…</span><a href="http://www.babailin.com"
+                                    target="_blank">&gt;&gt;查看详细</a></div>
+                <ul class="dotli01">
+                  <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                  <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fl w240 hide mar_t6 mar_l10 bg04">
+          <div class="section_purchase">
+            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+              <div class="icon">汽车装饰</div>
+            </div>
+            <div class=" pad_t10 pad_l5">
+              <div class="cardlist">
+                <dl>
+                  <dt><a href="#"><img src="Themes/images/pic-card03.jpg" width="94" height="69" alt="" /></a></dt>
+                  <dd><b><a href="#">张家口汽车保险推荐1</a></b>
+                      <p>热线电话0313-8888888</p>
+                    <p>[<a href="#">详细</a>]</p>
+                  </dd>
+                </dl>
+                <dl>
+                  <dt><a href="#"><img src="Themes/images/pic-card03.jpg" width="94" height="69" alt="" /></a></dt>
+                  <dd><b><a href="#">张家口汽车保险推荐1</a></b>
+                      <p>热线电话0313-8888888</p>
+                    <p>[<a href="#">详细</a>]</p>
+                  </dd>
+                </dl>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="section_purchase mar_t6">
+            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
+              <div class="icon">汽车装饰指南</div>
+            </div>
+            <div class="pad_10">
+              <ul class="dotli01">
+                <li><a href="#" target="_blank">新手金牌会员问题总结帖</a></li>
+                <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a></li>
+                <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!-- end正文框架 -->
+ 
 <jsp:include page="bottom.jsp"></jsp:include>
+
 </body>
 </html>
