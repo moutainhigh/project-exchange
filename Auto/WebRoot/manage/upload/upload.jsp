@@ -30,7 +30,7 @@
     <tr align="center" valign="middle"> 
       <td height="20">
       
-      <input type="submit" value="提交"/>
+      <input type="submit" value="上传"/>
            </td>
     </tr>
 	</table>

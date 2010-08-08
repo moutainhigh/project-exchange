@@ -9,6 +9,7 @@
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
 	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	<constant name="struts.i18n.encoding" value="GBK"/>
 	
     <package name="struts2" namespace="/" extends="struts-default">
 		<action name="index" class="com.throne212.auto.action.IndexAction">
@@ -23,6 +24,17 @@
 		</action>
 		<action name="LogoutAction" class="com.throne212.auto.action.LogoutAction">
 			<result name="success" type="chain">index</result>
+		</action>
+    </package>
+    
+    <package name="json" extends="json-default">
+		<action name="ajax_*" method="{1}" class="com.throne212.auto.action.AjaxAction">
+			<result name="sale_list" type="json">
+				<param name="includeProperties">     
+					saleList\[\d+\]\.id,
+					saleList\[\d+\]\.fullName
+				</param>
+			</result>
 		</action>
     </package>
     
@@ -53,6 +65,8 @@
 			<result name="sale_list">/manage/sale/sale_list.jsp</result>
 			<result name="car_edit">/manage/sale/sale_car_edit.jsp</result>
 			<result name="car_list">/manage/sale/sale_car_list.jsp</result>
+			<result name="special_edit">/manage/sale/sale_special_edit.jsp</result>
+			<result name="special_list">/manage/sale/sale_special_list.jsp</result>
 		</action>
 		<action name="FileUploadAction_*" method="{1}" class="com.throne212.auto.action.FileUploadAction">
 			<interceptor-ref name="fileUploadStack"></interceptor-ref>

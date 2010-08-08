@@ -94,62 +94,62 @@
 			}
 		</style>
 		<script>
-			function deleteCar(id){
+			function deleteSpecial(id){
 				if(id && confirm('您确定要删除吗？')){
-					self.location.href = 'ManageAction_deleteCar.action?car.id='+id;
+					self.location.href = 'ManageAction_deleteSpecial.action?special.id='+id;
 				}
 			}
 		</script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_carList.action" method="post">
+    <form action="ManageAction_specialList.action" method="post">
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="7" align="left" background="${appPath}/manage/images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>车型列表</strong> </td>
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>优惠信息列表</strong> </td>
 			  </tr>
 			  <tr style="font-weight: 600;">
-			    <td width="20%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">图片</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">名称型号</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">经销商</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">报价</td>
-			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">报价时间</td>
-			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
-			  </tr>
-			  <c:forEach items="${carPageBean.resultList}" var="c" varStatus="status">
-			  <tr <c:if test="${status.count % 2 == 0}">bgcolor="#F7F8FA"</c:if>>
-			  	<td width="10%" height="100" align="center"  style="border-bottom:#cccccc 1px dashed;padding: 3px auto;">
-			  		<c:if test="${not empty c.image}"><img src="${appPath}/image?image=${c.image}&w=100&h=100" /></c:if>
+			  	<td width="10%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">
+			  		<a href="javascript:checkAll();">全选</a>
 			  	</td>
+			    <td width="20%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">发布时间</td>
+			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">标题</td>
+			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">来源</td>
+			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
+			  </tr>
+			  <c:forEach items="${specialPageBean.resultList}" var="s" varStatus="status">
+			  <tr <c:if test="${status.count % 2 == 0}">bgcolor="#F7F8FA"</c:if>>
+			  	<td width="10%" height="25" align="center"  style="border-bottom:#cccccc 1px dashed;">
+			  		<input type="checkbox" name="specialIds" value="${s.id}"/>
+			  	</td>
+			    <td width="20%" height="25" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.publishDate }</td>
 			    <td width="20%" align="center"  style="border-bottom:#cccccc 1px dashed;">
-			    	${c.fullName }
+			    	<h3>${s.title }</h3>
 			    </td>
-			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${c.sale.fullName }</td>
-			    <td width="20%" align="center"  style="border-bottom:#cccccc 1px dashed;">${c.price }</td>
-			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${c.priceDate }</td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.from }</td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
-			    	<a href="javascript:void(0);" onclick="deleteCar(${c.id});">删除</a>
+			    	<a href="javascript:void(0);" onclick="deleteSpecial(${s.id});">删除</a>
 			    	&nbsp;
-			    	<a href="${appPath}/manage/ManageAction_car.htm?car.id=${c.id}">修改</a>
+			    	<a href="${appPath}/manage/ManageAction_special.htm?special.id=${s.id}">修改</a>
 			    </td>
 			  </tr>
 			  </c:forEach>
 			  <tr>
 			    <td height="35" colspan="7" align="right" >
 					<span class="pageSpan">
-						第&nbsp;	<font color="blue">${carPageBean.pageIndex }</font>&nbsp;页/总&nbsp;${carPageBean.maxPage }&nbsp;页
+						第&nbsp;	<font color="blue">${specialPageBean.pageIndex }</font>&nbsp;页/总&nbsp;${specialPageBean.maxPage }&nbsp;页
 					</span>
 					<span class="pageSpan">
-						每页&nbsp;${carPageBean.rowPerPage }&nbsp;条&nbsp;&nbsp;
+						每页&nbsp;${specialPageBean.rowPerPage }&nbsp;条&nbsp;&nbsp;
 					</span>
 					<span class="pageSpan">
-						总共&nbsp;${carPageBean.totalRow }&nbsp;条记录&nbsp;&nbsp;
+						总共&nbsp;${specialPageBean.totalRow }&nbsp;条记录&nbsp;&nbsp;
 					</span>
 					<span class="pageSpan">
 						<c:choose>
-							<c:when test="${!carPageBean.isFirstPage}">
+							<c:when test="${!specialPageBean.isFirstPage}">
 								<a href="javascript:gotoPage(1);">[首页]</a>
 							</c:when>
 							<c:otherwise>
@@ -159,8 +159,8 @@
 					</span>
 					<span class="pageSpan">
 						<c:choose>
-							<c:when test="${!carPageBean.isFirstPage}">
-								<a href="javascript:gotoPage(${carPageBean.prePageIndex });">[前一页]</a>
+							<c:when test="${!specialPageBean.isFirstPage}">
+								<a href="javascript:gotoPage(${specialPageBean.prePageIndex });">[前一页]</a>
 							</c:when>
 							<c:otherwise>
 								[前一页]
@@ -169,8 +169,8 @@
 					</span>
 					<span class="pageSpan">
 						<c:choose>
-							<c:when test="${!carPageBean.isLastPage}">
-								<a href="javascript:gotoPage(${carPageBean.nextPageIndex });">[后一页]</a>
+							<c:when test="${!specialPageBean.isLastPage}">
+								<a href="javascript:gotoPage(${specialPageBean.nextPageIndex });">[后一页]</a>
 							</c:when>
 							<c:otherwise>
 								[后一页]
@@ -179,8 +179,8 @@
 					</span>
 					<span class="pageSpan">
 						<c:choose>
-							<c:when test="${!carPageBean.isLastPage}">
-								<a href="javascript:gotoPage(${carPageBean.maxPage });">[尾页]</a>
+							<c:when test="${!specialPageBean.isLastPage}">
+								<a href="javascript:gotoPage(${specialPageBean.maxPage });">[尾页]</a>
 							</c:when>
 							<c:otherwise>
 								[尾页]

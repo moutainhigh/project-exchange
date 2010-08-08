@@ -92,61 +92,70 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script>
+			$(function(){
+				loadSaleList();
+			});
+			function loadSaleList(){
+				$.post('ajax_getAllSales.htm', {}, function(result) {
+					var dataObj=eval(result);
+					var name;
+					var id;
+					var current_saleId = '${special.sale.id}';
+					$.each(dataObj.saleList,function(n,e){
+						id = e.id;
+						name = e.fullName;
+						if(id == current_saleId)
+							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#sale");
+						else
+							$("<option value="+id+">"+name+"</option>").appendTo("#sale");
+					});
+				});
+			}
+		</script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_saveNews.action" method="post">
-    	<input type="hidden" name="news.id" value="${news.id}"/>
+    <form action="ManageAction_saveSpecial.action" method="post">
+    	<input type="hidden" name="special.id" value="${special.id}"/>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="2" align="left" background="../images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>文章编辑</strong> </td>
-			  </tr>
-			  <tr>
-			    <td width="10%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">文章类型：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<input type="radio" name="news.type" value="1" <c:if test="${news.type == 1}">checked="checked"</c:if> />新闻
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="2" <c:if test="${news.type == 2}">checked="checked"</c:if> />动态
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="3" <c:if test="${news.type == 3}">checked="checked"</c:if> />购车心得
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="4" <c:if test="${news.type == 4}">checked="checked"</c:if> />专业测评
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="5" <c:if test="${news.type == 5}">checked="checked"</c:if> />汽车保险
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="6" <c:if test="${news.type == 6}">checked="checked"</c:if> />维修保养
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="7" <c:if test="${news.type == 7}">checked="checked"</c:if> />养车成本
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="8" <c:if test="${news.type == 8}">checked="checked"</c:if> />汽车装饰
-			    </td>
+			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>优惠信息</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">标题：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.title" size="40" value="${news.title }"/></td>
+			    <td width="10%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">4S经销商：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
+			    	<select id="sale" name="special.sale.id"></select>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">标题：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.title" size="40" value="${special.title }"/></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">作者：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.author" size="25" value="${news.author }" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.author" size="25" value="${special.author }" /></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">来源：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.from" size="25" value="${news.from }" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.from" size="25" value="${special.from }" /></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<textarea rows="10" cols="80" id="content" name="news.content">${news.content}</textarea>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
+			    	<textarea rows="10" cols="80" id="content" name="special.content">${special.content}</textarea>
 			    	<script>
 			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn'});
 			    	</script>
 			    </td>
 			  </tr>
 			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="submit" name="button1" value=" 提 交 "/></td>
 			  </tr>
 			  <tr>
 			    

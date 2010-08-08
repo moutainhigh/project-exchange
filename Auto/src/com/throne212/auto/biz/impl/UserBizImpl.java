@@ -75,7 +75,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		bean.setPageIndex(pageIndex);
 		bean.setResultList(cars);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
-		bean.setTotalRow((int)saleDao.getSaleListCount());
+		bean.setTotalRow((int)saleDao.getSaleCarListCount());
 		return bean;
 	}
 
@@ -90,7 +90,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		bean.setPageIndex(pageIndex);
 		bean.setResultList(cars);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
-		bean.setTotalRow((int)saleDao.getSaleListCount());
+		bean.setTotalRow((int)saleDao.getSaleCarListCount(sale));
 		return bean;
 	}
 
@@ -105,7 +105,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		bean.setPageIndex(pageIndex);
 		bean.setResultList(s);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
-		bean.setTotalRow((int)saleDao.getSaleListCount());
+		bean.setTotalRow((int)saleDao.getSaleSpecialListCount());
 		return bean;
 	}
 
@@ -120,7 +120,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		bean.setPageIndex(pageIndex);
 		bean.setResultList(s);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
-		bean.setTotalRow((int)saleDao.getSaleListCount());
+		bean.setTotalRow((int)saleDao.getSaleSpecialListCount(sale));
 		return bean;
 	}
 

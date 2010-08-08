@@ -78,11 +78,22 @@ public class News extends MyEntity{//消息
 			return "新闻";
 		case WebConstants.NEWS_ACTIVE:
 			return "动态";
+		case WebConstants.NEWS_XINDE:
+			return "购车心得";
+		case WebConstants.NEWS_CEPING:
+			return "专业测评";
+		case WebConstants.NEWS_BAOXIAN:
+			return "汽车保险";
+		case WebConstants.NEWS_BAOYANG:
+			return "维修保养";
+		case WebConstants.NEWS_CHENGBEN:
+			return "养车成本";
+		case WebConstants.NEWS_ZHUANGSHI:
+			return "汽车装饰";
 		default:
 			break;
 		}
 		return "";
 	}
-	
 	
 }

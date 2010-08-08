@@ -10,20 +10,25 @@
 	        html {
 	            height: 100%;
 	            overflow: hidden;
+	            font: 12px/1.5 Tahoma,Helvetica,Arial,"宋体",sans-serif;
 	        }
         </style>
-		<script>
-        </script>
     </head>
 <body bgcolor="#FFFFFF" text="#000000">
 <form name="form1" method="post" action="${appPath}/manage/FileUploadAction.htm" enctype="multipart/form-data" >
   <table width="360" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
 	<tr bgcolor="#CCCCCC"> 
-      <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">图片上传成功 </th>
+      <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">图片上传成功</th>
+      <th align="right" valign="middle" bgcolor="#CCCCCC" class="trYello">
+      	<a href="${appPath}/manage/upload/upload.jsp" style="font-size: 12px;text-decoration: none;color: gray;">重新上传</a>
+      </th>
     </tr>
     <tr align="center" valign="middle"> 
-      <td height="33" align="left" id="upid">
-      <img src="${appPath}/image?image=${myfileFileName}"/>
+      <td height="33" align="left" id="upid" colspan="2">
+      <c:if test="${empty myfileFileName}">
+      	<c:set var="myfileFileName" value="${param.myfileFileName}"></c:set>
+      </c:if>
+      <img src="${appPath}/image?image=${myfileFileName}&w=150&h=150"/>
       </td>
     </tr>
 	</table>

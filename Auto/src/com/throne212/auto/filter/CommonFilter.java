@@ -26,9 +26,11 @@ public class CommonFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 
+		logger.debug(request.getParameter("sale.fullName"));
 		request.setCharacterEncoding("GBK");
 		//String name = request.getParameter("formDO.name");
 		//request.getSession().getServletContext().
+		logger.debug(request.getParameter("sale.fullName"));
 		chain.doFilter(req, resp);
 
 		response.setHeader("Pragma", "No-cache");

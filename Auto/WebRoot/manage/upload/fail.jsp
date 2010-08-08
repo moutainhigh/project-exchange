@@ -10,6 +10,7 @@
 	        html {
 	            height: 100%;
 	            overflow: hidden;
+	            font: 12px/1.5 Tahoma,Helvetica,Arial,"ËÎÌו",sans-serif;
 	        }
         </style>
 		<script>

@@ -117,10 +117,10 @@
                     <a id="current" href="${appPath}/manage/ManageAction_saleList.htm" target="rightFrame">4S店列表</a>
                     <a id="current" href="${appPath}/manage/sale/sale_edit.jsp" target="rightFrame">添加4S店会员</a>
                     
-                    <a id="current" href="${appPath}/manage/sale/sale_car_list.jsp" target="rightFrame">已发布车型</a>
+                    <a id="current" href="${appPath}/manage/ManageAction_carList.htm" target="rightFrame">已发布车型</a>
                     <a id="current" href="${appPath}/manage/sale/sale_car_edit.jsp" target="rightFrame">发布新车型</a>
                     
-                    <a id="current" href="${appPath}/manage/sale/sale_special_list.jsp" target="rightFrame">已发布优惠信息</a>
+                    <a id="current" href="${appPath}/manage/ManageAction_specialList.htm" target="rightFrame">已发布优惠信息</a>
                     <a id="current" href="${appPath}/manage/sale/sale_special_edit.jsp" target="rightFrame">发布优惠</a>
                     
                     <a id="current" href="${appPath}/manage/news/news_edit.jsp" target="rightFrame">信息审核</a>

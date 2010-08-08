@@ -4,6 +4,9 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.throne212.auto.common.WebConstants;
+
 public class FileUploadAction extends BaseAction {
 	
 	private File myfile;
@@ -21,6 +24,7 @@ public class FileUploadAction extends BaseAction {
 			String targetFileName = System.currentTimeMillis()+"."+subfix;
 			myfileFileName = targetFileName;
 			FileUtils.copyFile(myfile, new File(path+File.separator+targetFileName));
+			ActionContext.getContext().getSession().put(WebConstants.SESS_IMAGE, targetFileName);
 		}
 		return SUCCESS;
 	}

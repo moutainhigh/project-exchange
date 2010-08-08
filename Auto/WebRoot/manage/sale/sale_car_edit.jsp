@@ -92,7 +92,27 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/js/jquery.js"></script>
 		<script>
+			$(function(){
+				loadSaleList();
+			});
+			function loadSaleList(){
+				$.post('ajax_getAllSales.htm', {}, function(result) {
+					var dataObj=eval(result);
+					var name;
+					var id;
+					var current_saleId = '${car.sale.id}';
+					$.each(dataObj.saleList,function(n,e){
+						id = e.id;
+						name = e.fullName;
+						if(id == current_saleId)
+							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#sale");
+						else
+							$("<option value="+id+">"+name+"</option>").appendTo("#sale");
+					});
+				});
+			}
 		</script>
     </head>
     <body>
@@ -106,6 +126,12 @@
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>增加4S店会员</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
+			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">4S经销商：</td>
+			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    	<select id="sale" name="car.sale.id"></select>
+			    </td>
+			  </tr>
+			  <tr style="background-color:#F7F8FA">
 			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型名称：</td>
 			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.fullName" value="${car.fullName}" /><span style="color:red;">*</span></td>
 			  </tr>
@@ -116,7 +142,15 @@
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型图片：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    	
+			    	<input type="hidden" id="myImage" name="car.image" value="${car.image }"/>
+			    	<c:choose>
+			    		<c:when test="${empty car.id || empty car.image}">
+			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:when>
+			    		<c:otherwise>
+			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${car.image}" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:otherwise>
+			    	</c:choose>
 			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
