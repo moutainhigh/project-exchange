@@ -60,7 +60,7 @@ public class IndexAction extends BaseAction {
 	}
 	
 	//news
-	private PageBean<News> newsPageBean;
+	private PageBean newsPageBean;
 	private News news;
 	public String newsList() throws Exception{
 		newsPageBean = newsBiz.getNews(page, news.getOrderNum());
@@ -113,6 +113,20 @@ public class IndexAction extends BaseAction {
 	public String other() throws Exception{
 		newsList();
 		return "other_list";
+	}
+	
+	//ËÑË÷
+	private String key;
+	private int searchType;
+	public String search() throws Exception{
+		key = new String(key.getBytes(),"gbk");
+		logger.info("ËÑË÷£º"+key+"£¬ÀàÐÍÎª£º"+searchType);
+		if(1 == searchType){
+			newsPageBean = newsBiz.getNews(page, key);
+		}else if(2 == searchType){
+			newsPageBean = newsBiz.getSpecials(page, key);
+		}
+		return "search";
 	}
 
 	public void setUserBiz(UserBiz userBiz) {
@@ -203,6 +217,24 @@ public class IndexAction extends BaseAction {
 
 	public void setSpecial(Special special) {
 		this.special = special;
+	}
+	public News getLastCommendNews() {
+		return lastCommendNews;
+	}
+	public void setLastCommendNews(News lastCommendNews) {
+		this.lastCommendNews = lastCommendNews;
+	}
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	public int getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(int searchType) {
+		this.searchType = searchType;
 	}
 
 }

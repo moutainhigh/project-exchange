@@ -101,7 +101,7 @@
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="2" align="left" background="../images/msg_bg.jpg">
+			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>ндуб╠Ю╪╜</strong> </td>
 			  </tr>
 			  <tr>

@@ -3,8 +3,9 @@
 <form action="LoginAction.htm" method="post">
 <div class="header-top hide">
   <div class="mauto w980 bg03 h23">
-    <div class="fl mar_r25 mar_l20"><img src="Themes/images/ico-bookmark.gif" alt="加入收藏" /><a href="#" class="white mar_l10">加入收藏</a></div>
-    <div class="fl mar_r5 white"><a href="#" class="yellow" title="站点首页">张家口汽车网</a>&nbsp;，欢迎你！</div>
+    <div class="fl mar_r25 mar_l20" style="height: 23px; line-height: 23px; vertical-align: middle;"><img src="Themes/images/ico-bookmark.gif" alt="加入收藏" />
+    <a href='#' class="white mar_l10" onClick="javascript:if(document.all) window.external.AddFavorite('http://www.baidu.com','${appTitle}');" rel="sidebar">收藏本站</a></div>
+    <div class="fl mar_r5 white"><a href="#" class="yellow" title="站点首页">${appTitle}</a>&nbsp;，欢迎您！</div>
     
     
                              <div class="fr white mar_r20">

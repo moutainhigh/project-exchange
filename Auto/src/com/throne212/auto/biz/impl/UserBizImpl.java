@@ -137,5 +137,9 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		return bean;
 	}
 
+	public List<Sale> getTop10Sales() {
+		return saleDao.getSaleList(0, 10);
+	}
+
 	
 }

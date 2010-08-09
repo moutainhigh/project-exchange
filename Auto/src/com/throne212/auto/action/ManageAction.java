@@ -65,7 +65,6 @@ public class ManageAction extends BaseAction {
 
 	public String newsList() {
 		newsPageBean = newsBiz.getNews(page);
-		cateList = newsBiz.getAll(Category.class);
 		return "news_list";
 	}
 
@@ -85,12 +84,14 @@ public class ManageAction extends BaseAction {
 			this.setReqMsg("文章保存成功");
 		else
 			this.setReqMsg("文章保存失败，请联系管理员");
+		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
 	}
 
 	public String news() {
-		if (news.getId() != null)
+		if (news!= null && news.getId() != null)
 			news = newsBiz.getEntityById(News.class, news.getId());
+		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
 	}
 

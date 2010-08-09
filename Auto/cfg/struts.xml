@@ -26,6 +26,8 @@
 			<result name="jjXinde">/xinde_list.jsp</result>
 			<result name="zjXinde">/xinde_list2.jsp</result>
 			<result name="other_list">/other_list.jsp</result>
+			<!-- search -->
+			<result name="search">/search.jsp</result>
 		</action>
 		<action name="LoginAction" class="com.throne212.auto.action.LoginAction">
 			<result name="success" type="redirectAction">

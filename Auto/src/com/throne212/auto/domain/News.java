@@ -20,7 +20,7 @@ public class News extends MyEntity{//ÏûÏ¢
 
 	@Column
 	protected String title;
-	@Column
+	@Column(length=Short.MAX_VALUE)
 	protected String content;
 	@Column(name="fromWhere")
 	protected String from;

@@ -1,0 +1,36 @@
+body {text-align: center;margin:0;padding:0;background: #FFF;font-size:12px;color:#353535;font-family: "ËÎÌå";}
+div,form,img,ul,ol,li,dl,dt,dd,label {margin: 0; padding: 0; border: 0;}
+table,td,tr,th{font-size:12px;}
+h1,h2,h3,h4,h5,h6{margin:0; padding:0;}
+img{border:0;}
+li{list-style-type:none;}
+*{margin:0;padding:0;}
+
+/*-------------------------------------------------------*/
+
+
+
+/*****Ê×Ò³FLASHÍ¼Æ¬ÇÐ»»*****/
+	#ifocus_pic { display:inline; position:relative;float:left;width:340px; height:240px; overflow:hidden; margin:0px 0 0 0px; }
+		#ifocus_piclist { position:absolute; }
+		#ifocus_piclist li { width:340px; height:235px; overflow:hidden; display:none}
+		#ifocus_piclist img { width:340px; height:235px;}
+	#ifocus_opdiv { position:absolute; left:0; bottom:0; width:570px; height:35px; background:#000; opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=50); }
+	#ifocus_tx { position:absolute; left:8px; bottom:8px; color:#FFF; }
+		#ifocus_tx .normal { display:none; }
+.indexBtn{
+	padding:2px 4px;
+	border:1px solid #ffffff;
+	margin:1px 2px;
+	float: right;
+	background-color:#424648;	
+}
+.indexTxt{
+	width: 240px;
+	text-align:left;
+	float: left;
+}
+
+.indexBtnCurrent{
+	background-color:#DDDCE1;	
+}

@@ -115,7 +115,7 @@
             <ul>
 				<li>
                     <a id="current" href="${appPath}/manage/ManageAction_newsList.htm" target="rightFrame">文章列表</a>
-                    <a id="current" href="${appPath}/manage/news/news_edit.jsp" target="rightFrame">添加文章</a>
+                    <a id="current" href="${appPath}/manage/ManageAction_news.htm" target="rightFrame">添加文章</a>
                 </li>
             </ul>
         </div>
