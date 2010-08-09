@@ -48,5 +48,9 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 		bean.setTotalRow((int)newsDao.getNewsListCount());
 		return bean;
 	}
+
+	public News getLastedRecommendNews() {
+		return newsDao.getLastedRecommendNews();
+	}
 	
 }

@@ -61,18 +61,18 @@
 
 .pic-imgnews .txt{
 	position:absolute;
-	height:35px;
+	height:22px;
 	line-height:14px;
 	overflow:hidden;
 	font-family:"微软雅黑";
 	font-size:14px;
 	font-weight: bold;
 	color:#fff;
-	top: 190px;
+	top: 200px;
 	width: 330px;
 	z-index: 2;
 	background: url(images/pic_news_bg.png) no-repeat 0 0;
-	padding: 5px 0 0 10px;
+	padding: 8px 0 0 10px;
 }
 
 .pic-imgnews ul{
@@ -84,16 +84,17 @@
 	font-family:Arial;
 	font-size:10px;
 	color:#fff;
-	top: 215px;
+	top: 208px;
 	z-index: 10;
 }
 
 .pic-imgnews li{ float:left; background:#424648; padding:0 5px; border-left:1px solid #fff; cursor:pointer;}
 
-.pic-imgnews .current{ background:#DB1924;}
+.pic-imgnews .current{ background:#dddce1; color: #333;}
 
 /** 主推内容 **/
-.recommend h1 a:link,.recommend h1 a:visited,.recommend h1 a:hover{color:#DB1924;}
+.recommend h1 a:link,.recommend h1 a:visited,.recommend h1 a:hover{
+}
 .recommend .first{
 	background:url(images/dotline.gif) left bottom repeat-x;
 	padding-bottom:3px;
@@ -278,6 +279,10 @@ weight:normal;}
 
 
 /*----- 文章详细页面 -----*/
+
+.Main-Article {
+	border: 1px solid #d1ddeb;
+}
 .Main-Article.hd, .Main-Article.bd {
 	width:588px;
 	margin:0 auto;
@@ -293,7 +298,6 @@ weight:normal;}
 .Main-Article h1 {
 	-x-system-font:none;
 	color:#000;
-	font-family:"微软雅黑";
 	font-size:18px;
 	font-size-adjust:none;
 	font-stretch:normal;
@@ -315,7 +319,10 @@ weight:normal;}
 
 .Main-Article .infoCol {padding-right:19px;}
 
-.Main-Article .info .where {padding-left:19px;color:#7E7E7E}
+.Main-Article .info .where {
+	color:#7E7E7E;
+	padding: 0 20px;
+}
 
 .Main-Article .info .auth {color:#7E7E7E;padding-left:19px;}
 

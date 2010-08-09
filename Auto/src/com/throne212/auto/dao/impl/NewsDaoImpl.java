@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.dao.NewsDao;
 import com.throne212.auto.domain.News;
 
@@ -22,6 +23,17 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 	}
 	public long getNewsListCount(){
 		return (Long) this.getHibernateTemplate().find("select count(*) from News").get(0);
+	}
+	
+	public News getLastedRecommendNews(){
+		String hql = "from News n where n.category.orderNum=? order by publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<News> list = s.createQuery(hql).setParameter(0, WebConstants.NEWS_NEWS).setMaxResults(1).list();
+		if(list == null || list.size() == 0){
+			return null;
+		}else{
+			return list.get(0);
+		}
 	}
 
 }

@@ -19,7 +19,9 @@ public class IndexAction extends BaseAction {
 		return "index";
 	}
 	
+	private News lastCommendNews;
 	public String index() throws Exception {
+		lastCommendNews = newsBiz.getLastedRecommendNews();
 		return "index";
 	}
 	
