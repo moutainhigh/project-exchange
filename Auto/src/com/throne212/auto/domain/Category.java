@@ -7,4 +7,6 @@ import javax.persistence.Table;
 @Table(name = "auto_category")
 public class Category extends MyEntity{
 
+	
+	
 }

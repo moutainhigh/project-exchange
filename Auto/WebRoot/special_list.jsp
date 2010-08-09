@@ -43,7 +43,7 @@
             <div class="sighrTab">
               <ul>
                 <li class="current">本地优惠信息</li>
-                <li class=""><a href="newsList.htm?news.type=1">本地汽车新闻</a></li>
+                <li class=""><a href="newsList.htm?news.orderNum=1">本地汽车新闻</a></li>
               </ul>
             </div>
             <div class="listView mar_t10">

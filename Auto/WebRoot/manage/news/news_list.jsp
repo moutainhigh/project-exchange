@@ -130,7 +130,7 @@
 			  		<input type="checkbox" name="newsIds" value="${news.id}"/>
 			  	</td>
 			    <td width="20%" height="25" align="center"  style="border-bottom:#cccccc 1px dashed;">${news.publishDate }</td>
-			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${news.typeText }</td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${news.category.name }</td>
 			    <td width="20%" align="center"  style="border-bottom:#cccccc 1px dashed;">
 			    	<h3>${news.title }</h3>
 			    </td>

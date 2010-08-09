@@ -61,7 +61,7 @@ public class IndexAction extends BaseAction {
 	private PageBean<News> newsPageBean;
 	private News news;
 	public String newsList() throws Exception{
-		newsPageBean = newsBiz.getNews(page, news.getType());
+		newsPageBean = newsBiz.getNews(page, news.getOrderNum());
 		switch (news.getType()) {
 		case WebConstants.NEWS_NEWS:
 			return "news_list";
@@ -96,13 +96,13 @@ public class IndexAction extends BaseAction {
 	//ÐÄµÃ
 	public String jjXinde() throws Exception{
 		news = new News();
-		news.setType(WebConstants.NEWS_JINGJI_XINDE);
+		news.setOrderNum(WebConstants.NEWS_JINGJI_XINDE);
 		newsList();
 		return "jjXinde";
 	}
 	public String zjXinde() throws Exception{
 		news = new News();
-		news.setType(WebConstants.NEWS_ZHONGJI_XINDE);
+		news.setOrderNum(WebConstants.NEWS_ZHONGJI_XINDE);
 		newsList();
 		return "zjXinde";
 	}

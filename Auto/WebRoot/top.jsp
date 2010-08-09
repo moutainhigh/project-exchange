@@ -55,12 +55,12 @@
          	<a href="sale4s.htm">张家口4S店</a> 
          	<a href="specialList.htm">本地动态</a> 
          	<a href="jjXinde.htm">购车心得</a> 
-         	<a href="other.htm?news.type=4">专业测评</a> 
-         	<a href="other.htm?news.type=9">北京降价</a>
-         	<a href="other.htm?news.type=5">汽车保险</a> [用车]
-         	<a href="other.htm?news.type=6">维修保养</a> 
-         	<a href="other.htm?news.type=7">养车成本</a> 
-         	<a href="other.htm?news.type=8">汽车装饰</a></div>  
+         	<a href="other.htm?news.orderNum=4">专业测评</a> 
+         	<a href="other.htm?news.orderNum=9">北京降价</a>
+         	<a href="other.htm?news.orderNum=5">汽车保险</a> [用车]
+         	<a href="other.htm?news.orderNum=6">维修保养</a> 
+         	<a href="other.htm?news.orderNum=7">养车成本</a> 
+         	<a href="other.htm?news.orderNum=8">汽车装饰</a></div>  
        </div>
          
      

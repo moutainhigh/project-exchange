@@ -1,6 +1,7 @@
 package com.throne212.auto.action;
 
 import java.util.Date;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.auto.biz.NewsBiz;
@@ -9,6 +10,7 @@ import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.Util;
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.domain.Car;
+import com.throne212.auto.domain.Category;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Setting;
@@ -59,9 +61,11 @@ public class ManageAction extends BaseAction {
 
 	private PageBean<News> newsPageBean;
 	private int page;
+	private List<Category> cateList;
 
 	public String newsList() {
 		newsPageBean = newsBiz.getNews(page);
+		cateList = newsBiz.getAll(Category.class);
 		return "news_list";
 	}
 
@@ -96,6 +100,37 @@ public class ManageAction extends BaseAction {
 			this.setReqMsg("文章删除成功");
 		}
 		return this.newsList();
+	}
+	
+	//category
+	private Category cate;
+	public String cateList() {
+		cateList = newsBiz.getAll(Category.class);
+		return "cate_list";
+	}
+	public String saveCate() {
+		if (cate == null)
+			return "cate_edit";
+		newsBiz.saveOrUpdateEntity(cate);
+		if (cate.getId() != null)
+			this.setReqMsg("栏目保存成功");
+		else
+			this.setReqMsg("栏目保存失败，请联系管理员");
+		return "cate_edit";
+	}
+
+	public String cate() {
+		if (cate.getId() != null)
+			cate = newsBiz.getEntityById(Category.class, cate.getId());
+		return "cate_edit";
+	}
+
+	public String deleteCate() {
+		if (cate.getId() != null) {
+			newsBiz.deleteEntity(Category.class, cate.getId());
+			this.setReqMsg("栏目删除成功");
+		}
+		return this.cateList();
 	}
 
 	// 4s sale
@@ -348,6 +383,30 @@ public class ManageAction extends BaseAction {
 
 	public void setSpecial(Special special) {
 		this.special = special;
+	}
+
+	public Setting getSetting() {
+		return setting;
+	}
+
+	public void setSetting(Setting setting) {
+		this.setting = setting;
+	}
+
+	public List<Category> getCateList() {
+		return cateList;
+	}
+
+	public void setCateList(List<Category> cateList) {
+		this.cateList = cateList;
+	}
+
+	public Category getCate() {
+		return cate;
+	}
+
+	public void setCate(Category cate) {
+		this.cate = cate;
 	}
 
 }

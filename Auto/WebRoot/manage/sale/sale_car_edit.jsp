@@ -114,6 +114,7 @@
 				});
 			}
 		</script>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
@@ -126,18 +127,18 @@
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>增加4S店会员</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">4S经销商：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <td width="10%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">4S经销商：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
 			    	<select id="sale" name="car.sale.id"></select>
 			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型名称：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.fullName" value="${car.fullName}" /><span style="color:red;">*</span></td>
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型名称：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.fullName" value="${car.fullName}" /><span style="color:red;">*</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型价格（￥）：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.price" value="${car.price}"  /><span style="color:red;">*</span></td>
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型价格（￥）：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.price" value="${car.price}"  /><span style="color:red;">*</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型图片：</td>
@@ -155,7 +156,11 @@
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型参数：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.detail" value="${car.detail}" /></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    	<textarea rows="15" cols="80" id="content" name="car.detail">${car.detail}</textarea>
+			    	<script>
+			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn'});
+			    	</script></td>
 			  </tr>
 			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>

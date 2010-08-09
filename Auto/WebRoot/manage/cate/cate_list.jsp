@@ -37,7 +37,7 @@
 			#top{
 				border:solid 1px #B4CFCF;
 				height:25px;
-				background:url(../images/arrow.gif) no-repeat 15px center;
+				background:url(${appPath}/manage/images/arrow.gif) no-repeat 15px center;
 			}
 			#top span{
 				position:relative;
@@ -91,38 +91,52 @@
 				height:400px;
 				/*border: 0px solid red;*/
 			}
+			.pageSpan{
+				margin: 0 3px;
+			}
 		</style>
 		<script>
+			function deleteCate(id){
+				if(id && confirm('删除栏目，它以下的新闻也将全部删除，您确定删除吗？')){
+					self.location.href = './ManageAction_deleteCate.action?cate.id='+id;
+				}
+			}
 		</script>
+		<script src="${appPath}/js/common.js"></script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_setting.action" method="post">
-    	<input type="hidden" name="setting.id" value="${setting.id}"/>
+    <form action="ManageAction_chgPwd.action" method="post">
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="2" align="left" background="../images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="../images/ico1.gif" border="0" align="absmiddle" /> <strong>网站系统设置</strong> </td>
+			    <td height="26" colspan="8" align="left" background="${appPath}/manage/images/msg_bg.jpg">
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>栏目列表</strong> </td>
 			  </tr>
-			  <tr>
-			    <td width="20%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网站标题：</td>
-			    <td  align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="setting.pageTitle" value="${setting.pageTitle }" /></td>
+			  <tr style="font-weight: 600;">
+			  	<td width="10%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">
+			  		<a href="javascript:checkAll();">全选</a>
+			  	</td>
+			  	<td width="5%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">编号</td>
+			    <td width="30%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">名称</td>
+			    <td width="40%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">描述</td>
+			    <td align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
 			  </tr>
-			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">网页描述：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="setting.pageDescription" value="${setting.pageDescription }"  size="120"/></td>
+			  <c:forEach items="${cateList}" var="c" varStatus="status">
+			  <tr <c:if test="${status.count % 2 == 0}">bgcolor="#F7F8FA"</c:if>>
+			  	<td height="25" align="center"  style="border-bottom:#cccccc 1px dashed;">
+			  		<input type="checkbox" name="cateIds" value="${d.id}"/>
+			  	</td>
+			  	<td align="center"  style="border-bottom:#cccccc 1px dashed;">${c.orderNum }</td>
+			    <td height="25" align="center"  style="border-bottom:#cccccc 1px dashed;">${c.name }</td>
+			    <td align="center"  style="border-bottom:#cccccc 1px dashed;">${c.description }</td>
+			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
+			    	<a href="javascript:void(0);" onclick="deleteCate(${c.id});">删除</a>
+			    	&nbsp;
+			    	<a href="${appPath}/manage/ManageAction_cate.htm?cate.id=${c.id}">修改</a>
+			    </td>
 			  </tr>
-			  <tr>
-			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">关键字：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="setting.pageKeywords" value="${setting.pageKeywords }" size="120"/></td>
-			  </tr>
-			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
-			  </tr>
-			  <tr>
-			    
-			  </tr>
+			  </c:forEach>
 			</table>
         </div>
         </form>

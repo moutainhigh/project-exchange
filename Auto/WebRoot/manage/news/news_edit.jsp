@@ -106,24 +106,11 @@
 			  </tr>
 			  <tr>
 			    <td width="10%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">文章类型：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<input type="radio" name="news.type" value="1" <c:if test="${news.type == 1}">checked="checked"</c:if> />新闻
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
+			    	<c:forEach items="${cateList}" var="c" >
 			    	&nbsp;
-			    	<input type="radio" name="news.type" value="2" <c:if test="${news.type == 2}">checked="checked"</c:if> />经济型购车心得
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="3" <c:if test="${news.type == 3}">checked="checked"</c:if> />中级车购车心得
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="4" <c:if test="${news.type == 4}">checked="checked"</c:if> />专业测评
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="4" <c:if test="${news.type == 9}">checked="checked"</c:if> />北京降价
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="5" <c:if test="${news.type == 5}">checked="checked"</c:if> />汽车保险
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="6" <c:if test="${news.type == 6}">checked="checked"</c:if> />维修保养
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="7" <c:if test="${news.type == 7}">checked="checked"</c:if> />养车成本
-			    	&nbsp;
-			    	<input type="radio" name="news.type" value="8" <c:if test="${news.type == 8}">checked="checked"</c:if> />汽车装饰
+			    	<input type="radio" name="news.category.id" value="${c.id}" <c:if test="${!empty news.category && news.category.id == c.id}">checked="checked"</c:if> />${c.name }
+			    	</c:forEach>
 			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
