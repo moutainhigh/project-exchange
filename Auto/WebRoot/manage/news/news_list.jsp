@@ -111,18 +111,20 @@
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="7" align="left" background="${appPath}/manage/images/msg_bg.jpg">
+			    <td height="26" colspan="8" align="left" background="${appPath}/manage/images/msg_bg.jpg">
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>文章列表</strong> </td>
 			  </tr>
 			  <tr style="font-weight: 600;">
 			  	<td width="10%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">
 			  		<a href="javascript:checkAll();">全选</a>
 			  	</td>
-			    <td width="20%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">发布时间</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">文章类型</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">标题</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">作者</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
+			    <td width="10%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">发布时间</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">文章类型</td>
+			    <td width="15%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">标题</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">作者</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">图片新闻与否</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">推荐与否</td>
+			    <td align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
 			  </tr>
 			  <c:forEach items="${newsPageBean.resultList}" var="news" varStatus="status">
 			  <tr <c:if test="${status.count % 2 == 0}">bgcolor="#F7F8FA"</c:if>>
@@ -135,7 +137,21 @@
 			    	<h3>${news.title }</h3>
 			    </td>
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${news.author }</td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">
+			    	<c:choose>
+			    		<c:when test="${not empty news.image}"><span style="color:red;">是</span></c:when>
+			    		<c:otherwise>否</c:otherwise>
+			    	</c:choose>
+			    </td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">
+			    	<c:choose>
+			    		<c:when test="${not empty news.recommend && news.recommend}"><span style="color:red;">是</span></c:when>
+			    		<c:otherwise>否</c:otherwise>
+			    	</c:choose>
+			    </td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
+			    	<a href="${appPath}/manage/ManageAction_recommendNews.htm?news.id=${news.id}">推荐</a>
+			    	&nbsp;
 			    	<a href="javascript:void(0);" onclick="deleteNews(${news.id});">删除</a>
 			    	&nbsp;
 			    	<a href="${appPath}/manage/ManageAction_news.htm?news.id=${news.id}">修改</a>

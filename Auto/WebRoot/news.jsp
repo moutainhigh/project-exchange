@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <jsp:include page="top.jsp" flush="false"></jsp:include>
+    $<jsp:include page="top.jsp" flush="false"></jsp:include>
     
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
@@ -54,11 +54,8 @@
             </div>
             <div class="pad_20">
               <ul class="dotli01">
-                <li><a href="#" target="_blank">新手金牌会员问题总结帖</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
-                <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
-                <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
-                <li><a href="#" target="_blank">如何提高充值的安全意识！</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
-                <li><a href="#" target="_blank">【金牌会员】这些你了解了多少？</a><span class="ft10 gray mar_l10">2010-08-08</span></li>
+              	<c:forEach items="${other5RecommendNewsList}" var="n"></c:forEach>
+                <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.pubishDateTxt }</span></li>
               </ul>
             </div>
           </div>

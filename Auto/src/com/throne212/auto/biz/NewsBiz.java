@@ -3,9 +3,9 @@ package com.throne212.auto.biz;
 import java.util.List;
 
 import com.throne212.auto.common.PageBean;
+import com.throne212.auto.domain.Link;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Special;
-import com.throne212.auto.domain.User;
 
 public interface NewsBiz extends BaseBiz{
 
@@ -16,6 +16,7 @@ public interface NewsBiz extends BaseBiz{
 	public PageBean<News> getNews(int page,int type);
 	
 	public News getLastedRecommendNews();
+	public News getFocusNews();
 	
 	public PageBean<News> getNews(int page,String key);
 	
@@ -32,8 +33,19 @@ public interface NewsBiz extends BaseBiz{
 	
 	public List<News> getTop5zjXindeNews();
 	public List<News> getTop6jjXindeNews();
+	public News getJjXindeRecommendNews();
 	public List<News> getTop12BeijingNews();
+	public News getBeijingRecommendNews();
+	
+	public News getBaoyangRecommendNews();
+	public News getChengbenRecommendNews();
 	
 	public List<Special> getTop9Special();
+	
+	public List<Link> getLinkList();
+	
+	public List<News> getTop4RecommendImageNews();
+	
+	public List<News> getOther5RecommendNews(int type);
 	
 }

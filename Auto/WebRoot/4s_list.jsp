@@ -19,7 +19,7 @@
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
       <div class="search_area">
-        <div class="fl ft14 w550 hide">张家口汽车网 <a href="#">首页</a> &gt; <a href="#">购车频道</a> &gt;</div>
+        <div class="fl ft14 w550 hide">张家口汽车网 <a href="#">首页</a> &gt; <a href="#">张家口4S店大全</a> &gt;</div>
 <div class="fr w350 pad_l10 bls_gray">
             <div class="fl blue">站内搜索</div>
                         <div class="fl mar_l5">

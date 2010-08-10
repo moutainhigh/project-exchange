@@ -145,6 +145,13 @@
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.from" size="25" value="${special.from }" /></td>
 			  </tr>
 			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">推荐与否：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    <input type="radio" name="special.recommend" value="true" <c:if test="${!empty special.recommend && special.recommend}">checked="checked"</c:if> />推荐
+			    &nbsp;
+			    <input type="radio" name="special.recommend" value="false" <c:if test="${empty special.recommend || special.recommend==false}">checked="checked"</c:if> />不推荐
+			  </tr>
+			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
 			    	<textarea rows="10" cols="80" id="content" name="special.content">${special.content}</textarea>

@@ -48,14 +48,47 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 	}
 	
 	public News getLastedRecommendNews(){
-		String hql = "from News n where n.category.orderNum=? and n.recommend=true order by publishDate desc";
+		/*String hql = "from News n where n.category.orderNum=? and n.recommend=true order by publishDate desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<News> list = s.createQuery(hql).setParameter(0, WebConstants.NEWS_NEWS).setMaxResults(1).list();
 		if(list == null || list.size() == 0){
 			return null;
 		}else{
 			return list.get(0);
+		}*/
+		String hql = "from Special n where n.recommend=true order by publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Special> list = s.createQuery(hql).setMaxResults(1).list();
+		if(list == null || list.size() == 0){
+			return null;
+		}else{
+			return list.get(0);
 		}
+	}
+	public News getFocusNews(){
+		String hql = "from News n where n.category.orderNum!=null and n.recommend=true order by publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<News> list = s.createQuery(hql).setMaxResults(1).list();
+		if(list == null || list.size() == 0){
+			return null;
+		}else{
+			return list.get(0);
+		}
+	}
+	public News getRecommendNews(int type){
+		String hql = "from News n where n.category.orderNum=? and n.image!=null and n.recommend=true order by publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<News> list = s.createQuery(hql).setParameter(0, type).setMaxResults(1).list();
+		if(list == null || list.size() == 0){
+			return null;
+		}else{
+			return list.get(0);
+		}
+	}
+	public List<News> getTop4RecommendImageNews(){
+		String hql = "from News n where n.image!=null and n.recommend=true order by publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return s.createQuery(hql).setMaxResults(4).list();
 	}
 
 }

@@ -11,15 +11,28 @@
     <link href="Themes/pagestyle.css" type="text/css" rel="stylesheet" />
     <script src="js/jquery.js"></script>
     <script src="js/common.js"></script>
+        <script>
+    	if(document.all){
+			newsExchange = 	function(tabLi,otherLi,tabId,hideId){
+								if($(tabLi).attr('class') == 'current'){
+									return false;
+								}
+								$(tabLi).addClass('current');
+								$('#'+otherLi).removeClass('current');
+								$('#'+hideId).hide();
+								$('#'+tabId).show();
+							}
+		}
+    </script>
 </head>
 <body>
 
     <!-- begin头部附属栏框架 -->
 <div class="header-top hide">
   <div class="mauto w980 bg03 h23">
-    <div class="fl mar_r20 mar_l20 white"><a href="#" class="white">张家口汽车网</a> >> <a href="#" class="white">张家口销售商频道</a></div>
-                <div class="fr mar_r25 mar_l20"><img src="Themes/images/ico-homepage.gif" alt="加入收藏" /><a href="#" class="white mar_l10">返回网站首页</a></div>
-    <div class="fr mar_r5 white"><a href="#" class="yellow" title="申请经销商">申请经销商</a></div>
+    <div class="fl mar_r20 mar_l20 white"><a href="index.htm" class="white">张家口汽车网</a> >> <a href="sale4s.htm" class="white">张家口销售商频道</a></div>
+                <div class="fr mar_r25 mar_l20"><img src="Themes/images/ico-homepage.gif" alt="" /><a href="index.htm" class="white mar_l10">返回网站首页</a></div>
+    <div class="fr mar_r5 white"><a href="javascript:void(0);" class="yellow" title="申请经销商">申请经销商</a></div>
   </div>
                 <div class="clear"></div>
 </div>
@@ -45,16 +58,11 @@
     
 <div class="wrapper mauto pad_5">
   <div class="mainNav02">
-        <div class="fl mar_l100"><a href="#">首 页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="carList.htm?sale.id=${sale.id}">车型列表</a></div>
+        <div class="fl mar_l100"><a href="#" style="color:#ffffff;">首 页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="carList.htm?sale.id=${sale.id}" style="color:#ffffff;">车型列表</a></div>
         <div class="fr mar_l10 white">
                 <form action="LoginAction.htm" method="post">  
-                用户名：<input name="username" type="text" class="gray mar_l10 input02" />&nbsp;&nbsp;
-                  密码:<input name="password" type="password" class="gray mar_l5 input02" />&nbsp;&nbsp;
-                  验证码：<input id="verification_code" onfocus="$('#yanzheng').show();" style="width:25px;" type="text" name="rand" onkeypress="formKeyPress(event);" class="gray mar_l5 input02"/>
-                  <img src="${appPath}/rand" alt="验证码" id="yanzheng" height="17" style="display:inline;"/>
-         <input class="mar_l5 btn-log" type="submit" value="登 录" />
-         <input class="mar_l10 btn-reg" type="submit" value="注册新用户" />
+                <jsp:include page="login.jsp" flush="false"></jsp:include>
          </form>
          </div>
         <div class="clear"></div>
@@ -75,30 +83,7 @@
                	${sale.description }
                </p>
              </div>
-           <div class="fl w240 hide recommend mar_l10">
-          <div class="section mar_t6">
-            <div class="ptitle02">
-              <ul class="tlboxtitle fl">
-                <li class="current"> <a href="#" title="推荐任务">本地优惠</a></li>
-                <li>本地新闻<a href="#" title="最新任务"></a></li>
-              </ul>
-              </div>
-            <div class=" pad_t5 pad_l10 pad_b10">
-            <ul class="dotli01">
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-               </ul>
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>
+           <jsp:include page="tab.jsp" flush="false"></jsp:include>
         
         <div class="clear"></div>
       </div>

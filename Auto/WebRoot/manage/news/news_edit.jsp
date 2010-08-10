@@ -93,6 +93,14 @@
 			}
 		</style>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script>
+			var newsId = '${news.id}';
+			$(function(){
+				if(newsId == '')
+					$('input[type=radio]:first').attr('checked',true);
+			});
+		</script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
@@ -144,6 +152,26 @@
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">通过审核：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
 			    <input type="checkbox" name="news.passed" value="true" <c:if test="${!empty news.passed && news.passed}">checked="checked"</c:if> />通过审核
+			  </tr>
+			  <tr >
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">新闻图片：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
+			    	<input type="hidden" id="myImage" name="news.image" value="${news.image }"/>
+			    	<c:choose>
+			    		<c:when test="${empty news.id || empty news.image}">
+			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:when>
+			    		<c:otherwise>
+			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${news.image}" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:otherwise>
+			    	</c:choose>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">新闻概述：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    	<textarea rows="3" cols="50" name="news.simpleContent">${news.simpleContent}</textarea>
+			    </td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>

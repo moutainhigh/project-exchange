@@ -1,5 +1,10 @@
 package com.throne212.auto.action;
 
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.biz.UserBiz;
 import com.throne212.auto.common.PageBean;
@@ -14,14 +19,25 @@ public class IndexAction extends BaseAction {
 	private UserBiz userBiz;
 	private NewsBiz newsBiz;
 	private String username;
-
+	
 	public String execute() throws Exception {
 		return "index";
 	}
-	
-	private News lastCommendNews;
+
+	private String top4ImageNews;
 	public String index() throws Exception {
-		lastCommendNews = newsBiz.getLastedRecommendNews();
+		List<News> imageNews = newsBiz.getTop4RecommendImageNews();
+		if(imageNews != null && imageNews.size() > 0){
+			JSONArray arr = new JSONArray();
+			for(News news : imageNews){
+				JSONObject obj = new JSONObject();
+				obj.accumulate("id", news.getId());
+				obj.accumulate("title", news.getTitle());
+				obj.accumulate("image", news.getImage());
+				arr.add(obj);				
+			}
+			top4ImageNews = arr.toString();
+		}
 		return "index";
 	}
 	
@@ -64,7 +80,7 @@ public class IndexAction extends BaseAction {
 	private News news;
 	public String newsList() throws Exception{
 		newsPageBean = newsBiz.getNews(page, news.getOrderNum());
-		switch (news.getType()) {
+		switch (news.getOrderNum()) {
 		case WebConstants.NEWS_NEWS:
 			return "news_list";
 		case WebConstants.NEWS_JINGJI_XINDE:
@@ -88,10 +104,12 @@ public class IndexAction extends BaseAction {
 		}
 		return null;
 	}
+	public List<News> other5RecommendNewsList;
 	public String news() throws Exception{
 		news = userBiz.getEntityById(News.class, news.getId());
 		news.setClick(news.getClick()+1);
 		userBiz.saveOrUpdateEntity(news);
+		other5RecommendNewsList = newsBiz.getOther5RecommendNews(news.getCategory().getOrderNum());
 		return "news";
 	}
 	
@@ -218,12 +236,6 @@ public class IndexAction extends BaseAction {
 	public void setSpecial(Special special) {
 		this.special = special;
 	}
-	public News getLastCommendNews() {
-		return lastCommendNews;
-	}
-	public void setLastCommendNews(News lastCommendNews) {
-		this.lastCommendNews = lastCommendNews;
-	}
 	public String getKey() {
 		return key;
 	}
@@ -236,5 +248,16 @@ public class IndexAction extends BaseAction {
 	public void setSearchType(int searchType) {
 		this.searchType = searchType;
 	}
-
+	public String getTop4ImageNews() {
+		return top4ImageNews;
+	}
+	public void setTop4ImageNews(String top4ImageNews) {
+		this.top4ImageNews = top4ImageNews;
+	}
+	public List<News> getOther5RecommendNewsList() {
+		return other5RecommendNewsList;
+	}
+	public void setOther5RecommendNewsList(List<News> other5RecommendNewsList) {
+		this.other5RecommendNewsList = other5RecommendNewsList;
+	}
 }

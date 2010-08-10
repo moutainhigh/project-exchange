@@ -118,6 +118,7 @@
 			    <td width="20%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">发布时间</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">标题</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">来源</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">推荐与否</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
 			  </tr>
 			  <c:forEach items="${specialPageBean.resultList}" var="s" varStatus="status">
@@ -130,6 +131,12 @@
 			    	<h3>${s.title }</h3>
 			    </td>
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.from }</td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">
+			    	<c:choose>
+			    		<c:when test="${not empty s.recommend && s.recommend}"><span style="color:red;">是</span></c:when>
+			    		<c:otherwise>否</c:otherwise>
+			    	</c:choose>
+			    </td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
 			    	<a href="javascript:void(0);" onclick="deleteSpecial(${s.id});">删除</a>
 			    	&nbsp;

@@ -45,16 +45,11 @@
     
 <div class="wrapper mauto pad_5">
   <div class="mainNav02">
-        <div class="fl mar_l100"><a href="sale.htm?sale.id=${sale.id}">首 页</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">车型列表</a></div>
+        <div class="fl mar_l100"><a href="sale.htm?sale.id=${sale.id}" style="color:#ffffff;">首 页</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="color:#ffffff;">车型列表</a></div>
         <div class="fr mar_l10 white">
                 <form action="LoginAction.htm" method="post">  
-                用户名：<input name="username" type="text" class="gray mar_l10 input02" />&nbsp;&nbsp;
-                  密码:<input name="password" type="password" class="gray mar_l5 input02" />&nbsp;&nbsp;
-                  验证码：<input id="verification_code" onfocus="$('#yanzheng').show();" style="width:25px;" type="text" name="rand" onkeypress="formKeyPress(event);" class="gray mar_l5 input02"/>
-                  <img src="${appPath}/rand" alt="验证码" id="yanzheng" height="17" style="display:inline;"/>
-         <input class="mar_l5 btn-log" type="submit" value="登 录" />
-         <input class="mar_l10 btn-reg" type="submit" value="注册新用户" />
+                <jsp:include page="login.jsp" flush="false"></jsp:include>
          </form>
          </div>
         <div class="clear"></div>

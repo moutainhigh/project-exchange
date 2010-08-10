@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!-- begin脚步框架 -->
 <div class="w980 mauto mar_t6">
       <div class="section">
@@ -6,7 +7,7 @@
           <div class="icon">友情链接</div>
         </div>
         <div class="pad_10 friendlink">
-             <a href="#">巨乐团</a><a href="#">易乐团</a><a href="#">成都论坛</a><a href="#">成都打折</a><a href="#">成都网址大全</a>
+             <c:forEach items="${newsBiz.linkList}" var="link"><a href="${link.url}">${link.name}</a></c:forEach>
           	 <div class="clear"></div>
         </div>
       </div>

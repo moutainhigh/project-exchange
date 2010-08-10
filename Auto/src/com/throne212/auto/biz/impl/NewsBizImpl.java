@@ -7,6 +7,7 @@ import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.dao.NewsDao;
+import com.throne212.auto.domain.Link;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Special;
 
@@ -53,6 +54,22 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	public News getLastedRecommendNews() {
 		return newsDao.getLastedRecommendNews();
 	}
+	public News getFocusNews(){
+		return newsDao.getFocusNews();
+	}
+	public News getJjXindeRecommendNews() {
+		return newsDao.getRecommendNews(WebConstants.NEWS_JINGJI_XINDE);
+	}
+	public News getBeijingRecommendNews(){
+		return newsDao.getRecommendNews(WebConstants.NEWS_BEIJING);
+	}
+	public News getBaoyangRecommendNews() {
+		return newsDao.getRecommendNews(WebConstants.NEWS_BAOYANG);
+	}
+	public News getChengbenRecommendNews(){
+		return newsDao.getRecommendNews(WebConstants.NEWS_CHENGBEN);
+	}
+
 
 	public PageBean<News> getNews(int pageIndex, String key) {
 		PageBean<News> bean = new PageBean<News>();
@@ -111,6 +128,15 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 
 	public List<News> getTop6jjXindeNews() {
 		return newsDao.getNewsList(0, 6, WebConstants.NEWS_JINGJI_XINDE);
+	}
+	public List<Link> getLinkList(){
+		return newsDao.getAll(Link.class, "orderNum", "asc");
+	}
+	public List<News> getTop4RecommendImageNews(){
+		return newsDao.getTop4RecommendImageNews();
+	}
+	public List<News> getOther5RecommendNews(int type){
+		return newsDao.getNewsList(0, 6, type);
 	}
 	
 }

@@ -84,6 +84,8 @@
 			<result name="car_list">/manage/sale/sale_car_list.jsp</result>
 			<result name="special_edit">/manage/sale/sale_special_edit.jsp</result>
 			<result name="special_list">/manage/sale/sale_special_list.jsp</result>
+			<result name="link_list">/manage/welcome/link_list.jsp</result>
+			<result name="link_edit">/manage/welcome/link_edit.jsp</result>
 		</action>
 		<action name="FileUploadAction_*" method="{1}" class="com.throne212.auto.action.FileUploadAction">
 			<interceptor-ref name="fileUploadStack"></interceptor-ref>

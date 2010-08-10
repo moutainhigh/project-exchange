@@ -11,6 +11,7 @@ import com.throne212.auto.common.Util;
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.Category;
+import com.throne212.auto.domain.Link;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Setting;
@@ -80,6 +81,12 @@ public class ManageAction extends BaseAction {
 			newsBiz.saveOrUpdateEntity(news);
 			news = newsBiz.getEntityById(News.class, news.getId());
 		}
+		String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (image != null) {
+			news.setImage(image);
+			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+			newsBiz.saveOrUpdateEntity(news);
+		}
 		if (news.getId() != null)
 			this.setReqMsg("文章保存成功");
 		else
@@ -94,7 +101,15 @@ public class ManageAction extends BaseAction {
 		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
 	}
-
+	public String recommendNews() {
+		if (news.getId() != null) {
+			news = newsBiz.getEntityById(News.class, news.getId());
+			news.setRecommend(true);
+			newsBiz.saveOrUpdateEntity(news);
+			this.setReqMsg("文章推荐成功");
+		}
+		return this.newsList();
+	}
 	public String deleteNews() {
 		if (news.getId() != null) {
 			newsBiz.deleteEntity(News.class, news.getId());
@@ -266,6 +281,38 @@ public class ManageAction extends BaseAction {
 		return this.specialList();
 	}
 
+	//link
+	private Link link;
+	private List<Link> linkList;
+	public String linkList() {
+		linkList = newsBiz.getAll(Link.class,"orderNum","asc");
+		return "link_list";
+	}
+	public String saveLink() {
+		if (link == null)
+			return "link_edit";
+		newsBiz.saveOrUpdateEntity(link);
+		if (link.getId() != null)
+			this.setReqMsg("友情链接保存成功");
+		else
+			this.setReqMsg("友情链接保存失败，请联系管理员");
+		return "link_edit";
+	}
+	public String link() {
+		if (link.getId() != null)
+			link = newsBiz.getEntityById(Link.class, link.getId());
+		return "link_edit";
+	}
+	public String deleteLink() {
+		if (link.getId() != null) {
+			newsBiz.deleteEntity(Link.class, link.getId());
+			this.setReqMsg("友情链接删除成功");
+		}
+		return this.linkList();
+	}
+	
+	
+	//setter and getter
 	public void setUserBiz(UserBiz userBiz) {
 		this.userBiz = userBiz;
 	}
@@ -408,6 +455,22 @@ public class ManageAction extends BaseAction {
 
 	public void setCate(Category cate) {
 		this.cate = cate;
+	}
+
+	public Link getLink() {
+		return link;
+	}
+
+	public void setLink(Link link) {
+		this.link = link;
+	}
+
+	public List<Link> getLinkList() {
+		return linkList;
+	}
+
+	public void setLinkList(List<Link> linkList) {
+		this.linkList = linkList;
 	}
 
 }

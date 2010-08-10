@@ -23,6 +23,10 @@ public class BaseBizImpl implements BaseBiz {
 		List<T> list = baseDao.getAll(clazz);
 		return list == null ? new ArrayList<T>() : list;
 	}
+	public <T> List<T> getAll(Class<T> clazz,String col,String orderType){
+		List<T> list = baseDao.getAll(clazz,col,orderType);
+		return list == null ? new ArrayList<T>() : list;
+	}
 	
 	public BaseDao getBaseDao() {
 		return baseDao;

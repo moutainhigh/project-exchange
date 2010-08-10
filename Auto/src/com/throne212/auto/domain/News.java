@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.throne212.auto.common.Util;
 import com.throne212.auto.common.WebConstants;
 
 @Entity
@@ -20,6 +21,8 @@ public class News extends MyEntity{//消息
 
 	@Column
 	protected String title;
+	@Column(length=1024)
+	protected String simpleContent;
 	@Column(length=Short.MAX_VALUE)
 	protected String content;
 	@Column(name="fromWhere")
@@ -40,6 +43,8 @@ public class News extends MyEntity{//消息
 	protected String seoDesc;
 	@Column
 	protected long click;//访问量
+	@Column
+	protected String image;
 	
 	public Category getCategory() {
 		return category;
@@ -55,6 +60,9 @@ public class News extends MyEntity{//消息
 	}
 	public String getContent() {
 		return content;
+	}
+	public String getSimpleContent() {
+		return simpleContent;
 	}
 	public void setContent(String content) {
 		this.content = content;
@@ -73,6 +81,11 @@ public class News extends MyEntity{//消息
 	}
 	public Date getPublishDate() {
 		return publishDate;
+	}
+	public String getPublishDateTxt() {
+		if(publishDate == null)
+			return "";
+		return Util.getDate(publishDate);
 	}
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
@@ -112,6 +125,15 @@ public class News extends MyEntity{//消息
 	}
 	public void setClick(long click) {
 		this.click = click;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public void setSimpleContent(String simpleContent) {
+		this.simpleContent = simpleContent;
 	}
 	public String getTypeText() {
 		switch (type) {

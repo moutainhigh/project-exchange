@@ -18,5 +18,10 @@ public interface NewsDao extends BaseDao{
 	public long getSpecialListCount(String key);
 	
 	public News getLastedRecommendNews();
+	public News getFocusNews();
+	
+	public News getRecommendNews(int type);
+	
+	public List<News> getTop4RecommendImageNews();
 	
 }

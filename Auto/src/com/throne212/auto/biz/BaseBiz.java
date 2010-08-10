@@ -7,6 +7,7 @@ import com.throne212.auto.domain.MyEntity;
 public interface BaseBiz {
 
 	public <T> List<T> getAll(Class<T> clazz);
+	public <T> List<T> getAll(Class<T> clazz,String col,String orderType);
 	public <T> T getEntityById(Class<T> clazz,Long id);
 	
 	public void saveOrUpdateEntity(MyEntity e);
