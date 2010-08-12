@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "auto_car_brand")
+@Table(name = "auto_setting")
 public class Setting extends MyEntity {// Æû³µÆ·ÅÆ
 
 	private String pageTitle;

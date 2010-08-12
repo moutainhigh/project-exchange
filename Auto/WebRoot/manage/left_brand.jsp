@@ -110,23 +110,14 @@
         </script>
     </head>
     <body>
-    	<h2>会员管理</h2>
+    	<h2>品牌管理</h2>
         <div id="menu3">
             <ul>
 				<li>
-					<c:if test="${isAdmin == false}">
-                    <a id="current" href="${appPath}/manage/ManageAction_sale.htm?sale.id=${sessionScope.userObj.id}" target="rightFrame">会员资料</a>
-                    </c:if>
 					<c:if test="${isAdmin}">
-                    <a id="current" href="${appPath}/manage/ManageAction_saleList.htm" target="rightFrame">4S店列表</a>
-                    <a id="current" href="${appPath}/manage/sale/sale_edit.jsp" target="rightFrame">添加4S店会员</a>
+                    <a id="current" href="${appPath}/manage/ManageAction_brandList.htm" target="rightFrame">系统已有品牌列表</a>
+                    <a id="current" href="${appPath}/manage/brand/brand_edit.jsp" target="rightFrame">添加新品牌</a>
                     </c:if>
-                    <a id="current" href="${appPath}/manage/ManageAction_carList.htm" target="rightFrame">已发布车型</a>
-                    <a id="current" href="${appPath}/manage/sale/sale_car_edit.jsp" target="rightFrame">发布新车型</a>
-                    
-                    <a id="current" href="${appPath}/manage/ManageAction_specialList.htm" target="rightFrame">已发布优惠信息</a>
-                    <a id="current" href="${appPath}/manage/sale/sale_special_edit.jsp" target="rightFrame">发布优惠</a>
-                    
                 </li>
             </ul>
         </div>

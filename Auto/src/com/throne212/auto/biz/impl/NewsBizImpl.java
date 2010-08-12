@@ -7,9 +7,13 @@ import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.dao.NewsDao;
+import com.throne212.auto.domain.Brand;
+import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.Link;
 import com.throne212.auto.domain.News;
+import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
+import com.throne212.auto.domain.Zhuangshi;
 
 public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	
@@ -138,5 +142,25 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	public List<News> getOther5RecommendNews(int type){
 		return newsDao.getNewsList(0, 6, type);
 	}
-	
+	public List<Insurance> getTop3Baoxian(){
+		return newsDao.getTop3Baoxian();
+	}
+	public List<Zhuangshi> getTop3Zhuangshi(){
+		return newsDao.getTop3Zhuangshi();
+	}
+
+	public List<Brand> getBrandList() {
+		return newsDao.getBrandList();
+	}
+	public List<Brand> getChildBrandList(long brandId){
+		Brand parent = this.getEntityById(Brand.class, brandId);
+		return newsDao.getChildBrandList(parent);
+	}
+	public List<Brand> getTopBrandList(){
+		return newsDao.getTopBrandList();
+	}
+	public List<Brand> getBrandList(long saleId){
+		Sale sale = this.getEntityById(Sale.class, saleId);
+		return newsDao.getBrandList(sale);
+	}
 }

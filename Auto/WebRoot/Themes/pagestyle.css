@@ -365,19 +365,19 @@ weight:normal;}
 
 .treeNav ul {
 	padding-left: 15px;
-	background:url(Images/datebg02.gif) repeat-y 12px 0;
+	background:url(images/datebg02.gif) repeat-y 12px 0;
 }
 .treeNav ul a:link, .treeNav ul a:visited{color:#333;}
 .treeNavopen{
 	display:block;
-	background: url(Images/openfoldericon.png) no-repeat 1px 3px;
+	background: url(images/openfoldericon.png) no-repeat 1px 3px;
 	margin-right:5px;
 	padding-left:32px;
 	line-height: 24px;
 }
 .treeNavclose{
 	display:block;
-	background:url(Images/foldericon.png) no-repeat 0px 3px;
+	background:url(images/foldericon.png) no-repeat 0px 3px;
 	margin-right:5px;
 	padding-left:32px;
 	line-height: 24px;
@@ -385,14 +385,14 @@ weight:normal;}
 
 .treeNavopen02{
 	display:block;
-	background: url(Images/openfoldericon02.png) no-repeat 3px 3px;
+	background: url(images/openfoldericon02.png) no-repeat 3px 3px;
 	margin-right:5px;
 	padding-left:26px;
 	line-height: 24px;
 }
 .treeNavclose02{
 	display:block;
-	background:url(Images/foldericon02.png) no-repeat 0px 3px;
+	background:url(images/foldericon02.png) no-repeat 0px 3px;
 	margin-right:5px;
 	padding-left:26px;
 	line-height: 24px;

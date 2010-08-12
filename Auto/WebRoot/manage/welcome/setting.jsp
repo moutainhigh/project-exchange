@@ -37,7 +37,7 @@
 			#top{
 				border:solid 1px #B4CFCF;
 				height:25px;
-				background:url(../images/arrow.gif) no-repeat 15px center;
+				background:url(${appPath}/manage/images/arrow.gif) no-repeat 15px center;
 			}
 			#top span{
 				position:relative;
@@ -92,6 +92,8 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
 		</script>
     </head>
@@ -102,8 +104,8 @@
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="2" align="left" background="../images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="../images/ico1.gif" border="0" align="absmiddle" /> <strong>网站系统设置</strong> </td>
+			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>网站系统设置</strong> </td>
 			  </tr>
 			  <tr>
 			    <td width="20%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网站标题：</td>

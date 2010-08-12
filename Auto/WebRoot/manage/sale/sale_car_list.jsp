@@ -122,7 +122,7 @@
 			  <c:forEach items="${carPageBean.resultList}" var="c" varStatus="status">
 			  <tr <c:if test="${status.count % 2 == 0}">bgcolor="#F7F8FA"</c:if>>
 			  	<td width="10%" height="100" align="center"  style="border-bottom:#cccccc 1px dashed;padding: 3px auto;">
-			  		<c:if test="${not empty c.image}"><img src="${appPath}/image?image=${c.image}&w=100&h=100" /></c:if>
+			  		<img src="${appPath}/image?image=${c.image}&w=100&h=100" />
 			  	</td>
 			    <td width="20%" align="center"  style="border-bottom:#cccccc 1px dashed;">
 			    	${c.fullName }

@@ -11,6 +11,19 @@
     <link href="Themes/pagestyle.css" type="text/css" rel="stylesheet" />
     <script src="js/jquery.js"></script>
     <script src="js/common.js"></script>
+    <script>
+    	if(document.all){
+			newsExchange = 	function(tabLi,otherLi,tabId,hideId){
+								if($(tabLi).attr('class') == 'current'){
+									return false;
+								}
+								$(tabLi).addClass('current');
+								$('#'+otherLi).removeClass('current');
+								$('#'+hideId).hide();
+								$('#'+tabId).show();
+							}
+		}
+    </script>
 </head>
 <body>
 
@@ -93,28 +106,7 @@
         </div>
         
         <div class="fl w240 hide recommend mar_l6 bg04">
-          <div class="section">
-            <div class="ptitle02">
-              <ul class="tlboxtitle fl">
-                <li class="current"> <a href="#" title="推荐任务">本地优惠</a></li>
-                <li>本地新闻<a href="#" title="最新任务"></a></li>
-              </ul>
-              </div>
-            <div class=" pad_t5 pad_l10 pad_b10">
-            <ul class="dotli01">
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-                 <li><a href="#" target="_blank">[新闻]张家口汽车新闻年</a></li>
-               </ul>
-              <div class="clear"></div>
-            </div>
-          </div>
+          <jsp:include page="tab.jsp" flush="false"></jsp:include>
           <div class="section_purchase mar_t6">
             <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
               <div class="icon">张家口4S店推荐</div>

@@ -12,17 +12,6 @@
     <script src="${appPath}/js/jquery.js"></script>
     <script src="${appPath}/js/common.js"></script>
     <script>
-    	if(document.all){
-			newsExchange = 	function(tabLi,otherLi,tabId,hideId){
-								if($(tabLi).attr('class') == 'current'){
-									return false;
-								}
-								$(tabLi).addClass('current');
-								$('#'+otherLi).removeClass('current');
-								$('#'+hideId).hide();
-								$('#'+tabId).show();
-							}
-		}
 		window.top['imageNews'] = '${top4ImageNews}';
     </script>
 </head>
@@ -33,7 +22,7 @@
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
       <div class="search_area">
-        <div class="fl ft14 w550 hide">最新动态：<a target="_blank" href="news.htm?news.id=${newsBiz.lastedRecommendNews.id}">${newsBiz.lastedRecommendNews.title}</a></div>
+        <div class="fl ft14 w550 hide">最新动态：<a target="_blank" href="news/${newsBiz.lastedRecommendNews.no}.html">${newsBiz.lastedRecommendNews.title}</a></div>
           <jsp:include page="sou.jsp" flush="false"></jsp:include>
       <div class="clear"></div>
       </div>
@@ -47,17 +36,17 @@
       </div>
     </div> 
       
-           <div class="fl w350 hide recommend mar_l20">
+           <div class="fl w350 hide recommend mar_l20" margin-left: 10px; width: 360px;>
              <div class="first">
              	<c:set var="focusNews" value="${newsBiz.focusNews}"></c:set>
-               <h1> <a href="#" target="_blank"><img class="mar_r10" src="Themes/images/label_recommend.jpg" alt="今日热点" width="86" height="18" />${focusNews.title }</a></h1>
-               <p class="gray">${focusNews.simpleContent}...<a href="news.htm?news.id=${focusNews.id }"
+               <h1> <a href="news/${focusNews.no}.html" target="_blank"><img class="mar_r10" src="Themes/images/label_recommend.jpg" alt="今日热点" width="86" height="18" />${focusNews.title }</a></h1>
+               <p class="gray">${focusNews.simpleContent}...<a href="news/${focusNews.no}.html"
                                     target="_blank">&gt;&gt;查看详细</a></p>
              </div>
              <div class="third">
                <ul class="dotli01">
                  <c:forEach items="${newsBiz.top7News}" var="n">
-                 <li><a href="news.htm?news.id=${n.id}" target="_blank">[${n.category.name}]${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
+                 <li><a href="news/${n.no}.html" target="_blank"><!--[${n.category.name}]-->${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
                  </c:forEach>
                </ul>
                <div class="clear"> </div>
@@ -79,22 +68,22 @@
             <div class="fl w348 mar_t6">
               <div class="section_purchase">
                 <div class="ptitle">
-                  <span class="more"><a href="#">更多</a> >></span>
+                  <span class="more"><a href="other.htm?news.orderNum=9">更多</a> >></span>
                   <div class="icon">北京降价-经济车型</div>
                   
                 </div>
                 <div class="pad_10">
                   <div class="index_tips">
                     <div class="pic"> 
-                    	<a href="#" target="_blank"> 
+                    	<a href="news/${bjNews.no}.html" target="_blank"> 
                     		<c:set var="bjNews" value="${newsBiz.beijingRecommendNews}"></c:set>
                     		<img src="${appPath}/image?image=${bjNews.image}&w=136&h=86"  alt="" />
                     		<span class="blue fb">${bjNews.title }</span></a><br />
-                          <span class="gray">${bjNews.simpleContent }…</span><a href="news.htm>news.id=${bjNews.id}"
+                          <span class="gray">${bjNews.simpleContent }…</span><a href="news/${bjNews.no}.html"
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
                     <ul class="dotli01">
                     	<c:forEach items="${newsBiz.top12BeijingNews}" var="n">
-                      <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+                      <li><a href="news/${n.no}.html" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
                       	</c:forEach>
                     </ul>
                   </div>
@@ -109,15 +98,15 @@
                 </div>
                 <div class="pad_10">
                   <div class="index_tips">
-                    <div class="pic"> <a href="#" target="_blank"> 
+                    <div class="pic"> <a href="news/${jjNews.no}.html" target="_blank"> 
                     		<c:set var="jjNews" value="${newsBiz.jjXindeRecommendNews}"></c:set>
                     		<img src="${appPath}/image?image=${jjNews.image}&w=136&h=86"  alt="" />
                     		<span class="blue fb">${jjNews.title }</span></a><br />
-                          <span class="gray">${jjNews.simpleContent }…</span><a href="news.htm>news.id=${jjNews.id}"
+                          <span class="gray">${jjNews.simpleContent }…</span><a href="news/${jjNews.no}.html"
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
                     <ul class="dotli01" style="height: 102px;">
                     	<c:forEach items="${newsBiz.top6jjXindeNews}" var="n">
-	                    <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+	                    <li><a href="news/${n.no}.html" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
 	                    </c:forEach>
                     </ul>
                   </div>
@@ -130,7 +119,7 @@
                 <div class="pad_10">
                   <ul class="dotli01">
                   	<c:forEach items="${newsBiz.top5zjXindeNews}" var="n">
-                    <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+                    <li><a href="news/${n.no}.html" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
                     </c:forEach>
                   </ul>
                 </div>
@@ -143,39 +132,27 @@
                 </div>
                 <div class=" pad_t10 pad_l5">
                   <div class="cardlist">
+                  	<c:forEach items="${newsBiz.top3Baoxian}" var="b">
                     <dl>
-                      <dt><a href="#"><img src="Themes/images/pic-card02.jpg" width="81" height="60" alt="" /></a></dt>
-                      <dd><b><a href="#" class="blue">张家口汽车保险推荐1</a></b>
-                          <p>热线电话0313-8888888</p>
-                          <p>[<a href="#" class="blue">详细</a>]</p>
+                      <dt><a href="baoxian.htm?baoxian.id=${b.id}"><img src="image?image=${b.image}&w=94&h=69" alt="" /></a></dt>
+                      <dd><b><a href="baoxian.htm?baoxian.id=${b.id}" class="blue">${b.name}</a></b>
+                          <p>热线电话:${b.tel }</p>
+                          <p>[<a href="baoxian.htm?baoxian.id=${b.id}" class="blue">详细</a>]</p>
                       </dd>
                     </dl>
-                    <dl>
-                      <dt><a href="#"><img src="Themes/images/pic-card02.jpg" width="81" height="60" alt="" /></a></dt>
-                      <dd><b><a href="#" class="blue">张家口汽车保险推荐1</a></b>
-                          <p>热线电话0313-8888888</p>
-                        <p>[<a href="#" class="blue">详细</a>]</p>
-                      </dd>
-                    </dl>
-                    <dl>
-                      <dt><a href="#"><img src="Themes/images/pic-card02.jpg" width="81" height="60" alt="" /></a></dt>
-                      <dd><b><a href="#" class="blue">张家口汽车保险推荐1</a></b>
-                          <p>热线电话0313-8888888</p>
-                        <p>[<a href="#" class="blue">详细</a>]</p>
-                      </dd>
-                    </dl>
+                    </c:forEach>
                     <div class="clear"></div>
                   </div>
                 </div>
               </div>
               <div class="section_purchase mar_t6">
-                <div class="ptitle"> <span class="more"><a href="#" class="red">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=5" class="red">更多</a> &gt;&gt;</span>
                     <div class="icon red">保险知识</div>
                 </div>
                 <div class="pad_10">
                   <ul class="dotli01">
                   <c:forEach items="${newsBiz.top5BaoxianNews}" var="n">
-                    <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title }</a></li>
+                    <li><a href="news/${n.no}.html" target="_blank">${n.title }</a></li>
                     </c:forEach>
                   </ul>
                 </div>
@@ -224,14 +201,14 @@
               <div class="index_tips">
 <div class="pic"> 
 <c:set var="byNews" value="${newsBiz.baoyangRecommendNews}"></c:set>
-<a href="news.htm?news.id=${byNews.id}" target="_blank"> 
+<a href="news/${byNews.no}.html" target="_blank"> 
 <img src="${appPath}/image?image=${byNews.image}&w=136&h=86"  alt="" />
 <span class="blue fb">${byNews.title}</span></a><br />
-    <span class="gray">${byNews.simpleContent}…</span><a href="news.htm?news.id=${byNews.id}"
+    <span class="gray">${byNews.simpleContent}…</span><a href="news/${byNews.no}.html"
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
 <ul class="dotli01">
 				<c:forEach items="${newsBiz.top7BaoYangNews}" var="n">
-                  <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
+                  <li><a href="news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
                   </c:forEach>
                 </ul>
               </div>
@@ -246,40 +223,35 @@
             <div class="pad_10">
               <div class="index_tips">
 <div class="pic"> <c:set var="cbNews" value="${newsBiz.chengbenRecommendNews}"></c:set>
-<a href="news.htm?news.id=${cbNews.id}" target="_blank">
+<a href="news/${cbNews.no}.html" target="_blank">
 <img src="${appPath}/image?image=${cbNews.image}&w=136&h=86"  alt="" />
 <span class="blue fb">${cbNews.title}</span></a><br />
-    <span class="gray">${cbNews.simpleContent}…</span><a href="news.htm?news.id=${cbNews.id}"
+    <span class="gray">${cbNews.simpleContent}…</span><a href="news/${cbNews.no}.html"
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
 <ul class="dotli01">
 					<c:forEach items="${newsBiz.top7ChengBenNews}" var="n">
-                  <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
+                  <li><a href="news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
                   </c:forEach>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="fl w240 hide mar_t6 mar_l10 bg04">
+        <div class="fl w240 hide mar_t6 mar_l10 bg04 bls_gray">
           <div class="section04">
                 <div class="ptitle">汽车装饰
                 </div>
             <div class=" pad_t10 pad_l5">
               <div class="cardlist">
+              	<c:forEach items="${newsBiz.top3Zhuangshi}" var="z">
                 <dl>
-                  <dt><a href="#"><img src="Themes/images/pic-card03.jpg" width="94" height="69" alt="" /></a></dt>
-                  <dd><b><a href="#" class="blue">张家口汽车保险推荐1</a></b>
-                      <p>热线电话0313-8888888</p>
-                    <p>[<a href="#" class="blue">详细</a>]</p>
+                  <dt><a href="zhuangshi.htm?zhuangshi.id=${z.id}"><img src="image?image=${z.image}&w=94&h=69" alt="" /></a></dt>
+                  <dd><b><a href="zhuangshi.htm?zhuangshi.id=${z.id}" class="blue">${z.name}</a></b>
+                      <p>热线电话:${z.tel }</p>
+                    <p>[<a href="zhuangshi.htm?zhuangshi.id=${z.id}" class="blue">详细</a>]</p>
                   </dd>
                 </dl>
-                <dl>
-                  <dt><a href="#"><img src="Themes/images/pic-card03.jpg" width="94" height="69" alt="" /></a></dt>
-                  <dd><b><a href="#" class="blue">张家口汽车保险推荐1</a></b>
-                      <p>热线电话0313-8888888</p>
-                    <p>[<a href="#" class="blue">详细</a>]</p>
-                  </dd>
-                </dl>
+                </c:forEach>
                 <div class="clear"></div>
               </div>
             </div>
@@ -291,7 +263,7 @@
             <div class="pad_10">
               <ul class="dotli01">
               <c:forEach items="${newsBiz.top3ZhuangShiNews}" var="n">
-                <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title }</a></li>
+                <li><a href="news/${n.no}.html" target="_blank">${n.title }</a></li>
                 </c:forEach>
               </ul>
             </div>

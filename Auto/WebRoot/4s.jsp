@@ -4,14 +4,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-    <title>${appTitle}</title>
-    <meta name="description" content="${appDesc}" />
+    <c:choose>
+    	<c:when test="${not empty sale.seoTitle}">
+    		<c:set value="${sale.seoTitle}" var="t"></c:set>
+    	</c:when>
+    	<c:otherwise>
+    		<c:set value="${appTitle}" var="t"></c:set>
+    	</c:otherwise>
+    </c:choose>
+    <c:choose>
+    	<c:when test="${not empty sale.seoDesc}">
+    		<c:set value="${sale.seoDesc}" var="d"></c:set>
+    	</c:when>
+    	<c:otherwise>
+    		<c:set value="${appDesc}" var="d"></c:set>
+    	</c:otherwise>
+    </c:choose>
+    <title>${t}</title>
+    <meta name="description" content="${d}" />
     <meta name="keywords"  content="${appKeywords}" />
     <link href="Themes/basic.css" type="text/css" rel="stylesheet" />
     <link href="Themes/pagestyle.css" type="text/css" rel="stylesheet" />
     <script src="js/jquery.js"></script>
     <script src="js/common.js"></script>
-        <script>
+    <script>
     	if(document.all){
 			newsExchange = 	function(tabLi,otherLi,tabId,hideId){
 								if($(tabLi).attr('class') == 'current'){
@@ -99,34 +115,16 @@
                 <div class="treeNav pad_10">
                 <!-- begin 树 -->
                 <!-- class="treeNavopen"代表打开状态，class="treeNavclose"代表关闭状态 -->
-                <ul style="background: none;">
-                    <div class="treeNavopen">
-                        <a href="#">第一级</a></div>
-                    <ul>
-                        <div class="treeNavclose">
-                            <a href="#">第二级</a></div>
-                        <ul>
-                            <div class="treeNavdot1">
-                                <a href="#">第三级</a></div>
-                        </ul>
-                    </ul>
-                    <ul>
-                        <div class="treeNavopen">
-                            <a href="#">第二级</a></div>
-                    </ul>
-                </ul>
-                <ul style="background: none;">
-                    <div class="treeNavopen">
-                        <a href="#">第一级</a></div>
-                    <ul>
-                        <div class="treeNavopen">
-                            第二级</div>
-                    </ul>
-                    <ul>
-                        <div class="treeNavopen">
-                            第二级</div>
-                    </ul>
-                </ul>
+                <c:forEach items="${brandList}" var="p">
+                	<ul style="background: none;">
+	                    <div class="treeNavopen"><a href="sale.htm?sale.id=${sale.id}&brand.id=${p.id}" <c:if test="${p.id==brand.id}">style="text-decoration:underline;"</c:if>>${p.name}</a></div>
+	                    <c:forEach items="${p.childBrands}" var="c">
+	                    <ul>
+	                        <div class="treeNavclose"><a href="sale.htm?sale.id=${sale.id}&brand.id=${c.id}" <c:if test="${c.id==brand.id}">style="text-decoration:underline;"</c:if>>${c.name}</a></div>
+	                    </ul>
+	                    </c:forEach>
+	                </ul>
+                </c:forEach>                
                 <!-- end 书 -->
             </div>
               </div>

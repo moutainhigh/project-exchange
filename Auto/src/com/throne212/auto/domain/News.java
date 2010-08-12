@@ -45,6 +45,9 @@ public class News extends MyEntity{//消息
 	protected long click;//访问量
 	@Column
 	protected String image;
+	@Column(unique=true)
+	protected String no;//编号，保存新闻的静态页面的
+
 	
 	public Category getCategory() {
 		return category;
@@ -135,8 +138,14 @@ public class News extends MyEntity{//消息
 	public void setSimpleContent(String simpleContent) {
 		this.simpleContent = simpleContent;
 	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
 	public String getTypeText() {
-		switch (type) {
+		switch (orderNum) {
 		case WebConstants.NEWS_NEWS:
 			return "新闻";
 		case WebConstants.NEWS_JINGJI_XINDE:

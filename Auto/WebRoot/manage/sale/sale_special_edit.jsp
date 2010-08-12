@@ -92,8 +92,32 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
+			function submitForm(){
+				var f = document.forms[0];
+				var title = f['special.title'].value;
+				var author = f['special.author'].value;
+				
+				if(title == ''){
+					alert("请输入优惠信息标题");
+					f['news.title'].focus();
+					return false;
+				}
+				if(title.length > 30){
+					alert("优惠信息标题不得超过30个字");
+					f['news.title'].focus();
+					return false;
+				}
+				if(author == ''){
+					alert("请输入信息编写作者");
+					f['news.author'].focus();
+					return false;
+				}
+				f.submit();
+			}
 			$(function(){
 				loadSaleList();
 			});
@@ -114,7 +138,6 @@
 				});
 			}
 		</script>
-		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
@@ -134,16 +157,19 @@
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">标题：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.title" size="40" value="${special.title }"/></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.title" size="40" value="${special.title }"/>
+			    <span style="color:red;">*</span><span style="color:gray;">(标题不得超过30个字)</span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">作者：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.author" size="25" value="${special.author }" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.author" size="25" value="${special.author }" />
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">来源：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="special.from" size="25" value="${special.from }" /></td>
 			  </tr>
+			  <c:if test="${isAdmin}">
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">推荐与否：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
@@ -151,6 +177,7 @@
 			    &nbsp;
 			    <input type="radio" name="special.recommend" value="false" <c:if test="${empty special.recommend || special.recommend==false}">checked="checked"</c:if> />不推荐
 			  </tr>
+			  </c:if>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">

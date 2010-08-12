@@ -15,16 +15,6 @@ function formKeyPress(event){
 		return false;
 	}
 }
-function submitForm(){
-	var username = document.forms['loginForm'].username.value;
-	var pwd = document.forms['loginForm'].password.value;
-	var rand = document.forms['loginForm'].rand.value;
-	if(username=='' || pwd=='' || rand==''){
-		alert('用户名、密码、验证码均为必填选项，请检查');
-		return false;
-	}
-	document.forms[0].submit();
-}
 
 function gotoPage(pageIndex,url){
 	if(!url){

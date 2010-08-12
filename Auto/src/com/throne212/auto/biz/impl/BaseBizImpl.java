@@ -50,4 +50,8 @@ public class BaseBizImpl implements BaseBiz {
 	public <T>  void deleteEntity(Class<T> clazz,Long id){
 		baseDao.deleteById(clazz, id);
 	}
+
+	public <T> T getEntityByUnique(Class<T> clazz, String colName, Object value) {
+		return baseDao.getEntityByUniqueColumn(clazz, colName, value);
+	}
 }

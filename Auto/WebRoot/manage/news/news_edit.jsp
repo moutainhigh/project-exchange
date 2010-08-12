@@ -94,12 +94,41 @@
 		</style>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
 			var newsId = '${news.id}';
 			$(function(){
 				if(newsId == '')
 					$('input[type=radio]:first').attr('checked',true);
 			});
+			function submitForm(){
+				var f = document.forms[0];
+				var title = f['news.title'].value;
+				var author = f['news.author'].value;
+				var simpleContent = f['news.simpleContent'].value;
+				
+				if(title == ''){
+					alert("请输入新闻标题");
+					f['news.title'].focus();
+					return false;
+				}
+				if(title.length > 40){
+					alert("新闻标题不得超过40个字");
+					f['news.title'].focus();
+					return false;
+				}
+				if(author == ''){
+					alert("请输入新闻作者");
+					f['news.author'].focus();
+					return false;
+				}
+				if(simpleContent!='' && simpleContent.length>100){
+					alert("新闻概述不得超过100个字");
+					f['news.simpleContent'].focus();
+					return false;
+				}
+				f.submit();
+			}
 		</script>
     </head>
     <body>
@@ -123,11 +152,13 @@
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">标题：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.title" size="40" value="${news.title }"/></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.title" size="40" value="${news.title }"/>
+			    <span style="color:red;">*</span><span style="color:gray;">(新闻标题不得超过40个字)</span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">作者：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.author" size="25" value="${news.author }" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.author" size="25" value="${news.author }" />
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">来源：</td>
@@ -135,11 +166,15 @@
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网页标题：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.seoTitle" size="35" value="${news.seoTitle}" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.seoTitle" size="35" value="${news.seoTitle}" />
+			    <span style="color:gray;">(若为空，则默认为网站的标题)</span>
+			    </td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网页描述：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.seoDesc" size="55" value="${news.seoDesc }" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="news.seoDesc" size="55" value="${news.seoDesc }" />
+			    <span style="color:gray;">(若为空，则默认为网站的网页描述)</span>
+			    </td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">推荐与否：</td>
@@ -147,11 +182,7 @@
 			    <input type="radio" name="news.recommend" value="true" <c:if test="${!empty news.recommend && news.recommend}">checked="checked"</c:if> />推荐
 			    &nbsp;
 			    <input type="radio" name="news.recommend" value="false" <c:if test="${empty news.recommend || news.recommend==false}">checked="checked"</c:if> />不推荐
-			  </tr>
-			  <tr>
-			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">通过审核：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    <input type="checkbox" name="news.passed" value="true" <c:if test="${!empty news.passed && news.passed}">checked="checked"</c:if> />通过审核
+			    <span style="color:gray;">(只有推荐的新闻才能显示在网站首页)</span>
 			  </tr>
 			  <tr >
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">新闻图片：</td>
@@ -171,19 +202,21 @@
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">新闻概述：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
 			    	<textarea rows="3" cols="50" name="news.simpleContent">${news.simpleContent}</textarea>
+			    	<span style="color:gray;">(新闻概述不得超过100个汉字)</span>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<textarea rows="20" cols="80" id="content" name="news.content">${news.content}</textarea>
+			    	<textarea rows="40" cols="80" id="content" name="news.content">${news.content}</textarea>
 			    	<script>
-			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn'});
+			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn',height:500});
 			    	</script>
 			    </td>
 			  </tr>
 			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/></td>
 			  </tr>
 			  <tr>
 			    

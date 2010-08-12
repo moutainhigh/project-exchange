@@ -9,6 +9,7 @@ import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.dao.SaleDao;
 import com.throne212.auto.dao.UserDao;
 import com.throne212.auto.domain.Admin;
+import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
@@ -99,6 +100,21 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
 		Sale sale = saleDao.getEntityById(Sale.class, saleId);
 		List<Car> cars = saleDao.getSaleCarList(sale,startIndex, WebConstants.maxRowPerPage);
+		PageBean<Car> bean = new PageBean<Car>();
+		bean.setPageIndex(pageIndex);
+		bean.setResultList(cars);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int)saleDao.getSaleCarListCount(sale));
+		return bean;
+	}
+	public PageBean<Car> getCarsBySale(long saleId,long brandId,int pageIndex) {
+		if(pageIndex == 0){
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex-1) * WebConstants.maxRowPerPage;
+		Sale sale = saleDao.getEntityById(Sale.class, saleId);
+		Brand brand = saleDao.getEntityById(Brand.class, brandId);
+		List<Car> cars = saleDao.getSaleCarList(sale,brand,startIndex, WebConstants.maxRowPerPage);
 		PageBean<Car> bean = new PageBean<Car>();
 		bean.setPageIndex(pageIndex);
 		bean.setResultList(cars);

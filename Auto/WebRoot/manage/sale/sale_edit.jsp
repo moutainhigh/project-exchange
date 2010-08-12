@@ -92,7 +92,29 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
+			function submitForm(){
+				var f = document.forms[0];
+				var loginName = f['sale.loginName'].value;
+				var pwd = null;
+				if(f['sale.password'])
+					pwd = f['sale.password'].value;
+				
+				if(loginName == ''){
+					alert("请输入登录名");
+					f['sale.loginName'].focus();
+					return false;
+				}
+				if(pwd && pwd==''){
+					alert("请输入密码");
+					f['sale.password'].focus();
+					return false;
+				}
+				f.submit();
+			}
 		</script>
     </head>
     <body>
@@ -106,18 +128,18 @@
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>增加4S店会员</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">登录名：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.loginName" value="${sale.loginName}" /><span style="color:red;">*</span></td>
+			    <td width="10%"  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">登录名：</td>
+			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.loginName" value="${sale.loginName}" /><span style="color:red;">*</span></td>
 			  </tr>
 			  <c:if test="${empty sale.id}">
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">初始登录密码：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.password" /><span style="color:red;">*</span></td>
+			    <td  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">初始登录密码：</td>
+			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.password" /><span style="color:red;">*</span></td>
 			  </tr>
 			  </c:if>
 			  <tr style="background-color:#F7F8FA">
-			    <td width="50%" height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">会员名称：</td>
-			    <td width="50%" align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.fullName" value="${sale.fullName}"  /></td>
+			    <td  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">会员名称：</td>
+			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.fullName" value="${sale.fullName}"  /></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系电话：</td>
@@ -134,6 +156,18 @@
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系地址：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.address" value="${sale.address}" /></td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">4S店首页标题：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.seoTitle" size="35" value="${sale.seoTitle}" />
+			    <span style="color:gray;">(若为空，则默认为网站的标题)</span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">4S店首页描述：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.seoDesc" size="55" value="${sale.seoDesc }" />
+			    <span style="color:gray;">(若为空，则默认为网站的网页描述)</span>
+			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">公司图片：</td>
@@ -156,7 +190,8 @@
 			    </td>
 			  </tr>
 			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/></td>
 			  </tr>
 
 			</table>

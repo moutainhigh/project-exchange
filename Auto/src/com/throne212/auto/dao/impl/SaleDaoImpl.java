@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.throne212.auto.dao.SaleDao;
+import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
@@ -34,6 +35,11 @@ public class SaleDaoImpl extends BaseDaoImpl implements SaleDao{
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		Query q = s.createQuery("from Car where sale=? order by id desc");
 		return q.setParameter(0, sale).setMaxResults(max).setFirstResult(first).list();
+	}
+	public List<Car> getSaleCarList(Sale sale,Brand brand,int first, int max) {
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery("from Car c where c.sale=? and (c.brand=? or c.brand.parentBrand=?) order by id desc");
+		return q.setParameter(0, sale).setParameter(1, brand).setParameter(2, brand).setMaxResults(max).setFirstResult(first).list();
 	}
 	public long getSaleCarListCount(Sale sale){
 		return (Long) this.getHibernateTemplate().find("select count(*) from Car where sale=?",sale).get(0);

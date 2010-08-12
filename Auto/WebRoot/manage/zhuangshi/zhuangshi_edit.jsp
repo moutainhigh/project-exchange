@@ -92,24 +92,21 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
-		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script>
 			function submitForm(){
 				var f = document.forms[0];
-				var name = f['cate.name'].value;
-				var orderNum = f['cate.orderNum'].value;
-				if(name == ''){
-					alert("请输入名称");
+				var title = f['zhuangshi.name'].value;
+				var tel = f['zhuangshi.tel'].value;
+				
+				if(title == ''){
+					alert("请输入商家名称");
 					return false;
 				}
-				if(orderNum == ''){
-					alert("请输入编码");
-					return false;
-				}
-				if(!/^[0-9]{1,}$/.test(orderNum)){
-					alert("编码必须为数字");
+				if(tel == ''){
+					alert("请输入商家电话");
 					return false;
 				}
 				f.submit();
@@ -118,29 +115,54 @@
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_saveCate.action" method="post">
-    	<input type="hidden" name="cate.id" value="${cate.id}"/>
+    <form action="ManageAction_saveZhuangshi.action" method="post">
+    	<input type="hidden" name="zhuangshi.id" value="${zhuangshi.id}"/>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>栏目编辑</strong> </td>
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>装饰商家编辑</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">标题：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.name" size="20" value="${cate.name }"/></td>
-			  </tr>
-			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">编号：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    <c:if test="${not empty cate.id }">&nbsp;${cate.orderNum}</c:if>
-			    <c:if test="${empty cate.id }">
-			    	&nbsp;<input type="text" name="cate.orderNum" size="20" value="${cate.orderNum }" />
-			    	</c:if></td>
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">商家名称：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="zhuangshi.name" size="40" value="${zhuangshi.name }"/>
+			    <span style="color:red;">*</span><span style="color:gray;">(不得超过20个字)</span></td>
 			  </tr>
 			  <tr>
-			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">描述：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.description" size="45" value="${cate.description }" /></td>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">电话：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="zhuangshi.tel" size="25" value="${zhuangshi.tel }" />
+			    <span style="color:red;">*</span></td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">推荐与否：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    <input type="radio" name="zhuangshi.recommend" value="true" <c:if test="${!empty zhuangshi.recommend && zhuangshi.recommend}">checked="checked"</c:if> />推荐
+			    &nbsp;
+			    <input type="radio" name="zhuangshi.recommend" value="false" <c:if test="${empty zhuangshi.recommend || zhuangshi.recommend==false}">checked="checked"</c:if> />不推荐
+			    <span style="color:gray;">(只有推荐的商家才能显示在网站首页)</span>
+			  </tr>
+			  <tr >
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">商家形象图片：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
+			    	<input type="hidden" id="myImage" name="zhuangshi.image" value="${zhuangshi.image }"/>
+			    	<c:choose>
+			    		<c:when test="${empty zhuangshi.id || empty zhuangshi.image}">
+			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:when>
+			    		<c:otherwise>
+			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${zhuangshi.image}" width="100%" height="100%" frameborder="0"></iframe>
+			    		</c:otherwise>
+			    	</c:choose>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    	<textarea rows="40" cols="80" id="content" name="zhuangshi.content">${zhuangshi.content}</textarea>
+			    	<script>
+			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn',height:400});
+			    	</script>
+			    </td>
 			  </tr>
 			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">

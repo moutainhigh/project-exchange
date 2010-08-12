@@ -1,5 +1,6 @@
 package com.throne212.auto.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,8 +8,12 @@ import org.hibernate.Session;
 
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.dao.NewsDao;
+import com.throne212.auto.domain.Brand;
+import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.News;
+import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
+import com.throne212.auto.domain.Zhuangshi;
 
 public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 
@@ -90,5 +95,54 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		return s.createQuery(hql).setMaxResults(4).list();
 	}
+	public List<Zhuangshi> getTop3Zhuangshi(){
+		String hql = "from Zhuangshi z where z.recommend = true and z.image != null order by id";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return s.createQuery(hql).setMaxResults(2).list();
+	}
+	public List<Insurance> getTop3Baoxian(){
+		String hql = "from Insurance z where z.recommend = true and z.image != null order by id";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return s.createQuery(hql).setMaxResults(3).list();
+	}
+	
+	public List<Brand> getBrandList(){
+		String hql = "from Brand b where b.parentBrand=null order by b.orderNum";
+		List<Brand> topBrands = this.getHibernateTemplate().find(hql);
+		List<Brand> list = new ArrayList<Brand>();
+		if(topBrands != null && topBrands.size() > 0){
+			hql = "from Brand b where parentBrand=? order by b.orderNum";
+			for(Brand b : topBrands){
+				list.add(b);
+				List<Brand> childBrands = this.getHibernateTemplate().find(hql, b);
+				if(childBrands != null && childBrands.size() > 0)
+					list.addAll(childBrands);
+			}
+		}
+		return list;
+	}
 
+	public List<Brand> getChildBrandList(Brand parent){
+		String hql = "from Brand b where b.parentBrand=? order by b.orderNum";
+		return this.getHibernateTemplate().find(hql, parent);
+	}
+	public List<Brand> getTopBrandList(){
+		String hql = "from Brand b where b.parentBrand=null order by b.orderNum";
+		return this.getHibernateTemplate().find(hql);
+	}
+	public List<Brand> getBrandList(Sale sale){
+		List<Brand> list = new ArrayList<Brand>();
+		List<Brand> allBrands = getTopBrandList();
+		for(Brand b : allBrands){
+			String hql = "select count(*) from Car c where c.sale=? and (c.brand=? or c.brand.parentBrand=?)";
+			long size = (Long)this.getHibernateTemplate().find(hql,new Object[]{sale,b,b}).get(0);
+			if(size > 0){
+				list.add(b);
+				String hql2 = "from Brand b where b.parentBrand=?";
+				List<Brand> childBrands = this.getHibernateTemplate().find(hql2, b);
+				b.setChildBrands(childBrands);
+			}
+		}
+		return list;
+	}
 }

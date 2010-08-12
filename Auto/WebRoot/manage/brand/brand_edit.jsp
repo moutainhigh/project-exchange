@@ -92,55 +92,68 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
-		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script>
 			function submitForm(){
 				var f = document.forms[0];
-				var name = f['cate.name'].value;
-				var orderNum = f['cate.orderNum'].value;
-				if(name == ''){
-					alert("请输入名称");
-					return false;
-				}
-				if(orderNum == ''){
-					alert("请输入编码");
-					return false;
-				}
-				if(!/^[0-9]{1,}$/.test(orderNum)){
-					alert("编码必须为数字");
+				var title = f['brand.name'].value;
+				
+				if(title == ''){
+					alert("请输入品牌名称");
 					return false;
 				}
 				f.submit();
+			}
+			$(function(){
+				loadBrandList();
+			});
+			function loadBrandList(){
+				$.post('ajax_getTopBrands.htm', {}, function(result) {
+					var dataObj=eval(result);
+					var name;
+					var id;
+					var current_brandId = '${brand.parentBrand.id}';
+					$.each(dataObj.brandList,function(n,e){
+						id = e.id;
+						name = e.name;
+						if(id == current_brandId)
+							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#brand");
+						else
+							$("<option value="+id+">"+name+"</option>").appendTo("#brand");
+					});
+				});
 			}
 		</script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_saveCate.action" method="post">
-    	<input type="hidden" name="cate.id" value="${cate.id}"/>
+    <form action="ManageAction_saveBrand.action" method="post">
+    	<input type="hidden" name="brand.id" value="${brand.id}"/>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>栏目编辑</strong> </td>
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>品牌编辑</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">标题：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.name" size="20" value="${cate.name }"/></td>
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">品牌名称：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="brand.name" size="40" value="${brand.name }"/>
+			    <span style="color:red;">*</span><span style="color:gray;">(不得超过20个字)</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">编号：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    <c:if test="${not empty cate.id }">&nbsp;${cate.orderNum}</c:if>
-			    <c:if test="${empty cate.id }">
-			    	&nbsp;<input type="text" name="cate.orderNum" size="20" value="${cate.orderNum }" />
-			    	</c:if></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="brand.orderNum" size="40" value="${brand.orderNum}"/>
+			    <span style="color:red;">*</span><span style="color:gray;">(只能为数字)</span></td>
 			  </tr>
-			  <tr>
-			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">描述：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.description" size="45" value="${cate.description }" /></td>
+			  <tr style="background-color:#F7F8FA">
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">所属父品牌：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    	<select id="brand" name="brand.parentBrand.id">
+			    		<option value="">[顶级品牌]</option>
+			    	</select>
+			    </td>
 			  </tr>
 			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">

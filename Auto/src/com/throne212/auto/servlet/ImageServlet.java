@@ -25,13 +25,17 @@ public class ImageServlet extends HttpServlet {
 		String w = request.getParameter("w");
 		String h = request.getParameter("h");
 		
-		if(image == null || "".equals(image))
-			return;
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
-		path += "upload/";
-		path += image;
-		log.debug("image saved path : " + path);
+		
+		if(image == null || "".equals(image)){
+			path += "img/no.jpg";
+			log.debug("ÔÝÎÞÍ¼Æ¬");
+		}else{			
+			path += "upload/";
+			path += image;
+			log.debug("image saved path : " + path);
+		}
 		try {
 			FileInputStream fin = new FileInputStream(path);
 			if(Util.isEmpty(w) || Util.isEmpty(h))

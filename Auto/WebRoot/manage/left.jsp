@@ -114,10 +114,10 @@
         <div id="menu3">
             <ul>
                 <!-- CSS Tabs -->
-				<li>
-                    <a id="current" href="welcome/welcome.jsp" target="rightFrame">系统信息概况</a>
+				<li>                    
                     <a id="current" href="welcome/pwd.jsp" target="rightFrame">修改密码</a>
                     <c:if test="${isAdmin}">
+                    <a id="current" href="welcome/welcome.jsp" target="rightFrame">系统信息概况</a>
                     <a id="current" href="ManageAction_setting.htm" target="rightFrame">网站设置</a>
                     <a id="current" href="ManageAction_linkList.htm" target="rightFrame">友情链接</a>
                     <a id="current" href="welcome/link_edit.jsp" target="rightFrame">新增友情链接</a>

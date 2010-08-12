@@ -1,6 +1,18 @@
-$(document).ready(function(){
-
-	
+$(function(){
+	$('input').css('border','1px solid #3A6EA5');
+	$('input').focus(function(){
+		$(this).css('border','1px solid #9D2703');
+	});
+	$('input').blur(function(){
+		$(this).css('border','1px solid #3A6EA5');
+	});
+	$('textarea').css('border','1px solid #3A6EA5');
+	$('textarea').focus(function(){
+		$(this).css('border','1px solid #9D2703');
+	});
+	$('textarea').blur(function(){
+		$(this).css('border','1px solid #3A6EA5');
+	});
 });
 
 function formKeyPress(event){
@@ -39,4 +51,7 @@ function gotoPage(pageIndex,url){
 	self.location.href = url;
 }
 
+function checkAll(){
+	
+}
 

@@ -110,7 +110,7 @@
         </script>
     </head>
     <body>
-    	<h2>会员管理</h2>
+    	<h2>栏目管理</h2>
         <div id="menu3">
             <ul>
 				<li><c:if test="${isAdmin}">

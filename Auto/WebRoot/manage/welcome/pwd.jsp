@@ -91,8 +91,34 @@
 				height:400px;
 				/*border: 0px solid red;*/
 			}
+			
 		</style>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
+			function submitForm(){
+				var f = document.forms[0];
+				var oldPwd = f.oldPwd.value;
+				var newPwd = f.newPwd.value;
+				var newPwd2 = f.newPwd2.value;
+				if(oldPwd == ''){
+					alert("请输入原有密码");
+					return false;
+				}
+				if(newPwd == ''){
+					alert("请输入新密码");
+					return false;
+				}
+				if(newPwd2 == ''){
+					alert("请输入新确认密码");
+					return false;
+				}
+				if(newPwd2 != newPwd){
+					alert("两次新密码输入不一致");
+					return false;
+				}
+				f.submit();
+			}
 		</script>
     </head>
     <body>
@@ -107,18 +133,22 @@
 			  </tr>
 			  <tr>
 			    <td width="50%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">旧密码：</td>
-			    <td width="50%" align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="password" name="oldPwd" /></td>
+			    <td width="50%" align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="password" name="oldPwd" />
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">新密码：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="password" name="newPwd" /></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="password" name="newPwd" />
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">请再输入一次新密码：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="password" name="newPwd2" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="password" name="newPwd2" />
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/></td>
 			  </tr>
 			  <tr>
 			    

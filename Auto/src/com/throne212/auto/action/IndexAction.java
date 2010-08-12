@@ -1,6 +1,8 @@
 package com.throne212.auto.action;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -9,10 +11,13 @@ import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.biz.UserBiz;
 import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.WebConstants;
+import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Car;
+import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
+import com.throne212.auto.domain.Zhuangshi;
 
 public class IndexAction extends BaseAction {
 	
@@ -50,14 +55,19 @@ public class IndexAction extends BaseAction {
 	}
 	private Sale sale;
 	private PageBean<Car> carPageBean;
+	private List<Brand> brandList;
+	private Brand brand;
 	public String sale() throws Exception{
 		sale = userBiz.getEntityById(Sale.class, sale.getId());
-		carPageBean = userBiz.getCarsBySale(sale.getId(), page);
+		if(brand != null && brand.getId() != null){
+			carPageBean = userBiz.getCarsBySale(sale.getId(),brand.getId(), page);
+		}else
+			carPageBean = userBiz.getCarsBySale(sale.getId(), page);
+		brandList = newsBiz.getBrandList(sale.getId());
 		return "sale";
 	}
 	public String carList() throws Exception{
-		sale = userBiz.getEntityById(Sale.class, sale.getId());
-		carPageBean = userBiz.getCarsBySale(sale.getId(), page);
+		sale();
 		return "sale_car";
 	}
 	
@@ -145,6 +155,18 @@ public class IndexAction extends BaseAction {
 			newsPageBean = newsBiz.getSpecials(page, key);
 		}
 		return "search";
+	}
+	
+	//±£ÏÕºÍ×°ÊÎ
+	private Insurance baoxian;
+	public String baoxian() throws Exception{
+		baoxian = userBiz.getEntityById(Insurance.class, baoxian.getId());
+		return "baoxian";
+	}
+	private Zhuangshi zhuangshi;
+	public String zhuangshi() throws Exception{
+		zhuangshi = userBiz.getEntityById(Zhuangshi.class, zhuangshi.getId());
+		return "baoxian";
 	}
 
 	public void setUserBiz(UserBiz userBiz) {
@@ -259,5 +281,29 @@ public class IndexAction extends BaseAction {
 	}
 	public void setOther5RecommendNewsList(List<News> other5RecommendNewsList) {
 		this.other5RecommendNewsList = other5RecommendNewsList;
+	}
+	public Insurance getBaoxian() {
+		return baoxian;
+	}
+	public void setBaoxian(Insurance baoxian) {
+		this.baoxian = baoxian;
+	}
+	public Zhuangshi getZhuangshi() {
+		return zhuangshi;
+	}
+	public void setZhuangshi(Zhuangshi zhuangshi) {
+		this.zhuangshi = zhuangshi;
+	}
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
+	}
+	public Brand getBrand() {
+		return brand;
+	}
+	public void setBrand(Brand brand) {
+		this.brand = brand;
 	}
 }

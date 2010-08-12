@@ -2,8 +2,12 @@ package com.throne212.auto.dao;
 
 import java.util.List;
 
+import com.throne212.auto.domain.Brand;
+import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.News;
+import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
+import com.throne212.auto.domain.Zhuangshi;
 
 
 public interface NewsDao extends BaseDao{
@@ -24,4 +28,11 @@ public interface NewsDao extends BaseDao{
 	
 	public List<News> getTop4RecommendImageNews();
 	
+	public List<Insurance> getTop3Baoxian();
+	public List<Zhuangshi> getTop3Zhuangshi();
+	
+	public List<Brand> getBrandList();
+	public List<Brand> getBrandList(Sale sale);
+	public List<Brand> getChildBrandList(Brand parent);
+	public List<Brand> getTopBrandList();
 }

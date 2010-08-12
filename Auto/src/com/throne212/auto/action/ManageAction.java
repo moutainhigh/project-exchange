@@ -1,7 +1,16 @@
 package com.throne212.auto.action;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.auto.biz.NewsBiz;
@@ -9,14 +18,17 @@ import com.throne212.auto.biz.UserBiz;
 import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.Util;
 import com.throne212.auto.common.WebConstants;
+import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Car;
 import com.throne212.auto.domain.Category;
+import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.Link;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Setting;
 import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
+import com.throne212.auto.domain.Zhuangshi;
 
 public class ManageAction extends BaseAction {
 
@@ -37,6 +49,7 @@ public class ManageAction extends BaseAction {
 			setting = userBiz.getAll(Setting.class).get(0);
 		}else{
 			userBiz.saveOrUpdateEntity(setting);
+			this.setReqMsg("更新设置成功");
 		}
 		return "setting";
 	}
@@ -74,6 +87,7 @@ public class ManageAction extends BaseAction {
 	public String saveNews() {
 		if (news == null)
 			return "news_edit";
+		news.setNo(System.currentTimeMillis()+"");
 		if (news.getId() == null)
 			news = newsBiz.addNews(news);
 		else {
@@ -87,12 +101,46 @@ public class ManageAction extends BaseAction {
 			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
 			newsBiz.saveOrUpdateEntity(news);
 		}
-		if (news.getId() != null)
+		if (news.getId() != null){
 			this.setReqMsg("文章保存成功");
+			saveNewsHtml(news.getNo(),news.getId());
+			logger.info("新闻静态页面生成成功");
+		}
 		else
 			this.setReqMsg("文章保存失败，请联系管理员");
 		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
+	}
+	private void saveNewsHtml(String name,long id){
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "news/"+name+".html";
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(path);
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String newsPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/news.htm?news.id="+id;
+			
+			URL url = new URL(newsPath);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setDoOutput(true);
+			conn.connect();
+			InputStream in = conn.getInputStream();
+			int len = -1;
+			byte[] buff = new byte[1024];
+			while ((len = in.read(buff)) != -1) {
+				fos.write(buff, 0, len);
+			}
+			in.close();
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			if(fos != null)
+				try {fos.close();} catch (IOException e) {e.printStackTrace();}
+		}
 	}
 
 	public String news() {
@@ -162,6 +210,13 @@ public class ManageAction extends BaseAction {
 	public String saveSale() {
 		if (sale == null)
 			return "sale_edit";
+		if(!Util.isEmpty(sale.getLoginName())){
+			User user = userBiz.getEntityByUnique(Sale.class, "loginName", sale.getLoginName());
+			if(user != null && !user.getId().equals(sale.getId())){
+				this.setReqMsg("登录名已经存在，请重新定义");
+				return "sale_edit";
+			}
+		}
 		if (sale.getId() != null) {
 			String pwd = userBiz.getEntityById(Sale.class, sale.getId()).getPassword();
 			sale.setPassword(pwd);
@@ -249,7 +304,11 @@ public class ManageAction extends BaseAction {
 	private PageBean<Special> specialPageBean;
 
 	public String specialList() {
-		specialPageBean = userBiz.getSpecials(page);
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof Sale) {
+			specialPageBean = userBiz.getSpecialsBySale(user.getId(), page);
+		} else
+			specialPageBean = userBiz.getSpecials(page);
 		return "special_list";
 	}
 
@@ -311,6 +370,116 @@ public class ManageAction extends BaseAction {
 		return this.linkList();
 	}
 	
+	
+	//zhuangshi
+	private Zhuangshi zhuangshi;
+	private List<Zhuangshi> zhuangshiList;
+	public String zhuangshiList() {
+		zhuangshiList = newsBiz.getAll(Zhuangshi.class);
+		return "zhuangshi_list";
+	}
+	public String saveZhuangshi() {
+		if (zhuangshi == null)
+			return "zhuangshi_edit";
+		String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (image != null) {
+			zhuangshi.setImage(image);
+			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+		}
+		newsBiz.saveOrUpdateEntity(zhuangshi);
+		if (zhuangshi.getId() != null)
+			this.setReqMsg("装饰商家保存成功");
+		else
+			this.setReqMsg("装饰商家保存失败，请联系管理员");
+		return "zhuangshi_edit";
+	}
+
+	public String zhuangshi() {
+		if (zhuangshi.getId() != null)
+			zhuangshi = newsBiz.getEntityById(Zhuangshi.class, zhuangshi.getId());
+		return "zhuangshi_edit";
+	}
+
+	public String deleteZhuangshi() {
+		if (zhuangshi.getId() != null) {
+			newsBiz.deleteEntity(Zhuangshi.class, zhuangshi.getId());
+			this.setReqMsg("装饰商家删除成功");
+		}
+		return this.zhuangshiList();
+	}
+	
+	//保险推荐
+	private Insurance baoxian;
+	private List<Insurance> baoxianList;
+	public String baoxianList() {
+		baoxianList = newsBiz.getAll(Insurance.class);
+		return "baoxian_list";
+	}
+	public String saveBaoxian() {
+		if (baoxian == null)
+			return "baoxian_edit";
+		String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (image != null) {
+			baoxian.setImage(image);
+			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+		}
+		newsBiz.saveOrUpdateEntity(baoxian);
+		if (baoxian.getId() != null)
+			this.setReqMsg("保险推荐保存成功");
+		else
+			this.setReqMsg("保险推荐保存失败，请联系管理员");
+		return "baoxian_edit";
+	}
+
+	public String baoxian() {
+		if (baoxian.getId() != null)
+			baoxian = newsBiz.getEntityById(Insurance.class, baoxian.getId());
+		return "baoxian_edit";
+	}
+
+	public String deleteBaoxian() {
+		if (baoxian.getId() != null) {
+			newsBiz.deleteEntity(Insurance.class, baoxian.getId());
+			this.setReqMsg("保险推荐删除成功");
+		}
+		return this.baoxianList();
+	}
+	
+	//品牌
+	private Brand brand;
+	private List<Brand> brandList;
+	public String brandList() {
+		brandList = newsBiz.getBrandList();
+		return "brand_list";
+	}
+	public String saveBrand() {
+		if (brand == null)
+			return "brand_edit";
+		if(brand.getParentBrand() != null){
+			if(brand.getParentBrand().getId() == null)
+				brand.setParentBrand(null);
+		}
+		newsBiz.saveOrUpdateEntity(brand);
+		if (brand.getId() != null)
+			this.setReqMsg("品牌保存成功");
+		else
+			this.setReqMsg("品牌保存失败，请联系管理员");
+		return "brand_edit";
+	}
+
+	public String brand() {
+		if (brand.getId() != null)
+			brand = newsBiz.getEntityById(Brand.class, brand.getId());
+		return "brand_edit";
+	}
+
+	public String deleteBrand() {
+		if (brand.getId() != null) {
+			newsBiz.deleteEntity(Brand.class, brand.getId());
+			this.setReqMsg("品牌删除成功");
+		}
+		return this.brandList();
+	}
 	
 	//setter and getter
 	public void setUserBiz(UserBiz userBiz) {
@@ -471,6 +640,54 @@ public class ManageAction extends BaseAction {
 
 	public void setLinkList(List<Link> linkList) {
 		this.linkList = linkList;
+	}
+
+	public Zhuangshi getZhuangshi() {
+		return zhuangshi;
+	}
+
+	public void setZhuangshi(Zhuangshi zhuangshi) {
+		this.zhuangshi = zhuangshi;
+	}
+
+	public List<Zhuangshi> getZhuangshiList() {
+		return zhuangshiList;
+	}
+
+	public void setZhuangshiList(List<Zhuangshi> zhuangshiList) {
+		this.zhuangshiList = zhuangshiList;
+	}
+
+	public Insurance getBaoxian() {
+		return baoxian;
+	}
+
+	public void setBaoxian(Insurance baoxian) {
+		this.baoxian = baoxian;
+	}
+
+	public List<Insurance> getBaoxianList() {
+		return baoxianList;
+	}
+
+	public void setBaoxianList(List<Insurance> baoxianList) {
+		this.baoxianList = baoxianList;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
+
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
 	}
 
 }

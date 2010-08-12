@@ -19,6 +19,7 @@ public interface UserBiz extends BaseBiz{
 	
 	public PageBean<Car> getCars(int page);
 	public PageBean<Car> getCarsBySale(long saleId,int page);
+	public PageBean<Car> getCarsBySale(long saleId,long brandId,int page);
 	
 	public PageBean<Special> getSpecials(int page);
 	public PageBean<Special> getSpecialsBySale(long saleId,int page);

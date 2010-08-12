@@ -49,6 +49,12 @@
 					saleList\[\d+\]\.fullName
 				</param>
 			</result>
+			<result name="brand_list" type="json">
+				<param name="includeProperties">     
+					brandList\[\d+\]\.id,
+					brandList\[\d+\]\.name
+				</param>
+			</result>
 		</action>
     </package>
     
@@ -86,6 +92,12 @@
 			<result name="special_list">/manage/sale/sale_special_list.jsp</result>
 			<result name="link_list">/manage/welcome/link_list.jsp</result>
 			<result name="link_edit">/manage/welcome/link_edit.jsp</result>
+			<result name="zhuangshi_list">/manage/zhuangshi/zhuangshi_list.jsp</result>
+			<result name="zhuangshi_edit">/manage/zhuangshi/zhuangshi_edit.jsp</result>
+			<result name="baoxian_list">/manage/baoxian/baoxian_list.jsp</result>
+			<result name="baoxian_edit">/manage/baoxian/baoxian_edit.jsp</result>
+			<result name="brand_list">/manage/brand/brand_list.jsp</result>
+			<result name="brand_edit">/manage/brand/brand_edit.jsp</result>
 		</action>
 		<action name="FileUploadAction_*" method="{1}" class="com.throne212.auto.action.FileUploadAction">
 			<interceptor-ref name="fileUploadStack"></interceptor-ref>

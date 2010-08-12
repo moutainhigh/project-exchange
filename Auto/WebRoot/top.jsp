@@ -3,9 +3,9 @@
 <form action="LoginAction.htm" method="post">
 <div class="header-top hide">
   <div class="mauto w980 bg03 h23">
-    <div class="fl mar_r25 mar_l20" style="height: 23px; line-height: 23px; vertical-align: middle;"><img src="Themes/images/ico-bookmark.gif" alt="加入收藏" />
+    <div class="fl mar_r25 mar_l20" style="height: 23px; line-height: 23px; vertical-align: middle;"><img src="${appPath}/Themes/images/ico-bookmark.gif" alt="加入收藏" />
     <a href='#' class="white mar_l10" onClick="javascript:if(document.all) window.external.AddFavorite('http://www.baidu.com','${appTitle}');" rel="sidebar">收藏本站</a></div>
-    <div class="fl mar_r5 white"><a href="#" class="yellow" title="站点首页">${appTitle}</a>&nbsp;，欢迎您！</div>
+    <div class="fl mar_r5 white"><a href="#" class="yellow" title="站点首页">张家口汽车网</a>&nbsp;，欢迎您！</div>
     
     
                              <div class="fr white mar_r20">
@@ -40,24 +40,24 @@
      <!-- begin头部框架 -->
      <div class="header">
        <div class="">
-         <div class="w250 fl"><a href="index.htm"><img src="Themes/images/logo.jpg" alt="网站标志" /></a></div>
-         <div class="fr w730 g_t_c h76"><img src="Themes/images/banner.jpg" alt="banner" width="728" height="74" class=" b_gray" /></div> 
+         <div class="w250 fl"><a href="index.htm"><img src="${appPath}/Themes/images/logo.jpg" alt="网站标志" /></a></div>
+         <div class="fr w730 g_t_c h76"><img src="${appPath}/Themes/images/banner.jpg" alt="banner" width="728" height="74" class=" b_gray" /></div> 
          <div class="clear"></div> 
        </div>
        
        <div class="clearfix">
          <div class="w240 fl bg02 g_t_c pad_5">张家口资讯网 旗下分站 www.zjk169.net</div>
          <div class="fr w730 mainNav">
-         	<a href="index.htm">首 页</a> {购车}
-         	<a href="sale4s.htm">张家口4S店</a> 
-         	<a href="specialList.htm">本地动态</a> 
-         	<a href="jjXinde.htm">购车心得</a> 
-         	<a href="other.htm?news.orderNum=4">专业测评</a> 
-         	<a href="other.htm?news.orderNum=9">北京降价</a>
-         	<a href="other.htm?news.orderNum=5">汽车保险</a> [用车]
-         	<a href="other.htm?news.orderNum=6">维修保养</a> 
-         	<a href="other.htm?news.orderNum=7">养车成本</a> 
-         	<a href="other.htm?news.orderNum=8">汽车装饰</a></div>  
+         	<a href="${appPath}/index.htm">首 页</a> {购车}
+         	<a href="${appPath}/sale4s.htm">张家口4S店</a> 
+         	<a href="${appPath}/specialList.htm">本地动态</a> 
+         	<a href="${appPath}/jjXinde.htm">购车心得</a> 
+         	<a href="${appPath}/other.htm?news.orderNum=4">专业测评</a> 
+         	<a href="${appPath}/other.htm?news.orderNum=9">北京降价</a>
+         	<a href="${appPath}/other.htm?news.orderNum=5">汽车保险</a> [用车]
+         	<a href="${appPath}/other.htm?news.orderNum=6">维修保养</a> 
+         	<a href="${appPath}/other.htm?news.orderNum=7">养车成本</a> 
+         	<a href="${appPath}/other.htm?news.orderNum=8">汽车装饰</a></div>  
        </div>
          
      

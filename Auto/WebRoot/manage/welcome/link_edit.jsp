@@ -92,7 +92,34 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
+		<script>
+			function submitForm(){
+				var f = document.forms[0];
+				var name = f['link.name'].value;
+				var orderNum = f['link.orderNum'].value;
+				var url = f['link.url'].value;
+				if(name == ''){
+					alert("请输入名称");
+					return false;
+				}
+				if(orderNum == ''){
+					alert("请输入编码");
+					return false;
+				}
+				if(!/^[0-9]{1,}$/.test(orderNum)){
+					alert("编码必须为数字");
+					return false;
+				}
+				if(url == ''){
+					alert("请输入地址");
+					return false;
+				}
+				f.submit();
+			}
+		</script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
@@ -101,23 +128,27 @@
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="2" align="left" background="../images/msg_bg.jpg">
+			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>友情链接编辑</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">名称：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="link.name" size="20" value="${link.name }"/></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="link.name" size="20" value="${link.name }"/>
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">编号：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="link.orderNum" size="20" value="${link.orderNum }"/></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="link.orderNum" size="20" value="${link.orderNum }"/>
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">路径：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="link.url" size="45" value="${link.url }" /></td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="link.url" size="45" value="${link.url }" />
+			    <span style="color:red;">*</span></td>
 			  </tr>
 			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/></td>
 			  </tr>
 			  <tr>
 			    

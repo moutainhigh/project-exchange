@@ -92,10 +92,34 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
+			function submitForm(){
+				var f = document.forms[0];
+				var name = f['car.fullName'].value;
+				var price = f['car.price'].value;
+				if(name == ''){
+					alert("请输入车型名称");
+					f['car.fullName'].focus();
+					return false;
+				}
+				if(price==''){
+					alert("请输入价格");
+					f['car.price'].focus();
+					return false;
+				}
+				if(!/^[0-9]{1,}\.*[0-9]{1,}$/.test(price)){
+					alert("价格必须为数字");
+					f['car.price'].focus();
+					return false;
+				}
+				f.submit();
+			}
 			$(function(){
 				loadSaleList();
+				loadBrandList();
 			});
 			function loadSaleList(){
 				$.post('ajax_getAllSales.htm', {}, function(result) {
@@ -103,6 +127,11 @@
 					var name;
 					var id;
 					var current_saleId = '${car.sale.id}';
+					if(!dataObj.saleList || dataObj.saleList.length==0){
+						alert('请先添加4S店');
+						self.location.href = '${appPath}/manage/sale/sale_edit.jsp';
+						return false;
+					}
 					$.each(dataObj.saleList,function(n,e){
 						id = e.id;
 						name = e.fullName;
@@ -113,8 +142,23 @@
 					});
 				});
 			}
+			function loadBrandList(){
+				$.post('ajax_getAllBrands.htm', {}, function(result) {
+					var dataObj=eval(result);
+					var name;
+					var id;
+					var current_brandId = '${car.brand.id}';
+					$.each(dataObj.brandList,function(n,e){
+						id = e.id;
+						name = e.name;
+						if(id == current_brandId)
+							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#brand");
+						else
+							$("<option value="+id+">"+name+"</option>").appendTo("#brand");
+					});
+				});
+			}
 		</script>
-		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
@@ -134,7 +178,13 @@
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型名称：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.fullName" value="${car.fullName}" /><span style="color:red;">*</span></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="car.fullName" value="${car.fullName}" size="50" /><span style="color:red;">*</span></td>
+			  </tr>
+			  <tr style="background-color:#F7F8FA">
+			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">所属品牌：</td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    	<select id="brand" name="car.brand.id"></select>
+			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型价格（￥）：</td>
@@ -163,7 +213,8 @@
 			    	</script></td>
 			  </tr>
 			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/></td>
 			  </tr>
 			</table>
         </div>

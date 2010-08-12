@@ -40,6 +40,11 @@ public class Sale extends User {// 4sµê
 	private Set<Car> cars = new HashSet<Car>();
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "sale", targetEntity = Car.class)
 	private Set<Special> specials = new HashSet<Special>();
+	
+	@Column
+	protected String seoTitle;
+	@Column
+	protected String seoDesc;
 
 	public String getFullName() {
 		return fullName;
@@ -135,6 +140,22 @@ public class Sale extends User {// 4sµê
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getSeoTitle() {
+		return seoTitle;
+	}
+
+	public void setSeoTitle(String seoTitle) {
+		this.seoTitle = seoTitle;
+	}
+
+	public String getSeoDesc() {
+		return seoDesc;
+	}
+
+	public void setSeoDesc(String seoDesc) {
+		this.seoDesc = seoDesc;
 	}
 
 }

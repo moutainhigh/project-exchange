@@ -33,6 +33,8 @@
 	<mapping class="com.throne212.auto.domain.News" />
 	<mapping class="com.throne212.auto.domain.Setting" />
 	<mapping class="com.throne212.auto.domain.Link" />
+	<mapping class="com.throne212.auto.domain.Zhuangshi" />
+	<mapping class="com.throne212.auto.domain.Insurance" />
 	
 	
 </session-factory>

@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.biz.UserBiz;
 import com.throne212.auto.common.WebConstants;
+import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.User;
 
 public class AjaxAction extends BaseAction {
 	
 	private UserBiz userBiz;
+	private NewsBiz newsBiz;
 
 	public void setUserBiz(UserBiz userBiz) {
 		this.userBiz = userBiz;
@@ -31,6 +34,21 @@ public class AjaxAction extends BaseAction {
 			saleList = userBiz.getAll(Sale.class);
 		return "sale_list";
 	}
+	
+	private List<Brand> brandList;
+	public String getTopBrands() throws Exception {
+		brandList = newsBiz.getTopBrandList();
+		return "brand_list";
+	}
+	public String getAllBrands() throws Exception {
+		brandList = newsBiz.getBrandList();
+		for(Brand b : brandList){
+			if(b.getParentBrand() != null){
+				b.setName(" &nbsp;&nbsp;--"+b.getName());
+			}
+		}
+		return "brand_list";
+	}
 
 	public List<Sale> getSaleList() {
 		return saleList;
@@ -42,6 +60,22 @@ public class AjaxAction extends BaseAction {
 
 	public UserBiz getUserBiz() {
 		return userBiz;
+	}
+
+	public NewsBiz getNewsBiz() {
+		return newsBiz;
+	}
+
+	public void setNewsBiz(NewsBiz newsBiz) {
+		this.newsBiz = newsBiz;
+	}
+
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
+
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
 	}
 
 }

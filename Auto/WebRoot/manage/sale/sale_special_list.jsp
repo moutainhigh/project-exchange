@@ -115,9 +115,10 @@
 			  	<td width="10%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">
 			  		<a href="javascript:checkAll();">全选</a>
 			  	</td>
-			    <td width="20%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">发布时间</td>
+			    <td width="10%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">发布时间</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">标题</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">来源</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">来源</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">经销商</td>
 			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">推荐与否</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
 			  </tr>
@@ -131,6 +132,7 @@
 			    	<h3>${s.title }</h3>
 			    </td>
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.from }</td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.sale.fullName }</td>
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">
 			    	<c:choose>
 			    		<c:when test="${not empty s.recommend && s.recommend}"><span style="color:red;">是</span></c:when>
