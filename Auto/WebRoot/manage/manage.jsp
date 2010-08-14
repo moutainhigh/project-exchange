@@ -48,7 +48,7 @@
 			}
 			#logo span{
 				position:absolute;
-				left:100px;
+				left:85px;
 				top:26px;
 			}
 			#welcome_nav{
