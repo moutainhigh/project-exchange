@@ -18,7 +18,6 @@ import org.apache.log4j.Logger;
 import com.throne212.auto.common.Util;
 import com.throne212.auto.common.WebConstants;
 
-
 public class RandServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -26,42 +25,39 @@ public class RandServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.setContentType("image/jpeg");
-		response.setHeader("Cache-Control","no-cache, must-revalidate");
-		response.setHeader("Pragma","no-cache");
-		response.setHeader("Last-Modified",new java.util.Date().toString());
-		response.setDateHeader("Expires",   0);  
-		
-		String rand = (String) request.getSession().getAttribute(WebConstants.SESS_RAND);
-		if(Util.isEmpty(rand)){
-			rand = request.getParameter("rand");
-			if (rand == null) {
-				Random r = new Random();
-				int rst = 0;
-				while ((rst = r.nextInt(10000)) < 1000) {
 
-				}
-				rand = rst + "";
+		response.setContentType("image/jpeg");
+		response.setHeader("Cache-Control", "no-cache, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Last-Modified", new java.util.Date().toString());
+		response.setDateHeader("Expires", 0);
+
+		String rand = request.getParameter("rand");
+		if (rand == null) {
+			Random r = new Random();
+			int rst = 0;
+			while ((rst = r.nextInt(10000)) < 1000) {
+
 			}
-			// System.out.println("..."+rand);
-			// rand = rand.substring(0, rand.indexOf("."));
-			switch (rand.length()) {
-			case 1:
-				rand = "000" + rand;
-				break;
-			case 2:
-				rand = "00" + rand;
-				break;
-			case 3:
-				rand = "0" + rand;
-				break;
-			default:
-				rand = rand.substring(0, 4);
-				break;
-			}
+			rand = rst + "";
 		}
-		
+		// System.out.println("..."+rand);
+		// rand = rand.substring(0, rand.indexOf("."));
+		switch (rand.length()) {
+		case 1:
+			rand = "000" + rand;
+			break;
+		case 2:
+			rand = "00" + rand;
+			break;
+		case 3:
+			rand = "0" + rand;
+			break;
+		default:
+			rand = rand.substring(0, 4);
+			break;
+		}
+
 		int width = 60, height = 20;
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -72,7 +68,6 @@ public class RandServlet extends HttpServlet {
 
 		g.setColor(Color.black);
 		g.drawRect(0, 0, width - 1, height - 1);
-		
 
 		request.getSession().setAttribute(WebConstants.SESS_RAND, rand);
 		log.debug("gen rand=[" + rand + "]");
