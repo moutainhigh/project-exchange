@@ -45,6 +45,9 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 	public long getNewsListCount(){
 		return (Long) this.getHibernateTemplate().find("select count(*) from News n where n.category!=null").get(0);
 	}
+	public long getNewsListCount(int type){
+		return (Long) this.getHibernateTemplate().find("select count(*) from News n where n.category.orderNum=?",type).get(0);
+	}
 	public long getNewsListCount(String key){
 		return (Long) this.getHibernateTemplate().find("select count(*) from News n where n.category!=null and (n.title like ? or n.seoDesc like ?)",new Object[]{"%"+key+"%","%"+key+"%"}).get(0);
 	}
@@ -144,5 +147,15 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 			}
 		}
 		return list;
+	}
+	public List<Sale> getTop10Sale(){
+		String hql = "from Sale s where s.recommend=true order by s.createdDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return s.createQuery(hql).setMaxResults(10).list();
+	}
+	public List<News> getTop10Xinde(){
+		String hql = "from News n where (n.category.orderNum=? or n.category.orderNum=?)  and n.recommend=true order by publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return s.createQuery(hql).setParameter(0, WebConstants.NEWS_JINGJI_XINDE).setParameter(1, WebConstants.NEWS_ZHONGJI_XINDE).setMaxResults(10).list();
 	}
 }

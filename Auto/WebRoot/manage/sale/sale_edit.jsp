@@ -141,6 +141,14 @@
 			    <td  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">会员名称：</td>
 			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.fullName" value="${sale.fullName}"  /></td>
 			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">是否为推荐商家：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    <input type="radio" name="sale.recommend" value="true" <c:if test="${!empty sale.recommend && sale.recommend}">checked="checked"</c:if> />推荐
+			    &nbsp;
+			    <input type="radio" name="sale.recommend" value="false" <c:if test="${empty sale.recommend || sale.recommend==false}">checked="checked"</c:if> />不推荐
+			    <span style="color:gray;">(只有推荐的4S店才能在新闻页的右栏显示)</span>
+			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系电话：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.tel" value="${sale.tel}" /></td>

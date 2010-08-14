@@ -34,7 +34,7 @@
                 <li>
                   <div class="green">${s.publishDate}</div>
                   <span class="gray fr">浏览${s.click}</span>
-                  <a href="news.htm?news.id=${s.id}">${s.title}</a>
+                  <a href="news/${s.no}.html" target="_blank">${s.title}</a>
                   <div class="clearBlock"> &nbsp;</div>
                 </li>
                 </c:forEach>
@@ -75,30 +75,8 @@
         
         <div class="fl w240 hide recommend mar_l6 bg04">
           <jsp:include page="tab.jsp" flush="false"></jsp:include>
-          <div class="section_purchase mar_t6">
-            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
-              <div class="icon">张家口4S店推荐</div>
-            </div>
-            <div class="pad_10">
-              <ul class="dotli01">
-                <li><a href="#" target="_blank">新手金牌会员问题总结帖</a></li>
-                <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a></li>
-                <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="section_purchase mar_t6">
-            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
-              <div class="icon">网友购车真实感受</div>
-            </div>
-            <div class="pad_10">
-              <ul class="dotli01">
-                <li><a href="#" target="_blank">新手金牌会员问题总结帖</a></li>
-                <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a></li>
-                <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a></li>
-              </ul>
-            </div>
-          </div>
+          <jsp:include page="4s_top10.jsp" flush="false"></jsp:include>
+          <jsp:include page="xinde_top10.jsp" flush="false"></jsp:include>
         </div>
         
         <div class="clear"></div>

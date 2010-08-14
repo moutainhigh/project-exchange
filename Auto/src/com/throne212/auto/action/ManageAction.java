@@ -103,7 +103,7 @@ public class ManageAction extends BaseAction {
 		}
 		if (news.getId() != null){
 			this.setReqMsg("文章保存成功");
-			saveNewsHtml(news.getNo(),news.getId());
+			saveNewsHtml(news.getNo(),news.getId(),"news");
 			logger.info("新闻静态页面生成成功");
 		}
 		else
@@ -111,7 +111,7 @@ public class ManageAction extends BaseAction {
 		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
 	}
-	private void saveNewsHtml(String name,long id){
+	private void saveNewsHtml(String name,long id,String newsName){
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "news/"+name+".html";
@@ -120,7 +120,7 @@ public class ManageAction extends BaseAction {
 			fos = new FileOutputStream(path);
 			
 			HttpServletRequest request = ServletActionContext.getRequest();
-			String newsPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/news.htm?news.id="+id;
+			String newsPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"+newsName+".htm?"+newsName+".id="+id;
 			
 			URL url = new URL(newsPath);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -318,9 +318,13 @@ public class ManageAction extends BaseAction {
 		if (special == null)
 			return "special_edit";
 		special.setPublishDate(new Date());
+		special.setNo(System.currentTimeMillis()+"");
 		userBiz.saveOrUpdateEntity(special);
-		if (special.getId() != null)
+		if (special.getId() != null){
 			this.setReqMsg("优惠信息保存成功");
+			saveNewsHtml(special.getNo(),special.getId(),"special");
+			logger.info("新闻静态页面生成成功");
+		}
 		else
 			this.setReqMsg("优惠信息保存失败，请联系管理员");
 		return "special_edit";

@@ -87,17 +87,17 @@
            <div class="fl w348 hide">
       <div class="b_3gray">
       <div class="pic-imgnews">
-        <img src="${appPath}/image?image=${sale.image}&w=340&230" alt="${sale.fullName }" width="340" height="230" />
+        <img src="${appPath}/image?image=${car.image}&w=340&230" alt="${car.fullName }" width="340" height="230" />
       </div>
       </div>
-    </div>
-      
+    </div>     
       
            <div class="fl w350 mar_l20">
-               <div class="yahei fb ft16 pad_b10"> <a href="#">公司介绍</a></div>
-               <p class="">
-               	${sale.description }
-               </p>
+               <ul style="font-size: 16px;font-weight: 600; margin-top: 50px;">
+               		<li style="margin: 2px 0 20px 2px;">车型名称： ${car.fullName }</li>
+               		<li style="margin: 2px 0 20px 2px;">车型报价： <span  class="yellow_ef">￥${car.price }</span></li>
+               		<li style="margin: 2px 0 20px 2px;">报价时间：${car.priceDateTxt }</li>
+               </ul>
              </div>
            <jsp:include page="tab.jsp" flush="false"></jsp:include>
         
@@ -105,78 +105,9 @@
       </div>
       
       <div class="part02 mar_t6">
-        <div class="security_title"><strong>${sale.fullName} 产品列表</strong></div>
-        <div class="fl w200 mar_t6 bg04">
-              <div class="section_purchase">
-                <div class="ptitle">
-                  <div class="icon">全部产品列表</div>
-                  
-                </div>
-                <div class="treeNav pad_10">
-                <!-- begin 树 -->
-                <!-- class="treeNavopen"代表打开状态，class="treeNavclose"代表关闭状态 -->
-                <c:forEach items="${brandList}" var="p">
-                	<ul style="background: none;">
-	                    <div class="treeNavopen"><a href="sale.htm?sale.id=${sale.id}&brand.id=${p.id}" <c:if test="${p.id==brand.id}">style="text-decoration:underline;"</c:if>>${p.name}</a></div>
-	                    <c:forEach items="${p.childBrands}" var="c">
-	                    <ul>
-	                        <div class="treeNavclose"><a href="sale.htm?sale.id=${sale.id}&brand.id=${c.id}" <c:if test="${c.id==brand.id}">style="text-decoration:underline;"</c:if>>${c.name}</a></div>
-	                    </ul>
-	                    </c:forEach>
-	                </ul>
-                </c:forEach>                
-                <!-- end 书 -->
-            </div>
-              </div>
-        </div>
-        <div class="fl w750 hide mar_l10 mar_t6">
-          <table width="100%" align="center" cellpadding="1" cellspacing="1" class="tblist01">
-            <tbody>
-              <tr class="title2">
-                <td width="8%" class="fb g_t_c">车型（产品）图片</td>
-                <td width="16%" class="fb g_t_c">名称型号</td>
-                <td width="12%" class="fb g_t_c">经销商报价</td>
-                <td width="8%" class="fb g_t_c">报价时间</td>
-              </tr>
-              <c:forEach items="${carPageBean.resultList}" var="c" varStatus="status">
-              <tr class="list" onmouseover="this.className='list3';" onmouseout="this.className='list';">
-                <td class="g_t_c"><a href="car.htm?car.id=${c.id}&sale.id=${sale.id}" target="_blank">
-                	<img src="${appPath}/image?image=${c.image}&w=70&h=52" class="b_gray" /></a>
-                </td>
-                <td class="g_t_c">${c.fullName}</td>
-                <td class="g_t_c yellow_ef">￥${c.price}</td>
-                <td class="g_t_c gray">${c.priceDateTxt }</td>
-              </tr>
-              </c:forEach>
-              <tr>
-                <td class="g_t_c" colspan="4">
-                	<c:choose>
-						<c:when test="${!carPageBean.isFirstPage}">
-							<a href="javascript:gotoPage(1);" class="nextprev">第一页</a>
-							<a href="javascript:gotoPage(${carPageBean.prePageIndex });" class="nextprev">上一页</a>
-						</c:when>
-						<c:otherwise>
-							<span class="nextprev">第一页</span>
-							<span class="nextprev">上一页</span> 
-						</c:otherwise>
-					</c:choose>
-					<span class="current">
-                  		${carPageBean.pageIndex }/${carPageBean.maxPage }
-                  	</span> 
-					<c:choose>
-						<c:when test="${!carPageBean.isLastPage}">
-							<a href="javascript:gotoPage(${carPageBean.nextPageIndex });" class="nextprev">下一页</a>
-							<a href="javascript:gotoPage(${carPageBean.maxPage });" class="nextprev">最后一页</a>
-						</c:when>
-						<c:otherwise>
-							<span class="nextprev">下一页</span>
-							<span class="nextprev">最后一页</span>
-						</c:otherwise>
-					</c:choose>
-                </td>
-              </tr>
-            </tbody>            
-          </table>
+        <div class="security_title"><strong>${sale.fullName} 车型参数</strong></div>
+        <div class="fl hide mar_l10 mar_t6">
+          	${car.detail}
         </div>
             <div class="clear"></div>
   </div>

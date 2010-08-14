@@ -7,6 +7,7 @@ import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.Link;
 import com.throne212.auto.domain.News;
+import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.Zhuangshi;
 
@@ -59,4 +60,7 @@ public interface NewsBiz extends BaseBiz{
 	public List<Brand> getBrandList(long saleId);
 	public List<Brand> getChildBrandList(long brandId);
 	public List<Brand> getTopBrandList();
+	
+	public List<Sale> getTop10Sale();
+	public List<News> getTop10Xinde();
 }

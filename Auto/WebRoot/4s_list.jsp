@@ -33,19 +33,7 @@
 <div class="wrapper mauto pad_5">
       <div class="search_area">
         <div class="fl ft14 w550 hide">张家口汽车网 <a href="#">首页</a> &gt; <a href="#">张家口4S店大全</a> &gt;</div>
-<div class="fr w350 pad_l10 bls_gray">
-            <div class="fl blue">站内搜索</div>
-                        <div class="fl mar_l5">
-                          <select name="select" id="select">
-                            <option>请输入分类</option>
-                          </select>
-                        </div>
-            <div class="fl mar_l5">
-              <input type="text" class="gray input03" value="--请输入关键字--" />
-            </div>
-                        <div class="fl">
-                          <input class="hledat" type="image" src="Themes/images/search-button.gif" name="input" value="Search" alt="Search" />
-        </div></div>
+<jsp:include page="sou.jsp" flush="false"></jsp:include>
       <div class="clear"></div>
       </div>
       
@@ -107,30 +95,8 @@
         
         <div class="fl w240 hide recommend mar_l6 bg04">
           <jsp:include page="tab.jsp" flush="false"></jsp:include>
-          <div class="section_purchase mar_t6">
-            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
-              <div class="icon">张家口4S店推荐</div>
-            </div>
-            <div class="pad_10">
-              <ul class="dotli01">
-                <li><a href="#" target="_blank">新手金牌会员问题总结帖</a></li>
-                <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a></li>
-                <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="section_purchase mar_t6">
-            <div class="ptitle"> <span class="more"><a href="#">更多</a> &gt;&gt;</span>
-              <div class="icon">网友购车真实感受</div>
-            </div>
-            <div class="pad_10">
-              <ul class="dotli01">
-                <li><a href="#" target="_blank">新手金牌会员问题总结帖</a></li>
-                <li><a href="#" target="_blank">客户选取中标，金牌失效后问题！</a></li>
-                <li><a href="#" target="_blank">【子中策划团队】金牌会员故事</a></li>
-              </ul>
-            </div>
-          </div>
+          <jsp:include page="4s_top10.jsp" flush="false"></jsp:include>
+          <jsp:include page="xinde_top10.jsp" flush="false"></jsp:include>
         </div>
         
         <div class="clear"></div>

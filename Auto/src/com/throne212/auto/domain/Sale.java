@@ -45,6 +45,8 @@ public class Sale extends User {// 4sµê
 	protected String seoTitle;
 	@Column
 	protected String seoDesc;
+	@Column
+	protected Boolean recommend;//ÍÆ¼ö
 
 	public String getFullName() {
 		return fullName;
@@ -156,6 +158,14 @@ public class Sale extends User {// 4sµê
 
 	public void setSeoDesc(String seoDesc) {
 		this.seoDesc = seoDesc;
+	}
+
+	public Boolean getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(Boolean recommend) {
+		this.recommend = recommend;
 	}
 
 }

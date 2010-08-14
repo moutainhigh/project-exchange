@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>        
-        <div class="fl w240 hide mar_l10">
+        <div class="fl w240 hide">
           <div class="section03 mar_t6">
             <div class="ptitle">
               <ul class="tlboxtitle fl">

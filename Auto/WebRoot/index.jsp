@@ -39,7 +39,10 @@
            <div class="fl w350 hide recommend mar_l20" margin-left: 10px; width: 360px;>
              <div class="first">
              	<c:set var="focusNews" value="${newsBiz.focusNews}"></c:set>
-               <h1> <a href="news/${focusNews.no}.html" target="_blank"><img class="mar_r10" src="Themes/images/label_recommend.jpg" alt="今日热点" width="86" height="18" />${focusNews.title }</a></h1>
+               <h1><img class="mar_r10" src="Themes/images/label_recommend.jpg" alt="今日热点" width="86" height="18" style="float:left;"/><br/>
+               <a href="news/${focusNews.no}.html" target="_blank">
+               ${focusNews.title }</a>
+               </h1>
                <p class="gray">${focusNews.simpleContent}...<a href="news/${focusNews.no}.html"
                                     target="_blank">&gt;&gt;查看详细</a></p>
              </div>
@@ -60,23 +63,23 @@
       
       <div class="part02 mar_t6">
             <div class="purchase-title">
-            <a href="specialList.htm">张家口车市动态</a> | 
-            <a href="jjXinde.htm">购车心得</a> | 
-            <a href="other.htm?news.orderNum=4">专业测评</a> | 
-            <a href="other.htm?news.orderNum=9">北京降价</a> | 
-            <a href="other.htm?news.orderNum=5">汽车保险</a></div>            
+            <a href="specialList.htm" target="_blank">张家口车市动态</a> | 
+            <a href="jjXinde.htm" target="_blank">购车心得</a> | 
+            <a href="other.htm?news.orderNum=4" target="_blank">专业测评</a> | 
+            <a href="other.htm?news.orderNum=9" target="_blank">北京降价</a> | 
+            <a href="other.htm?news.orderNum=5" target="_blank">汽车保险</a></div>            
             <div class="fl w348 mar_t6">
               <div class="section_purchase">
                 <div class="ptitle">
-                  <span class="more"><a href="other.htm?news.orderNum=9">更多</a> >></span>
+                  <span class="more"><a href="other.htm?news.orderNum=9" target="_blank">更多</a> >></span>
                   <div class="icon">北京降价-经济车型</div>
                   
                 </div>
                 <div class="pad_10">
                   <div class="index_tips">
                     <div class="pic"> 
-                    	<a href="news/${bjNews.no}.html" target="_blank"> 
-                    		<c:set var="bjNews" value="${newsBiz.beijingRecommendNews}"></c:set>
+                    	<c:set var="bjNews" value="${newsBiz.beijingRecommendNews}"></c:set>
+                    	<a href="news/${bjNews.no}.html" target="_blank">                     		
                     		<img src="${appPath}/image?image=${bjNews.image}&w=136&h=86"  alt="" />
                     		<span class="blue fb">${bjNews.title }</span></a><br />
                           <span class="gray">${bjNews.simpleContent }…</span><a href="news/${bjNews.no}.html"
@@ -93,13 +96,14 @@
             
             <div class="fl w350 hide recommend mar_l10 mar_t6 bls_gray pad_l10">
               <div class="section_purchase">
-                <div class="ptitle"> <span class="more"><a href="jjXinde.htm">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="jjXinde.htm" target="_blank">更多</a> &gt;&gt;</span>
                     <div class="icon">网友购车感受-经济车型</div>
                 </div>
                 <div class="pad_10">
                   <div class="index_tips">
-                    <div class="pic"> <a href="news/${jjNews.no}.html" target="_blank"> 
+                    <div class="pic"> 
                     		<c:set var="jjNews" value="${newsBiz.jjXindeRecommendNews}"></c:set>
+                    		<a href="news/${jjNews.no}.html" target="_blank">                     		
                     		<img src="${appPath}/image?image=${jjNews.image}&w=136&h=86"  alt="" />
                     		<span class="blue fb">${jjNews.title }</span></a><br />
                           <span class="gray">${jjNews.simpleContent }…</span><a href="news/${jjNews.no}.html"
@@ -113,7 +117,7 @@
                 </div>
               </div>
               <div class="section_purchase mar_t6">
-                <div class="ptitle"> <span class="more"><a href="zjXinde.htm">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="zjXinde.htm" target="_blank">更多</a> &gt;&gt;</span>
                     <div class="icon">网友购车感受-中级车型</div>
                 </div>
                 <div class="pad_10">
@@ -134,10 +138,10 @@
                   <div class="cardlist">
                   	<c:forEach items="${newsBiz.top3Baoxian}" var="b">
                     <dl>
-                      <dt><a href="baoxian.htm?baoxian.id=${b.id}"><img src="image?image=${b.image}&w=94&h=69" alt="" /></a></dt>
-                      <dd><b><a href="baoxian.htm?baoxian.id=${b.id}" class="blue">${b.name}</a></b>
+                      <dt><a href="baoxian.htm?baoxian.id=${b.id}" target="_blank"><img src="image?image=${b.image}&w=94&h=69" alt="" /></a></dt>
+                      <dd><b><a href="baoxian.htm?baoxian.id=${b.id}" target="_blank" class="blue">${b.name}</a></b>
                           <p>热线电话:${b.tel }</p>
-                          <p>[<a href="baoxian.htm?baoxian.id=${b.id}" class="blue">详细</a>]</p>
+                          <p>[<a href="baoxian.htm?baoxian.id=${b.id}" target="_blank" class="blue">详细</a>]</p>
                       </dd>
                     </dl>
                     </c:forEach>
@@ -146,7 +150,7 @@
                 </div>
               </div>
               <div class="section_purchase mar_t6">
-                <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=5" class="red">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=5" class="red" target="_blank">更多</a> &gt;&gt;</span>
                     <div class="icon red">保险知识</div>
                 </div>
                 <div class="pad_10">
@@ -175,8 +179,8 @@
                 <div class="w125 fl"> <a href="sale.htm?sale.id=${sale.id}" target="_blank"> 
                 <img src="${appPath}/image?image=${sale.image}&w=68&h=51" class="b_gray" /></a></div>
                 <div class="fl w100 hide pad_l10">
-                  <p> <a href="sale.htm?sale.id=${sale.id}" target="_blank">${sale.fullName }</a></p>
-                  <p class="mar_t5">${sale.tel }</p>
+                  <p> <a style="font-size:12px;white-space:normal;" href="sale.htm?sale.id=${sale.id}" target="_blank">${sale.fullName }</a></p>
+                  <p>${sale.tel }</p>
                 </div>
                 <div class="clear"> </div>
               </li>
@@ -189,12 +193,12 @@
       </div>
   <div class="part04 mar_t6">
     <div class="beauty-title">
-    	<a href="other.htm?news.orderNum=6">维修保养</a> | 
-    	<a href="other.htm?news.orderNum=7">养车费用</a> | 
-    	<a href="other.htm?news.orderNum=8">汽车装饰</a></div>
+    	<a href="other.htm?news.orderNum=6" target="_blank">维修保养</a> | 
+    	<a href="other.htm?news.orderNum=7" target="_blank">养车费用</a> | 
+    	<a href="other.htm?news.orderNum=8" target="_blank">汽车装饰</a></div>
         <div class="fl w348 mar_t6">
           <div class="section_purchase">
-            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=6">更多</a> &gt;&gt;</span>
+            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=6" target="_blank">更多</a> &gt;&gt;</span>
               <div class="icon">维修保养</div>
             </div>
             <div class="pad_10">
@@ -217,7 +221,7 @@
         </div>
         <div class="fl w350 hide recommend mar_l10 mar_t6 bls_gray pad_l10">
           <div class="section_purchase">
-            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=7">更多</a> &gt;&gt;</span>
+            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=7" target="_blank">更多</a> &gt;&gt;</span>
               <div class="icon">养车费用</div>
             </div>
             <div class="pad_10">
@@ -245,10 +249,10 @@
               <div class="cardlist">
               	<c:forEach items="${newsBiz.top3Zhuangshi}" var="z">
                 <dl>
-                  <dt><a href="zhuangshi.htm?zhuangshi.id=${z.id}"><img src="image?image=${z.image}&w=94&h=69" alt="" /></a></dt>
-                  <dd><b><a href="zhuangshi.htm?zhuangshi.id=${z.id}" class="blue">${z.name}</a></b>
+                  <dt><a href="zhuangshi.htm?zhuangshi.id=${z.id}" target="_blank"><img src="image?image=${z.image}&w=94&h=69" alt="" /></a></dt>
+                  <dd><b><a href="zhuangshi.htm?zhuangshi.id=${z.id}" class="blue" target="_blank">${z.name}</a></b>
                       <p>热线电话:${z.tel }</p>
-                    <p>[<a href="zhuangshi.htm?zhuangshi.id=${z.id}" class="blue">详细</a>]</p>
+                    <p>[<a href="zhuangshi.htm?zhuangshi.id=${z.id}" class="blue" target="_blank">详细</a>]</p>
                   </dd>
                 </dl>
                 </c:forEach>
@@ -257,7 +261,7 @@
             </div>
           </div>
           <div class="section_purchase mar_t6">
-            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=8" class="red">更多</a> &gt;&gt;</span>
+            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=8" class="red" target="_blank">更多</a> &gt;&gt;</span>
               <div class="icon red">汽车装饰指南</div>
             </div>
             <div class="pad_10">

@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
     <c:choose>
-    	<c:when test="${empty sale.seoTitle}">
+    	<c:when test="${not empty sale.seoTitle}">
     		<c:set value="${sale.seoTitle}" var="t"></c:set>
     	</c:when>
     	<c:otherwise>
@@ -13,7 +13,7 @@
     	</c:otherwise>
     </c:choose>
     <c:choose>
-    	<c:when test="${empty sale.seoDesc}">
+    	<c:when test="${not empty sale.seoDesc}">
     		<c:set value="${sale.seoDesc}" var="d"></c:set>
     	</c:when>
     	<c:otherwise>
@@ -82,34 +82,16 @@
                 <div class="treeNav pad_10">
                 <!-- begin 树 -->
                 <!-- class="treeNavopen"代表打开状态，class="treeNavclose"代表关闭状态 -->
-                <ul style="background: none;">
-                    <div class="treeNavopen">
-                        <a href="#">第一级</a></div>
-                    <ul>
-                        <div class="treeNavclose">
-                            <a href="#">第二级</a></div>
-                        <ul>
-                            <div class="treeNavdot1">
-                                <a href="#">第三级</a></div>
-                        </ul>
-                    </ul>
-                    <ul>
-                        <div class="treeNavopen">
-                            <a href="#">第二级</a></div>
-                    </ul>
-                </ul>
-                <ul style="background: none;">
-                    <div class="treeNavopen">
-                        <a href="#">第一级</a></div>
-                    <ul>
-                        <div class="treeNavopen">
-                            第二级</div>
-                    </ul>
-                    <ul>
-                        <div class="treeNavopen">
-                            第二级</div>
-                    </ul>
-                </ul>
+                <c:forEach items="${brandList}" var="p">
+                	<ul style="background: none;">
+	                    <div class="treeNavopen"><a href="carList.htm?sale.id=${sale.id}&brand.id=${p.id}" <c:if test="${p.id==brand.id}">style="text-decoration:underline;"</c:if>>${p.name}</a></div>
+	                    <c:forEach items="${p.childBrands}" var="c">
+	                    <ul>
+	                        <div class="treeNavclose"><a href="carList.htm?sale.id=${sale.id}&brand.id=${c.id}" <c:if test="${c.id==brand.id}">style="text-decoration:underline;"</c:if>>${c.name}</a></div>
+	                    </ul>
+	                    </c:forEach>
+	                </ul>
+                </c:forEach>  
                 <!-- end 书 -->
             </div>
               </div>
@@ -125,12 +107,12 @@
               </tr>
               <c:forEach items="${carPageBean.resultList}" var="c" varStatus="status">
               <tr class="list" onmouseover="this.className='list3';" onmouseout="this.className='list';">
-                <td class="g_t_c"><a href="#" target="_blank">
+                <td class="g_t_c"><a href="car.htm?car.id=${c.id}&sale.id=${sale.id}" target="_blank">
                 	<img src="${appPath}/image?image=${c.image}&w=70&h=52" class="b_gray" /></a>
                 </td>
                 <td class="g_t_c">${c.fullName}</td>
                 <td class="g_t_c yellow_ef">￥${c.price}</td>
-                <td class="g_t_c gray">${c.priceDate }</td>
+                <td class="g_t_c gray">${c.priceDateTxt }</td>
               </tr>
               </c:forEach>
               <tr>

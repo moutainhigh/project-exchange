@@ -18,7 +18,9 @@ public interface NewsDao extends BaseDao{
 	public List<News> getNewsList(int first,int max,int type);
 	public List<Special> getSpecialList(int first,int max);
 	public long getNewsListCount();
+	public long getNewsListCount(int type);
 	public long getNewsListCount(String key);
+
 	public long getSpecialListCount(String key);
 	
 	public News getLastedRecommendNews();
@@ -35,4 +37,7 @@ public interface NewsDao extends BaseDao{
 	public List<Brand> getBrandList(Sale sale);
 	public List<Brand> getChildBrandList(Brand parent);
 	public List<Brand> getTopBrandList();
+	
+	public List<Sale> getTop10Sale();
+	public List<News> getTop10Xinde();
 }

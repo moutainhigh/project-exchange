@@ -70,6 +70,14 @@ public class IndexAction extends BaseAction {
 		sale();
 		return "sale_car";
 	}
+	private Car car;
+	public String car() throws Exception{
+		sale();
+		if(car != null && car.getId() != null){
+			car = newsBiz.getEntityById(Car.class, car.getId());
+		}
+		return "sale_car_detail";
+	}
 	
 	//special
 	private PageBean<Special> specialPageBean;
@@ -166,7 +174,7 @@ public class IndexAction extends BaseAction {
 	private Zhuangshi zhuangshi;
 	public String zhuangshi() throws Exception{
 		zhuangshi = userBiz.getEntityById(Zhuangshi.class, zhuangshi.getId());
-		return "baoxian";
+		return "zhuangshi";
 	}
 
 	public void setUserBiz(UserBiz userBiz) {
@@ -227,11 +235,11 @@ public class IndexAction extends BaseAction {
 		this.newsBiz = newsBiz;
 	}
 
-	public PageBean<News> getNewsPageBean() {
+	public PageBean getNewsPageBean() {
 		return newsPageBean;
 	}
 
-	public void setNewsPageBean(PageBean<News> newsPageBean) {
+	public void setNewsPageBean(PageBean newsPageBean) {
 		this.newsPageBean = newsPageBean;
 	}
 
@@ -305,5 +313,11 @@ public class IndexAction extends BaseAction {
 	}
 	public void setBrand(Brand brand) {
 		this.brand = brand;
+	}
+	public Car getCar() {
+		return car;
+	}
+	public void setCar(Car car) {
+		this.car = car;
 	}
 }

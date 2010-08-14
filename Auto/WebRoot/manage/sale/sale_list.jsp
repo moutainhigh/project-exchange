@@ -117,8 +117,9 @@
 			  	</td>
 			    <td width="20%" height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">会员ID</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">会员名称</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">联系电话</td>
-			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">QQ号码</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">联系电话</td>
+			    <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">QQ号码</td>
+			     <td width="10%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">推荐与否</td>
 			    <td width="20%" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px solid;">操作</td>
 			  </tr>
 			  <c:forEach items="${salePageBean.resultList}" var="s" varStatus="status">
@@ -130,6 +131,12 @@
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.fullName }</td>
 			    <td width="20%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.tel }</td>
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.qq }</td>
+			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">
+			    	<c:choose>
+			    		<c:when test="${not empty sale.recommend && sale.recommend}"><span style="color:red;">是</span></c:when>
+			    		<c:otherwise>否</c:otherwise>
+			    	</c:choose>
+			    </td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
 			    	<a href="javascript:void(0);" onclick="deleteSale(${s.id});">删除</a>
 			    	&nbsp;

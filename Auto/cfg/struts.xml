@@ -17,6 +17,7 @@
 			<result name="sale_list">/4s_list.jsp</result>
 			<result name="sale">/4s.jsp</result>
 			<result name="sale_car">/4s_car.jsp</result>
+			<result name="sale_car_detail">/4s_car_detail.jsp</result>
 			<!-- special -->
 			<result name="special_list">/special_list.jsp</result>
 			<result name="special">/special.jsp</result>
@@ -26,6 +27,8 @@
 			<result name="jjXinde">/xinde_list.jsp</result>
 			<result name="zjXinde">/xinde_list2.jsp</result>
 			<result name="other_list">/other_list.jsp</result>
+			<result name="baoxian">/baoxian.jsp</result>
+			<result name="zhuangshi">/zhuangshi.jsp</result>
 			<!-- search -->
 			<result name="search">/search.jsp</result>
 		</action>

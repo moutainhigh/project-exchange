@@ -51,7 +51,7 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 		bean.setResultList(newsDao.getNewsList(startIndex, WebConstants.maxRowPerPage,type));
 		bean.setPageIndex(pageIndex);
 		bean.setRowPerPage(WebConstants.maxRowPerPage);
-		bean.setTotalRow((int)newsDao.getNewsListCount());
+		bean.setTotalRow((int)newsDao.getNewsListCount(type));
 		return bean;
 	}
 
@@ -162,5 +162,11 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	public List<Brand> getBrandList(long saleId){
 		Sale sale = this.getEntityById(Sale.class, saleId);
 		return newsDao.getBrandList(sale);
+	}
+	public List<Sale> getTop10Sale(){
+		return newsDao.getTop10Sale();
+	}
+	public List<News> getTop10Xinde(){
+		return newsDao.getTop10Xinde();
 	}
 }

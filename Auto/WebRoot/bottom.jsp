@@ -7,7 +7,7 @@
           <div class="icon">”—«È¡¥Ω”</div>
         </div>
         <div class="pad_10 friendlink">
-             <c:forEach items="${newsBiz.linkList}" var="link"><a href="${link.url}">${link.name}</a></c:forEach>
+             <c:forEach items="${newsBiz.linkList}" var="link"><a href="${link.url}" target="_blank">${link.name}</a></c:forEach>
           	 <div class="clear"></div>
         </div>
       </div>

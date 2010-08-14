@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.throne212.auto.common.Util;
+
 @Entity
 @Table(name = "auto_car")
 public class Car extends MyEntity {// 车型
@@ -62,6 +64,11 @@ public class Car extends MyEntity {// 车型
 
 	public Date getPriceDate() {
 		return priceDate;
+	}
+	public String getPriceDateTxt() {
+		if(priceDate == null)
+			return "";
+		return Util.getDate(priceDate);
 	}
 
 	public void setPriceDate(Date priceDate) {
