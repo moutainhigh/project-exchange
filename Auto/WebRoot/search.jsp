@@ -19,7 +19,7 @@
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
       <div class="search_area">
-        <div class="fl ft14 w550 hide">张家口汽车网 <a href="index.htm">首页</a> &gt; <a href="#">新闻搜索</a> &gt;</div>
+        <div class="fl ft14 w550 hide">张家口汽车网 <a href="${appPath}/index.htm">首页</a> &gt; <a href="#">新闻搜索</a> &gt;</div>
 <jsp:include page="sou.jsp" flush="false"></jsp:include>
       <div class="clear"></div>
       </div>
@@ -34,7 +34,7 @@
                 <li>
                   <div class="green">${s.publishDate}</div>
                   <span class="gray fr">浏览${s.click}</span>
-                  <a href="news.htm?news.id=${s.id}">${s.title}</a>
+                  <a href="${appPath}/news/${s.no}.html">${s.title}</a>
                   <div class="clearBlock"> &nbsp;</div>
                 </li>
                 </c:forEach>

@@ -35,7 +35,7 @@
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
       <div class="search_area">
-        <div class="fl ft14 w550 hide">张家口汽车网 <a href="#">首页</a> &gt; <a href="#">${news.category.name}</a> &gt; <a href="#">${news.title}</a></div>
+        <div class="fl ft14 w550 hide">张家口汽车网 <a href="${appPath}/index.htm">首页</a> &gt; <a href="${appPath}/other.htm?news.orderNum=${news.category.orderNum}">${news.category.name}</a> &gt; <a href="#">${news.title}</a></div>
 		<jsp:include page="sou.jsp" flush="false"></jsp:include>
       <div class="clear"></div>
       </div>

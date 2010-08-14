@@ -96,32 +96,34 @@
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
 		<script>
+			function submitForm(){
+				$('#wait').show();
+				$('#wait span').html('.'+$('#wait span').html());
+				document.forms[0].submit();
+				window.setTimeout('submitForm()','1000');
+			}
 		</script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
-    <form action="ManageAction_setting.action" method="post">
-    	<input type="hidden" name="setting.id" value="${setting.id}"/>
+    <form action="ManageAction_batchSaveHtml.action" method="post">
+    	<input type="hidden" name="news.id" value="${news.id}"/>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
-				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>网站系统设置</strong> </td>
+				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>文章静态文件生成</strong> </td>
 			  </tr>
 			  <tr>
-			    <td width="20%" height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网站标题：</td>
-			    <td  align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="setting.pageTitle" value="${setting.pageTitle }" /></td>
-			  </tr>
-			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">网页描述：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="setting.pageDescription" value="${setting.pageDescription }"  size="120"/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    	&nbsp;
+			    	<div id="wait" style="display: none;">生成HTML可能需要花费几十秒时间，请等待<span></span></div>
+			    </td>
 			  </tr>
 			  <tr>
-			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">关键字：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="setting.pageKeywords" value="${setting.pageKeywords }" size="120"/></td>
-			  </tr>
-			  <tr>
-			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="submit" name="button1" value=" 提 交 "/></td>
+			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/>
+			    </td>
 			  </tr>
 			  <tr>
 			    

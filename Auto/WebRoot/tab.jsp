@@ -13,7 +13,7 @@
             <div class=" pad_t5 pad_l10 pad_b10" id="tab_special">
             	<ul class="dotli01">
             	 <c:forEach items="${newsBiz.top9Special}" var="n">
-                 <li><a href="news/${n.no}.html" target="_blank">[优惠]${n.title}</a></li>
+                 <li><a href="${appPath}/news/${n.no}.html" target="_blank">[优惠]${n.title}</a></li>
                  </c:forEach>
                </ul>
               <div class="clear"></div>
@@ -21,7 +21,7 @@
             <div class=" pad_t5 pad_l10 pad_b10" id="tab_news" style="display: none;">
             	<ul class="dotli01">
             	 <c:forEach items="${newsBiz.top9News}" var="n">
-                 <li><a href="news/${n.no}.html" target="_blank">[新闻]${n.title}</a></li>
+                 <li><a href="${appPath}/news/${n.no}.html" target="_blank">[新闻]${n.title}</a></li>
                  </c:forEach>
                </ul>
               <div class="clear"></div>

@@ -139,8 +139,9 @@
 			  </c:if>
 			  <tr style="background-color:#F7F8FA">
 			    <td  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">会员名称：</td>
-			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.fullName" value="${sale.fullName}"  /></td>
+			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.fullName" value="${sale.fullName}" size="40"/></td>
 			  </tr>
+			  <c:if test="${isAdmin}">
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">是否为推荐商家：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
@@ -149,6 +150,8 @@
 			    <input type="radio" name="sale.recommend" value="false" <c:if test="${empty sale.recommend || sale.recommend==false}">checked="checked"</c:if> />不推荐
 			    <span style="color:gray;">(只有推荐的4S店才能在新闻页的右栏显示)</span>
 			  </tr>
+			  </c:if>
+			  <c:if test="${!isAdmin}"><input type="hidden" name="sale.recommend" value="${sale.recommend}"/></c:if>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系电话：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.tel" value="${sale.tel}" /></td>
@@ -163,7 +166,7 @@
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">联系地址：</td>
-			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.address" value="${sale.address}" /></td>
+			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.address" value="${sale.address}" size="40"/></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">4S店首页标题：</td>

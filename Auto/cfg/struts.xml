@@ -85,6 +85,7 @@
 			<result name="setting">/manage/welcome/setting.jsp</result>
 			<result name="news_list">/manage/news/news_list.jsp</result>
 			<result name="news_edit">/manage/news/news_edit.jsp</result>
+			<result name="news_html">/manage/news/news_html.jsp</result>
 			<result name="cate_list">/manage/cate/cate_list.jsp</result>
 			<result name="cate_edit">/manage/cate/cate_edit.jsp</result>
 			<result name="sale_edit">/manage/sale/sale_edit.jsp</result>

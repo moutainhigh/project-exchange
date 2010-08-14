@@ -224,8 +224,11 @@
 				<div id="welcome_nav">
 					<div>
 						<span style="background:url(images/msg2.jpg) no-repeat left center">您好, ${sessionScope.userObj.loginName}</span>  
-						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${appPath}/manage/welcome/pwd.jsp" target="mainFrame">密码修改</a></span> 
-						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${appPath}/index.htm" target="_blank">前台网站</a></span> 
+						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${appPath}/manage/welcome/pwd.jsp" target="mainFrame">密码修改</a></span>
+						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${appPath}/index.htm" target="_blank">前台网站</a></span>
+						<c:if test="${!isAdmin}">
+						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${appPath}/sale.htm?sale.id=${sessionScope.userObj.id}" target="_blank">4S店首页</a></span> 
+						</c:if>
 						<span style="background:url(images/ico5.jpg) no-repeat left center"><a href="${appPath}/LogoutAction.htm">退 出</a></span>
 					</div>
 				</div>

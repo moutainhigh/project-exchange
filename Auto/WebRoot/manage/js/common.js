@@ -13,6 +13,8 @@ $(function(){
 	$('textarea').blur(function(){
 		$(this).css('border','1px solid #3A6EA5');
 	});
+	
+	
 });
 
 function formKeyPress(event){

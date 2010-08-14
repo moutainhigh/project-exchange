@@ -102,7 +102,9 @@
 				}
 			}
 		</script>
-		<script src="${appPath}/js/common.js"></script>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
+		<script src="${appPath}/js/jquery.js"></script>
+		<script src="${appPath}/manage/js/common.js"></script>
     </head>
     <body>
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>

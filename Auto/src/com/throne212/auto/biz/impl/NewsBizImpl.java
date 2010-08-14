@@ -201,7 +201,7 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	}
 
 	public void batchSaveHtml() {
-		List<News> list = newsDao.getAll(News.class);
+		List<News> list = newsDao.getAll(News.class);		
 		if (list != null && list.size() > 0) {
 			for (News n : list) {
 				FileOutputStream fos = null;
@@ -210,10 +210,11 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 					if(n.getCategory() == null || n.getCategory().getOrderNum() <= 0){
 						newsName = "special";
 					}
-					String name = System.currentTimeMillis() + "";
+					//String no = System.currentTimeMillis()+"";
+					String no = n.getNo();
 					String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 					path = path.substring(0, path.indexOf("WEB-INF"));
-					path += "news/" + name + ".html";
+					path += "news/" + no + ".html";
 					fos = new FileOutputStream(path);
 
 					HttpServletRequest request = ServletActionContext.getRequest();
@@ -233,8 +234,8 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 					}
 					in.close();
 					fos.close();
-					n.setNo(name);
-					newsDao.saveOrUpdate(n);
+					//n.setNo(no);
+					//newsDao.saveOrUpdate(n);
 					Thread.currentThread().sleep(100);
 
 				} catch (Exception e) {

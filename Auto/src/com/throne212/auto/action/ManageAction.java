@@ -86,11 +86,11 @@ public class ManageAction extends BaseAction {
 
 	public String saveNews() {
 		if (news == null)
-			return "news_edit";
-		news.setNo(System.currentTimeMillis()+"");
-		if (news.getId() == null)
+			return "news_edit";		
+		if (news.getId() == null){
+			news.setNo(System.currentTimeMillis()+"");
 			news = newsBiz.addNews(news);
-		else {
+		}else {
 			news.setPublishDate(new Date());
 			newsBiz.saveOrUpdateEntity(news);
 			news = newsBiz.getEntityById(News.class, news.getId());
@@ -199,7 +199,8 @@ public class ManageAction extends BaseAction {
 	
 	public String batchSaveHtml(){
 		newsBiz.batchSaveHtml();
-		return null;
+		this.setReqMsg("HTML生成完成");
+		return "news_html";
 	}
 
 	// 4s sale
@@ -323,7 +324,8 @@ public class ManageAction extends BaseAction {
 		if (special == null)
 			return "special_edit";
 		special.setPublishDate(new Date());
-		special.setNo(System.currentTimeMillis()+"");
+		if(special.getId() == null)
+			special.setNo(System.currentTimeMillis()+"");
 		userBiz.saveOrUpdateEntity(special);
 		if (special.getId() != null){
 			this.setReqMsg("优惠信息保存成功");

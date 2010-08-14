@@ -29,7 +29,7 @@
                 $("#ifocus_piclist li").eq(currentIndex).fadeIn("slow"); //本身显示
                 $("#ifocus_piclist li").not($("#ifocus_piclist li")[currentIndex]).hide(); //除了自身别的全部隐藏
 				//$("#adTxtSpan").html(adArr[currentIndex]);
-				$("#adTxtSpan").html(imageJson[currentIndex]['title']);
+				$("#adTxtSpan").html('<a href="news/'+imageJson[i]['no']+'.html" target="_blank">'+imageJson[currentIndex]['title']+'</a>');
 
             }, function() {
                 //当鼠标离开对象的时候获得当前的对象的ID以便能在启动自动时与其同步
@@ -40,13 +40,14 @@
             function autoScroll() {
                 $(".indexBtn:first").removeClass("indexBtnCurrent");
                 //$("#adTxtSpan").html(adArr[currentIndex]);
-                $("#adTxtSpan").html(imageJson[currentIndex]['title']);
+                //$("#adTxtSpan").html(imageJson[currentIndex]['title']);
+                $("#adTxtSpan").html('<a href="news/'+imageJson[i]['no']+'.html" target="_blank">'+imageJson[currentIndex]['title']+'</a>');
                 $(".indexBtn").eq(3-currentIndex).addClass("indexBtnCurrent");
                 $(".indexBtn").eq(3-(currentIndex - 1)).removeClass("indexBtnCurrent");
                 $("#ifocus_piclist li").eq(currentIndex).fadeIn("slow");
                 $("#ifocus_piclist li").eq(currentIndex - 1).hide();
                 currentIndex++; currentIndex = currentIndex >= imageJson.length ? 0 : currentIndex;
-                DEMO = setTimeout(autoScroll, 5000);
+                DEMO = setTimeout(autoScroll, 4000);
             }
             function StopScrolll()//当鼠标移动到对象上面的时候停止自动滚动
             {
@@ -54,6 +55,10 @@
             }
 	});
     </script>
+    <style>
+    	a:link,a:visited{color:#fff; text-decoration:none;}
+		a:hover{color:#cc0000; text-decoration:underline;}
+    </style>
 </head>
 <body>
 
@@ -68,7 +73,7 @@
 				<ul>
 					<script>
 					for(var i=0;i<imageJson.length;i++){
-						document.write('<li><a href="news.htm?news.id='+imageJson[i]['id']+'" target="_blank"><img src="image?image='+imageJson[i]['image']+'&w=340&h=230" width="340" height="230" alt="" /></a></li>');
+						document.write('<li><a href="news/'+imageJson[i]['no']+'.html" target="_blank"><img src="image?image='+imageJson[i]['image']+'&w=340&h=230" width="340" height="230" alt="" /></a></li>');
 					}
 					</script>
 				</ul>

@@ -19,7 +19,7 @@
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
       <div class="search_area">
-        <div class="fl ft14 w550 hide">张家口汽车网 <a href="index.htm">首页</a> &gt; <a href="#">装饰商家</a> &gt; <a href="#">${zhuangshi.name}</a></div>
+        <div class="fl ft14 w550 hide">张家口汽车网 <a href="${appPath}/index.htm">首页</a> &gt; <a href="#">装饰商家</a> &gt; <a href="#">${zhuangshi.name}</a></div>
 <jsp:include page="sou.jsp" flush="false"></jsp:include>
       <div class="clear"></div>
       </div>

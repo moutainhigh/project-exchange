@@ -93,6 +93,7 @@
 			}
 			
 		</style>
+		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
 		<script>

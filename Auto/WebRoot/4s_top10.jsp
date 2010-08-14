@@ -7,7 +7,7 @@
             <div class="pad_10">
               <ul class="dotli01">
               	<c:forEach items="${newsBiz.top10Sale}" var="s">
-                <li><a href="sale.htm?sale.id=${s.id}" target="_blank">${s.fullName}</a></li>
+                <li><a href="${appPath}/sale.htm?sale.id=${s.id}" target="_blank">${s.fullName}</a></li>
                 </c:forEach>
               </ul>
             </div>

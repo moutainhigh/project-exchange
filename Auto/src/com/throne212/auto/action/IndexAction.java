@@ -1,8 +1,6 @@
 package com.throne212.auto.action;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -39,6 +37,7 @@ public class IndexAction extends BaseAction {
 				obj.accumulate("id", news.getId());
 				obj.accumulate("title", news.getTitle());
 				obj.accumulate("image", news.getImage());
+				obj.accumulate("no", news.getNo());
 				arr.add(obj);				
 			}
 			top4ImageNews = arr.toString();
