@@ -5,7 +5,7 @@
 <div class="header-top hide">
   <div class="mauto w980 bg03 h23">
     <div class="fl mar_r5 white">
-    	<a href="index.htm" class="yellow" title="站点首页">张家口汽车网</a>&nbsp;，欢迎您！</div>
+    	<a href="${appPath}/index.htm" class="yellow" title="站点首页">张家口汽车网</a>&nbsp;，欢迎您！</div>
     
     
                              <div class="fr white mar_r20">
