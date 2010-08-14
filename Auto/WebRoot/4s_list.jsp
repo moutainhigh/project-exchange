@@ -49,7 +49,7 @@
                     <div class="w125 fl"> <a href="sale.htm?sale.id=${sale.id}" target="_blank"> 
                     <img src="${appPath}/image?image=${sale.image}&w=120&h=90" class="b_gray" /></a></div>
                     <div class="fl w200 hide pad_l10">
-                      <p> <a href="#" target="_blank">${sale.fullName}</a></p>
+                      <p> <a href="sale.htm?sale.id=${sale.id}" target="_blank">${sale.fullName}</a></p>
                       <p class="mar_t5">${sale.tel}</p>
                       <p>${sale.address}</p>
                     </div>

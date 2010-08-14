@@ -143,18 +143,39 @@
 				});
 			}
 			function loadBrandList(){
-				$.post('ajax_getAllBrands.htm', {}, function(result) {
+				$.post('ajax_getTopBrands.htm', {}, function(result) {
+					var dataObj=eval(result);
+					var name;
+					var id;
+					var current_brandId = '${car.brand.parentBrand.id}';
+					$.each(dataObj.brandList,function(n,e){
+						id = e.id;
+						name = e.name;
+						if(id == current_brandId){
+							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#brand");
+						}
+						else
+							$("<option value="+id+">"+name+"</option>").appendTo("#brand");
+					});
+					if(current_brandId != ''){
+						loadChildBrandList($('#brand').val());
+					}
+				});
+			}
+			function loadChildBrandList(id){
+				$.post('ajax_getChildBrands.htm', {id:id}, function(result) {
 					var dataObj=eval(result);
 					var name;
 					var id;
 					var current_brandId = '${car.brand.id}';
+					$('#brand2').html('');
 					$.each(dataObj.brandList,function(n,e){
 						id = e.id;
 						name = e.name;
 						if(id == current_brandId)
-							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#brand");
+							$("<option value="+id+" selected=selected>"+name+"</option>").appendTo("#brand2");
 						else
-							$("<option value="+id+">"+name+"</option>").appendTo("#brand");
+							$("<option value="+id+">"+name+"</option>").appendTo("#brand2");
 					});
 				});
 			}
@@ -183,7 +204,11 @@
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">À˘ Ù∆∑≈∆£∫</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    	<select id="brand" name="car.brand.id"></select>
+			    	<select id="brand" name="" onchange="loadChildBrandList(this.value)">
+			    		<option value="">==«Î—°‘Ò==</option>
+			    	</select>
+			    	&nbsp;
+			    	<select id="brand2" name="car.brand.id"></select>
 			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">

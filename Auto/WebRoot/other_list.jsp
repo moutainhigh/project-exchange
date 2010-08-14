@@ -74,7 +74,11 @@
           </div>
         
         <div class="fl w240 hide recommend mar_l6 bg04">
-          <jsp:include page="tab.jsp" flush="false"></jsp:include>
+        	<c:choose>
+        		<c:when test="${news.orderNum==5}"><jsp:include page="baoxian_top3.jsp" flush="false"></jsp:include></c:when>
+        		<c:when test="${news.orderNum==8}"><jsp:include page="zhuangshi_top3.jsp" flush="false"></jsp:include></c:when>
+        		<c:otherwise><jsp:include page="tab.jsp" flush="false"></jsp:include></c:otherwise>
+        	</c:choose>
           <jsp:include page="4s_top10.jsp" flush="false"></jsp:include>
           <jsp:include page="xinde_top10.jsp" flush="false"></jsp:include>
         </div>

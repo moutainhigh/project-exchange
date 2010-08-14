@@ -143,7 +143,7 @@
                 <td class="g_t_c"><a href="car.htm?car.id=${c.id}&sale.id=${sale.id}" target="_blank">
                 	<img src="${appPath}/image?image=${c.image}&w=70&h=52" class="b_gray" /></a>
                 </td>
-                <td class="g_t_c">${c.fullName}</td>
+                <td class="g_t_c"><a href="car.htm?car.id=${c.id}&sale.id=${sale.id}" target="_blank">${c.fullName}</a></td>
                 <td class="g_t_c yellow_ef">гд${c.price}</td>
                 <td class="g_t_c gray">${c.priceDateTxt }</td>
               </tr>

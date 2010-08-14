@@ -1,8 +1,16 @@
 package com.throne212.auto.dao.impl;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -131,7 +139,12 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 	}
 	public List<Brand> getTopBrandList(){
 		String hql = "from Brand b where b.parentBrand=null order by b.orderNum";
-		return this.getHibernateTemplate().find(hql);
+		List<Brand> topList = this.getHibernateTemplate().find(hql);
+//		for(Brand b : topList){
+//			hql = "from Brand b where b.parentBrand = ? order by b.orderNum)";
+//			b.setChildBrands(this.getHibernateTemplate().find(hql, b));
+//		}
+		return topList;
 	}
 	public List<Brand> getBrandList(Sale sale){
 		List<Brand> list = new ArrayList<Brand>();

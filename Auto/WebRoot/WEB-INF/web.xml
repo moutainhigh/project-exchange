@@ -75,7 +75,6 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-  
 	<error-page>
 		<error-code>401</error-code>
 		<location>/error/401.htm</location>
@@ -92,5 +91,4 @@
 		<error-code>500</error-code>
 		<location>/error/500.htm</location>
 	</error-page>
-
 </web-app>

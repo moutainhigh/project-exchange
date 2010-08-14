@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!-- begin脚步框架 -->
+<c:if test="${not empty top4ImageNews}">
 <div class="w980 mauto mar_t6">
       <div class="section">
         <div class="ptitle">
@@ -11,7 +12,8 @@
           	 <div class="clear"></div>
         </div>
       </div>
-</div>   
+</div>
+</c:if>   
 <div id="footer">
       <div class="g_t_c pad_t10">
         <div align="center"><span style="font-size: 14px;">张家口资讯网站群：</span><a href="#">张家口资讯主站</a> <a href="#">张家口图片</a> <a href="#">张家口楼盘</a> 

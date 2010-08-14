@@ -97,7 +97,7 @@
 		</style>
 		<script>
 			function deleteBrand(id){
-				if(id && confirm('您确定删除吗？')){
+				if(id && confirm('删除汽车品牌，可能会造成原有数据错误，请慎重！！\n您确定删除吗？')){
 					self.location.href = './ManageAction_deleteBrand.action?brand.id='+id;
 				}
 			}

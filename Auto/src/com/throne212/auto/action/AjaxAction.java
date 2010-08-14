@@ -3,9 +3,12 @@ package com.throne212.auto.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.auto.biz.NewsBiz;
 import com.throne212.auto.biz.UserBiz;
+import com.throne212.auto.common.Util;
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Sale;
@@ -38,6 +41,17 @@ public class AjaxAction extends BaseAction {
 	private List<Brand> brandList;
 	public String getTopBrands() throws Exception {
 		brandList = newsBiz.getTopBrandList();
+		return "brand_list";
+	}
+	public String getChildBrands() throws Exception {
+		String brandId = ServletActionContext.getRequest().getParameter("id");
+		if(!Util.isEmpty(brandId)){
+			try {
+				brandList = newsBiz.getChildBrandList(Long.parseLong(brandId));
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			}
+		}		
 		return "brand_list";
 	}
 	public String getAllBrands() throws Exception {

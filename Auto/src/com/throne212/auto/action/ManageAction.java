@@ -196,6 +196,11 @@ public class ManageAction extends BaseAction {
 		}
 		return this.cateList();
 	}
+	
+	public String batchSaveHtml(){
+		newsBiz.batchSaveHtml();
+		return null;
+	}
 
 	// 4s sale
 	private PageBean<Sale> salePageBean;

@@ -13,10 +13,10 @@
                   <span class="">
                   <div class="fl mar_l10 white">
                   <jsp:include page="login.jsp" flush="false"></jsp:include>
-                  <div class="" style="height: 23px; line-height: 23px; vertical-align: middle;margin-left: 20px; float: right;">
+                  <span class="" style="height: 23px; line-height: 23px; vertical-align: middle;margin-left: 20px;">
 				    	<img src="${appPath}/Themes/images/ico-bookmark.gif" alt="加入收藏" />
 				    	<a href='#' class="white mar_l10" onClick="javascript:if(document.all) window.external.AddFavorite('http://www.baidu.com','${appTitle}');" rel="sidebar">收藏本站</a>
-				    </div>
+				    </span>
                   </div>
                   </span>
                     <!-- to Programmer -->

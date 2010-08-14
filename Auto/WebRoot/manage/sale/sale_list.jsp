@@ -133,7 +133,7 @@
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">${s.qq }</td>
 			    <td width="10%" align="center"  style="border-bottom:#cccccc 1px dashed;">
 			    	<c:choose>
-			    		<c:when test="${not empty sale.recommend && sale.recommend}"><span style="color:red;">ÊÇ</span></c:when>
+			    		<c:when test="${not empty s.recommend && s.recommend}"><span style="color:red;">ÊÇ</span></c:when>
 			    		<c:otherwise>·ñ</c:otherwise>
 			    	</c:choose>
 			    </td>

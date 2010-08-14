@@ -63,4 +63,6 @@ public interface NewsBiz extends BaseBiz{
 	
 	public List<Sale> getTop10Sale();
 	public List<News> getTop10Xinde();
+	
+	public void batchSaveHtml();
 }
