@@ -1,25 +1,9 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
     <c:choose>
-    	<c:when test="${not empty sale.seoTitle}">
-    		<c:set value="${sale.seoTitle}" var="t"></c:set>
-    	</c:when>
-    	<c:otherwise>
-    		<c:set value="${appTitle}" var="t"></c:set>
-    	</c:otherwise>
-    </c:choose>
-    <c:choose>
-    	<c:when test="${not empty sale.seoDesc}">
-    		<c:set value="${sale.seoDesc}" var="d"></c:set>
-    	</c:when>
-    	<c:otherwise>
-    		<c:set value="${appDesc}" var="d"></c:set>
-    	</c:otherwise>
-    </c:choose>
+    	<c:when test="${not empty sale.seoTitle}">    		<c:set value="${sale.seoTitle}" var="t"></c:set>    	</c:when>    	<c:otherwise>    		<c:set value="${appTitle}" var="t"></c:set>    	</c:otherwise>    </c:choose>    <c:choose>    	<c:when test="${not empty sale.seoDesc}">    		<c:set value="${sale.seoDesc}" var="d"></c:set>    	</c:when>    	<c:otherwise>    		<c:set value="${appDesc}" var="d"></c:set>    	</c:otherwise>    </c:choose>
     <title>${t}</title>
     <meta name="description" content="${d}" />
     <meta name="keywords"  content="${appKeywords}" />

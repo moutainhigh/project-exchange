@@ -1,6 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
@@ -22,7 +20,7 @@
     <!---- begin正文框架 ---->
 <div class="wrapper mauto pad_5">
       <div class="search_area">
-        <div class="fl ft14 w550 hide">最新动态：<a target="_blank" href="news/${newsBiz.lastedRecommendNews.no}.html">${newsBiz.lastedRecommendNews.title}</a></div>
+        <div class="fl ft14 w550 hide">最新动态：<a  title="${n.simpleContent}" target="_blank" href="news/${newsBiz.lastedRecommendNews.no}.html">${newsBiz.lastedRecommendNews.title}</a></div>
           <jsp:include page="sou.jsp" flush="false"></jsp:include>
       <div class="clear"></div>
       </div>
@@ -40,7 +38,7 @@
              <div class="first">
              	<c:set var="focusNews" value="${newsBiz.focusNews}"></c:set>
                <h1><img class="mar_r10" src="Themes/images/label_recommend.jpg" alt="今日热点" width="86" height="18" style="float:left;"/><br/>
-               <a href="news/${focusNews.no}.html" target="_blank">
+               <a href="news/${focusNews.no}.html" target="_blank" style="font-family:宋体;">
                ${focusNews.title }</a>
                </h1>
                <p class="gray">${focusNews.simpleContent}...<a href="news/${focusNews.no}.html"
@@ -49,7 +47,7 @@
              <div class="third">
                <ul class="dotli01">
                  <c:forEach items="${newsBiz.top7News}" var="n">
-                 <li><a href="news/${n.no}.html" target="_blank"><!--[${n.category.name}]-->${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
+                 <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}"><!--[${n.category.name}]-->${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
                  </c:forEach>
                </ul>
                <div class="clear"> </div>
@@ -65,9 +63,9 @@
             <div class="purchase-title">
             <a href="specialList.htm" target="_blank">张家口车市动态</a> | 
             <a href="jjXinde.htm" target="_blank">购车心得</a> | 
-            <a href="other.htm?news.orderNum=4" target="_blank">专业测评</a> | 
-            <a href="other.htm?news.orderNum=9" target="_blank">北京降价</a> | 
-            <a href="other.htm?news.orderNum=5" target="_blank">汽车保险</a></div>            
+            <a href="${appPath}/cepingNews.htm" target="_blank">专业测评</a> | 
+            <a href="${appPath}/beijingNews.htm" target="_blank">北京降价</a> | 
+            <a href="${appPath}/baoxianNews.htm" target="_blank">汽车保险</a></div>            
             <div class="fl w348 mar_t6">
               <div class="section_purchase">
                 <div class="ptitle">
@@ -86,7 +84,7 @@
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
                     <ul class="dotli01">
                     	<c:forEach items="${newsBiz.top12BeijingNews}" var="n">
-                      <li><a href="news/${n.no}.html" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+                      <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
                       	</c:forEach>
                     </ul>
                   </div>
@@ -110,7 +108,7 @@
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
                     <ul class="dotli01" style="height: 102px;">
                     	<c:forEach items="${newsBiz.top6jjXindeNews}" var="n">
-	                    <li><a href="news/${n.no}.html" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+	                    <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
 	                    </c:forEach>
                     </ul>
                   </div>
@@ -123,7 +121,7 @@
                 <div class="pad_10">
                   <ul class="dotli01">
                   	<c:forEach items="${newsBiz.top5zjXindeNews}" var="n">
-                    <li><a href="news/${n.no}.html" target="_blank">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+                    <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}">${n.title }</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
                     </c:forEach>
                   </ul>
                 </div>
@@ -139,7 +137,7 @@
                 <div class="pad_10">
                   <ul class="dotli01">
                   <c:forEach items="${newsBiz.top5BaoxianNews}" var="n">
-                    <li><a href="news/${n.no}.html" target="_blank">${n.title }</a></li>
+                    <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}">${n.title }</a></li>
                     </c:forEach>
                   </ul>
                 </div>
@@ -157,7 +155,7 @@
         <div class="pad_5">
           <div class="shop_other">
             <ul>
-              <c:forEach items="${userBiz.top10Sales}" var="sale">
+              <c:forEach items="${newsBiz.top10Sale}" var="sale">
               <li>
                 <div class="w125 fl"> <a href="sale.htm?sale.id=${sale.id}" target="_blank"> 
                 <img src="${appPath}/image?image=${sale.image}&w=68&h=51" class="b_gray" /></a></div>
@@ -176,9 +174,9 @@
       </div>
   <div class="part04 mar_t6">
     <div class="beauty-title">
-    	<a href="other.htm?news.orderNum=6" target="_blank">维修保养</a> | 
-    	<a href="other.htm?news.orderNum=7" target="_blank">养车费用</a> | 
-    	<a href="other.htm?news.orderNum=8" target="_blank">汽车装饰</a></div>
+    	<a href="${appPath}/baoyangNews.htm" target="_blank">维修保养</a> | 
+    	<a href="${appPath}/chengbenNews.htm" target="_blank">养车费用</a> | 
+    	<a href="${appPath}/zhuangshiNews.htm" target="_blank">汽车装饰</a></div>
         <div class="fl w348 mar_t6">
           <div class="section_purchase">
             <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=6" target="_blank">更多</a> &gt;&gt;</span>
@@ -195,7 +193,7 @@
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
 <ul class="dotli01">
 				<c:forEach items="${newsBiz.top7BaoYangNews}" var="n">
-                  <li><a href="news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
+                  <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
                   </c:forEach>
                 </ul>
               </div>
@@ -217,7 +215,7 @@
                                     target="_blank" class="blue">&gt;&gt;查看详细</a></div>
 <ul class="dotli01">
 					<c:forEach items="${newsBiz.top7ChengBenNews}" var="n">
-                  <li><a href="news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
+                  <li><a href="news/${n.no}.html" target="_blank" title="${n.simpleContent}">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt}</span></li>
                   </c:forEach>
                 </ul>
               </div>

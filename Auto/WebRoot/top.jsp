@@ -1,18 +1,21 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- begin头部附属栏框架 -->
-<form action="LoginAction.htm" method="post">
+
 <div class="header-top hide">
   <div class="mauto w980 bg03 h23">
-    <div class="fl mar_r5 white">
-    	<a href="${appPath}/index.htm" class="yellow" title="站点首页">张家口汽车网</a>&nbsp;，欢迎您！</div>
+    <div class="fl mar_r5 white" style="padding-left:5px;">
+    	<font color="#FFFFFF"><b>张家口汽车网</b>,提供最新<b>张家口汽车报价</b>,<b>张家口汽车市场信息</b>,<b>张家口汽车销售商信息</b>,新鲜汽车资讯每一天</font> 
+    	</div>
     
     
                              <div class="fr white mar_r20">
                     <!-- to Programmer  此层为w未登录才显示 -->
                   <span class="">
                   <div class="fl mar_l10 white">
-                  <jsp:include page="login.jsp" flush="false"></jsp:include>
+                  <a href="#"><font color="#FFFFFF">商家加盟</font></a> 
+            <a href="${appPath}/login.htm"><font color="#FFFFFF"> 商家登陆</font></a> 
+            <font color="#9999CC"><a href="http://www.zjk169.net" target="_blank"><font color="#FFFFFF">返回主站</font></a></font>
                   <span class="" style="height: 23px; line-height: 23px; vertical-align: middle;margin-left: 20px;">
 				    	<img src="${appPath}/Themes/images/ico-bookmark.gif" alt="加入收藏" />
 				    	<a href='#' class="white mar_l10" onClick="javascript:if(document.all) window.external.AddFavorite('http://www.baidu.com','${appTitle}');" rel="sidebar">收藏本站</a>
@@ -37,31 +40,30 @@
                 </div>
                              </div>
                 <div class="clear"></div>
-</div>
-</form>     
+</div>    
     <!-- end头部附属栏框架 -->         
 
      <!-- begin头部框架 -->
      <div class="header">
        <div class="">
-         <div class="w250 fl"><a href="index.htm"><img src="${appPath}/Themes/images/logo.jpg" alt="网站标志" /></a></div>
+         <div class="w250 fl"><a href="${appPath}/index.htm"><img src="${appPath}/Themes/images/logo.jpg" alt="网站标志" /></a></div>
          <div class="fr w730 g_t_c h76"><img src="${appPath}/Themes/images/banner.jpg" alt="banner" width="728" height="74" class=" b_gray" /></div> 
          <div class="clear"></div> 
        </div>
        
        <div class="clearfix">
-         <div class="w240 fl bg02 g_t_c pad_5">张家口资讯网 旗下分站 www.zjk169.net</div>
+         <div class="w240 fl bg02 g_t_c pad_5">张家口资讯网 旗下分站 <a href="http://www.zjk169.net" target="_blank">www.zjk169.net</a></div>
          <div class="fr w730 mainNav">
          	<a href="${appPath}/index.htm" target="_blank">首 页</a> {购车}
          	<a href="${appPath}/sale4s.htm" target="_blank">张家口4S店</a> 
          	<a href="${appPath}/specialList.htm" target="_blank">本地动态</a> 
          	<a href="${appPath}/jjXinde.htm" target="_blank">购车心得</a> 
-         	<a href="${appPath}/other.htm?news.orderNum=4" target="_blank">专业测评</a> 
-         	<a href="${appPath}/other.htm?news.orderNum=9" target="_blank">北京降价</a>
-         	<a href="${appPath}/other.htm?news.orderNum=5" target="_blank">汽车保险</a> [用车]
-         	<a href="${appPath}/other.htm?news.orderNum=6" target="_blank">维修保养</a> 
-         	<a href="${appPath}/other.htm?news.orderNum=7" target="_blank">养车成本</a> 
-         	<a href="${appPath}/other.htm?news.orderNum=8" target="_blank">汽车装饰</a></div>  
+         	<a href="${appPath}/cepingNews.htm" target="_blank">专业测评</a> 
+         	<a href="${appPath}/beijingNews.htm" target="_blank">北京降价</a>
+         	<a href="${appPath}/baoxianNews.htm" target="_blank">汽车保险</a> [用车]
+         	<a href="${appPath}/baoyangNews.htm" target="_blank">维修保养</a> 
+         	<a href="${appPath}/chengbenNews.htm" target="_blank">养车成本</a> 
+         	<a href="${appPath}/zhuangshiNews.htm" target="_blank">汽车装饰</a></div>  
        </div>
          
      

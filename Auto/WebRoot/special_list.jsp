@@ -1,6 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
@@ -31,15 +29,15 @@
             <div class="sighrTab">
               <ul>
                 <li class="current">本地优惠信息</li>
-                <li class=""><a href="newsList.htm?news.orderNum=1" target="_blank">本地汽车新闻</a></li>
+                <li class=""><a href="newsList.htm">本地汽车新闻</a></li>
               </ul>
             </div>
             <div class="listView mar_t10">
               <ul>
               	<c:forEach items="${specialPageBean.resultList}" var="s">
-                <li>
-                  <div class="green">${s.publishDate}</div>
+                <li style="margin-bottom: 20px;">
                   <span class="gray fr">浏览${s.click}</span>
+                  <span class="gray fr" style="margin-right: 60px;color:#168862;">${s.publishDate}</span>
                   <a href="news/${s.no}.html" target="_blank">${s.title}</a>
                   <div class="clearBlock"> &nbsp;</div>
                 </li>
