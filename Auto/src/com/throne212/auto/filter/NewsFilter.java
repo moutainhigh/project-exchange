@@ -1,6 +1,11 @@
 package com.throne212.auto.filter;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -37,9 +43,59 @@ public class NewsFilter implements Filter {
 		News news = baseBiz.getEntityByUnique(News.class, "no", no);
 		if(news != null){
 			news.setClick(news.getClick()+1);
+			if(news.getCategory() == null){
+				boolean save = saveNewsHtml(news.getNo(),news.getId(),"special",request);
+				if(save){
+					response.sendRedirect("../special.htm?special.id="+news.getId());
+					return;
+				}
+			}
+			else{
+				boolean save = saveNewsHtml(news.getNo(),news.getId(),"news",request);
+				if(save){
+					//request.getRequestDispatcher("/news.htm?news.id="+news.getId()).forward(request, response);
+					response.sendRedirect("../news.htm?news.id="+news.getId());
+					return;
+				}
+			}
 			baseBiz.saveOrUpdateEntity(news);
 		}
 		chain.doFilter(req, resp);
+	}
+	private boolean saveNewsHtml(String name,long id,String newsName,HttpServletRequest request){
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "news/"+name+".html";
+		if(new File(path).exists()){
+			return false;
+		}
+		logger.info("save new html news file no="+name);
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(path);
+			
+			String newsPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"+newsName+".htm?"+newsName+".id="+id;
+			
+			URL url = new URL(newsPath);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setDoOutput(true);
+			conn.connect();
+			InputStream in = conn.getInputStream();
+			int len = -1;
+			byte[] buff = new byte[1024];
+			while ((len = in.read(buff)) != -1) {
+				fos.write(buff, 0, len);
+			}
+			in.close();
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			if(fos != null)
+				try {fos.close();} catch (IOException e) {e.printStackTrace();}
+		}
+		return true;
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {
