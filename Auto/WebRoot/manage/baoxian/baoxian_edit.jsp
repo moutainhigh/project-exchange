@@ -92,9 +92,10 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script type="text/javascript" src="${appPath}/FCKeditor/fckeditor.js"></script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
-		<script src="${appPath}/manage/js/common.js"></script>
+		<script src="${appPath}/js/common.js"></script>
 		<script>
 			function submitForm(){
 				var f = document.forms[0];
@@ -124,7 +125,7 @@
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>保险推荐编辑</strong> </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
-			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">保险名称：</td>
+			    <td height="25" width="10%" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">保险名称：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="baoxian.name" size="40" value="${baoxian.name }"/>
 			    <span style="color:red;">*</span><span style="color:gray;">(不得超过20个字)</span></td>
 			  </tr>
@@ -145,23 +146,29 @@
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">保险形象图片：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
 			    	<input type="hidden" id="myImage" name="baoxian.image" value="${baoxian.image }"/>
-			    	<c:choose>
+			    	<div style="width: 400px;height: 170px;"><c:choose>
 			    		<c:when test="${empty baoxian.id || empty baoxian.image}">
 			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:when>
 			    		<c:otherwise>
 			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${baoxian.image}" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:otherwise>
-			    	</c:choose>
+			    	</c:choose></div>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<textarea rows="40" cols="80" id="content" name="baoxian.content">${baoxian.content}</textarea>
-			    	<script>
-			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn',height:400});
-			    	</script>
+			    	<textarea name="baoxian.content"  id="content" style="height:500px;">${baoxian.content}</textarea><%--宽度为730px，发布的新闻刚好和前台的700px相当 --%>
+					<script type="text/javascript">
+						var oFCKeditor = new FCKeditor( 'content' ) ;
+						oFCKeditor.BasePath = '${appPath}/FCKeditor/' ;
+						oFCKeditor.ToolbarSet = 'Default' ;
+						oFCKeditor.Width = '100%' ;
+						oFCKeditor.Height = '500' ;
+						oFCKeditor.Value = '' ;
+						oFCKeditor.ReplaceTextarea(); 
+					</script>
 			    </td>
 			  </tr>
 			  <tr>

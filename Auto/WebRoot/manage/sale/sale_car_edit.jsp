@@ -92,6 +92,7 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script type="text/javascript" src="${appPath}/FCKeditor/fckeditor.js"></script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
@@ -219,23 +220,30 @@
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型图片：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
 			    	<input type="hidden" id="myImage" name="car.image" value="${car.image }"/>
-			    	<c:choose>
+			    	<div style="width: 400px;height: 170px;"><c:choose>
 			    		<c:when test="${empty car.id || empty car.image}">
 			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:when>
 			    		<c:otherwise>
 			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${car.image}" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:otherwise>
-			    	</c:choose>
+			    	</c:choose></div>
 			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">车型参数：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    	<textarea rows="15" cols="80" id="content" name="car.detail">${car.detail}</textarea>
-			    	<script>
-			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn'});
-			    	</script></td>
+			    	<textarea name="car.detail"  id="content" style="height:500px;">${car.detail}</textarea><%--宽度为730px，发布的新闻刚好和前台的700px相当 --%>
+					<script type="text/javascript">
+						var oFCKeditor = new FCKeditor( 'content' ) ;
+						oFCKeditor.BasePath = '${appPath}/FCKeditor/' ;
+						oFCKeditor.ToolbarSet = 'Default' ;
+						oFCKeditor.Width = '100%' ;
+						oFCKeditor.Height = '500' ;
+						oFCKeditor.Value = '' ;
+						oFCKeditor.ReplaceTextarea(); 
+					</script>
+			    </td>
 			  </tr>
 			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">

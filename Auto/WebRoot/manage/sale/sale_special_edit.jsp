@@ -92,6 +92,7 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script type="text/javascript" src="${appPath}/FCKeditor/fckeditor.js"></script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
@@ -182,10 +183,16 @@
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
-			    	<textarea rows="10" cols="80" id="content" name="special.content">${special.content}</textarea>
-			    	<script>
-			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn'});
-			    	</script>
+			    	<textarea name="special.content"  id="content" style="height:500px;">${special.content}</textarea><%--宽度为730px，发布的新闻刚好和前台的700px相当 --%>
+					<script type="text/javascript">
+						var oFCKeditor = new FCKeditor( 'content' ) ;
+						oFCKeditor.BasePath = '${appPath}/FCKeditor/' ;
+						oFCKeditor.ToolbarSet = 'Default' ;
+						oFCKeditor.Width = '100%' ;
+						oFCKeditor.Height = '500' ;
+						oFCKeditor.Value = '' ;
+						oFCKeditor.ReplaceTextarea(); 
+					</script>
 			    </td>
 			  </tr>
 			  <tr>

@@ -710,13 +710,27 @@ height:23px; margin-right:3px;}
 .mainNav a:visited{
 	color:#ffffff;
 }
+.mainNav a:link{
+	color:#ffffff;
+}
 
 .purchase-title a:visited{
 	color:#ffffff;
 }
-.fl mar_l100 a{
+.purchase-title a:link{
+	color:#ffffff;
+}
+
+.fl mar_l100 a:link{
 	color:#ffffff;
 }
 .fl mar_l100 a:visited{
+	color:#ffffff;
+}
+
+.beauty-title a:link{
+	color:#ffffff;
+}
+.beauty-title a:visited{
 	color:#ffffff;
 }

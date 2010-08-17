@@ -92,6 +92,7 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
+		<script type="text/javascript" src="${appPath}/FCKeditor/fckeditor.js"></script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
 		<script src="${appPath}/manage/js/common.js"></script>
@@ -189,14 +190,14 @@
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">新闻图片：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
 			    	<input type="hidden" id="myImage" name="news.image" value="${news.image }"/>
-			    	<c:choose>
+			    	<div style="width: 400px;height: 170px;"><c:choose>
 			    		<c:when test="${empty news.id || empty news.image}">
 			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:when>
 			    		<c:otherwise>
 			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${news.image}" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:otherwise>
-			    	</c:choose>
+			    	</c:choose></div>
 			    </td>
 			  </tr>
 			  <tr>
@@ -209,10 +210,20 @@
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">内容：</td>
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
-			    	<textarea rows="40" cols="80" id="content" name="news.content">${news.content}</textarea>
+			    	<!-- <textarea rows="40" cols="80" id="content" name="news.content">${news.content}</textarea>
 			    	<script>
 			    		CKEDITOR.replace('content',{skin:'kama',language:'zh-cn',height:500});
-			    	</script>
+			    	</script>-->
+			    	<textarea name="news.content"  id="content" style="height:500px;">${news.content}</textarea><%--宽度为730px，发布的新闻刚好和前台的700px相当 --%>
+					<script type="text/javascript">
+						var oFCKeditor = new FCKeditor( 'content' ) ;
+						oFCKeditor.BasePath = '${appPath}/FCKeditor/' ;
+						oFCKeditor.ToolbarSet = 'Default' ;
+						oFCKeditor.Width = '100%' ;
+						oFCKeditor.Height = '500' ;
+						oFCKeditor.Value = '' ;
+						oFCKeditor.ReplaceTextarea(); 
+					</script>
 			    </td>
 			  </tr>
 			  <tr>

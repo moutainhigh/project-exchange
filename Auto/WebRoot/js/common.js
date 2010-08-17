@@ -7,14 +7,22 @@ function newsExchange(tabLi,otherLi,tabId,hideId){
 	$('#'+hideId).hide();
 	$('#'+tabId).show();
 }
-
-function formKeyPress(event){
-	if(event.keyCode == 13){
-		submitForm();
-	}else{
-		return false;
-	}
-}
+$(function(){
+	$('input').css('border','1px solid #3A6EA5');
+	$('input').focus(function(){
+		$(this).css('border','1px solid #9D2703');
+	});
+	$('input').blur(function(){
+		$(this).css('border','1px solid #3A6EA5');
+	});
+	$('textarea').css('border','1px solid #3A6EA5');
+	$('textarea').focus(function(){
+		$(this).css('border','1px solid #9D2703');
+	});
+	$('textarea').blur(function(){
+		$(this).css('border','1px solid #3A6EA5');
+	});
+});
 
 function gotoPage(pageIndex,url){
 	if(!url){

@@ -92,9 +92,8 @@
 				/*border: 0px solid red;*/
 			}
 		</style>
-		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
-		<script src="${appPath}/manage/js/common.js"></script>
+		<script src="${appPath}/js/common.js"></script>
 		<script>
 			function submitForm(){
 				var f = document.forms[0];
@@ -121,20 +120,21 @@
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
     <form action="ManageAction_saveSale.action" method="post">
     	<input type="hidden" name="sale.id" value="${sale.id}"/>
+    	<input type="hidden" name="sale.loginName" value="${sale.loginName}"/>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="2" align="left" background="${appPath}/manage/images/msg_bg.jpg">
 				&nbsp;&nbsp;<img src="${appPath}/manage/images/ico1.gif" border="0" align="absmiddle" /> <strong>增加4S店会员</strong> </td>
 			  </tr>
+			  <c:if test="${isAdmin}">
 			  <tr style="background-color:#F7F8FA">
 			    <td width="10%"  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">登录名：</td>
 			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.loginName" value="${sale.loginName}" /><span style="color:red;">*</span></td>
 			  </tr>
-			  <c:if test="${empty sale.id}">
 			  <tr style="background-color:#F7F8FA">
 			    <td  height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">初始登录密码：</td>
-			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.password" /><span style="color:red;">*</span></td>
+			    <td  align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;"><input type="text" name="sale.password" value="${sale.password }"/><span style="color:red;">*</span></td>
 			  </tr>
 			  </c:if>
 			  <tr style="background-color:#F7F8FA">
@@ -184,14 +184,14 @@
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">公司图片：</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
 			    	<input type="hidden" id="myImage" name="sale.image" value="${sale.image }"/>
-			    	<c:choose>
+			    	<div style="width: 400px;height: 170px;"><c:choose>
 			    		<c:when test="${empty sale.id || empty sale.image}">
 			    		<iframe src="${appPath}/manage/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:when>
 			    		<c:otherwise>
 			    		<iframe src="${appPath}/manage/upload/success.jsp?myfileFileName=${sale.image}" width="100%" height="100%" frameborder="0"></iframe>
 			    		</c:otherwise>
-			    	</c:choose>
+			    	</c:choose></div>
 			    </td>
 			  </tr>
 			  <tr style="background-color:#F7F8FA">

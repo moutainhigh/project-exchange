@@ -99,16 +99,18 @@
 			function submitForm(){
 				var f = document.forms[0];
 				var name = f['cate.name'].value;
-				var orderNum = f['cate.orderNum'].value;
+				var orderNum = null;
+				if(f['cate.orderNum'])
+					orderNum = f['cate.orderNum'].value;
 				if(name == ''){
 					alert("ÇëÊäÈëÃû³Æ");
 					return false;
 				}
-				if(orderNum == ''){
+				if(orderNum!=null && orderNum == ''){
 					alert("ÇëÊäÈë±àÂë");
 					return false;
 				}
-				if(!/^[0-9]{1,}$/.test(orderNum)){
+				if(orderNum!=null && !/^[0-9]{1,}$/.test(orderNum)){
 					alert("±àÂë±ØĞëÎªÊı×Ö");
 					return false;
 				}
@@ -133,7 +135,9 @@
 			  <tr style="background-color:#F7F8FA">
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">±àºÅ£º</td>
 			    <td align="left" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    <c:if test="${not empty cate.id }">&nbsp;${cate.orderNum}</c:if>
+			    <c:if test="${not empty cate.id }">&nbsp;${cate.orderNum}
+			    	<input name="cate.orderNum" value="${cate.orderNum}" type="hidden"/>
+			    </c:if>
 			    <c:if test="${empty cate.id }">
 			    	&nbsp;<input type="text" name="cate.orderNum" size="20" value="${cate.orderNum }" />
 			    	</c:if></td>
