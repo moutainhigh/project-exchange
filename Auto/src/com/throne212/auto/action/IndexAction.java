@@ -96,6 +96,10 @@ public class IndexAction extends BaseAction {
 	private PageBean newsPageBean;
 	private News news;
 	public String newsList() throws Exception{
+		if(news == null || news.getOrderNum() == null){
+			news = new News();
+			news.setOrderNum(WebConstants.NEWS_NEWS);
+		}
 		newsPageBean = newsBiz.getNews(page, news.getOrderNum());
 		switch (news.getOrderNum()) {
 		case WebConstants.NEWS_NEWS:
@@ -149,6 +153,36 @@ public class IndexAction extends BaseAction {
 		newsList();
 		return "other_list";
 	}
+	public String cepingNews() throws Exception{
+		news = new News();
+		news.setOrderNum(WebConstants.NEWS_CEPING);
+		return other();
+	}
+	public String beijingNews() throws Exception{
+		news = new News();
+		news.setOrderNum(WebConstants.NEWS_BEIJING);
+		return other();
+	}
+	public String baoxianNews() throws Exception{
+		news = new News();
+		news.setOrderNum(WebConstants.NEWS_BAOXIAN);
+		return other();
+	}
+	public String baoyangNews() throws Exception{
+		news = new News();
+		news.setOrderNum(WebConstants.NEWS_BAOYANG);
+		return other();
+	}
+	public String chengbenNews() throws Exception{
+		news = new News();
+		news.setOrderNum(WebConstants.NEWS_CHENGBEN);
+		return other();
+	}
+	public String zhuangshiNews() throws Exception{
+		news = new News();
+		news.setOrderNum(WebConstants.NEWS_ZHUANGSHI);
+		return other();
+	}	
 	
 	//ËÑË÷
 	private String key;
@@ -174,6 +208,10 @@ public class IndexAction extends BaseAction {
 	public String zhuangshi() throws Exception{
 		zhuangshi = userBiz.getEntityById(Zhuangshi.class, zhuangshi.getId());
 		return "zhuangshi";
+	}
+	
+	public String login() throws Exception{
+		return "login";
 	}
 
 	public void setUserBiz(UserBiz userBiz) {

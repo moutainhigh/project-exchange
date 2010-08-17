@@ -50,6 +50,9 @@ public class ManageAction extends BaseAction {
 		}else{
 			userBiz.saveOrUpdateEntity(setting);
 			this.setReqMsg("更新设置成功");
+			ActionContext.getContext().getApplication().put(WebConstants.APP_TITLE, setting.getPageTitle());
+			ActionContext.getContext().getApplication().put(WebConstants.APP_KEY_WORDS, setting.getPageKeywords());
+			ActionContext.getContext().getApplication().put(WebConstants.APP_DESC, setting.getPageDescription());
 		}
 		return "setting";
 	}
@@ -223,7 +226,7 @@ public class ManageAction extends BaseAction {
 				return "sale_edit";
 			}
 		}
-		if (sale.getId() != null) {
+		if (Util.isEmpty(sale.getPassword())) {
 			String pwd = userBiz.getEntityById(Sale.class, sale.getId()).getPassword();
 			sale.setPassword(pwd);
 		}

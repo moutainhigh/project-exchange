@@ -17,6 +17,7 @@ public interface NewsDao extends BaseDao{
 	public List<Special> getSpecialList(int first,int max,String key);
 	public List<News> getNewsList(int first,int max,int type);
 	public List<Special> getSpecialList(int first,int max);
+	public List<Special> getSpecialRecommentList(int first,int max);
 	public long getNewsListCount();
 	public long getNewsListCount(int type);
 	public long getNewsListCount(String key);

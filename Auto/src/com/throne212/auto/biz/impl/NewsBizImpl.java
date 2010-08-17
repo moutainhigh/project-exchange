@@ -139,7 +139,7 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	}
 
 	public List<Special> getTop9Special() {
-		return newsDao.getSpecialList(0, 9);
+		return newsDao.getSpecialRecommentList(0, 9);
 	}
 
 	public List<News> getTop12BeijingNews() {
@@ -193,7 +193,8 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 	}
 
 	public List<Sale> getTop10Sale() {
-		return newsDao.getTop10Sale();
+		List<Sale> list = newsDao.getTop10Sale();
+		return list;
 	}
 
 	public List<News> getTop10Xinde() {

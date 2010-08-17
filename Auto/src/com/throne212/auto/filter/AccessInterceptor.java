@@ -22,7 +22,7 @@ public class AccessInterceptor extends AbstractInterceptor {
 		logger.debug("into manage intercepter ...");
 		Map session = actionInvocation.getInvocationContext().getSession();
 		if(session.get(WebConstants.SESS_USER_OBJ) == null){
-			return "index";
+			return "login";
 		}
 		logger.debug("end manage intercepter ...");
 		return actionInvocation.invoke();

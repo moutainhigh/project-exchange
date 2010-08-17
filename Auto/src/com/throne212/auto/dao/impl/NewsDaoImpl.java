@@ -50,6 +50,11 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		Query q = s.createQuery("from Special n order by publishDate desc");
 		return q.setMaxResults(max).setFirstResult(first).list();
 	}
+	public List<Special> getSpecialRecommentList(int first,int max){
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery("from Special n where n.recommend=true order by publishDate desc");
+		return q.setMaxResults(max).setFirstResult(first).list();
+	}
 	public long getNewsListCount(){
 		return (Long) this.getHibernateTemplate().find("select count(*) from News n where n.category!=null").get(0);
 	}
