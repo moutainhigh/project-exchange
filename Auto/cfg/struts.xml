@@ -31,6 +31,7 @@
 			<result name="zhuangshi">/zhuangshi.jsp</result>
 			<!-- search -->
 			<result name="search">/search.jsp</result>
+			<result name="login">/sale_login.jsp</result>
 		</action>
 		<action name="LoginAction" class="com.throne212.auto.action.LoginAction">
 			<result name="success" type="redirectAction">
@@ -74,6 +75,10 @@
         <global-results>
         	<result name="index" type="redirectAction">
         		<param name="actionName">index</param>
+        		<param name="namespace">/</param>
+        	</result>
+        	<result name="login" type="redirectAction">
+        		<param name="actionName">login</param>
         		<param name="namespace">/</param>
         	</result>
         </global-results>
