@@ -112,12 +112,12 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		return s.createQuery(hql).setMaxResults(4).list();
 	}
 	public List<Zhuangshi> getTop3Zhuangshi(){
-		String hql = "from Zhuangshi z where z.recommend = true and z.image != null order by id";
+		String hql = "from Zhuangshi z where z.recommend = true and z.image != null order by id desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		return s.createQuery(hql).setMaxResults(2).list();
 	}
 	public List<Insurance> getTop3Baoxian(){
-		String hql = "from Insurance z where z.recommend = true and z.image != null order by id";
+		String hql = "from Insurance z where z.recommend = true and z.image != null order by id desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		return s.createQuery(hql).setMaxResults(3).list();
 	}

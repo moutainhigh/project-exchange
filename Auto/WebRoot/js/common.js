@@ -42,4 +42,10 @@ function gotoPage(pageIndex,url){
 	self.location.href = url;
 }
 
-
+function checkAll(){
+	if($('input[type="checkbox"]:first').attr('checked')){
+		$('input[type="checkbox"]').attr('checked',false);
+	}else{
+		$('input[type="checkbox"]').attr('checked',true);
+	}	
+}

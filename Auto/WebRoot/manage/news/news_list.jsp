@@ -101,6 +101,14 @@
 					self.location.href = './ManageAction_deleteNews.action?news.id='+newsId;
 				}
 			}
+			function deleteAll(){
+				if($('input[type="checkbox"]:checked').length == 0){
+					alert("请至少选择一个");
+					return false;
+				}
+				document.forms[0].action = "ManageAction_deleteAllNews.action";
+				document.forms[0].submit();
+			}
 		</script>
 		<script src="${appPath}/manage/ckeditor/ckeditor.js"></script>
 		<script src="${appPath}/js/jquery.js"></script>
@@ -161,7 +169,10 @@
 			  </tr>
 			  </c:forEach>
 			  <tr>
-			    <td height="35" colspan="7" align="right" >
+			  	<td align=center >
+			  		<input type="button" value="批量删除" onclick="deleteAll();"/>
+			  	</td>
+			    <td height="35" colspan="6" align="right" >
 					<span class="pageSpan">
 						第&nbsp;	<font color="blue">${newsPageBean.pageIndex }</font>&nbsp;页/总&nbsp;${newsPageBean.maxPage }&nbsp;页
 					</span>

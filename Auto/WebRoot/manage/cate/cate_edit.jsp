@@ -147,6 +147,18 @@
 			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.description" size="45" value="${cate.description }" /></td>
 			  </tr>
 			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网页标题：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.seoTitle" size="35" value="${cate.seoTitle}" />
+			    <span style="color:gray;">(若为空，则默认为网站的标题)</span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">网页描述：</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<input type="text" name="cate.seoDesc" size="55" value="${cate.seoDesc }" />
+			    <span style="color:gray;">(若为空，则默认为网站的网页描述)</span>
+			    </td>
+			  </tr>
+			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
 			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/></td>
 			  </tr>

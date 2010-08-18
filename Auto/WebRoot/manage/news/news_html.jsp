@@ -122,7 +122,7 @@
 			  </tr>
 			  <tr>
 			    <td colspan="2" height="25" align="center" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">
-			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();" disabled="disabled"/>
+			    <input type="button" name="button1" value=" 提 交 " onclick="submitForm();"/>
 			    </td>
 			  </tr>
 			  <tr>

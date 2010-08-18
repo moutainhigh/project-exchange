@@ -11,6 +11,7 @@ import com.throne212.auto.common.PageBean;
 import com.throne212.auto.common.WebConstants;
 import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Car;
+import com.throne212.auto.domain.Category;
 import com.throne212.auto.domain.Insurance;
 import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
@@ -95,12 +96,14 @@ public class IndexAction extends BaseAction {
 	//news
 	private PageBean newsPageBean;
 	private News news;
+	private Category cate;
 	public String newsList() throws Exception{
 		if(news == null || news.getOrderNum() == null){
 			news = new News();
 			news.setOrderNum(WebConstants.NEWS_NEWS);
 		}
 		newsPageBean = newsBiz.getNews(page, news.getOrderNum());
+		cate = newsBiz.getEntityByUnique(Category.class, "orderNum", news.getOrderNum());
 		switch (news.getOrderNum()) {
 		case WebConstants.NEWS_NEWS:
 			return "news_list";
@@ -356,5 +359,11 @@ public class IndexAction extends BaseAction {
 	}
 	public void setCar(Car car) {
 		this.car = car;
+	}
+	public Category getCate() {
+		return cate;
+	}
+	public void setCate(Category cate) {
+		this.cate = cate;
 	}
 }

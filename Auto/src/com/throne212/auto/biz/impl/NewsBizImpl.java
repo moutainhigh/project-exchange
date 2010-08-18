@@ -237,7 +237,7 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 					fos.close();
 					//n.setNo(no);
 					//newsDao.saveOrUpdate(n);
-					Thread.currentThread().sleep(100);
+					Thread.currentThread().sleep(5);
 
 				} catch (Exception e) {
 					e.printStackTrace();

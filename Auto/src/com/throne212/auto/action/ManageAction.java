@@ -168,6 +168,16 @@ public class ManageAction extends BaseAction {
 		}
 		return this.newsList();
 	}
+	public String deleteAllNews() {
+		String[] newsIds = (String[]) ActionContext.getContext().getParameters().get("newsIds");
+		if(newsIds != null && newsIds.length > 0){
+			for(String id : newsIds){
+				newsBiz.deleteEntity(News.class, Long.parseLong(id));
+			}
+			this.setReqMsg("文章批量删除成功");
+		}
+		return this.newsList();
+	}
 	
 	//category
 	private Category cate;
