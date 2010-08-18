@@ -2,9 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-    <c:choose>    	<c:when test="${not empty cate.seoTitle}">    		<c:set value="${cate.seoTitle}" var="t"></c:set>    	</c:when>    	<c:otherwise>    		<c:set value="${appTitle}" var="t"></c:set>    	</c:otherwise>    </c:choose>    <c:choose>    	<c:when test="${not empty cate.seoDesc}">    		<c:set value="${cate.seoDesc}" var="d"></c:set>    	</c:when>    	<c:otherwise>    		<c:set value="${appDesc}" var="d"></c:set>    	</c:otherwise>    </c:choose>
-    <title>${t}</title>
-    <meta name="description" content="${d}" />
+    <title>${appTitle}</title>
+    <meta name="description" content="${appDesc}" />
     <meta name="keywords"  content="${appKeywords}" />
     <link href="Themes/basic.css" type="text/css" rel="stylesheet" />
     <link href="Themes/pagestyle.css" type="text/css" rel="stylesheet" />
