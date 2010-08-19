@@ -201,8 +201,44 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 		return newsDao.getTop10Xinde();
 	}
 
-	public void batchSaveHtml() {
-		List<News> list = newsDao.getAll(News.class);		
+	public int indexSaveHtml(){
+		FileOutputStream fos = null;
+		try {
+			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			path = path.substring(0, path.indexOf("WEB-INF"));
+			path += "index.html";
+			fos = new FileOutputStream(path);
+
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String newsPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+					+ request.getContextPath() + "/index.htm?dyn=Y";
+
+			URL url = new URL(newsPath);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setDoOutput(true);
+			conn.connect();
+			InputStream in = conn.getInputStream();
+			int len = -1;
+			byte[] buff = new byte[1024];
+			while ((len = in.read(buff)) != -1) {
+				fos.write(buff, 0, len);
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (fos != null)
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+		return 1;
+	}
+	public int batchSaveHtml(Date startDate,Date endDate) {
+		List<News> list = newsDao.getAllNews(startDate,endDate);		
 		if (list != null && list.size() > 0) {
 			for (News n : list) {
 				FileOutputStream fos = null;
@@ -251,5 +287,6 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 				}
 			}
 		}
+		return list.size();
 	}
 }

@@ -120,7 +120,7 @@
     <jsp:include page="../msg.jsp" flush="false"></jsp:include>
     <form action="ManageAction_saveSale.action" method="post">
     	<input type="hidden" name="sale.id" value="${sale.id}"/>
-    	<input type="hidden" name="sale.loginName" value="${sale.loginName}"/>
+    	<c:if test="${!isAdmin}"><input type="hidden" name="sale.loginName" value="${sale.loginName}"/></c:if>
         <div id="wrapper">			
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>

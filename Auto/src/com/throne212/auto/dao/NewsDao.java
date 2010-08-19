@@ -1,5 +1,6 @@
 package com.throne212.auto.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.throne212.auto.domain.Brand;
@@ -41,4 +42,6 @@ public interface NewsDao extends BaseDao{
 	
 	public List<Sale> getTop10Sale();
 	public List<News> getTop10Xinde();
+	
+	public List<News> getAllNews(Date startDate,Date endDate);
 }

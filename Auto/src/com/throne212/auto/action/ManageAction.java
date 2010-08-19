@@ -1,16 +1,27 @@
 package com.throne212.auto.action;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
+import org.htmlparser.Node;
+import org.htmlparser.Parser;
+import org.htmlparser.tags.ImageTag;
+import org.htmlparser.visitors.ObjectFindingVisitor;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.auto.biz.NewsBiz;
@@ -42,12 +53,13 @@ public class ManageAction extends BaseAction {
 	public String index() {
 		return "main";
 	}
-	
+
 	private Setting setting;
+
 	public String setting() {
-		if(setting == null || setting.getId() == null){
+		if (setting == null || setting.getId() == null) {
 			setting = userBiz.getAll(Setting.class).get(0);
-		}else{
+		} else {
 			userBiz.saveOrUpdateEntity(setting);
 			this.setReqMsg("更新设置成功");
 			ActionContext.getContext().getApplication().put(WebConstants.APP_TITLE, setting.getPageTitle());
@@ -89,11 +101,14 @@ public class ManageAction extends BaseAction {
 
 	public String saveNews() {
 		if (news == null)
-			return "news_edit";		
-		if (news.getId() == null){
-			news.setNo(System.currentTimeMillis()+"");
+			return "news_edit";
+		if (!Util.isEmpty(news.getContent())) {
+			news.setContent(replaceImageSrc(news.getContent()));
+		}
+		if (news.getId() == null) {
+			news.setNo(System.currentTimeMillis() + "");
 			news = newsBiz.addNews(news);
-		}else {
+		} else {
 			news.setPublishDate(new Date());
 			newsBiz.saveOrUpdateEntity(news);
 			news = newsBiz.getEntityById(News.class, news.getId());
@@ -104,27 +119,84 @@ public class ManageAction extends BaseAction {
 			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
 			newsBiz.saveOrUpdateEntity(news);
 		}
-		if (news.getId() != null){
+		if (news.getId() != null) {
 			this.setReqMsg("文章保存成功");
-			saveNewsHtml(news.getNo(),news.getId(),"news");
+			saveNewsHtml(news.getNo(), news.getId(), "news");
 			logger.info("新闻静态页面生成成功");
-		}
-		else
+		} else
 			this.setReqMsg("文章保存失败，请联系管理员");
 		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
 	}
-	private void saveNewsHtml(String name,long id,String newsName){
+
+	private String replaceImageSrc(String content) {
+		try {
+			ImageTag imgLink;
+			ObjectFindingVisitor visitor = new ObjectFindingVisitor(ImageTag.class);
+			Parser parser = new Parser();
+			parser.setInputHTML(content);
+			// parser.setURL("http://localhost:8080/Auto/news/1281754807390.html");
+			parser.setEncoding(parser.getEncoding());
+			parser.visitAllNodesWith(visitor);
+			Node[] nodes = visitor.getTags();			
+			for (int i = 0; i < nodes.length; i++) {
+				imgLink = (ImageTag) nodes[i];
+				logger.info("testImageVisitor() ImageURL = " + imgLink.getImageURL());
+				if(imgLink.getImageURL().startsWith("/"))
+					continue;
+				String realName = saveImage(imgLink.getImageURL());
+				content = content.replaceAll(imgLink.getImageURL(), realName);
+			}
+			return content;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private String saveImage(String address){
+		try {
+			URL url = new URL(address);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setDoOutput(true);
+			conn.connect();
+			
+			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			path = path.substring(0, path.indexOf("WEB-INF"));
+			path += "upload";
+			int dot = address.lastIndexOf(".");
+			String subfix = address.substring(dot + 1);
+			String targetFileName = System.currentTimeMillis()+"."+subfix;
+			FileOutputStream fos = new FileOutputStream(path+File.separator+targetFileName);
+			
+			InputStream in = conn.getInputStream();
+			byte[] buff = new byte[1024];
+			int len = -1;
+			while ((len = in.read(buff)) != -1) {
+				fos.write(buff, 0, len);
+			}
+			logger.debug("image from out side saved path : " + path);
+			in.close();
+			fos.close();
+			return ServletActionContext.getRequest().getContextPath()+"/upload/"+targetFileName;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private void saveNewsHtml(String name, long id, String newsName) {
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
-		path += "news/"+name+".html";
+		path += "news/" + name + ".html";
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(path);
-			
+
 			HttpServletRequest request = ServletActionContext.getRequest();
-			String newsPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"+newsName+".htm?"+newsName+".id="+id;
-			
+			String newsPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/" + newsName + ".htm?" + newsName + ".id=" + id;
+
 			URL url = new URL(newsPath);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
@@ -140,18 +212,23 @@ public class ManageAction extends BaseAction {
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally{
-			if(fos != null)
-				try {fos.close();} catch (IOException e) {e.printStackTrace();}
+		} finally {
+			if (fos != null)
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
 	public String news() {
-		if (news!= null && news.getId() != null)
+		if (news != null && news.getId() != null)
 			news = newsBiz.getEntityById(News.class, news.getId());
 		cateList = newsBiz.getAll(Category.class);
 		return "news_edit";
 	}
+
 	public String recommendNews() {
 		if (news.getId() != null) {
 			news = newsBiz.getEntityById(News.class, news.getId());
@@ -161,6 +238,7 @@ public class ManageAction extends BaseAction {
 		}
 		return this.newsList();
 	}
+
 	public String deleteNews() {
 		if (news.getId() != null) {
 			newsBiz.deleteEntity(News.class, news.getId());
@@ -168,23 +246,26 @@ public class ManageAction extends BaseAction {
 		}
 		return this.newsList();
 	}
+
 	public String deleteAllNews() {
 		String[] newsIds = (String[]) ActionContext.getContext().getParameters().get("newsIds");
-		if(newsIds != null && newsIds.length > 0){
-			for(String id : newsIds){
+		if (newsIds != null && newsIds.length > 0) {
+			for (String id : newsIds) {
 				newsBiz.deleteEntity(News.class, Long.parseLong(id));
 			}
 			this.setReqMsg("文章批量删除成功");
 		}
 		return this.newsList();
 	}
-	
-	//category
+
+	// category
 	private Category cate;
+
 	public String cateList() {
 		cateList = newsBiz.getAll(Category.class);
 		return "cate_list";
 	}
+
 	public String saveCate() {
 		if (cate == null)
 			return "cate_edit";
@@ -209,11 +290,19 @@ public class ManageAction extends BaseAction {
 		}
 		return this.cateList();
 	}
-	
-	public String batchSaveHtml(){
-		newsBiz.batchSaveHtml();
-		this.setReqMsg("HTML生成完成");
+
+	private Date startDate;
+	private Date endDate;
+	public String batchSaveHtml() {
+		int rst = newsBiz.batchSaveHtml(startDate,endDate);
+		this.setReqMsg("HTML生成完成，数量为:"+rst);
 		return "news_html";
+	}
+	
+	public String indexSaveHtml() {
+		int rst = newsBiz.indexSaveHtml();
+		this.setReqMsg("HTML生成完成，数量为:"+rst);
+		return "index_html";
 	}
 
 	// 4s sale
@@ -229,9 +318,9 @@ public class ManageAction extends BaseAction {
 	public String saveSale() {
 		if (sale == null)
 			return "sale_edit";
-		if(!Util.isEmpty(sale.getLoginName())){
+		if (!Util.isEmpty(sale.getLoginName())) {
 			User user = userBiz.getEntityByUnique(Sale.class, "loginName", sale.getLoginName());
-			if(user != null && !user.getId().equals(sale.getId())){
+			if (user != null && !user.getId().equals(sale.getId())) {
 				this.setReqMsg("登录名已经存在，请重新定义");
 				return "sale_edit";
 			}
@@ -337,15 +426,17 @@ public class ManageAction extends BaseAction {
 		if (special == null)
 			return "special_edit";
 		special.setPublishDate(new Date());
-		if(special.getId() == null)
-			special.setNo(System.currentTimeMillis()+"");
-		userBiz.saveOrUpdateEntity(special);
-		if (special.getId() != null){
-			this.setReqMsg("优惠信息保存成功");
-			saveNewsHtml(special.getNo(),special.getId(),"special");
-			logger.info("新闻静态页面生成成功");
+		if (!Util.isEmpty(news.getContent())) {
+			special.setContent(replaceImageSrc(special.getContent()));
 		}
-		else
+		if (special.getId() == null)
+			special.setNo(System.currentTimeMillis() + "");
+		userBiz.saveOrUpdateEntity(special);
+		if (special.getId() != null) {
+			this.setReqMsg("优惠信息保存成功");
+			saveNewsHtml(special.getNo(), special.getId(), "special");
+			logger.info("新闻静态页面生成成功");
+		} else
 			this.setReqMsg("优惠信息保存失败，请联系管理员");
 		return "special_edit";
 	}
@@ -364,13 +455,15 @@ public class ManageAction extends BaseAction {
 		return this.specialList();
 	}
 
-	//link
+	// link
 	private Link link;
 	private List<Link> linkList;
+
 	public String linkList() {
-		linkList = newsBiz.getAll(Link.class,"orderNum","asc");
+		linkList = newsBiz.getAll(Link.class, "orderNum", "asc");
 		return "link_list";
 	}
+
 	public String saveLink() {
 		if (link == null)
 			return "link_edit";
@@ -381,11 +474,13 @@ public class ManageAction extends BaseAction {
 			this.setReqMsg("友情链接保存失败，请联系管理员");
 		return "link_edit";
 	}
+
 	public String link() {
 		if (link.getId() != null)
 			link = newsBiz.getEntityById(Link.class, link.getId());
 		return "link_edit";
 	}
+
 	public String deleteLink() {
 		if (link.getId() != null) {
 			newsBiz.deleteEntity(Link.class, link.getId());
@@ -393,15 +488,16 @@ public class ManageAction extends BaseAction {
 		}
 		return this.linkList();
 	}
-	
-	
-	//zhuangshi
+
+	// zhuangshi
 	private Zhuangshi zhuangshi;
 	private List<Zhuangshi> zhuangshiList;
+
 	public String zhuangshiList() {
 		zhuangshiList = newsBiz.getAll(Zhuangshi.class);
 		return "zhuangshi_list";
 	}
+
 	public String saveZhuangshi() {
 		if (zhuangshi == null)
 			return "zhuangshi_edit";
@@ -431,14 +527,16 @@ public class ManageAction extends BaseAction {
 		}
 		return this.zhuangshiList();
 	}
-	
-	//保险推荐
+
+	// 保险推荐
 	private Insurance baoxian;
 	private List<Insurance> baoxianList;
+
 	public String baoxianList() {
 		baoxianList = newsBiz.getAll(Insurance.class);
 		return "baoxian_list";
 	}
+
 	public String saveBaoxian() {
 		if (baoxian == null)
 			return "baoxian_edit";
@@ -468,19 +566,21 @@ public class ManageAction extends BaseAction {
 		}
 		return this.baoxianList();
 	}
-	
-	//品牌
+
+	// 品牌
 	private Brand brand;
 	private List<Brand> brandList;
+
 	public String brandList() {
 		brandList = newsBiz.getBrandList();
 		return "brand_list";
 	}
+
 	public String saveBrand() {
 		if (brand == null)
 			return "brand_edit";
-		if(brand.getParentBrand() != null){
-			if(brand.getParentBrand().getId() == null)
+		if (brand.getParentBrand() != null) {
+			if (brand.getParentBrand().getId() == null)
 				brand.setParentBrand(null);
 		}
 		newsBiz.saveOrUpdateEntity(brand);
@@ -504,8 +604,8 @@ public class ManageAction extends BaseAction {
 		}
 		return this.brandList();
 	}
-	
-	//setter and getter
+
+	// setter and getter
 	public void setUserBiz(UserBiz userBiz) {
 		this.userBiz = userBiz;
 	}
@@ -712,6 +812,22 @@ public class ManageAction extends BaseAction {
 
 	public void setBrandList(List<Brand> brandList) {
 		this.brandList = brandList;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 }

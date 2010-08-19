@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -175,5 +176,22 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		String hql = "from News n where (n.category.orderNum=? or n.category.orderNum=?)  and n.recommend=true order by publishDate desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		return s.createQuery(hql).setParameter(0, WebConstants.NEWS_JINGJI_XINDE).setParameter(1, WebConstants.NEWS_ZHONGJI_XINDE).setMaxResults(10).list();
+	}
+	
+	public List<News> getAllNews(Date startDate,Date endDate){
+		String hql = "from News n where 1=1";
+		List<Object> params = new ArrayList<Object>();
+		if(startDate != null){
+			hql += " and n.publishDate>=?";
+			params.add(startDate);
+		}
+		if(endDate != null){
+			hql += " and n.publishDate<=?";
+			params.add(endDate);
+		}
+		if(params.size() > 0)
+			return this.getHibernateTemplate().find(hql,params.toArray());
+		else
+			return this.getHibernateTemplate().find(hql);
 	}
 }

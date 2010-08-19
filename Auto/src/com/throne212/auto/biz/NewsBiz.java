@@ -1,5 +1,6 @@
 package com.throne212.auto.biz;
 
+import java.util.Date;
 import java.util.List;
 
 import com.throne212.auto.common.PageBean;
@@ -64,5 +65,6 @@ public interface NewsBiz extends BaseBiz{
 	public List<Sale> getTop10Sale();
 	public List<News> getTop10Xinde();
 	
-	public void batchSaveHtml();
+	public int batchSaveHtml(Date startDate,Date endDate);
+	public int indexSaveHtml();
 }

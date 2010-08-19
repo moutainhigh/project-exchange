@@ -2,6 +2,8 @@ package com.throne212.auto.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -29,21 +31,26 @@ public class IndexAction extends BaseAction {
 	}
 
 	private String top4ImageNews;
-	public String index() throws Exception {
-		List<News> imageNews = newsBiz.getTop4RecommendImageNews();
-		if(imageNews != null && imageNews.size() > 0){
-			JSONArray arr = new JSONArray();
-			for(News news : imageNews){
-				JSONObject obj = new JSONObject();
-				obj.accumulate("id", news.getId());
-				obj.accumulate("title", news.getTitle());
-				obj.accumulate("image", news.getImage());
-				obj.accumulate("no", news.getNo());
-				arr.add(obj);				
+	public String index() throws Exception {		
+		String dyn = ServletActionContext.getRequest().getParameter("dyn");
+		if("Y".equals(dyn)){		
+			List<News> imageNews = newsBiz.getTop4RecommendImageNews();
+			if(imageNews != null && imageNews.size() > 0){
+				JSONArray arr = new JSONArray();
+				for(News news : imageNews){
+					JSONObject obj = new JSONObject();
+					obj.accumulate("id", news.getId());
+					obj.accumulate("title", news.getTitle());
+					obj.accumulate("image", news.getImage());
+					obj.accumulate("no", news.getNo());
+					arr.add(obj);				
+				}
+				top4ImageNews = arr.toString();
 			}
-			top4ImageNews = arr.toString();
+			return "index";
+		}else{
+			return "index_html";
 		}
-		return "index";
 	}
 	
 	

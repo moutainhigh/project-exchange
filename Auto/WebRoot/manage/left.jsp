@@ -121,6 +121,7 @@
                     <a id="current" href="ManageAction_setting.htm" target="rightFrame">网站设置</a>
                     <a id="current" href="ManageAction_linkList.htm" target="rightFrame">友情链接</a>
                     <a id="current" href="welcome/link_edit.jsp" target="rightFrame">新增友情链接</a>
+                    <a id="current" href="welcome/index_html.jsp" target="rightFrame">首页HTML生成</a>
                     </c:if>
                 </li>
             </ul>
