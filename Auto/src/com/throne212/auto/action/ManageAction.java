@@ -426,7 +426,7 @@ public class ManageAction extends BaseAction {
 		if (special == null)
 			return "special_edit";
 		special.setPublishDate(new Date());
-		if (!Util.isEmpty(news.getContent())) {
+		if (!Util.isEmpty(special.getContent())) {
 			special.setContent(replaceImageSrc(special.getContent()));
 		}
 		if (special.getId() == null)
