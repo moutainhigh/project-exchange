@@ -57,7 +57,7 @@ public class IndexAction extends BaseAction {
 	private PageBean<Sale> salePageBean;
 	private int page;
 	public String sale4s() throws Exception {
-		salePageBean = userBiz.getSales(page,6);
+		salePageBean = userBiz.getSales(page,20);
 		return "sale_list";
 	}
 	private Sale sale;
