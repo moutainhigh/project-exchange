@@ -24,9 +24,9 @@
 		</property>
 	-->
 	<property name="myeclipse.connection.profile">mysql</property>
-	<property name="connection.url">jdbc:mysql://localhost:3306/auto</property>
-	<property name="connection.username">root</property>
-	<property name="connection.password">123</property>
+	<property name="connection.url">jdbc:mysql://124.254.31.99:3306/auto</property>
+	<property name="connection.username">auto</property>
+	<property name="connection.password">123456</property>
 	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 	<property name="hbm2ddl.auto">create</property>
 	<property name="show_sql">true</property>

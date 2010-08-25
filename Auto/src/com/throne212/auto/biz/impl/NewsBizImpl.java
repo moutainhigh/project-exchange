@@ -238,55 +238,9 @@ public class NewsBizImpl extends BaseBizImpl implements NewsBiz {
 		return 1;
 	}
 	public int batchSaveHtml(Date startDate,Date endDate) {
-		List<News> list = newsDao.getAllNews(startDate,endDate);		
-		if (list != null && list.size() > 0) {
-			for (News n : list) {
-				FileOutputStream fos = null;
-				try {
-					String newsName = "news";
-					if(n.getCategory() == null || n.getCategory().getOrderNum() <= 0){
-						newsName = "special";
-					}
-					//String no = System.currentTimeMillis()+"";
-					String no = n.getNo();
-					String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
-					path = path.substring(0, path.indexOf("WEB-INF"));
-					path += "news/" + no + ".html";
-					fos = new FileOutputStream(path);
-
-					HttpServletRequest request = ServletActionContext.getRequest();
-					String newsPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-							+ request.getContextPath() + "/" + newsName + ".htm?" + newsName + ".id=" + n.getId();
-
-					URL url = new URL(newsPath);
-					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					conn.setRequestMethod("GET");
-					conn.setDoOutput(true);
-					conn.connect();
-					InputStream in = conn.getInputStream();
-					int len = -1;
-					byte[] buff = new byte[1024];
-					while ((len = in.read(buff)) != -1) {
-						fos.write(buff, 0, len);
-					}
-					in.close();
-					fos.close();
-					//n.setNo(no);
-					//newsDao.saveOrUpdate(n);
-					Thread.currentThread().sleep(5);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					if (fos != null)
-						try {
-							fos.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-				}
-			}
-		}
-		return list.size();
+		return newsDao.batchSaveHtml(startDate,endDate);
+	}
+	public void saveOtherHtml(){
+		newsDao.saveOtherHtml();
 	}
 }

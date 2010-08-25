@@ -138,9 +138,12 @@ public class IndexAction extends BaseAction {
 	public List<News> other5RecommendNewsList;
 	public String news() throws Exception{
 		news = userBiz.getEntityById(News.class, news.getId());
-		news.setClick(news.getClick()+1);
-		userBiz.saveOrUpdateEntity(news);
-		other5RecommendNewsList = newsBiz.getOther5RecommendNews(news.getCategory().getOrderNum());
+		String auto = ServletActionContext.getRequest().getParameter("auto");
+		if(!"Y".equals(auto)){
+			news.setClick(news.getClick()+1);
+			userBiz.saveOrUpdateEntity(news);
+		}
+		//other5RecommendNewsList = newsBiz.getOther5RecommendNews(news.getCategory().getOrderNum());
 		return "news";
 	}
 	

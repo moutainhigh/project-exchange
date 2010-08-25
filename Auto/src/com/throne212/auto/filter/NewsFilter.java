@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -27,6 +26,8 @@ import com.throne212.auto.domain.News;
 public class NewsFilter implements Filter {
 
 	private Logger logger = Logger.getLogger(this.getClass());
+	
+	private static BaseBiz baseBiz = null;
 
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -37,25 +38,41 @@ public class NewsFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		logger.debug("res="+request.getRequestURI());
+		String auto = request.getParameter("auto");
+		if("Y".equals(auto)){
+			chain.doFilter(req, resp);
+			return;
+		}
 		String res = request.getRequestURI();
 		String no = res.substring(res.indexOf("/news")+"/news".length()+1, res.lastIndexOf("."));
-		BaseBiz baseBiz = (BaseBiz) ((ApplicationContext) request.getSession().getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE)).getBean("baseBiz");
 		News news = baseBiz.getEntityByUnique(News.class, "no", no);
 		if(news != null){
 			news.setClick(news.getClick()+1);
 			if(news.getCategory() == null){
 				boolean save = saveNewsHtml(news.getNo(),news.getId(),"special",request);
 				if(save){
-					response.sendRedirect("../special.htm?special.id="+news.getId());
-					return;
+//					response.sendRedirect("../special.htm?special.id="+news.getId());
+//					return;
+					try {
+						Thread.currentThread().sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			else{
 				boolean save = saveNewsHtml(news.getNo(),news.getId(),"news",request);
 				if(save){
 					//request.getRequestDispatcher("/news.htm?news.id="+news.getId()).forward(request, response);
-					response.sendRedirect("../news.htm?news.id="+news.getId());
-					return;
+					//response.sendRedirect("../news.htm?news.id="+news.getId());
+					//return;
+					try {
+						Thread.currentThread().sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			baseBiz.saveOrUpdateEntity(news);
@@ -100,7 +117,7 @@ public class NewsFilter implements Filter {
 
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-
+		baseBiz = (BaseBiz) ((ApplicationContext) arg0.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE)).getBean("baseBiz");
 	}
 	
 	public static void main(String[] args) {

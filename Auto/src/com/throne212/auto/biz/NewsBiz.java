@@ -67,4 +67,5 @@ public interface NewsBiz extends BaseBiz{
 	
 	public int batchSaveHtml(Date startDate,Date endDate);
 	public int indexSaveHtml();
+	public void saveOtherHtml();
 }

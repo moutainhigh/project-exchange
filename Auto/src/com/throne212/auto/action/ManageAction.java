@@ -298,6 +298,10 @@ public class ManageAction extends BaseAction {
 		this.setReqMsg("HTML生成完成，数量为:"+rst);
 		return "news_html";
 	}
+	public String testAction() {
+		newsBiz.saveOtherHtml();
+		return null;
+	}
 	
 	public String indexSaveHtml() {
 		int rst = newsBiz.indexSaveHtml();

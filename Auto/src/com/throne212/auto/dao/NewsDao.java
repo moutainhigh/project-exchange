@@ -44,4 +44,6 @@ public interface NewsDao extends BaseDao{
 	public List<News> getTop10Xinde();
 	
 	public List<News> getAllNews(Date startDate,Date endDate);
+	public int batchSaveHtml(Date startDate,Date endDate);
+	public void saveOtherHtml();
 }

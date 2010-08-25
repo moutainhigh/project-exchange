@@ -98,6 +98,7 @@
 		<script type="text/javascript" src="${appPath}/js/jquery.datepick.js"></script>
 		<script>
 			function submitForm(){
+				$('input[type="button"]').attr("disabled",true);
 				$('#wait').show();
 				$('#wait span').html('.'+$('#wait span').html());
 				document.forms[0].submit();
