@@ -220,7 +220,7 @@
         <div id="wraper">
         	<!-- top -->
         	<div id="top">
-        		<div id="logo"><span>${appTitle}后台管理</span></div>
+        		<div id="logo"><span>张家口汽车网后台管理</span></div>
 				<div id="welcome_nav">
 					<div>
 						<span style="background:url(images/msg2.jpg) no-repeat left center">您好, ${sessionScope.userObj.loginName}</span>  

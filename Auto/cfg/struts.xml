@@ -32,6 +32,7 @@
 			<result name="zhuangshi">/zhuangshi.jsp</result>
 			<!-- search -->
 			<result name="search">/search.jsp</result>
+			<result name="search_4s">/search_4s_list.jsp</result>
 			<result name="login">/sale_login.jsp</result>
 		</action>
 		<action name="LoginAction" class="com.throne212.auto.action.LoginAction">

@@ -69,7 +69,7 @@
             <div class="fl w348 mar_t6">
               <div class="section_purchase">
                 <div class="ptitle">
-                  <span class="more"><a href="other.htm?news.orderNum=9" target="_blank">更多</a> >></span>
+                  <span class="more"><a href="${appPath}/beijingNews.htm" target="_blank">更多</a> >></span>
                   <div class="icon">北京降价-经济车型</div>
                   
                 </div>
@@ -94,7 +94,7 @@
             
             <div class="fl w350 hide recommend mar_l10 mar_t6 bls_gray pad_l10">
               <div class="section_purchase">
-                <div class="ptitle"> <span class="more"><a href="jjXinde.htm" target="_blank">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="${appPath}/jjXinde.htm" target="_blank">更多</a> &gt;&gt;</span>
                     <div class="icon">网友购车感受-经济车型</div>
                 </div>
                 <div class="pad_10">
@@ -115,7 +115,7 @@
                 </div>
               </div>
               <div class="section_purchase mar_t6">
-                <div class="ptitle"> <span class="more"><a href="zjXinde.htm" target="_blank">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="${appPath}/zjXinde.htm" target="_blank">更多</a> &gt;&gt;</span>
                     <div class="icon">网友购车感受-中级车型</div>
                 </div>
                 <div class="pad_10">
@@ -131,7 +131,7 @@
             <div class="fl w240 hide mar_t6 mar_l10 bg04 bls_gray">
               <jsp:include page="baoxian_top3.jsp"></jsp:include>
               <div class="section_purchase mar_t6">
-                <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=5" class="red" target="_blank">更多</a> &gt;&gt;</span>
+                <div class="ptitle"> <span class="more"><a href="${appPath}/baoxianNews.htm" class="red" target="_blank">更多</a> &gt;&gt;</span>
                     <div class="icon red">保险知识</div>
                 </div>
                 <div class="pad_10">
@@ -179,7 +179,7 @@
     	<a href="${appPath}/zhuangshiNews.htm" target="_blank">汽车装饰</a></div>
         <div class="fl w348 mar_t6">
           <div class="section_purchase">
-            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=6" target="_blank">更多</a> &gt;&gt;</span>
+            <div class="ptitle"> <span class="more"><a href="${appPath}/baoyangNews.htm" target="_blank">更多</a> &gt;&gt;</span>
               <div class="icon">维修保养</div>
             </div>
             <div class="pad_10">
@@ -202,7 +202,7 @@
         </div>
         <div class="fl w350 hide recommend mar_l10 mar_t6 bls_gray pad_l10">
           <div class="section_purchase">
-            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=7" target="_blank">更多</a> &gt;&gt;</span>
+            <div class="ptitle"> <span class="more"><a href="${appPath}/chengbenNews.htm" target="_blank">更多</a> &gt;&gt;</span>
               <div class="icon">养车费用</div>
             </div>
             <div class="pad_10">
@@ -225,7 +225,7 @@
         <div class="fl w240 hide mar_t6 mar_l10 bg04 bls_gray">
           <jsp:include page="zhuangshi_top3.jsp" flush="false"></jsp:include>
           <div class="section_purchase mar_t6">
-            <div class="ptitle"> <span class="more"><a href="other.htm?news.orderNum=8" class="red" target="_blank">更多</a> &gt;&gt;</span>
+            <div class="ptitle"> <span class="more"><a href="${appPath}/zhuangshiNews.htm" class="red" target="_blank">更多</a> &gt;&gt;</span>
               <div class="icon red">汽车装饰指南</div>
             </div>
             <div class="pad_10">

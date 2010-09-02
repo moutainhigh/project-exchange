@@ -206,7 +206,10 @@ public class IndexAction extends BaseAction {
 		if(1 == searchType){
 			newsPageBean = newsBiz.getNews(page, key);
 		}else if(2 == searchType){
-			newsPageBean = newsBiz.getSpecials(page, key);
+			//newsPageBean = newsBiz.getSpecials(page, key);
+			//key = "²ÎÈ×";
+			salePageBean = userBiz.getSales(page, key);
+			return "search_4s";
 		}
 		return "search";
 	}

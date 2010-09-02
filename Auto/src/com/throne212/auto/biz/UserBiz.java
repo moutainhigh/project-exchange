@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.throne212.auto.common.PageBean;
 import com.throne212.auto.domain.Car;
+import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
@@ -25,5 +26,7 @@ public interface UserBiz extends BaseBiz{
 	public PageBean<Special> getSpecialsBySale(long saleId,int page);
 	
 	public List<Sale> getTop10Sales();
+	
+	public PageBean<Sale> getSales(int page,String key);
 	
 }

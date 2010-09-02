@@ -11,6 +11,7 @@ import com.throne212.auto.dao.UserDao;
 import com.throne212.auto.domain.Admin;
 import com.throne212.auto.domain.Brand;
 import com.throne212.auto.domain.Car;
+import com.throne212.auto.domain.News;
 import com.throne212.auto.domain.Sale;
 import com.throne212.auto.domain.Special;
 import com.throne212.auto.domain.User;
@@ -157,5 +158,16 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		return saleDao.getSaleList(0, 10);
 	}
 
-	
+	public PageBean<Sale> getSales(int pageIndex, String key) {
+		PageBean<Sale> bean = new PageBean<Sale>();
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		int startIndex = (pageIndex - 1) * WebConstants.maxRowPerPage;
+		bean.setResultList(userDao.getSaleList(startIndex, WebConstants.maxRowPerPage, key));
+		bean.setPageIndex(pageIndex);
+		bean.setRowPerPage(WebConstants.maxRowPerPage);
+		bean.setTotalRow((int) userDao.getSaleListCount(key));
+		return bean;
+	}
 }
