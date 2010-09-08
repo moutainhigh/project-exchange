@@ -160,7 +160,7 @@
                 <div class="w125 fl"> <a href="sale.htm?sale.id=${sale.id}" target="_blank"> 
                 <img src="${appPath}/image?image=${sale.image}&w=68&h=51" class="b_gray" /></a></div>
                 <div class="fl w100 hide pad_l10">
-                  <p> <a style="font-size:12px;white-space:normal;" href="sale.htm?sale.id=${sale.id}" target="_blank">${sale.fullName }</a></p>
+                  <p> <a style="font-size:12px;white-space:normal;" href="sale.htm?sale.id=${sale.id}" target="_blank" title="${sale.fullName}">${sale.fullNameIndex }</a></p>
                   <p>${sale.tel }</p>
                 </div>
                 <div class="clear"> </div>

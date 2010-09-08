@@ -51,6 +51,14 @@ public class Sale extends User {// 4sµê
 	public String getFullName() {
 		return fullName;
 	}
+	public String getFullNameIndex() {
+		if(fullName == null || "".equals(fullName))
+			return "";
+		if(fullName.length() <= 16){
+			return fullName;
+		}
+		return fullName.substring(0, 16);
+	}
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
