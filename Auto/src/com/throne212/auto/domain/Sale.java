@@ -38,7 +38,7 @@ public class Sale extends User {// 4sµê
 	protected String image;
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "sale", targetEntity = Car.class)
 	private Set<Car> cars = new HashSet<Car>();
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "sale", targetEntity = Car.class)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sale", targetEntity = Car.class)
 	private Set<Special> specials = new HashSet<Special>();
 	
 	@Column
