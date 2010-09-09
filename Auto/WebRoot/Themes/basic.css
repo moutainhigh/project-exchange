@@ -1,12 +1,12 @@
 body{
 	margin:0px;
 	padding:0px;
-	font:12px/20px "ËÎÌå";
+	font:12px/20px "ï¿½ï¿½ï¿½ï¿½";
 	color:#333;
 	background-color: #f5f5f5;
 }
 
-/******** Çå³ý±êÇ©»ù±¾ÑùÊ½ *********/
+/******** ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½Ê½ *********/
 *{word-break:break-all;}
 div, h1, h2, h3, h4, p, form, label, input, textarea, img,ul,ol,li,dl,dd,dt{margin:0; padding:0;}
 ul,ol{list-style:none;}
@@ -24,7 +24,7 @@ a:hover{color:#cc0000; text-decoration:underline;}
 .none {display: none;}
 .hide {overflow: hidden;}
 
-/***** ¶¨Î» *****/
+/***** ï¿½ï¿½Î» *****/
 .prel {position: relative;zoom: 1}
 .pabs {position: absolute;}
 .fl{float:left;}
@@ -58,7 +58,7 @@ a:hover {text-decoration:underline;color:#DB1924;}
 .i,a.i:link,a.i:visited {font-style:italic;}
 .del,a.del:link,a.del:visited {text-decoration:line-through;}
 
-/***** ·ÖÒ³ *****/
+/***** ï¿½ï¿½Ò³ *****/
 .pages{
 	clear: both;
 	line-height: 20px;
@@ -187,7 +187,7 @@ h4 {font-size:12px;color:#000;}
 .fn {font-weight: normal;}
 
 /***** define_fontsize *****/
-.ft10 {font-size: 10px;}
+.ft10 {font-size: 12px;}
 .ft12 {font-size: 12px;}
 .ft14 {font-size: 14px;}
 .ft16 {font-size: 16px;}
@@ -197,8 +197,8 @@ h4 {font-size:12px;color:#000;}
 
 /***** define_fontfamilly *****/
 .entxt {font-family: Arial, Helvetica, sans-serif;}
-.heti {font-family: "ºÚÌå";}
-.yahei {font-family: "Î¢ÈíÑÅºÚ";}
+.heti {font-family: "ï¿½ï¿½ï¿½ï¿½";}
+.yahei {font-family: "Î¢ï¿½ï¿½ï¿½Åºï¿½";}
 
 /***** define_width *****/
 .wp5{width:5%}
@@ -232,7 +232,7 @@ h4 {font-size:12px;color:#000;}
 .w980{width:980px}
 
 
-/* ³£ÓÃÁÐ±í */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ */
 .dotli01 li{background:url(images/dot01.gif) left center no-repeat; padding-left:10px;}
 .dotli02 li{
 	background:url(images/dot02.png) left center no-repeat;
@@ -241,7 +241,7 @@ h4 {font-size:12px;color:#000;}
 }
 .dotli03 li{background:url(images/dot03.gif) left center no-repeat; padding-left:10px;}
 
-/* ±êÇ©ÑùÊ½ */
+/* ï¿½ï¿½Ç©ï¿½ï¿½Ê½ */
 .tabH{
 	border-bottom:3px solid #4983b1;
 }
@@ -299,7 +299,7 @@ height:23px; margin-right:3px;}
 }
 
 
-/******** ±³¾° ********/
+/******** ï¿½ï¿½ï¿½ï¿½ ********/
 .bg01 {background: #eaeaea;}
 .bg02 {background: #ccd0db;}
 .bg03 {background: url(images/head_bg.jpg) repeat-x 0 0;}
@@ -309,7 +309,7 @@ height:23px; margin-right:3px;}
 
 
 
-/******** ±ß¿ò ********/
+/******** ï¿½ß¿ï¿½ ********/
 .b_red {border:1px solid #eeaaaa;}
 .b_white {border:1px solid #FFFFFF;}
 .b_pink {border: 3px solid #FCEDED;}
@@ -329,7 +329,7 @@ height:23px; margin-right:3px;}
 .bbd_gray{border-bottom:1px dotted #ddd}
 .bbs_gray{border-bottom:1px solid #333}
 
-/******** ËÑË÷¿ò and °´Å¥ ********/
+/******** ï¿½ï¿½ï¿½ï¿½ï¿½ and ï¿½ï¿½Å¥ ********/
 .button01,.button02,.button03,.button04{
 	width:80px;
 	height:25px;
@@ -391,7 +391,7 @@ height:23px; margin-right:3px;}
 .input03{width:150px;}
 .input04{width:250px;}
 
-/******** µÇÂ¼/×¢²á°´Å¥ ********/
+/******** ï¿½ï¿½Â¼/×¢ï¿½á°´Å¥ ********/
 .btn-log, .btn-reg{
 	height:15px;
 	line-height:15px;
@@ -403,7 +403,7 @@ height:23px; margin-right:3px;}
 .btn-log{width:51px; background:url(images/button-log.gif) no-repeat 0 0;}
 .btn-reg{width:72px; background:url(images/button-reg.gif) no-repeat 0 0;}
 
-/******** Ò³½Å ********/
+/******** Ò³ï¿½ï¿½ ********/
 .footer_bg{
 	width:100%;
 	background: #d4efff url(images/footer_bg.jpg) no-repeat top center;
@@ -415,16 +415,16 @@ height:23px; margin-right:3px;}
 	color:#999999;
 }
 
-/* ÓÑÇéÁ´½Ó */
+/* ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ */
 .friendlink{ padding:8px 10px;}
 .friendlink a{ margin-right:10px;}
 
-/* ÁÐ±í */
+/* ï¿½Ð±ï¿½ */
 .dot1{background:url(images/dot.gif) left center no-repeat; padding-left:10px;}
 .dot2{ background:url(images/public/dot.gif) no-repeat 0px 8px; padding-left:10px}
 .dot3{ background:url(images/public/ad-dot1-1.gif) no-repeat 0px 3px; padding-left:22px}
 
-/**************** Ò³ÃæÍ¨ÓÃ *****************/
+/**************** Ò³ï¿½ï¿½Í¨ï¿½ï¿½ *****************/
 .wrapper{
 	width:970px;
 	clear:both;
@@ -558,10 +558,10 @@ height:23px; margin-right:3px;}
 
 
 
-/******** µ¼º½ ********/
+/******** ï¿½ï¿½ï¿½ï¿½ ********/
 
 
-/******** ×ó±ß¶þ¼¶µ¼º½ ********/
+/******** ï¿½ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ********/
 .lefNav_top {
 	height:24px;
 	overflow: hidden;
@@ -599,7 +599,7 @@ height:23px; margin-right:3px;}
 	font-weight: bold;
 }
 
-/******** Ö÷µ¼º½ ********/
+/******** ï¿½ï¿½ï¿½ ********/
 .mainNav {
 	height:25px;
 	padding-top: 5px;
@@ -613,7 +613,7 @@ height:23px; margin-right:3px;}
 	color: #FFFFFF;
 }
 
-/******** ¸½Êôµ¼º½ ********/
+/******** ï¿½ï¿½ï¿½ï¿½ï¿½ ********/
 .mainNav02 {
 	height:25px;
 	padding-top: 5px;
@@ -629,7 +629,7 @@ height:23px; margin-right:3px;}
 
 
 
-/*------- Ò³ÃæÍ·²¿ -------*/
+/*------- Ò³ï¿½ï¿½Í·ï¿½ï¿½ -------*/
 .header-top{
 	width:100%;
 	height: 23px;
@@ -668,7 +668,7 @@ height:23px; margin-right:3px;}
 }
 
 
-/*------- Õ¾µãÂ·¾¶ -------*/
+/*------- Õ¾ï¿½ï¿½Â·ï¿½ï¿½ -------*/
 .path {
 	height: 30px;
 	line-height: 200%;
@@ -676,7 +676,7 @@ height:23px; margin-right:3px;}
 	color: #999999;
 }
 
-/*------- Êý¾Ý±í¸ñ -------*/
+/*------- ï¿½ï¿½Ý±ï¿½ï¿½ -------*/
 .tblist01{
 
 }
@@ -700,7 +700,7 @@ height:23px; margin-right:3px;}
 	background-color:#FFFDE6
 }
 
-/* ÈËÎïÍ·Ïñ */
+/* ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ */
 .user50{width:57px;_width:53px; height:53px; background:url(images/user_bg_50.gif) no-repeat; padding:3px 7px 6px 3px; margin-top:3px}
 .user50 img{width:50px; height:50px;}
 .user100{width:100px; height:100px; background:url(images/user_bg_100.gif) no-repeat; padding:7px 13px 13px 7px; margin-top:5px}
