@@ -162,7 +162,7 @@
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
 			    	<a href="${appPath}/manage/ManageAction_recommendNews.htm?news.id=${news.id}">ÍÆ¼ö</a>
 			    	&nbsp;
-			    	<a href="javascript:void(0);" onclick="deleteNews(${news.id});">É¾³ý</a>
+			    	<a href="javascript:deleteNews(${news.id});">É¾³ý</a>
 			    	&nbsp;
 			    	<a href="${appPath}/manage/ManageAction_news.htm?news.id=${news.id}">ÐÞ¸Ä</a>
 			    </td>

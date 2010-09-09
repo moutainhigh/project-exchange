@@ -135,7 +135,7 @@
 			    	<c:if test="${not empty c.parentBrand}">&nbsp;&nbsp;&nbsp;&nbsp;--</c:if>${c.name }			    	
 			    </td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
-			    	<a href="javascript:void(0);" onclick="deleteBrand(${c.id});">É¾³ý</a>
+			    	<a href="javascript:deleteBrand(${c.id});">É¾³ý</a>
 			    	&nbsp;
 			    	<a href="${appPath}/manage/ManageAction_brand.htm?brand.id=${c.id}">ÐÞ¸Ä</a>
 			    </td>

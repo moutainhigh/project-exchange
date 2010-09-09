@@ -133,7 +133,7 @@
 			    <td height="25" align="center"  style="border-bottom:#cccccc 1px dashed;">${c.name }</td>
 			    <td align="center"  style="border-bottom:#cccccc 1px dashed;">${c.description }</td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
-			    	<a href="javascript:void(0);" onclick="deleteCate(${c.id});">É¾³ý</a>
+			    	<a href="javascript:deleteCate(${c.id});">É¾³ý</a>
 			    	&nbsp;
 			    	<a href="${appPath}/manage/ManageAction_cate.htm?cate.id=${c.id}">ÐÞ¸Ä</a>
 			    </td>

@@ -138,7 +138,7 @@
 			    	</c:choose>
 			    </td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
-			    	<a href="javascript:void(0);" onclick="deleteZhuangshi(${c.id});">É¾³ý</a>
+			    	<a href="javascript:deleteZhuangshi(${c.id});">É¾³ý</a>
 			    	&nbsp;
 			    	<a href="${appPath}/manage/ManageAction_zhuangshi.htm?zhuangshi.id=${c.id}">ÐÞ¸Ä</a>
 			    </td>

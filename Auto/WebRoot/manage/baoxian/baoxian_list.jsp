@@ -140,7 +140,7 @@
 			    	</c:choose>
 			    </td>
 			    <td align="center" style="border-bottom:#cccccc 1px dashed;">
-			    	<a href="javascript:void(0);" onclick="deleteBaoxian(${c.id});">É¾³ý</a>
+			    	<a href="javascript:deleteBaoxian(${c.id});">É¾³ý</a>
 			    	&nbsp;
 			    	<a href="${appPath}/manage/ManageAction_baoxian.htm?baoxian.id=${c.id}">ÐÞ¸Ä</a>
 			    </td>

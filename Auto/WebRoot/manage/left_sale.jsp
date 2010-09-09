@@ -118,7 +118,7 @@
                     <a id="current" href="${appPath}/manage/ManageAction_sale.htm?sale.id=${sessionScope.userObj.id}" target="rightFrame">会员资料</a>
                     </c:if>
 					<c:if test="${isAdmin}">
-                    <a id="current" href="${appPath}/manage/ManageAction_saleList.htm" target="rightFrame">4S店列表</a>
+                    <a id="current" href="${appPath}/manage/ManageAction_saleList.htm?time=1234" target="rightFrame">4S店列表</a>
                     <a id="current" href="${appPath}/manage/sale/sale_edit.jsp" target="rightFrame">添加4S店会员</a>
                     </c:if>
                     <a id="current" href="${appPath}/manage/ManageAction_carList.htm" target="rightFrame">已发布车型</a>
