@@ -95,7 +95,7 @@
 		</style>
 		<script>
 			function deleteSale(id){
-				if(id){
+				if(id&&confirm('确定删除吗？该会员所有的优惠信息也将被删除\n此操作不可恢复!')){
 					self.location.href = 'ManageAction_deleteSale.action?sale.id='+id;
 				}
 			}
