@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+    <package  name="struts2" extends="struts-default">
+    	<global-results>
+    		<result name="index">/index.jsp</result>
+    	</global-results>
+    	<action name="db_*" method="{1}" class="com.throne212.tg.action.DbAction">
+    		<result name="db_show">/db.jsp</result>
+    	</action>  
+    	<action name="config_*" method="{1}" class="com.throne212.tg.action.ConfigAction">
+    		<result name="config_show">/config.jsp</result>
+    	</action>   
+    	<action name="fetch_*" method="{1}" class="com.throne212.tg.action.FetchAction">
+    		<result name="generate_succ">/generate_succ.jsp</result>
+    		<result name="fetch_succ">/fetch_succ.jsp</result>
+    	</action>	
+    </package>
+    <package name="json" extends="json-default">
+    	<!-- AjaxAction -->
+        <action name="ajax_*" method="{1}" class="com.throne212.tg.action.AjaxAction">
+			<result name="databases" type="json">
+				<param name="includeProperties">     
+                    list\[\d+\]
+				</param>
+			</result>
+			<result name="tables" type="json">
+				<param name="includeProperties">     
+                    list\[\d+\]
+				</param>
+			</result>
+			<result name="columns" type="json">
+				<param name="includeProperties">     
+                    fieldList\[\d+\]\.name,
+                    fieldList\[\d+\]\.type
+				</param>
+			</result>
+			<result name="configs" type="json">
+				<param name="includeProperties">     
+                    list\[\d+\]
+				</param>
+			</result>
+			<result name="tableDataMeta" type="json">
+				<param name="includeProperties">     
+                    fieldList\[\d+\]\.name
+				</param>
+			</result>
+			<result name="tableData" type="json">
+				<param name="includeProperties">  
+                    dataList.*
+				</param>
+			</result>
+		</action>
+    </package>
+</struts>
