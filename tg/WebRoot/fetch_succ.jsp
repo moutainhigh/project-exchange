@@ -21,6 +21,6 @@
 	</head>
 
 	<body>
-		<h1>数据抓取成功：${mappingClass.name}.xml</h1>
+		<h1>数据抓取完成：${mappingClass.name}.xml，请检查数据库</h1>
 	</body>
 </html>
