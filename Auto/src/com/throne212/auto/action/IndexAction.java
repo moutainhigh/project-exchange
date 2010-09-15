@@ -143,7 +143,7 @@ public class IndexAction extends BaseAction {
 			news.setClick(news.getClick()+1);
 			userBiz.saveOrUpdateEntity(news);
 		}
-		//other5RecommendNewsList = newsBiz.getOther5RecommendNews(news.getCategory().getOrderNum());
+		other5RecommendNewsList = newsBiz.getOther5RecommendNews(news.getCategory().getOrderNum());
 		return "news";
 	}
 	

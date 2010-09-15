@@ -220,7 +220,7 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		Long len = (Long) query.uniqueResult();
 		long b = (len % 10 == 0)?len/10:len/10+1;
 		query = session.createQuery(hql);
-		for (int i = 0; i < len/10; i++) {
+		for (int i = 0; i < b; i++) {
 			j = 0;
 			for(Object obj : params){
 				query.setParameter(j++, obj);
@@ -249,6 +249,7 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			String newsPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath() + "/" + newsName + ".htm?" + newsName + ".id=" + n.getId()+"&auto=Y";
+			logger.debug("news url=" + newsPath);
 
 			URL url = new URL(newsPath);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();

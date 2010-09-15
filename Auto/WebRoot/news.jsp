@@ -41,8 +41,9 @@
             </div>
             <div class="pad_20">
               <ul class="dotli01">
-              	<c:forEach items="${other5RecommendNewsList}" var="n"></c:forEach>
-                <li><a href="news.htm?news.id=${n.id}" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.pubishDateTxt }</span></li>
+              	<c:forEach items="${other5RecommendNewsList}" var="n">
+                <li><a href="news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+                </c:forEach>
               </ul>
             </div>
           </div>

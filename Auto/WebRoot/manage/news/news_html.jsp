@@ -97,12 +97,14 @@
 		<script src="${appPath}/js/common.js"></script>
 		<script type="text/javascript" src="${appPath}/js/jquery.datepick.js"></script>
 		<script>
-			function submitForm(){
-				$('input[type="button"]').attr("disabled",true);
+			function showTxt(){
 				$('#wait').show();
 				$('#wait span').html('.'+$('#wait span').html());
+			}
+			function submitForm(){
+				$('input[type="button"]').attr("disabled",true);				
 				document.forms[0].submit();
-				window.setTimeout('submitForm()','1000');
+				window.setTimeout('showTxt()','1000');
 			}
 			$(function(){
 				$('.datetimeInput').datepick({dateFormat: 'yy-mm-dd'});
