@@ -113,7 +113,7 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		}
 	}
 	public List<News> getTop4RecommendImageNews(){
-		String hql = "from News n where n.image!=null and n.recommend=true order by publishDate desc";
+		String hql = "from News n where n.image!=null and n.image!='' and n.recommend=true order by publishDate desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		return s.createQuery(hql).setMaxResults(4).list();
 	}

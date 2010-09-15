@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
     <c:choose>    	<c:when test="${not empty news.seoTitle}">    		<c:set value="${news.seoTitle}" var="t"></c:set>    	</c:when>    	<c:otherwise>    		<c:set value="${appTitle}" var="t"></c:set>    	</c:otherwise>    </c:choose>    <c:choose>    	<c:when test="${not empty news.seoDesc}">    		<c:set value="${news.seoDesc}" var="d"></c:set>    	</c:when>    	<c:otherwise>    		<c:set value="${appDesc}" var="d"></c:set>    	</c:otherwise>    </c:choose>
-    <title>${t}</title>
+    <title>${t} 张家口资讯网汽车频道-张家口汽车门户网站</title>
     <meta name="description" content="${d}" />
     <meta name="keywords"  content="${appKeywords}" />
     <link href="${appPath}/Themes/basic.css" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
           <div class="hd bbd_gray">
             <h1> ${news.title } </h1>
             <div class="titBar mauto">
-              <div class="info"> ${news.publishDate } <span class="infoCol"><span class="where"><a target="_blank" href="#">${news.author}</a></span></span></div>
+              <div class="info"> ${news.publishDate } <span class="infoCol"><span class="where">${news.author}</span></span></div>
             </div>
           </div>
           <div class="mar_t10">
@@ -42,7 +42,7 @@
             <div class="pad_20">
               <ul class="dotli01">
               	<c:forEach items="${other5RecommendNewsList}" var="n">
-                <li><a href="news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
+                <li><a href="${appPath}/news/${n.no}.html" target="_blank">${n.title}</a><span class="ft10 gray mar_l10">${n.publishDateTxt }</span></li>
                 </c:forEach>
               </ul>
             </div>
