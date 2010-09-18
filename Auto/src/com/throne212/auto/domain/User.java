@@ -11,7 +11,7 @@ public class User extends MyEntity {
 	@Column(nullable = false, length = 20, unique = true)
 	protected String loginName;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 50)
 	protected String password;
 
 	public String getLoginName() {
