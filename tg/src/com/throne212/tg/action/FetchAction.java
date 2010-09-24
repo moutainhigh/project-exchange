@@ -3,14 +3,18 @@ package com.throne212.tg.action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.lang.reflect.Field;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,12 +25,14 @@ import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.filters.TagNameFilter;
 import org.htmlparser.tags.HeadingTag;
 import org.htmlparser.tags.ImageTag;
+import org.htmlparser.tags.Span;
 import org.htmlparser.tags.TableColumn;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.visitors.ObjectFindingVisitor;
 
 import com.thoughtworks.xstream.XStream;
 import com.throne212.tg.common.JdbcUtil;
+import com.throne212.tg.common.Util;
 import com.throne212.tg.common.WebConstants;
 import com.throne212.tg.config.MappingClass;
 import com.throne212.tg.config.Parser;
@@ -56,6 +62,8 @@ public class FetchAction {
 		try {
 			fis = new FileInputStream(xmlpath + File.separator + mappingClass.getName() + ".xml");
 			mappingClass = (MappingClass) xstream.fromXML(new InputStreamReader(fis, "UTF-8"));
+			String html = "";
+			html = saveHtmlPage(mappingClass.getUrl(),mappingClass.getEncode());
 			List<Object> values = new ArrayList<Object>();
 			StringBuffer paramsStr = new StringBuffer();
 			StringBuffer wenhaoStr = new StringBuffer();
@@ -70,6 +78,7 @@ public class FetchAction {
 					ps.execute();
 					ps.close();
 
+					System.out.println("sql=" + sql);
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					if (rs.next()) {
@@ -80,19 +89,24 @@ public class FetchAction {
 					JdbcUtil.close(conn, ps, rs);
 				} else if ("const".equals(value.getType())) {// 常量
 					txt = prop.getValue().getData();
+				} else if ("date".equals(value.getType())) {// 当前时间
+					txt = new Date();
 				} else if ("parser".equals(value.getType())) {
 					if ("h1".equalsIgnoreCase(parser.getType())) {
-						txt = parseH1(mappingClass.getUrl(), mappingClass.getEncode(), parser);
+						txt = parseH1(html, mappingClass.getEncode(), parser);
 						System.out.println("[h1结果]" + txt);
 					} else if ("strong".equalsIgnoreCase(parser.getType())) {
-						txt = parseStrong(mappingClass.getUrl(), mappingClass.getEncode(), parser, parser.getIndex());
+						txt = parseStrong(html, mappingClass.getEncode(), parser, parser.getIndex());
 						System.out.println("[strong结果]" + txt);
 					} else if ("td".equalsIgnoreCase(parser.getType())) {
-						txt = parseTd(mappingClass.getUrl(), mappingClass.getEncode(), parser, parser.getIndex());
+						txt = parseTd(html, mappingClass.getEncode(), parser, parser.getIndex());
 						System.out.println("[td结果]" + txt);
 					} else if ("img".equalsIgnoreCase(parser.getType())) {
-						txt = parseImg(mappingClass.getUrl(), mappingClass.getEncode(), parser, parser.getIndex());
+						txt = parseImg(html, mappingClass.getEncode(), parser, parser.getIndex());
 						System.out.println("[img结果]" + txt);
+					} else if ("span".equalsIgnoreCase(parser.getType())) {
+						txt = parseSpan(html, mappingClass.getEncode(), parser, parser.getIndex());
+						System.out.println("[span结果]" + txt);
 					}
 				}
 				values.add(txt);
@@ -133,13 +147,34 @@ public class FetchAction {
 		}
 		return "fetch_succ";
 	}
+	
+	private String saveHtmlPage(String localUrl,String encode) throws Exception{
+		if(Util.isEmpty(localUrl))
+			return null;
+		URL url = new URL(localUrl);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-	public String parseH1(String url, String encode, Parser p) {
+		StringBuffer sb = new StringBuffer();
+
+		InputStream is = conn.getInputStream();
+		InputStreamReader in = new InputStreamReader(is, encode);
+		char[] buff = new char[512];
+		int len = -1;
+		while ((len = in.read(buff)) > -1) {
+			//String str = new String(buff, 0, len);
+			sb.append(buff,0,len);
+			// System.out.println(str);
+		}
+		is.close();
+		return sb.toString();
+	}
+
+	public String parseH1(String html, String encode, Parser p) {
 		try {
 			NodeFilter filter = new TagNameFilter("H1");
 			org.htmlparser.Parser parser = new org.htmlparser.Parser();
 			// parser.setURL("http://www.google.com");
-			parser.setURL(url);
+			parser.setInputHTML(html);
 			parser.setEncoding(encode);
 			NodeList list = parser.extractAllNodesThatMatch(filter);
 			for (int i = 0; i < list.size(); i++) {
@@ -170,10 +205,10 @@ public class FetchAction {
 		}
 	};
 
-	public String parseStrong(String url, String encode, Parser p, int index) {
+	public String parseStrong(String html, String encode, Parser p, int index) {
 		try {
 			org.htmlparser.Parser parser = new org.htmlparser.Parser();
-			parser.setURL(url);
+			parser.setInputHTML(html);
 			parser.setEncoding(encode);
 
 			PrototypicalNodeFactory factory = new PrototypicalNodeFactory();
@@ -205,12 +240,12 @@ public class FetchAction {
 		return null;
 	}
 
-	public String parseTd(String url, String encode, Parser p, int index) {
+	public String parseTd(String html, String encode, Parser p, int index) {
 		try {
 			NodeFilter filter = new TagNameFilter("TD");
 			org.htmlparser.Parser parser = new org.htmlparser.Parser();
 			// parser.setURL("http://www.google.com");
-			parser.setURL(url);
+			parser.setInputHTML(html);
 			parser.setEncoding(encode);
 			NodeList list = parser.extractAllNodesThatMatch(filter);
 			for (int i = 0; i < list.size(); i++) {
@@ -234,13 +269,42 @@ public class FetchAction {
 		}
 		return null;
 	}
+	public String parseSpan(String html, String encode, Parser p, int index) {
+		try {
+			NodeFilter filter = new TagNameFilter("SPAN");
+			org.htmlparser.Parser parser = new org.htmlparser.Parser();
+			// parser.setURL("http://www.google.com");
+			parser.setInputHTML(html);
+			parser.setEncoding(encode);
+			NodeList list = parser.extractAllNodesThatMatch(filter);
+			for (int i = 0; i < list.size(); i++) {
+				if (i < index)
+					continue;
+				Span span = (Span) list.elementAt(i);
+				String txt = span.getChildrenHTML();
+				if (p.getExclude() != null)
+					txt = txt.replaceAll(p.getExclude(), "");
+				if (p.getPattern() != null) {
+					Pattern pattern = Pattern.compile(p.getPattern());
+					Matcher m = pattern.matcher(txt);
+					if (m.find()) {
+						return m.group();
+					}
+				} else
+					return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-	public String parseImg(String url, String encode, Parser p, int index) {
+	public String parseImg(String html, String encode, Parser p, int index) {
 		try {
 			ImageTag imgLink;
 			ObjectFindingVisitor visitor = new ObjectFindingVisitor(ImageTag.class);
 			org.htmlparser.Parser parser = new org.htmlparser.Parser();
-			parser.setURL(url);
+			parser.setInputHTML(html);
 			parser.setEncoding(encode);
 			parser.visitAllNodesWith(visitor);
 			Node[] nodes = visitor.getTags();

@@ -22,5 +22,6 @@
 
 	<body>
 		<h1>数据抓取完成：${mappingClass.name}.xml，请检查数据库</h1>
+		<a href="index.jsp">返回</a>
 	</body>
 </html>

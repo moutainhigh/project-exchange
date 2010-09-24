@@ -22,5 +22,6 @@
 
 	<body>
 		<h1>生成配置文件成功：${mappingClass.name}.xml</h1>
+		<a href="index.jsp">返回</a>
 	</body>
 </html>

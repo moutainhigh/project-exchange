@@ -59,6 +59,11 @@
                     dataList.*
 				</param>
 			</result>
+			<result name="configObj" type="json">
+				<param name="includeProperties">  
+                    mappingClass.*
+				</param>
+			</result>
 		</action>
     </package>
 </struts>

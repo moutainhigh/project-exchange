@@ -93,8 +93,6 @@ public class JdbcUtil {
 			return Boolean.class.getName();
 		case Types.CHAR:
 			return Character.class.getName();
-		case Types.DATE:
-			return Date.class.getName();
 		case Types.DECIMAL:
 			return Double.class.getName();
 		case Types.DOUBLE:
@@ -106,6 +104,10 @@ public class JdbcUtil {
 			return Integer.class.getName();
 		case Types.NUMERIC:
 			return Double.class.getName();
+		case Types.DATE:
+		case Types.TIMESTAMP:
+		case Types.TIME:
+			return Date.class.getName();			
 		case Types.NCHAR:
 		case Types.NVARCHAR:
 		case Types.VARCHAR:

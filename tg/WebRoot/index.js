@@ -7,16 +7,19 @@ $(function(){
 	showConfigLiList();
 });
 //1
-function loadDatabases(){
+function loadDatabases(currDB){
 	$.getJSON("ajax_loadDatabases.action", {}, function(json){
 	  	var list = json['list'];
 	  	$('.database').html('<option value=""></option>');
 	  	for(var i=0;i<list.length;i++){
 	  		$("<option value="+list[i]+">"+list[i]+"</option>").appendTo(".database");
 	  	}
+	  	if(currDB){
+	  		$('.database').val(currDB);
+	  	}
 	}); 
 }
-function loadTables(database){
+function loadTables(database,currTable){
 	//alert('database='+database);
 	$.getJSON("ajax_loadTables.action", {"database":database}, function(json){
 	  	var list = json['list'];
@@ -26,10 +29,13 @@ function loadTables(database){
 	  	for(var i=0;i<list.length;i++){
 	  		$("<option value="+list[i]+">"+list[i]+"</option>").appendTo(".table");
 	  	}
+	  	if(currTable){
+	  		$('.table').val(currTable);
+	  	}
 	}); 
 }
 //2
-function showConfigTrList(database,table){
+function showConfigTrList(database,table,propertyList){
 	if(table == null || table == ''){
 		return false;
 	}
@@ -43,9 +49,9 @@ function showConfigTrList(database,table){
 			str += '<tr>';
 			str += '	<td style="border-bottom:1px solid #51AD1A"><input name="mappingClass.propertyList['+i+'].name" value="'+list[i]['name']+'"/></td>';
 			str += '	<td style="border-bottom:1px solid #51AD1A"><input name="mappingClass.propertyList['+i+'].type" value="'+list[i]['type']+'"/></td>';
-			str += '	<td style="border-bottom:1px solid #51AD1A"><select name="mappingClass.propertyList['+i+'].value.type"><option value="">空</option><option value="key">主键</option><option value="parser">parser</option><option value="const">const</option></select></td>';
+			str += '	<td style="border-bottom:1px solid #51AD1A"><select name="mappingClass.propertyList['+i+'].value.type"><option value="">空</option><option value="key">主键</option><option value="parser">parser</option><option value="const">const</option><option value="date">当前时间</option></select></td>';
 			str += '	<td style="border-bottom:1px solid #51AD1A">';
-			str += '		解析器类型（标签）：<select name="mappingClass.propertyList['+i+'].value.parser.type"><option value=""></option><option value="h1">h1</option><option value="strong">strong</option><option value="td">td</option><option value="img">img</option></select>';
+			str += '		解析器类型（标签）：<select name="mappingClass.propertyList['+i+'].value.parser.type"><option value=""></option><option value="h1">h1</option><option value="strong">strong</option><option value="td">td</option><option value="img">img</option><option value="span">span</option></select>';
 			str += '		<br/>';
 			str += '		解析器标签索引：<input name="mappingClass.propertyList['+i+'].value.parser.index"/>(从0开始)';
 			str += '		<br/>';
@@ -57,6 +63,18 @@ function showConfigTrList(database,table){
 			str += '	</td>';
 			str += '</tr>';
 	  		$(str).appendTo("#configTrList");
+	  	}
+	  	if(propertyList){
+	  		for(var i=0;i<propertyList.length;i++){
+	  			//$('*[name="mappingClass.propertyList['+i+'].name"]').val(propertyList[i]['name']);
+	  			//$('*[name="mappingClass.propertyList['+i+'].type"]').val(propertyList[i]['type']);
+	  			$('*[name="mappingClass.propertyList['+i+'].value.type"]').val(propertyList[i]['value']['type']);
+	  			$('*[name="mappingClass.propertyList['+i+'].value.parser.type"]').val(propertyList[i]['value']['parser']['type']);
+	  			$('*[name="mappingClass.propertyList['+i+'].value.parser.index"]').val(propertyList[i]['value']['parser']['index']);
+	  			$('*[name="mappingClass.propertyList['+i+'].value.parser.pattern"]').val(propertyList[i]['value']['parser']['pattern']);
+	  			$('*[name="mappingClass.propertyList['+i+'].value.parser.exclude"]').val(propertyList[i]['value']['parser']['exclude']);
+	  			$('*[name="mappingClass.propertyList['+i+'].value.data"]').val(propertyList[i]['value']['data']);
+	  		}
 	  	}
 	}); 
 }
@@ -70,7 +88,7 @@ function showConfigLiList(){
 	  	for(var i=0;i<list.length;i++){	  		
 	  		var str = '';
 	  		str += '<form action="fetch_fetch.htm" method="post"><input name="mappingClass.name" value="'+list[i]+'" type="hidden"/>';
-	  		str += '<li><a href="xml/'+list[i]+'.xml" target="_blank">'+list[i]+'.xml</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="开始抓取"/></li>';
+	  		str += '<li><a href="xml/'+list[i]+'.xml" target="_blank">'+list[i]+'.xml</a><input style="margin:auto 20px;" type="submit" value="开始抓取"/><input style="margin:auto 20px;" type="button" value="修改配置" onclick="config(\''+list[i]+'\')"/></li>';
 	  		str += '</form>';					
 	  		$(str).appendTo("#configUl");
 	  	}
@@ -108,4 +126,25 @@ function showTableData(database,table){
 		}); 
 	}); 
 	
+}
+
+function config(name){
+	$('#tabs').tabs('select', 1);
+	$.getJSON("ajax_loadConfigObj.action", {"configName":name}, function(json){
+		  if(json)
+		  	fillConfig(json['mappingClass']);
+	}); 
+}
+function fillConfig(config){
+  	for(var prop in config){
+  		if('database' == prop && config['database']){
+  			loadDatabases(config['database']);
+  		}else if('table' == prop && config['table'] && config['database']){
+  			loadTables(config['database'],config['table']);
+  			showConfigTrList(config['database'],config['table'],config['propertyList']);
+  		}else{
+	  		var inputName = "mappingClass." + prop;
+	  		$('*[name="'+inputName+'"]').val(config[prop]);
+  		}
+  	}
 }

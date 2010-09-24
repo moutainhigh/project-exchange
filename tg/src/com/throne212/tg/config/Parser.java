@@ -2,7 +2,7 @@ package com.throne212.tg.config;
 
 public class Parser {
 	private String type;//解析类型，table，heading
-	private int index;//标签所属索引，类似于jquery.eq(index)
+	private Integer index;//标签所属索引，类似于jquery.eq(index)
 	private String exclude;//排斥正则
 	private String pattern;//匹配正则
 
@@ -30,11 +30,11 @@ public class Parser {
 		this.pattern = pattern;
 	}
 
-	public int getIndex() {
+	public Integer getIndex() {
 		return index;
 	}
 
-	public void setIndex(int index) {
+	public void setIndex(Integer index) {
 		this.index = index;
 	}
 
