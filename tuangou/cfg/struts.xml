@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	<constant name="struts.i18n.encoding" value="GBK"/>
+	
+    <package name="struts2" namespace="/" extends="struts-default">
+		<action name="*" method="{1}" class="com.throne212.auto.action.IndexAction">
+			<result name="index">/index.jsp</result>
+			<result name="index_html">/index.html</result>
+			<result name="sale_list">/4s_list.jsp</result>
+			<result name="sale">/4s.jsp</result>
+			<result name="sale_car">/4s_car.jsp</result>
+			<result name="sale_car_detail">/4s_car_detail.jsp</result>
+			<!-- special -->
+			<result name="special_list">/special_list.jsp</result>
+			<result name="special">/special.jsp</result>
+			<!-- other news -->
+			<result name="news_list">/news_list.jsp</result>
+			<result name="news">/news.jsp</result>
+			<result name="jjXinde">/xinde_list.jsp</result>
+			<result name="zjXinde">/xinde_list2.jsp</result>
+			<result name="other_list">/other_list.jsp</result>
+			<result name="baoxian">/baoxian.jsp</result>
+			<result name="zhuangshi">/zhuangshi.jsp</result>
+			<!-- search -->
+			<result name="search">/search.jsp</result>
+			<result name="search_4s">/search_4s_list.jsp</result>
+			<result name="login">/sale_login.jsp</result>
+		</action>
+		<action name="LoginAction" class="com.throne212.auto.action.LoginAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">ManageAction_index</param>
+				<param name="namespace">/manage</param>
+			</result>
+			<result name="error" type="redirectAction">index</result>
+		</action>
+		<action name="LogoutAction" class="com.throne212.auto.action.LogoutAction">
+			<result name="success" type="chain">index</result>
+		</action>
+    </package>
+    
+    <package name="json" extends="json-default">
+		<action name="ajax_*" method="{1}" class="com.throne212.auto.action.AjaxAction">
+			<result name="sale_list" type="json">
+				<param name="includeProperties">     
+					saleList\[\d+\]\.id,
+					saleList\[\d+\]\.fullName
+				</param>
+			</result>
+			<result name="brand_list" type="json">
+				<param name="includeProperties">     
+					brandList\[\d+\]\.id,
+					brandList\[\d+\]\.name
+				</param>
+			</result>
+		</action>
+    </package>
+    
+    <package name="struts2-manange" namespace="/manage" extends="struts-default">
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.auto.filter.AccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        
+        <global-results>
+        	<result name="index" type="redirectAction">
+        		<param name="actionName">index</param>
+        		<param name="namespace">/</param>
+        	</result>
+        	<result name="login" type="redirectAction">
+        		<param name="actionName">login</param>
+        		<param name="namespace">/</param>
+        	</result>
+        </global-results>
+        
+		<action name="ManageAction_*" method="{1}" class="com.throne212.auto.action.ManageAction">
+			<result name="main">/manage/manage.jsp</result>
+			<result name="welcome">/manage/welcome/welcome.jsp</result>
+			<result name="pwd">/manage/welcome/pwd.jsp</result>
+			<result name="setting">/manage/welcome/setting.jsp</result>
+			<result name="index_html">/manage/welcome/index_html.jsp</result>
+			<result name="news_list">/manage/news/news_list.jsp</result>
+			<result name="news_edit">/manage/news/news_edit.jsp</result>
+			<result name="news_html">/manage/news/news_html.jsp</result>
+			<result name="cate_list">/manage/cate/cate_list.jsp</result>
+			<result name="cate_edit">/manage/cate/cate_edit.jsp</result>
+			<result name="sale_edit">/manage/sale/sale_edit.jsp</result>
+			<result name="sale_list">/manage/sale/sale_list.jsp</result>
+			<result name="car_edit">/manage/sale/sale_car_edit.jsp</result>
+			<result name="car_list">/manage/sale/sale_car_list.jsp</result>
+			<result name="special_edit">/manage/sale/sale_special_edit.jsp</result>
+			<result name="special_list">/manage/sale/sale_special_list.jsp</result>
+			<result name="link_list">/manage/welcome/link_list.jsp</result>
+			<result name="link_edit">/manage/welcome/link_edit.jsp</result>
+			<result name="zhuangshi_list">/manage/zhuangshi/zhuangshi_list.jsp</result>
+			<result name="zhuangshi_edit">/manage/zhuangshi/zhuangshi_edit.jsp</result>
+			<result name="baoxian_list">/manage/baoxian/baoxian_list.jsp</result>
+			<result name="baoxian_edit">/manage/baoxian/baoxian_edit.jsp</result>
+			<result name="brand_list">/manage/brand/brand_list.jsp</result>
+			<result name="brand_edit">/manage/brand/brand_edit.jsp</result>
+		</action>
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.auto.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/manage/upload/success.jsp</result>
+			<result name="error">/manage/upload/fail.jsp</result>
+		</action>
+    </package>
+    
+</struts>
