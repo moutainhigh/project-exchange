@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="tuangou"
+  id="myeclipse.1285567647843"
+  context-root="/tuangou"
+  j2ee-spec="5.0"
+  archive="tuangou.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
