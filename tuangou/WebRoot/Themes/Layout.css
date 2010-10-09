@@ -1,0 +1,314 @@
+﻿/* ----- 图片切换----- */
+
+.pic-imgnews{
+	position:relative;
+	padding:#F7F7F7;
+	padding:0;
+	color:#666;
+}
+
+.pic-imgnews img{
+	border:1px solid #9b9b9b;
+}
+
+.pic-imgnews .txt{
+	position:absolute;
+	height:22px;
+	line-height:14px;
+	overflow:hidden;
+	font-family:"微软雅黑";
+	font-size:14px;
+	font-weight: bold;
+	color:#fff;
+	top: 200px;
+	width: 330px;
+	z-index: 2;
+	background: url(images/pic_news_bg.png) no-repeat 0 0;
+	padding: 8px 0 0 10px;
+}
+
+.pic-imgnews ul{
+	position:absolute;
+	height:14px;
+	line-height:14px;
+	overflow:hidden;
+	right:3px;
+	font-family:Arial;
+	font-size:10px;
+	color:#fff;
+	top: 163px;
+	z-index: 10;
+}
+
+.pic-imgnews li{ float:left; background:#424648; padding:0 5px; border-left:1px solid #fff; cursor:pointer;}
+
+.pic-imgnews .current{ background:#dddce1; color: #333;}
+
+/*----- 研究列表 -----*/
+.topiclist{
+	overflow:hidden;
+	clear:both;
+	padding-top: 10px;
+	height: 325px;
+}
+.topiclist dl{
+	float:left;
+	width:320px;
+	margin: 2px 5px 2px 0;
+}
+.topiclist dt{
+	float:left;
+	width:66px;
+}
+.topiclist dt img{
+	width:60px;
+	height:60px;
+	border:1px solid #2196B7;
+	padding: 1px;
+}
+.topiclist dd{
+	float:left;
+	width:240px;
+	padding:0 0 0 10px;
+}
+.topiclist dd b{
+	display:block;
+	width:240px;
+	padding:1px 0 3px 0;
+	font-weight:normal;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.topiclist dd p{
+	color:#333;
+	text-overflow:ellipsis;
+}
+
+/*----- 新闻列表 -----*/
+.news li{
+	margin: 5px;
+}
+
+
+.concern_us li{background:transparent url(images/icos.png) no-repeat scroll 0 0;height:25px; border-bottom:1px dotted #c5c5c5; font-size:12px; color:#000; text-align:left; padding-left:25px; line-height:25px;}
+.concern_us li a{ float:right;color:#0048b5; text-decoration:underline;}
+.concern_us li a:hover{ color:#F00;}
+.concern_us li span{ float:right; color:#0048b5;}
+.concern_us .li_img1{ background-position:0 0px;}
+.concern_us .li_img2{ background-position:0 -26px;}
+.concern_us .li_img3{ background-position:0 -52px;}
+.concern_us .li_img4{ background-position:0 -78px;}
+.concern_us .li_img5{ background-position:0 -104px;}
+.concern_us .li_img6{ background-position:0 -130px;}
+
+.top_deal_ads li{overflow:hidden;_zoom:1;padding:5px 0}
+.top_deal_ads .count{float:left;width:42px;overflow:hidden;height:24px;line-height:24px;border:1px solid #ccc;text-align:center;background:#E3E9EA;margin:2px 0}
+.top_deal_ads .info{
+	float:right;
+	width:180px;
+	height:30px;
+	line-height:15px;
+	overflow:hidden;
+}
+.top_deal_ads li .site{color:#333;}
+.top_deal_ads .text{display:inline}
+
+/*----- 保险列表 -----*/
+.togolist{
+	overflow:hidden;
+	clear:both;
+}
+.togolist dl{
+	float:left;
+	width:225px;
+	margin: 5px;
+}
+.togolist dt{
+	float:left;
+	width:84px;
+}
+.togolist dt img{
+	width:80px;
+	height:60px;
+	border:1px solid #AACCEE;
+	padding: 1px;
+}
+.togolist dd{
+	float:left;
+	width:10px;
+	padding:0 0 0 6px;
+}
+.togolist dd b{
+	display:block;
+	width:130px;
+	padding:1px 0 3px 0;
+	font-weight:normal;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.togolist dd p{
+	width:130px;
+	color:#333;
+	line-height:20px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.citylist li{
+	width:70px;
+	float: left;
+	padding: 3px 0;
+}
+
+.webfriendslist li{
+	width:135px;
+	float: left;
+	padding: 5px 0;
+	border-bottom: 1px dotted #c5c5c5;
+}
+
+/*change_page_layout*/
+.new_nav_2{ height:33px;background:#eff9fa;padding-left:6px;margin:0 1px;overflow:hidden;_zoom:1;}
+.new_nav_2 ul{float:left;}
+.new_nav_2 li{ width:125px; float:left; height:31px; padding-top:3px;font-size:12px; color:#39a2a9; text-align:center; line-height:34px;}
+.new_nav_2 li a{float:left; height:14px;line-height:14px; color:#39a2a9; width:125px;padding:8px 0}
+.new_nav_2 li a:hover,.new_nav_2 li a.on{ background:url(images/tuan800_bg.png) no-repeat -835px -256px; color:#000; font-weight:bold; text-decoration:none;}
+.new_nav_n1{ padding-right:15px;height:34px; float:right;font-size:12px; color:#000; text-align:left; line-height:34px;}
+.new_nav_n1 span{ float:left;}
+.new_nav_n1 select{ margin-left:5px; font-size:12px; color:#333; width:120px; height:20px; line-height:20px; -height:25px; margin-top:6px; float:left;}
+.new_nav_n2{ width:125px; height:34px; float:right; text-align:left;}
+.new_nav_n2 a{margin:0 5px; font-size:12px; color:#000;width:30px; height:34px;line-height:34px; float:left;background:url(images/tuan800_bg.png) no-repeat -82px -483px;padding-left:20px;}
+.new_nav_n2 a.grid_button{background-position:-82px -483px}
+.new_nav_n2 a.grid_button.on{background-position:0 -483px}
+.new_nav_n2 a.row_button{background-position:-163px -483px}
+.new_nav_n2 a.row_button.on{background-position:-243px -483px}
+
+.grid .deal{
+	width:220px;
+	height:270px;
+	border:1px solid #e3e3e3;
+	float:left;
+	margin:0;
+	_display:inline;
+	padding:1px 1px;
+	position:relative;
+	z-index:1;
+}
+
+.grid li{
+    margin: 3px;
+	float: left;
+}
+.grid .image_link{width:220px;height:139px;*font-size:121px}
+.grid .out_of_stock{top:10px;left:45px;width:150px;height:110px;}
+.grid .new_time{display:none;}
+.grid .deal_hover .new_time{display:block;}
+.grid .new_ms_bt{margin-bottom:3px;}
+.grid .new_ms_jq span{display:block;}
+.grid .new_ns_gm p{ width:94px;text-align:center;}
+.grid .out_of_stock{top:20px;left:45px;width:150px;height:110px;}
+.new_plshc{z-index:2;width:122px; height:22px; background:url(images/tuan800_bg.png) no-repeat -131px -580px; position:absolute; right:0; bottom:0;}
+.new_plshc_a1,.new_plshc_a2{ width:50px; height:22px; display:block; float:right; background:url(images/tuan800_bg.png) no-repeat -269px -579px; text-align:left; font-size:12px; color:#515151; line-height:22px; text-indent:20px;}
+.new_plshc_a2{ background-position: -337px -580px;}
+.new_ms_jq{ width:109px; float:left; padding-left:7px; font-size:12px; color:#666; text-align:left; line-height:20px;}
+.new_ms_jq strong{ font-size:16px; color:#de0000;}
+.new_ms_jq em{ color:#de0000;font-style:normal;}
+.new_ns_gm{ width:94px; float:right; padding-right:6px;}
+.new_ns_gm img{ padding-top:5px;}
+.new_ns_gm p{font-size:12px; color:#666;height:20px;line-height:20px;overflow:hidden;}
+
+.new_ns_gm .buy{display:inline-block;height:30px;width:94px;background:transparent url(images/tuan_bg_jpg.png) no-repeat scroll -212px 3px}
+
+.c1_1{
+	height:20px;
+	padding:7px 0 6px 10px;
+	background:url(images/sp.png) repeat-x 0px -774px;
+	font-size:12px;
+	color:#000;
+	text-align:left;
+	line-height:16px;
+}
+.c1_1 a{ padding-left:23px; height:16px; color:#000; padding-right:7px;}
+.c1_1 a:hover{color:#06c}
+
+.deal-share-links{float:right;padding:0; font-size:12px;}
+.deal-share-links .share-title{display:block;float:left;width:80px;}
+.deal-share-links .share_list{float:left;margin-top:2px}
+.deal-share-links a{background:transparent url(images/share_icon.gif) no-repeat scroll left center;float:left;height:16px;padding-left:18px ;line-height:16px;overflow:hidden;cursor:pointer;font-size:normal;text-decoration:none;padding-right:6px}
+.deal-share-links .qq{background-position:0 -50px}
+.deal-share-links .kaixin{background-position:0 -84px}
+.deal-share-links .renren{background-position:0 -67px}
+.deal-share-links .douban{background-position:0 -16px}
+.deal-share-links .sina{background-position:0 -34px}
+.deal-share-links .email{background-position:0 1px}
+.deal-share-links a.favorite{font-family:Helvetica,arial,sans-serif;font-size:12px;color:#000;text-decoration:none}
+
+.c1_2{
+	width:693px;
+	padding:10px;
+	text-align:left;
+	height:auto;
+	line-height:25px;
+	font-size:14px;
+}
+.c1_2 span{ color:#900; font-weight:bold;}
+.c1_2 strong{ display:inline; color:#00F;}
+.c1_2 h1{ color:#000; display:inline;}
+.c1_2 h1 a{ color:#000;}
+.c1_3{ width:693px; padding:10px; padding-bottom:0px;}
+.c1_3_left{ width:372px; float:left;}
+.c1_3_left img{border:1px solid #000;max-width:370px;*width:370px;}
+.c1_3_left ul{ width:100%; padding:10px 0px; float:left; height:25px;}
+.c1_3_left li{ width:114px; height:25px; color:#000; font-size:12px; text-indent:40px; line-height:25px;float:left;background: transparent url(images/sp.png) no-repeat scroll 0px -642px;}
+.c1_3_left .ding_li{background-position:0px -642px}
+.c1_3_left .concern_li{background-position:0px -673px;margin: 0px 13px;}
+.c1_3_left .buy_li{background-position:0px -704px}
+.c1_3_left ul li font{ color:#F00; padding:0px 2px;font-size:12px}
+.c1_3_right{ width:310px; float:right; padding:10px 0px; position:relative;}
+.c1_3_right .deal_infos{ width:310px; font-size:14px; line-height:23px; color:#000; text-align:left;}
+.c1_3_right .deal_infos strong{ color:#900; font-size:18px;}
+.c1_3_right .deal_infos a{ color:#006666;}
+.c1_3_right .deal_infos_1{margin-bottom:10px;font-size:12px;color:#888;line-height:18px;}
+.c1_3_right .deal_infos_2{margin-bottom:10px;}
+.c1_3_right .deal_infos_2 span{display:block}
+.c1_3_right .deal_ts{margin:10px 0}
+
+.tuan_wai{ width:298px; padding:5px; border:1px dotted #b0b0b0;}
+.tuan_wai_left{ width:100px; padding-right:10px; float:left;}
+.tuan_wai_left img{ float:left;}
+.tuan_wai_left span{ width:93px; height:16px; margin-top:5px; float:left;}
+.tuan_wai_right{ float:left; width:186px; text-align:left; font-size:14px; color:#000; line-height:20px;}
+.tuan_wai_right a{text-decoration:underline; }
+.tuan_wai_right dl{overflow:hidden;_zoom:1;}
+.tuan_wai_right dt{float:left;clear:left;}
+.fc{overflow:hidden;_zoom:1;}
+
+.deal_block .deal_time{float:right; line-height:18px; font-size:12px;}
+.deal_block .time{float:left; padding:0 5px;margin-left:5px;-display:inline;}
+.deal_block .buy{ margin:5px 0;display:inline-block;width:131px;height:35px;overflow:hidden;background:transparent url(images/sp.png) no-repeat scroll 0 -601px;}
+
+.c1_4{ width:671px; padding:10px; border:1px solid #d2d2d2; background:#fff9ea; margin:10px; margin-top:0px; float:left; display:inline;}
+.c1_4_top{ width:671px;padding-bottom:10px; float:left;}
+.c1_4_top_left{ width:325px; float:left; padding-right:21px;}
+.c1_4_top_left ul{ width:325px; padding:0;}
+.c1_4_top_left ul li{font-size:12px; color:#aeaeae; line-height:20px;height:20px;overflow:hidden;padding-left:10px;}
+.c1_4_top_left ul li a{ color:#000;}
+.c1_4_bottom{ width:671px; padding-top:10px; float:left;}
+.c1_4 h4{ margin:0 0 10px 0;font-weight:400;display:inline-block;padding:0 15px;height:21px; font-size:14px; color:#fff; line-height:21px; text-align:center; background-color:#900;}
+.c1_4_bottom p{ font-size:12px; text-align:left; color:#8e8e8e; line-height:20px; padding-bottom:10px;}
+
+.deal_history{margin-bottom:10px;font-size:12px;padding:10px;width:100%}
+.deal_history caption{font-size:16px;font-weight:700;padding-top:10px;}
+.deal_history th{font-size:14px;font-weight:400;border-bottom:1px solid #333}
+.deal_history td,.deal_history th{white-space:nowrap;line-height:20px;padding:5px 10px;vertical-align:top;}
+.deal_history th{text-align:center;}
+.deal_history td{text-align:left;border-bottom:1px dotted #ccc}
+.deal_history td.title{white-space:normal}
+.deal_history td.current{color:#c60;font-size:15px;font-weight:700}
+.deal_history td.original{text-decoration:line-through}
+.deal_history td a{color:#333;text-decoration:none}
+.deal_history td a.from{color:#f00}
+.deal_history tr:hover td,.deal_history tr:hover a{color:#c60;}
+
+

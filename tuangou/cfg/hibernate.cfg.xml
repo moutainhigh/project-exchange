@@ -5,38 +5,21 @@
           "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-<session-factory>
-
-	<property name="proxool.pool_alias">autoPool</property>
-	<property name="proxool.xml">proxool.xml</property>
-	<property name="connection.provider_class">
-		org.hibernate.connection.ProxoolConnectionProvider
-	</property>
-	<property name="connection.driver_class">
-		com.mysql.jdbc.Driver
-	</property>
-	<property name="hibernate.dialect">
-		org.hibernate.dialect.MySQLDialect
-	</property>
-	<property name="hibernate.cache.provider_class">
-		org.hibernate.cache.HashtableCacheProvider
-	</property>
-	
-	<mapping class="com.throne212.auto.domain.MyEntity" />
-	<mapping class="com.throne212.auto.domain.Admin" />
-	<mapping class="com.throne212.auto.domain.Brand" />
-	<mapping class="com.throne212.auto.domain.Car" />
-	<mapping class="com.throne212.auto.domain.Sale" />
-	<mapping class="com.throne212.auto.domain.User" />
-	<mapping class="com.throne212.auto.domain.Category" />
-	<mapping class="com.throne212.auto.domain.Special" />
-	<mapping class="com.throne212.auto.domain.News" />
-	<mapping class="com.throne212.auto.domain.Setting" />
-	<mapping class="com.throne212.auto.domain.Link" />
-	<mapping class="com.throne212.auto.domain.Zhuangshi" />
-	<mapping class="com.throne212.auto.domain.Insurance" />
-	
-	
-</session-factory>
+	<session-factory>
+		<property name="proxool.pool_alias">tgPool</property>
+		<property name="proxool.xml">proxool.xml</property>
+		<property name="connection.provider_class">
+			org.hibernate.connection.ProxoolConnectionProvider
+		</property>
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="hibernate.cache.provider_class">
+			org.hibernate.cache.HashtableCacheProvider
+		</property>
+	</session-factory>
 </hibernate-configuration>
 
