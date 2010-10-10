@@ -1,6 +1,6 @@
 #
-#Mon Sep 27 14:13:40 CST 2010
-genBasicCompId=false
+#Sat Oct 09 23:45:16 CST 2010
+genBasicCompId=true
 sessionFactoryName=com.throne212.tg.web.util.HibernateSessionFactory
 profile=
 daoSFId=
@@ -20,4 +20,3 @@ reSettingsFile=
 configFile=/tuangou/src/hibernate.cfg.xml
 createConfigFile=true
 addLibs2Classpath=true
-baseDaoClass=
