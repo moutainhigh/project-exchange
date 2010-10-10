@@ -1,0 +1,304 @@
+﻿body{
+	margin:0px;
+	padding:0px;
+	font:12px/20px "宋体";
+	color:#333;
+	background-color: #fff;
+}
+
+/***** define_fontfamilly *****/
+.entxt {font-family: Arial, Helvetica, sans-serif;}
+.heti {font-family: "黑体";}
+.yahei {font-family: "微软雅黑";}
+
+/******** 清除标签基本样式 *********/
+*{word-break:break-all;}
+div, h1, h2, h3, h4, p, form, label, input, textarea, img,ul,ol,li,dl,dd,dt{margin:0; padding:0;}
+ul,ol{list-style:none;}
+img,a img{border:0;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+.clear {clear:both;}
+
+a:link,a:visited{color:#004499; text-decoration:none;}
+a:hover{color:#cc0000; text-decoration:underline;}
+.hand {cursor: pointer;}
+.nowrap {white-space: nowrap;}
+.inline {_display: inline;}
+.none {display: none;}
+.hide {overflow: hidden;}
+
+/***** 定位 *****/
+.prel {position: relative;zoom: 1}
+.pabs {position: absolute;}
+.fl{float:left;}
+.fr{float:right;}
+
+/*----------------------basic-------------------------*/
+a:link,a:visited{
+	color:#3f8ab6;
+	text-decoration:none
+}
+a:hover {text-decoration:underline;color:#DB1924;}
+.red,a.red:link,a.red:visited {
+	color:#DB1924;
+}
+.black,a.black:link,a.black:visited {color:#000;}
+.gray,a.gray:link,a.gray:visited {
+	color:#999999;
+}
+.blue,a.blue:link,a.blue:visited {
+	color:#3f8ab6;
+}
+.blue-ef,a.blue-ef:link,a.blue-ef:visited {
+	color:#bbd7e8;
+}
+.yellow,a.yellow:link,a.yellow:visited {
+	color:#FFFF00;
+}
+.orange,a.orange:link,a.orange:visited {color:#ee5d04;}
+.white,a.white:link,a.white:visited {color:#fff;}
+.green,a.green:link,a.green:visited {
+	color:#168862;
+}
+.u,a.u:link,a.u:visited {text-decoration:underline}
+.u_,a.u_:link,a.u_:visited {text-decoration:none;}
+.b,a.b:link,a.b:visited {font-weight:bold;}
+.b_,a.b_:link,a.b_:visited {font-weight:normal;}
+.i,a.i:link,a.i:visited {font-style:italic;}
+.big3,a.big3:link,a.big3:visited {font-size:14px;}
+.big4,a.big3:link,a.big3:visited {font-size:16px;}
+.big,a.big:link,a.big:visited {font-size:12px;}
+.big_,a.big_:link,a.big_:visited {font-size:11px;}
+.big__,a.big__:link,a.big__:visited {font-size:10px;}
+.del,a.del:link,a.del:visited {text-decoration:line-through;}
+
+/***** aligns *****/
+.g_t_l {text-align:left;}
+.g_t_c {text-align:center;}
+.g_t_r {text-align:right;}
+.g_t_j {text-align:justify;}
+.g_t_t {vertical-align:top;}
+.g_t_m {vertical-align:middle;}
+.g_t_b {vertical-align:bottom;}
+
+/***** boxes *****/
+ul,li {padding:0;margin:0; list-style:none;}
+img {border:0;margin:0;}
+dl,dd,dt,form,h1,h2,h3,h4,h5,h6 {margin:0;padding:0;}
+h2 {font-size:16px;color:#000;}
+h3 {font-size:14px;color:#000;}
+h4 {font-size:12px;color:#000;}
+
+/***** indent & line-height *****/
+.in_1em {text-indent:10px;}
+.in_24 {text-indent:24px;}
+.lh_20 {line-height:20px;}
+.lh_30 {line-height:30px;}
+.lh_100 {line-height:100%;}
+.lh_120 {line-height:120%;}
+.lh_150 {line-height:150%;}
+.lh_180 {line-height:180%;}
+
+/***** basics *****/
+.pad_5 {padding:5px;}
+.pad_10 {padding:10px;}
+.pad_20 {padding:20px;}
+.pad_30 {padding:30px;}
+.pad_40 {padding:40px;}
+
+.pad_t3 {padding-top:3px;}
+.pad_t5 {padding-top:5px;}
+.pad_t10 {padding-top:10px;}
+.pad_t20 {padding-top:20px;}
+
+.pad_b5 {padding-bottom:5px;}
+.pad_b10 {padding-bottom:10px;}
+.pad_b15 {padding-bottom:15px;}
+.pad_b20 {padding-bottom:20px;}
+.pad_b30 {padding-bottom:30px;}
+
+.pad_l5 {padding-left:5px;}
+.pad_l10 {padding-left:10px;}
+.pad_l20 {padding-left:20px;}
+.pad_l50 {padding-left:50px;}
+
+.pad_r5 {padding-right:5px;}
+.pad_r20 {padding-right:20px;}
+
+.mauto {margin: 0 auto;}
+.mar_5 {margin:5px;}
+.mar_10 {margin:10px;}
+.mar_30 {margin:30px;}
+
+.mar_t3 {margin-top:3px;}
+.mar_t5 {margin-top:5px;}
+.mar_t6 {margin-top:6px;}
+.mar_t10{margin-top:10px;}
+.mar_t20{margin-top:20px;}
+.mar_t30{margin-top:30px;}
+
+.mar_b3 {margin-bottom:3px;}
+.mar_b5 {margin-bottom:5px;}
+.mar_b10 {margin-bottom:10px;}
+
+.mar_l5 {margin-left:5px;}
+.mar_l6 {margin-left:6px;}
+.mar_l8 {margin-left:8px;}
+.mar_l10 {margin-left:10px;}
+.mar_l15 {margin-left:15px;}
+.mar_l20 {margin-left:20px;}
+.mar_l30 {margin-left:30px;}
+.mar_l40 {margin-left:40px;}
+.mar_l150 {margin-left:150px;}
+
+
+.mar_r5 {margin-right:5px;}
+.mar_r8 {margin-right:8px;}
+.mar_r10 {margin-right:10px;}
+.mar_r20 {margin-right:20px;}
+.mar_r25 {margin-right:25px;}
+
+.maxwidth{width:100%;}
+.halfwidth {width:50%;}
+
+.h10{height:10px;}
+.h15{height:15px;}
+.h20{height:20px;}
+.h25{height:25px;}
+.h161{height:161px;}
+.h220{height:220px;}
+.h330{
+	height:330px;
+}
+
+
+/***** define_fontweight *****/
+.fb {font-weight: bold;}
+.fn {font-weight: normal;}
+
+/***** define_fontsize *****/
+.ft10 {font-size: 10px;}
+.ft12 {font-size: 12px;}
+.ft14 {font-size: 14px;}
+.ft16 {font-size: 16px;}
+.ft18 {font-size: 18px;}
+.ft20 {font-size: 20px;}
+.ft24 {font-size: 24px;}
+
+/***** define_fontfamilly *****/
+.heti {font-family: "黑体";}
+.yahei {font-family: "微软雅黑";}
+
+/***** define_width *****/
+.wp5{width:5%}
+.wp10{width:10%}
+.wp20{width:20%}
+.wp25{width:25%}
+.wp50{width:50%}
+.wp100{width:100%}
+
+.w30{width:30px}
+.w60{width:60px}
+.w80{width:80px}
+.w85{width:85px}
+.w90{width:90px}
+.w100{width:100px}
+.w120{width:120px}
+.w140{width:140px}
+.w150{width:150px}
+.w156{width:156px}
+.w160{width:160px}
+.w180{width:180px}
+.w181{width:181px}
+.w188{width:188px}
+.w190{width:190px}
+.w200{width:200px}
+.w210{width:210px}
+.w205{width:205px}
+.w230{width:230px}
+.w235{width:235px}
+.w240{width:240px}
+.w245{width:245px}
+.w250{width:250px}
+.w254{width:254px}
+.w260{width:260px}
+.w270{width:270px}
+.w300{width:300px}
+.w310{width:310px}
+.w330{width:330px}
+.w350{width:350px}
+.w355{width:355px}
+.w380{width:380px}
+.w390{width:390px}
+.w395{width:395px}
+.w400{width:400px}
+.w542{width:542px}
+.w580{width:580px}
+.w562{width:562px}
+.w582{width:582px}
+.w600{width:600px}
+.w710{width:710px}
+.w730{width:730px}
+.w739{width:739px}
+.w770{width:770px}
+.w790{width:790px}
+.w800{width:800px}
+.w980{width:980px}
+.w990{width:990px}
+
+/* 常用列表 */
+.dotli01 li{
+	background:url(images/dot01.gif) left 10px no-repeat;
+	padding-left:10px;
+}
+.dotli02 li{background:url(images/dot02.png) left center no-repeat;padding-left:13px;line-height:180%;}
+.dotli03 li{background:url(images/dot03.gif) left center no-repeat; padding-left:10px;}
+.dotli04 li{background:url(images/dot04.gif) left center no-repeat; padding-left:10px;}
+.dotli05 li{background:url(images/dot05.gif) left 3px no-repeat;padding-left:25px;line-height:180%;}
+.dotli06 li{
+	background:url(images/dot06.gif) left 6px no-repeat;
+	padding-left:14px;
+}
+
+/******** 边框 ********/
+.b_red {border:1px solid #eeaaaa;}
+.b_white {border:1px solid #FFFFFF;}
+.b_pink {border: 3px solid #FCEDED;}
+.b_blue {border: 1px solid #AACCEE;}
+.b_gray {border: 1px solid #dddcdc;}
+.b_blue {
+	border: 1px solid #5087a9;
+}
+
+.bsb_blue{border-bottom:1px solid #B6E6FD;}
+.bsb_gray{border-bottom:1px solid #999;}
+.bsr_gray{border-right:1px solid #ddd}
+.bsr_white{border-right:1px solid #FFF;}
+.bsr_blue{border-right:1px solid #bcdee8;}
+.bst_gray{border-top:1px solid #ddd}
+.bt3_gray{border-top:3px solid #ddd}
+.bdt_gray{border-top:1px dotted #ddd}
+.bdb_gray{border-bottom:1px dotted #ddd}
+
+/******** 搜索 and 按钮 ********/
+.button01, .button02, .button03{width:80px; height:25px; line-height:25px;+line-height:27px;cursor:pointer;border: 0; color:#828686; font-size:12px;}
+.button01{background:url(images/button-bg01s.gif);}
+.button02{background:url(images/button-bg02s.gif);}
+.button03{background:url(images/button-bg03s.gif);}
+
+.inputxt01,.inputxt02,.inputxt03,.inputxt04{height:16px; border:1px solid #C3C3C3; background-color:#FFF; padding:0px 5px; overflow:hidden; margin:0 5px 0 0; color:#aaa; *margin-top:-1px; font-size:12px}
+.inputxt01{width:40px;}
+.inputxt02{width:78px;}
+.inputxt03{width:150px;}
+.inputxt04{width:250px;}
+
+/******** 背景 ********/
+.bg01 {background: #eaeaea;}
+.bg02 { background: url(images/section_bg.gif) repeat-x 0 0;}
+.bg03 {background: url(images/home_content.jpg) repeat-x -5px 0;}
+.bg04 {background: #5087a9;}
+.bg05 {background: #eef3f7;}
+
+/******** 表格字体 ********/
+table{font-size: 12px;}
