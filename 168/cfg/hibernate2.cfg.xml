@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="hibernate.dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+
+	<!-- 
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">false</property>
+		<property name="hibernate.use_sql_comments">false</property>
+		
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.cache.provider_class">
+		org.hibernate.cache.HashtableCacheProvider
+		</property>
+	-->
+	<property name="myeclipse.connection.profile">mysql</property>
+	<property name="connection.url">
+		jdbc:mysql://localhost:3306/168
+	</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">123</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<property name="hbm2ddl.auto">create</property>
+	<property name="show_sql">true</property>
+	<!--  <mapping resource="com/throne212/info168/web/domain/Area.hbm.xml" />-->
+	<mapping resource="com/throne212/info168/web/domain/Category.hbm.xml" />
+
+
+</session-factory>
+</hibernate-configuration>

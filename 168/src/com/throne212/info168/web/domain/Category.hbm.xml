@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.info168.web.domain">
+	<class name="Category" table="168_category">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="name"></property>
+		<property name="grade"></property>
+		<many-to-one name="parent" column="parent_id" class="Category" lazy="false" cascade="save-update"></many-to-one>
+		<set name="childs" lazy="true" table="168_category" cascade="save-update">
+			<key column="parent_id"></key>
+			<one-to-many class="Category"/>
+		</set>
+	</class>
+</hibernate-mapping>

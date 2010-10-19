@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
+	
+    <package name="struts2" namespace="/" extends="struts-default">
+		<action name="test" class="com.throne212.tg.web.action.TestAction">
+			<result name="success" type="freemarker">/WEB-INF/template/test.ftl</result>
+		</action>
+    </package>
+    
+    <package name="admin" namespace="/admin" extends="struts-default">
+		<action name="*" method="{1}" class="com.throne212.tg.web.action.AdminAction">
+			<result name="index" type="freemarker">/WEB-INF/template/admin/index.ftl</result>
+		</action>
+    </package>
+    
+</struts>
