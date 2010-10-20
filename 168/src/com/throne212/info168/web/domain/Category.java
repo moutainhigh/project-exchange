@@ -4,13 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Category {
-	private Long id;
-	private String name;
-	private Category parent;
-	private Integer grade;
-	private Set<Category> childs = new HashSet<Category>();
-	
-	
+	private Long id;//主键
+	private String name;//分类名称
+	private Category parent;//父分类
+	private Integer grade;//排序级别
+	private Set<Category> childs = new HashSet<Category>();//子分类集合
 
 	public Category(String name) {
 		super();

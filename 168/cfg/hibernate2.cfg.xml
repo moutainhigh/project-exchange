@@ -36,6 +36,7 @@
 	<property name="show_sql">true</property>
 	<!--  <mapping resource="com/throne212/info168/web/domain/Area.hbm.xml" />-->
 	<mapping resource="com/throne212/info168/web/domain/Category.hbm.xml" />
+	<mapping resource="com/throne212/info168/web/domain/Category.hbm.xml" />
 
 
 </session-factory>

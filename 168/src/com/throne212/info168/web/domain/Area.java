@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Area {
-	private Long id;
-	private String name;
-	private Area parent;
-	private Integer grade;
-	private Set<Area> childs = new HashSet<Area>();
+	private Long id;//主键
+	private String name;//地区名称
+	private Area parent;//父地区
+	private Integer grade;//排序级别
+	private Set<Area> childs = new HashSet<Area>();//子地区
 
 	public Long getId() {
 		return id;

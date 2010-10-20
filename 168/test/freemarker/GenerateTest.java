@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import com.throne212.info168.web.action.TestAction;
+import com.throne212.info168.web.action.LoginAction;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -24,7 +24,7 @@ public class GenerateTest {
 		Writer out = new PrintWriter(System.out);
 		Map map = new HashMap();
 		map.put("name", "你好，我是中文");
-		TestAction a = new TestAction();
+		LoginAction a = new LoginAction();
 		a.setName("拉拉");
 		temp.process(a,out);
 		out.flush();

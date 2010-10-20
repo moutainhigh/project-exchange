@@ -13,8 +13,13 @@
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
     <package name="struts2" namespace="/" extends="struts-default">
-		<action name="test" class="com.throne212.tg.web.action.TestAction">
-			<result name="success" type="freemarker">/WEB-INF/template/test.ftl</result>
+		<action name="login" class="com.throne212.tg.web.action.LoginAction">
+			<result name="admin">/admin/index.jsp</result>
+			<result name="success">/usercenter/index.jsp</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+		<action name="logout" class="com.throne212.tg.web.action.LogoutAction">
+			<result name="success">/index.htm</result>
 		</action>
     </package>
     

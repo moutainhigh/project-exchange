@@ -1,8 +1,10 @@
-package category;
+package init;
 
 import org.hibernate.Session;
 
+import com.throne212.info168.web.domain.Admin;
 import com.throne212.info168.web.domain.Category;
+import com.throne212.info168.web.domain.User;
 
 public class Init {
 
@@ -36,6 +38,14 @@ public class Init {
 			}
 			i++;
 		}
+		
+		//user
+		Admin admin = new Admin();
+		admin.setLoginName("admin");
+		admin.setPassword("123");
+		s.save(admin);
+		User user = new User("yl","123");
+		s.save(user);
 		
 		s.getTransaction().commit();
 		s.close();
