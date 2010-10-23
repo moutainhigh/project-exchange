@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+
+/*顶部*/
+.top{width: 100%;background-color: #F8F8F8;min-height: 20px; border-bottom: 1px solid #E4E4E4;}
+.top .top_line{width: 1000px;margin: 0 auto;}
+.top .top_line h3{display: block;float: left; width: 200px;margin-left: 10px;}
+.top .top_line .reg_login{float: right; }
+.top .top_line .reg_login a{margin: 0 5px; padding-left: 5px;}
+
+/*头部*/
+.header{background-color: #FFF;height: 75px;margin: 0 auto;width: 1000px;}
+.header div{float: left;}
+.header .logo{width: 200px; height: 75px}
+.header .logo img{display:block;margin: 20px auto;}
+.header .search{width: 600px;padding: 5px 10px;}
+.header .search .search_input{width: 500px;margin: 10px 0; background-color: #02319B;}
+.header .search .search_input select{margin: 4px 2px 4px 4px;}
+.header .search .search_input .search_key{width: 250px;margin: 4px 2px 4px 4px;}
+.header .search .search_input .search_btn{width: 80px;margin: 4px 2px 4px 4px;}
+.header .search .hot{width: 500px;}
+.header .publish{width: 150px;height: 75px;}
+.header .publish a img{display:block;margin: 20px auto;}
+
+
+/*主体*/
+.cleardiv{clear:both;}
+.all{width:980px;height:100%;margin:0 auto;}
+  /*面包屑*/
+  #postion{padding:15px 0;font-size:12px;color:#666;font-family:Verdana, Arial, Helvetica, sans-serif;border-bottom:1px #eee solid;margin-bottom:15px;padding-bottom:4px;}
+  #postion a{font-size:12px;color:#666;text-decoration:none;}
+  #postion a:hover{font-size:12px;color:#f60;text-decoration:underline;}
+  
+  /*信息发布表单*/
+  #step{padding:10px 0;padding-top:20px;font-size:14px;color:#888;}
+  #step ul{padding:0;margin:0;}
+  #step li{margin-right:12px;height:33px;float:left;list-style:none;padding:0 25px;line-height:33px;padding-left:10px;width:149px;}
+  #step li span{color:#005EBC;font-weight:bold;font-family:Arial, Helvetica, sans-serif;padding-right:8px;font-size:14px;}
+  #step li a{color:#005EBC;font-size:14px;text-decoration:underline;}
+  #step li a:hover{color:#f60;}
+  .step-pre{background:url(images/step_pre.gif) right top no-repeat;}
+  .step-active{background:url(images/step_active.gif) right top no-repeat;font-size:14px;color:#fff;font-weight:bold;font-family:Arial, Helvetica, sans-serif;}
+    /*城市选择进入*/
+  #select-city{margin:10px 0 50px 0;}
+  #select-city dl{padding:0;margin:0;}
+  #select-city dt{padding:0;margin:0;font-size:14px;font-weight:bold;color:#333;padding:15px 0;padding-left:8px;}
+  #select-city dd{padding:0;margin:0;font-size:14px;padding-left:10px;}
+  #select-city dd a{color:#005EBC;font-size:14px;line-height:210%;}
+  #select-city dd a:hover{color:#f60;text-decoration:underline;}
+  .other-city{font-size:12px;color:#777;padding-left:10px;}
+  
+  .left{width:100%;float:left;}
+#select-city dd span{font-size:14px;font-family:Arial, Helvetica, sans-serif;font-weight:bold;color:#FF6600;padding-right:8px;text-decoration:underline;}
+#select-city dd a{text-decoration:none;padding:0 3px;text-decoration:underline;}
+#select-city dd{line-height:100%;border-bottom:1px #f7f7f7 solid;padding-top:2px;margin-bottom:2px;clear:both;}
+.zm-content{float:left;width:93%;}
+.zm-name{float:left;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;color:#f60;width:7%;padding-top:7px;}
+
+  /*信息框*/
+  #add-k{border:1px #A6C0E0 solid;height:100%;font-size:12px;margin-top:10px;background:#F5F8FF;font-family:Verdana, Arial, Helvetica, sans-serif;}
+  
+  .a-shuxing{padding:0;}
+  .a-shuxing ul{padding:0;margin:0;clear:both;height:24px;margin-bottom:10px;}
+  .a-shuxing li{padding:0;margin:0;float:left;list-style:none;height:24px;}
+  .a-shuxing li font{color:#999;font-size:12px;}
+  #add-k span{color:#FF0000;}
+  .a-shuxing-name{width:70px;text-align:right;line-height:24px;}
+  .a-shuxing-value{line-height:18px;}
+  .add-k-k{background:#fff;border:1px #C3D7F0 solid;margin:6px;padding:20px;padding-top:5px;}
+  .add-k{border:1px #7F9DB9 solid;height:150px;width:500px;}
+  .add-anniu input{height:34px;border:none;width:144px;background:url(images/add_anniu.jpg) no-repeat;margin-left:70px;}
+  .add-anniu a:hover{color:#f60;}
+  .add-anniu a{font-size:14px;color:#16378c;text-decoration:underline;font-weight:bold}
+  
+  .add-info{border-bottom:1px #ddd solid;padding:8px 0;margin-bottom:12px;padding-bottom:10px;font-weight:bold;color:#333;}
+
+/*底部*/
+.foot{border-top: 3px solid #02319B;background-image:url(images/bg_footer.gif);padding-top:10px;text-align:center}
+.foot, .foot a{color:#000000;}
