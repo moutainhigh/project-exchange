@@ -1,7 +1,9 @@
 package com.throne212.info168.web.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.Util;
+import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Admin;
 import com.throne212.info168.web.domain.User;
 
@@ -25,6 +27,7 @@ public class LoginAction extends BaseAction {
 			msg = "登录失败，请检查用户名和密码";
 			return "fail";
 		}
+		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		if (user instanceof Admin) {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
 			return "admin";

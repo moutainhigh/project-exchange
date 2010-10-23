@@ -2,6 +2,7 @@ package com.throne212.info168.web.biz.impl;
 
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
+import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.User;
 
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
@@ -19,6 +20,25 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 			logger.info("登录失败，密码错误:" + username + ":" + pwd);
 			return null;
 		}
+	}
+	
+	public User regUser(User user,Long topArea){
+		user.setPassword(EncryptUtil.md5Encode(user.getPassword()));//密码加密
+		//如果用户没有选择城市，则用省份
+		if(user.getArea()==null || user.getArea().getId()==null){
+			if(topArea != null){
+				Area top = baseDao.getEntityById(Area.class, topArea);
+				user.setArea(top);
+			}
+		}		
+		baseDao.saveOrUpdate(user);
+		return user;
+	}
+	
+	public boolean changePwd(User user, String pwd){
+		user.setPassword(EncryptUtil.md5Encode(pwd));
+		baseDao.saveOrUpdate(user);
+		return true;
 	}
 
 }

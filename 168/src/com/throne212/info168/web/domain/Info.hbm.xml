@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.info168.web.domain">
+	<class name="Info" table="168_info">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="title" length="100" not-null="true"></property>
+		<property name="content" length="10240" not-null="true"></property>
+		<property name="email" length="100"></property>
+		<property name="tel" length="50"></property>
+		<many-to-one name="area" class="Area" cascade="save-update" column="area_id"></many-to-one>
+		<many-to-one name="user" class="User" cascade="save-update" column="user_id"></many-to-one>
+		<many-to-one name="cate" class="Category" cascade="save-update" column="cate_id"></many-to-one>
+	</class>
+</hibernate-mapping>

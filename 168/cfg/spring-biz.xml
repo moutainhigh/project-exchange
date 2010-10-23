@@ -10,4 +10,9 @@
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
 	
+	<bean id="commonBiz" class="com.throne212.info168.web.biz.impl.CommonBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="areaDao" ref="areaDao"></property>
+	</bean>
+	
 </beans>

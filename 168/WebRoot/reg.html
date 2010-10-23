@@ -65,7 +65,7 @@
 					<img alt="填写信息" src="http://images04.edeng.cn/images/input_info_on.jpg?ver=431">
 					<img alt="注册成功" src="http://images02.edeng.cn/images/register_success_huise.jpg?ver=431">
 				</div>
-				<form onsubmit="return chkForm();" method="post" name="register_submit" action="user_detail.php?cmd=insert" id="register_submit">
+				<form method="post" name="register_submit" action="user_reg.htm" id="register_submit">
 					<div style="padding-left: 85px; padding-right: 0pt;">
 						<table height="122" cellspacing="0" cellpadding="0" border="0" width="90%">
 							<tbody>
@@ -75,7 +75,7 @@
 											登录名:
 										</label>
 										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="login_id" id="login_id">
+										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id">
 									</td>
 									<td width="336" id="loginidinfo" class="reg_bg_two">
 										4-16个字符（包括4、16）或2-8个汉字
@@ -87,7 +87,7 @@
 											密码:
 										</label>
 										&nbsp;
-										<input type="password" style="width: 200px;" onblur="check_pwd(this);" name="password" id="password">
+										<input type="password" style="width: 200px;" onblur="check_pwd(this);" name="user.password" id="password">
 									</td>
 									<td id="pwdinfo" class="reg_bg_two">
 										密码须为6位或6以上的字母/数字/下划线
@@ -99,7 +99,7 @@
 											重输密码:
 										</label>
 										&nbsp;
-										<input type="password" style="width: 200px;" onblur="check_repwd(this);" name="repassword" id="repassword">
+										<input type="password" style="width: 200px;" onblur="check_repwd(this);" id="repassword">
 									</td>
 									<td id="repwdinfo" class="reg_bg_two">
 										&nbsp;
@@ -111,7 +111,7 @@
 											电子邮箱:
 										</label>
 										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="email" id="email">
+										<input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email">
 									</td>
 									<td id="emailinfo" class="reg_bg_two">
 										忘记密码时，可凭安全邮箱索取密码
@@ -124,27 +124,26 @@
 												所在地区:
 											</label>
 											&nbsp;
-											<select onchange="get_geo('geo2', this.value, 0)" name="geo1" id="geo1">
-											</select>
+											<select name="topArea" id="topArea"></select>
+											<select name="user.area.id" id="city"></select>
 										</div>
 									</td>
 									<td id="geoinfo" class="reg_bg_two">
-										您登录以后的易登网首页将会指向此处
+										您登录以后，首页将会指向此处，可以只选择省份或直辖市
 									</td>
 								</tr>
 								<tr>
 									<td style="padding: 0pt; margin: 0pt;" class="reg_bg_one" colspan="4">
-										<div style="float: left; margin: 0pt; padding: 30px 0pt 0pt;">
+										<div style="float: left; margin: 3px 5px 3px 0; padding: 10px 0pt 0pt;">
 											<label>
 												验证码:
 											</label>
 											&nbsp;
-											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_auth_new(this);" name="number" id="number" class="auth">
+											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_rand(this);" name="rand" id="rand" class="auth">
 										</div>
-										<div>
-											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src=&quot;/code/bin/verify/captcha.php?n=&quot;+Math.random();" src="/code/bin/verify/captcha.php" name="verifyframe"
+										<div style="float:left;margin:8px 10px">
+											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='rand?n='+Math.random();" src="rand" name="verifyframe"
 												id="verifyframe">
-
 										</div>
 										<div style="padding-left: 100px;" class="hui">
 											看不清？点击图片换一个
@@ -159,14 +158,9 @@
 					</div>
 
 					<div id="submit">
-						<input type="hidden" value="" name="repeat" id="loginidrepeat">
-						<input type="hidden" value="" name="repeat" id="emailrepeat">
-						<input type="hidden" value="" name="from">
-						<input type="hidden" value="" name="fromt">
-						<input type="hidden" value="" name="code">
 						<div>
-							<input type="submit" class="reg" value="注 册" name="send">
-							<span>&nbsp;&nbsp;表示您同意<a target="_blank" href="http://www.edeng.cn/company/term.html">易登网络服务使用协议</a>
+							<input type="button" class="reg" value="注 册" name="send" onclick="chkForm();">
+							<span>&nbsp;&nbsp;表示您同意<a target="_blank" href="#">一路发网络服务使用协议</a>
 							</span>
 						</div>
 					</div>
