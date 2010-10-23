@@ -7,8 +7,8 @@
 			<generator class="increment" />
 		</id>
 		<discriminator column="user_type" force="false" insert="true" not-null="true"/>
-		<property name="loginName" length="20" not-null="true" unique="true"></property>
-		<property name="password" length="50" not-null="true"></property>
+		<property name="loginName" column="loginName" length="20" not-null="true" unique="true"></property>
+		<property name="password" column="password" length="50" not-null="true"></property>
 		<property name="email" length="100"></property>
 		<many-to-one name="area" class="Area" cascade="save-update" column="area_id"></many-to-one>
 		<subclass discriminator-value="admin" extends="User" name="Admin" select-before-update="false"/>

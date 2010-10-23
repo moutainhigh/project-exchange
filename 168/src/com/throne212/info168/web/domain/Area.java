@@ -2,7 +2,7 @@ package com.throne212.info168.web.domain;
 
 import java.util.HashSet;
 import java.util.Set;
-
+//地区
 public class Area {
 	private Long id;//主键
 	private String name;//地区名称

@@ -13,7 +13,7 @@
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
     <package name="struts2" namespace="/" extends="struts-default">
-		<action name="login" class="com.throne212.tg.web.action.LoginAction">
+		<action name="login" class="com.throne212.info168.web.action.LoginAction">
 			<result name="admin">/admin/index.jsp</result>
 			<result name="success">/usercenter/index.jsp</result>
 			<result name="fail">/login.jsp</result>
@@ -24,9 +24,21 @@
     </package>
     
     <package name="admin" namespace="/admin" extends="struts-default">
-		<action name="*" method="{1}" class="com.throne212.tg.web.action.AdminAction">
+		<action name="*" method="{1}" class="com.throne212.info168.web.action.AdminAction">
 			<result name="index" type="freemarker">/WEB-INF/template/admin/index.ftl</result>
 		</action>
     </package>
+    
+    
+	<package name="json" extends="json-default">
+     	<!-- AjaxAction -->
+        <action name="ajax_*" method="{1}" class="com.throne212.info168.web.action.AjaxAction">
+			<result name="check_login_name" type="json">
+				<param name="root">     
+                    msg
+				</param>
+			</result>
+		</action>
+	</package>
     
 </struts>

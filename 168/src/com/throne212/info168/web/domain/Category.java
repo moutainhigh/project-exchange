@@ -2,7 +2,7 @@ package com.throne212.info168.web.domain;
 
 import java.util.HashSet;
 import java.util.Set;
-
+//信息分类
 public class Category {
 	private Long id;//主键
 	private String name;//分类名称

@@ -29,3 +29,19 @@
 /*底部*/
 .foot{border-top: 3px solid #02319B;background-image:url(images/bg_footer.gif);padding-top:10px;text-align:center}
 .foot, .foot a{color:#000000;}
+
+div#content_s{width:100%;text-align:left;}
+div#content_s input[text]{width:120px;height:15px;}
+div#content_s input.auth{width:70px;height:15px;}
+div#content_s label{width:90px;float:left;text-align:right;padding-top:5px;}
+div#register_step{text-align:center;height:60px;}
+div#content_s table{border:1px solid #B3D2FE;margin-left:0px !important;margin-left:0px;}
+div#submit{height:50px;text-align:center;margin:20px 0 0 200px;width:500px;}
+.reg{background-color:#deefff;border:1px solid #4589d3;width:80px;height:30px;padding:5px;float:left}
+div#submit span{float:left;padding-top:8px;font-size:12px;color:#999999;}
+div#submit span a{font-size:12px;text-decoration:underline;}
+
+.reg_bg_one{border-bottom:1px solid #B3D2FE;}
+.reg_bg_two{background:#deefff;border-bottom:1px solid #FFF;padding:10px}
+.reg_bg_three{background:#deefff;border-bottom:1px solid #F60;padding:10px;color:#F60}
+.reg_bg_four{background:#deefff;border-bottom:1px solid #FFF;padding:10px;color:#0B0}

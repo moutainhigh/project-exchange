@@ -5,22 +5,16 @@
           "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-<session-factory>
-	<property name="proxool.pool_alias">168Pool</property>
-	<property name="proxool.xml">proxool.xml</property>
-	<property name="connection.provider_class">
-		org.hibernate.connection.ProxoolConnectionProvider
-	</property>
-	<property name="connection.driver_class">
-		com.mysql.jdbc.Driver
-	</property>
-	<property name="hibernate.dialect">
-		org.hibernate.dialect.MySQLDialect
-	</property>
-	<property name="hibernate.cache.provider_class">
-		org.hibernate.cache.HashtableCacheProvider
-	</property>
-	<!--<mapping class="com.throne212.tg.web.domain.Teams" />  -->
-</session-factory>
+	<session-factory>
+		<property name="proxool.pool_alias">168Pool</property>
+		<property name="proxool.xml">proxool.xml</property>
+		<property name="connection.provider_class">org.hibernate.connection.ProxoolConnectionProvider</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+		<mapping resource="com/throne212/info168/web/domain/Area.hbm.xml" />
+		<mapping resource="com/throne212/info168/web/domain/Category.hbm.xml" />
+		<mapping resource="com/throne212/info168/web/domain/User.hbm.xml" />
+	</session-factory>
 </hibernate-configuration>
 

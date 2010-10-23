@@ -25,7 +25,7 @@ public class GenerateTest {
 		Map map = new HashMap();
 		map.put("name", "你好，我是中文");
 		LoginAction a = new LoginAction();
-		a.setName("拉拉");
+		a.setUsername("拉拉");
 		temp.process(a,out);
 		out.flush();
 	}
