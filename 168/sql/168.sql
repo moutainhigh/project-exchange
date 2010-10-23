@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: 168
 Target Host: localhost
 Target Database: 168
-Date: 2010-10-24 1:21:18
+Date: 2010-10-24 2:43:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3448,4 +3448,6 @@ INSERT INTO `168_category` VALUES ('92', '翻译服务', null, '90');
 INSERT INTO `168_category` VALUES ('93', '咨询/调查', null, '90');
 INSERT INTO `168_category` VALUES ('94', '公司注册/会计', null, '90');
 INSERT INTO `168_category` VALUES ('95', '金融/贷款/保险', null, '90');
-INSERT INTO `168_user` VALUES ('0', 'admin', 'admin', '123', 'admin@admin.com', null);
+INSERT INTO `168_user` VALUES ('1', 'admin', 'admin', '123', 'admin@admin.com', null);
+INSERT INTO `168_user` VALUES ('2', 'com.throne212.info168.web.domain.User', 'throne212', '123456', 'throne212@gmail.com', '82');
+INSERT INTO `168_user` VALUES ('3', 'com.throne212.info168.web.domain.User', 'yl', '123', null, null);
