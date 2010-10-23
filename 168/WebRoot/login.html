@@ -9,7 +9,7 @@
 		<link href="Themes/basic.css" rel="stylesheet" type="text/css" />
 		<link href="Themes/reg.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/reg.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
 	</head>
 
 	<body>
@@ -62,23 +62,22 @@
 		<div class="all">
 			<div id="content_s">
 				<div id="register_step">
-					<img alt="填写信息" src="Themes/images/input_info_on.jpg?ver=431">
-					<img alt="注册成功" src="Themes/images/register_success_huise.jpg?ver=431">
+					<img alt="用户登录" src="Themes/images/log_banner.gif">
 				</div>
-				<form method="post" name="register_submit" action="reg.htm" id="register_submit">
+				<form method="post" name="register_submit" action="login.htm" id="register_submit">
 					<div style="padding-left: 85px; padding-right: 0pt;">
 						<table height="122" cellspacing="0" cellpadding="0" border="0" width="90%">
 							<tbody>
 								<tr>
 									<td class="reg_bg_one" colspan="4">
 										<label>
-											登录名:
+											登录名或邮箱:
 										</label>
 										&nbsp;
 										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id">
 									</td>
 									<td width="336" id="loginidinfo" class="reg_bg_two">
-										4-16个字符（包括4、16）或2-8个汉字
+										<a href="reg.html">注册新账号</a>
 									</td>
 								</tr>
 								<tr>
@@ -90,46 +89,7 @@
 										<input type="password" style="width: 200px;" onblur="check_pwd(this);" name="user.password" id="password">
 									</td>
 									<td id="pwdinfo" class="reg_bg_two">
-										密码须为6位或6以上的字母/数字/下划线
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											重输密码:
-										</label>
-										&nbsp;
-										<input type="password" style="width: 200px;" onblur="check_repwd(this);" id="repassword">
-									</td>
-									<td id="repwdinfo" class="reg_bg_two">
-										&nbsp;
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											电子邮箱:
-										</label>
-										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email">
-									</td>
-									<td id="emailinfo" class="reg_bg_two">
-										忘记密码时，可凭安全邮箱索取密码
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<div id="sel_geo">
-											<label>
-												所在地区:
-											</label>
-											&nbsp;
-											<select name="topArea" id="topArea"></select>
-											<select name="user.area.id" id="city"></select>
-										</div>
-									</td>
-									<td id="geoinfo" class="reg_bg_two">
-										您登录以后，首页将会指向此处，可以只选择省份或直辖市
+										<a href="#">忘记密码？</a>
 									</td>
 								</tr>
 								<tr>
@@ -159,9 +119,7 @@
 
 					<div id="submit">
 						<div>
-							<input type="button" class="reg" value="注 册" name="send" onclick="chkForm();">
-							<span>&nbsp;&nbsp;表示您同意<a target="_blank" href="#">一路发网络服务使用协议</a>
-							</span>
+							<input type="button" class="reg" value="登 录" name="send" onclick="chkForm();">
 						</div>
 					</div>
 				</form>

@@ -1,9 +1,11 @@
 package com.throne212.info168.web.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
-import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
+import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
 public class UserAction extends BaseAction{
@@ -12,22 +14,7 @@ public class UserAction extends BaseAction{
 
 	//用户bean
 	private User user;
-	private String rand;
-	private Long topArea; 
 	
-	//注册
-	public String reg() {
-		if(Util.isEmpty(rand)){
-			this.setMsg("验证码为空");
-			return "fail";
-		}
-		if(!rand.equals(ActionContext.getContext().getSession().get(WebConstants.SESS_RAND))){
-			this.setMsg("验证码不一致");
-			return "fail";
-		}
-		user = userBiz.regUser(user,topArea);
-		return "succ";
-	}
 	
 	//修改密码
 	private String oldPwd;
@@ -43,6 +30,13 @@ public class UserAction extends BaseAction{
 			return "success";
 		}
 		return "fail";
+	}
+	
+	//信息列表
+	private List<Info> infoList;
+	public String infoList(){
+				
+		return "info_list";
 	}
 
 	public UserBiz getUserBiz() {
@@ -61,22 +55,6 @@ public class UserAction extends BaseAction{
 		this.user = user;
 	}
 
-	public String getRand() {
-		return rand;
-	}
-
-	public void setRand(String rand) {
-		this.rand = rand;
-	}
-
-	public Long getTopArea() {
-		return topArea;
-	}
-
-	public void setTopArea(Long topArea) {
-		this.topArea = topArea;
-	}
-
 	public String getOldPwd() {
 		return oldPwd;
 	}
@@ -91,6 +69,14 @@ public class UserAction extends BaseAction{
 
 	public void setNewPwd(String newPwd) {
 		this.newPwd = newPwd;
+	}
+
+	public List<Info> getInfoList() {
+		return infoList;
+	}
+
+	public void setInfoList(List<Info> infoList) {
+		this.infoList = infoList;
 	}
 
 }

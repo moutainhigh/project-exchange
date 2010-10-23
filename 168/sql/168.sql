@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: 168
 Target Host: localhost
 Target Database: 168
-Date: 2010-10-23 16:18:19
+Date: 2010-10-24 1:21:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,36 @@ CREATE TABLE `168_category` (
   PRIMARY KEY (`id`),
   KEY `FK59B7090A784C3EA5` (`parent_id`),
   CONSTRAINT `FK59B7090A784C3EA5` FOREIGN KEY (`parent_id`) REFERENCES `168_category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for 168_info
+-- ----------------------------
+CREATE TABLE `168_info` (
+  `id` bigint(20) NOT NULL DEFAULT '0',
+  `area_id` bigint(20) DEFAULT NULL,
+  `cate_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `content` varchar(10240) DEFAULT NULL,
+  `tel` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for 168_user
+-- ----------------------------
+CREATE TABLE `168_user` (
+  `id` bigint(20) NOT NULL DEFAULT '0',
+  `user_type` varchar(255) DEFAULT NULL,
+  `loginName` varchar(20) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `area_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `area` (`area_id`),
+  CONSTRAINT `area` FOREIGN KEY (`area_id`) REFERENCES `168_area` (`id`) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -3418,3 +3448,4 @@ INSERT INTO `168_category` VALUES ('92', '翻译服务', null, '90');
 INSERT INTO `168_category` VALUES ('93', '咨询/调查', null, '90');
 INSERT INTO `168_category` VALUES ('94', '公司注册/会计', null, '90');
 INSERT INTO `168_category` VALUES ('95', '金融/贷款/保险', null, '90');
+INSERT INTO `168_user` VALUES ('0', 'admin', 'admin', '123', 'admin@admin.com', null);

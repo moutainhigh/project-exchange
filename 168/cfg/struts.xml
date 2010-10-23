@@ -15,21 +15,43 @@
     <package name="struts2" namespace="/" extends="struts-default">
 		<action name="login" class="com.throne212.info168.web.action.LoginAction">
 			<result name="admin">/admin/index.jsp</result>
-			<result name="success">/usercenter/index.jsp</result>
+			<result name="success" type="chain">
+         		<param name="actionName">infoList</param>
+         		<param name="namespace">/user</param> 
+			</result>
 			<result name="fail">/login.jsp</result>
 		</action>
 		<action name="logout" class="com.throne212.tg.web.action.LogoutAction">
 			<result name="success">/index.htm</result>
 		</action>
+		<action name="reg" class="com.throne212.tg.web.action.RegAction">
+			<result name="success" type="chain">
+         		<param name="actionName">infoList</param>
+         		<param name="namespace">/user</param> 
+			</result>
+			<result name="fail">/reg.jsp</result>
+		</action>
     </package>
-    
+    <package name="user" namespace="/user" extends="struts-default">
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.info168.web.filter.AccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+			<result name="login" type="redirect">/login.html</result>
+		</global-results>
+		<action name="*" method="{1}" class="com.throne212.info168.web.action.UserAction">
+			
+		</action>
+    </package>
     <package name="admin" namespace="/admin" extends="struts-default">
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.AdminAction">
 			<result name="index" type="freemarker">/WEB-INF/template/admin/index.ftl</result>
 		</action>
     </package>
-    
-    
 	<package name="json" extends="json-default">
 		<global-results>
 			<result name="msg" type="json">
