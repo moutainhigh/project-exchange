@@ -31,7 +31,6 @@ function check_pwd(){
 		alertInfo(1,'密码须为6位或6以上的字母/数字/下划线，不能超过30位');
 		return false;
 	}
-  	alertInfo(1,'格式正确','green');	
   	return true;
 }
 //检查验证码

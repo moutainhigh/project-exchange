@@ -1,3 +1,5 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -9,7 +11,7 @@
 		<link href="Themes/basic.css" rel="stylesheet" type="text/css" />
 		<link href="Themes/reg.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/reg.js"></script>
 	</head>
 
 	<body>
@@ -62,9 +64,17 @@
 		<div class="all">
 			<div id="content_s">
 				<div id="register_step">
-					<img alt="用户登录" src="Themes/images/log_banner.gif">
+					<img alt="填写信息" src="Themes/images/input_info_on.jpg?ver=431">
+					<img alt="注册成功" src="Themes/images/register_success_huise.jpg?ver=431">
 				</div>
-				<form method="post" name="register_submit" action="login.htm" id="register_submit">
+				<c:if test="${not empty msg}">
+				<div style="text-align:center; height:30px; font-size:12px;color:red;margin:10px auto;" id="reqMsg">
+					<div style="margin:2px auto;border:1px solid #FF0000; background-color:#FFCE00; line-height:30px;height:30px; width:400px;">
+						${msg}
+					</div>
+				</div>
+				</c:if>
+				<form method="post" name="register_submit" action="reg.htm" id="register_submit">
 					<div style="padding-left: 85px; padding-right: 0pt;">
 						<table height="122" cellspacing="0" cellpadding="0" border="0" width="90%">
 							<tbody>
@@ -74,10 +84,10 @@
 											登录名:
 										</label>
 										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="username" id="login_id">
+										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id">
 									</td>
 									<td width="336" id="loginidinfo" class="reg_bg_two">
-										<a href="reg.html">注册新账号</a>
+										4-16个字符（包括4、16）或2-8个汉字
 									</td>
 								</tr>
 								<tr>
@@ -86,10 +96,49 @@
 											密码:
 										</label>
 										&nbsp;
-										<input type="password" style="width: 200px;" onblur="check_pwd(this);" name="password" id="password">
+										<input type="password" style="width: 200px;" onblur="check_pwd(this);" name="user.password" id="password">
 									</td>
 									<td id="pwdinfo" class="reg_bg_two">
-										<a href="#">忘记密码？</a>
+										密码须为6位或6以上的字母/数字/下划线
+									</td>
+								</tr>
+								<tr>
+									<td class="reg_bg_one" colspan="4">
+										<label>
+											重输密码:
+										</label>
+										&nbsp;
+										<input type="password" style="width: 200px;" onblur="check_repwd(this);" id="repassword">
+									</td>
+									<td id="repwdinfo" class="reg_bg_two">
+										&nbsp;
+									</td>
+								</tr>
+								<tr>
+									<td class="reg_bg_one" colspan="4">
+										<label>
+											电子邮箱:
+										</label>
+										&nbsp;
+										<input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email">
+									</td>
+									<td id="emailinfo" class="reg_bg_two">
+										忘记密码时，可凭安全邮箱索取密码
+									</td>
+								</tr>
+								<tr>
+									<td class="reg_bg_one" colspan="4">
+										<div id="sel_geo">
+											<label>
+												所在地区:
+											</label>
+											&nbsp;
+											<select name="topArea" id="topArea"></select>
+											<select name="user.area.id" id="city"></select>
+										</div>
+									</td>
+									<td id="geoinfo" class="reg_bg_two">
+										您登录以后，首页将会指向此处，可以只选择省份或直辖市
 									</td>
 								</tr>
 								<tr>
@@ -119,7 +168,9 @@
 
 					<div id="submit">
 						<div>
-							<input type="button" class="reg" value="登 录" name="send" onclick="chkForm();">
+							<input type="button" class="reg" value="注 册" name="send" onclick="chkForm();">
+							<span>&nbsp;&nbsp;表示您同意<a target="_blank" href="#">一路发网络服务使用协议</a>
+							</span>
 						</div>
 					</div>
 				</form>
@@ -143,4 +194,6 @@
 		</div>
 	</body>
 </html>
+
+
 

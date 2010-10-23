@@ -13,7 +13,7 @@
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
     <package name="struts2" namespace="/" extends="struts-default">
-		<action name="login" class="com.throne212.info168.web.action.LoginAction">
+		<action name="login_action" class="com.throne212.info168.web.action.LoginAction">
 			<result name="admin">/admin/index.jsp</result>
 			<result name="success" type="chain">
          		<param name="actionName">infoList</param>
@@ -21,15 +21,18 @@
 			</result>
 			<result name="fail">/login.jsp</result>
 		</action>
-		<action name="logout" class="com.throne212.tg.web.action.LogoutAction">
+		<action name="logout_action" class="com.throne212.tg.web.action.LogoutAction">
 			<result name="success">/index.htm</result>
 		</action>
-		<action name="reg" class="com.throne212.tg.web.action.RegAction">
+		<action name="reg_action" class="com.throne212.tg.web.action.RegAction">
 			<result name="success" type="chain">
          		<param name="actionName">infoList</param>
          		<param name="namespace">/user</param> 
 			</result>
 			<result name="fail">/reg.jsp</result>
+		</action>
+		<action name="*">
+			<result name="success">/{1}.jsp</result>
 		</action>
     </package>
     <package name="user" namespace="/user" extends="struts-default">

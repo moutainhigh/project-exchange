@@ -11,6 +11,7 @@ public class LoginAction extends BaseAction {
 
 	private String username;// 用户名
 	private String password;// 密码
+	private String rand;//验证码
 
 	private UserBiz userBiz;// 业务层的用户bean
 
@@ -19,7 +20,12 @@ public class LoginAction extends BaseAction {
 	}
 
 	public String execute() {
+		if(Util.isEmpty(rand) || !rand.equals(ActionContext.getContext().getSession().get(WebConstants.SESS_RAND))){
+			this.setMsg("验证码错误");
+			return "fail";
+		}
 		if (Util.isEmpty(username) || Util.isEmpty(password)) {
+			this.setMsg("请完整填入用户名和密码");
 			return "fail";
 		}
 		User user = userBiz.login(username, password);
@@ -49,6 +55,18 @@ public class LoginAction extends BaseAction {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRand() {
+		return rand;
+	}
+
+	public void setRand(String rand) {
+		this.rand = rand;
+	}
+
+	public UserBiz getUserBiz() {
+		return userBiz;
 	}
 
 }

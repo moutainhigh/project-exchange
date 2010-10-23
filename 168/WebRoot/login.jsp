@@ -1,3 +1,5 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -64,7 +66,14 @@
 				<div id="register_step">
 					<img alt="用户登录" src="Themes/images/log_banner.gif">
 				</div>
-				<form method="post" name="register_submit" action="login.htm" id="register_submit">
+				<c:if test="${not empty msg}">
+				<div style="text-align:center; height:30px; font-size:12px;color:red;margin:10px auto;" id="reqMsg">
+					<div style="margin:2px auto;border:1px solid #FF0000; background-color:#FFCE00; line-height:30px;height:30px; width:400px;">
+						${msg}
+					</div>
+				</div>
+				</c:if>
+				<form method="post" name="register_submit" action="login_action.htm" id="register_submit">
 					<div style="padding-left: 85px; padding-right: 0pt;">
 						<table height="122" cellspacing="0" cellpadding="0" border="0" width="90%">
 							<tbody>
