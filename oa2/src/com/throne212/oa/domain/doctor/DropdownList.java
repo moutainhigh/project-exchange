@@ -4,6 +4,7 @@ package com.throne212.oa.domain.doctor;
 public abstract class DropdownList {
 	protected Long id;//Ö÷¼ü
 	protected String name;//Ãû³Æ
+	protected Integer listorder;//ÅÅÐò±àºÅ
 	protected String description;//ÃèÊö
 
 	public Long getId() {
@@ -28,6 +29,14 @@ public abstract class DropdownList {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Integer getListorder() {
+		return listorder;
+	}
+
+	public void setListorder(Integer listorder) {
+		this.listorder = listorder;
 	}
 
 }

@@ -1,19 +1,44 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.throne212.oa.domain">
+<hibernate-mapping package="com.throne212.oa.domain.doctor">
 	<class name="Doctor" table="oa2_doctor">
 		<id column="id" name="id" type="long">
 			<generator class="native" />
 		</id>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
-		<property name="name"></property>
+		<property name="address"/>
+		<property name="applyDate"/>
+		<property name="birthday"/>
+		<property name="chufa"/>
+		<property name="comments" length="1024"/>
+		<property name="gender"/>
+		<property name="idNo"/>
+		<property name="image"/>
+		<property name="major"/>
+		<property name="name"/>
+		<property name="okDate"/>
+		<property name="org"/>
+		<property name="orgAddress"/>
+		<property name="orgNo"/>
+		<property name="orgPost"/>
+		<property name="other"/>
+		<property name="post"/>
+		<property name="shenpiComment"/>
+		<property name="shenpiOrg"/>
+		<property name="workExpr"/>
+		<property name="xueyuan"/>
+		<property name="yewuKaohe"/>
+		<property name="yishiDate"/>
+		<property name="zhiyeGrade"/>
+		<property name="zhiyeKemu"/>
+		<property name="zhushiDate"/>
+		<property name="zigeNo"/>
+		<many-to-one name="areaCun"/>
+		<many-to-one name="areaZhen"/>
+		<many-to-one name="bodyGrade"/>
+		<many-to-one name="grade"/>
+		<many-to-one name="nation"/>
+		<many-to-one name="xueli"/>
+		<many-to-one name="zige"/>
 	</class>
 </hibernate-mapping>
