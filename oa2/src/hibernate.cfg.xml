@@ -19,7 +19,7 @@
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>
-	<property name="hbm2ddl.auto">create</property>
+	<property name="hbm2ddl.auto">none</property>
 	<mapping resource="com/throne212/oa/domain/doctor/Doctor.hbm.xml" />
 	<mapping
 		resource="com/throne212/oa/domain/doctor/DropdownList.hbm.xml" />

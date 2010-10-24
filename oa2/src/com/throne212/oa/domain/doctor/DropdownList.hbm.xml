@@ -9,6 +9,7 @@
 		<discriminator column="data_type" force="false" insert="true" not-null="true" />
 		<property name="name" column="name" length="100" not-null="true"></property>
 		<property name="description" column="description" length="512"></property>
+		<property name="listorder" column="listorder"></property>
 		<subclass discriminator-value="nation" name="Nation"/>
 		<subclass discriminator-value="xueli" name="XueLi"/>
 		<subclass discriminator-value="zhen" name="Zhen"/>
