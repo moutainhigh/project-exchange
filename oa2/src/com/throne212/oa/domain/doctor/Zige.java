@@ -1,5 +1,5 @@
 package com.throne212.oa.domain.doctor;
-//ä¸“ä¸šæŠ€æœ¯èµ„æ ¼
+//×¨Òµ¼¼Êõ×Ê¸ñ
 public class Zige extends DropdownList {	
-	public static String componentName = "ä¸“ä¸šæŠ€æœ¯èµ„æ ¼";
+	public static String componentName = "×¨Òµ¼¼Êõ×Ê¸ñ";
 }

@@ -1,5 +1,5 @@
 package com.throne212.oa.domain.doctor;
-//姘戞棌
+//民族
 public class Nation extends DropdownList {	
-	public static String componentName = "姘戞棌";
+	public static String componentName = "民族";
 }

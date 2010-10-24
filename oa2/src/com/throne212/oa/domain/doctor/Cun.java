@@ -1,5 +1,5 @@
 package com.throne212.oa.domain.doctor;
-//é•‡
+//Õò
 public class Cun extends DropdownList {	
-	public static String componentName = "æ‘";
+	public static String componentName = "´å";
 }

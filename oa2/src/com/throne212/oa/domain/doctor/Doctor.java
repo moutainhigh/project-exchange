@@ -4,47 +4,47 @@ import java.util.Date;
 
 public class Doctor {
 	
-	private Long id;//ä¸»é”®
-	private String name;//å§“å
-	private Boolean gender;//æ€§åˆ«ï¼Œtrueä¸ºç”·ï¼Œfalseä¸ºå¥³ï¼Œnullä¸ºä¸çŸ¥
-	private Date birthday;//ç”Ÿæ—¥
-	private Nation nation;//æ°‘æ—
-	private String image;//ç…§ç‰‡
-	private String idNo;//çœä»½è¯å·ç 
+	private Long id;//Ö÷¼ü
+	private String name;//ĞÕÃû
+	private Boolean gender;//ĞÔ±ğ£¬trueÎªÄĞ£¬falseÎªÅ®£¬nullÎª²»Öª
+	private Date birthday;//ÉúÈÕ
+	private Nation nation;//Ãñ×å
+	private String image;//ÕÕÆ¬
+	private String idNo;//Ê¡·İÖ¤ºÅÂë
 	
-	private XueLi xueli;//å­¦å†
-	private String xueyuan;//æ‰€åœ¨é™¢ç³»
-	private String major;//ä¸“ä¸š
+	private XueLi xueli;//Ñ§Àú
+	private String xueyuan;//ËùÔÚÔºÏµ
+	private String major;//×¨Òµ
 	
-	private String address;//å®¶åº­åœ°å€
-	private String post;//é‚®ç¼–
+	private String address;//¼ÒÍ¥µØÖ·
+	private String post;//ÓÊ±à
 	
-	private Zige zige;//ä¸“ä¸šæŠ€æœ¯èµ„æ ¼
-	private String zigeNo;//æ³¨å†Œç¼–å·
-	private Grade grade;//çº§åˆ«
+	private Zige zige;//×¨Òµ¼¼Êõ×Ê¸ñ
+	private String zigeNo;//×¢²á±àºÅ
+	private Grade grade;//¼¶±ğ
 	
-	private String org;//æœºæ„åç§°
-	private String orgNo;//æœºæ„å·ç 
-	private String orgAddress;//æœºæ„åœ°å€
-	private String orgPost;//æœºæ„é‚®ç¼–
-	private Zhen areaZhen;//èŒä¸šåœ°ç‚¹,é•‡
-	private Cun areaCun;//èŒä¸šåœ°ç‚¹,æ‘
-	private Date zhushiDate;//èŒä¸šåŠ©å¸ˆèµ„æ ¼æ—¶é—´
-	private Date yishiDate;//èŒä¸šåŒ»å¸ˆèµ„æ ¼æ—¶é—´
-	private String zhiyeGrade;//æ‰§ä¸šçº§åˆ«
-	private String zhiyeKemu;//æ‰§ä¸šç§‘ç›®
-	private String chufa;//å¤„ç½šå¤„åˆ†
-	private String yewuKaohe;//ä¸šåŠ¡è€ƒæ ¸
-	private String other;//å…¶å®ƒé—®é¢˜
-	private BodyGrade bodyGrade;//èº«ä½“çŠ¶å†µ
-	private String workExpr;//å·¥ä½œç»å†	
+	private String org;//»ú¹¹Ãû³Æ
+	private String orgNo;//»ú¹¹ºÅÂë
+	private String orgAddress;//»ú¹¹µØÖ·
+	private String orgPost;//»ú¹¹ÓÊ±à
+	private Zhen areaZhen;//Ö°ÒµµØµã,Õò
+	private Cun areaCun;//Ö°ÒµµØµã,´å
+	private Date zhushiDate;//Ö°ÒµÖúÊ¦×Ê¸ñÊ±¼ä
+	private Date yishiDate;//Ö°ÒµÒ½Ê¦×Ê¸ñÊ±¼ä
+	private String zhiyeGrade;//Ö´Òµ¼¶±ğ
+	private String zhiyeKemu;//Ö´Òµ¿ÆÄ¿
+	private String chufa;//´¦·£´¦·Ö
+	private String yewuKaohe;//ÒµÎñ¿¼ºË
+	private String other;//ÆäËüÎÊÌâ
+	private BodyGrade bodyGrade;//ÉíÌå×´¿ö
+	private String workExpr;//¹¤×÷¾­Àú	
 	
-	private String shenpiComment;//å®¡æ‰¹æ„è§	
-	private Date applyDate;//ç”³è¯·æ—¥æœŸ
-	private Date okDate;//æ‰¹å‡†æ—¥æœŸ
-	private String shenpiOrg;//å®¡æ‰¹æœºæ„
+	private String shenpiComment;//ÉóÅúÒâ¼û	
+	private Date applyDate;//ÉêÇëÈÕÆÚ
+	private Date okDate;//Åú×¼ÈÕÆÚ
+	private String shenpiOrg;//ÉóÅú»ú¹¹
 	
-	private String comments;//å¤‡æ³¨
+	private String comments;//±¸×¢
 	
 	
 	//setter and getters

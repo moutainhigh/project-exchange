@@ -1,5 +1,5 @@
 package com.throne212.oa.domain.doctor;
-//瀛﹀巻
+//学历
 public class XueLi extends DropdownList {	
-	public static String componentName = "瀛﹀巻";
+	public static String componentName = "学历";
 }

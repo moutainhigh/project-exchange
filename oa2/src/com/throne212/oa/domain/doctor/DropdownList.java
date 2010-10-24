@@ -1,10 +1,10 @@
 package com.throne212.oa.domain.doctor;
 
-//鎵�鏈変笅鏉ュ埆琛ㄧ殑鐖剁被
+//所有下来别表的父类
 public abstract class DropdownList {
-	protected Long id;//涓婚敭
-	protected String name;//鍚嶇О
-	protected String description;//鎻忚堪
+	protected Long id;//主键
+	protected String name;//名称
+	protected String description;//描述
 
 	public Long getId() {
 		return id;
