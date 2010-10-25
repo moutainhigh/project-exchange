@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -80,7 +81,15 @@
 						</select>
 					</td>
 					<td rowspan="4" style="width: 150px;">
-						ее&nbsp;&nbsp;&nbsp;&nbsp;ЦЌ
+						<!--ее&nbsp;&nbsp;&nbsp;&nbsp;ЦЌ-->
+						    	<c:choose>
+						    		<c:when test="${empty a.id || empty a.logo}">
+						    		<iframe src="${appPath}/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+						    		</c:when>
+						    		<c:otherwise>
+						    		<iframe src="success.jsp?id=${a.id}" width="100%" height="100%" frameborder="0"></iframe>
+						    		</c:otherwise>
+						    	</c:choose>
 					</td>
 				</tr>
 				<tr class="list_td_context">
