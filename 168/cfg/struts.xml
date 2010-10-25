@@ -14,7 +14,10 @@
 	
     <package name="struts2" namespace="/" extends="struts-default">
 		<action name="login_action" class="com.throne212.info168.web.action.LoginAction">
-			<result name="admin">/admin/index.jsp</result>
+			<result name="admin" type="chain">
+         		<param name="actionName">index</param>
+         		<param name="namespace">/admin</param> 
+			</result>
 			<result name="success" type="chain">
          		<param name="actionName">infoList</param>
          		<param name="namespace">/user</param> 
@@ -52,7 +55,7 @@
     </package>
     <package name="admin" namespace="/admin" extends="struts-default">
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.AdminAction">
-			<result name="index" type="freemarker">/WEB-INF/template/admin/index.ftl</result>
+			<result name="index">/admin/manage.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default">
