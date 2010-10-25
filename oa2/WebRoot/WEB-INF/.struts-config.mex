@@ -2,6 +2,20 @@
 <FlowViewLayout Version="1.2">
   <StrutsActivity path="/test.do" location="50,50" dimension="250,84" />
   <StrutsActivity path="/test.jsp" location="350,50" dimension="94,48" />
+  <StrutsActivity path="/doctor.do" location="650,50" dimension="250,84" />
+  <StrutsActivity path="/doctor/edit.jsp" location="950,50" dimension="136,48" />
+  <StrutsTransition id="/doctor.do,edit,/doctor/edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="900,83" />
+      <AbsolutePoint location="950,83" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/doctor.do,test,/test.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,83" />
+      <AbsolutePoint location="444,83" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/test.do,test,/test.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="300,83" />

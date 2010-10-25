@@ -10,6 +10,9 @@
     <action path="/test" type="com.throne212.oa.action.TestAction">
     	<forward name="test" path="/test.jsp"></forward>
     </action>
+    <action path="/doctor" type="com.throne212.oa.action.DoctorAction" parameter="method">
+    	<forward name="edit" path="/doctor/edit.jsp"></forward>
+    </action>
 
   </action-mappings>
 

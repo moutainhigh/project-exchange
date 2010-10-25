@@ -3,6 +3,21 @@
 <listener>
 	<listener-class>com.throne212.oa.listener.CommonListener</listener-class>
 </listener>
+<!-- 编码转换过滤器  -->
+ <filter>
+  <filter-name>Encoding</filter-name>
+  <filter-class>com.throne212.oa.filter.CharacterEncodingFilter</filter-class>
+ </filter>
+ 
+<!-- 映射过滤器-->
+ <filter-mapping>
+  <filter-name>Encoding</filter-name>
+  <url-pattern>*.jsp</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>Encoding</filter-name>
+  <url-pattern>*.do</url-pattern>
+</filter-mapping>
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>

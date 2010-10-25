@@ -3,12 +3,45 @@
 <html>
 	<head>
 		<title>新增医生注册</title>
-		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+		<link rel="stylesheet" type="text/css" href="${appPath}/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="${appPath}/css/jquery.datepick.css" />
 		<script type="text/javascript" src="${appPath}/js/jquery.js"></script>
-		<script type="text/javascript" src="${appPath}/js/doc_edit.js"></script>
+		<script type="text/javascript" src="${appPath}/js/jquery.datepick.js"></script>
+		<script type="text/javascript" src="${appPath}/js/jquery.datepick-zh-CN.js"></script>
+		<script type="text/javascript">
+			var msg = '${requestScope.msg}';
+			if(msg != ''){
+				alert(msg);
+			}
+			function saveForm(){
+				document.forms[0].submit();
+			}
+			$(function(){
+				//初始化列表数据
+				$('select').each(function(){		
+					if($(this).attr('id')){
+						var dropdownType = $(this).attr('id');
+						var thisSelect = this;
+						$(this).html('<option value=""></option>');
+						$.getJSON("${appPath}/ajax", {dropdownType:dropdownType}, function(json){
+							if(json && json.length){
+								for(var i=0;i<json.length;i++){
+									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
+									$(thisSelect).append(str);
+								}
+							}
+						}); 	
+					}	
+				}); 	
+				//初始化日期输入数据
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+			});
+		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="post">
+		<form name="messageForm" method="post" action="${appPath}/doctor.do">
+			<input type="hidden" name="method" value="addDoctor"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
@@ -91,7 +124,7 @@
 					</td>
 					<td>
 						级&nbsp;&nbsp;&nbsp;&nbsp;别：
-						<select name="doc.grade" id="Grade">
+						<select name="doc.grade.id" id="Grade">
 							<option value="">未知</option>
 							<option value="1">高级</option>
 							<option value="2">中级</option>
@@ -127,10 +160,10 @@
 						</select>村
 					</td>
 					<td colspan="2">
-						职业助师资格时间：<input type="text" name="doc.zhushiDate" id="zhushiDate" style="width:200px;"/>
+						职业助师资格时间：<input type="text" name="doc.zhushiDate" id="zhushiDate" style="width:200px;" class="datetime"/>
 					</td>
 					<td colspan="2">
-						职业医师资格时间：<input type="text" name="doc.yishiDate" id="yishiDate" style="width:200px;"/>
+						职业医师资格时间：<input type="text" name="doc.yishiDate" id="yishiDate" style="width:200px;" class="datetime"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -139,7 +172,7 @@
 						<input type="text" name="doc.zhiyeGrade" id="zhiyeGrade" style="width:200px;"/>
 					</td>
 					<td colspan="3">
-						职业科目：<input type="text" name="doc.zhiyeGrade" id="zhiyeKemu" style="width:400px;"/>
+						职业科目：<input type="text" name="doc.zhiyeKemu" id="zhiyeKemu" style="width:400px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -182,11 +215,11 @@
 					</td>
 					<td colspan="1">
 						申请时间：
-						<input type="text" name="doc.applyDate" id="applyDate" style="width:100px;"/>
+						<input type="text" name="doc.applyDate" id="applyDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="1">
 						批准时间：
-						<input type="text" name="doc.okDate" id="okDate" style="width:100px;"/>
+						<input type="text" name="doc.okDate" id="okDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="2">
 						批准机构：
@@ -204,7 +237,7 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr>
 					<td align="center">
-						<input type="button" name="" value="保 存" onclick="save();">
+						<input type="button" name="" value="保 存" onclick="saveForm();">
 						<input type="button" name="" value="放 弃" onclick="">
 					</td>
 				</tr>
