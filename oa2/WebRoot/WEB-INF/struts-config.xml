@@ -12,6 +12,7 @@
     </action>
     <action path="/doctor" type="com.throne212.oa.action.DoctorAction" parameter="method">
     	<forward name="edit" path="/doctor/edit.jsp"></forward>
+    	<forward name="list" path="/doctor/list.jsp"></forward>
     </action>
 
   </action-mappings>

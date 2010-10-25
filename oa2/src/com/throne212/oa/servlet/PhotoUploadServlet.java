@@ -55,10 +55,15 @@ public class PhotoUploadServlet extends HttpServlet{
 						fos.close();
 						is.close();
 						request.getSession().setAttribute("image", targetFileName);
+						System.out.println("照片上传成功");
+						//上传成功
+						request.getRequestDispatcher("/upload_succ.jsp").forward(request, response);
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				//上传失败
+				request.getRequestDispatcher("/upload.jsp").forward(request, response);
 			}
 		}
 	}	

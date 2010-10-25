@@ -14,6 +14,7 @@
 			var msg = '${requestScope.msg}';
 			if(msg != ''){
 				alert(msg);
+				self.location.href = '${appPath}/doctor.do?method=listDoctor';
 			}
 			function saveForm(){
 				document.forms[0].submit();
@@ -59,7 +60,7 @@
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="doc.name" id="docName" style="width:200px;"/>
+						姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="doc.name" value="${doc.name}" id="docName" style="width:200px;"/>
 					</td>
 					<td>
 						性&nbsp;&nbsp;&nbsp;&nbsp;别：
@@ -70,7 +71,7 @@
 						</select>
 					</td>
 					<td>
-						出生日期：<input type="text" name="doc.birthday" id="birthday" style="width:100px;" class="datetime"/>
+						出生日期：<input type="text" name="doc.birthday" value="${doc.birthday}" id="birthday" style="width:100px;" class="datetime"/>
 					</td>
 					<td>
 						民&nbsp;&nbsp;&nbsp;&nbsp;族：
@@ -82,25 +83,25 @@
 					</td>
 					<td rowspan="4" style="width: 150px;">
 						<!--照&nbsp;&nbsp;&nbsp;&nbsp;片-->
-						    	<c:choose>
-						    		<c:when test="${empty a.id || empty a.logo}">
-						    		<iframe src="${appPath}/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
-						    		</c:when>
-						    		<c:otherwise>
-						    		<iframe src="success.jsp?id=${a.id}" width="100%" height="100%" frameborder="0"></iframe>
-						    		</c:otherwise>
-						    	</c:choose>
+				    	<c:choose>
+				    		<c:when test="${empty doc.id || empty doc.image}">
+				    		<iframe src="${appPath}/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+				    		</c:when>
+				    		<c:otherwise>
+				    		<img src="${appPath}/photo/${doc.image}" style="display: block;margin:0 auto; height: 135px; width: 135px;"/>
+				    		</c:otherwise>
+				    	</c:choose>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						身份证号：<input type="text" name="doc.idNo" id="idNo" style="width:200px;"/>
+						身份证号：<input type="text" name="doc.idNo" value="${doc.idNo}" id="idNo" style="width:200px;"/>
 					</td>
 					<td colspan="2">
-						家庭住址：<input type="text" name="doc.address" id="address" style="width:300px;"/>
+						家庭住址：<input type="text" name="doc.address" value="${doc.address}" id="address" style="width:300px;"/>
 					</td>
 					<td>
-						邮&nbsp;&nbsp;&nbsp;&nbsp;编：<input type="text" name="doc.post" id="post" style="width:200px;"/>
+						邮&nbsp;&nbsp;&nbsp;&nbsp;编：<input type="text" name="doc.post" value="${doc.post}" id="post" style="width:200px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -113,10 +114,10 @@
 						</select>
 					</td>
 					<td colspan="2">
-						所在院系：<input type="text" name="doc.xueyuan" id="xueyuan" style="width:300px;"/>
+						所在院系：<input type="text" name="doc.xueyuan" value="${doc.xueyuan}" id="xueyuan" style="width:300px;"/>
 					</td>
 					<td>
-						专&nbsp;&nbsp;&nbsp;&nbsp;业：<input type="text" name="doc.major" id="major" style="width:200px;"/>
+						专&nbsp;&nbsp;&nbsp;&nbsp;业：<input type="text" name="doc.major" value="${doc.major}" id="major" style="width:200px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -129,7 +130,7 @@
 						</select>
 					</td>
 					<td colspan="2">
-						注册编号：<input type="text" name="doc.zigeNo" id="zigeNo" style="width:300px;"/>
+						注册编号：<input type="text" name="doc.zigeNo" value="${doc.name}" id="zigeNo" style="width:300px;"/>
 					</td>
 					<td>
 						级&nbsp;&nbsp;&nbsp;&nbsp;别：
@@ -142,18 +143,18 @@
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="3">
-						机构名称：<input type="text" name="doc.org" id="org" style="width:400px;"/>
+						机构名称：<input type="text" name="doc.org" value="${doc.org}" id="org" style="width:400px;"/>
 					</td>
 					<td colspan="2">
-						机构编号：<input type="text" name="doc.orgNo" id="orgNo" style="width:200px;"/>
+						机构编号：<input type="text" name="doc.orgNo" value="${doc.orgNo}" id="orgNo" style="width:200px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="3">
-						机构地址：<input type="text" name="doc.orgAddress" id="orgAddress" style="width:400px;"/>
+						机构地址：<input type="text" name="doc.orgAddress" value="${doc.orgAddress}" id="orgAddress" style="width:400px;"/>
 					</td>
 					<td colspan="2">
-						邮政编码：<input type="text" name="doc.orgPost" id="orgPost" style="width:200px;"/>
+						邮政编码：<input type="text" name="doc.orgPost" value="${doc.orgPost}" id="orgPost" style="width:200px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -169,49 +170,49 @@
 						</select>村
 					</td>
 					<td colspan="2">
-						职业助师资格时间：<input type="text" name="doc.zhushiDate" id="zhushiDate" style="width:200px;" class="datetime"/>
+						职业助师资格时间：<input type="text" name="doc.zhushiDate" value="${doc.zhushiDate}" id="zhushiDate" style="width:200px;" class="datetime"/>
 					</td>
 					<td colspan="2">
-						职业医师资格时间：<input type="text" name="doc.yishiDate" id="yishiDate" style="width:200px;" class="datetime"/>
+						职业医师资格时间：<input type="text" name="doc.yishiDate" value="${doc.yishiDate}" id="yishiDate" style="width:200px;" class="datetime"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="2">
 						职业类别：
-						<input type="text" name="doc.zhiyeGrade" id="zhiyeGrade" style="width:200px;"/>
+						<input type="text" name="doc.zhiyeGrade" value="${doc.zhiyeGrade}" id="zhiyeGrade" style="width:200px;"/>
 					</td>
 					<td colspan="3">
-						职业科目：<input type="text" name="doc.zhiyeKemu" id="zhiyeKemu" style="width:400px;"/>
+						职业科目：<input type="text" name="doc.zhiyeKemu" value="${doc.zhiyeKemu}" id="zhiyeKemu" style="width:400px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="5">
 						处罚处分：
-						<input type="text" name="doc.chufa" id="chufa" style="width:600px;"/>
+						<input type="text" name="doc.chufa" value="${doc.chufa}" id="chufa" style="width:600px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="5">
 						业务考核：
-						<input type="text" name="doc.yewuKaohe" id="yewuKaohe" style="width:600px;"/>
+						<input type="text" name="doc.yewuKaohe" value="${doc.yewuKaohe}" id="yewuKaohe" style="width:600px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="5">
 						其它问题：
-						<input type="text" name="doc.other" id="other" style="width:600px;"/>
+						<input type="text" name="doc.other" value="${doc.other}" id="other" style="width:600px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="5">
 						工作经历：
-						<input type="text" name="doc.workExpr" id="workExpr" style="width:600px;"/>
+						<input type="text" name="doc.workExpr" value="${doc.workExpr}" id="workExpr" style="width:600px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="5">
 						审批意见：
-						<input type="text" name="doc.shenpiComment" id="shenpiComment" style="width:600px;"/>
+						<input type="text" name="doc.shenpiComment" value="${doc.shenpiComment}" id="shenpiComment" style="width:600px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -224,21 +225,21 @@
 					</td>
 					<td colspan="1">
 						申请时间：
-						<input type="text" name="doc.applyDate" id="applyDate" style="width:100px;" class="datetime"/>
+						<input type="text" name="doc.applyDate" value="${doc.applyDate}" id="applyDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="1">
 						批准时间：
-						<input type="text" name="doc.okDate" id="okDate" style="width:100px;" class="datetime"/>
+						<input type="text" name="doc.okDate" value="${doc.okDate}" id="okDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="2">
 						批准机构：
-						<input type="text" name="doc.shenpiOrg" id="shenpiOrg" style="width:300px;"/>
+						<input type="text" name="doc.shenpiOrg" value="${doc.shenpiOrg}" id="shenpiOrg" style="width:300px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="5" style="vertical-align: top;">
 						备&nbsp;&nbsp;&nbsp;&nbsp;注：
-						<textarea style="width: 600px;height: 50px;" name="comments" id="comments"></textarea>
+						<textarea style="width: 600px;height: 50px;" name="doc.comments" id="comments">${doc.comments}</textarea>
 					</td>
 				</tr>
 			</table>

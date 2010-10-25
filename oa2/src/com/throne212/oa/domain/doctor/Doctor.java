@@ -46,6 +46,8 @@ public class Doctor {
 	
 	private String comments;//备注
 	
+	private Integer status;//注册状态,1表示正常，0表示已注销
+	
 	
 	//setter and getters
 
@@ -327,6 +329,14 @@ public class Doctor {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 	

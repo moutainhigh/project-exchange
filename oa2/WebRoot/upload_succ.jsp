@@ -19,10 +19,7 @@
         </script>
     </head>
 <body bgcolor="#FFFFFF" text="#000000">
-<form name="form1" method="post" action="photo" enctype="multipart/form-data" >
-	<img src="images/nophoto.jpg" style="display: block;margin:0 auto; height: 100px; width: 100px;"/>
-	<input type="file" name="myfile" size="1" class="tx1" value="" /><input type="submit" value="上传"/>
-</form>
+	<img src="photo/${sessionScope.image}" style="display: block;margin:0 auto; height: 135px; width: 135px;"/>
 </body>
 </html>
 
