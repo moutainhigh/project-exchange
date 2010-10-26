@@ -4,11 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>${app_title}</title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="森磊 汽修 汽配" />
-        <link rel="shortcut icon" href="${app_path}/favicon.jpg" type="image/x-icon" />
-		<script src="${app_path}/manage/js/jquery.js" type="text/javascript"></script>
+        <title>${appTitle}</title>
+        <link rel="shortcut icon" href="${appPath}/favicon.jpg" type="image/x-icon" />
+		<script src="${appPath}/js/jquery.js" type="text/javascript"></script>
 		<style>
 			/* common */
 			html{
@@ -36,7 +34,7 @@
 			}
 			#logo{
 				border:solid 0px red;
-				background:url(images/senlei_logo.jpg) no-repeat left top;
+				background:url(${appPath}/admin/images/senlei_logo.jpg) no-repeat left top;
 				width:330px;
 				height:66px;
 				/*padding-left:5em;*/
@@ -52,7 +50,7 @@
 				top:26px;
 			}
 			#welcome_nav{
-				background:url(images/top_bg.jpg) repeat-x right top;
+				background:url(${appPath}/admin/images/top_bg.jpg) repeat-x right top;
 				height:32px;
 				border:solid 0px red;
 			}
@@ -77,7 +75,7 @@
 			#mainNav{
 				border:solid 0px red;
 				font-size:13px;
-				background:url(images/menu_bg.jpg) repeat-x left top;
+				background:url(${appPath}/admin/images/menu_bg.jpg) repeat-x left top;
 				/*float:left;*/
 				/*width:100%;*/
 				height:34px;
@@ -97,7 +95,7 @@
 				width:95px;
 				height:34px;
 				border:solid 0px red;
-				background:url(images/sy_bg.jpg) no-repeat left top;
+				background:url(${appPath}/admin/images/sy_bg.jpg) no-repeat left top;
 				float:left;
 				border:solid 0px red;
 			}
@@ -119,11 +117,11 @@
 				border:solid 0px red;
 				width:80px;
 				height:34px;
-				background:url(images/menu_sep.jpg) no-repeat left 50%;
+				background:url(${appPath}/admin/images/menu_sep.jpg) no-repeat left 50%;
 			}
 			
 			#msgNav{
-				background:url(images/msg_bg.jpg) repeat-x left top;
+				background:url(${appPath}/admin/images/msg_bg.jpg) repeat-x left top;
 				height:26px;
 				border:solid 0px red;
 				line-height:26px;
@@ -142,7 +140,7 @@
 				color:black;
 			}
 			#msgNav span{
-				background:url(images/tbg.jpg) repeat-x left top;
+				background:url(${appPath}/admin/images/tbg.jpg) repeat-x left top;
 				position:relative;
 				float:right;				
 				padding-left:3px;
@@ -220,28 +218,26 @@
         <div id="wraper">
         	<!-- top -->
         	<div id="top">
-        		<div id="logo"><span>${app_title }</span></div>
+        		<div id="logo"><span>${appTitle }</span></div>
 				<div id="welcome_nav">
 					<div>
-						<span style="background:url(images/msg2.jpg) no-repeat left center">您好, admin</span>  
-						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${app_path}/manage/welcome/pwd.jsp" target="mainFrame">密码修改</a></span> 
-						<span style="background:url(images/ico1.gif) no-repeat left center"><a href="${app_path}/index.html" target="_blank">前台网站</a></span> 
-						<span style="background:url(images/ico5.jpg) no-repeat left center"><a href="${app_path}/LogonAction.do?method=logout">退 出</a></span>
+						<span style="background:url(${appPath}/admin/images/msg2.jpg) no-repeat left center">您好, admin</span>  
+						<span style="background:url(${appPath}/admin/images/ico1.gif) no-repeat left center"><a href="${appPath}/manage/welcome/pwd.jsp" target="mainFrame">密码修改</a></span> 
+						<span style="background:url(${appPath}/admin/images/ico1.gif) no-repeat left center"><a href="${appPath}/index.html" target="_blank">前台网站</a></span> 
+						<span style="background:url(${appPath}/admin/images/ico5.jpg) no-repeat left center"><a href="${appPath}/logout_action.htm">退 出</a></span>
 					</div>
 				</div>
 				<div id="mainNav">
-					<div><a href="${app_path}/manage/SysAction.do?method=showMain" target="mainFrame" <c:if test="${empty sess_curr_module}">style="color:red"</c:if>>欢迎页</a></div>
+					<div><a href="${appPath}/manage/SysAction.do?method=showMain" target="mainFrame" <c:if test="${empty sess_curr_module}">style="color:red"</c:if>>欢迎页</a></div>
 					<ul>
-						<c:forEach var="module" items="${sess_modules}">
-						<li><a href="${app_path}${module.url }" target="mainFrame" <c:if test="${sess_curr_module.id==module.id}">style="color:red"</c:if>>${module.name }</a></li>
-						</c:forEach>
+						<li><a href="${appPath}${module.url }" target="mainFrame" <c:if test="${sess_curr_module.id==module.id}">style="color:red"</c:if>>${module.name }</a></li>
 					</ul>
 				</div>
 				<div id="msgNav">
-					<img src="images/xs.gif"/>
+					<img src="${appPath}/admin/images/xs.gif"/>
 					<!--<a href="#">关闭/开启左栏</a>-->
 					<a href="#">(左栏开关)</a>
-		        	<span style="margin-left:20px;float:left;background:url(images/arrow.gif) no-repeat 15px center;padding-left:40px;">当前位置： 后台 - <div id="pos" style="display: inline;">欢迎页</div> - <div id="pos2" style="display: inline;"></div></span>
+		        	<span style="margin-left:20px;float:left;background:url(${appPath}/admin/images/arrow.gif) no-repeat 15px center;padding-left:40px;">当前位置： 后台 - <div id="pos" style="display: inline;">欢迎页</div> - <div id="pos2" style="display: inline;"></div></span>
 					<span>
 						今天日期:
 						<script language="JavaScript" type="text/javascript">
@@ -266,7 +262,7 @@
         	<div id="main">
         		<div style="border-top:1px solid #1879B0;"></div>
         		<!--主体框架Begin-->
-				<iframe id="mainFrame" name="mainFrame" src="main.html" frameborder="0" scrolling="no" style="width:100%;"></iframe>
+				<iframe id="mainFrame" name="mainFrame" src="${appPath}/admin/main.html" frameborder="0" scrolling="no" style="width:100%;"></iframe>
 				<!--主体框架End-->
 				<div style="border-top:1px solid #1879B0;"></div>
         	</div>

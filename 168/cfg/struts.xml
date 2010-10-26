@@ -24,10 +24,10 @@
 			</result>
 			<result name="fail">/login.jsp</result>
 		</action>
-		<action name="logout_action" class="com.throne212.tg.web.action.LogoutAction">
+		<action name="logout_action" class="com.throne212.info168.web.action.LogoutAction">
 			<result name="success">/index.htm</result>
 		</action>
-		<action name="reg_action" class="com.throne212.tg.web.action.RegAction">
+		<action name="reg_action" class="com.throne212.info168.web.action.RegAction">
 			<result name="success" type="chain">
          		<param name="actionName">infoList</param>
          		<param name="namespace">/user</param> 
@@ -58,7 +58,7 @@
 			<result name="index">/admin/manage.jsp</result>
 		</action>
     </package>
-	<package name="json" extends="json-default">
+	<package name="json" extends="json-default" namespace="/ajax">
 		<global-results>
 			<result name="msg" type="json">
 				<param name="root">msg</param>
@@ -68,7 +68,7 @@
 			</result>
 		</global-results>
      	<!-- AjaxAction -->
-        <action name="ajax_*" method="{1}" class="com.throne212.info168.web.action.AjaxAction">
+        <action name="*" method="{1}" class="com.throne212.info168.web.action.AjaxAction">
         	<result name="area_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,

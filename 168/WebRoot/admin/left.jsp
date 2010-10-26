@@ -111,7 +111,7 @@
     </head>
     <body>
     	<c:if test="${empty sess_pages}">
-    		<jsp:forward page="/manage/left.html"></jsp:forward>
+    		<jsp:forward page="/admin/left.html"></jsp:forward>
     	</c:if>
         <h2>${sess_curr_module.name}</h2>
         <div id="menu3">

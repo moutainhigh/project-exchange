@@ -3,7 +3,7 @@
 
 //初始化省市数据下拉
 $(function(){
-	$.getJSON("ajax_getTopArea.action",null, function(json){
+	$.getJSON("ajax/getTopArea.action",null, function(json){
   		if(json){
   			$('#topArea').html('<option value=""></option>');
   			for(var i=0;i<json.list.length;i++){
@@ -12,7 +12,7 @@ $(function(){
   			}
   			$('#topArea').change(function(){
   				if($('#topArea').val()){
-	  				$.getJSON("ajax_getCities.action",{parentId:$('#topArea').val()}, function(json){
+	  				$.getJSON("ajax/getCities.action",{parentId:$('#topArea').val()}, function(json){
 	  					if(json){
 	  						$('#city').html('<option value=""></option>');
 		  					for(var i=0;i<json.list.length;i++){
@@ -47,7 +47,7 @@ function check_loginid(){
 		alertInfo(0,'用户名长度错误，4-16个字符（包括4、16）或2-8个汉字');
 		return false;
 	}
-	$.getJSON("ajax_checkLoginName.action",{loginName:login_id}, function(rst){
+	$.getJSON("ajax/checkLoginName.action",{loginName:login_id}, function(rst){
   		if('succ'==rst){
   			alertInfo(0,'格式正确','green');	
   		}else{
@@ -101,7 +101,7 @@ function check_email(){
 		alertInfo(3,'请正确的输入邮箱地址');
 		return false;
 	}
-	$.getJSON("ajax_checkEmail.action",{email:email}, function(rst){
+	$.getJSON("ajax/checkEmail.action",{email:email}, function(rst){
   		if('succ'==rst){
   			alertInfo(3,'格式正确','green');	
   		}else{
@@ -117,7 +117,7 @@ function check_rand(){
 		alertInfo(5,'必须填入验证码');
 		return false;
 	}
-	$.getJSON("ajax_checkRand.action",{rand:rand}, function(rst){
+	$.getJSON("ajax/checkRand.action",{rand:rand}, function(rst){
   		if('succ'==rst){
   			alertInfo(5,'格式正确','green');	
   		}else{
