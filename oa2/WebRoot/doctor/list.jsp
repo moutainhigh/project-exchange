@@ -34,19 +34,140 @@
 							}
 						}); 	
 					}	
-				}); 	
+				}); 	;
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
+			function deleteDoctor(id){
+				if(confirm('您确定删除吗？\n本操作将不可以恢复'))
+					self.location.href = '${appPath}/doctor.do?method=deleteDoctor&id='+id;
+			}
+			function gotoPage(pageIndex,url){
+				if(!url){
+					url = self.location.href;
+				}
+				if(url.indexOf("?") > 0){
+					if(url.indexOf("pageIndex=") > 0){
+						url = url.replace(/pageIndex=\d*/g,'');
+						//alert(url);
+						url = url.replace(/&{2,}/g,'&');
+					}
+					url += '&';
+				}else{
+					url += '?';
+				}
+				url += "pageIndex=" + pageIndex;
+				self.location.href = url;
+			}
+			function cover(id)
+			{
+			     //$("select").each(function(){this.style.visibility="hidden";})
+			     //选择所有的select并设置为隐藏
+			      $("#coverLayer").fadeTo("fast",0.5,function(){$("#coverLayer").css("display","block");})
+			                     .width(Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth))
+			                     .height(Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight));
+			     //显示覆盖层 并设置其高和宽
+			    $("#"+id).show();
+			    //显示LightBox层
+			    $('select').hide();
+			}
+			function discover(id)
+			{
+			     //$("select").each(function(){this.style.visibility="visible";})
+			     $("#coverLayer").fadeOut("normal",function(){$("#coverLayer").css("display","none");})
+			     $("#"+id).fadeOut("normal",function(){$("#lightBox").css("display","none");})
+			     $('select').show();
+			}
+			var currDocId = null;
+			function showInstr(id){
+				currDocId = id;
+				cover('lightBox');
+			}			
+			function unreg(){
+				var reason = $('#reason').val();
+				if(reason){					
+					var str = '${appPath}/doctor.do?method=unregDoctor&id=' + currDocId+'&reason='+reason;
+					self.location.href = str;
+				}else{
+					alert('理由不能为空');
+				}
+			}
 		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="post" action="${appPath}/doctor.do">
-			<input type="hidden" name="method" value="addDoctor"/>
+		<div id="coverLayer" style="display: none; background: #000000; position: absolute;"></div>
+		<div id="lightBox"
+			style="display: none; width: 500px; height:auto; position: absolute; z-index: 1002; background: #ffffff; left: 35%; top: 50%; margin-left: -150px; margin-top: -100px; border: #00FFFF double 4px;">
+			<a id="discover" href="#" onclick="discover('lightBox');" style="float:right;color:gray;">关闭</a>
+			<div class="shuoming">
+			  <p><strong>请填写注销理由</strong></p>
+			  <p>
+			  	<textarea name="reason" id="reason" style="width:90%;height: 50px;"></textarea>
+			  </p>
+			</div>
+			<p style="text-align: center; margin: 10px auto;">
+				<input type="button" value=" 确定 " onclick="unreg();" />
+				<input type="button" value=" 放弃 " onclick="discover('lightBox');" />
+			</p>
+		</div>
+		<form name="messageForm" method="get" action="${appPath}/doctor.do">
+			<input type="hidden" name="method" value="listDoctor"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
 			        <font class=caption>医生注册信息查询</font>
+			      </td>
+			    </tr>
+			</table>
+			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
+			    <tr>
+			      <td align=center>
+			        <fieldset style="border: 1px solid #CCCCCC; margin: 10px auto 0px auto; width: 600px; display: block; " class="cx_oper allborder">
+					    <legend style="font-size: 12px; font-weight: 600; color: #556379; margin: 0 5px;"> 查询条件 </legend>
+					     <table width="100%" class="cx_tabble">
+					       <tbody>
+					       <tr>
+					         <td width="80" align="right">注册编号：</td>
+					         <td align="left">
+					         	<input type="text" name="doc.zigeNo" value="${param['doc.zigeNo']}" style="width: 200px;"/>
+					         </td>
+					         <td width="155" align="right">姓名：</td>
+					         <td align="left">
+								<input type="text" name="doc.name" value="${param['doc.name']}" style="width: 200px;"/>
+							 </td>
+							</tr>
+							<tr>
+					         <td width="155" align="right">身份证：</td>
+					         <td align="left">
+					         	<input type="text" name="doc.idNo" value="${param['doc.idNo']}" style="width: 200px;"/>
+					         </td>
+					         <td width="155" align="right">状态：</td>
+					         <td align="left">
+					         	<select name="doc.status">
+					         		<option value=""></option>
+					         		<option value="1" <c:if test="${param['doc.status']==1}">selected="selected"</c:if>>正常</option>
+					         		<option value="0" <c:if test="${param['doc.status']==0}">selected="selected"</c:if>>已注销</option>
+					         	</select>
+					         </td>
+					       </tr>
+					       <tr>
+					         <td align="right">年龄段：</td>
+					         <td align="left">
+					         	<input type="text" name="startAge" value="${param.startAge}" style="width: 90px;"/> - <input type="text" name="endAge" value="${param.endAge}" style="width: 90px;"/>
+							 </td>
+							 <td align="right">批准日期：</td>
+					         <td align="left">
+					         	<input type="text" name="startPiZhunDate" value="${param.startPiZhunDate}" class="datetime" style="width: 90px;"/> - <input type="text" name="endPiZhunDate" value="${param.endPiZhunDate}" class="datetime" style="width: 90px;"/>
+							 </td>
+					       </tr>
+					       <tr>
+					         <td align="right" colspan="4">
+					         	<input type="submit" value=" 筛  选 " style="width: 80px;margin-right: 30px;"/>
+					         </td>
+					       </tr>
+					     </tbody>
+					     </table>	 
+					  </fieldset>
 			      </td>
 			    </tr>
 			</table>
@@ -89,7 +210,7 @@
 					</td>
 				</tr>
 				<c:forEach items="${pageBean.resultList}" var="d" varStatus="status">
-				<tr class="list_td_context">
+				<tr class="list_td_context" style="<c:if test="${d.status == 0}">color:gray;</c:if>">
 					<td>
 						${status.count}
 					</td>
@@ -128,9 +249,15 @@
 						${d.zige.name }
 					</td>
 					<td>
-						<a href="#">详细</a>
+						<c:if test="${d.status!=0}">
 						<a href="${appPath}/doctor.do?method=viewDoctor&id=${d.id}">变更</a>
-						<a href="#">注销</a>
+						<a href="javascript:showInstr(${d.id});">注销</a>
+						</c:if>
+						<c:if test="${d.status==0}">
+						<a href="${appPath}/doctor.do?method=resumeDoctor&id=${d.id}">恢复</a>
+						<!--<a href="">查看注销原因</a>-->
+						<a href="javascript:deleteDoctor(${d.id})">删除</a>
+						</c:if>
 					</td>
 				</tr>
 				</c:forEach>
@@ -202,15 +329,6 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
-			<p>
-			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
-				<tr>
-					<td align="center">
-						<input type="button" name="" value="保 存" onclick="saveForm();">
-						<input type="button" name="" value="放 弃" onclick="">
-					</td>
-				</tr>
 			</table>
 		</form>
 	</body>

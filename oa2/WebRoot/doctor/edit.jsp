@@ -16,9 +16,20 @@
 				alert(msg);
 				self.location.href = '${appPath}/doctor.do?method=listDoctor';
 			}
+			var docId = '${doc.id}';
 			function saveForm(){
+				if(docId!=''){
+					document.forms[0].action = '${appPath}/doctor.do?method=updateDoctor';
+				}
 				document.forms[0].submit();
 			}
+			var dropArr =  {Nation:'${doc.nation.id}',
+							XueLi:'${doc.xueli.id}',
+							Zige:'${doc.zige.id}',
+							Grade:'${doc.grade.id}',
+							Zhen:'${doc.areaZhen.id}',
+							Cun:'${doc.areaCun.id}',
+							BodyGrade:'${doc.bodyGrade.id}'};
 			$(function(){
 				//初始化列表数据
 				$('select').each(function(){		
@@ -32,6 +43,7 @@
 									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
 									$(thisSelect).append(str);
 								}
+								$(thisSelect).val(dropArr[dropdownType]);
 							}
 						}); 	
 					}	
@@ -44,10 +56,13 @@
 	<body>
 		<form name="messageForm" method="post" action="${appPath}/doctor.do">
 			<input type="hidden" name="method" value="addDoctor"/>
+			<input type="hidden" name="doc.id" value="${doc.id}"/>
+			<input type="hidden" name="doc.status" value="${doc.status}"/>
+			<input type="hidden" name="doc.unregReason" value="${doc.unregReason}"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>新增医生注册</font>
+			        <font class=caption>编辑医生注册信息</font>
 			      </td>
 			    </tr>
 			</table>
@@ -130,7 +145,7 @@
 						</select>
 					</td>
 					<td colspan="2">
-						注册编号：<input type="text" name="doc.zigeNo" value="${doc.name}" id="zigeNo" style="width:300px;"/>
+						注册编号：<input type="text" name="doc.zigeNo" value="${doc.zigeNo}" id="zigeNo" style="width:300px;"/>
 					</td>
 					<td>
 						级&nbsp;&nbsp;&nbsp;&nbsp;别：
@@ -243,12 +258,11 @@
 					</td>
 				</tr>
 			</table>
-			<p>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr>
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
-						<input type="button" name="" value="放 弃" onclick="">
+						<input type="button" name="" value="放 弃" onclick="self.location.href='${appPath}/doctor.do?method=listDoctor'">
 					</td>
 				</tr>
 			</table>

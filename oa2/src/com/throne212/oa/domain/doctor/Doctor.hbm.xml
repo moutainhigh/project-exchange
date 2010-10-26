@@ -34,6 +34,7 @@
 		<property name="zhushiDate"/>
 		<property name="zigeNo"/>
 		<property name="status"/>
+		<property name="unregReason" length="512"/>
 		<many-to-one name="areaCun" lazy="false"/>
 		<many-to-one name="areaZhen" lazy="false"/>
 		<many-to-one name="bodyGrade" lazy="false"/>

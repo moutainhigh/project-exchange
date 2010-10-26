@@ -3,8 +3,16 @@
   <StrutsActivity path="/test.do" location="50,50" dimension="250,84" />
   <StrutsActivity path="/doctor.do" location="650,50" dimension="250,84" />
   <StrutsActivity path="/test.jsp" location="350,50" dimension="94,48" />
+  <StrutsActivity path="/doctor/list.jsp" location="350,150" dimension="136,48" />
   <StrutsActivity path="/doctor/edit.jsp" location="950,50" dimension="136,48" />
-  <StrutsActivity path="/doctor/list.jsp" />
+  <StrutsActivity path="/doctor/dic_edit.jsp" location="950,150" dimension="160,48" />
+  <StrutsActivity path="/doctor/dic_list.jsp" />
+  <StrutsTransition id="/doctor.do,dic_list,/doctor/dic_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="775,92" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/doctor.do,edit,/doctor/edit.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="900,83" />
@@ -17,10 +25,23 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/doctor.do,dic_edit,/doctor/dic_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="775,92" />
+      <AbsolutePoint location="1030,174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/test.do,test,/test.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="300,83" />
       <AbsolutePoint location="350,83" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/doctor.do,list,/doctor/dic_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="900,113" />
+      <AbsolutePoint location="1030,113" />
+      <AbsolutePoint location="1030,150" />
     </AutomaticBendpoints>
   </StrutsTransition>
 </FlowViewLayout>

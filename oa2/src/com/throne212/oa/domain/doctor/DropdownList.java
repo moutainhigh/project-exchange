@@ -1,7 +1,7 @@
 package com.throne212.oa.domain.doctor;
 
 //所有下来别表的父类
-public abstract class DropdownList {
+public class DropdownList {
 	protected Long id;//主键
 	protected String name;//名称
 	protected Integer listorder;//排序编号

@@ -41,6 +41,7 @@ public class Init {
 			try {
 				DropdownList sel = (DropdownList) clazz.newInstance();
 				sel.setName(arr[i]);
+				sel.setListorder(Integer.valueOf(0));
 				s.save(sel);
 			} catch (Exception e) {
 				e.printStackTrace();

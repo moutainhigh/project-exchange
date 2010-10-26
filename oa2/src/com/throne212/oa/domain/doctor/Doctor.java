@@ -47,6 +47,7 @@ public class Doctor {
 	private String comments;//备注
 	
 	private Integer status;//注册状态,1表示正常，0表示已注销
+	private String unregReason;//注销原因
 	
 	
 	//setter and getters
@@ -337,6 +338,14 @@ public class Doctor {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getUnregReason() {
+		return unregReason;
+	}
+
+	public void setUnregReason(String unregReason) {
+		this.unregReason = unregReason;
 	}
 	
 	

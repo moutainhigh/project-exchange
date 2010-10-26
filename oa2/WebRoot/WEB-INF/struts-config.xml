@@ -13,6 +13,8 @@
     <action path="/doctor" type="com.throne212.oa.action.DoctorAction" parameter="method">
     	<forward name="edit" path="/doctor/edit.jsp"></forward>
     	<forward name="list" path="/doctor/list.jsp"></forward>
+    	<forward name="dic_list" path="/doctor/dic_list.jsp"></forward>
+    	<forward name="dic_edit" path="/doctor/dic_edit.jsp"></forward>
     </action>
 
   </action-mappings>
