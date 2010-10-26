@@ -51,9 +51,97 @@
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
+			function cover(id){
+			     //$("select").each(function(){this.style.visibility="hidden";})
+			     //选择所有的select并设置为隐藏
+			      $("#coverLayer").fadeTo("fast",0.5,function(){$("#coverLayer").css("display","block");})
+			                     .width(Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth))
+			                     .height(Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight));
+			     //显示覆盖层 并设置其高和宽
+			    $("#"+id).show();
+			    //显示LightBox层
+			    $('select').hide();
+			}
+			function discover(id){
+			     //$("select").each(function(){this.style.visibility="visible";})
+			     $("#coverLayer").fadeOut("normal",function(){$("#coverLayer").css("display","none");})
+			     $("#"+id).fadeOut("normal",function(){$("#lightBox").css("display","none");})
+			     $('select').show();
+			}
+			function showInstr(){
+				cover('lightBox');
+			}	
+			function showInstr2(){
+				cover('lightBox2');
+			}		
+			function addWorkExpr(){
+				var str = '';
+				str += $('#work_sDate').val()+"-";
+				str += $('#work_eDate').val()+" ";
+				str += $('#work_org').val()+" ";
+				str += $('#work_zhiwu').val()+" ";
+				str += $('#work_zhengming').val()+" ";
+				$('#workExpr').append(str+'\n');
+				discover('lightBox');
+			}
+			function addChufaExpr(){
+				var str = '';
+				str += $('#chufa_sDate').val()+"-";
+				str += $('#chufa_eDate').val()+" ";
+				str += $('#chufa_org').val()+" ";
+				str += $('#chufa_zhiwu').val()+" ";
+				str += $('#chufa_zhengming').val()+" ";
+				$('#chufaExpr').append(str+'\n');
+				discover('lightBox2');
+			}
 		</script>
 	</head>
 	<body>
+		<div id="coverLayer" style="display: none; background: #000000; position: absolute;"></div>
+		<div id="lightBox"
+			style="display: none; width: 300px; height:auto; position: absolute; background: #ffffff; left: 35%; top: 50%; margin-left: -150px; margin-top: -100px; border: #00FFFF double 4px;">
+			<a id="discover" href="#" onclick="discover('lightBox');" style="float:right;color:gray;">关闭</a>
+			<div class="shuoming">
+			  <p><strong>工作经历</strong></p>
+			  <hr/>
+			  <p>
+			  	截止日期：<input type="text" name="work_sDate" id="work_sDate" class="datetime" style="width: 80px;"/>-
+			  	<input type="text" name="work_eDate" id="work_eDate" class="datetime" style="width: 80px;"/>
+			  	<br/>
+			  	单位名称：<input type="text" name="work_org" id="work_org" style="width: 170px;"/>
+			  	<br/>
+			  	技术职务：<input type="text" name="work_zhiwu" id="work_zhiwu" style="width: 170px;"/>
+			  	<br/>
+			  	&nbsp;&nbsp;证明人：<input type="text" name="work_zhengming" id="work_zhengming" style="width: 170px;"/>
+			  </p>
+			</div>
+			<p style="text-align: center; margin: 10px auto;">
+				<input type="button" value=" 确定 " onclick="addChufaExpr();" />
+				<input type="button" value=" 放弃 " onclick="discover('lightBox');" />
+			</p>
+		</div>
+		<div id="lightBox2"
+			style="display: none; width: 300px; height:auto; position: absolute; background: #ffffff; left: 35%; top: 50%; margin-left: -150px; margin-top: -100px; border: #00FFFF double 4px;">
+			<a id="discover" href="#" onclick="discover('lightBox2');" style="float:right;color:gray;">关闭</a>
+			<div class="shuoming">
+			  <p><strong>处罚处分</strong></p>
+			  <hr/>
+			  <p>
+			  	处罚日期：<input type="text" name="chufa_sDate" id="chufa_sDate" class="datetime" style="width: 80px;"/>-
+			  	<input type="text" name="chufa_eDate" id="chufa_eDate" class="datetime" style="width: 80px;"/>
+			  	<br/>
+			  	所处单位：<input type="text" name="chufa_org" id="chufa_org" style="width: 170px;"/>
+			  	<br/>
+			  	处罚理由：<input type="text" name="chufa_zhiwu" id="chufa_zhiwu" style="width: 170px;"/>
+			  	<br/>
+			  	&nbsp;&nbsp;证明人：<input type="text" name="chufa_zhengming" id="chufa_zhengming" style="width: 170px;"/>
+			  </p>
+			</div>
+			<p style="text-align: center; margin: 10px auto;">
+				<input type="button" value=" 确定 " onclick="addChufaExpr();" />
+				<input type="button" value=" 放弃 " onclick="discover('lightBox2');" />
+			</p>
+		</div>
 		<form name="messageForm" method="post" action="${appPath}/doctor.do">
 			<input type="hidden" name="method" value="addDoctor"/>
 			<input type="hidden" name="doc.id" value="${doc.id}"/>
@@ -203,7 +291,9 @@
 				<tr class="list_td_context">
 					<td colspan="5">
 						处罚处分：
-						<input type="text" name="doc.chufa" value="${doc.chufa}" id="chufa" style="width:600px;"/>
+						<!-- <input type="text" name="doc.chufa" value="${doc.chufa}" id="chufa" style="width:600px;"/> -->
+						<textarea name="doc.chufa" id="chufaExpr" style="width:600px; height: 50px;"></textarea>
+						<a href="javascript:showInstr2();" style="color:gray;">(增加处罚处分)</a>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -221,7 +311,9 @@
 				<tr class="list_td_context">
 					<td colspan="5">
 						工作经历：
-						<input type="text" name="doc.workExpr" value="${doc.workExpr}" id="workExpr" style="width:600px;"/>
+						<!--<input type="text" name="doc.workExpr" value="${doc.workExpr}" id="workExpr" style="width:600px;"/>-->
+						<textarea name="doc.workExpr" id="workExpr" style="width:600px; height: 50px;"></textarea>
+						<a href="javascript:showInstr();" style="color:gray;">(增加工作经历)</a>
 					</td>
 				</tr>
 				<tr class="list_td_context">
