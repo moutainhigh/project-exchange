@@ -9,6 +9,7 @@ public class Info {
 	private String content;// 内容，5000个汉字以内
 	private String tel;// 联系电话
 	private String email;// 邮箱地址
+	private String qq;//qq
 	private User user;//发布者
 
 	public Long getId() {
@@ -73,6 +74,14 @@ public class Info {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 
 }

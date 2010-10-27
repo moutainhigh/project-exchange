@@ -12,7 +12,7 @@
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
-    <package name="struts2" namespace="/" extends="struts-default">
+    <package name="struts2" extends="struts-default">
 		<action name="login_action" class="com.throne212.info168.web.action.LoginAction">
 			<result name="admin" type="chain">
          		<param name="actionName">index</param>
@@ -22,17 +22,25 @@
          		<param name="actionName">infoList</param>
          		<param name="namespace">/user</param> 
 			</result>
-			<result name="fail">/login.jsp</result>
+			<result name="fail" type="chain">
+				<param name="actionName">login</param>
+         		<param name="namespace">/</param> 
+			</result>
 		</action>
 		<action name="logout_action" class="com.throne212.info168.web.action.LogoutAction">
 			<result name="success" type="redirect">/index.htm</result>
 		</action>
 		<action name="reg_action" class="com.throne212.info168.web.action.RegAction">
 			<result name="success" type="redirect">/user/infoList.htm</result>
-			<result name="fail">/reg.jsp</result>
+			<result name="fail" type="chain">
+				<param name="actionName">reg</param>
+         		<param name="namespace">/</param> 
+			</result>
 		</action>
 		<!-- 直接访问模板文件 -->
-		<action name="*">
+		<action name="*" class="com.throne212.info168.web.action.BaseAction">
+			<param name="pageName">{1}</param>
+			<result name="index" type="redirect">/index.htm</result>
 			<result name="success" type="freemarker">/front/{1}.ftl</result>
 		</action>
     </package>
@@ -48,6 +56,15 @@
         <global-results>
 			<result name="login" type="redirect">/login.htm</result>
 		</global-results>
+		<action name="publish/*/*" method="{1}" class="com.throne212.info168.web.action.PublishAction">
+			<param name="param">{2}</param>
+			<result name="city" type="freemarker">/front/usercenter/publish_1.ftl</result>
+			<result name="cate1" type="freemarker">/front/usercenter/publish_2.ftl</result>
+			<result name="cate2" type="freemarker">/front/usercenter/publish_3.ftl</result>
+			<result name="area" type="freemarker">/front/usercenter/publish_4.ftl</result>
+			<result name="form" type="freemarker">/front/usercenter/publish_5.ftl</result>
+			<result name="success" type="freemarker">/front/usercenter/publish_succ.ftl</result>
+		</action>
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.UserAction">
 			<result name="info_list" type="freemarker">/front/usercenter/info.ftl</result>
 			<result name="password" type="freemarker">/front/usercenter/password.ftl</result>

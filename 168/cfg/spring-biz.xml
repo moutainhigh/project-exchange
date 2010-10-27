@@ -13,6 +13,7 @@
 	<bean id="commonBiz" class="com.throne212.info168.web.biz.impl.CommonBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="areaDao" ref="areaDao"></property>
+		<property name="cateDao" ref="cateDao"></property>
 	</bean>
 	
 </beans>

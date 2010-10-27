@@ -8,7 +8,8 @@
 		</id>
 		<property name="name"></property>
 		<property name="grade"></property>
-		<many-to-one name="parent" column="parent_id" class="Area" lazy="false" cascade="save-update"></many-to-one>
+		<property name="pinyin"></property>
+		<many-to-one name="parent" column="parent_id" class="Area" lazy="false" cascade="none"></many-to-one>
 		<set name="childs" lazy="true" table="168_area" cascade="save-update">
 			<key column="parent_id"></key>
 			<one-to-many class="Area"/>

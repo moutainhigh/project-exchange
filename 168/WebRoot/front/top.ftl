@@ -21,6 +21,10 @@
 			<div class="logo">
 				<a href="${base}/index.htm"><img src="${base}/front/Themes/images/logo.jpg" alt="logo" /></a>
 			</div>
+			<div id="changecity" class="banner-city">
+				<span><#if currCity??>${currCity.name}<#else>全国</#if></span><br>
+				<a title="选择城市" href="${base}/city.htm">[选择城市]</a>
+			</div>
 			<div class="search">
 				<div class="search_input">
 					<select>
@@ -46,6 +50,6 @@
 				</div>
 			</div>
 			<div class="publish">
-				<a href="#"><img src="${base}/front/Themes/images/btn_publish.gif" /> </a>
+				<a href="${base}/user/publish/index.htm"><img src="${base}/front/Themes/images/btn_publish.gif" /> </a>
 			</div>
 		</div>

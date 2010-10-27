@@ -9,4 +9,7 @@
 	<bean id="areaDao" class="com.throne212.info168.web.dao.impl.AreaDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="cateDao" class="com.throne212.info168.web.dao.impl.CateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

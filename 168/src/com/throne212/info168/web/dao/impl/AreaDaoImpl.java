@@ -11,10 +11,15 @@ public class AreaDaoImpl extends BaseDaoImpl implements AreaDao {
 		String hql = "from Area a where a.parent is null order by grade,id";
 		return this.getHibernateTemplate().find(hql);
 	}
-	
-	public List<Area> get2ndAreas(Area parent){
+
+	public List<Area> get2ndAreas(Area parent) {
 		String hql = "from Area a where a.parent =? order by grade,id";
-		return this.getHibernateTemplate().find(hql,parent);
+		return this.getHibernateTemplate().find(hql, parent);
+	}
+
+	public List<Area> getAllCities() {
+		String hql = "from Area a where a.parent!=null and a.parent.parent is null order by pinyin";
+		return this.getHibernateTemplate().find(hql);
 	}
 
 }

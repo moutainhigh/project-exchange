@@ -8,6 +8,7 @@ public class Area {
 	private String name;//地区名称
 	private Area parent;//父地区
 	private Integer grade;//排序级别
+	private String pinyin;//拼音
 	private Set<Area> childs = new HashSet<Area>();//子地区
 
 	public Long getId() {
@@ -48,6 +49,14 @@ public class Area {
 
 	public void setChilds(Set<Area> childs) {
 		this.childs = childs;
+	}
+
+	public String getPinyin() {
+		return pinyin;
+	}
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
 	}
 
 }

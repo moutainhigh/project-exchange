@@ -11,7 +11,7 @@
 		<div class="all">
 			<div id="content_s">
 				<div id="register_step">
-					<img alt="用户登录" src="Themes/images/log_banner.gif">
+					<img alt="用户登录" src="${base}/front/Themes/images/log_banner.gif">
 				</div>
 				<#include "/front/msg.ftl">
 				<form method="post" name="register_submit" action="login_action.htm" id="register_submit">

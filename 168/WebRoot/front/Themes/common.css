@@ -10,16 +10,18 @@
 /*头部*/
 .header{background-color: #FFF;height: 75px;margin: 0 auto;width: 1000px;}
 .header div{float: left;}
-.header .logo{width: 200px; height: 75px}
+.header .logo{width: 180px; height: 75px}
 .header .logo img{display:block;margin: 20px auto;}
-.header .search{width: 600px;padding: 5px 10px;}
+.header .search{width: 530px;padding: 5px 10px;}
 .header .search .search_input{width: 500px;margin: 10px 0; background-color: #02319B;}
 .header .search .search_input select{margin: 4px 2px 4px 4px;}
 .header .search .search_input .search_key{width: 250px;margin: 4px 2px 4px 4px;}
 .header .search .search_input .search_btn{width: 80px;margin: 4px 2px 4px 4px;}
 .header .search .hot{width: 500px;}
-.header .publish{width: 150px;height: 75px;}
-.header .publish a img{display:block;margin: 20px auto;}
+.header .publish{width: 130px;height: 75px;}
+.header .publish a img{display:block;margin: 15px auto;}
+.header .banner-city{float: left;text-align: center;border: 1px solid #02319B;margin-top: 5px;padding:10px 5px;width: 90px;overflow: hidden;}
+.header .banner-city span{font-size: 24px;color:#02319B;font-family: 黑体;}
 
 /*底部*/
 .foot_info{color:#777;clear:both;font-size:12px;line-height:20px;padding: 5px 2px;}

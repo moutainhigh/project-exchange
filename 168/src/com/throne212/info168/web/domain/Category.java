@@ -10,6 +10,10 @@ public class Category {
 	private Integer grade;//排序级别
 	private Set<Category> childs = new HashSet<Category>();//子分类集合
 
+	public Category() {
+		super();
+	}
+
 	public Category(String name) {
 		super();
 		this.name = name;

@@ -19,7 +19,7 @@
 				<!--right-->
 				<div class="manager-r">
 					<div>
-						<span><a target="_blank" href="http://www.88ke.com/select/">+ 免费发布信息</a>
+						<span><a target="_blank" href="${base}/user/publish/index.htm">+ 免费发布信息</a>
 						</span> 欢迎
 						<font id="loginname">${userObj.email!userObj.loginName}</font>的光临:
 					</div>

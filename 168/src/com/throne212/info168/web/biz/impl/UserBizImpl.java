@@ -3,6 +3,7 @@ package com.throne212.info168.web.biz.impl;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
 import com.throne212.info168.web.domain.Area;
+import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
@@ -38,6 +39,11 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 	public boolean changePwd(User user, String pwd){
 		user.setPassword(EncryptUtil.md5Encode(pwd));
 		baseDao.saveOrUpdate(user);
+		return true;
+	}
+
+	public boolean publishInfo(Info info) {
+		baseDao.saveOrUpdate(info);
 		return true;
 	}
 

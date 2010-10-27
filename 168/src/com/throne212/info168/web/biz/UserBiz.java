@@ -1,5 +1,6 @@
 package com.throne212.info168.web.biz;
 
+import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
 public interface UserBiz extends BaseBiz{
@@ -9,5 +10,7 @@ public interface UserBiz extends BaseBiz{
 	public User regUser(User user, Long topArea);
 	//修改密码
 	public boolean changePwd(User user, String pwd);
+	//发布信息
+	public boolean publishInfo(Info info);
 	
 }
