@@ -25,6 +25,7 @@ public class RegAction extends BaseAction {
 			return "fail";
 		}
 		user = userBiz.regUser(user, topArea);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		return "success";
 	}
 

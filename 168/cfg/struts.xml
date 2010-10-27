@@ -25,17 +25,15 @@
 			<result name="fail">/login.jsp</result>
 		</action>
 		<action name="logout_action" class="com.throne212.info168.web.action.LogoutAction">
-			<result name="success">/index.htm</result>
+			<result name="success" type="redirect">/index.htm</result>
 		</action>
 		<action name="reg_action" class="com.throne212.info168.web.action.RegAction">
-			<result name="success" type="chain">
-         		<param name="actionName">infoList</param>
-         		<param name="namespace">/user</param> 
-			</result>
+			<result name="success" type="redirect">/user/infoList.htm</result>
 			<result name="fail">/reg.jsp</result>
 		</action>
+		<!-- 直接访问模板文件 -->
 		<action name="*">
-			<result name="success">/{1}.jsp</result>
+			<result name="success" type="freemarker">/front/{1}.ftl</result>
 		</action>
     </package>
     <package name="user" namespace="/user" extends="struts-default">
@@ -50,7 +48,7 @@
 			<result name="login" type="redirect">/login.html</result>
 		</global-results>
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.UserAction">
-			
+			<result name="info_list" type="freemarker">/front/usercenter/info.ftl</result>
 		</action>
     </package>
     <package name="admin" namespace="/admin" extends="struts-default">

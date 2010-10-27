@@ -13,6 +13,8 @@ public class WebConstants {
 	public static final String TOP_AREA_LIST = "topAreaList";
 	public static final String APP_PATH = "appPath";
 	public static final String APP_TITLE = "appTitle";
+	public static final String APP_DESC = "appDesc";
+	public static final String APP_KEY_WORDS = "appKeywords";
 	//session
 	public static final String SESS_RAND = "rand";
 	public static final String SESS_USER_OBJ = "userObj";
