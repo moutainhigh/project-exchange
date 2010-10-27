@@ -4,39 +4,57 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
+import com.throne212.info168.web.common.EncryptUtil;
+import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
-public class UserAction extends BaseAction{
+public class UserAction extends BaseAction {
 
 	private UserBiz userBiz;
 
-	//用户bean
+	// 用户bean
 	private User user;
-	
-	
-	//修改密码
-	private String oldPwd;
-	private String newPwd;
-	public String changePwd(){
-		User sessUser = (User) ActionContext.getContext().get(WebConstants.SESS_USER_OBJ);
-		user = userBiz.login(sessUser.getLoginName(), oldPwd);
-		if(user == null){
-			this.setMsg("旧密码错误");
-			return "fail";
-		}
-		if(userBiz.changePwd(sessUser, newPwd)){
-			return "success";
-		}
-		return "fail";
-	}
-	
-	//信息列表
+
+	// 信息列表
 	private List<Info> infoList;
-	public String infoList(){
-				
+
+	public String infoList() {
+
 		return "info_list";
+	}
+
+	// 密码页面
+	public String password() {
+
+		return "password";
+	}
+
+	// 修改密码
+	private String oldpassword;
+	private String newpassword;
+	private String renewpassword;
+
+	public String changePwd() {
+		if (Util.isEmpty(oldpassword) || Util.isEmpty(newpassword) || Util.isEmpty(renewpassword)) {
+			this.setMsg("请完整输入所有密码输入框");
+		} else if (newpassword.length() < 6 || renewpassword.length() < 6) {
+			this.setMsg("密码长度不小于6");
+		} else if (!newpassword.equals(renewpassword)) {
+			this.setMsg("两次新密码输入不一致");
+		} else {
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			if (!oldpassword.equals(user.getPassword()) && !EncryptUtil.md5Encode(oldpassword).equals(user.getPassword())) {
+				this.setMsg("原密码错误");
+			} else {
+				user.setPassword(EncryptUtil.md5Encode(newpassword));
+				userBiz.saveOrUpdateEntity(user);
+				ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
+				this.setMsg("密码修改成功");
+			}
+		}
+		return "password";
 	}
 
 	public UserBiz getUserBiz() {
@@ -55,20 +73,28 @@ public class UserAction extends BaseAction{
 		this.user = user;
 	}
 
-	public String getOldPwd() {
-		return oldPwd;
+	public String getOldpassword() {
+		return oldpassword;
 	}
 
-	public void setOldPwd(String oldPwd) {
-		this.oldPwd = oldPwd;
+	public void setOldpassword(String oldpassword) {
+		this.oldpassword = oldpassword;
 	}
 
-	public String getNewPwd() {
-		return newPwd;
+	public String getNewpassword() {
+		return newpassword;
 	}
 
-	public void setNewPwd(String newPwd) {
-		this.newPwd = newPwd;
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+	public String getRenewpassword() {
+		return renewpassword;
+	}
+
+	public void setRenewpassword(String renewpassword) {
+		this.renewpassword = renewpassword;
 	}
 
 	public List<Info> getInfoList() {

@@ -3,7 +3,7 @@
 	<head>
 		<#include "/front/head.ftl"/>
 		<link href="${base}/front/Themes/usercenter.css" rel="stylesheet" type="text/css" />
-		<!--<script type="text/javascript" src="${base}/front/js/reg.js"></script>-->
+		<script type="text/javascript" src="${base}/front/js/usercenter.js"></script>
 	</head>
 
 	<body>
@@ -12,35 +12,10 @@
 
 			<div id="postion">
 				您的位置：
-				<a title="88客网" href="/">88客网</a> &gt;&gt; 用户管理中心
+				<a title="88客网" href="/">一路发信息发布网</a> &gt;&gt; 用户管理中心
 			</div>
-
 			<div class="all-k">
-				<!--left-->
-				<div class="manager-l">
-					<ul>
-						<li>
-							<a href="http://www.88ke.com/manager/">管理中心</a>
-						</li>
-					</ul>
-					<ul>
-						<li class="manager-hover">
-							我发布的信息
-						</li>
-					</ul>
-					<ul>
-						<li>
-							<a href="http://www.88ke.com/info_password/">修改密码</a>
-						</li>
-					</ul>
-					<ul>
-						<li>
-							<a href="/logout/">安全退出</a>
-						</li>
-					</ul>
-
-				</div>
-				<!--/left-->
+				<#include "/front/usercenter/left.ftl"/>
 				<!--right-->
 				<div class="manager-r">
 					<div>
@@ -48,7 +23,6 @@
 						</span> 欢迎
 						<font id="loginname">${userObj.email!userObj.loginName}</font>的光临:
 					</div>
-
 					<table cellspacing="0" cellpadding="0" border="0" width="730" class="list-name">
 						<tbody>
 							<tr>
@@ -61,9 +35,8 @@
 							</tr>
 						</tbody>
 					</table>
-
 					<form style="margin: 0pt;" method="post" id="form1" name="form1" action="">
-						<table cellspacing="0" cellpadding="0" border="0" width="730">
+						<table cellspacing="0" cellpadding="0" border="0" width="730" id="info_table">
 							<tbody>
 								<tr>
 									<td bgcolor="#eeeeee" align="center" width="5%" style="border-top: 1px solid rgb(0, 94, 188);">

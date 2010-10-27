@@ -44,11 +44,13 @@
                 <interceptor-ref name="auth" />
             </interceptor-stack>
         </interceptors>
+        <default-interceptor-ref name="authStack"/>
         <global-results>
-			<result name="login" type="redirect">/login.html</result>
+			<result name="login" type="redirect">/login.htm</result>
 		</global-results>
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.UserAction">
 			<result name="info_list" type="freemarker">/front/usercenter/info.ftl</result>
+			<result name="password" type="freemarker">/front/usercenter/password.ftl</result>
 		</action>
     </package>
     <package name="admin" namespace="/admin" extends="struts-default">

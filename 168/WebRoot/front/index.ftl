@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<#include "/front/head.ftl"/>
-		<link href="Themes/index.css" rel="stylesheet" type="text/css" />
+		<link href="${base}/front/Themes/index.css" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
