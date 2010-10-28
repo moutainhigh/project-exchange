@@ -11,6 +11,7 @@
 		<property name="email" length="100"></property>
 		<property name="tel" length="50"></property>
 		<property name="qq" length="15"></property>
+		<property name="publishDate"></property>
 		<many-to-one name="area" class="Area" cascade="none" column="area_id"></many-to-one>
 		<many-to-one name="user" class="User" cascade="none" column="user_id"></many-to-one>
 		<many-to-one name="cate" class="Category" cascade="none" column="cate_id"></many-to-one>

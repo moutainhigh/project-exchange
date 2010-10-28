@@ -6,3 +6,5 @@
 		<meta name="description" content="${appDesc}">
 		<meta name="keywords" content="${appKeywords}" />
 		<script src="${base}/js/jquery.js"></script>
+		<script src="${base}/front/js/common.js"></script>
+		

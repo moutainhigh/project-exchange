@@ -85,4 +85,9 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 		return map;
 	}
 
+	// 获取栏目数据
+	public List<Category> getCates() {
+		return cateDao.getAllCates();
+	}
+
 }

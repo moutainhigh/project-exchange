@@ -3,16 +3,12 @@
 	<head>
 		<#include "/front/head.ftl"/>
 		<link href="${base}/front/Themes/publish.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src=""></script>
 	</head>
 
 	<body>
 		<#include "/front/top.ftl">
 		<div class="all">
-			<div id="postion">
-				您的位置：
-				<a title="88客网" href="/">88客网</a> &gt;&gt; 选择城市页面
-			</div>
+			<#include "/front/pos.ftl">
 			<!--1：城市选择-->
 			<div id="step">
 				<ul>

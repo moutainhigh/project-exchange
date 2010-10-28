@@ -14,7 +14,8 @@
 					<img alt="用户登录" src="${base}/front/Themes/images/log_banner.gif">
 				</div>
 				<#include "/front/msg.ftl">
-				<form method="post" name="register_submit" action="login_action.htm" id="register_submit">
+				<form method="post" name="register_submit" action="${base}/login_action.htm" id="register_submit">
+					<input type="hidden" name="preUrl" value="${request.getRequestURI()}"/>
 					<div style="padding-left: 85px; padding-right: 0pt;">
 						<table height="122" cellspacing="0" cellpadding="0" border="0" width="90%">
 							<tbody>
@@ -52,7 +53,7 @@
 											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_rand(this);" name="rand" id="rand" class="auth">
 										</div>
 										<div style="float:left;margin:8px 10px">
-											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='rand?n='+Math.random();" src="rand" name="verifyframe"
+											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='${base}/rand?n='+Math.random();" src="${base}/rand" name="verifyframe"
 												id="verifyframe">
 										</div>
 										<div style="padding-left: 100px;" class="hui">

@@ -16,5 +16,14 @@ public class CateDaoImpl extends BaseDaoImpl implements CateDao {
 		String hql = "from Category a where a.parent =? order by grade,id";
 		return this.getHibernateTemplate().find(hql,parent);
 	}
+	
+	public List<Category> getAllCates(){
+		String hql = "from Category a where a.parent is null order by grade,id";
+		List<Category> topList = this.getHibernateTemplate().find(hql);
+		for(Category c : topList){
+			c.getChilds().size();
+		}
+		return topList;
+	}
 
 }

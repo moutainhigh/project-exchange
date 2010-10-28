@@ -9,10 +9,7 @@
 	<body>
 		<#include "/front/top.ftl">
 		<div class="all">
-			<div id="postion">
-				您的位置：
-				<a title="88客网" href="/">88客网</a> &gt;&gt; 用户管理中心
-			</div>
+			<#include "/front/pos.ftl">
 			<div class="all-k">
 				<!--left-->
 				<#include "/front/usercenter/left.ftl"/>

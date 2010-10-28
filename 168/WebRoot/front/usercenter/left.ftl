@@ -16,7 +16,7 @@
 					</ul>
 					<ul>
 						<li>
-							<a href="/logout/">安全退出</a>
+							<a href="${base}/logout_action.htm">安全退出</a>
 						</li>
 					</ul>
 				</div>

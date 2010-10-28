@@ -1,5 +1,7 @@
 package com.throne212.info168.web.domain;
 
+import java.util.Date;
+
 public class Info {
 
 	private Long id;// 主见
@@ -11,6 +13,7 @@ public class Info {
 	private String email;// 邮箱地址
 	private String qq;//qq
 	private User user;//发布者
+	private Date publishDate;//发布时间
 
 	public Long getId() {
 		return id;
@@ -82,6 +85,14 @@ public class Info {
 
 	public void setQq(String qq) {
 		this.qq = qq;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
 	}
 
 }

@@ -9,17 +9,13 @@
 	<body>
 		<#include "/front/top.ftl">
 		<div class="all">
-
-			<div id="postion">
-				您的位置：
-				<a title="88客网" href="/">一路发信息发布网</a> &gt;&gt; 用户管理中心
-			</div>
+			<#include "/front/pos.ftl">
 			<div class="all-k">
 				<#include "/front/usercenter/left.ftl"/>
 				<!--right-->
 				<div class="manager-r">
 					<div>
-						<span><a target="_blank" href="${base}/user/publish/index.htm">+ 免费发布信息</a>
+						<span><a target="_self" href="${base}/user/publish/index.htm">+ 免费发布信息</a>
 						</span> 欢迎
 						<font id="loginname">${userObj.email!userObj.loginName}</font>的光临:
 					</div>

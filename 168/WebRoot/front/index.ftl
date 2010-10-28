@@ -4,7 +4,6 @@
 		<#include "/front/head.ftl"/>
 		<link href="${base}/front/Themes/index.css" rel="stylesheet" type="text/css" />
 	</head>
-
 	<body>
 		<#include "/front/top.ftl">
 		<div class="wrapper">
@@ -23,237 +22,18 @@
 			<div class="left">
 				<!--类目-->
 				<div class="category">
+					<#list allCates as t>
 					<div class="column">
 						<!--招聘-->
 						<h3>
-							招聘信息
+							${t.name}
 						</h3>
-						<a class="cate-one" title="招聘兼职/暑期工|暑期工/兼职网" target="_blank" href="/quanguo/zpjianzhi/">兼职/暑期工</a>
+						<#list t.childs as c>
+						<a class="cate-one" title="${c.name}" target="_blank" href="${base}/info/list/${c.id}.htm">${c.name}</a>
 						<br>
-						<a class="cate-one" title="司机招聘求职信息|司机招聘网" target="_blank" href="/quanguo/siji/">司机</a>
-						<a class="cate-two" title="招聘C照司机|C照司机招聘网" target="_blank" href="/quanguo/zhaopinsijiczhao/"> C照</a>
-						<a class="cate-two" title="招聘叉车司机|叉车司机招聘网" target="_blank" href="/quanguo/zhaopinsijichache/"> 叉车</a>
-						<br>
-						<a class="cate-one" title="招聘管理经营|管理经营招聘网" target="_blank" href="/quanguo/guanlijingying/">管理经营</a>
-						<br>
-						<a class="cate-one" title="招聘销售业务|业务销售招聘网" target="_blank" href="/quanguo/xiaoshouyewu/">销售/业务</a>
-						<br>
-						<a class="cate-one" title="招聘行政管理|行政管理招聘网" target="_blank" href="/quanguo/renshixingzheng/">人事/行政</a>
-						<a class="cate-two" title="前台招聘求职信息|前台招聘网" target="_blank" href="/quanguo/zhaopinrenshiqiantai/"> 前台</a>
-						<br>
-						<a class="cate-one" title="招聘客服文秘|客服文秘招聘网" target="_blank" href="/quanguo/kefuwenmi/">客服/文秘</a>
-						<a class="cate-two" title="招聘客服|客服招聘网" target="_blank" href="/quanguo/zhaopinkefu/"> 客服</a>
-						<a class="cate-two" title="招聘文员|文员招聘网" target="_blank" href="/quanguo/zhaopinwenyuan/"> 文员</a>
-						<br>
-						<a class="cate-one" title="招聘财务金融|财务金融招聘网" target="_blank" href="/quanguo/caiwujinrong/">财务/金融</a>
-						<a class="cate-two" title="招聘会计|会计招聘网" target="_blank" href="/quanguo/zhaopincaiwukuaiji/"> 会计</a>
-						<br>
-						<a class="cate-one" title="招聘计算机通信|计算机通信招聘网" target="_blank" href="/quanguo/jisuanjitongxin/">计算机/通信</a>
-						<a class="cate-two" title="招聘网管|网管招聘网" target="_blank" href="/quanguo/zhaopinjisuanjiwangguan/"> 网管</a>
-						<br>
-						<a class="cate-one" title="招聘导购店长收银|导购店长收银招聘网" target="_blank" href="/quanguo/daogou/">导购/店长/收银</a>
-						<a class="cate-two" title="招聘收银员|收银员招聘网" target="_blank" href="/quanguo/zhaopinshouyinyuan/"> 收银员</a>
-						<br>
-						<a class="cate-one" title="招聘物流/仓管/采购|物流/仓管/采购招聘网" target="_blank" href="/quanguo/wuliu/">物流/仓管/采购</a>
-						<a class="cate-two" title="招聘仓库管理员|仓库管理招聘网" target="_blank" href="/quanguo/zhaopincangguan/"> 仓库管理员</a>
-						<br>
-						<a class="cate-one" title="招聘教师教练|教师招聘网" target="_blank" href="/quanguo/jiaoshi/">教师/教练/培训</a>
-						<a class="cate-two" title="招聘老师|老师招聘网" target="_blank" href="/quanguo/zhaopinlaoshi/"> 老师</a>
-						<br>
-						<a class="cate-one" title="招聘新闻编辑|编辑翻译招聘网" target="_blank" href="/quanguo/xinwen/">新闻/编辑/翻译</a>
-						<br>
-						<a class="cate-one" title="招聘设计创意|创意设计招聘网" target="_blank" href="/quanguo/sheji/">设计/艺术/创意</a>
-						<a class="cate-two" title="招聘策划|策划招聘网" target="_blank" href="/quanguo/zhaopincehua/"> 策划</a>
-						<br>
-						<a class="cate-one" title="招聘法务/律师|律师/咨询招聘网" target="_blank" href="/quanguo/lvshi/">律师/法务/咨询</a>
-						<br>
-						<a class="cate-one" title="招聘演艺/影视/音乐|演艺/影视/音乐招聘网" target="_blank" href="/quanguo/yanyi/">演艺/影视/音乐</a>
-						<br>
-						<a class="cate-one" title="招聘保姆钟点工|钟点工保姆招聘网" target="_blank" href="/quanguo/baomu/">保姆/钟点工</a>
-						<a class="cate-two" title="招聘小时工钟点工|钟点工小时工招聘网" target="_blank" href="/quanguo/zhaopinxiaoshigong/"> 小时工</a>
-						<br>
-						<a class="cate-one" title="招聘保安/技工/普工|技工/普工/保安招聘网" target="_blank" href="/quanguo/jigongpugong/">技工/普工/保安</a>
-						<a class="cate-two" title="招聘技工普工|普工技工招聘网" target="_blank" href="/quanguo/zhaopinpugong/"> 普工</a>
-						<a class="cate-two" title="招聘保安|保安招聘网" target="_blank" href="/quanguo/zhaopinbaoan/"> 保安</a>
-						<br>
-						<a class="cate-one" title="招聘餐饮服务员|餐饮服务员招聘网" target="_blank" href="/quanguo/canyinfuwu/">餐饮/服务</a>
-						<a class="cate-two" title="招聘厨师|厨师招聘网" target="_blank" href="/quanguo/zpchushi/"> 厨师</a>
-						<br>
-						<a class="cate-one" title="其他招聘信息|其他招聘网" target="_blank" href="/quanguo/qitazhaopin/">其他招聘</a>
-						<br>
-						<!--培训-->
-						<h3>
-							培训教育
-						</h3>
-						<a class="cate-one" title="外语培训|培训外语" target="_blank" href="/quanguo/waiyupeixun/">外语培训</a>
-						<br>
-						<a class="cate-one" title="计算机培训|电脑培训" target="_blank" href="/quanguo/jisuanjipeixun/">计算机培训</a>
-						<br>
-						<a class="cate-one" title="管理培训|培训管理" target="_blank" href="/quanguo/qiyeguanlimba/">企业管理/MBA</a>
-						<br>
-						<a class="cate-one" title="学历教育信息|学历教育网" target="_blank" href="/quanguo/xuelijiaoyu/">学历教育</a>
-						<br>
-						<a class="cate-one" title="技能培训|职业技能培训" target="_blank" href="/quanguo/zhiyejinengpeixun/">职业技能培训</a>
-						<br>
-						<a class="cate-one" title="教育培训|中小学教育培训" target="_blank" href="/quanguo/zxxjiaoyu/">中小学教育</a>
-						<br>
-						<a class="cate-one" title="才艺培训|培训才艺" target="_blank" href="/quanguo/caiyipeixun/">才艺培训</a>
-						<br>
-						<a class="cate-one" title="家教信息|家教网" target="_blank" href="/quanguo/jiajiaoxinxi/">家教信息</a>
-						<br>
-						<a class="cate-one" title="其他培训|培训网" target="_blank" href="/quanguo/qitapeixun/">其他培训</a>
-						<br>
-						<!--交友-->
-						<h3>
-							交友征婚
-						</h3>
-						<a class="cate-one" title="同城交友|交友网" target="_blank" href="/quanguo/tongchengjiaoyou/">同城交友</a>
-						<br>
-						<a class="cate-one" title="交友征婚|征婚网" target="_blank" href="/quanguo/zhenghun/">征婚</a>
-						<br>
-						<a class="cate-one" title="活动聚会|聚会活动网" target="_blank" href="/quanguo/juhuihuodong/">聚会活动</a>
-						<br>
+						</#list>
 					</div>
-					<div class="column">
-						<!--二手-->
-						<h3>
-							二手市场
-						</h3>
-						<a class="cate-one" title="二手家电市场|二手家电网" target="_blank" href="/quanguo/ershoujiadian/">二手家电</a>
-						<a class="cate-two" title="二手电视机|电视机二手网" target="_blank" href="/quanguo/ershoudianshiji/"> 电视机</a>
-						<a class="cate-two" title="二手空调|空调二手网" target="_blank" href="/quanguo/ershoukongtiao/"> 空调</a>
-						<br>
-						<a class="cate-one" title="二手电脑|电脑二手网" target="_blank" href="/quanguo/diannaopeijian/">电脑/配件</a>
-						<a class="cate-two" title="二手笔记本|笔记本二手网" target="_blank" href="/quanguo/ershoubijiben/"> 笔记本</a>
-						<br>
-						<a class="cate-one" title="二手数码产品|数码产品二手网" target="_blank" href="/quanguo/shumachanpin/">数码产品</a>
-						<br>
-						<a class="cate-one" title="二手办公用品|办公用品二手网" target="_blank" href="/quanguo/bangongyongpin/">办公用品</a>
-						<br>
-						<a class="cate-one" title="二手手机通讯|手机通讯二手网" target="_blank" href="/quanguo/shoujitongxun/">手机/通讯相关</a>
-						<br>
-						<a class="cate-one" title="网游玩具|网游玩具网" target="_blank" href="/quanguo/dianwanwangyou/">电玩/网游/玩具</a>
-						<br>
-						<a class="cate-one" title="家具家居|家居家具网" target="_blank" href="/quanguo/jiajujiaju/">家具/家居/装饰</a>
-						<br>
-						<a class="cate-one" title="批发服装鞋帽|鞋帽服装网" target="_blank" href="/quanguo/fuzhuangxiemao/">服装/鞋帽/箱包</a>
-						<br>
-						<a class="cate-one" title="母婴/儿童用品|母婴/儿童用品网" target="_blank" href="/quanguo/muyingertong/">母婴/儿童用品</a>
-						<br>
-						<a class="cate-one" title="化妆品/保健品批发|化妆品/保健品网" target="_blank" href="/quanguo/huazhuangbaojian/">化妆品/保健品</a>
-						<br>
-						<a class="cate-one" title="图书/音像/软件市场|图书/音像/软件网" target="_blank" href="/quanguo/tushuyinxiang/">图书/音像/软件</a>
-						<br>
-						<a class="cate-one" title="乐器/文体信息|文体乐器网" target="_blank" href="/quanguo/wentiyongpin/">文体用品/乐器</a>
-						<br>
-						<a class="cate-one" title="艺术品市场|艺术品网" target="_blank" href="/quanguo/yishushoucang/">艺术品/收藏品</a>
-						<br>
-						<a class="cate-one" title="车票转让|转让车票网" target="_blank" href="/quanguo/huochepiaoqichepiao/">火车票/汽车票</a>
-						<a class="cate-two" title="火车票转让|转让火车票网" target="_blank" href="/quanguo/huochepiao/"> 火车票</a>
-						<br>
-						<a class="cate-one" title="门票转让|转让门票网" target="_blank" href="/quanguo/menpiaoxiaofeiquan/">门票/消费券</a>
-						<br>
-						<a class="cate-one" title="机械/行业设备信息|机械/行业设备网" target="_blank" href="/quanguo/gongchengjixiehysb/">工程机械/行业设备</a>
-						<br>
-						<a class="cate-one" title="其他物品交易|其他物品交易网" target="_blank" href="/quanguo/qitawupinjiaoyi/">其他物品交易</a>
-						<br>
-						<a class="cate-one" title="回收二手|二手回收网" target="_blank" href="/quanguo/ershouhuishou/">二手回收</a>
-						<br>
-						<!--车辆-->
-						<h3>
-							车辆信息
-						</h3>
-						<a class="cate-one" title="租车/代驾/陪驾|租车/代驾/陪驾网" target="_blank" href="/quanguo/zuchedaijiafuwu/">租车/代驾/陪驾</a>
-						<br>
-						<a class="cate-one" title="汽修/汽配/保养|汽修/汽配/保养公司" target="_blank" href="/quanguo/qichefuwu/">汽修/汽配/保养</a>
-						<br>
-						<!--宠物-->
-						<h3>
-							宠物
-						</h3>
-						<a class="cate-one" title="宠物狗狗|宠物狗网" target="_blank" href="/quanguo/chongwugou/">宠物狗</a>
-						<br>
-						<a class="cate-one" title="宠物猫|猫宠物" target="_blank" href="/quanguo/chongwumao/">宠物猫</a>
-						<br>
-						<a class="cate-one" title="花鸟鱼虫信息|花鸟鱼虫网" target="_blank" href="/quanguo/huaniaoyuchong/">花鸟鱼虫</a>
-						<br>
-						<a class="cate-one" title="宠物服务|宠物服务网" target="_blank" href="/quanguo/chongwufuwu/">宠物服务</a>
-						<a class="cate-two" title="宠物寄养|寄养宠物" target="_blank" href="/quanguo/chongwujiyang/"> 宠物寄养</a>
-						<br>
-					</div>
-					<div class="column">
-						<!--生活-->
-						<h3>
-							生活服务
-						</h3>
-						<a class="cate-one" title="公司搬家|搬家公司" target="_blank" href="/quanguo/banjiagongsi/">搬家</a>
-						<br>
-						<a class="cate-one" title="家政服务|家政公司" target="_blank" href="/quanguo/jiazhengfuwu/">家政</a>
-						<br>
-						<a class="cate-one" title="保洁|保洁公司" target="_blank" href="/quanguo/baojiegongsi/">保洁</a>
-						<br>
-						<a class="cate-one" title="疏通管道|管道疏通" target="_blank" href="/quanguo/shutongguandao/">疏通</a>
-						<br>
-						<a class="cate-one" title="查询快递公司|快递公司" target="_blank" href="/quanguo/kuaidigongsi/">快递</a>
-						<br>
-						<a class="cate-one" title="物流公司|物流网" target="_blank" href="/quanguo/wuliugongsi/">物流</a>
-						<br>
-						<a class="cate-one" title="维修公司|维修网" target="_blank" href="/quanguo/weixiugongsi/">维修</a>
-						<a class="cate-two" title="维修电脑|电脑维修网" target="_blank" href="/quanguo/diannaoweixiu/"> 电脑维修</a>
-						<br>
-						<a class="cate-one" title="装修公司|装修网" target="_blank" href="/quanguo/zhuangxiugongsi/">装修</a>
-						<br>
-						<a class="cate-one" title="旅游信息|旅游网" target="_blank" href="/quanguo/lvyougongsi/">旅游</a>
-						<br>
-						<a class="cate-one" title="摄影服务服务|摄影服务网" target="_blank" href="/quanguo/sheyingfuwu/">摄影服务</a>
-						<br>
-						<a class="cate-one" title="婚庆/庆典公司|婚庆/庆典网" target="_blank" href="/quanguo/hunqingqingdian/">婚庆/庆典 </a>
-						<br>
-						<a class="cate-one" title="餐饮/外卖|餐饮/外卖网" target="_blank" href="/quanguo/canyinwaimai/">餐饮/外卖</a>
-						<br>
-						<a class="cate-one" title="送水/订花|送水/订花网" target="_blank" href="/quanguo/songshuidinghua/">送水/订花</a>
-						<br>
-						<a class="cate-one" title="酒店预订|预订酒店" target="_blank" href="/quanguo/jiudianyuding/">酒店预定/住宿 </a>
-						<br>
-						<a class="cate-one" title="休闲保健|养身网" target="_blank" href="/quanguo/xiuxianbaojian/">休闲/保健/养身</a>
-						<br>
-						<a class="cate-one" title="生活信息|生活网" target="_blank" href="/quanguo/qitashenghuofw/">其他生活服务</a>
-						<br>
-						<!--房产-->
-						<h3>
-							房产
-						</h3>
-						<a class="cate-one" title="二手房交易|二手房网" target="_blank" href="/quanguo/ershoufang/">二手房</a>
-						<br>
-						<a class="cate-one" title="出租房屋|房屋出租网" target="_blank" href="/quanguo/fangwuchuzu/">房屋出租</a>
-						<br>
-						<a class="cate-one" title="短租房出租|短租房网" target="_blank" href="/quanguo/duanzufang/">短租房</a>
-						<br>
-						<a class="cate-one" title="个人求租信息|个人求租网" target="_blank" href="/quanguo/gerenqiuzu/">个人求租</a>
-						<br>
-						<a class="cate-one" title="二手房求购|求购二手房网" target="_blank" href="/quanguo/qiugouershoufang/">求购二手房</a>
-						<br>
-						<a class="cate-one" title="写字楼租售|写字楼租售网" target="_blank" href="/quanguo/xiezilou/">写字楼租售</a>
-						<br>
-						<a class="cate-one" title="商铺转让|转让商铺网" target="_blank" href="/quanguo/dianpushangpu/">店铺/商铺转让</a>
-						<br>
-						<a class="cate-one" title="转让土地仓库|仓库土地转让网" target="_blank" href="/quanguo/changfangcangku/">厂房/仓库/土地</a>
-						<br>
-						<!--服务-->
-						<h3>
-							服务信息
-						</h3>
-						<a class="cate-one" title="律师服务|律师事务所" target="_blank" href="/quanguo/lvshifuwu/">律师服务</a>
-						<br>
-						<a class="cate-one" title="翻译|翻译公司" target="_blank" href="/quanguo/fanyifuwu/">翻译服务</a>
-						<br>
-						<a class="cate-one" title="咨询调查|调查咨询公司" target="_blank" href="/quanguo/zixundiaocha/">咨询/调查</a>
-						<br>
-						<a class="cate-one" title="公司服务|代理公司服务" target="_blank" href="/quanguo/gongsizhuce/">公司注册/会计</a>
-						<br>
-						<a class="cate-one" title="金融服务|金融信息" target="_blank" href="/quanguo/jinrongdaikuan/">金融/贷款/保险</a>
-						<br>
-					</div>
+					</#list>
 					<!--/for-->
 					<div class="clear"></div>
 				</div>

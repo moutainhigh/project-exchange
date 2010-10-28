@@ -14,6 +14,7 @@ public interface CommonBiz extends BaseBiz{
 	
 	public List<Category> getCate1();
 	public List<Category> getCate2(Long parentId);
+	public List<Category> getCates();
 	
 	public Map<String,List<Object[]>> getAllCitiesByPinyin();
 	

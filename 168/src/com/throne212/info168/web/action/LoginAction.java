@@ -1,5 +1,7 @@
 package com.throne212.info168.web.action;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.Util;
@@ -11,7 +13,8 @@ public class LoginAction extends BaseAction {
 
 	private String username;// 用户名
 	private String password;// 密码
-	private String rand;//验证码
+	private String rand;// 验证码
+	private String preUrl;// 超时请求路径
 
 	private UserBiz userBiz;// 业务层的用户bean
 
@@ -20,7 +23,7 @@ public class LoginAction extends BaseAction {
 	}
 
 	public String execute() {
-		if(Util.isEmpty(rand) || !rand.equals(ActionContext.getContext().getSession().get(WebConstants.SESS_RAND))){
+		if (Util.isEmpty(rand) || !rand.equals(ActionContext.getContext().getSession().get(WebConstants.SESS_RAND))) {
 			this.setMsg("验证码错误");
 			return "fail";
 		}
@@ -37,6 +40,13 @@ public class LoginAction extends BaseAction {
 		if (user instanceof Admin) {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
 			return "admin";
+		}
+		if (!Util.isEmpty(preUrl)) {
+			String cPath = ServletActionContext.getServletContext().getContextPath();
+			if (cPath != null && !cPath.equals("/")) {
+				preUrl = preUrl.replace(cPath, "");
+			}
+			return "pre_url";
 		}
 		return "success";
 	}
@@ -67,6 +77,14 @@ public class LoginAction extends BaseAction {
 
 	public UserBiz getUserBiz() {
 		return userBiz;
+	}
+
+	public String getPreUrl() {
+		return preUrl;
+	}
+
+	public void setPreUrl(String preUrl) {
+		this.preUrl = preUrl;
 	}
 
 }

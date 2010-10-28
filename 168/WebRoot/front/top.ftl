@@ -4,6 +4,7 @@
 					欢迎光临一路发信息发布网
 				</h3>
 				<div class="reg_login">
+					<a href="${base}/index.htm">网站首页</a>
 					<#if userObj??>
 					<a href="${base}/user/infoList.htm">会员中心(${userObj.loginName})</a>
 					<a href="${base}/logout_action.htm">退出登录</a>

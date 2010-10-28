@@ -1,5 +1,6 @@
 package com.throne212.info168.web.action;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -37,11 +38,19 @@ public class BaseAction {
 	private String pageName;
 
 	public String execute() {
+		//城市拼音数据缓存
 		Map map = (Map) ActionContext.getContext().getApplication().get(WebConstants.CITY_BY_PINYIN);
 		if (map == null) {
 			map = commonBiz.getAllCitiesByPinyin();
 			ActionContext.getContext().getApplication().put(WebConstants.CITY_BY_PINYIN, map);
 		}
+		//栏目数据缓存
+		List allCates = (List) ActionContext.getContext().getApplication().get(WebConstants.ALL_CATES);
+		if (allCates == null) {
+			allCates = commonBiz.getCates();
+			ActionContext.getContext().getApplication().put(WebConstants.ALL_CATES, allCates);
+		}
+		//选取城市
 		if(!Util.isEmpty(pageName) && pageName.matches("city_\\D+_\\d+")){
 			String[] arr = pageName.split("_");
 			String pinyin = arr[1];

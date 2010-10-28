@@ -12,6 +12,7 @@ public class WebConstants {
 	//app
 	public static final String TOP_AREA_LIST = "topAreaList";
 	public static final String CITY_BY_PINYIN = "allCities";
+	public static final String ALL_CATES = "allCates";
 	public static final String APP_PATH = "appPath";
 	public static final String APP_TITLE = "appTitle";
 	public static final String APP_DESC = "appDesc";
@@ -20,4 +21,7 @@ public class WebConstants {
 	public static final String SESS_RAND = "rand";
 	public static final String SESS_USER_OBJ = "userObj";
 	public static final String SESS_CITY = "currCity";
+	//other
+	public static final int INFO_LIST_ROWS = 10;
+	
 }
