@@ -11,8 +11,8 @@
 		<div class="all">
 			<div id="content_s">
 				<div id="register_step">
-					<img alt="填写信息" src="Themes/images/input_info_on.jpg?ver=431">
-					<img alt="注册成功" src="Themes/images/register_success_huise.jpg?ver=431">
+					<img alt="填写信息" src="${base}/front/Themes/images/input_info_on.jpg?ver=431">
+					<img alt="注册成功" src="${base}/front/Themes/images/register_success_huise.jpg?ver=431">
 				</div>
 				<#include "/front/msg.ftl">
 				<form method="post" name="register_submit" action="${base}/reg_action.htm" id="register_submit">
@@ -91,13 +91,14 @@
 											&nbsp;
 											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_rand(this);" name="rand" id="rand" class="auth">
 										</div>
-										<div style="float:left;margin:8px 10px">
-											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='rand?n='+Math.random();" src="rand" name="verifyframe"
-												id="verifyframe">
-										</div>
 										<div style="padding-left: 100px;" class="hui">
 											看不清？点击图片换一个
 										</div>
+										<div style="margin:2px auto;text-align:center;">
+											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='rand?n='+Math.random();" src="rand" name="verifyframe"
+												id="verifyframe">
+										</div>
+										<div style="clear:both;"></div>
 									</td>
 									<td id="authinfo" class="reg_bg_two">
 										此步骤有助于防止恶意自动注册行为的发生。

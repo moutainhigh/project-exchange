@@ -4,7 +4,6 @@
 		<#include "/front/head.ftl"/>
 		<link href="${base}/front/Themes/list.css" rel="stylesheet" type="text/css" />
 	</head>
-
 	<body>
 		<#include "/front/top.ftl">
 		<div class="wrapper">
@@ -25,11 +24,10 @@
 				<!--l_content-->
 				<div id="c-list">
 					<h1>
-						成都销售业务招聘求职
+						<#if currCity??>${currCity.name}<#else>全国</#if>${cate.name?default('')}
 					</h1>
 					<p class="c-list-t">
-						以下是
-						<b> 成都销售业务招聘求职</b>信息，如果您没有找到您要的信息，您可以尝试翻页查找。
+						以下是 <b><#if currCity??>${currCity.name}<#else>全国</#if>${cate.name?default('')}</b> 信息，如果您没有找到您要的信息，您可以尝试翻页查找。
 					</p>
 					<div id="top">
 						<a style="color: rgb(255, 0, 0);" class="top-list-title" target="_blank" title="用户公告" href="/beijing/jiazhengfuwu/a2366498.html"> <img border="0" src="Themes/images/top.jpg" />用户公告</a>
@@ -44,43 +42,11 @@
 					</div>
 
 					<p class="c-list-l">
-						<a class="c-list-title" target="_blank" title="房产经纪人学历:高中月薪:600-5000元每月" href="/chengdu/xiaoshouyewu/a2640280.html"> 房产经纪人学历:高中月薪:600-5000元每月</a><font>2010-10-12</font>
+						<#list pageBean.resultList as info>
+						<a class="c-list-title" target="_blank" title="${info.title}" href="${base}/info/page/${info.id}.htm"> ${info.title}</a><font>${info.publishDate?string('yyyy-MM-dd')}</font>
 						<br>
-						<span>招聘概要:成都成华区首城不动产:急招成都销售4人,要求:高中学历,月工资:600-5000元/月 详...<a title="成都成华招聘销售|成都成华销售招聘网" class="c-list-cate" href="/chenghua/zhaopinxiaoshouyuan/">成华销售员</a> <a
-							title="成都成华招聘业务员|成都成华业务员招聘网" class="c-list-cate" href="/chenghua/zhaopinyewuyuan/">成华业务员</a> <a title="成都成华招聘市场策划|成都成华市场策划招聘网" class="c-list-cate" href="/chenghua/zhaopinshichangcehua/">成华市场策划</a>
-						</span><a class="c-list-title" target="_blank" title="成都立睿电子有限公司渠道销售精英" href="/chengdu/xiaoshouyewu/a2640577.html"> 成都立睿电子有限公司渠道销售精英</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:成都立睿电子有限公司:急招成都建筑/装修4人,要求:1-3年相关岗位工作经验 详细内容: ...<a title="成都锦江招聘销售|成都锦江销售招聘网" class="c-list-cate" href="/jinjiang/zhaopinxiaoshouyuan/">锦江销售员</a> <a
-							title="成都锦江招聘渠道人员|成都锦江渠道人员招聘网" class="c-list-cate" href="/jinjiang/zhaopinqudaorenyuan/">锦江渠道人员</a> </span><a class="c-list-title" target="_blank" title="建筑用胶学历:高中/中专以上"
-							href="/chengdu/xiaoshouyewu/a2639972.html"> 建筑用胶学历:高中/中专以上</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:成都斌封胶业有限公司:急招成都建筑/装修,要求:高中/中专以上学历、1年以内相关岗位工作经...<a title="成都武侯招聘销售业务|成都武侯业务销售招聘网" class="c-list-cate" href="/wuhou/xiaoshouyewu/">武侯销售/业务</a> </span><a class="c-list-title"
-							target="_blank" title="店长学历:高中月薪:1500-4500元每月" href="/chengdu/xiaoshouyewu/a2639647.html"> 店长学历:高中月薪:1500-4500元每月</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:CARROSSE女装二号店:急招成都销售5人,要求:高中学历、1-2年相关岗位工作经验,月...<a title="成都锦江招聘销售|成都锦江销售招聘网" class="c-list-cate" href="/jinjiang/zhaopinxiaoshouyuan/">锦江销售员</a> <a
-							title="成都锦江招聘业务员|成都锦江业务员招聘网" class="c-list-cate" href="/jinjiang/zhaopinyewuyuan/">锦江业务员</a> </span><a class="c-list-title" target="_blank" title="工作关系需急招:业务员数名学历:高中/中专以上"
-							href="/chengdu/xiaoshouyewu/a2639251.html"> 工作关系需急招:业务员数名学历:高中/中专以上</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:成都汇点广告有限公司:急招成都广告/会展,要求:高中/中专以上学历 详细内容: 现因公司业...<a title="成都锦江招聘业务员|成都锦江业务员招聘网" class="c-list-cate" href="/jinjiang/zhaopinyewuyuan/">锦江业务员</a> </span><a class="c-list-title"
-							target="_blank" title="工作关系需急招:业务员数名学历:高中" href="/chengdu/xiaoshouyewu/a2639024.html"> 工作关系需急招:业务员数名学历:高中</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:成都汇点广告有限公司:急招成都销售,要求:高中学历 详细内容: 招聘业务员数名应聘者要求 ...<a title="成都锦江招聘销售|成都锦江销售招聘网" class="c-list-cate" href="/jinjiang/zhaopinxiaoshouyuan/">锦江销售员</a> <a
-							title="成都锦江招聘业务员|成都锦江业务员招聘网" class="c-list-cate" href="/jinjiang/zhaopinyewuyuan/">锦江业务员</a> <a title="成都锦江招聘促销员|成都锦江促销员招聘网" class="c-list-cate" href="/jinjiang/zhaopincuxiaoyuan/">锦江促销员</a> <a
-							title="成都锦江招聘市场策划|成都锦江市场策划招聘网" class="c-list-cate" href="/jinjiang/zhaopinshichangcehua/">锦江市场策划</a> </span><a class="c-list-title" target="_blank" title="客户经理领导市场推广人员学历:高中月薪:1000-5000元每月"
-							href="/chengdu/xiaoshouyewu/a2638436.html"> 客户经理领导市场推广人员学历:高中月薪:1000-5000元每月</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:北京商促网成都分公司:急招成都销售20人,要求:高中学历,月工资:1000-5000元/月...<a title="成都双流招聘销售|成都双流销售招聘网" class="c-list-cate" href="/shuangliu/zhaopinxiaoshouyuan/">双流销售员</a> <a
-							title="成都双流招聘业务员|成都双流业务员招聘网" class="c-list-cate" href="/shuangliu/zhaopinyewuyuan/">双流业务员</a> <a title="成都双流招聘营销专员|成都双流营销专员招聘网" class="c-list-cate" href="/shuangliu/zhaopinyingxiaozhuanyuan/">双流营销专员</a>
-							<a title="成都双流招聘公关/媒介|成都双流公关/媒介招聘网" class="c-list-cate" href="/shuangliu/zhaopingongguan/">双流公关/媒介</a> <a title="成都双流招聘促销员|成都双流促销员招聘网" class="c-list-cate" href="/shuangliu/zhaopincuxiaoyuan/">双流促销员</a>
-						</span><a class="c-list-title" target="_blank" title="实习市场助理学历:高中/中专以上" href="/chengdu/xiaoshouyewu/a2638765.html"> 实习市场助理学历:高中/中专以上</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:成都风相数码科技有限公司:急招成都媒体/影视/文化4人,要求:高中/中专以上学历 详细内容...<a title="成都锦江招聘销售|成都锦江销售招聘网" class="c-list-cate" href="/jinjiang/zhaopinxiaoshouyuan/">锦江销售员</a> <a
-							title="成都锦江招聘业务员|成都锦江业务员招聘网" class="c-list-cate" href="/jinjiang/zhaopinyewuyuan/">锦江业务员</a> <a title="成都锦江招聘电话销售|成都锦江电话销售招聘网" class="c-list-cate" href="/jinjiang/zhaopindianhuaxiaoshou/">锦江电话销售</a>
-							<a title="成都锦江招聘营销专员|成都锦江营销专员招聘网" class="c-list-cate" href="/jinjiang/zhaopinyingxiaozhuanyuan/">锦江营销专员</a> </span><a class="c-list-title" target="_blank" title="四川都市通网络科技有限公司销售经理"
-							href="/chengdu/xiaoshouyewu/a2637481.html"> 四川都市通网络科技有限公司销售经理</a><font>2010-10-12</font>
-						<br>
-						<span>招聘概要:四川都市通网络科技有限公司:急招成都计算机/网络/通信20人 详细内容: 职位描述: ㈠...<a title="成都金牛招聘销售|成都金牛销售招聘网" class="c-list-cate" href="/jinniu/zhaopinxiaoshouyuan/">金牛销售员</a> <a title="成都金牛招聘营销专员|成都金牛营销专员招聘网"
-							class="c-list-cate" href="/jinniu/zhaopinyingxiaozhuanyuan/">金牛营销专员</a> <a title="成都金牛招聘市场策划|成都金牛市场策划招聘网" class="c-list-cate" href="/jinniu/zhaopinshichangcehua/">金牛市场策划</a> </span>
+						<span>概要:<#if info.content?length<=100>${info.content}<#else>${info.content?substring(0,100)}...</#if></span>
+						</#list>
 					<div class="clear"></div>
 					</p>
 					<!--tags-->
