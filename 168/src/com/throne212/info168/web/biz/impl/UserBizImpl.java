@@ -1,5 +1,7 @@
 package com.throne212.info168.web.biz.impl;
 
+import java.util.Date;
+
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
 import com.throne212.info168.web.domain.Area;
@@ -43,6 +45,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 	}
 
 	public boolean publishInfo(Info info) {
+		info.setPublishDate(new Date());
 		baseDao.saveOrUpdate(info);
 		return true;
 	}

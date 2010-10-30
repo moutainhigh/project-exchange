@@ -1,5 +1,9 @@
 package com.throne212.info168.web.action;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.Util;
@@ -20,7 +24,9 @@ public class RegAction extends BaseAction {
 			this.setMsg("验证码为空");
 			return "fail";
 		}
-		if (!rand.equals(ActionContext.getContext().getSession().get(WebConstants.SESS_RAND))) {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
+		if (!isResponseCorrect) {
 			this.setMsg("验证码不一致");
 			return "fail";
 		}

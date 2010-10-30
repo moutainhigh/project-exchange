@@ -18,8 +18,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
 		String hql = "from Info i where i.cate=? order by publishDate desc";
-		Integer count = (Integer) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
-		page.setTotalRow(count);// 总记录数目
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
@@ -36,8 +36,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		Category cate = this.getEntityById(Category.class, cateId);
 		Area area = this.getEntityById(Area.class, areaId);
 		String hql = "from Info i where i.cate=? and i.area=? order by publishDate desc";
-		Integer count = (Integer) this.getHibernateTemplate().find("select count(*) " + hql, new Object[] { cate, area }).get(0);
-		page.setTotalRow(count);// 总记录数目
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
@@ -54,8 +54,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		Category cate = this.getEntityById(Category.class, cateId);
 		Area area = this.getEntityById(Area.class, areaId);
 		String hql = "from Info i where i.cate=? and i.area=? and i.title like ? order by publishDate desc";
-		Integer count = (Integer) this.getHibernateTemplate().find("select count(*) " + hql, new Object[] { cate, area, "%" + keywords + "%" }).get(0);
-		page.setTotalRow(count);// 总记录数目
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setParameter(2, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex)
 				.list();
@@ -70,8 +70,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
 		String hql = "from Info i where i.cate=? and i.title like ? order by publishDate desc";
-		Integer count = (Integer) this.getHibernateTemplate().find("select count(*) " + hql, new Object[] { cate, "%" + keywords + "%" }).get(0);
-		page.setTotalRow(count);// 总记录数目
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表

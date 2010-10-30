@@ -2,12 +2,15 @@ package com.throne212.info168.web.action;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
-import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.User;
 
 public class AjaxAction extends BaseAction {
@@ -45,11 +48,13 @@ public class AjaxAction extends BaseAction {
 	// ajax检查验证码是否正确
 	private String rand;
 	public String checkRand() {
-		String sessRand = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_RAND);
-		if (Util.isEmpty(rand) || Util.isEmpty(sessRand) || !rand.equals(sessRand))
-			this.setMsg("fail");
-		else
+		//String sessRand = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_RAND);
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
+		if (!Util.isEmpty(rand) && isResponseCorrect)
 			this.setMsg("succ");
+		else
+			this.setMsg("fail");
 		return "msg";
 	}
 
