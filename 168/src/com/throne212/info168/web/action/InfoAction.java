@@ -25,9 +25,30 @@ public class InfoAction extends BaseAction {
 	private Integer page;// 页码
 	private PageBean<Info> pageBean;//分页bean
 	
+	// 页面详情
+	private Long infoId;//
+	private Info info;// 信息
+	
 	private Category cate;// 栏目
+	private CommonBiz commonBiz;
+	private InfoBiz infoBiz;
 	
 	public String execute() {
+		String[] arr = pageName.split("/");
+		if(arr.length == 1){//注册、登录、首页、城市等单页
+			return "success";
+		}else if("info".equals(arr[0]) && arr.length==2){//在某个城市下的首页
+			Area city = commonBiz.getEntityByUnique(Area.class, "pinyin", arr[1]);
+			ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
+			return "index";
+		}else if("info".equals(arr[0]) && arr.length==3){
+			//在某个城市下的栏目页
+		}
+			
+		return "success";
+	}
+	
+	public String execute2() {
 		//城市拼音数据缓存
 		Map map = (Map) ActionContext.getContext().getApplication().get(WebConstants.CITY_BY_PINYIN);
 		if (map == null) {
@@ -52,9 +73,6 @@ public class InfoAction extends BaseAction {
 		return "success";
 	}
 
-	private CommonBiz commonBiz;
-	private InfoBiz infoBiz;
-
 	public String list() {
 		if (cateId != null)
 			cate = commonBiz.getEntityById(Category.class, cateId);
@@ -67,10 +85,8 @@ public class InfoAction extends BaseAction {
 		return "list";
 	}
 
-	// 页面详情
-	private Long infoId;//
-	private Info info;// 信息
-
+	
+	
 	public String page() {
 		info = infoBiz.getEntityById(Info.class, infoId);
 		return "page";
@@ -156,6 +172,11 @@ public class InfoAction extends BaseAction {
 
 	public void setInfo(Info info) {
 		this.info = info;
+	}
+	
+	public static void main(String[] args) {
+		String str = "aewf/wef";
+		System.out.println(str.split("/")[1]);
 	}
 
 }

@@ -13,7 +13,7 @@ public class InsertPinyin {
 		
 		List<Area> list = s.createQuery("from Area").list();
 		for(Area a : list){
-			a.setPinyin(PinyinToolkit.cn2Pinyin(a.getName()));
+			a.setPinyin(CnToSpell.getFullSpell(a.getName()));
 		}		
 		
 		s.getTransaction().commit();

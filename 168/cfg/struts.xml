@@ -8,11 +8,12 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	<constant name="struts.action.extension" value="htm,php,asp,aspx,action,,"></constant>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
     <package name="struts2" extends="struts-default">
+    	<!-- 登进 -->
 		<action name="login_action" class="com.throne212.info168.web.action.LoginAction">
 			<result name="admin" type="chain">
          		<param name="actionName">index</param>
@@ -25,9 +26,11 @@
 			</result>
 			<result name="pre_url" type="redirect">${preUrl}</result>
 		</action>
+		<!-- 登出 -->
 		<action name="logout_action" class="com.throne212.info168.web.action.LogoutAction">
 			<result name="success" type="redirect">/index.htm</result>
 		</action>
+		<!-- 注册 -->
 		<action name="reg_action" class="com.throne212.info168.web.action.RegAction">
 			<result name="success" type="redirect">/user/infoList.htm</result>
 			<result name="fail" type="chain">
@@ -35,16 +38,25 @@
          		<param name="namespace">/</param> 
 			</result>
 		</action>
-		<action name="info/*/*" method="{1}" class="com.throne212.info168.web.action.InfoAction">
-			<param name="param">{2}</param>
-			<result name="list" type="freemarker">/front/list.ftl</result>
+		<!-- 验证码 -->
+		<action name="rand" class="com.throne212.info168.web.action.RandAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+			</result>
 		</action>
-		<!-- 直接访问模板文件 -->
-		<action name="*" class="com.throne212.info168.web.action.BaseAction">
+		<!-- 信息列表和详细页面，以及直接访问模板 -->
+		<action name="*" class="com.throne212.info168.web.action.InfoAction">
 			<param name="pageName">{1}</param>
+			<result name="list" type="freemarker">/front/list.ftl</result>
+			<result name="page" type="freemarker">/front/page.ftl</result>
 			<result name="index" type="redirect">/index.htm</result>
 			<result name="success" type="freemarker">/front/{1}.ftl</result>
 		</action>
+		<!-- 直接访问模板文件 
+		<action name="*" class="com.throne212.info168.web.action.BaseAction">
+			
+		</action>-->
     </package>
     <package name="user" namespace="/user" extends="struts-default">
     	<interceptors>

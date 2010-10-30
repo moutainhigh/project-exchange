@@ -12,4 +12,7 @@
 	<bean id="cateDao" class="com.throne212.info168.web.dao.impl.CateDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="infoDao" class="com.throne212.info168.web.dao.impl.InfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>
