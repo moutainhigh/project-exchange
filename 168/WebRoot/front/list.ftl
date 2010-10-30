@@ -43,7 +43,7 @@
 
 					<p class="c-list-l">
 						<#list pageBean.resultList as info>
-						<a class="c-list-title" target="_blank" title="${info.title}" href="${base}/info/page/${info.id}.htm"> ${info.title}</a><font>${info.publishDate?string('yyyy-MM-dd')}</font>
+						<a class="c-list-title" target="_blank" title="${info.title}" href="${base}/info/${cityPinyin}/${catePinyin}/${info.id}"> ${info.title}</a><font>${info.publishDate?string('yyyy-MM-dd')}</font>
 						<br>
 						<span>概要:<#if info.content?length<=100>${info.content}<#else>${info.content?substring(0,100)}...</#if></span>
 						</#list>
@@ -91,7 +91,6 @@
 								</li>
 							</ul>
 							<div class="clear"></div>
-
 						</form>
 					</div>
 					<!--tags-->

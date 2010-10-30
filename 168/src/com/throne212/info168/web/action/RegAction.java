@@ -25,8 +25,9 @@ public class RegAction extends BaseAction {
 			return "fail";
 		}
 		HttpSession session = ServletActionContext.getRequest().getSession();
-		boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
-		if (!isResponseCorrect) {
+		//boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
+		Boolean isResponseCorrect = (Boolean) session.getAttribute("isResponseCorrect");
+		if (isResponseCorrect==null || !isResponseCorrect) {
 			this.setMsg("验证码不一致");
 			return "fail";
 		}

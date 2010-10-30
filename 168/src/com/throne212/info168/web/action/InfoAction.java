@@ -1,8 +1,5 @@
 package com.throne212.info168.web.action;
 
-import java.util.List;
-import java.util.Map;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.biz.InfoBiz;
@@ -14,101 +11,54 @@ import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
 
 public class InfoAction extends BaseAction {
-	
-	//单独页面，如注册、登录等
-	private String pageName;
-	
-	//列表和搜索页面
-	private Long cateId;// 栏目id
-	private Long areaId;// 地区id
+
+	private String cityPinyin;
+	private String catePinyin;
+
+	// 列表和搜索页面
 	private String keywords;// 关键字
 	private Integer page;// 页码
-	private PageBean<Info> pageBean;//分页bean
-	
+	private PageBean<Info> pageBean;// 分页bean
+
 	// 页面详情
 	private Long infoId;//
 	private Info info;// 信息
-	
+
 	private Category cate;// 栏目
 	private CommonBiz commonBiz;
 	private InfoBiz infoBiz;
-	
+
 	public String execute() {
-		String[] arr = pageName.split("/");
-		if(arr.length == 1){//注册、登录、首页、城市等单页
-			return "success";
-		}else if("info".equals(arr[0]) && arr.length==2){//在某个城市下的首页
-			Area city = commonBiz.getEntityByUnique(Area.class, "pinyin", arr[1]);
-			ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
+		if (!Util.isEmpty(cityPinyin) && Util.isEmpty(catePinyin)) {// 访问城市首页
+			if (!"all".equals(cityPinyin)) {
+				Area city = commonBiz.getEntityByUnique(Area.class, "pinyin", cityPinyin);
+				ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
+			}
 			return "index";
-		}else if("info".equals(arr[0]) && arr.length==3){
-			//在某个城市下的栏目页
-		}
-			
-		return "success";
-	}
-	
-	public String execute2() {
-		//城市拼音数据缓存
-		Map map = (Map) ActionContext.getContext().getApplication().get(WebConstants.CITY_BY_PINYIN);
-		if (map == null) {
-			map = commonBiz.getAllCitiesByPinyin();
-			ActionContext.getContext().getApplication().put(WebConstants.CITY_BY_PINYIN, map);
-		}
-		//栏目数据缓存
-		List allCates = (List) ActionContext.getContext().getApplication().get(WebConstants.ALL_CATES);
-		if (allCates == null) {
-			allCates = commonBiz.getCates();
-			ActionContext.getContext().getApplication().put(WebConstants.ALL_CATES, allCates);
-		}
-		//选取城市
-		if(!Util.isEmpty(pageName) && pageName.matches("city_\\D+_\\d+")){
-			String[] arr = pageName.split("_");
-			String pinyin = arr[1];
-			String idStr = arr[2];
-			Area area = commonBiz.getEntityById(Area.class, Long.parseLong(idStr));
-			ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, area);
-			return "index";
+		} else if (!Util.isEmpty(cityPinyin) && !Util.isEmpty(catePinyin)) {// 访问栏目列表页
+			cate = commonBiz.getEntityByUnique(Category.class, "pinyin", catePinyin);
+			if (infoId == null) {// 列表页面
+				return list();
+			} else {// 详细页面
+				return page();
+			}
 		}
 		return "success";
 	}
 
 	public String list() {
-		if (cateId != null)
-			cate = commonBiz.getEntityById(Category.class, cateId);
 		if (page == null || page < 1)
 			page = 1;
-		if (!Util.isEmpty(keywords))
-			pageBean = infoBiz.getInfoByCateKeywords(cateId, keywords, page);
-		else
-			pageBean = infoBiz.getInfoByCate(cateId, page);
+		pageBean = infoBiz.getInfoByCateArea(cate.getId(), page);
 		return "list";
 	}
 
-	
-	
 	public String page() {
 		info = infoBiz.getEntityById(Info.class, infoId);
 		return "page";
 	}
 
 	// setter and getter
-
-	public Long getCateId() {
-		return cateId;
-	}
-
-	public void setCateId(Long cateId) {
-		this.cateId = cateId;
-	}
-
-	public Long getAreaId() {
-		return areaId;
-	}
-
-	public void setAreaId(Long areaId) {
-		this.areaId = areaId;
-	}
 
 	public String getKeywords() {
 		return keywords;
@@ -173,10 +123,26 @@ public class InfoAction extends BaseAction {
 	public void setInfo(Info info) {
 		this.info = info;
 	}
-	
+
 	public static void main(String[] args) {
 		String str = "aewf/wef";
 		System.out.println(str.split("/")[1]);
+	}
+
+	public String getCityPinyin() {
+		return cityPinyin;
+	}
+
+	public void setCityPinyin(String cityPinyin) {
+		this.cityPinyin = cityPinyin;
+	}
+
+	public String getCatePinyin() {
+		return catePinyin;
+	}
+
+	public void setCatePinyin(String catePinyin) {
+		this.catePinyin = catePinyin;
 	}
 
 }

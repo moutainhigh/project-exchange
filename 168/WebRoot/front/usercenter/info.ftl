@@ -4,6 +4,24 @@
 		<#include "/front/head.ftl"/>
 		<link href="${base}/front/Themes/usercenter.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${base}/front/js/usercenter.js"></script>
+		<script type="text/javascript">
+			var msg = '${msg?default("")}';
+			if(msg != ''){
+				alert(msg);
+			}
+			function checkAll(obj){
+				if($(obj).attr('checked')){
+					$('input[type="checkbox"]').attr('checked',true);
+				}else{
+					$('input[type="checkbox"]').attr('checked',false);
+				}
+			}
+			function deleteInfo(){
+				if(confirm('您确定删除吗？') && $('input:checked').length>0){
+					document.forms[0].submit();
+				}
+			}
+		</script>
 	</head>
 
 	<body>
@@ -31,7 +49,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<form style="margin: 0pt;" method="post" id="form1" name="form1" action="">
+					<form style="margin: 0pt;" method="post" id="form1" name="form1" action="${base}/user/deleteInfo">
 						<table cellspacing="0" cellpadding="0" border="0" width="730" id="info_table">
 							<tbody>
 								<tr>
@@ -54,22 +72,46 @@
 										操作
 									</td>
 								</tr>
-
+								<#list pageBean.resultList as info>
 								<tr>
-									<td align="center" width="5%">
-										<input type="checkbox" onclick="selectEA()">
+									<td>
+										<input type="checkbox" name="infoIds" value="${info.id}"/>
 									</td>
-									<td valign="middle">
-										反选
-										<a href="javascript:formDel();">删除</a>|
-										<a href="javascript:formRefsh();">刷新</a>
+									<td>
+										${info.title}
 									</td>
-
-									<td align="right" valign="middle" style="font-weight: bold;" colspan="4">
-										当前第1页
-
-										<a href="">首页</a>
-										<a href="">下一页</a>
+									<td>
+										<#if info.isChecked?? && info.isChecked==true>已通过审核<#else>等待审核</#if>
+									</td>
+									<td>
+										<#if info.isChecked?? && info.isChecked==true>已发布<#else>等待发布</#if>
+									</td>
+									<td>
+										${info.publishDate?string("yyyy-MM-dd")}
+									</td>
+									<td>
+										<a href="${base}/user/delete">删除</a>
+									</td>
+								</tr>
+								</#list>
+								<tr>
+									<td>
+										<input type="checkbox" onclick="checkAll(this);">
+									</td>
+									<td align="right" valign="middle" style="" colspan="5">
+										<span style="display:block;float:left;font-weight: bold;">
+											<a href="javascript:deleteInfo();">删除</a>|
+											<a href="javascript:location.href='${base}/user/infoList.htm'">刷新</a>
+										</span>
+										<span style="display:block;float:right;">
+											<font color="blue">${pageBean.pageIndex }</font>/${pageBean.maxPage }&nbsp;
+											每页${pageBean.rowPerPage }条&nbsp;
+											共${pageBean.totalRow }条&nbsp;
+											<#if !pageBean.isFirstPage><a href="javascript:gotoPage(1);">[首页]</a><#else>[首页]</#if>
+											<#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex });">[前一页]</a><#else>[前一页]</#if>
+											<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a><#else>[后一页]</#if>
+											<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a><#else>[尾页]</#if>
+										</span>
 									</td>
 								</tr>
 							</tbody>

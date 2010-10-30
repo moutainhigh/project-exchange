@@ -14,6 +14,7 @@ public class Info {
 	private String qq;//qq
 	private User user;//发布者
 	private Date publishDate;//发布时间
+	private Boolean isChecked;//是否通过审核
 
 	public Long getId() {
 		return id;
@@ -93,6 +94,14 @@ public class Info {
 
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
+	}
+
+	public Boolean getIsChecked() {
+		return isChecked;
+	}
+
+	public void setIsChecked(Boolean isChecked) {
+		this.isChecked = isChecked;
 	}
 
 }

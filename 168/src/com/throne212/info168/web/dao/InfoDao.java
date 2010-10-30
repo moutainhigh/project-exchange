@@ -15,5 +15,8 @@ public interface InfoDao extends BaseDao{
 
 	// 根据栏目和地区和关键字找信息
 	public PageBean<Info> getInfoByCateAreaKeywords(Long cateId, Long areaId, String keywords, int pageIndex);
+	
+	//user info
+	public PageBean<Info> getInfoByUser(Long userId, int pageIndex);
 
 }

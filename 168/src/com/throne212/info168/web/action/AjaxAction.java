@@ -51,9 +51,11 @@ public class AjaxAction extends BaseAction {
 		//String sessRand = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_RAND);
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
-		if (!Util.isEmpty(rand) && isResponseCorrect)
+		//String r = RandAction.capService.getQuestionForID(session.getId());
+		if (!Util.isEmpty(rand) && isResponseCorrect){
 			this.setMsg("succ");
-		else
+			session.setAttribute("isResponseCorrect", isResponseCorrect);
+		} else
 			this.setMsg("fail");
 		return "msg";
 	}

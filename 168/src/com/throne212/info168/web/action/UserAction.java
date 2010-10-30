@@ -5,6 +5,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
+import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Info;
@@ -19,9 +20,15 @@ public class UserAction extends BaseAction {
 
 	// 信息列表
 	private List<Info> infoList;
+	private PageBean<Info> pageBean;
+	private Integer page;
+
+	private Long[] infoIds;
 
 	public String infoList() {
-
+		if (page == null || page < 1)
+			page = 1;
+		pageBean = userBiz.getInfos(page);
 		return "info_list";
 	}
 
@@ -55,6 +62,20 @@ public class UserAction extends BaseAction {
 			}
 		}
 		return "password";
+	}
+
+	// 删除信息
+	public String deleteInfo() {
+		for (Long id : infoIds) {
+			try {
+				userBiz.deleteEntity(Info.class, id);
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+				this.setMsg("删除错误，请不要重复删除");
+			}
+		}
+		this.setMsg("信息删除成功");
+		return infoList();
 	}
 
 	public UserBiz getUserBiz() {
@@ -103,6 +124,30 @@ public class UserAction extends BaseAction {
 
 	public void setInfoList(List<Info> infoList) {
 		this.infoList = infoList;
+	}
+
+	public PageBean<Info> getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean<Info> pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Long[] getInfoIds() {
+		return infoIds;
+	}
+
+	public void setInfoIds(Long[] infoIds) {
+		this.infoIds = infoIds;
 	}
 
 }

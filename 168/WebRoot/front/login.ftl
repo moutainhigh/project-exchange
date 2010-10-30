@@ -56,7 +56,7 @@
 											看不清？点击图片换一个
 										</div>
 										<div style="margin:2px auto;text-align:center;">
-											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='rand?n='+Math.random();" src="rand" name="verifyframe"
+											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='${base}/rand?n='+Math.random();" src="${base}/rand" name="verifyframe"
 												id="verifyframe">
 										</div>
 										<div style="clear:both;"></div>

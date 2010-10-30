@@ -45,7 +45,7 @@ public class LoginAction extends BaseAction {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
 			return "admin";
 		}
-		if (!Util.isEmpty(preUrl)) {
+		if (!Util.isEmpty(preUrl) && !preUrl.contains("/login")) {
 			String cPath = ServletActionContext.getServletContext().getContextPath();
 			if (cPath != null && !cPath.equals("/")) {
 				preUrl = preUrl.replace(cPath, "");

@@ -32,7 +32,7 @@
 					<td class="ctp">${p}</td>
 					<td class="ct">
 						<#list allCities[p] as c>
-						<a href="${base}/city_${c[2]}_${c[0]}.htm">${c[1]}</a> 
+						<a href="${base}/info/${c[2]}">${c[1]}</a> 
 						</#list>						
 					</td>
 				</tr>

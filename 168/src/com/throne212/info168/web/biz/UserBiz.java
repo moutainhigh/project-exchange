@@ -1,5 +1,6 @@
 package com.throne212.info168.web.biz;
 
+import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
@@ -12,5 +13,7 @@ public interface UserBiz extends BaseBiz{
 	public boolean changePwd(User user, String pwd);
 	//发布信息
 	public boolean publishInfo(Info info);
+	//信息列表
+	public PageBean<Info> getInfos(Integer page);
 	
 }

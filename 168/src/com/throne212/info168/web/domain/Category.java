@@ -9,6 +9,7 @@ public class Category implements Comparable<Category> {
 	private String name;// 分类名称
 	private Category parent;// 父分类
 	private Integer grade;// 排序级别
+	private String pinyin;//拼音
 	private Set<Category> childs = new HashSet<Category>();// 子分类集合
 
 	public Category() {
@@ -87,6 +88,14 @@ public class Category implements Comparable<Category> {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
+	}
+
+	public String getPinyin() {
+		return pinyin;
+	}
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
 	}
 
 	@Override

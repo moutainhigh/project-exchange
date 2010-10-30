@@ -10,6 +10,7 @@ import com.throne212.info168.web.dao.InfoDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.User;
 
 public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 
@@ -17,8 +18,9 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		PageBean<Info> page = new PageBean<Info>();
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
-		String hql = "from Info i where i.cate=? order by publishDate desc";
+		String hql = "from Info i where i.isChecked=true and i.cate=? order by publishDate desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
@@ -35,8 +37,9 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
 		Area area = this.getEntityById(Area.class, areaId);
-		String hql = "from Info i where i.cate=? and i.area=? order by publishDate desc";
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		String hql = "from Info i where i.isChecked=true and i.cate=? and i.area=? order by publishDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[] { cate, area }).get(0);
+		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
@@ -53,7 +56,7 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
 		Area area = this.getEntityById(Area.class, areaId);
-		String hql = "from Info i where i.cate=? and i.area=? and i.title like ? order by publishDate desc";
+		String hql = "from Info i where i.isChecked=true and i.cate=? and i.area=? and i.title like ? order by publishDate desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -69,11 +72,26 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		PageBean<Info> page = new PageBean<Info>();
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
-		String hql = "from Info i where i.cate=? and i.title like ? order by publishDate desc";
+		String hql = "from Info i where i.isChecked=true and i.cate=? and i.title like ? order by publishDate desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.INFO_LIST_ROWS);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+
+	public PageBean<Info> getInfoByUser(Long userId, int pageIndex) {
+		PageBean<Info> page = new PageBean<Info>();
+		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
+		User user = this.getEntityById(User.class, userId);
+		String hql = "from Info i where i.user=? order by publishDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, user).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Info> list = s.createQuery(hql).setParameter(0, user).setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.INFO_LIST_ROWS);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码

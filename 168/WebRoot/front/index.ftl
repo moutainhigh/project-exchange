@@ -24,12 +24,11 @@
 				<div class="category">
 					<#list allCates as t>
 					<div class="column">
-						<!--招聘-->
 						<h3>
 							${t.name}
 						</h3>
 						<#list t.childs as c>
-						<a class="cate-one" title="${c.name}" target="_blank" href="${base}/info/list/${c.id}.htm">${c.name}</a>
+						<a class="cate-one" title="${c.name}" target="_blank" href="${base}/info/<#if currCity??>${currCity.pinyin}<#else>all</#if>/${c.pinyin}">${c.name}</a>
 						<br>
 						</#list>
 					</div>
