@@ -16,10 +16,10 @@
     	<result-types>
             <result-type name="staticview" class="com.throne212.info168.web.result.FreemarkerResult"/>
         </result-types>
-        <!-- 测试 -->
+        <!-- 测试 
 		<action name="test" class="com.throne212.info168.web.action.TestAction">
 			<result name="success" type="staticview">/index.html</result>
-		</action>
+		</action>-->
 		<action name="test" class="com.throne212.info168.web.action.TestAction">
 			<result name="success" type="staticview">
 				<param name="location">front/page.ftl</param>
@@ -31,10 +31,7 @@
 		</action>
     	<!-- 登进 -->
 		<action name="login_action" class="com.throne212.info168.web.action.LoginAction">
-			<result name="admin" type="chain">
-         		<param name="actionName">index</param>
-         		<param name="namespace">/admin</param> 
-			</result>
+			<result name="admin" type="redirect">/admin/index.htm</result>
 			<result name="success" type="redirect">/user/infoList.htm</result>
 			<result name="fail" type="chain">
 				<param name="actionName">login</param>
@@ -125,8 +122,24 @@
 		</action>
     </package>
     <package name="admin" namespace="/admin" extends="struts-default">
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.info168.web.filter.AdminAccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <global-results>
+			<result name="login" type="chain">
+				<param name="actionName">login</param>
+         		<param name="namespace">/</param> 
+			</result>
+		</global-results>
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.AdminAction">
 			<result name="index">/admin/manage.jsp</result>
+			<result name="password">/admin/welcome/pwd.jsp</result>
+			<result name="info_list">/admin/info/list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

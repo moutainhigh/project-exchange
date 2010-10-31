@@ -5,7 +5,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>${appTitle}</title>
-        <link rel="shortcut icon" href="${appPath}/favicon.jpg" type="image/x-icon" />
 		<script src="${appPath}/js/jquery.js" type="text/javascript"></script>
 		<style>
 			/* common */
@@ -222,15 +221,15 @@
 				<div id="welcome_nav">
 					<div>
 						<span style="background:url(${appPath}/admin/images/msg2.jpg) no-repeat left center">您好, admin</span>  
-						<span style="background:url(${appPath}/admin/images/ico1.gif) no-repeat left center"><a href="${appPath}/manage/welcome/pwd.jsp" target="mainFrame">密码修改</a></span> 
-						<span style="background:url(${appPath}/admin/images/ico1.gif) no-repeat left center"><a href="${appPath}/index.html" target="_blank">前台网站</a></span> 
+						<span style="background:url(${appPath}/admin/images/ico1.gif) no-repeat left center"><a href="${appPath}/admin/welcome/pwd.jsp" target="mainFrame">密码修改</a></span> 
+						<span style="background:url(${appPath}/admin/images/ico1.gif) no-repeat left center"><a href="${appPath}/index.htm" target="_blank">前台网站</a></span> 
 						<span style="background:url(${appPath}/admin/images/ico5.jpg) no-repeat left center"><a href="${appPath}/logout_action.htm">退 出</a></span>
 					</div>
 				</div>
 				<div id="mainNav">
-					<div><a href="${appPath}/manage/SysAction.do?method=showMain" target="mainFrame" <c:if test="${empty sess_curr_module}">style="color:red"</c:if>>欢迎页</a></div>
+					<div><a href="${appPath}/admin/main.html" target="mainFrame" style="color:red">欢迎页</a></div>
 					<ul>
-						<li><a href="${appPath}${module.url }" target="mainFrame" <c:if test="${sess_curr_module.id==module.id}">style="color:red"</c:if>>${module.name }</a></li>
+						<li><a href="${appPath}/admin/info.html" target="mainFrame">信息审核</a></li>
 					</ul>
 				</div>
 				<div id="msgNav">

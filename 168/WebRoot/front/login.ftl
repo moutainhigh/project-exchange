@@ -6,7 +6,7 @@
 		<script type="text/javascript" src="${base}/front/js/login.js"></script>
 	</head>
 
-	<body>
+	<body onload="breakout_of_frame();">
 		<#include "/front/top.ftl">
 		<div class="all">
 			<div id="content_s">
@@ -50,7 +50,7 @@
 												验证码:
 											</label>
 											&nbsp;
-											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_rand(this);" name="rand" id="rand" class="auth">
+											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_rand(this);" name="rand" id="rand" class="auth"  onkeypress="formKeyPress(event);">
 										</div>
 										<div style="padding-left: 100px;" class="hui">
 											看不清？点击图片换一个

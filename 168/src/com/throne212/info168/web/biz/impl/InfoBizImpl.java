@@ -45,5 +45,13 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 			return infoDao.getInfoByCateAreaKeywords(cateId, area.getId(), keywords, pageIndex);
 		}
 	}
+	
+	public PageBean<Info> getAllInfo(int page){
+		return infoDao.getAllInfo(page);
+	}
+	
+	public PageBean<Info> getAllUncheckInfo(int pageIndex){
+		return infoDao.getAllUncheckInfo(pageIndex);
+	}
 
 }

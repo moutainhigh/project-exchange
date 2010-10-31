@@ -3,7 +3,7 @@
 	<head>
 		<#include "/front/head.ftl"/>
 		<link href="${base}/front/Themes/publish.css" rel="stylesheet" type="text/css" />
-		<!--<meta HTTP-EQUIV="REFRESH" CONTENT="5;URL=${base}/index.htm">-->
+		<meta HTTP-EQUIV="REFRESH" CONTENT="5;URL=${base}/index.htm">
 	</head>
 
 	<body>

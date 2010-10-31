@@ -22,5 +22,6 @@ public class WebConstants {
 	public static final String SESS_CITY = "currCity";
 	//other
 	public static final int INFO_LIST_ROWS = 10;
+	public static final int INFO_LIST_ROWS_ADMIN = 20;
 	
 }

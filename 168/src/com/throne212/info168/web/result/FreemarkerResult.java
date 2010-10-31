@@ -7,19 +7,22 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Locale;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.StrutsResultSupport;
 import org.apache.struts2.views.freemarker.FreemarkerManager;
-import org.apache.struts2.views.util.ResourceUtil;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.LocaleProvider;
 import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.util.ValueStack;
+
 import freemarker.template.Configuration;
 import freemarker.template.ObjectWrapper;
 import freemarker.template.Template;
@@ -65,6 +68,7 @@ public class FreemarkerResult extends StrutsResultSupport {
 		this.location = location;
 		this.invocation = invocation;
 		this.configuration = getConfiguration();
+		configuration.setOutputEncoding("UTF-8");
 		this.wrapper = getObjectWrapper();
 		this.fileName = (String) conditionalParse(fileName, invocation);
 		this.staticTemplate = (String) conditionalParse(staticTemplate, invocation);
@@ -104,6 +108,8 @@ public class FreemarkerResult extends StrutsResultSupport {
 			} finally {
 				postTemplateProcess(template, model);
 				postTemplateProcess(staticTemplate, model);
+				out.flush();
+				out.close();
 			}
 		}
 	}

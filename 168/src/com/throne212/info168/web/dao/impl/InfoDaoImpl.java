@@ -97,5 +97,33 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
+	
+	public PageBean<Info> getAllInfo(int pageIndex){
+		PageBean<Info> page = new PageBean<Info>();
+		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS_ADMIN;
+		String hql = "from Info i order by publishDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Info> list = s.createQuery(hql).setMaxResults(WebConstants.INFO_LIST_ROWS_ADMIN).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.INFO_LIST_ROWS_ADMIN);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	public PageBean<Info> getAllUncheckInfo(int pageIndex){
+		PageBean<Info> page = new PageBean<Info>();
+		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS_ADMIN;
+		String hql = "from Info i where isChecked is null or isChecked=false order by publishDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Info> list = s.createQuery(hql).setMaxResults(WebConstants.INFO_LIST_ROWS_ADMIN).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.INFO_LIST_ROWS_ADMIN);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
 
 }

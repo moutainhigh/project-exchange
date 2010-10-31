@@ -1,6 +1,23 @@
 /*登录页面functions*/
 
-
+//去掉框架
+function breakout_of_frame()
+{
+  // see http://www.thesitewizard.com/archive/framebreak.shtml
+  // for an explanation of this script and how to use it on your
+  // own website
+  if (top.location != location) {
+    top.location.href = document.location.href ;
+  }
+}
+//回车
+function formKeyPress(event){
+	if(event.keyCode == 13){
+		chkForm();
+	}else{
+		return false;
+	}
+}
 
 //提示信息通用
 function alertInfo(index,txt,color){

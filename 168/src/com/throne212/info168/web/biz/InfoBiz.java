@@ -17,4 +17,8 @@ public interface InfoBiz extends BaseBiz {
 	// 根据栏目和地区和关键字找信息
 	public PageBean<Info> getInfoByCateAreaKeywords(Long cateId, String keywords,int pageIndex);
 
+	
+	//admin
+	public PageBean<Info> getAllInfo(int pageIndex);
+	public PageBean<Info> getAllUncheckInfo(int pageIndex);
 }

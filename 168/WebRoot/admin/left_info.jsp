@@ -110,14 +110,11 @@
         </script>
     </head>
     <body>
-        <h2>欢迎页面</h2>
+        <h2>信息管理</h2>
         <div id="menu3">
             <ul>
-                <!-- CSS Tabs -->
-				<li>
-                    <a id="current" href="welcome/welcome.jsp" target="rightFrame">系统信息概况</a>
-                    <a id="current" href="welcome/pwd.jsp" target="rightFrame">修改密码</a>
-                </li>
+				<li><a href="${appPath}/admin/infoList" target="rightFrame">所有信息</a></li>
+				<li><a href="${appPath}/admin/unchckedinfoList" target="rightFrame">待审核信息</a></li>
             </ul>
         </div>
     </body>

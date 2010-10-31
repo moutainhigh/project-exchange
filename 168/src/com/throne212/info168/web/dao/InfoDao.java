@@ -18,5 +18,9 @@ public interface InfoDao extends BaseDao{
 	
 	//user info
 	public PageBean<Info> getInfoByUser(Long userId, int pageIndex);
+	
+	//admin
+	public PageBean<Info> getAllInfo(int page);
+	public PageBean<Info> getAllUncheckInfo(int pageIndex);
 
 }
