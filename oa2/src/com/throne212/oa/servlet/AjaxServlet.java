@@ -13,7 +13,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.throne212.oa.dao.DropdownListDao;
-import com.throne212.oa.domain.doctor.DropdownList;
+import com.throne212.oa.domain.DropdownList;
 
 public class AjaxServlet extends HttpServlet {
 

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.oa.domain.person">
+	<class name="Person" table="oa2_person">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="orgType" lazy="false" />
+		<many-to-one name="orgName" lazy="false" />
+		<property name="name" />
+		<property name="gender" />
+		<property name="birthday" />
+		<property name="age" />
+		<many-to-one name="nation" lazy="false" />
+		<property name="jiguan" />
+		<many-to-one name="zhengzhi" lazy="false" />
+		<property name="idNo" />
+		<property name="phone" />
+
+		<many-to-one name="fullDayXueli" lazy="false" />
+		<property name="fullDayStartDay" />
+		<property name="fullDayEndDay" />
+		<property name="fullDaySchool" />
+		<property name="fullDayMajor" />
+		<property name="fullDayXueliName" />
+
+		<many-to-one name="onjobXueli" lazy="false" />
+		<many-to-one name="cengci" lazy="false" />
+		<property name="onjobStartDay" />
+		<property name="onjobEndDay" />
+		<property name="onjobSchool" />
+		<property name="onjobMajor" />
+		<property name="onjobXueliName" />
+
+		<many-to-one name="shenFen" lazy="false" />
+		<many-to-one name="zhiCheng" lazy="false" />
+		<many-to-one name="zhuanYe" lazy="false" />
+		<many-to-one name="xingZhengGrade" lazy="false" />
+		<many-to-one name="zhiWu" lazy="false" />
+		<property name="jianzhi" />
+
+		<property name="cizhi" />
+		<property name="zidongLizhi" />
+		<property name="tuixiu" />
+		<property name="diaoruBenshi" />
+		<property name="tuichuBenshi" />
+		<property name="shineiDiaodong" />
+
+		<property name="kaoheYear" />
+		<many-to-one name="kaoheResult" lazy="false" />
+
+		<property name="workExprStartDate" />
+		<property name="workExprEndDate" />
+		<property name="workExprOrg" />
+		<property name="workExprZhiwu" />
+
+		<property name="relation" />
+		<property name="relationName" />
+		<many-to-one name="relationZhengzhi" lazy="false" />
+		<property name="relationOrg" />
+		<property name="relationZhiwu" />
+
+		<property name="renmianDate" />
+		<property name="renmian" />
+		<property name="renmianDesc" />
+		<property name="renmianOrg" />
+
+		<property name="jiangchengDate" />
+		<property name="jiangcheng" />
+		<property name="jiangchengDesc" />
+		<property name="jiangchengOrg" />
+
+	</class>
+</hibernate-mapping>

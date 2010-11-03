@@ -20,49 +20,48 @@ import com.throne212.oa.HibernateSessionFactory;
 import com.throne212.oa.common.PageBean;
 import com.throne212.oa.common.Util;
 import com.throne212.oa.domain.DropdownList;
-import com.throne212.oa.domain.doctor.Doctor;
+import com.throne212.oa.domain.person.Person;
 
-public class DoctorDao {
-	public Doctor getDoctorById(long id) {
+public class PersonDao {
+	public Person getPersonById(long id) {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
-		Doctor doc = (Doctor) s.get(Doctor.class, Long.valueOf(id));
+		Person person = (Person) s.get(Person.class, Long.valueOf(id));
 		s.getTransaction().commit();
 		s.close();
-		return doc;
+		return person;
 	}
 
-	public void addNewDoctor(Doctor doc) {
+	public void addNewPerson(Person person) {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
-		doc.setStatus(new Integer(1));
-		s.saveOrUpdate(doc);
-		s.getTransaction().commit();
-		s.close();
-	}
-
-	public void updateDoctor(Doctor doc) {
-		Session s = HibernateSessionFactory.getSession();
-		s.beginTransaction();
-		s.saveOrUpdate(doc);
+		s.saveOrUpdate(person);
 		s.getTransaction().commit();
 		s.close();
 	}
 
-	public int deleteDoctor(long id) {
+	public void updatePerson(Person person) {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
-		String hql = "delete from Doctor d where d.id=?";
+		s.saveOrUpdate(person);
+		s.getTransaction().commit();
+		s.close();
+	}
+
+	public int deletePerson(long id) {
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		String hql = "delete from Person d where d.id=?";
 		int rst = s.createQuery(hql).setLong(0, id).executeUpdate();
 		if (rst > 0) {
-			System.out.println("删除医生注册成功");
+			System.out.println("删除人事记录成功");
 		}
 		s.getTransaction().commit();
 		s.close();
 		return rst;
 	}
 
-	public PageBean findDoctors(int currPage, Doctor condition, Map other) {
+	public PageBean findPersons(int currPage, Person condition, Map other) {
 		PageBean page = new PageBean();
 		page.setPageIndex(currPage);
 		page.setRowPerPage(20);
@@ -97,12 +96,12 @@ public class DoctorDao {
 		return page;
 	}
 
-	private Object[] buildFilterHQL(Doctor condition, Map other) {
+	private Object[] buildFilterHQL(Person condition, Map other) {
 		Object[] rst = new Object[2];
-		StringBuffer sb = new StringBuffer("from Doctor where 1=1");
+		StringBuffer sb = new StringBuffer("from Person where 1=1");
 		List paramValueList = new ArrayList();
 		// 构建下拉项的条件
-		Field[] fs = Doctor.class.getDeclaredFields();
+		Field[] fs = Person.class.getDeclaredFields();
 		for (int i = 0; i < fs.length; i++) {
 			Field f = fs[i];
 			if (!f.isAccessible())
@@ -125,13 +124,6 @@ public class DoctorDao {
 		if (!Util.isEmpty(condition.getIdNo())) {
 			sb.append(" and idNo like '%" + condition.getIdNo() + "%'");
 		}
-		if (!Util.isEmpty(condition.getZigeNo())) {
-			sb.append(" and zigeNo like '%" + condition.getZigeNo() + "%'");
-		}
-		if (condition.getStatus() != null) {
-			sb.append(" and status=?");
-			paramValueList.add(condition.getStatus());
-		}
 		// 年龄段
 		if (other.get("startAge") != null && ((String[]) other.get("startAge")).length > 0 && !Util.isEmpty(((String[]) other.get("startAge"))[0])) {
 			long startAge = Long.parseLong(((String[]) other.get("startAge"))[0]);
@@ -146,20 +138,7 @@ public class DoctorDao {
 			sb.append(" and birthday>=?");
 			paramValueList.add(startDate);
 		}
-		// 批注日期段
-		if (other.get("startPiZhunDate") != null && ((String[]) other.get("startPiZhunDate")).length > 0
-				&& !Util.isEmpty(((String[]) other.get("startPiZhunDate"))[0])) {
-			// if (!Util.isEmpty((String) other.get("startPiZhunDate"))) {
-			try {
-				Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("startPiZhunDate"))[0]);
-				sb.append(" and okDate>=?");
-				paramValueList.add(startDate);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		if (other.get("endPiZhunDate") != null && ((String[]) other.get("endPiZhunDate")).length > 0
-				&& !Util.isEmpty(((String[]) other.get("endPiZhunDate"))[0])) {
+		if (other.get("endPiZhunDate") != null && ((String[]) other.get("endPiZhunDate")).length > 0 && !Util.isEmpty(((String[]) other.get("endPiZhunDate"))[0])) {
 			// if (!Util.isEmpty((String) other.get("endPiZhunDate"))) {
 			try {
 				Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("endPiZhunDate"))[0]);
@@ -170,7 +149,7 @@ public class DoctorDao {
 				e.printStackTrace();
 			}
 		}
-		sb.append(" order by okDate desc,id desc");
+		sb.append(" order by id desc");
 		System.out.println("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
@@ -190,7 +169,7 @@ public class DoctorDao {
 			try {
 				Class clazz = Class.forName(eName);
 				if (DropdownList.class.isInstance(clazz.newInstance()) && !clazz.getName().equals(DropdownList.class.getName())
-						&& clazz.getPackage().getName().equals(Doctor.class.getPackage().getName())) {
+						&& clazz.getPackage().getName().equals(Person.class.getPackage().getName())) {
 					Field f = clazz.getDeclaredField("componentName");
 					String name = (String) f.get(clazz.newInstance());
 					rst.put(clazz.getSimpleName(), name);
@@ -204,10 +183,13 @@ public class DoctorDao {
 
 	public List getDicValueList(String className) {
 		Session s = HibernateSessionFactory.getSession();
-		String hql = "from " + className + " order by listorder";
+		String hql = "from " + Person.class.getPackage().getName() +className + " order by listorder";
 		List list = s.createQuery(hql).list();
 		s.close();
 		return list;
+	}
+	public static void main(String[] args) {
+		System.out.println(Person.class.getPackage().getName());
 	}
 
 }

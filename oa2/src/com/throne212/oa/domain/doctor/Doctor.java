@@ -2,6 +2,7 @@ package com.throne212.oa.domain.doctor;
 
 import java.util.Date;
 
+
 public class Doctor {
 	
 	private Long id;//Ö÷¼ü

@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.throne212.oa.HibernateSessionFactory;
-import com.throne212.oa.domain.doctor.DropdownList;
+import com.throne212.oa.domain.DropdownList;
 
 public class DropdownListDao {
 

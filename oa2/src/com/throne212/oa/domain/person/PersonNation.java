@@ -1,9 +1,8 @@
-package com.throne212.oa.domain.doctor;
+package com.throne212.oa.domain.person;
 
 import com.throne212.oa.domain.DropdownList;
 
-
 //民族
-public class Nation extends DropdownList {	
+public class PersonNation extends DropdownList {	
 	public static String componentName = "民族";
 }

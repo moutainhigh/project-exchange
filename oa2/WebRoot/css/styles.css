@@ -31,7 +31,9 @@
 }
 .list_td_context {
 	COLOR: #000000; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: center; font-size: 9pt;min-height: 30px;height: 30px;}
-.list_td_context td{text-align: left;padding-left: 15px;}
+.list_td_context td{text-align: left;padding-left: 5px;}
+/*.list_td_context td select{width:90%;}*/
+.list_td_context .label{text-align: center;}
 .list_td_context1 {
 	COLOR: #000000; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
 ; font-size: 9pt}

@@ -10,8 +10,7 @@ public class Test {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
-		Doctor doc = new Doctor();
-		s.save(doc);
+		s.createQuery("from Nation").list();
 		
 		s.getTransaction().commit();
 		s.close();

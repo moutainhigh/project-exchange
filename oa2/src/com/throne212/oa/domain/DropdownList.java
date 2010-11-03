@@ -1,4 +1,4 @@
-package com.throne212.oa.domain.doctor;
+package com.throne212.oa.domain;
 
 //所有下来别表的父类
 public class DropdownList {

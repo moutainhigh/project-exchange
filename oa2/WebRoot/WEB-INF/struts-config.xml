@@ -10,11 +10,19 @@
     <action path="/test" type="com.throne212.oa.action.TestAction">
     	<forward name="test" path="/test.jsp"></forward>
     </action>
+    <!-- 乡村医生 -->
     <action path="/doctor" type="com.throne212.oa.action.DoctorAction" parameter="method">
     	<forward name="edit" path="/doctor/edit.jsp"></forward>
     	<forward name="list" path="/doctor/list.jsp"></forward>
     	<forward name="dic_list" path="/doctor/dic_list.jsp"></forward>
     	<forward name="dic_edit" path="/doctor/dic_edit.jsp"></forward>
+    </action>
+    <!-- 人事 -->
+    <action path="/person" type="com.throne212.oa.action.PersonAction" parameter="method">
+    	<forward name="edit" path="/person/edit.jsp"></forward>
+    	<forward name="list" path="/person/list.jsp"></forward>
+    	<forward name="dic_list" path="/person/dic_list.jsp"></forward>
+    	<forward name="dic_edit" path="/person/dic_edit.jsp"></forward>
     </action>
 
   </action-mappings>

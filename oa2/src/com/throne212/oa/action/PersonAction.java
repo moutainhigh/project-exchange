@@ -17,126 +17,117 @@ import org.apache.struts.actions.DispatchAction;
 
 import com.throne212.oa.common.PageBean;
 import com.throne212.oa.common.Util;
-import com.throne212.oa.dao.DoctorDao;
 import com.throne212.oa.dao.DropdownListDao;
+import com.throne212.oa.dao.PersonDao;
 import com.throne212.oa.domain.DropdownList;
-import com.throne212.oa.domain.doctor.Cun;
-import com.throne212.oa.domain.doctor.Doctor;
+import com.throne212.oa.domain.person.Person;
 
-public class DoctorAction extends DispatchAction{
+public class PersonAction extends DispatchAction{
 	
-	private DoctorDao docDao = new DoctorDao();
+	private PersonDao personDao = new PersonDao();
 	private DropdownListDao dicDao = new DropdownListDao();
 
-	public ActionForward addDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Doctor doc = this.buildDoctorModel(request);
-		docDao.addNewDoctor(doc);
+	public ActionForward addPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Person doc = this.buildPersonModel(request);
+		personDao.addNewPerson(doc);
 		
-		request.setAttribute("msg", "新医生[ "+doc.getName()+" ]注册成功");
+		request.setAttribute("msg", "新人事[ "+doc.getName()+" ]注册成功");
 		return mapping.findForward("edit");
 	}
-	public ActionForward updateDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Doctor doc = this.buildDoctorModel(request);
-		docDao.updateDoctor(doc);		
-		request.setAttribute("msg", "医生[ "+doc.getName()+" ]更新成功");
+	public ActionForward updatePerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Person doc = this.buildPersonModel(request);
+		personDao.updatePerson(doc);		
+		request.setAttribute("msg", "人事[ "+doc.getName()+" ]更新成功");
 		return mapping.findForward("edit");
 	}
 	
-	private Doctor buildDoctorModel(HttpServletRequest request){
-		Doctor doc = new Doctor();
+	private Person buildPersonModel(HttpServletRequest request){
+		Person person = new Person();
 		Map map = request.getParameterMap();
 		Iterator it = map.keySet().iterator();
 		while(it.hasNext()){
 			String paramName = (String) it.next();
 			String paramValue = request.getParameter(paramName);
-			if(paramName != null && paramName.startsWith("doc.")){
+			if(paramName != null && paramName.startsWith("person.")){
 				String[] arr = paramName.split("\\.");
 				if(arr != null && arr.length ==2){
 					String fieldName = arr[1];
 					try {
-						Field f = Doctor.class.getDeclaredField(fieldName);
+						Field f = Person.class.getDeclaredField(fieldName);
 						if(!f.isAccessible())
 							f.setAccessible(true);
 						if(f.getType().getName().equals(String.class.getName()))
-							f.set(doc, paramValue);
+							f.set(person, paramValue);
 						else if(f.getType().getName().equals(Date.class.getName()))
-							f.set(doc, (paramValue==null||"".equals(paramValue))?null:new SimpleDateFormat("yyyy-MM-dd").parse(paramValue));
+							f.set(person, (paramValue==null||"".equals(paramValue))?null:new SimpleDateFormat("yyyy-MM-dd").parse(paramValue));
 						else if(f.getType().getName().equals(Boolean.class.getName()))
-							f.set(doc, (paramValue==null||"".equals(paramValue))?null:Boolean.valueOf(Boolean.parseBoolean(paramValue)));
+							f.set(person, (paramValue==null||"".equals(paramValue))?null:Boolean.valueOf(Boolean.parseBoolean(paramValue)));
 						else if(f.getType().getName().equals(Long.class.getName()))
-							f.set(doc, (paramValue==null||"".equals(paramValue))?null:Long.valueOf(Long.parseLong(paramValue)));
+							f.set(person, (paramValue==null||"".equals(paramValue))?null:Long.valueOf(Long.parseLong(paramValue)));
 						else if(f.getType().getName().equals(Integer.class.getName()))
-							f.set(doc, (paramValue==null||"".equals(paramValue))?null:Integer.valueOf(Integer.parseInt(paramValue)));
+							f.set(person, (paramValue==null||"".equals(paramValue))?null:Integer.valueOf(Integer.parseInt(paramValue)));
 					} catch (Exception e) {
 						e.printStackTrace();
 					} 					
 				}else if(arr != null && arr.length == 3 && "id".equalsIgnoreCase(arr[2]) && paramValue!=null && !"".equals(paramValue)){
 					String fieldName = arr[1];
 					try {
-						Field f = Doctor.class.getDeclaredField(fieldName);
+						Field f = Person.class.getDeclaredField(fieldName);
 						if(!f.isAccessible())
 							f.setAccessible(true);
 						DropdownList dropdown = (DropdownList) f.getType().newInstance();
 						dropdown.setId(Long.valueOf(Long.parseLong(paramValue)));
-						f.set(doc, dropdown);
+						f.set(person, dropdown);
 					} catch (Exception e) {
 						e.printStackTrace();
 					} 					
 				}	
 			}
 		}
-		//照片
-		if(request.getSession().getAttribute("image")!=null){
-			doc.setImage((String) request.getSession().getAttribute("image"));
-			request.getSession().removeAttribute("image");
-		}
-		return doc;
+		return person;
 	}
 	
-	public ActionForward listDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Doctor condition = this.buildDoctorModel(request);
+	public ActionForward listPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Person condition = this.buildPersonModel(request);
 		String currPage = request.getParameter("pageIndex");
 		int page = 1;
 		if(!Util.isEmpty(currPage)){
 			page = Integer.parseInt(currPage);
 			page = page<1?1:page;
 		}
-		PageBean pageBean = docDao.findDoctors(page, condition, request.getParameterMap());
+		PageBean pageBean = personDao.findPersons(page, condition, request.getParameterMap());
 		request.setAttribute("pageBean", pageBean);
 		return mapping.findForward("list");
 	}
-	public ActionForward viewDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Doctor doc = docDao.getDoctorById(Long.parseLong(request.getParameter("id")));
-		request.setAttribute("doc", doc);
+	public ActionForward viewPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Person person = personDao.getPersonById(Long.parseLong(request.getParameter("id")));
+		request.setAttribute("person", person);
 		return mapping.findForward("edit");
 	}
-	//注销
-	public ActionForward unregDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Doctor doc = docDao.getDoctorById(Long.parseLong(request.getParameter("id")));
-		doc.setStatus(Integer.valueOf(0));
-		doc.setUnregReason(request.getParameter("reason"));
-		docDao.updateDoctor(doc);
-		return this.listDoctor(mapping, form, request, response);
-	}
-	//恢复
-	public ActionForward resumeDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Doctor doc = docDao.getDoctorById(Long.parseLong(request.getParameter("id")));
-		doc.setStatus(Integer.valueOf(1));
-		docDao.updateDoctor(doc);
-		return this.listDoctor(mapping, form, request, response);
-	}
+//	//注销
+//	public ActionForward unregPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		Person person = personDao.getPersonById(Long.parseLong(request.getParameter("id")));
+//		personDao.updatePerson(person);
+//		return this.listPerson(mapping, form, request, response);
+//	}
+//	//恢复
+//	public ActionForward resumePerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		Person person = personDao.getPersonById(Long.parseLong(request.getParameter("id")));
+//		personDao.updatePerson(person);
+//		return this.listPerson(mapping, form, request, response);
+//	}
 	//删除
-	public ActionForward deleteDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int rst = docDao.deleteDoctor(Long.parseLong(request.getParameter("id")));
+	public ActionForward deletePerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int rst = personDao.deletePerson(Long.parseLong(request.getParameter("id")));
 		if(rst > 0){
-			request.setAttribute("msg", "医生注册删除成功");
+			request.setAttribute("msg", "人事删除成功");
 		}
-		return this.listDoctor(mapping, form, request, response);
+		return this.listPerson(mapping, form, request, response);
 	}
 	
 	//数据字典列表
 	public ActionForward listDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map map = docDao.getAllDic();
+		Map map = personDao.getAllDic();
 		request.setAttribute("dicMap", map);
 		return mapping.findForward("dic_list");
 	}
@@ -166,8 +157,8 @@ public class DoctorAction extends DispatchAction{
 	}
 	
 	public static void main(String[] args) {
-		//System.out.println("doc.name".startsWith("doc."));
-		String str = "doc.name";
+		//System.out.println("person.name".startsWith("person."));
+		String str = "person.name";
 		String[] arr = str.split("\\.");
 		for (int i = 0; i < arr.length; i++) {
 			String string = arr[i];

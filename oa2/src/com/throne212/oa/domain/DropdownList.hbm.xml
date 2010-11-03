@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.throne212.oa.domain.DropdownList" table="oa2_dropdown_list">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<discriminator column="data_type" force="false" insert="true" not-null="true" />
+		<property name="name" column="name" length="100" not-null="true"></property>
+		<property name="description" column="description" length="512"></property>
+		<property name="listorder" column="listorder"></property>
+		<!-- 医生 -->
+		<subclass discriminator-value="nation" name="com.throne212.oa.domain.doctor.Nation"/>
+		<subclass discriminator-value="xueli" name="com.throne212.oa.domain.doctor.XueLi"/>
+		<subclass discriminator-value="zhen" name="com.throne212.oa.domain.doctor.Zhen"/>
+		<subclass discriminator-value="cun" name="com.throne212.oa.domain.doctor.Cun"/>
+		<subclass discriminator-value="grade" name="com.throne212.oa.domain.doctor.Grade"/>
+		<subclass discriminator-value="zige" name="com.throne212.oa.domain.doctor.Zige"/>
+		<subclass discriminator-value="body_grade" name="com.throne212.oa.domain.doctor.BodyGrade"/>
+		<!-- 人事 -->
+		<subclass discriminator-value="per_fullday_xueli" name="com.throne212.oa.domain.person.FullDayXueLi"/>
+		<subclass discriminator-value="per_kaohe_result" name="com.throne212.oa.domain.person.KaoHeResult"/>
+		<subclass discriminator-value="per_nation" name="com.throne212.oa.domain.person.PersonNation"/>
+		<subclass discriminator-value="per_onjob_xueli" name="com.throne212.oa.domain.person.OnJobXueLi"/>
+		<subclass discriminator-value="per_org_name" name="com.throne212.oa.domain.person.OrgName">
+			<many-to-one name="orgType" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="per_org_type" name="com.throne212.oa.domain.person.OrgType"/>
+		<subclass discriminator-value="per_shenfen" name="com.throne212.oa.domain.person.ShenFen"/>
+		<subclass discriminator-value="per_xingzheng_grade" name="com.throne212.oa.domain.person.XingZhengGrade"/>
+		<subclass discriminator-value="per_xueli_cengci" name="com.throne212.oa.domain.person.XueLiCengci"/>
+		<subclass discriminator-value="per_zhengzhi" name="com.throne212.oa.domain.person.ZhengZhi"/>
+		<subclass discriminator-value="per_zhicheng" name="com.throne212.oa.domain.person.ZhiCheng"/>
+		<subclass discriminator-value="per_zhiwu" name="com.throne212.oa.domain.person.ZhiWu"/>
+		<subclass discriminator-value="per_zhuanye" name="com.throne212.oa.domain.person.ZhuanYe"/>
+		
+	</class>
+</hibernate-mapping>
