@@ -22,6 +22,7 @@ import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.domain.DropdownList;
 import com.throne212.oa.domain.doctor.Cun;
 import com.throne212.oa.domain.doctor.Doctor;
+import com.throne212.oa.domain.person.Person;
 
 public class DoctorAction extends DispatchAction{
 	
@@ -143,7 +144,7 @@ public class DoctorAction extends DispatchAction{
 	public ActionForward dicEdit(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String dicName = request.getParameter("dicName");
 		List list = dicDao.getDropdownList(dicName);
-		Class clazz = Class.forName(DropdownList.class.getPackage().getName()+"."+dicName);
+		Class clazz = Class.forName(Doctor.class.getPackage().getName()+"."+dicName);
 		Field f = clazz.getDeclaredField("componentName");
 		request.setAttribute("dic_name", (String) f.get(clazz.newInstance()));
 		request.setAttribute("dicList", list);
@@ -161,6 +162,21 @@ public class DoctorAction extends DispatchAction{
 		request.setAttribute("msg", "字段数据更新成功");
 		String dicName = request.getParameter("dicName");
 		if(dicName != null)
+			request.getSession().getServletContext().removeAttribute(dicName);
+		return this.dicEdit(mapping, form, request, response);
+	}
+	// 增加数据字典
+	public ActionForward addDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String name = request.getParameter("d_name");
+		String listorder = request.getParameter("d_listorder");
+		String dicName = request.getParameter("dicName");
+		dicName = Doctor.class.getPackage().getName() + "." + dicName;
+		Integer i = null;
+		if (!Util.isEmpty(listorder))
+			i = Integer.valueOf(Integer.parseInt(listorder));
+		dicDao.addDic(dicName, name, i);
+		request.setAttribute("msg", "数据字典项增加成功");
+		if (dicName != null)
 			request.getSession().getServletContext().removeAttribute(dicName);
 		return this.dicEdit(mapping, form, request, response);
 	}

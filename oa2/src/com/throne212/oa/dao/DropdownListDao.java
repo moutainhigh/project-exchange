@@ -9,27 +9,42 @@ import com.throne212.oa.domain.DropdownList;
 
 public class DropdownListDao {
 
-	public List getDropdownList(String clazzName){
+	public List getDropdownList(String clazzName) {
 		String hql = "from " + clazzName + " order by listorder asc";
 		Session s = HibernateSessionFactory.getSession();
 		List list = s.createQuery(hql).list();
 		s.close();
 		return list;
 	}
-	
-	public DropdownList getDropdownListById(Long id){
+
+	public DropdownList getDropdownListById(Long id) {
 		Session s = HibernateSessionFactory.getSession();
 		DropdownList dic = (DropdownList) s.get(DropdownList.class, id);
 		s.close();
 		return dic;
 	}
-	
-	public void updateDic(DropdownList dic){
+
+	public void updateDic(DropdownList dic) {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		s.saveOrUpdate(dic);
 		s.getTransaction().commit();
 		s.close();
 	}
-	
+
+	public void addDic(String dicName, String name, Integer listOrder) {
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		try {
+			DropdownList drop = (DropdownList) Class.forName(dicName).newInstance();
+			drop.setName(name);
+			drop.setListorder(listOrder);
+			s.save(drop);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		s.getTransaction().commit();
+		s.close();
+	}
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -168,13 +169,13 @@
 					<td>
 						性&nbsp;&nbsp;&nbsp;&nbsp;别：
 						<select name="doc.gender">
-							<option value="">未知</option>
-							<option value="true">男</option>
-							<option value="false">女</option>
+							<option value=""></option>
+							<option value="true" <c:if test="${doc.gender==true}">selected="selected"</c:if>>男</option>
+							<option value="false" <c:if test="${doc.gender==false}">selected="selected"</c:if>>女</option>
 						</select>
 					</td>
 					<td>
-						出生日期：<input type="text" name="doc.birthday" value="${doc.birthday}" id="birthday" style="width:100px;" class="datetime"/>
+						出生日期：<input type="text" name="doc.birthday" value="<fmt:formatDate value = "${doc.birthday}" pattern = "yyyy-MM-dd"/>" id="birthday" style="width:100px;" class="datetime"/>
 					</td>
 					<td>
 						民&nbsp;&nbsp;&nbsp;&nbsp;族：
@@ -273,10 +274,10 @@
 						</select>村
 					</td>
 					<td colspan="2">
-						职业助师资格时间：<input type="text" name="doc.zhushiDate" value="${doc.zhushiDate}" id="zhushiDate" style="width:200px;" class="datetime"/>
+						职业助师资格时间：<input type="text" name="doc.zhushiDate" value="<fmt:formatDate value = "${doc.zhushiDate}" pattern = "yyyy-MM-dd"/>" id="zhushiDate" style="width:200px;" class="datetime"/>
 					</td>
 					<td colspan="2">
-						职业医师资格时间：<input type="text" name="doc.yishiDate" value="${doc.yishiDate}" id="yishiDate" style="width:200px;" class="datetime"/>
+						职业医师资格时间：<input type="text" name="doc.yishiDate" value="<fmt:formatDate value = "${doc.yishiDate}" pattern = "yyyy-MM-dd"/>" id="yishiDate" style="width:200px;" class="datetime"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -332,11 +333,11 @@
 					</td>
 					<td colspan="1">
 						申请时间：
-						<input type="text" name="doc.applyDate" value="${doc.applyDate}" id="applyDate" style="width:100px;" class="datetime"/>
+						<input type="text" name="doc.applyDate" value="<fmt:formatDate value = "${doc.applyDate}" pattern = "yyyy-MM-dd"/>" id="applyDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="1">
 						批准时间：
-						<input type="text" name="doc.okDate" value="${doc.okDate}" id="okDate" style="width:100px;" class="datetime"/>
+						<input type="text" name="doc.okDate" value="<fmt:formatDate value = "${doc.okDate}" pattern = "yyyy-MM-dd"/>" id="okDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="2">
 						批准机构：

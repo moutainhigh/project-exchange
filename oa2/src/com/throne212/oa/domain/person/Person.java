@@ -1,6 +1,9 @@
 package com.throne212.oa.domain.person;
 
+import java.text.ParseException;
 import java.util.Date;
+
+import com.throne212.oa.common.Util;
 
 //人事实体
 public class Person {
@@ -120,7 +123,23 @@ public class Person {
 	}
 
 	public Integer getAge() {
+		if(age != null && age.intValue() > 0)
+			return age;
+		if(birthday == null)
+			return null;
+		long now = System.currentTimeMillis();
+		long start = birthday.getTime();
+		age = new Integer(((now-start)/1000/60/60/24/365)+"");
 		return age;
+	}
+	
+	public static void main(String[] args) {
+		try {
+			System.out.println((System.currentTimeMillis()-Util.getDateByTxt("1983-11-19").getTime())/1000/60/60/24/365);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void setAge(Integer age) {

@@ -59,57 +59,9 @@
 				url += "pageIndex=" + pageIndex;
 				self.location.href = url;
 			}
-			function cover(id)
-			{
-			     //$("select").each(function(){this.style.visibility="hidden";})
-			     //选择所有的select并设置为隐藏
-			      $("#coverLayer").fadeTo("fast",0.5,function(){$("#coverLayer").css("display","block");})
-			                     .width(Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth))
-			                     .height(Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight));
-			     //显示覆盖层 并设置其高和宽
-			    $("#"+id).show();
-			    //显示LightBox层
-			    $('select').hide();
-			}
-			function discover(id)
-			{
-			     //$("select").each(function(){this.style.visibility="visible";})
-			     $("#coverLayer").fadeOut("normal",function(){$("#coverLayer").css("display","none");})
-			     $("#"+id).fadeOut("normal",function(){$("#lightBox").css("display","none");})
-			     $('select').show();
-			}
-			var currDocId = null;
-			function showInstr(id){
-				currDocId = id;
-				cover('lightBox');
-			}			
-			function unreg(){
-				var reason = $('#reason').val();
-				if(reason){					
-					var str = '${appPath}/person.do?method=unregPerson&id=' + currDocId+'&reason='+reason;
-					self.location.href = str;
-				}else{
-					alert('理由不能为空');
-				}
-			}
 		</script>
 	</head>
 	<body>
-		<div id="coverLayer" style="display: none; background: #000000; position: absolute;"></div>
-		<div id="lightBox"
-			style="display: none; width: 500px; height:auto; position: absolute; z-index: 1002; background: #ffffff; left: 35%; top: 50%; margin-left: -150px; margin-top: -100px; border: #00FFFF double 4px;">
-			<a id="discover" href="#" onclick="discover('lightBox');" style="float:right;color:gray;">关闭</a>
-			<div class="shuoming">
-			  <p><strong>请填写注销理由</strong></p>
-			  <p>
-			  	<textarea name="reason" id="reason" style="width:90%;height: 50px;"></textarea>
-			  </p>
-			</div>
-			<p style="text-align: center; margin: 10px auto;">
-				<input type="button" value=" 确定 " onclick="unreg();" />
-				<input type="button" value=" 放弃 " onclick="discover('lightBox');" />
-			</p>
-		</div>
 		<form name="messageForm" method="get" action="${appPath}/person.do">
 			<input type="hidden" name="method" value="listPerson"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
@@ -177,23 +129,24 @@
 					<td align="center">
 						序号
 					</td>
-					<td align="center">
-						姓名
-					</td>
-					<td align="center">
-						性别
-					</td>
-					<td align="center">
-						身份证号
-					</td>
-					<td align="center">
-						详细
-					</td>
+					<td align="center">单位</td>
+					<td align="center">姓名</td>
+					<td align="center">性别</td>
+					<td align="center">年龄</td>
+					<td align="center">身份证号码</td>
+					<td align="center">职称</td>
+					<td align="center">专业</td>
+					<td align="center">职务</td>
+					<td align="center">身份</td>
+					<td align="center">详细</td>						
 				</tr>
 				<c:forEach items="${pageBean.resultList}" var="d" varStatus="status">
 				<tr class="list_td_context">
 					<td>
 						${status.count}
+					</td>
+					<td>
+						${d.orgName.name}
 					</td>
 					<td>
 						${d.name }
@@ -206,7 +159,22 @@
 						</c:choose>
 					</td>
 					<td>
+						${d.age }
+					</td>
+					<td>
 						${d.idNo }
+					</td>
+					<td>
+						${d.zhiCheng.name }
+					</td>
+					<td>
+						${d.zhuanYe.name }
+					</td>
+					<td>
+						${d.zhiWu.name }
+					</td>
+					<td>
+						${d.shenFen.name }
 					</td>
 					<td>
 						<a href="${appPath}/person.do?method=viewPerson&id=${d.id}">变更</a>

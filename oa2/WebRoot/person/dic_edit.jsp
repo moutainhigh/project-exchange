@@ -15,19 +15,24 @@
 			if(msg != ''){
 				alert(msg);
 			}
-			function saveForm(){
-				document.forms[0].submit();
+			function addDicForm(){
+				var f = document.forms['addForm'];
+				if(f['d_name'].value == '' || f['d_name'].value==null){
+					alert("请填写字典项名称");
+					return false;
+				}
+				f.submit();
 			}
 			$(function(){
 			});
 		</script>
 	</head>
 	<body>
-			<input type="hidden" name="method" value="listDoctor"/>
+			<input type="hidden" name="method" value="listPerson"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>医生注册信息数据字典 - ${dic_name }</font>
+			        <font class=caption>人事档案数据字典 - ${dic_name }</font>
 			      </td>
 			    </tr>
 			</table>
@@ -47,7 +52,7 @@
 					</td>
 				</tr>
 				<c:forEach items="${dicList}" var="d" varStatus="status">
-				<form action="${appPath}/doctor.do?method=saveDic" method="post">
+				<form action="${appPath}/person.do?method=saveDic" method="post">
 				<tr class="list_td_context">
 					<td>
 						${status.count}
@@ -59,7 +64,7 @@
 						<input value="${d.listorder}" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
 					<td>
-						<a href="${appPath}/doctor.do?method=deleteDic&id=${d.id}">删除</a>
+						<a href="${appPath}/person.do?method=deleteDic&id=${d.id}">删除</a>
 						<input type="submit" value="更新保存"/>
 					</td>
 				</tr>
@@ -67,9 +72,42 @@
 				</c:forEach>
 				<tr>
 					<td colspan="4" align="center">
-						<input type="button" value="返回" onclick="javascript:self.location.href='${appPath}/doctor.do?method=listDic'"/>
+						<input type="button" value="返回" onclick="javascript:self.location.href='${appPath}/person.do?method=listDic'"/>
 					</td>
 				</tr>
 			</table>
+			<form action="${appPath}/person.do?method=addDic" method="post" id="addForm" name="addForm">
+			<input type="hidden" name="d_id" value="${d.id}"/>
+			<input type="hidden" name="dicName" value="${param.dicName}"/>
+			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center" style="margin-top: 10px;">
+				<tr class="list_td_title">					
+					<td align="center" colspan="2">
+						增加数据字典项
+					</td>
+				</tr>
+				<tr class="list_td_context">
+					<td>
+						名称
+					</td>
+					<td>
+						<input type="text" name="d_name" style="width: 200px;"/>
+					</td>
+				</tr>
+				<tr class="list_td_context">
+					<td>
+						排列序号
+					</td>
+					<td>
+						<input value="0" type="text" name="d_listorder" style="width: 50px;"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" align="center">
+						<input type="button" value="增加" onclick="javascript:addDicForm()"/>
+						<input type="reset" value="重置"/>
+					</td>
+				</tr>
+			</table>
+			</form>
 	</body>
 </html>

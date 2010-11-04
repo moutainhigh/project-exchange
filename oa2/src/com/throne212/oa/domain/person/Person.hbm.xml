@@ -12,7 +12,7 @@
 		<property name="name" />
 		<property name="gender" />
 		<property name="birthday" />
-		<property name="age" />
+		<!--<property name="age" />-->
 		<many-to-one name="nation" lazy="false" />
 		<property name="jiguan" />
 		<many-to-one name="zhengzhi" lazy="false" />
