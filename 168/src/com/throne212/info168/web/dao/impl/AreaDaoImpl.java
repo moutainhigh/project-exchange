@@ -22,4 +22,9 @@ public class AreaDaoImpl extends BaseDaoImpl implements AreaDao {
 		return this.getHibernateTemplate().find(hql);
 	}
 
+	public List<Area> getSuggCities(String key){
+		String hql = "from Area a where a.parent!=null and a.parent.parent is null and a.name like ? order by pinyin";
+		return this.getHibernateTemplate().find(hql, "%"+key+"%");
+	}
+	
 }

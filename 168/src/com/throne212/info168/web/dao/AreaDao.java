@@ -8,4 +8,6 @@ public interface AreaDao extends BaseDao{
 	public List<Area> getTopAreas();
 	public List<Area> get2ndAreas(Area parent);
 	public List<Area> getAllCities();
+	
+	public List<Area> getSuggCities(String key);
 }

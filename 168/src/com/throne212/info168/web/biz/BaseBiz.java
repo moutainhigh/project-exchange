@@ -16,4 +16,6 @@ public interface BaseBiz {
 	
 	public <T>  void deleteEntity(Class<T> clazz,Long id);
 	
+	public Long getEntitySum(Class clazz);
+	
 }

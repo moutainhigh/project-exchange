@@ -16,6 +16,7 @@
 		<mapping resource="com/throne212/info168/web/domain/Category.hbm.xml" />
 		<mapping resource="com/throne212/info168/web/domain/User.hbm.xml" />
 		<mapping resource="com/throne212/info168/web/domain/Info.hbm.xml" />
+		<mapping resource="com/throne212/info168/web/domain/Setting.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
 

@@ -13,6 +13,7 @@ import com.throne212.info168.web.dao.AreaDao;
 import com.throne212.info168.web.dao.CateDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
+import com.throne212.info168.web.domain.Setting;
 
 public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 
@@ -84,10 +85,17 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 		}
 		return map;
 	}
+	public List getSetting(Class clazz){
+		return baseDao.getAll(clazz, "listorder", "asc");
+	}
 
 	// 获取栏目数据
 	public List<Category> getCates() {
 		return cateDao.getAllCates();
+	}
+	
+	public List<Area> getSuggCities(String name){
+		return areaDao.getSuggCities(name);
 	}
 
 }

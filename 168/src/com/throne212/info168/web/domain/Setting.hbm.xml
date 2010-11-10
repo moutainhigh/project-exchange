@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.info168.web.domain">
+	<class name="Setting" table="168_settings">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<discriminator column="setting_type" force="false" insert="true" not-null="true" />
+		<property name="name" column="name" length="100" not-null="true"></property>
+		<property name="description" column="description" length="512"></property>
+		<property name="listorder" column="listorder"></property>
+		<property name="date" column="date"></property>
+		<!-- 子类 -->
+		<subclass discriminator-value="hot_city" name="HotCitySetting">
+			<property name="pinyin"></property>
+		</subclass>
+	</class>
+</hibernate-mapping>

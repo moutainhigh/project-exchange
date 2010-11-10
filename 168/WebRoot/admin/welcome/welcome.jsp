@@ -7,7 +7,15 @@
         <link href="${appPath}/admin/css/common.css" rel="stylesheet" type="text/css" />
 		<style>
 		</style>
+		<script src="${appPath}/js/jquery.js"></script>
 		<script>
+			$(function(){
+				$.getJSON("${appPath}/ajax/getUserCount", function(json){
+					//alert("JSON Data: " + json.users[3].name);
+					//alert(json['userSum']);
+					$('#user_sum').html(json['userSum']);
+				}); 
+			});
 		</script>
     </head>
     <body>
@@ -27,7 +35,7 @@
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">系统用户数量：</td>
-			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;30</td>
+			    <td align="left" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;<span id="user_sum"></span></td>
 			  </tr>
 			  <tr>
 			    <td height="25" align="right" bgcolor="#F7F8FA" style="border-bottom:#cccccc 1px dashed;">运行状况：</td>

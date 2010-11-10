@@ -53,4 +53,9 @@ public class BaseBizImpl implements BaseBiz {
 	public <T> T getEntityByUnique(Class<T> clazz, String colName, Object value) {
 		return baseDao.getEntityByUniqueColumn(clazz, colName, value);
 	}
+	
+	public Long getEntitySum(Class clazz){
+		return baseDao.getEntitySum(clazz);
+	}
+	
 }

@@ -75,6 +75,23 @@ public class AjaxAction extends BaseAction {
 		list = commonBiz.get2ndArea(parentId);
 		return "area_list";
 	}
+	
+	//获取系统用户总数
+	private Long userSum;
+	public String getUserCount(){
+		userSum = commonBiz.getEntitySum(User.class);
+		return "user_sum";
+	}
+	
+	//城市名称联想
+	public String loadSuggCity(){
+		if(ActionContext.getContext().getParameters().get("q") != null){
+			String q = ((String[]) ActionContext.getContext().getParameters().get("q"))[0];
+			logger.debug("sugg q="+q);
+			list = commonBiz.getSuggCities(q);
+		}
+		return "sugg_city";
+	}
 
 	/* setters and getters */
 
@@ -132,6 +149,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setRand(String rand) {
 		this.rand = rand;
+	}
+
+	public Long getUserSum() {
+		return userSum;
+	}
+
+	public void setUserSum(Long userSum) {
+		this.userSum = userSum;
 	}
 
 }

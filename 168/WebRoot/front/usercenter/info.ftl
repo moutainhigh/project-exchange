@@ -56,19 +56,22 @@
 									<td bgcolor="#eeeeee" align="center" width="5%" style="border-top: 1px solid rgb(0, 94, 188);">
 										&nbsp;
 									</td>
-									<td bgcolor="#eeeeee" width="51%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="40%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										信息标题
 									</td>
-									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
-										通过状态
+									<td bgcolor="#eeeeee" width="15%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+										信息分类
+									</td>
+									<td bgcolor="#eeeeee" width="15%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+										发布地区
 									</td>
 									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										状态
 									</td>
-									<td bgcolor="#eeeeee" width="14%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										日期
 									</td>
-									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="5%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										操作
 									</td>
 								</tr>
@@ -81,10 +84,13 @@
 										${info.title}
 									</td>
 									<td>
-										<#if info.isChecked?? && info.isChecked==true>已通过审核<#else>等待审核</#if>
+										${info.cate.name}
 									</td>
 									<td>
-										<#if info.isChecked?? && info.isChecked==true>已发布<#else>等待发布</#if>
+										<#if info.area?? && info.area.parent??>${info.area.parent.name}></#if>${info.area.name}
+									</td>
+									<td>
+										<#if info.isChecked?? && info.isChecked==true>已通过审核<#else>等待审核</#if>
 									</td>
 									<td>
 										${info.publishDate?string("yyyy-MM-dd")}

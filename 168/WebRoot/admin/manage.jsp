@@ -229,6 +229,7 @@
 				<div id="mainNav">
 					<div><a href="${appPath}/admin/main.html" target="mainFrame" style="color:red">欢迎页</a></div>
 					<ul>
+						<li><a href="${appPath}/admin/sys.html" target="mainFrame">系统设置</a></li>
 						<li><a href="${appPath}/admin/info.html" target="mainFrame">信息审核</a></li>
 					</ul>
 				</div>

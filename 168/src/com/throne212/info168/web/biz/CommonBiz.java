@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
+import com.throne212.info168.web.domain.Setting;
 
 public interface CommonBiz extends BaseBiz{
 
@@ -17,5 +18,9 @@ public interface CommonBiz extends BaseBiz{
 	public List<Category> getCates();
 	
 	public Map<String,List<Object[]>> getAllCitiesByPinyin();
+	
+	public List getSetting(Class clazz);
+	
+	public List<Area> getSuggCities(String name);
 	
 }

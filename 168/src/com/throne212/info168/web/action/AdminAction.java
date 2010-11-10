@@ -1,19 +1,26 @@
 package com.throne212.info168.web.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionContext;
+import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.biz.InfoBiz;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
 import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
+import com.throne212.info168.web.domain.Area;
+import com.throne212.info168.web.domain.HotCitySetting;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.Setting;
 import com.throne212.info168.web.domain.User;
 
 public class AdminAction extends BaseAction{
 	
 	private UserBiz userBiz;
 	private InfoBiz infoBiz;
+	private CommonBiz commonBiz;
 
 	public String index() {
 		return "index";
@@ -80,6 +87,14 @@ public class AdminAction extends BaseAction{
 			this.setMsg("信息删除成功");
 		}
 		return infoList();
+	}
+	
+	//******************系统设置********************//
+	//热门城市列表
+	private List<Setting> hotCities;
+	public String hotCity(){
+		hotCities = commonBiz.getSetting(HotCitySetting.class);
+		return "hot_city";
 	}
 	
 	public String getOldpassword() {
@@ -152,6 +167,22 @@ public class AdminAction extends BaseAction{
 
 	public void setInfoId(Long infoId) {
 		this.infoId = infoId;
+	}
+
+	public List<Setting> getHotCities() {
+		return hotCities;
+	}
+
+	public void setHotCities(List<Setting> hotCities) {
+		this.hotCities = hotCities;
+	}
+
+	public CommonBiz getCommonBiz() {
+		return commonBiz;
+	}
+
+	public void setCommonBiz(CommonBiz commonBiz) {
+		this.commonBiz = commonBiz;
 	}
 
 }

@@ -43,10 +43,10 @@
 						</dt>
 						<dd>
 							<div class="zm-name">
-								[热门]
+								热门
 							</div>
 							<div class="zm-content">
-								<a target="_blank" title="上海市分类信息" href="/shanghai/select/">上海</a>
+								<a title="上海市分类信息" href="/shanghai/select/">上海</a>
 								<a title="北京市分类信息" href="/beijing/select/">北京</a>
 								<a title="重庆分类信息" href="/chongqing/select/">重庆</a>
 								<a title="天津分类信息" href="/tianjin/select/">天津</a>
@@ -56,7 +56,7 @@
 						<#list areaMap?keys as a>
 						<dd>
 							<div class="zm-name">
-								[${a}]
+								${a}
 							</div>
 							<div class="zm-content">
 								<#list areaMap[a] as c>
