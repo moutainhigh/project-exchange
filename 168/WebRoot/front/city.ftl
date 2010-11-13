@@ -15,14 +15,9 @@
 				<a onclick="setcity('chengdu')" href="http://chengdu.liebiao.com/" class="default">进入成都列表网»</a>
 				<span>
 					热门城市:
-					<a onclick="setcity('beijing')" href="http://beijing.liebiao.com/">北京</a>
-					<a onclick="setcity('shanghai')" href="http://shanghai.liebiao.com/">上海</a>
-					<a onclick="setcity('guangzhou')" href="http://www.liebiao.com/guangzhou/">广州</a>
-					<a onclick="setcity('shenzhen')" href="http://shenzhen.liebiao.com/">深圳</a>
-					<a onclick="setcity('wuhan')" href="http://wuhan.liebiao.com/">武汉</a>
-					<a onclick="setcity('nanjing')" href="http://nanjing.liebiao.com/">南京</a>
-					<a onclick="setcity('tianjin')" href="http://tianjin.liebiao.com/">天津</a>
-					<a onclick="setcity('hangzhou')" href="http://hangzhou.liebiao.com/">杭州</a>
+					<#list hotCities as c>
+					<a href="${base}/info/${c['pinyin']}">${c['name']}</a> 
+					</#list>
 				</span>
 			</div>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">

@@ -14,6 +14,7 @@
 		<!-- 子类 -->
 		<subclass discriminator-value="hot_city" name="HotCitySetting">
 			<property name="pinyin"></property>
+			<property name="entityId"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

@@ -8,31 +8,29 @@
         <link href="${appPath}/admin/css/common.css" rel="stylesheet" type="text/css" />
         <script src="${appPath}/admin/js/common.js"></script>
         <script type="text/javascript" src="${appPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${appPath}/js/jquery.autocomplete.js"></script>
-		<link href="${appPath}/js/jquery.autocomplete.css" rel="stylesheet" type="text/css" media="screen" />
-		<script>
+		<script type='text/javascript' src='${appPath}/js/jquery.bgiframe.min.js'></script>
+		<script type='text/javascript' src='${appPath}/js/jquery.autocomplete.js'></script>
+		<link rel="stylesheet" type="text/css" href="${appPath}/js/jquery.autocomplete.css" />
+		<script type="text/javascript">
 			$(function(){
-				$("#cityName").autocomplete('${appPath}/ajax/loadSuggCity', {
+				$("#cityName").autocomplete('${appPath}/ajax/loadSuggCity.action', {
 					multiple: false,
-					minChars: 1,
+					dataType: "json",
 					parse: function(data) {
-						if(!data)
-							return false;
-						alert(data);
-						var array = data.list;
-						alert(array);
-						return $.map(array, function(row) {
-							alert(row['id']+'_'+row['name']+'_'+row['pinyin']);
+						var arr = data['list'];
+						return $.map(arr, function(row) {
 							return {
-								data: row['id'],
+								data: row,
 								value: row['name'],
-								result: row['pinyin']
+								result: row['name']
 							}
 						});
 					},
 					formatItem: function(item) {
-						return item;
+						return item.name;
 					}
+				}).result(function(e, item) {
+					$("#cityId").val(item['id']);
 				});
 			});
 			function removeHotCity(id){
@@ -66,6 +64,9 @@
 				<strong>城市名</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>拼音</strong> 
+				</td>
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>操作</strong> 
 				</td>
 			  </tr>
@@ -76,6 +77,9 @@
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${c.name}
+				</td>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				${c.pinyin}
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				<a href="javascript:void();" target="_self" onclick="removeHotCity(${c.id });">移除</a>

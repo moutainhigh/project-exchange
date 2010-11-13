@@ -12,8 +12,6 @@
 					<a href="${base}/reg.htm">用户注册</a>
 					<a href="${base}/login.htm">用户登录</a>
 					</#if>
-					<a href="#">设为首页</a>
-					<a href="#">添加收藏</a>
 				</div>
 				<div class="clear"></div>
 			</div>

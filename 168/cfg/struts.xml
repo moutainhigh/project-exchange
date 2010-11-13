@@ -141,6 +141,7 @@
 			<result name="password">/admin/welcome/pwd.jsp</result>
 			<result name="info_list">/admin/info/list.jsp</result>
 			<result name="hot_city">/admin/sys/hot_city.jsp</result>
+			<result name="site_setting">/admin/sys/site_setting.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

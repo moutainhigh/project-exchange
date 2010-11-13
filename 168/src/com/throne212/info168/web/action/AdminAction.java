@@ -1,6 +1,14 @@
 package com.throne212.info168.web.action;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.CommonBiz;
@@ -97,6 +105,81 @@ public class AdminAction extends BaseAction{
 		return "hot_city";
 	}
 	
+	private Long cityId;
+	public String addHotCity(){
+		if(cityId != null){
+			Area city = commonBiz.getEntityById(Area.class, cityId);
+			hotCities = commonBiz.getSetting(HotCitySetting.class);
+			for(Setting setting : hotCities){
+				HotCitySetting hotCity = (HotCitySetting) setting;
+				if(hotCity.getName().equals(city.getName()) && hotCity.getPinyin().equals(city.getPinyin())){
+					this.setMsg("该城市已经是热门城市了");
+					return hotCity();
+				}
+			}
+			HotCitySetting newHot = new HotCitySetting();
+			newHot.setName(city.getName());
+			newHot.setPinyin(city.getPinyin());
+			newHot.setDate(new Date());
+			newHot.setEntityId(city.getId());
+			commonBiz.saveOrUpdateEntity(newHot);
+			this.setMsg("热门城市添加成功");
+			
+			//更新缓存
+			hotCities = commonBiz.getSetting(HotCitySetting.class);
+			ActionContext.getContext().getApplication().put(WebConstants.HOT_CITIES, hotCities);
+		}
+		return hotCity();
+	}
+	
+	public String removeHotCity(){
+		if(cityId!=null){
+			commonBiz.deleteEntity(HotCitySetting.class, cityId);
+			this.setMsg("热门城市移除成功");
+			//更新缓存
+			hotCities = commonBiz.getSetting(HotCitySetting.class);
+			ActionContext.getContext().getApplication().put(WebConstants.HOT_CITIES, hotCities);
+		}
+		return hotCity();
+	}
+	
+	//网站配置
+	private String title;
+	private String keywords;
+	private String desc; 
+	
+	public String siteSetting(){
+		if(!Util.isEmpty(title)){
+			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			path = path + File.separator + "site.properties";
+			Writer writer = null;
+			try {
+				Properties props = new Properties();
+				props.put("site_title", title);
+				props.put("site_desc", desc);
+				props.put("site_keywords", keywords);
+				writer = new PrintWriter(new FileOutputStream(path));
+				props.store(writer, null);
+				ActionContext.getContext().getApplication().put(WebConstants.APP_TITLE, props.get("site_title"));
+				ActionContext.getContext().getApplication().put(WebConstants.APP_DESC, props.get("site_desc"));
+				ActionContext.getContext().getApplication().put(WebConstants.APP_KEY_WORDS, props.get("site_keywords"));
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			} finally{
+				if(writer != null){
+					try {
+						writer.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
+		return "site_setting";
+	}
+	
 	public String getOldpassword() {
 		return oldpassword;
 	}
@@ -183,6 +266,38 @@ public class AdminAction extends BaseAction{
 
 	public void setCommonBiz(CommonBiz commonBiz) {
 		this.commonBiz = commonBiz;
+	}
+
+	public Long getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 }

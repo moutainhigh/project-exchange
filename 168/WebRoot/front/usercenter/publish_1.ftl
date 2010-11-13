@@ -46,10 +46,9 @@
 								热门
 							</div>
 							<div class="zm-content">
-								<a title="上海市分类信息" href="/shanghai/select/">上海</a>
-								<a title="北京市分类信息" href="/beijing/select/">北京</a>
-								<a title="重庆分类信息" href="/chongqing/select/">重庆</a>
-								<a title="天津分类信息" href="/tianjin/select/">天津</a>
+								<#list hotCities as c>
+								<a title="${c['name']}分类信息" href="${base}/user/publish/city/${c['entityId']}">${c['name']}</a> 
+								</#list>
 							</div>
 							<div style="clear: both;"></div>
 						</dd>
