@@ -1,5 +1,7 @@
 package com.throne212.info168.web.domain;
 
+import java.util.Date;
+
 public class User {
 
 	private Long id;//主键
@@ -7,7 +9,7 @@ public class User {
 	private String password;//密码
 	private String email;//邮件地址
 	private Area area;//所属地区
-	
+	private Date regDate;//注册时间
 
 	public User() {
 		super();
@@ -58,6 +60,14 @@ public class User {
 
 	public void setArea(Area area) {
 		this.area = area;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 }

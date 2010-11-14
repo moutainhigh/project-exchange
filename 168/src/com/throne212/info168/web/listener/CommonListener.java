@@ -47,7 +47,7 @@ public class CommonListener implements ServletContextListener {
 		path = path + File.separator + "site.properties";
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new InputStreamReader(new FileInputStream(path),"UTF-8"));
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(path),"GBK"));
 			Properties props = new Properties();
 			props.load(reader);
 			e.getServletContext().setAttribute(WebConstants.APP_TITLE, props.get("site_title"));

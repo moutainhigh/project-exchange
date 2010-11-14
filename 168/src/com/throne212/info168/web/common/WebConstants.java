@@ -25,5 +25,6 @@ public class WebConstants {
 	//other
 	public static final int INFO_LIST_ROWS = 10;
 	public static final int INFO_LIST_ROWS_ADMIN = 20;
+	public static final int USER_LIST_ROWS_ADMIN = 20;
 	
 }

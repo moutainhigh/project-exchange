@@ -61,7 +61,7 @@ public class AdminAction extends BaseAction{
 	}
 	
 	//信息列表
-	private PageBean<Info> pageBean;
+	private PageBean pageBean;
 	private Integer page;
 	
 	public String infoList(){
@@ -180,6 +180,14 @@ public class AdminAction extends BaseAction{
 		return "site_setting";
 	}
 	
+	//用户列表
+	public String userList(){
+		if(page == null || page < 1)
+			page = 1;
+		pageBean = userBiz.getAllUsers(page);
+		return "user_list";
+	}
+	
 	public String getOldpassword() {
 		return oldpassword;
 	}
@@ -220,11 +228,11 @@ public class AdminAction extends BaseAction{
 		this.infoBiz = infoBiz;
 	}
 
-	public PageBean<Info> getPageBean() {
+	public PageBean getPageBean() {
 		return pageBean;
 	}
 
-	public void setPageBean(PageBean<Info> pageBean) {
+	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
 

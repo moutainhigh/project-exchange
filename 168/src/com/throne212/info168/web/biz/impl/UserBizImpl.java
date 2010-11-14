@@ -5,10 +5,10 @@ import java.util.Date;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
-import com.throne212.info168.web.common.GenHtmlFacade;
 import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.dao.InfoDao;
+import com.throne212.info168.web.dao.UserDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
@@ -16,6 +16,7 @@ import com.throne212.info168.web.domain.User;
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
 
 	private InfoDao infoDao;
+	private UserDao userDao;
 
 	public User login(String username, String pwd) {
 		User user = baseDao.getEntityByUniqueColumn(User.class, "loginName", username);
@@ -41,6 +42,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 				user.setArea(top);
 			}
 		}
+		user.setRegDate(new Date());
 		baseDao.saveOrUpdate(user);
 		return user;
 	}
@@ -58,6 +60,12 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		//GenHtmlFacade.getInstance().gen(info);
 		return true;
 	}
+	
+	public PageBean<User> getAllUsers(Integer page){
+		if (page == null || page < 1)
+			page = 1;
+		return userDao.getAllUsers(page);
+	}
 
 	public PageBean<Info> getInfos(Integer page) {
 		if (page == null || page < 1)
@@ -72,6 +80,14 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 
 	public void setInfoDao(InfoDao infoDao) {
 		this.infoDao = infoDao;
+	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 }

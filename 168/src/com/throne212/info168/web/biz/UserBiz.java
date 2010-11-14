@@ -16,4 +16,7 @@ public interface UserBiz extends BaseBiz{
 	//信息列表
 	public PageBean<Info> getInfos(Integer page);
 	
+	//所有用户列表
+	public PageBean<User> getAllUsers(Integer page);
+	
 }

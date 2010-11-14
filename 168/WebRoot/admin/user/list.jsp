@@ -5,141 +5,131 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>模板网页</title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="森磊 汽修 汽配" />
-        <link rel="shortcut icon" href="./images/favicon.jpg" type="image/x-icon" />
-		<style>
-			/* common */
-			*{
-				padding: 0;
-				margin: 0;
-			}
-			body{
-				margin:0 auto;
-				color:black;
-				font-size:12px;
-				background-color:white;
-				height:100%;
-				border: 0px solid red;
-			}
-			a,a:visited,a:active{
-				text-decoration:none;
-				color:black;
-			}
-			a:hover{
-				color:red;
-			}
-			
-			/* page */
-			#wrapper{
-				margin:5px;
-			}
-			#top{
-				border:solid 1px #B4CFCF;
-				height:25px;
-				background:url(../images/arrow.gif) no-repeat 15px center;
-			}
-			#top span{
-				position:relative;
-				left:37px;
-				top:5px;
-			}
-			
-			/*main*/
-			/*nav*/
-			#navlist {
-		        padding: 3px 0;
-		        margin: 6px 0 0 0;
-		        border-bottom: 1px solid #778;
-		        font: bold 12px Verdana, sans-serif;
-				/*border:solid 1px black;*/
-			}
-			
-			#navlist li {
-		        list-style: none;
-		        margin: 0;
-		        display: inline;
-			}
-			
-			#navlist li a {
-		        padding: 3px 0.5em;
-		        margin-left: 3px;
-		        border: 1px solid #778;
-		        border-bottom: none;
-		        background: #BCD2E6;
-		        text-decoration: none;
-			}
-			
-			#navlist li a:link { color: #448; }
-			#navlist li a:visited { color: #448; }
-			
-			#navlist li a:hover {
-		        color: #000;
-		        background: #BCD266;
-		        border-color: #227;
-			}
-			
-			#navlist li a#current {
-		        background: white;
-		        border-bottom: 1px solid white;
-			}
-			
-			#content{
-				border:solid 1px #778;
-				/*margin-top:-12px !important;*/
-				margin-top:10px;
-				height:400px;
-				/*border: 0px solid red;*/
-			}
-		</style>
+        <link href="${appPath}/admin/css/common.css" rel="stylesheet" type="text/css" />
+        <script src="${appPath}/admin/js/common.js"></script>
 		<script>
-			function deleteUser(id){
+			function deleteInfo(id){
 				if(!confirm('您确定删除吗？')){
 					return false;
 				}
-				self.location.href = "${app_path}/manage/UserAction.do?method=delete&id="+id;
+				self.location.href = "${appPath}/admin/deleteInfo?infoId="+id;
 			}
 		</script>
     </head>
     <body>
-    <form action="${app_path }/manage/UserAction.do" method="post">
+    <form action="${appPath }/admin/deleteInfo" method="post">
    		<input type="hidden" name="method" value="newUser"/>
         <div id="wrapper">			
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="" align="center" background="${app_path }/manage/images/msg_bg.jpg">
+			    <td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>编号</strong> 
 				</td>
-				<td height="26" colspan="" align="center" background="${app_path }/manage/images/msg_bg.jpg">
-				<strong>用户名</strong> 
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>用户登录名</strong> 
 				</td>
-				<td height="26" colspan="" align="center" background="${app_path }/manage/images/msg_bg.jpg">
-				<strong>创建日期</strong> 
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>邮箱</strong> 
 				</td>
-				<td height="26" colspan="" align="center" background="${app_path }/manage/images/msg_bg.jpg">
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>地区</strong> 
+				</td>
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>注册日期</strong> 
+				</td>
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>操作</strong> 
 				</td>
 			  </tr>
 			  
-			  <c:forEach items="${userList}" var="u" varStatus="status">
+			  <c:forEach items="${pageBean.resultList}" var="user" varStatus="status">
 			  <tr>
 			    <td height="26" colspan="" style="text-align: center;">
-				${status.count }
+				${user.id }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${u.loginName }
+				${user.loginName}
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${u.createDate }
+				${user.email}
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<a href="javascript:void();" target="_self" onclick="deleteUser(${u.id });">删除</a>
+				${user.area.name} 
 				</td>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				${user.regDate}
+				</td>
+				<td>&nbsp;</td>
 			  </tr>
 			  </c:forEach>
-			  <tr>
-			    
-			  </tr>
+			</table>
+			<table cellspacing="0" cellpadding="0" border="0" align="right" style="margin-top: 5px;">
+				<tbody>
+					<tr>
+						<td>
+							第&nbsp;
+							<font color="blue">${pageBean.pageIndex }</font>&nbsp;页/总&nbsp;${pageBean.maxPage }&nbsp;页
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							每页&nbsp;${pageBean.rowPerPage }&nbsp;条&nbsp;&nbsp;
+						</td>
+						<td>
+							总共&nbsp;${pageBean.totalRow }&nbsp;条记录&nbsp;&nbsp;
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${!pageBean.isFirstPage}">
+									<a href="javascript:gotoPage(1);">[首页]</a>
+								</c:when>
+								<c:otherwise>
+									[首页]
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${!pageBean.isFirstPage}">
+									<a href="javascript:gotoPage(${pageBean.prePageIndex });">[前一页]</a>
+								</c:when>
+								<c:otherwise>
+									[前一页]
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${!pageBean.isLastPage}">
+									<a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a>
+								</c:when>
+								<c:otherwise>
+									[后一页]
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${!pageBean.isLastPage}">
+									<a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a>
+								</c:when>
+								<c:otherwise>
+									[尾页]
+								</c:otherwise>
+							</c:choose>
+						</td>
+					</tr>
+				</tbody>
 			</table>
         </div>
         </form>

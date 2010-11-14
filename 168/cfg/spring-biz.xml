@@ -9,6 +9,7 @@
 	<bean id="userBiz" class="com.throne212.info168.web.biz.impl.UserBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="infoDao" ref="infoDao"></property>
+		<property name="userDao" ref="userDao"></property>
 	</bean>
 	
 	<bean id="commonBiz" class="com.throne212.info168.web.biz.impl.CommonBizImpl">

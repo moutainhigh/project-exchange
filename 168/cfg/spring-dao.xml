@@ -15,4 +15,7 @@
 	<bean id="infoDao" class="com.throne212.info168.web.dao.impl.InfoDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="userDao" class="com.throne212.info168.web.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

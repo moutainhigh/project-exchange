@@ -231,6 +231,7 @@
 					<ul>
 						<li><a href="${appPath}/admin/sys.html" target="mainFrame">系统设置</a></li>
 						<li><a href="${appPath}/admin/info.html" target="mainFrame">信息审核</a></li>
+						<li><a href="${appPath}/admin/user.html" target="mainFrame">用户管理</a></li>
 					</ul>
 				</div>
 				<div id="msgNav">

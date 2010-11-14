@@ -31,6 +31,19 @@ public class RegAction extends BaseAction {
 			this.setMsg("验证码不一致");
 			return "fail";
 		}
+		//检查登录名唯一性
+		User loginNameUser = userBiz.getEntityByUnique(User.class, "loginName", user.getLoginName());
+		if(loginNameUser != null){
+			this.setMsg("登录名已经存在");
+			return "fail";
+		}
+		//检查邮箱地址唯一性
+		User emailUser = userBiz.getEntityByUnique(User.class, "email", user.getEmail());
+		if(emailUser != null){
+			this.setMsg("邮箱地址已经被别人使用了");
+			return "fail";
+		}
+		
 		user = userBiz.regUser(user, topArea);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		return "success";
