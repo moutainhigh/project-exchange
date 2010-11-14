@@ -19,6 +19,7 @@ public class SearchAction extends BaseAction {
 	private CommonBiz commonBiz;
 
 	public String execute() {
+		logger.info("搜索关键字：" + keywords);
 		if (!Util.isEmpty(keywords)) {
 			if (page == null || page < 1)
 				page = 1;

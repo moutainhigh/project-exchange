@@ -23,6 +23,8 @@ public interface InfoBiz extends BaseBiz {
 	public PageBean<Info> getInfoByKey(String keywords,int pageIndex);
 
 	public List<Info> getTop10RecommendInfo();
+	public List<Info> getTop10NewestInfo();
+	public List<Info> getRelateInfos(Info info);
 	
 	//admin
 	public PageBean<Info> getAllInfo(int pageIndex);

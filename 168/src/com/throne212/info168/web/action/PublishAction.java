@@ -87,7 +87,7 @@ public class PublishAction extends BaseAction {
 	public String area() {
 		logger.debug("param=[" + param + "]");
 		List<Object[]> list = (List<Object[]>) ActionContext.getContext().getSession().get("pub_list");
-		if (param == null || param == 0) {//跳过地区选择
+		if (param == null || param == 0) {// 跳过地区选择
 			list.set(3, null);
 		} else {
 			Area area = userBiz.getEntityById(Area.class, param);
@@ -141,29 +141,36 @@ public class PublishAction extends BaseAction {
 			this.setMsg("邮件格式错误");
 			return "form";
 		}
-		//保存用户
+		// 保存用户
 		info.setUser((User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ));
 		// 地区数据
 		if (list.get(3) != null) {
-			Area area = userBiz.getEntityById(Area.class, (Long)list.get(3)[0]);//县
+			Area area = userBiz.getEntityById(Area.class, (Long) list.get(3)[0]);// 县
 			info.setArea(area);
-		}else if (list.get(0) != null){
-			Area area = userBiz.getEntityById(Area.class, (Long)list.get(0)[0]);//市
+		} else if (list.get(0) != null) {
+			Area area = userBiz.getEntityById(Area.class, (Long) list.get(0)[0]);// 市
 			info.setArea(area);
 		}
-		
-		//设置栏目
+
+		// 设置栏目
 		if (list.get(2) != null) {
-			Category cate = userBiz.getEntityById(Category.class, (Long)list.get(2)[0]);//二级栏目
+			Category cate = userBiz.getEntityById(Category.class, (Long) list.get(2)[0]);// 二级栏目
 			info.setCate(cate);
-		}else if (list.get(1) != null){
-			Category cate = userBiz.getEntityById(Category.class, (Long)list.get(1)[0]);//一级
+		} else if (list.get(1) != null) {
+			Category cate = userBiz.getEntityById(Category.class, (Long) list.get(1)[0]);// 一级
 			info.setCate(cate);
 		}
-		if(userBiz.publishInfo(info)){
+		// 图片
+		String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (image != null) {
+			info.setImage(image);
+			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+		}
+
+		if (userBiz.publishInfo(info)) {
 			ActionContext.getContext().getSession().remove("pub_list");
 			return "success";
-		}else{
+		} else {
 			this.setMsg("信息内容错误，请检查或联系管理员");
 			return "fail";
 		}

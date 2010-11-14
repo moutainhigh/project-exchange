@@ -115,6 +115,8 @@
             <ul>
             	<li><a href="${appPath}/admin/siteSetting" target="rightFrame">网站配置</a></li>
 				<li><a href="${appPath}/admin/hotCity" target="rightFrame">热门城市设置</a></li>
+				<li><a href="${appPath}/admin/link" target="rightFrame">友情链接设置</a></li>
+				<li><a href="${appPath}/admin/generateHtml" target="rightFrame">一键生成HTML</a></li>
             </ul>
         </div>
     </body>

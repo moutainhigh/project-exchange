@@ -31,36 +31,7 @@
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="2" align="left" background="${appPath}/admin/images/msg_bg.jpg" style="padding-left:20px;">
-				<strong>网站配置</strong> 
-				</td>
-			  </tr>
-			  <tr>
-			    <td height="26" colspan="" style="text-align: center;">
-				标题
-				</td>
-				<td height="26" colspan="" style="padding-left: 30px;">
-				<input name="title" id="title" value="${appTitle}" style="width: 90%"/>
-				</td>
-			  </tr>
-			  <tr>
-			    <td height="26" colspan="" style="text-align: center;">
-				关键字
-				</td>
-				<td height="26" colspan="" style="padding-left: 30px;">
-				<input name="keywords" id="keywords" value="${appKeywords}" style="width: 90%"/>
-				</td>
-			  </tr>
-			  <tr>
-			    <td height="26" colspan="" style="text-align: center;">
-				描述
-				</td>
-				<td height="26" colspan="" style="padding-left: 30px;">
-				<input name="desc" id="desc" value="${appDesc}" style="width: 90%"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td height="26" colspan="2" style="text-align: center;">
-				<input type="button" onclick="saveForm();" value=" 保存 "/>
+				<strong>信息详细页面生成成功</strong> 
 				</td>
 			  </tr>
 			</table>

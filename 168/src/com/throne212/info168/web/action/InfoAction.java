@@ -1,5 +1,7 @@
 package com.throne212.info168.web.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.biz.InfoBiz;
@@ -46,15 +48,24 @@ public class InfoAction extends BaseAction {
 		return "success";
 	}
 
+	private List<Area> areaInCity;
+
 	public String list() {
 		if (page == null || page < 1)
 			page = 1;
 		pageBean = infoBiz.getInfoByCateArea(cate.getId(), page);
+		Area city = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
+		if (city != null) {
+			areaInCity = commonBiz.get2ndArea(city.getId());
+		}
 		return "list";
 	}
 
+	private List<Info> relateInfos;
+
 	public String page() {
 		info = infoBiz.getEntityById(Info.class, infoId);
+		relateInfos = infoBiz.getRelateInfos(info);
 		return "page";
 	}
 
@@ -143,6 +154,22 @@ public class InfoAction extends BaseAction {
 
 	public void setCatePinyin(String catePinyin) {
 		this.catePinyin = catePinyin;
+	}
+
+	public List<Info> getRelateInfos() {
+		return relateInfos;
+	}
+
+	public void setRelateInfos(List<Info> relateInfos) {
+		this.relateInfos = relateInfos;
+	}
+
+	public List<Area> getAreaInCity() {
+		return areaInCity;
+	}
+
+	public void setAreaInCity(List<Area> areaInCity) {
+		this.areaInCity = areaInCity;
 	}
 
 }

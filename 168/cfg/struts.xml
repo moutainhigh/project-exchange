@@ -126,6 +126,12 @@
 			<result name="form" type="freemarker">/front/usercenter/publish_5.ftl</result>
 			<result name="success" type="freemarker">/front/usercenter/publish_succ.ftl</result>
 		</action>
+		<!-- 上传图片 -->
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.info168.web.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/upload/success.jsp</result>
+			<result name="error">/upload/fail.jsp</result>
+		</action>
 		<action name="*" method="{1}" class="com.throne212.info168.web.action.UserAction">
 			<result name="info_list" type="freemarker">/front/usercenter/info.ftl</result>
 			<result name="password" type="freemarker">/front/usercenter/password.ftl</result>
@@ -153,6 +159,8 @@
 			<result name="hot_city">/admin/sys/hot_city.jsp</result>
 			<result name="site_setting">/admin/sys/site_setting.jsp</result>
 			<result name="user_list">/admin/user/list.jsp</result>
+			<result name="link">/admin/sys/link.jsp</result>
+			<result name="gen_html">/admin/sys/gen_html.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

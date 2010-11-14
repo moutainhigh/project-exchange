@@ -18,7 +18,8 @@
 .content .info ul li{margin: 4px auto; display: block;padding-left: 20px;}
 .content .info ul .lastLi{text-align: center;padding-left: 0;}
 .content .info ul li span{font-weight: bold;}
-.content .info .ad{border: 1px solid gray;width: 340px;float: right;height: 200px;;margin-right: 10px;}
+.content .info .ad{border: 1px solid gray;width: 300px;float: right;min-height: 150px;margin-right: 20px;}
+.content .info .ad img{margin: 5px auto;display: block;}
 /*描述*/
 .c-content{clear:both;font-size:14px;line-height:180%;color:#333;margin:0 10px;padding:10px 1px;font-family:Verdana, Arial, Helvetica, sans-serif;}
 .c-content span{font-size:14px;font-weight:bold;}

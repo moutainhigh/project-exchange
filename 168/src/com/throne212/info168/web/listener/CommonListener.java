@@ -1,6 +1,5 @@
 package com.throne212.info168.web.listener;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +19,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.HotCitySetting;
+import com.throne212.info168.web.domain.LinkSetting;
 
 public class CommonListener implements ServletContextListener {
 
@@ -38,6 +38,9 @@ public class CommonListener implements ServletContextListener {
 		// 热门城市数据缓存
 		List hotCities = commonBiz.getSetting(HotCitySetting.class);
 		e.getServletContext().setAttribute(WebConstants.HOT_CITIES, hotCities);
+		// 友情链接数据缓存
+		List linkList = commonBiz.getSetting(LinkSetting.class);
+		e.getServletContext().setAttribute(WebConstants.FREIND_LINKS, linkList);
 		// 栏目数据缓存
 		List allCates = commonBiz.getCates();
 		e.getServletContext().setAttribute(WebConstants.ALL_CATES, allCates);

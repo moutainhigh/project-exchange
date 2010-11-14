@@ -63,5 +63,15 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 	public List<Info> getTop10RecommendInfo(){
 		return infoDao.getTop10RecommendInfo();
 	}
+	
+	public List<Info> getTop10NewestInfo(){
+		return infoDao.getTop10NewestInfo();
+	}
+	
+	public List<Info> getRelateInfos(Info info){
+		if(info == null || info.getId() == null)
+			return null;
+		return infoDao.getRelateInfos(info.getId());
+	}
 
 }

@@ -202,8 +202,8 @@ function validate_form()
 								<li class="a-shuxing-name">
 									上传图片：
 								</li>
-								<li class="a-shuxing-value">
-									<input type="file" id="picture1" name="picture1">
+								<li class="a-shuxing-value" style="height:150px;">
+									<iframe src="${base}/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 								</li>
 							</ul>
 							<ul>

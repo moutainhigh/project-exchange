@@ -51,47 +51,34 @@
 					</p>
 					<!--tags-->
 					<div id="tags">
+						<#if currCity??>
 						<!--地区-->
 						<ul class="tags-diqu">
 							<li class="tags-n">
 								地区：
 							</li>
 							<li class="tags-t">
-								<a title="招聘销售业务|业务销售招聘网" href="/quanguo/xiaoshouyewu/">全国</a>
-								<span class="tags-t-span">全市</span>
-								<a title="成都锦江招聘销售业务|成都锦江业务销售招聘网" href="/jinjiang/xiaoshouyewu/">锦江</a>
-								<a title="成都青羊招聘销售业务|成都青羊业务销售招聘网" href="/chengduqingyang/xiaoshouyewu/">青羊</a>
-								<a title="成都崇州招聘销售业务|成都崇州业务销售招聘网" href="/chongzhou/xiaoshouyewu/">崇州</a>
+								<a title="" href="${base}/info/all/${catePinyin}">全国</a>
+								<a title="" href="${base}/info/${currCity.pinyin}/${catePinyin}">全市</a>
+								<#list areaInCity as area>
+								<a title="" href="${base}/info/${area.pinyin}/${catePinyin}">${area.name}</a>
+								</#list>
 							</li>
 						</ul>
 						<div class="clear"></div>
+						</#if>
 						<!--地区-->
-						<!--物品分类-->
-						<ul class="tags-fenlei">
-							<li class="tags-n">
-								职务类别：
+						<!--关键字-->
+						<ul class="tags-keywords">
+							<li style="line-height: 22px;" class="tags-n">
+								关键字：
 							</li>
 							<li class="tags-t">
-								<span class="tags-t-span"> 全部</span>
-								<a title="成都招聘促销员|成都促销员招聘网" href="/chengdu/zhaopincuxiaoyuan/">促销员</a>
-								<a title="成都招聘市场策划|成都市场策划招聘网" href="/chengdu/zhaopinshichangcehua/">市场策划</a>
+								<input type="text" class="input-search" value="" id="keyword" name="keyword">
+								<input type="button" value="搜索" name="s" onClick="$('#keywords').val($('#keyword').val());search('${base}');">
 							</li>
 						</ul>
 						<div class="clear"></div>
-						<!--/物品分类-->
-						<!--关键字-->
-						<form onsubmit="searchSubmit();" style="margin: 0pt;" name="se" method="post" action="/chengdu/xiaoshouyewu/">
-							<ul class="tags-keywords">
-								<li style="line-height: 22px;" class="tags-n">
-									关键字：
-								</li>
-								<li class="tags-t">
-									<input type="text" class="input-search" value="" id="keyword" name="keyword">
-									<input type="submit" value="搜索" name="s">
-								</li>
-							</ul>
-							<div class="clear"></div>
-						</form>
 					</div>
 					<!--tags-->
 					<!--分页-->

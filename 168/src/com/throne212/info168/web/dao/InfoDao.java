@@ -24,6 +24,8 @@ public interface InfoDao extends BaseDao{
 	public PageBean<Info> getInfoByUser(Long userId, int pageIndex);
 	
 	public List<Info> getTop10RecommendInfo();
+	public List<Info> getTop10NewestInfo();
+	public List<Info> getRelateInfos(Long infoId);
 	
 	//admin
 	public PageBean<Info> getAllInfo(int page);

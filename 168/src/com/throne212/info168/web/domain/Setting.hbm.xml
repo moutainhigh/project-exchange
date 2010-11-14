@@ -16,5 +16,8 @@
 			<property name="pinyin"></property>
 			<property name="entityId"></property>
 		</subclass>
+		<subclass discriminator-value="link" name="LinkSetting">
+			<property name="url"></property>
+		</subclass>
 	</class>
 </hibernate-mapping>

@@ -16,6 +16,7 @@ public class Info {
 	private Date publishDate;//发布时间
 	private Boolean isChecked;//是否通过审核
 	private Boolean recommend;//热门推荐
+	private String image;//图品地址
 
 	public Long getId() {
 		return id;
@@ -111,6 +112,14 @@ public class Info {
 
 	public void setRecommend(Boolean recommend) {
 		this.recommend = recommend;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }
