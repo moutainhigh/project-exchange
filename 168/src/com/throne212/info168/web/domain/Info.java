@@ -15,6 +15,7 @@ public class Info {
 	private User user;//发布者
 	private Date publishDate;//发布时间
 	private Boolean isChecked;//是否通过审核
+	private Boolean recommend;//热门推荐
 
 	public Long getId() {
 		return id;
@@ -102,6 +103,14 @@ public class Info {
 
 	public void setIsChecked(Boolean isChecked) {
 		this.isChecked = isChecked;
+	}
+
+	public Boolean getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(Boolean recommend) {
+		this.recommend = recommend;
 	}
 
 }

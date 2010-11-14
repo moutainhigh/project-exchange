@@ -86,6 +86,14 @@ public class AdminAction extends BaseAction{
 		return infoList();
 	}
 	
+	public String recommend(){
+		Info info = infoBiz.getEntityById(Info.class, infoId);
+		info.setRecommend(true);
+		infoBiz.saveOrUpdateEntity(info);
+		this.setMsg("信息热门推荐成功");
+		return infoList();
+	}
+	
 	//删除信息
 	private String infoListFrom;
 	private Long infoId;

@@ -95,18 +95,21 @@
 					</div>
 					<!--tags-->
 					<!--分页-->
+					<#if pageBean.totalRow &lt; 0>
 					<div id="next-page">
 						<div class="next-l">
-							共90条 当前第1/10页
-							<a href="/chengdu/xiaoshouyewu/">首页</a> 1
-							<a href="/chengdu/xiaoshouyewu/2/">2</a>
-							<a href="/chengdu/xiaoshouyewu/3/">3</a>
-							<a href="/chengdu/xiaoshouyewu/4/">4</a>
-						</div>
-						<div class="next-r">
-							<a href="/chengdu/xiaoshouyewu/2/"><img height="25" width="60" border="0" alt="下一页" src="http://88ke.hnfsi.com/88ke_imgs/next-page.jpg"> </a>
+							每页${pageBean.rowPerPage }条 共${pageBean.totalRow }条 当前第${pageBean.pageIndex }/${pageBean.maxPage }页
+							<#if !pageBean.isFirstPage>
+							<a href="javascript:gotoPage(1);">[首页]</a>
+							<a href="javascript:gotoPage(${pageBean.prePageIndex });">[前一页]</a>
+							</#if>
+							<#if !pageBean.isLastPage>
+							<a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a>
+							<a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a>
+							</#if>
 						</div>
 					</div>
+					</#if>
 				</div>
 			</div>
 			<div id="right" class="right">

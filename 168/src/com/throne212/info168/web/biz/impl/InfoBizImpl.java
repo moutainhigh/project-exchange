@@ -1,5 +1,7 @@
 package com.throne212.info168.web.biz.impl;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.InfoBiz;
 import com.throne212.info168.web.common.PageBean;
@@ -45,13 +47,21 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 			return infoDao.getInfoByCateAreaKeywords(cateId, area.getId(), keywords, pageIndex);
 		}
 	}
-	
-	public PageBean<Info> getAllInfo(int page){
+
+	public PageBean<Info> getAllInfo(int page) {
 		return infoDao.getAllInfo(page);
 	}
-	
-	public PageBean<Info> getAllUncheckInfo(int pageIndex){
+
+	public PageBean<Info> getAllUncheckInfo(int pageIndex) {
 		return infoDao.getAllUncheckInfo(pageIndex);
+	}
+
+	public PageBean<Info> getInfoByKey(String keywords, int pageIndex) {
+		return infoDao.getInfoByKey(keywords, pageIndex);
+	}
+	
+	public List<Info> getTop10RecommendInfo(){
+		return infoDao.getTop10RecommendInfo();
 	}
 
 }

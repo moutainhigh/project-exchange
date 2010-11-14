@@ -26,19 +26,16 @@
 			</div>
 			<div class="search">
 				<div class="search_input">
-					<select>
-						<option>
-							==请选择分类==
+					<select id="catePinyin" name="catePinyin">
+						<option value="">
+							==不限分类==
 						</option>
-						<option>
-							人才
-						</option>
-						<option>
-							二手房
-						</option>
+						<#list allCates as c>
+						<option value="${c.pinyin}">${c.name}</option>
+						</#list>
 					</select>
-					<input type="text" name="key" class="search_key" />
-					<input type="button" value="搜索" class="search_btn" />
+					<input type="text" name="key" class="search_key" name="keywords" id="keywords" value="${keywords?default('')}"/>
+					<input type="button" value="搜索" class="search_btn" onClick="search('${base}')"/>
 				</div>
 				<div class="hot">
 					热门搜索：

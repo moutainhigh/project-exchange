@@ -42,80 +42,14 @@
 						热门分类信息
 					</h2>
 					<ul>
+						<#list infoBiz.top10RecommendInfo as info>
 						<li>
-							<a target="_blank" class="hot-li-a" title="中外双证班-上海在职高级工商管理硕士EMBA周末班" href="shanghai/qiyeguanlimba/a2537453.html">中外双证班-上海在职高级工商管理硕士EMBA周末班</a>
+							<a target="_blank" class="hot-li-a" title="${info.title}" href="${base}/info/all/${info.cate.pinyin}/${info.id}">${info.title}</a>
 							<br>
-							<span class="hot-one">院校简介 美国纽约中央州立大学 Central State Univ...[ <a target="_blank" class="hot-span-a" title="上海杨浦MBA培训|上海杨浦培训EMBA" href="yangpu/mbapeixun/">杨浦MBA/EMBA</a> ]</span>
-							<span class="hot-two"> 2010-10-07 23:58:54</span>
+							<span class="hot-one"><#if info.content?length<=100>${info.content}<#else>${info.content?substring(0,100)}...</#if></span>
+							<span class="hot-two"> ${info.publishDate?string('yyyy-MM-dd')}</span>
 						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="昆山市区回收硒鼓墨盒" href="suzhoushi/bangongyongpin/a2547544.html">昆山市区回收硒鼓墨盒</a>
-							<br>
-							<span class="hot-one">昆山市回收硒鼓墨盒 QQ 1398774598 电话 13584889...[ <a target="_blank" class="hot-span-a" title="苏州昆山二手办公设备|苏州昆山办公设备二手网" href="kunshan/bangongshebei/">昆山办公设备</a> ]</span>
-							<span class="hot-two"> 2010-10-07 14:27:39</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="常熟回收打印机耗材硒鼓墨盒" href="suzhoushi/bangongyongpin/a2547545.html">常熟回收打印机耗材硒鼓墨盒</a>
-							<br>
-							<span class="hot-one">常熟市回收硒鼓墨盒 QQ 1398774598 电话 13584889...[ <a target="_blank" class="hot-span-a" title="苏州常熟二手办公设备|苏州常熟办公设备二手网" href="changshou/bangongshebei/">常熟办公设备</a> ]</span>
-							<span class="hot-two"> 2010-10-07 14:27:39</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="上海浦东格兰富增压泵销售服务中心58701369 " href="shanghai/weixiugongsi/a2548211.html">上海浦东格兰富增压泵销售服务中心58701369 </a>
-							<br>
-							<span class="hot-one"> 上海爱博综合维修公司代销增压泵及（丹麦）苏州格兰富增压泵和德国...[ <a target="_blank" class="hot-span-a" title="上海浦东维修家电|上海浦东家电维修" href="pudong/jiadianweixiu/">浦东家电维修</a> ]</span>
-							<span class="hot-two"> 2010-10-07 14:25:23</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="宝安沙井搬家公司88305691 沙井居民搬家 搬公司 深圳" href="shenzhen/banjiagongsi/a2552967.html">宝安沙井搬家公司88305691 沙井居民搬家 搬公司 深圳</a>
-							<br>
-							<span class="hot-one">深圳蚂蚁搬迁公司、忠诚服务于你；蚂蚁专业搬家、搬厂、长短途货物运输；公...[ <a target="_blank" class="hot-span-a" title="深圳宝安公司搬家|深圳宝安搬家公司" href="baoan/banjiagongsi/">宝安搬家</a> ]</span>
-							<span class="hot-two"> 2010-10-07 14:03:46</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="急招铲车司机月薪:3000-3500元每月" href="chenyang/siji/a2553896.html">急招铲车司机月薪:3000-3500元每月</a>
-							<br>
-							<span class="hot-one">招聘概要:沈阳市双成司机人才库:急招沈阳司机1人,月工资::3000-...[ <a target="_blank" class="hot-span-a" title="沈阳康平招聘C照司机|沈阳康平C照司机招聘网" href="kangping/zhaopinsijiczhao/">康平C照</a> <a
-								target="_blank" class="hot-span-a" title="沈阳康平招聘B照司机|沈阳康平B照照司机招聘网" href="kangping/zhaopinsijibzhao/">康平B照</a> <a target="_blank" class="hot-span-a" title="沈阳康平招聘A照司机|沈阳康平A照司机招聘网"
-								href="kangping/zhaopinsijiazhao/">康平A照</a> <a target="_blank" class="hot-span-a" title="沈阳康平招聘工程机械司机|沈阳康平工程机械司机招聘网" href="kangping/zhaopingongchengjixie/">康平工程机械</a> ]</span>
-							<span class="hot-two"> 2010-10-07 12:49:01</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="液压设计学历:大专及以上" href="chenyang/jigongpugong/a2554432.html">液压设计学历:大专及以上</a>
-							<br>
-							<span class="hot-one">招聘概要:沈阳三丰液压润滑设备有限公司:急招沈阳生产/制造3人,要求:...[ <a target="_blank" class="hot-span-a" title="沈阳于洪招聘保安/技工/普工|沈阳于洪技工/普工/保安招聘网" href="yuhong/jigongpugong/">于洪技工/普工/保安</a> ]</span>
-							<span class="hot-two"> 2010-10-07 15:33:05</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="熟练缝纫工月薪:1500-2000元每月" href="zhengzhou/jigongpugong/a2554505.html">熟练缝纫工月薪:1500-2000元每月</a>
-							<br>
-							<span class="hot-one">招聘概要:新郑市豫泰制衣厂:急招郑州普工/技工/工程,月工资::150...[ <a target="_blank" class="hot-span-a" title="郑州上街招聘技工普工|郑州上街普工技工招聘网" href="shangjie/zhaopinpugong/">上街普工</a> <a
-								target="_blank" class="hot-span-a" title="郑州上街招聘装修工|郑州上街装修工招聘网" href="shangjie/zhaopinzhuangxiugong/">上街装修工</a> ]</span>
-							<span class="hot-two"> 2010-10-07 16:04:54</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="网域网吧南开区西湖村大街网域网吧工作关系需急招:收银员" href="tianjin/daogou/a2554733.html">网域网吧南开区西湖村大街网域网吧工作关系需急招:收银员</a>
-							<br>
-							<span class="hot-one">招聘概要:网域网吧:急招天津计算机/网络/通信1人,要求:女, 详细内...[ <a target="_blank" class="hot-span-a" title="天津南开招聘收银员|天津南开收银员招聘网" href="nankai/zhaopinshouyinyuan/">南开收银员</a> ]</span>
-							<span class="hot-two"> 2010-10-07 17:16:58</span>
-						</li>
-
-						<li>
-							<a target="_blank" class="hot-li-a" title="销售代表学历:高中/中专以上月薪:2000-3000元" href="chengdu/xiaoshouyewu/a2555128.html">销售代表学历:高中/中专以上月薪:2000-3000元</a>
-							<br>
-							<span class="hot-one">招聘概要:木森科技有限公司:急招成都计算机/网络/通信10人,要求:高...[ <a target="_blank" class="hot-span-a" title="成都成华招聘销售|成都成华销售招聘网" href="chenghua/zhaopinxiaoshouyuan/">成华销售员</a> ]</span>
-							<span class="hot-two"> 2010-10-07 19:34:35</span>
-						</li>
-
-
+						</#list>
 					</ul>
 				</div>
 			</div>

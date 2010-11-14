@@ -72,8 +72,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		PageBean<Info> page = new PageBean<Info>();
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		Category cate = this.getEntityById(Category.class, cateId);
-		String hql = "from Info i where i.isChecked=true and i.cate=? and i.title like ? order by publishDate desc";
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
+		String hql = "from Info i where i.isChecked=true and i.cate.parent=? and i.title like ? order by publishDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[] { cate, "%" + keywords + "%" }).get(0);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
@@ -97,8 +97,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
-	
-	public PageBean<Info> getAllInfo(int pageIndex){
+
+	public PageBean<Info> getAllInfo(int pageIndex) {
 		PageBean<Info> page = new PageBean<Info>();
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS_ADMIN;
 		String hql = "from Info i order by publishDate desc";
@@ -111,8 +111,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
-	
-	public PageBean<Info> getAllUncheckInfo(int pageIndex){
+
+	public PageBean<Info> getAllUncheckInfo(int pageIndex) {
 		PageBean<Info> page = new PageBean<Info>();
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS_ADMIN;
 		String hql = "from Info i where isChecked is null or isChecked=false order by publishDate desc";
@@ -124,6 +124,28 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		page.setRowPerPage(WebConstants.INFO_LIST_ROWS_ADMIN);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
+	}
+
+	public PageBean<Info> getInfoByKey(String keywords, int pageIndex) {
+		PageBean<Info> page = new PageBean<Info>();
+		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS_SEARCH;
+		String hql = "from Info i where i.isChecked=true and i.title like ? order by publishDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, "%" + keywords + "%").get(0);
+		logger.info("搜索结果记录数：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Info> list = s.createQuery(hql).setParameter(0, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS_SEARCH).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.INFO_LIST_ROWS_SEARCH);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	public List<Info> getTop10RecommendInfo(){
+		String hql = "from Info i where i.recommend is not null and i.recommend=true order by i.publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Info> list = s.createQuery(hql).setMaxResults(10).list();
+		return list;
 	}
 
 }

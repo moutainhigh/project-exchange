@@ -83,6 +83,16 @@
 				<param name="filePath">info</param>
 			</result>
 		</action>
+		<!-- 搜索页面 -->
+		<action name="/search/*/*" class="com.throne212.info168.web.action.SearchAction">
+			<param name="keywords">{1}</param>
+			<param name="catePinyin">{2}</param>
+			<result name="success" type="freemarker">/front/search.ftl</result>
+			<result name="index" type="chain">
+				<param name="actionName">index</param>
+         		<param name="namespace">/</param> 
+			</result>
+		</action>
 		<!-- 直接访问模板文件 -->
 		<action name="*" class="com.throne212.info168.web.action.BaseAction">
 			<result name="success" type="freemarker">/front/{1}.ftl</result>

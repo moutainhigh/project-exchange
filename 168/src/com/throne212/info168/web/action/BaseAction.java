@@ -3,6 +3,7 @@ package com.throne212.info168.web.action;
 import org.apache.log4j.Logger;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.throne212.info168.web.biz.InfoBiz;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Area;
 
@@ -27,6 +28,7 @@ public class BaseAction {
 		this.logger = logger;
 	}
 
+	private InfoBiz infoBiz;
 	private String pageName;
 	private String cityPinyin;
 	public String execute() {
@@ -55,6 +57,14 @@ public class BaseAction {
 
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
+	}
+
+	public InfoBiz getInfoBiz() {
+		return infoBiz;
+	}
+
+	public void setInfoBiz(InfoBiz infoBiz) {
+		this.infoBiz = infoBiz;
 	}
 	
 }

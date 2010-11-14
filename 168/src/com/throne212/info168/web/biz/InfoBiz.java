@@ -1,5 +1,7 @@
 package com.throne212.info168.web.biz;
 
+import java.util.List;
+
 import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.domain.Info;
 
@@ -16,7 +18,11 @@ public interface InfoBiz extends BaseBiz {
 
 	// 根据栏目和地区和关键字找信息
 	public PageBean<Info> getInfoByCateAreaKeywords(Long cateId, String keywords,int pageIndex);
+	
+	// 根据关键字找信息
+	public PageBean<Info> getInfoByKey(String keywords,int pageIndex);
 
+	public List<Info> getTop10RecommendInfo();
 	
 	//admin
 	public PageBean<Info> getAllInfo(int pageIndex);

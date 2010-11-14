@@ -52,6 +52,9 @@
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${info.title}
+				<c:if test="${not empty info.recommend && info.recommend}">
+				 - <span style="color:red">荐</span>
+				</c:if>
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${info.area.parent.name } &gt; ${info.area.name }
@@ -71,6 +74,9 @@
 				<a href="javascript:void();" target="_self" onclick="deleteInfo(${info.id });">删除</a>
 				<c:if test="${empty info.isChecked || info.isChecked==false}">
 				<a href="${appPath}/admin/passInfoCheck?infoId=${info.id}" target="_self">审核通过</a>
+				</c:if>
+				<c:if test="${not empty info.isChecked && info.isChecked && (empty info.recommend || info.recommend==false)}">
+				<a href="${appPath}/admin/recommend?infoId=${info.id}" target="_self">热门推荐</a>
 				</c:if>
 				</td>
 			  </tr>
