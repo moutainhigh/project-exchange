@@ -18,131 +18,111 @@ import org.apache.struts.actions.DispatchAction;
 import com.throne212.oa.common.PageBean;
 import com.throne212.oa.common.Util;
 import com.throne212.oa.dao.DropdownListDao;
-import com.throne212.oa.dao.PersonDao;
+import com.throne212.oa.dao.PersonFileDao;
 import com.throne212.oa.domain.DropdownList;
-import com.throne212.oa.domain.person.Person;
+import com.throne212.oa.domain.file.PersonFile;
 
-public class PersonAction extends DispatchAction {
+public class PersonFileAction extends DispatchAction {
 
-	private PersonDao personDao = new PersonDao();
+	private PersonFileDao fileDao = new PersonFileDao();
 	private DropdownListDao dicDao = new DropdownListDao();
 
-	public ActionForward addPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Person doc = this.buildPersonModel(request);
-		personDao.addNewPerson(doc);
-
-		request.setAttribute("msg", "新人事[ " + doc.getName() + " ]注册成功");
-		return mapping.findForward("edit");
-	}
-
-	public ActionForward updatePerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+	public ActionForward addPersonFile(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		Person doc = this.buildPersonModel(request);
-		personDao.updatePerson(doc);
-		request.setAttribute("msg", "人事[ " + doc.getName() + " ]更新成功");
+		PersonFile doc = this.buildPersonFileModel(request);
+		fileDao.addNewPersonFile(doc);
+		request.setAttribute("msg", "新人事文件添加成功");
 		return mapping.findForward("edit");
 	}
 
-	private Person buildPersonModel(HttpServletRequest request) {
-		Person person = new Person();
+	public ActionForward updatePersonFile(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		PersonFile doc = this.buildPersonFileModel(request);
+		fileDao.updatePersonFile(doc);
+		request.setAttribute("msg", "人事文件更新成功");
+		return mapping.findForward("edit");
+	}
+
+	private PersonFile buildPersonFileModel(HttpServletRequest request) {
+		PersonFile file = new PersonFile();
 		Map map = request.getParameterMap();
 		Iterator it = map.keySet().iterator();
 		while (it.hasNext()) {
 			String paramName = (String) it.next();
 			String paramValue = request.getParameter(paramName);
-			if (paramName != null && paramName.startsWith("person.")) {
+			if (paramName != null && paramName.startsWith("file.")) {
 				String[] arr = paramName.split("\\.");
 				if (arr != null && arr.length == 2) {
 					String fieldName = arr[1];
 					try {
-						Field f = Person.class.getDeclaredField(fieldName);
+						Field f = PersonFile.class.getDeclaredField(fieldName);
 						if (!f.isAccessible())
 							f.setAccessible(true);
 						if (f.getType().getName().equals(String.class.getName()))
-							f.set(person, paramValue);
+							f.set(file, paramValue);
 						else if (f.getType().getName().equals(Date.class.getName()))
-							f
-									.set(person, (paramValue == null || "".equals(paramValue)) ? null : new SimpleDateFormat("yyyy-MM-dd")
-											.parse(paramValue));
+							f.set(file, (paramValue == null || "".equals(paramValue)) ? null : new SimpleDateFormat("yyyy-MM-dd").parse(paramValue));
 						else if (f.getType().getName().equals(Boolean.class.getName()))
-							f.set(person, (paramValue == null || "".equals(paramValue)) ? null : Boolean.valueOf(Boolean.parseBoolean(paramValue)));
+							f.set(file, (paramValue == null || "".equals(paramValue)) ? null : Boolean.valueOf(Boolean.parseBoolean(paramValue)));
 						else if (f.getType().getName().equals(Long.class.getName()))
-							f.set(person, (paramValue == null || "".equals(paramValue)) ? null : Long.valueOf(Long.parseLong(paramValue)));
+							f.set(file, (paramValue == null || "".equals(paramValue)) ? null : Long.valueOf(Long.parseLong(paramValue)));
 						else if (f.getType().getName().equals(Integer.class.getName()))
-							f.set(person, (paramValue == null || "".equals(paramValue)) ? null : Integer.valueOf(Integer.parseInt(paramValue)));
+							f.set(file, (paramValue == null || "".equals(paramValue)) ? null : Integer.valueOf(Integer.parseInt(paramValue)));
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				} else if (arr != null && arr.length == 3 && "id".equalsIgnoreCase(arr[2]) && paramValue != null && !"".equals(paramValue)) {
 					String fieldName = arr[1];
 					try {
-						Field f = Person.class.getDeclaredField(fieldName);
+						Field f = PersonFile.class.getDeclaredField(fieldName);
 						if (!f.isAccessible())
 							f.setAccessible(true);
 						DropdownList dropdown = (DropdownList) f.getType().newInstance();
 						dropdown.setId(Long.valueOf(Long.parseLong(paramValue)));
-						f.set(person, dropdown);
+						f.set(file, dropdown);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}
 		}
-		return person;
+		return file;
 	}
 
-	public ActionForward listPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+	public ActionForward listPersonFile(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		Person condition = this.buildPersonModel(request);
+		PersonFile condition = this.buildPersonFileModel(request);
 		String currPage = request.getParameter("pageIndex");
 		int page = 1;
 		if (!Util.isEmpty(currPage)) {
 			page = Integer.parseInt(currPage);
 			page = page < 1 ? 1 : page;
 		}
-		PageBean pageBean = personDao.findPersons(page, condition, request.getParameterMap());
+		PageBean pageBean = fileDao.findPersonFiles(page, condition, request.getParameterMap());
 		request.setAttribute("pageBean", pageBean);
 		return mapping.findForward("list");
 	}
 
-	public ActionForward viewPerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+	public ActionForward viewPersonFile(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		Person person = personDao.getPersonById(Long.parseLong(request.getParameter("id")));
-		request.setAttribute("person", person);
+		PersonFile file = fileDao.getPersonFileById(Long.parseLong(request.getParameter("id")));
+		request.setAttribute("file", file);
 		return mapping.findForward("edit");
 	}
 
-	// //注销
-	// public ActionForward unregPerson(ActionMapping mapping, ActionForm form,
-	// HttpServletRequest request, HttpServletResponse response) throws
-	// Exception {
-	// Person person =
-	// personDao.getPersonById(Long.parseLong(request.getParameter("id")));
-	// personDao.updatePerson(person);
-	// return this.listPerson(mapping, form, request, response);
-	// }
-	// //恢复
-	// public ActionForward resumePerson(ActionMapping mapping, ActionForm form,
-	// HttpServletRequest request, HttpServletResponse response) throws
-	// Exception {
-	// Person person =
-	// personDao.getPersonById(Long.parseLong(request.getParameter("id")));
-	// personDao.updatePerson(person);
-	// return this.listPerson(mapping, form, request, response);
-	// }
 	// 删除
-	public ActionForward deletePerson(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+	public ActionForward deletePersonFile(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		int rst = personDao.deletePerson(Long.parseLong(request.getParameter("id")));
+		int rst = fileDao.deletePersonFile(Long.parseLong(request.getParameter("id")));
 		if (rst > 0) {
 			request.setAttribute("msg", "人事删除成功");
 		}
-		return this.listPerson(mapping, form, request, response);
+		return this.listPersonFile(mapping, form, request, response);
 	}
 
 	// 数据字典列表
 	public ActionForward listDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map map = personDao.getAllDic();
+		Map map = fileDao.getAllDic();
 		request.setAttribute("dicMap", map);
 		return mapping.findForward("dic_list");
 	}
@@ -150,7 +130,8 @@ public class PersonAction extends DispatchAction {
 	public ActionForward dicEdit(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String dicName = request.getParameter("dicName");
 		List list = dicDao.getDropdownList(dicName);
-		Class clazz = Class.forName(Person.class.getPackage().getName() + "." + dicName);
+		System.out.println(PersonFile.class.getPackage().getName() + "." + dicName);
+		Class clazz = Class.forName(PersonFile.class.getPackage().getName() + "." + dicName);
 		Field f = clazz.getDeclaredField("componentName");
 		request.setAttribute("dic_name", (String) f.get(clazz.newInstance()));
 		request.setAttribute("dicList", list);
@@ -178,7 +159,7 @@ public class PersonAction extends DispatchAction {
 		String name = request.getParameter("d_name");
 		String listorder = request.getParameter("d_listorder");
 		String dicName = request.getParameter("dicName");
-		dicName = Person.class.getPackage().getName() + "." + dicName;
+		dicName = PersonFile.class.getPackage().getName() + "." + dicName;
 		Integer i = null;
 		if (!Util.isEmpty(listorder))
 			i = Integer.valueOf(Integer.parseInt(listorder));
@@ -188,11 +169,12 @@ public class PersonAction extends DispatchAction {
 			request.getSession().getServletContext().removeAttribute(dicName);
 		return this.dicEdit(mapping, form, request, response);
 	}
+	
 	// 删除数据字典
 	public ActionForward deleteDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
 		String dicName = request.getParameter("dicName");
-		dicName = Person.class.getPackage().getName() + "." + dicName;
+		dicName = PersonFile.class.getPackage().getName() + "." + dicName;
 		int rst = dicDao.deleteDic(dicName, Long.valueOf(Long.parseLong(id)));
 		if(rst > 0)
 			request.setAttribute("msg", "数据字典项删除成功");
@@ -201,17 +183,6 @@ public class PersonAction extends DispatchAction {
 		if (dicName != null)
 			request.getSession().getServletContext().removeAttribute(dicName);
 		return this.dicEdit(mapping, form, request, response);
-	}
-
-	public static void main(String[] args) {
-		// System.out.println("person.name".startsWith("person."));
-		String str = "person.name";
-		String[] arr = str.split("\\.");
-		for (int i = 0; i < arr.length; i++) {
-			String string = arr[i];
-			System.out.println(string);
-		}
-		System.out.println(Boolean.valueOf(Boolean.parseBoolean("false")));
 	}
 
 }

@@ -17,12 +17,19 @@
     	<forward name="dic_list" path="/doctor/dic_list.jsp"></forward>
     	<forward name="dic_edit" path="/doctor/dic_edit.jsp"></forward>
     </action>
-    <!-- 人事 -->
+    <!-- 人事档案 -->
     <action path="/person" type="com.throne212.oa.action.PersonAction" parameter="method">
     	<forward name="edit" path="/person/edit.jsp"></forward>
     	<forward name="list" path="/person/list.jsp"></forward>
     	<forward name="dic_list" path="/person/dic_list.jsp"></forward>
     	<forward name="dic_edit" path="/person/dic_edit.jsp"></forward>
+    </action>
+    <!-- 人事文件 -->
+    <action path="/file" type="com.throne212.oa.action.PersonFileAction" parameter="method">
+    	<forward name="edit" path="/personfile/edit.jsp"></forward>
+    	<forward name="list" path="/personfile/list.jsp"></forward>
+    	<forward name="dic_list" path="/personfile/dic_list.jsp"></forward>
+    	<forward name="dic_edit" path="/personfile/dic_edit.jsp"></forward>
     </action>
 
   </action-mappings>

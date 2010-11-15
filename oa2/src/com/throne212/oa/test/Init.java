@@ -11,6 +11,8 @@ import com.throne212.oa.domain.doctor.Nation;
 import com.throne212.oa.domain.doctor.XueLi;
 import com.throne212.oa.domain.doctor.Zhen;
 import com.throne212.oa.domain.doctor.Zige;
+import com.throne212.oa.domain.file.FileType;
+import com.throne212.oa.domain.file.SecretGrade;
 import com.throne212.oa.domain.person.FullDayXueLi;
 import com.throne212.oa.domain.person.KaoHeResult;
 import com.throne212.oa.domain.person.OnJobXueLi;
@@ -100,6 +102,13 @@ public class Init {
 		
 		String[] zhuanyeArr = {"行政管理","软件工程","驾驶"};
 		saveDropdownList(s,zhuanyeArr,ZhuanYe.class);
+		
+		//人事文件
+		String[] fileTypeArr = {"公示文件","档案文件","普通文件"};
+		saveDropdownList(s,fileTypeArr,FileType.class);
+		
+		String[] secretArr = {"绝密","机密","普通"};
+		saveDropdownList(s,secretArr,SecretGrade.class);
 		
 		s.getTransaction().commit();
 		s.close();

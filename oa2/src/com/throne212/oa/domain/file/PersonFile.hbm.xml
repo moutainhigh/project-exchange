@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.oa.domain.file">
+	<class name="PersonFile" table="oa2_person_file">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+
+		<property name="comments" length="1024"></property>
+		<property name="content" length="102400"></property>
+		<property name="date"></property>
+		<property name="desc" length="1024" column="description"></property>
+		<property name="fileNo"></property>
+		<property name="mainWords"></property>
+		<property name="org"></property>
+		<property name="title"></property>
+		
+		<many-to-one name="fileType" lazy="false" />
+		<many-to-one name="secretGrade" lazy="false" />
+
+	</class>
+</hibernate-mapping>

@@ -46,5 +46,24 @@ public class DropdownListDao {
 		s.getTransaction().commit();
 		s.close();
 	}
+	
+	public int deleteDic(String dicName, Long id) {
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		try {
+			String hql = "delete from " + dicName + " where id=?";
+			int rst = s.createQuery(hql).setParameter(0, id).executeUpdate();
+			if(rst > 0){
+				System.out.println("É¾³ý×ÖµäÏî³É¹¦");
+			}
+			s.getTransaction().commit();
+			return rst;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			s.close();
+		}
+		return -1;
+	}
 
 }

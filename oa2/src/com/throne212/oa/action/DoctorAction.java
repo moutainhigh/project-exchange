@@ -20,9 +20,7 @@ import com.throne212.oa.common.Util;
 import com.throne212.oa.dao.DoctorDao;
 import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.domain.DropdownList;
-import com.throne212.oa.domain.doctor.Cun;
 import com.throne212.oa.domain.doctor.Doctor;
-import com.throne212.oa.domain.person.Person;
 
 public class DoctorAction extends DispatchAction{
 	
@@ -176,6 +174,20 @@ public class DoctorAction extends DispatchAction{
 			i = Integer.valueOf(Integer.parseInt(listorder));
 		dicDao.addDic(dicName, name, i);
 		request.setAttribute("msg", "数据字典项增加成功");
+		if (dicName != null)
+			request.getSession().getServletContext().removeAttribute(dicName);
+		return this.dicEdit(mapping, form, request, response);
+	}
+	// 删除数据字典
+	public ActionForward deleteDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		String dicName = request.getParameter("dicName");
+		dicName = Doctor.class.getPackage().getName() + "." + dicName;
+		int rst = dicDao.deleteDic(dicName, Long.valueOf(Long.parseLong(id)));
+		if(rst > 0)
+			request.setAttribute("msg", "数据字典项删除成功");
+		else
+			request.setAttribute("msg", "数据字典项删除失败，请检查是否已经有数据与该字典项关联");
 		if (dicName != null)
 			request.getSession().getServletContext().removeAttribute(dicName);
 		return this.dicEdit(mapping, form, request, response);

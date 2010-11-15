@@ -16,6 +16,7 @@
 		<property name="hbm2ddl.auto">none</property>
 		<mapping resource="com/throne212/oa/domain/doctor/Doctor.hbm.xml" />
 		<mapping resource="com/throne212/oa/domain/person/Person.hbm.xml" />
+		<mapping resource="com/throne212/oa/domain/file/PersonFile.hbm.xml" />
 		<mapping resource="com/throne212/oa/domain/DropdownList.hbm.xml" />
 
 	</session-factory>

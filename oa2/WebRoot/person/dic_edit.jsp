@@ -64,7 +64,7 @@
 						<input value="${d.listorder}" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
 					<td>
-						<a href="${appPath}/person.do?method=deleteDic&id=${d.id}">É¾³ý</a>
+						<a href="${appPath}/person.do?method=deleteDic&id=${d.id}&dicName=${param.dicName}">É¾³ý</a>
 						<input type="submit" value="¸üÐÂ±£´æ"/>
 					</td>
 				</tr>

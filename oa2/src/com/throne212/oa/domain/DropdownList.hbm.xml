@@ -34,6 +34,8 @@
 		<subclass discriminator-value="per_zhicheng" name="com.throne212.oa.domain.person.ZhiCheng"/>
 		<subclass discriminator-value="per_zhiwu" name="com.throne212.oa.domain.person.ZhiWu"/>
 		<subclass discriminator-value="per_zhuanye" name="com.throne212.oa.domain.person.ZhuanYe"/>
-		
+		<!-- 人事文件 -->
+		<subclass discriminator-value="file_type" name="com.throne212.oa.domain.file.FileType"/>
+		<subclass discriminator-value="file_secret" name="com.throne212.oa.domain.file.SecretGrade"/>
 	</class>
 </hibernate-mapping>
