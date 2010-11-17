@@ -12,27 +12,53 @@
 		<script type='text/javascript' src='${appPath}/js/jquery.autocomplete.js'></script>
 		<link rel="stylesheet" type="text/css" href="${appPath}/js/jquery.autocomplete.css" />
 		<script type="text/javascript">
+			var msg = '${msg}';
+			if(msg != ''){
+				alert(msg);
+			}
 			$(function(){
 			});
-			function saveForm(){
-				if($('#title').val()==''){
-					alert('请至少填入网站标题');
+			function rangeGen(){
+				if($('#startId').val()=='' || $('#endId').val()==''){
+					alert('请填入起止编号');
 					return false;
 				}			
-				document.forms[0].submit();			
+				if(confirm('您确认需要生成吗?')){
+					document.forms[0].submit();
+				}
 			}
 		</script>
     </head>
     <body>
    		<input type="hidden" name="method" value="newUser"/>
-        <form action="${appPath }/admin/siteSetting" method="post">
-        <input name="cityId" id="cityId" type="hidden"/>
+        <form action="${appPath}/admin/generateHtml" method="get">
         <div id="wrapper">			
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="2" align="left" background="${appPath}/admin/images/msg_bg.jpg" style="padding-left:20px;">
-				<strong>信息详细页面生成成功</strong> 
+				<strong>一键生成所有的信息HTML</strong> 
 				</td>
+			  </tr>
+			  <tr>
+			    <td height="25" align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">
+			    <input type="button" value="一键生成所有的信息HTML" onclick="if(confirm('您确认要生成HTML吗？')){self.location.href='${appPath}/admin/generateHtml';}"/>
+			    </td>
+			  </tr>
+			</table>
+			<br/><br/>
+			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
+			  <tr>
+			    <td height="26" colspan="1" align="left" background="${appPath}/admin/images/msg_bg.jpg" style="padding-left:20px;">
+				<strong>分编号段生成HTML</strong> 
+				</td>
+			  </tr>
+			  <tr>
+			    <td align="center" bgcolor="#FFFFFF" style="border-bottom:#cccccc 1px dashed;">&nbsp;
+			    <input type="text" name="startId" id="startId"/>
+			    <input type="text" name="endId" id="endId"/>
+			    <br/>
+			    <input type="button" value="生成编号范围的信息HTML" onclick="rangeGen();"/>
+			    </td>
 			  </tr>
 			</table>
         </div>

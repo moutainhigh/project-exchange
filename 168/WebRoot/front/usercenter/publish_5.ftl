@@ -162,34 +162,6 @@ function validate_form()
 									<font>*标题字数控制在30个字</font>
 								</li>
 							</ul>
-
-							<!--下拉框
-							<ul>
-								<li class="a-shuxing-name">
-									性别：
-								</li>
-								<li class="a-shuxing-value">
-									<select id="jiaoyouxingbie" name="jiaoyouxingbie">
-										<option value="659">
-											女
-										</option>
-
-										<option value="661">
-											男
-										</option>
-									</select>
-									&nbsp;&nbsp;
-								</li>
-							</ul>-->
-							<!--下拉框
-							<ul>
-								<li class="a-shuxing-name">
-									年龄：
-								</li>
-								<li class="a-shuxing-value">
-									<input type="text" value="" id="jiaoyounianling" name="jiaoyounianling">
-								</li>
-							</ul>-->
 							<ul style="height: 152px;">
 								<li style="height: 150px;" class="a-shuxing-name">
 									<span>*内容：</span>
@@ -202,9 +174,10 @@ function validate_form()
 								<li class="a-shuxing-name">
 									上传图片：
 								</li>
-								<li class="a-shuxing-value" style="height:150px;">
-									<iframe src="${base}/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+								<li class="a-shuxing-value" style="height:200px;">
+									<div style="height:200px;width:300px;"><iframe src="${base}/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe></div>
 								</li>
+								<div style="clear:both;"></div>
 							</ul>
 							<ul>
 								<li class="a-shuxing-name">

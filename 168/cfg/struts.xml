@@ -156,9 +156,12 @@
 			<result name="index">/admin/manage.jsp</result>
 			<result name="password">/admin/welcome/pwd.jsp</result>
 			<result name="info_list">/admin/info/list.jsp</result>
+			<result name="info_edit">/admin/info/edit.jsp</result>
 			<result name="hot_city">/admin/sys/hot_city.jsp</result>
 			<result name="site_setting">/admin/sys/site_setting.jsp</result>
 			<result name="user_list">/admin/user/list.jsp</result>
+			<result name="user_edit">/admin/user/edit.jsp</result>
+			<result name="user_info_list">/admin/user/user_info_list.jsp</result>
 			<result name="link">/admin/sys/link.jsp</result>
 			<result name="gen_html">/admin/sys/gen_html.jsp</result>
 		</action>

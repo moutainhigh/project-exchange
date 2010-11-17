@@ -16,7 +16,7 @@
     </head>
 <body bgcolor="#FFFFFF" text="#000000">
 <form name="form1" method="post" action="${appPath}/manage/FileUploadAction.htm" enctype="multipart/form-data" >
-  <table width="360" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
+  <table width="100%" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
 	<tr bgcolor="#CCCCCC"> 
       <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">图片上传成功</th>
       <th align="right" valign="middle" bgcolor="#CCCCCC" class="trYello">

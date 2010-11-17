@@ -7,11 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -20,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.views.freemarker.FreemarkerManager;
-import org.apache.struts2.views.freemarker.ScopesHashModel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -42,9 +39,7 @@ import com.throne212.info168.web.domain.Setting;
 import com.throne212.info168.web.domain.User;
 
 import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 
@@ -118,6 +113,16 @@ public class AdminAction extends BaseAction {
 		return infoList();
 	}
 
+	public String editInfo() {
+		if (info != null && info.getId() != null) {
+			info = infoBiz.modifyInfo(info);
+			this.setMsg("信息修改成功");
+		} else if (infoId != null) {
+			info = infoBiz.getEntityById(Info.class, infoId);
+		}
+		return "info_edit";
+	}
+
 	// 删除信息
 	private String infoListFrom;
 	private Long infoId;
@@ -126,6 +131,31 @@ public class AdminAction extends BaseAction {
 		if (infoId != null) {
 			infoBiz.deleteEntity(Info.class, infoId);
 			this.setMsg("信息删除成功");
+		}
+		return infoList();
+	}
+
+	// 批量操作
+	public String batchDeleteInfo() {
+		String[] infoIds = (String[]) ActionContext.getContext().getParameters().get("infoIds");
+		if (infoIds != null && infoIds.length > 0) {
+			for (String idStr : infoIds) {
+				infoBiz.deleteEntity(Info.class, Long.parseLong(idStr));
+			}
+			this.setMsg("批量删除信息成功");
+		}
+		return infoList();
+	}
+
+	public String batchPassInfo() {
+		String[] infoIds = (String[]) ActionContext.getContext().getParameters().get("infoIds");
+		if (infoIds != null && infoIds.length > 0) {
+			for (String idStr : infoIds) {
+				Info info = infoBiz.getEntityById(Info.class, Long.parseLong(idStr));
+				info.setIsChecked(true);
+				infoBiz.saveOrUpdateEntity(info);
+			}
+			this.setMsg("批量通过信息审核成功");
 		}
 		return infoList();
 	}
@@ -215,12 +245,41 @@ public class AdminAction extends BaseAction {
 		return "site_setting";
 	}
 
+	private String key;
 	// 用户列表
 	public String userList() {
 		if (page == null || page < 1)
 			page = 1;
-		pageBean = userBiz.getAllUsers(page);
+		if(Util.isEmpty(key))
+			pageBean = userBiz.getAllUsers(page);
+		else{
+			logger.info("搜索用户，key=" + key);
+			pageBean = userBiz.getAllUsers(page,key);
+		}
 		return "user_list";
+	}
+	
+	//编辑用户
+	private User user;
+	public String editUser(){
+		if(user != null && !Util.isEmpty(user.getLoginName())){//保存数据
+			infoBiz.saveOrUpdateEntity(user);
+			this.setMsg("用户资料保存成功");
+			return "user_edit";
+		}else if(user != null && Util.isEmpty(user.getLoginName())){//展示用户资料
+			user = userBiz.getEntityById(User.class, user.getId());
+			return "user_edit";
+		}
+		return userList();
+	}
+	
+	//用户的信息列表
+	public String userInfoList(){
+		if (page == null || page < 1)
+			page = 1;
+		user = userBiz.getEntityById(User.class, user.getId());
+		pageBean = userBiz.getInfosByUser(page, user);
+		return "user_info_list";
 	}
 
 	// 友情链接
@@ -240,7 +299,8 @@ public class AdminAction extends BaseAction {
 			link.setName(linkName);
 			link.setUrl(linkUrl);
 			commonBiz.saveOrUpdateEntity(link);
-			this.setMsg("友情链接添加成功");
+			this.setMsg("友情链接添加成功:" + linkName);
+			logger.info("友情链接添加成功:" + linkName);
 			// 更新缓存
 			linkList = commonBiz.getSetting(LinkSetting.class);
 			ActionContext.getContext().getApplication().put(WebConstants.FREIND_LINKS, linkList);
@@ -271,39 +331,75 @@ public class AdminAction extends BaseAction {
 
 	private Info info;
 	private List<Info> relateInfos;
-	
-	// 生成HTML
-	public String generateHtml() {
 
-		List<Info> allInfo = infoBiz.getAll(Info.class);
-		for (Info i : allInfo) {
-			try {
-				info = infoBiz.getEntityById(Info.class, i.getId());
-				relateInfos = infoBiz.getRelateInfos(info);
-				// 生成静态页面的的模板类
-				Configuration configuration = freemarkerManager.getConfiguration(ServletActionContext.getServletContext());
-				Template staticTemplate = configuration.getTemplate("front/page.ftl", configuration.getLocale());
-				TemplateModel model = createModel(i, configuration);
-				String path = ServletActionContext.getServletContext().getRealPath("info") + File.separator;
-				Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + i.getId() + ".html"), "UTF-8"));
-				if (preTemplateProcess(staticTemplate, model)) {
-					try {
-						staticTemplate.process(model, out);
-					} finally {
-						out.flush();
-						out.close();
+	// 生成HTML
+	private Long startId;
+	private Long endId;
+
+	public String generateHtml() {
+		if (startId != null && endId != null) {
+			logger.info("批量生成HTML，id范围是：" + startId + "-" + endId);
+			// 开始生成
+			long sum = 0;
+			for (long id = startId; id <= endId; id++) {
+				try {
+					info = infoBiz.getEntityById(Info.class, id);
+					if (info == null)
+						continue;
+					relateInfos = infoBiz.getRelateInfos(info);
+					// 生成静态页面的的模板类
+					Configuration configuration = freemarkerManager.getConfiguration(ServletActionContext.getServletContext());
+					Template staticTemplate = configuration.getTemplate("front/page.ftl", configuration.getLocale());
+					TemplateModel model = createModel(info, configuration);
+					String path = ServletActionContext.getServletContext().getRealPath("info") + File.separator;
+					Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + info.getId() + ".html"), "UTF-8"));
+					if (preTemplateProcess(staticTemplate, model)) {
+						try {
+							staticTemplate.process(model, out);
+							logger.debug("编号[" + info.getId() + "]生成成功");
+							sum++;
+						} finally {
+							out.flush();
+							out.close();
+						}
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+			this.setMsg("HTML生成完成[" + startId + "]-[" + endId + "]，总数为：" + sum);
+		} else {
+			List<Info> allInfo = infoBiz.getAll(Info.class);
+			// 开始生成
+			for (Info i : allInfo) {
+				try {
+					info = infoBiz.getEntityById(Info.class, i.getId());
+					relateInfos = infoBiz.getRelateInfos(info);
+					// 生成静态页面的的模板类
+					Configuration configuration = freemarkerManager.getConfiguration(ServletActionContext.getServletContext());
+					Template staticTemplate = configuration.getTemplate("front/page.ftl", configuration.getLocale());
+					TemplateModel model = createModel(i, configuration);
+					String path = ServletActionContext.getServletContext().getRealPath("info") + File.separator;
+					Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + i.getId() + ".html"), "UTF-8"));
+					if (preTemplateProcess(staticTemplate, model)) {
+						try {
+							staticTemplate.process(model, out);
+						} finally {
+							out.flush();
+							out.close();
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			this.setMsg("HTML生成完成");
 		}
 		return "gen_html";
 	}
 
 	protected TemplateModel createModel(Info i, Configuration configuration) throws TemplateModelException {
-		ApplicationContext ac = (ApplicationContext) ActionContext.getContext().getApplication().get(
-				WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+		ApplicationContext ac = (ApplicationContext) ActionContext.getContext().getApplication().get(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 
 		ServletContext servletContext = ServletActionContext.getServletContext();
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -504,6 +600,38 @@ public class AdminAction extends BaseAction {
 
 	public void setRelateInfos(List<Info> relateInfos) {
 		this.relateInfos = relateInfos;
+	}
+
+	public Long getStartId() {
+		return startId;
+	}
+
+	public void setStartId(Long startId) {
+		this.startId = startId;
+	}
+
+	public Long getEndId() {
+		return endId;
+	}
+
+	public void setEndId(Long endId) {
+		this.endId = endId;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

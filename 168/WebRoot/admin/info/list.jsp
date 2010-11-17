@@ -5,6 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>模板网页</title>
+        <script src="${appPath}/js/jquery.js"></script>
         <link href="${appPath}/admin/css/common.css" rel="stylesheet" type="text/css" />
         <script src="${appPath}/admin/js/common.js"></script>
 		<script>
@@ -14,6 +15,40 @@
 				}
 				self.location.href = "${appPath}/admin/deleteInfo?infoId="+id;
 			}
+			function checkAll(checked){
+				if(checked){
+					$('input[type="checkbox"]').attr('checked',true);
+				}else{
+					$('input[type="checkbox"]').attr('checked',false);
+				}
+			}
+			function batchDelete(){
+				if(!checkIfChecked()){
+					alert('请至少勾选一个以后再操作');
+				}else if(confirm('您确认删除吗？')){
+					var f = document.forms[0];
+					f.action = '${appPath}/admin/batchDeleteInfo';
+					f.submit();
+				}
+			}
+			function batchPass(){
+				if(!checkIfChecked()){
+					alert('请至少勾选一个以后再操作');
+				}else{
+					var f = document.forms[0];
+					f.action = '${appPath}/admin/batchPassInfo';
+					f.submit();
+				}
+			}
+			
+			function checkIfChecked(){
+				var rst = false;
+				$('input[type="checkbox"]').each(function(){
+					if($(this).attr('checked') == true)
+						rst = true;
+				});
+				return rst;
+			}
 		</script>
     </head>
     <body>
@@ -22,6 +57,9 @@
         <div id="wrapper">			
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
+			  	<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				&nbsp;
+				</td>
 			    <td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>编号</strong> 
 				</td>
@@ -47,11 +85,14 @@
 			  
 			  <c:forEach items="${pageBean.resultList}" var="info" varStatus="status">
 			  <tr>
+			  	<td height="26" colspan="" style="text-align: center;">
+				<input type="checkbox" name="infoIds" value="${info.id}"/>
+				</td>
 			    <td height="26" colspan="" style="text-align: center;">
 				${info.id }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${info.title}
+				<a href="${appPath}/admin/editInfo?infoId=${info.id}" title="${info.content }">${info.title}</a>
 				<c:if test="${not empty info.recommend && info.recommend}">
 				 - <span style="color:red">荐</span>
 				</c:if>
@@ -71,7 +112,7 @@
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				<a href="${appPath}/info/all/${info.cate.pinyin}/${info.id}" target="_blank">页面预览</a>
-				<a href="javascript:void();" target="_self" onclick="deleteInfo(${info.id });">删除</a>
+				<a href="javascript:void();" target="_self" onclick="deleteInfo(${info.id })">删除</a>
 				<c:if test="${empty info.isChecked || info.isChecked==false}">
 				<a href="${appPath}/admin/passInfoCheck?infoId=${info.id}" target="_self">审核通过</a>
 				</c:if>
@@ -81,6 +122,15 @@
 				</td>
 			  </tr>
 			  </c:forEach>
+			  <tr>
+			  	<td height="26" colspan="1" style="text-align: center;">
+					<input type="checkbox" onclick="checkAll(this.checked);"/>
+				</td>
+				<td height="26" colspan="8" style="text-align: left; padding-left:5px;">
+					<input type="button" value="批量通过审核" onclick="batchPass();"/>
+					<input type="button" value="批量删除" onclick="batchDelete();"/>
+				</td>
+			  </tr>
 			</table>
 			<table cellspacing="0" cellpadding="0" border="0" align="right" style="margin-top: 5px;">
 				<tbody>

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
-import com.throne212.info168.web.domain.Setting;
 
 public interface CommonBiz extends BaseBiz{
 

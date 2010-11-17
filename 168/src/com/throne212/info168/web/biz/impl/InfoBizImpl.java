@@ -35,6 +35,12 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 		}
 	}
 
+	public PageBean<Info> getInfoByCateArea(Long cateId, int pageIndex, Area city) {
+		if (city == null)
+			return getInfoByCateArea(cateId, pageIndex);
+		return infoDao.getInfoByCateArea(cateId, city.getId(), pageIndex);
+	}
+
 	public PageBean<Info> getInfoByCateAreaKeywords(Long cateId, String keywords, int pageIndex) {
 		return infoDao.getInfoByCateKeywords(cateId, keywords, pageIndex);
 	}
@@ -59,19 +65,33 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 	public PageBean<Info> getInfoByKey(String keywords, int pageIndex) {
 		return infoDao.getInfoByKey(keywords, pageIndex);
 	}
-	
-	public List<Info> getTop10RecommendInfo(){
+
+	public List<Info> getTop10RecommendInfo() {
 		return infoDao.getTop10RecommendInfo();
 	}
-	
-	public List<Info> getTop10NewestInfo(){
+
+	public List<Info> getTop10NewestInfo() {
 		return infoDao.getTop10NewestInfo();
 	}
-	
-	public List<Info> getRelateInfos(Info info){
-		if(info == null || info.getId() == null)
+
+	public List<Info> getRelateInfos(Info info) {
+		if (info == null || info.getId() == null)
 			return null;
 		return infoDao.getRelateInfos(info.getId());
+	}
+	
+	public Info modifyInfo(Info newInfo){
+		if(newInfo != null){
+			Info info = infoDao.getEntityById(Info.class, newInfo.getId());
+			info.setTel(newInfo.getTel());
+			info.setEmail(newInfo.getEmail());
+			info.setTitle(newInfo.getTitle());
+			info.setQq(newInfo.getQq());
+			info.setContent(newInfo.getContent());
+			infoDao.saveOrUpdate(info);
+			return info;
+		}
+		return null;
 	}
 
 }

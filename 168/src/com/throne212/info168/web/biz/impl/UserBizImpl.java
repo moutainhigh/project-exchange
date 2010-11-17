@@ -66,11 +66,21 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 			page = 1;
 		return userDao.getAllUsers(page);
 	}
+	
+	public PageBean<User> getAllUsers(Integer page,String key){
+		return userDao.queryUsersByKey(key, page);
+	}
 
 	public PageBean<Info> getInfos(Integer page) {
 		if (page == null || page < 1)
 			page = 1;
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		return infoDao.getInfoByUser(user.getId(), page);
+	}
+	
+	public PageBean<Info> getInfosByUser(Integer page,User user) {
+		if (page == null || page < 1)
+			page = 1;
 		return infoDao.getInfoByUser(user.getId(), page);
 	}
 

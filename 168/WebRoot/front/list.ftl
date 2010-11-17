@@ -7,18 +7,7 @@
 	<body>
 		<#include "/front/top.ftl">
 		<div class="wrapper">
-			<div class="desc">
-				一路发信息发布网是最具活力的、信息质量最高的中文分类信息网站，每天访问量上百万次。列表网可以帮助人们以最简单的方式发现和发布本地有价值的广告信息，诸如
-				<strong>交友</strong>、
-				<strong>租房</strong>、
-				<strong>二手房</strong>、
-				<strong>二手车</strong>、
-				<strong>二手物品</strong>、
-				<strong>宠物</strong>、
-				<strong>招聘</strong>、
-				<strong>生活服务</strong>及
-				<strong>商务服务</strong>信息等等。列表网无需注册免费发布，让信息的沟通更加便捷。 下面请选择你所在的城市：
-			</div>
+			<#include "/front/desc.ftl">
 			<div class="left">
 				<#include "/front/pos.ftl">
 				<!--l_content-->
@@ -102,76 +91,17 @@
 			<div id="right" class="right">
 				<div id="hot-cate">
 					<div class="hot-cate-n">
-						更多城市销售/业务信息
+						更多城市${cate.name}信息
 					</div>
 					<ul>
+						<#list hotCities as c>
 						<li>
-							·
-							<a target="_blank" title="北京招聘销售业务|业务销售招聘网" href="/beijing/xiaoshouyewu/">北京销售/业务</a>
+							<a target="_blank" title="${c.name}${cate.name}" href="${base}/info/${c.pinyin}/${cate.pinyin}">${c.name}${cate.name}</a>
 						</li>
-
-						<li>
-							·
-							<a target="_blank" title="上海招聘销售业务|业务销售招聘网" href="/shanghai/xiaoshouyewu/">上海销售/业务</a>
-						</li>
-
-						<li>
-							·
-							<a target="_blank" title="广州招聘销售业务|业务销售招聘网" href="/guangzhou/xiaoshouyewu/">广州销售/业务</a>
-						</li>
-
-						<li>
-							·
-							<a target="_blank" title="深圳招聘销售业务|业务销售招聘网" href="/shenzhen/xiaoshouyewu/">深圳销售/业务</a>
-						</li>
-
-
-						<li>
-							·
-							<a title="青岛月薪6000元" href="http://www.88ke.com/qingdao/xiaoshouyewu/a2012751.html">青岛月薪6000元</a>
-						</li>
-						<li>
-							·
-							<a title="深圳南山销售招聘 信息" href="http://www.88ke.com/nashan/zhaopindianhuaxiaoshou/">深圳南山销售招聘 </a>
-						</li>
-						<li>
-							·
-							<a title="通州业务员招聘" href="http://www.88ke.com/tongzhou/zhaopinyewuyuan/">通州业务员招聘</a>
-						</li>
-						<li>
-							·
-							<a title="天津最新电话销售招聘信息" href="http://www.88ke.com/tianjin/zhaopindianhuaxiaoshou/">天津最新电话销售招</a>
-						</li>
-						<li>
-							·
-							<a title="深圳正拓新能源发展有限公司" href="http://www.88ke.com/shenzhen/xiaoshouyewu/a39587.html">深圳正拓新能源发展</a>
-						</li>
-						<li>
-							·
-							<a title="重庆业务员" href="http://www.88ke.com/chongqing/zhaopinyewuyuan/">重庆业务员</a>
-						</li>
-						<li>
-							·
-							<a title="苏州月薪3000-5000" href="http://www.88ke.com/suzhoushi/xiaoshouyewu/a1553997.html">苏州月薪3000-</a>
-						</li>
-						<li>
-							·
-							<a title="青岛市南区货代招聘" href="http://www.88ke.com/qingdao/xiaoshouyewu/a2165590.html">青岛市南区货代招聘</a>
-						</li>
-						<li>
-							·
-							<a title="萧山业务员招聘" href="http://www.88ke.com/xiaoshan/zhaopinyewuyuan/">萧山业务员招聘</a>
-						</li>
-						<li>
-							·
-							<a title="苏州外贸业务员招聘" href="http://www.88ke.com/zhaopin/suzhouwaimaoywyzp/">苏州外贸业务员招聘</a>
-						</li>
+						</#list>
 						<div class="clear"></div>
 					</ul>
 				</div>
-				<p id="cus" class="c-list-t">
-					成都销售业务招聘求职频道为您提供最新的成都招聘销售业务|成都业务销售招聘网信息,88客网成都销售业务招聘求职频道每天免费为您提供数百条的真实有效的成都销售业务招聘求职信息,希望您能给我们一些宝贵的建议。最新成都成都销售业务招聘求职信息：1:房产经纪人学历:高中月薪:600-5000元每月2:成都立睿电子有限公司渠道销售精英3:建筑用胶学历:高中/中专以上
-				</p>
 			</div>
 			<div class="clear"></div>
 		</div>

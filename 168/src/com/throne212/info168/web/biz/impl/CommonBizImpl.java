@@ -31,7 +31,7 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 	public List<Area> getTopArea() {
 		return areaDao.getTopAreas();
 	}
-
+	
 	public List<Area> get2ndArea(Long parentId) {
 		Area parent = areaDao.getEntityById(Area.class, parentId);
 		if (parent != null) {

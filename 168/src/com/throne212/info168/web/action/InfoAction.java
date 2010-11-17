@@ -38,9 +38,15 @@ public class InfoAction extends BaseAction {
 			}
 			return "index";
 		} else if (!Util.isEmpty(cityPinyin) && !Util.isEmpty(catePinyin)) {// 访问栏目列表页
+			Area city = null;
+			if (!"all".equals(cityPinyin)) {
+				city = commonBiz.getEntityByUnique(Area.class, "pinyin", cityPinyin);
+				if (city != null && city.getParent() != null && city.getParent().getParent() == null)
+					ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
+			}
 			cate = commonBiz.getEntityByUnique(Category.class, "pinyin", catePinyin);
 			if (infoId == null) {// 列表页面
-				return list();
+				return list(city);
 			} else {// 详细页面
 				return page();
 			}
@@ -50,11 +56,12 @@ public class InfoAction extends BaseAction {
 
 	private List<Area> areaInCity;
 
-	public String list() {
+	public String list(Area city) {
 		if (page == null || page < 1)
 			page = 1;
-		pageBean = infoBiz.getInfoByCateArea(cate.getId(), page);
-		Area city = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
+		pageBean = infoBiz.getInfoByCateArea(cate.getId(), page, city);
+		if(city == null)
+			city = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
 		if (city != null) {
 			areaInCity = commonBiz.get2ndArea(city.getId());
 		}

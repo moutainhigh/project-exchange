@@ -1,6 +1,7 @@
 package com.throne212.info168.web.filter;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -20,6 +21,7 @@ public class AdminAccessInterceptor extends AbstractInterceptor {
 		if(sessUser == null || !(sessUser instanceof Admin)){
 			return "login";
 		}
+		ServletActionContext.getRequest().setCharacterEncoding("UTF-8");
 		logger.debug("end admin intercepter ...");
 		return actionInvocation.invoke();
 	}

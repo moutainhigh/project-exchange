@@ -3,6 +3,7 @@ package com.throne212.info168.web.biz;
 import java.util.List;
 
 import com.throne212.info168.web.common.PageBean;
+import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Info;
 
 public interface InfoBiz extends BaseBiz {
@@ -12,6 +13,7 @@ public interface InfoBiz extends BaseBiz {
 
 	// 根据栏目和地区找信息
 	public PageBean<Info> getInfoByCateArea(Long cateId, int pageIndex);
+	public PageBean<Info> getInfoByCateArea(Long cateId, int pageIndex, Area city);
 
 	// 根据栏目和关键字找信息
 	public PageBean<Info> getInfoByCateKeywords(Long cateId, String keywords,int pageIndex);
@@ -29,4 +31,5 @@ public interface InfoBiz extends BaseBiz {
 	//admin
 	public PageBean<Info> getAllInfo(int pageIndex);
 	public PageBean<Info> getAllUncheckInfo(int pageIndex);
+	public Info modifyInfo(Info newInfo);
 }

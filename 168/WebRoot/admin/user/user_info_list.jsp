@@ -5,6 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>模板网页</title>
+        <script src="${appPath}/js/jquery.js"></script>
         <link href="${appPath}/admin/css/common.css" rel="stylesheet" type="text/css" />
         <script src="${appPath}/admin/js/common.js"></script>
 		<script>
@@ -14,69 +15,129 @@
 				}
 				self.location.href = "${appPath}/admin/deleteInfo?infoId="+id;
 			}
+			function checkAll(checked){
+				if(checked){
+					$('input[type="checkbox"]').attr('checked',true);
+				}else{
+					$('input[type="checkbox"]').attr('checked',false);
+				}
+			}
+			function batchDelete(){
+				if(!checkIfChecked()){
+					alert('请至少勾选一个以后再操作');
+				}else if(confirm('您确认删除吗？')){
+					var f = document.forms[0];
+					f.action = '${appPath}/admin/batchDeleteInfo';
+					f.submit();
+				}
+			}
+			function batchPass(){
+				if(!checkIfChecked()){
+					alert('请至少勾选一个以后再操作');
+				}else{
+					var f = document.forms[0];
+					f.action = '${appPath}/admin/batchPassInfo';
+					f.submit();
+				}
+			}
+			
+			function checkIfChecked(){
+				var rst = false;
+				$('input[type="checkbox"]').each(function(){
+					if($(this).attr('checked') == true)
+						rst = true;
+				});
+				return rst;
+			}
 		</script>
     </head>
     <body>
-    <form action="${appPath }/admin/userList" method="post">
+    <form action="${appPath }/admin/deleteInfo" method="post">
+   		<input type="hidden" name="method" value="newUser"/>
         <div id="wrapper">			
         	<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
-			    <td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
-				<strong>用户搜索</strong> 
-				</td>
-			  </tr>
-			  <tr>
-				<td style="padding-left:50px;">
-					<input type="text" name="key" value="${key}"/>
-					<input type="submit" name=" 搜 索 "/>
+			  	<td height="26" colspan="" align="left" style="padding-left:10px;color:red;font-size:14px;font-weight:600;" background="${appPath}/admin/images/msg_bg.jpg">
+				用户(${user.loginName})发布的信息
 				</td>
 			  </tr>
 			</table>
-			<br/>
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
+			  	<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				&nbsp;
+				</td>
 			    <td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>编号</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
-				<strong>用户登录名</strong> 
+				<strong>信息标题</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
-				<strong>邮箱</strong> 
+				<strong>所属地区</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
-				<strong>地区</strong> 
+				<strong>所属栏目</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
-				<strong>注册日期</strong> 
+				<strong>发布日期</strong> 
+				</td>
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>状态</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>操作</strong> 
 				</td>
 			  </tr>
 			  
-			  <c:forEach items="${pageBean.resultList}" var="user" varStatus="status">
+			  <c:forEach items="${pageBean.resultList}" var="info" varStatus="status">
 			  <tr>
+			  	<td height="26" colspan="" style="text-align: center;">
+				<input type="checkbox" name="infoIds" value="${info.id}"/>
+				</td>
 			    <td height="26" colspan="" style="text-align: center;">
-				${user.id }
+				${info.id }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<a href="${appPath}/admin/userInfoList?user.id=${user.id}">${user.loginName}</a>
+				<a href="${appPath}/admin/editInfo?infoId=${info.id}" title="${info.content }">${info.title}</a>
+				<c:if test="${not empty info.recommend && info.recommend}">
+				 - <span style="color:red">荐</span>
+				</c:if>
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${user.email}
+				${info.area.parent.name } &gt; ${info.area.name }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${user.area.name} 
+				${info.cate.parent.name } &gt; ${info.cate.name } 
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${user.regDate}
+				${info.publishDate }
 				</td>
-				<td>
-					<a href="${appPath}/admin/editUser?user.id=${user.id}">编辑</a>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				<c:if test="${not empty info.isChecked && info.isChecked}">通过审核</c:if>
+				<c:if test="${empty info.isChecked || info.isChecked==false}"><span style="color:gray;">未通过审核</span></c:if>
+				</td>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				<a href="${appPath}/info/all/${info.cate.pinyin}/${info.id}" target="_blank">页面预览</a>
+				<a href="javascript:void();" target="_self" onclick="if(confirm('你确认删除吗？')){deleteInfo(${info.id });}">删除</a>
+				<c:if test="${empty info.isChecked || info.isChecked==false}">
+				<a href="${appPath}/admin/passInfoCheck?infoId=${info.id}" target="_self">审核通过</a>
+				</c:if>
+				<c:if test="${not empty info.isChecked && info.isChecked && (empty info.recommend || info.recommend==false)}">
+				<a href="${appPath}/admin/recommend?infoId=${info.id}" target="_self">热门推荐</a>
+				</c:if>
 				</td>
 			  </tr>
 			  </c:forEach>
+			  <tr>
+			  	<td height="26" colspan="1" style="text-align: center;">
+					<input type="checkbox" onclick="checkAll(this.checked);"/>
+				</td>
+				<td height="26" colspan="8" style="text-align: left; padding-left:5px;">
+					<input type="button" value="批量通过审核" onclick="batchPass();"/>
+					<input type="button" value="批量删除" onclick="batchDelete();"/>
+				</td>
+			  </tr>
 			</table>
 			<table cellspacing="0" cellpadding="0" border="0" align="right" style="margin-top: 5px;">
 				<tbody>

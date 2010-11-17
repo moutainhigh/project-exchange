@@ -25,11 +25,20 @@ public class PublishAction extends BaseAction {
 	private Map<String, List<Area>> areaMap;
 
 	public String index() {
+		//初始化发布参数
 		List<Object[]> list = new ArrayList<Object[]>(4);
 		for (int i = 0; i < 4; i++) {
 			list.add(null);
 		}
 		ActionContext.getContext().getSession().put("pub_list", list);
+
+		// 如果用户选择了城市以后，就在那个默认城市发布信息
+		Area city = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
+		if (city != null) {
+			param = city.getId();
+			return city();
+		}
+
 		// 获取城市数据
 		areaMap = commonBiz.getAreaMap();
 		return "city";
