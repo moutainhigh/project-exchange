@@ -10,6 +10,7 @@ public class User {
 	private String email;//邮件地址
 	private Area area;//所属地区
 	private Date regDate;//注册时间
+	private Contact contact; 
 
 	public User() {
 		super();
@@ -68,6 +69,14 @@ public class User {
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 }

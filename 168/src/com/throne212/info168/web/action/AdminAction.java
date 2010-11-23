@@ -34,6 +34,7 @@ import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.HotCitySetting;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.LinkSetting;
 import com.throne212.info168.web.domain.Setting;
 import com.throne212.info168.web.domain.User;
@@ -110,6 +111,14 @@ public class AdminAction extends BaseAction {
 		info.setRecommend(true);
 		infoBiz.saveOrUpdateEntity(info);
 		this.setMsg("信息热门推荐成功");
+		return infoList();
+	}
+
+	public String topInfo() {
+		Info info = infoBiz.getEntityById(Info.class, infoId);
+		info.setIsTop(true);
+		infoBiz.saveOrUpdateEntity(info);
+		this.setMsg("信息置顶成功");
 		return infoList();
 	}
 
@@ -246,35 +255,37 @@ public class AdminAction extends BaseAction {
 	}
 
 	private String key;
+
 	// 用户列表
 	public String userList() {
 		if (page == null || page < 1)
 			page = 1;
-		if(Util.isEmpty(key))
+		if (Util.isEmpty(key))
 			pageBean = userBiz.getAllUsers(page);
-		else{
+		else {
 			logger.info("搜索用户，key=" + key);
-			pageBean = userBiz.getAllUsers(page,key);
+			pageBean = userBiz.getAllUsers(page, key);
 		}
 		return "user_list";
 	}
-	
-	//编辑用户
+
+	// 编辑用户
 	private User user;
-	public String editUser(){
-		if(user != null && !Util.isEmpty(user.getLoginName())){//保存数据
+
+	public String editUser() {
+		if (user != null && !Util.isEmpty(user.getLoginName())) {// 保存数据
 			infoBiz.saveOrUpdateEntity(user);
 			this.setMsg("用户资料保存成功");
 			return "user_edit";
-		}else if(user != null && Util.isEmpty(user.getLoginName())){//展示用户资料
+		} else if (user != null && Util.isEmpty(user.getLoginName())) {// 展示用户资料
 			user = userBiz.getEntityById(User.class, user.getId());
 			return "user_edit";
 		}
 		return userList();
 	}
-	
-	//用户的信息列表
-	public String userInfoList(){
+
+	// 用户的信息列表
+	public String userInfoList() {
 		if (page == null || page < 1)
 			page = 1;
 		user = userBiz.getEntityById(User.class, user.getId());
@@ -428,6 +439,23 @@ public class AdminAction extends BaseAction {
 			ServletActionContext.getResponse().setContentType(contentType);
 		}
 		return true;
+	}
+
+	// 关键词设置
+	private KeyWordSetting keyword;
+	private List<KeyWordSetting> keyWordList;
+
+	public String addKeyword() {
+		if (keyword != null && keyword.getName() != null && keyword.getCate() != null){
+			commonBiz.saveOrUpdateEntity(keyword);
+			this.setMsg("关键词添加成功");
+		}
+		return keywords();
+	}
+
+	public String keywords() {
+		keyWordList = commonBiz.getSetting(KeyWordSetting.class);
+		return "keywords";
 	}
 
 	public String getOldpassword() {
@@ -632,6 +660,22 @@ public class AdminAction extends BaseAction {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public KeyWordSetting getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(KeyWordSetting keyword) {
+		this.keyword = keyword;
+	}
+
+	public List<KeyWordSetting> getKeyWordList() {
+		return keyWordList;
+	}
+
+	public void setKeyWordList(List<KeyWordSetting> keyWordList) {
+		this.keyWordList = keyWordList;
 	}
 
 }

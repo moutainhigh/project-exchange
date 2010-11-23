@@ -42,8 +42,7 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setParameter(2, area).setMaxResults(
-				WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
+		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setParameter(2, area).setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.INFO_LIST_ROWS);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -61,8 +60,8 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, cate).get(0);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setParameter(2, "%" + keywords + "%").setMaxResults(
-				WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
+		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, area).setParameter(2, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex)
+				.list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.INFO_LIST_ROWS);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -77,8 +76,7 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[] { cate, "%" + keywords + "%" }).get(0);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS)
-				.setFirstResult(startIndex).list();
+		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.INFO_LIST_ROWS);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -136,8 +134,7 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		logger.info("搜索结果记录数：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Info> list = s.createQuery(hql).setParameter(0, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS_SEARCH).setFirstResult(
-				startIndex).list();
+		List<Info> list = s.createQuery(hql).setParameter(0, "%" + keywords + "%").setMaxResults(WebConstants.INFO_LIST_ROWS_SEARCH).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.INFO_LIST_ROWS_SEARCH);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -162,8 +159,14 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		Info info = this.getEntityById(Info.class, infoId);
 		String hql = "from Info i where i.isChecked=true and i.id!=? and i.area.parent=? and i.cate=? order by i.publishDate desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Info> list = s.createQuery(hql).setParameter(0, infoId).setParameter(1, info.getArea().getParent()).setParameter(2, info.getCate())
-				.setMaxResults(5).list();
+		List<Info> list = s.createQuery(hql).setParameter(0, infoId).setParameter(1, info.getArea().getParent()).setParameter(2, info.getCate()).setMaxResults(5).list();
+		return list;
+	}
+
+	public List<Info> getTopInfos(Category cate) {
+		String hql = "from Info i where i.isChecked=true and i.isTop=true and (i.cate=? or i.cate.parent=?) order by i.publishDate desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, cate).setMaxResults(10).list();
 		return list;
 	}
 

@@ -1,6 +1,7 @@
 package com.throne212.info168.web.biz.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
@@ -11,6 +12,7 @@ import com.throne212.info168.web.dao.InfoDao;
 import com.throne212.info168.web.dao.UserDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.User;
 
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
@@ -56,18 +58,29 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 	public boolean publishInfo(Info info) {
 		info.setPublishDate(new Date());
 		info.setIsChecked(false);
+
+		// 替换关键词的链接
+		String appPath = (String) ActionContext.getContext().getApplication().get(WebConstants.APP_PATH);
+		String content = info.getContent();
+		List<KeyWordSetting> keywords = (List<KeyWordSetting>) ActionContext.getContext().getApplication().get(WebConstants.KEY_WORD_LIST);
+		for (KeyWordSetting key : keywords) {
+			content = content.replaceAll(key.getName(), "<a target='_blank' href='" + appPath + "/search/" + key.getName() + "/'>" + key.getName() + "</a>");
+		}
+		info.setContent(content);
+
 		baseDao.saveOrUpdate(info);
-		//GenHtmlFacade.getInstance().gen(info);
+		// GenHtmlFacade.getInstance().gen(info);
 		return true;
 	}
 	
-	public PageBean<User> getAllUsers(Integer page){
+
+	public PageBean<User> getAllUsers(Integer page) {
 		if (page == null || page < 1)
 			page = 1;
 		return userDao.getAllUsers(page);
 	}
-	
-	public PageBean<User> getAllUsers(Integer page,String key){
+
+	public PageBean<User> getAllUsers(Integer page, String key) {
 		return userDao.queryUsersByKey(key, page);
 	}
 
@@ -77,8 +90,8 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		return infoDao.getInfoByUser(user.getId(), page);
 	}
-	
-	public PageBean<Info> getInfosByUser(Integer page,User user) {
+
+	public PageBean<Info> getInfosByUser(Integer page, User user) {
 		if (page == null || page < 1)
 			page = 1;
 		return infoDao.getInfoByUser(user.getId(), page);

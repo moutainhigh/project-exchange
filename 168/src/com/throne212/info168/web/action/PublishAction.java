@@ -175,7 +175,7 @@ public class PublishAction extends BaseAction {
 			info.setImage(image);
 			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
 		}
-
+		
 		if (userBiz.publishInfo(info)) {
 			ActionContext.getContext().getSession().remove("pub_list");
 			return "success";

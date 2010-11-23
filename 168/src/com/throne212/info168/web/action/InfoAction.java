@@ -35,6 +35,8 @@ public class InfoAction extends BaseAction {
 			if (!"all".equals(cityPinyin)) {
 				Area city = commonBiz.getEntityByUnique(Area.class, "pinyin", cityPinyin);
 				ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
+			}else{
+				ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, null);
 			}
 			return "index";
 		} else if (!Util.isEmpty(cityPinyin) && !Util.isEmpty(catePinyin)) {// 访问栏目列表页
@@ -54,16 +56,23 @@ public class InfoAction extends BaseAction {
 		return "success";
 	}
 
+	//城市的区域
 	private List<Area> areaInCity;
+	
+	//置顶信息
+	private List<Info> topInfoList;
 
 	public String list(Area city) {
 		if (page == null || page < 1)
 			page = 1;
 		pageBean = infoBiz.getInfoByCateArea(cate.getId(), page, city);
+		topInfoList = infoBiz.getTopInfos(cate);
 		if(city == null)
 			city = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
-		if (city != null) {
+		if (city != null) {//某个城市的区县
 			areaInCity = commonBiz.get2ndArea(city.getId());
+		}else{//全国
+			areaInCity = commonBiz.get2ndArea(-1L);
 		}
 		return "list";
 	}
@@ -177,6 +186,14 @@ public class InfoAction extends BaseAction {
 
 	public void setAreaInCity(List<Area> areaInCity) {
 		this.areaInCity = areaInCity;
+	}
+
+	public List<Info> getTopInfoList() {
+		return topInfoList;
+	}
+
+	public void setTopInfoList(List<Info> topInfoList) {
+		this.topInfoList = topInfoList;
 	}
 
 }

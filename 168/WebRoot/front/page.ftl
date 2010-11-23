@@ -7,9 +7,19 @@
 	<body>
 		<#include "/front/top.ftl">
 		<div class="wrapper">
-			<#include "/front/desc.ftl">
+			<div style="overflow: hidden; white-space: nowrap;" id="Guide">
+	          <div>
+	          	  <a href="${base}">中国免费分类信息</a> &gt; 
+		          <a href="${base}/info/all/${info.cate.pinyin}">中国${info.cate.name}</a> &gt; 
+		          <a href="${base}/info/${info.area.parent.pinyin}/${info.cate.pinyin}">${info.area.parent.name}${info.cate.name}</a>
+		          <br>
+		          <a href="${base}">中国</a> &gt; 
+		          <a href="${base}/info/${info.area.parent.pinyin}/">${info.area.parent.name}</a> &gt; 
+		          <a href="${base}/info/${info.area.parent.pinyin}/${info.cate.pinyin}">${info.area.parent.name}${info.cate.name}</a> &gt; 
+		          <span>${info.title}</span> 
+	          </div>    
+			</div>
 			<div class="left">
-				<#include "/front/pos.ftl">
 				<!--l_content-->
 				<div class="content">
 					<h2>${info.title}</h2>

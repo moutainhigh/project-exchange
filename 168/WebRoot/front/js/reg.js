@@ -114,14 +114,14 @@ function check_email(){
 function check_rand(){
 	var rand = $('#rand').val();
 	if(rand == null || ''==rand){
-		alertInfo(5,'必须填入验证码');
+		alertInfo(7,'必须填入验证码');
 		return false;
 	}
 	$.getJSON("ajax/checkRand.action",{rand:rand}, function(rst){
   		if('succ'==rst){
-  			alertInfo(5,'格式正确','green');	
+  			alertInfo(7,'格式正确','green');	
   		}else{
-  			alertInfo(5,'验证码输入错误，请检查');
+  			alertInfo(7,'验证码输入错误，请检查');
   		}
 	}); 		
 	return true;

@@ -92,7 +92,13 @@ public class AjaxAction extends BaseAction {
 		}
 		return "sugg_city";
 	}
-
+	
+	//获取子分类
+	public String get2ndCate(){
+		list = commonBiz.getCate2(parentId);
+		return "cate_list";
+	}
+	
 	/* setters and getters */
 
 	public List getList() {

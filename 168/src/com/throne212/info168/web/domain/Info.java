@@ -16,6 +16,7 @@ public class Info {
 	private Date publishDate;//发布时间
 	private Boolean isChecked;//是否通过审核
 	private Boolean recommend;//热门推荐
+	private Boolean isTop;//置顶
 	private String image;//图品地址
 
 	public Long getId() {
@@ -120,6 +121,14 @@ public class Info {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Boolean getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(Boolean isTop) {
+		this.isTop = isTop;
 	}
 
 }

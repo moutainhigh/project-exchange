@@ -96,6 +96,9 @@
 				<c:if test="${not empty info.recommend && info.recommend}">
 				 - <span style="color:red">荐</span>
 				</c:if>
+				<c:if test="${not empty info.isTop && info.isTop}">
+				 - <span style="color:red">顶</span>
+				</c:if>
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${info.area.parent.name } &gt; ${info.area.name }
@@ -110,7 +113,7 @@
 				<c:if test="${not empty info.isChecked && info.isChecked}">通过审核</c:if>
 				<c:if test="${empty info.isChecked || info.isChecked==false}"><span style="color:gray;">未通过审核</span></c:if>
 				</td>
-				<td height="26" colspan="" style="padding-left: 30px;">
+				<td height="26" colspan="" style="padding-left: 30px;"><!-- 操作 -->
 				<a href="${appPath}/info/all/${info.cate.pinyin}/${info.id}" target="_blank">页面预览</a>
 				<a href="javascript:void();" target="_self" onclick="deleteInfo(${info.id })">删除</a>
 				<c:if test="${empty info.isChecked || info.isChecked==false}">
@@ -118,6 +121,9 @@
 				</c:if>
 				<c:if test="${not empty info.isChecked && info.isChecked && (empty info.recommend || info.recommend==false)}">
 				<a href="${appPath}/admin/recommend?infoId=${info.id}" target="_self">热门推荐</a>
+				</c:if>
+				<c:if test="${not empty info.isChecked && info.isChecked && (empty info.isTop || info.isTop==false)}">
+				<a href="${appPath}/admin/topInfo?infoId=${info.id}" target="_self">置顶</a>
 				</c:if>
 				</td>
 			  </tr>

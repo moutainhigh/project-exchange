@@ -72,3 +72,7 @@
 .c-list-t{font-size:12px;color:#333;margin:0;padding-bottom:8px;}
 
 
+#Guide{height:60px;background-image:url(images/sprites2.gif);clear:both;background-position:0 -38px}
+#Guide div{margin-left:10px;padding-top:6px;}
+#Guide a{font-size:13px;line-height: 25px;}
+

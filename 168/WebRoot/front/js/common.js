@@ -8,9 +8,9 @@ $(function(){
 		$('#pos2').html('会员中心 >> 信息列表');
 	}else if(loc.indexOf('/user/password')>0){
 		$('#pos2').html('会员中心 >> 密码修改');
-	}else if(loc.indexOf('/info/list')>0){
+	}else if(loc.indexOf('/info/')>0 && loc.indexOf('htm')<0){
 		$('#pos2').html('信息列表');
-	}else if(loc.indexOf('/info/page')>0){
+	}else if(loc.indexOf('/info/')>0 && loc.indexOf('htm')>0){
 		$('#pos2').html('信息详情');
 	}else if(loc.indexOf('/search')>0){
 		$('#pos2').html('信息搜索');

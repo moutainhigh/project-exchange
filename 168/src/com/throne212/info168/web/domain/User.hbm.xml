@@ -11,6 +11,10 @@
 		<property name="password" column="password" length="50" not-null="true"></property>
 		<property name="email" length="100"></property>
 		<many-to-one name="area" class="Area" cascade="none" column="area_id" lazy="false"></many-to-one>
+		<component name="contact" class="Contact">
+			<property name="tel"/>
+			<property name="qq"/>
+		</component>
 		<subclass discriminator-value="admin" extends="User" name="Admin" select-before-update="false"/>
 	</class>
 </hibernate-mapping>

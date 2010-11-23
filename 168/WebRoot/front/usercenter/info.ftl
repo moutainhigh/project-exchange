@@ -56,7 +56,7 @@
 									<td bgcolor="#eeeeee" align="center" width="5%" style="border-top: 1px solid rgb(0, 94, 188);">
 										&nbsp;
 									</td>
-									<td bgcolor="#eeeeee" width="40%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="38%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										信息标题
 									</td>
 									<td bgcolor="#eeeeee" width="15%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
@@ -68,7 +68,7 @@
 									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										状态
 									</td>
-									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="12%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										日期
 									</td>
 									<td bgcolor="#eeeeee" width="5%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
@@ -81,7 +81,7 @@
 										<input type="checkbox" name="infoIds" value="${info.id}"/>
 									</td>
 									<td>
-										${info.title}
+										<a href="${base}/info/${info.area.parent.pinyin}/${info.cate.pinyin}/${info.id}.htm" target="_blank">${info.title}</a>
 									</td>
 									<td>
 										${info.cate.name}

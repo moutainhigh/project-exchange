@@ -8,6 +8,7 @@ import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.dao.InfoDao;
 import com.throne212.info168.web.domain.Area;
+import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
 
 public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
@@ -92,6 +93,10 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 			return info;
 		}
 		return null;
+	}
+	
+	public List<Info> getTopInfos(Category cate){
+		return infoDao.getTopInfos(cate);
 	}
 
 }

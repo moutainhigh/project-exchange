@@ -15,6 +15,7 @@
 		<property name="isChecked"></property>
 		<property name="recommend"></property>
 		<property name="image"></property>
+		<property name="isTop"></property>
 		<many-to-one name="area" class="Area" cascade="none" column="area_id" lazy="false" ></many-to-one>
 		<many-to-one name="user" class="User" cascade="none" column="user_id" lazy="false" ></many-to-one>
 		<many-to-one name="cate" class="Category" cascade="none" column="cate_id" lazy="false" ></many-to-one>

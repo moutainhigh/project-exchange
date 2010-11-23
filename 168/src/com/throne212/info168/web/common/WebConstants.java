@@ -14,6 +14,7 @@ public class WebConstants {
 	public static final String CITY_BY_PINYIN = "allCities";
 	public static final String HOT_CITIES = "hotCities";
 	public static final String FREIND_LINKS = "links";
+	public static final String KEY_WORD_LIST = "sys_keywords";
 	public static final String ALL_CATES = "allCates";
 	public static final String APP_PATH = "appPath";
 	public static final String APP_TITLE = "appTitle";

@@ -11,13 +11,18 @@
 		<property name="description" column="description" length="512"></property>
 		<property name="listorder" column="listorder"></property>
 		<property name="date" column="date"></property>
-		<!-- 子类 -->
+		<!-- 热门城市 -->
 		<subclass discriminator-value="hot_city" name="HotCitySetting">
 			<property name="pinyin"></property>
 			<property name="entityId"></property>
 		</subclass>
+		<!-- 友情链接 -->
 		<subclass discriminator-value="link" name="LinkSetting">
 			<property name="url"></property>
+		</subclass>
+		<!-- 关键词 -->
+		<subclass discriminator-value="key_word" name="KeyWordSetting">
+			<many-to-one name="cate" column="cate_id" class="Category" lazy="false" cascade="none"></many-to-one>
 		</subclass>
 	</class>
 </hibernate-mapping>

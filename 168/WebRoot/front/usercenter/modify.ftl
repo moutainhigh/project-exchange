@@ -22,23 +22,19 @@
 						<font id="loginname">${userObj.email!userObj.loginName}</font>的光临:
 					</div>
 					<#include "/front/msg.ftl">
-					<form action="${base}/user/changePwd.htm" method="post">
+					<form action="${base}/user/modify.htm" method="post">
 					<table cellspacing="0" cellpadding="0" border="0" width="730" style="margin-top: 30px;">
 						  <tbody><tr>
-						    <td align="right" width="17%">原始密码：</td>
-						    <td class="manager-t"><input type="password" id="oldpassword" name="oldpassword"> 
+						    <td align="right" width="17%">电话：</td>
+						    <td class="manager-t"><input type="text" id="tel" name="contact.tel" value="<#if userObj.contact??>${userObj.contact.tel!''}</#if>" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')"> 
 						    </td>
 						   </tr>
 						  <tr>
-						    <td align="right" width="17%">输入新密码：</td>
-						    <td><input type="password" id="newpassword" name="newpassword">
+						    <td align="right" width="17%">QQ：</td>
+						    <td><input type="text" id="qq" name="contact.qq" value="<#if userObj.contact??>${userObj.contact.qq!''}</#if>" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
 							
 							</td>
 							</tr>
-						  <tr>
-						    <td align="right">再次输入新密码：</td>
-						    <td><input type="password" id="renewpassword" name="renewpassword"></td>
-						  </tr>
 						  <tr>
 						    <td align="right">&nbsp;</td>
 						    <td><input type="submit" value="提交" id="button" name="button"></td>

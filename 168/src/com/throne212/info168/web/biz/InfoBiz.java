@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.domain.Area;
+import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
 
 public interface InfoBiz extends BaseBiz {
@@ -23,6 +24,9 @@ public interface InfoBiz extends BaseBiz {
 	
 	// 根据关键字找信息
 	public PageBean<Info> getInfoByKey(String keywords,int pageIndex);
+	
+	//置顶的info
+	public List<Info> getTopInfos(Category cate);
 
 	public List<Info> getTop10RecommendInfo();
 	public List<Info> getTop10NewestInfo();

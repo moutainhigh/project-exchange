@@ -11,6 +11,11 @@
 					</ul>
 					<ul>
 						<li class="">
+							<a href="${base}/user/modify.htm">修改联系方式</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="">
 							<a href="${base}/user/password.htm">修改密码</a>
 						</li>
 					</ul>

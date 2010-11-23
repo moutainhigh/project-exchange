@@ -13,6 +13,7 @@ import com.throne212.info168.web.dao.AreaDao;
 import com.throne212.info168.web.dao.CateDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
+import com.throne212.info168.web.domain.HotCitySetting;
 import com.throne212.info168.web.domain.Setting;
 
 public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
@@ -33,6 +34,15 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 	}
 	
 	public List<Area> get2ndArea(Long parentId) {
+		if(parentId == -1){//全国的信息，返回所有热门城市
+			List<HotCitySetting> hotCities = areaDao.getAll(HotCitySetting.class);
+			List<Area> hotAreaList = new ArrayList<Area>();
+			for(HotCitySetting h : hotCities){
+				Area a = areaDao.getEntityById(Area.class, h.getEntityId());
+				hotAreaList.add(a);
+			}
+			return hotAreaList;
+		}
 		Area parent = areaDao.getEntityById(Area.class, parentId);
 		if (parent != null) {
 			return areaDao.get2ndAreas(parent);

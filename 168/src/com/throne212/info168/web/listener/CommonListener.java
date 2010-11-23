@@ -19,6 +19,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.HotCitySetting;
+import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.LinkSetting;
 
 public class CommonListener implements ServletContextListener {
@@ -41,6 +42,9 @@ public class CommonListener implements ServletContextListener {
 		// 友情链接数据缓存
 		List linkList = commonBiz.getSetting(LinkSetting.class);
 		e.getServletContext().setAttribute(WebConstants.FREIND_LINKS, linkList);
+		// 关键词有数缓存
+		List keywordsList = commonBiz.getSetting(KeyWordSetting.class);
+		e.getServletContext().setAttribute(WebConstants.KEY_WORD_LIST, keywordsList);
 		// 栏目数据缓存
 		List allCates = commonBiz.getCates();
 		e.getServletContext().setAttribute(WebConstants.ALL_CATES, allCates);

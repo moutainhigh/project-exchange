@@ -8,6 +8,7 @@ import com.throne212.info168.web.common.EncryptUtil;
 import com.throne212.info168.web.common.PageBean;
 import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
+import com.throne212.info168.web.domain.Contact;
 import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
@@ -76,6 +77,18 @@ public class UserAction extends BaseAction {
 		}
 		this.setMsg("信息删除成功");
 		return infoList();
+	}
+	
+	//修改联系方式
+	private Contact contact;
+	public String modify() {
+		if(contact!=null){
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			user.setContact(contact);
+			userBiz.saveOrUpdateEntity(user);
+			this.setMsg("联系方式修改成功");
+		}
+		return "modify";
 	}
 
 	public UserBiz getUserBiz() {
@@ -148,6 +161,14 @@ public class UserAction extends BaseAction {
 
 	public void setInfoIds(Long[] infoIds) {
 		this.infoIds = infoIds;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 }

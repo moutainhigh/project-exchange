@@ -8,7 +8,7 @@ public class Setting {
 	protected String name;//名称
 	protected Integer listorder;//排序编号
 	protected String description;//描述
-	protected Date date;// 更新时间
+	protected Date date = new Date();// 更新时间
 
 	public Long getId() {
 		return id;

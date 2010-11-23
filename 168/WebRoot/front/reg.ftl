@@ -83,6 +83,30 @@
 									</td>
 								</tr>
 								<tr>
+									<td class="reg_bg_one" colspan="4">
+										<label>
+											联系电话:
+										</label>
+										&nbsp;
+										<input type="text" id="tel" name="user.contact.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
+									</td>
+									<td id="emailinfo" class="reg_bg_two">
+										常用的联系电话，最好是手机号码
+									</td>
+								</tr>
+								<tr>
+									<td class="reg_bg_one" colspan="4">
+										<label>
+											QQ号码:
+										</label>
+										&nbsp;
+										<input type="text" id="qq" name="user.contact.qq" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
+									</td>
+									<td id="emailinfo" class="reg_bg_two">
+										常用的QQ号码，能较长时间在线为佳
+									</td>
+								</tr>
+								<tr>
 									<td style="padding: 0pt; margin: 0pt;" class="reg_bg_one" colspan="4">
 										<div style="float: left; margin: 3px 5px 3px 0; padding: 10px 0pt 0pt;">
 											<label>
