@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.throne212.oa.domain.report.Year" table="oa2_report_year">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<property name="value"/>
+	</class>
+</hibernate-mapping>

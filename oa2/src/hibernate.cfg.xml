@@ -18,6 +18,8 @@
 		<mapping resource="com/throne212/oa/domain/person/Person.hbm.xml" />
 		<mapping resource="com/throne212/oa/domain/file/PersonFile.hbm.xml" />
 		<mapping resource="com/throne212/oa/domain/DropdownList.hbm.xml" />
+		<mapping resource="com/throne212/oa/domain/report/WorkReport.hbm.xml" />
+		<mapping resource="com/throne212/oa/domain/report/Year.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

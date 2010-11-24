@@ -37,5 +37,11 @@
 		<!-- 人事文件 -->
 		<subclass discriminator-value="file_type" name="com.throne212.oa.domain.file.FileType"/>
 		<subclass discriminator-value="file_secret" name="com.throne212.oa.domain.file.SecretGrade"/>
+		<!-- 报表 -->
+		<subclass discriminator-value="report_hos_type" name="com.throne212.oa.domain.report.HospitalType"/>
+		<subclass discriminator-value="report_hos" name="com.throne212.oa.domain.report.Hospital">
+			<many-to-one name="orgType" lazy="false"></many-to-one>
+			<property name="date"></property>
+		</subclass>
 	</class>
 </hibernate-mapping>

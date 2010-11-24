@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.throne212.oa.domain.report.WorkReport" table="oa2_report">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<discriminator column="report_type" force="false" insert="true" not-null="true" />
+		<property name="dateType"/>
+		<many-to-one name="org" lazy="false" cascade="none"></many-to-one>
+		<many-to-one name="orgType" lazy="false" cascade="none"></many-to-one>
+		<many-to-one name="year" lazy="false" cascade="none"></many-to-one>
+		<!-- 字段 -->
+		<property name="c1"/>
+		<property name="c2"/>
+		<property name="c3"/>
+		<property name="c4"/>
+		<property name="c5"/>
+		<property name="c6"/>
+		<property name="c7"/>
+		<property name="c8"/>
+		<property name="c9"/>
+		<property name="c10"/>
+		<property name="c11"/>
+		<property name="c12"/>
+		<property name="c13"/>
+		<property name="c14"/>
+		<property name="c15"/>
+		<property name="c16"/>
+		<property name="c17"/>
+		<property name="c18"/>
+		<property name="c19"/>
+		<property name="c20"/>
+		<property name="c21"/>
+		<property name="c22"/>
+		<property name="c23"/>
+		<property name="c24"/>
+		<property name="c25"/>
+		<property name="c26"/>
+		<property name="c27"/>
+		<property name="c28"/>
+		<property name="c29"/>
+		<property name="c30"/>
+		
+		
+		
+		<!-- 子类 -->
+		<subclass discriminator-value="A1" name="com.throne212.oa.domain.report.WorkReportA1"/>
+		<subclass discriminator-value="A2" name="com.throne212.oa.domain.report.WorkReportA2"/>
+		<subclass discriminator-value="A3" name="com.throne212.oa.domain.report.WorkReportA3"/>
+		<subclass discriminator-value="A4" name="com.throne212.oa.domain.report.WorkReportA4"/>
+		<subclass discriminator-value="B1" name="com.throne212.oa.domain.report.WorkReportB1"/>
+		<subclass discriminator-value="B2" name="com.throne212.oa.domain.report.WorkReportB2"/>
+		<subclass discriminator-value="B3" name="com.throne212.oa.domain.report.WorkReportB3"/>
+		<subclass discriminator-value="B4" name="com.throne212.oa.domain.report.WorkReportB4"/>
+		<subclass discriminator-value="B5" name="com.throne212.oa.domain.report.WorkReportB5"/>
+		<subclass discriminator-value="B6" name="com.throne212.oa.domain.report.WorkReportB6"/>
+		<subclass discriminator-value="B7" name="com.throne212.oa.domain.report.WorkReportB7"/>
+	</class>
+</hibernate-mapping>

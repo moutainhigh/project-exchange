@@ -31,6 +31,17 @@
     	<forward name="dic_list" path="/personfile/dic_list.jsp"></forward>
     	<forward name="dic_edit" path="/personfile/dic_edit.jsp"></forward>
     </action>
+    <!-- 报表 -->
+    <action path="/report" type="com.throne212.oa.action.ReportAction" parameter="method">
+    	<forward name="dic_list" path="/report/dic_list.jsp"></forward>
+    	<forward name="dic_edit" path="/report/dic_edit.jsp"></forward>
+    	<forward name="main" path="/report/main.jsp"></forward>
+    	<forward name="default" path="/report/default.jsp"></forward>
+    	<forward name="year" path="/report/year.jsp"></forward>
+    	<forward name="month" path="/report/month.jsp"></forward>
+    	<forward name="season" path="/report/season.jsp"></forward>
+    	<forward name="org" path="/report/org.jsp"></forward>
+    </action>
 
   </action-mappings>
 

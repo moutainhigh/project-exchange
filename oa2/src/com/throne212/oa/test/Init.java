@@ -26,6 +26,8 @@ import com.throne212.oa.domain.person.ZhengZhi;
 import com.throne212.oa.domain.person.ZhiCheng;
 import com.throne212.oa.domain.person.ZhiWu;
 import com.throne212.oa.domain.person.ZhuanYe;
+import com.throne212.oa.domain.report.Hospital;
+import com.throne212.oa.domain.report.HospitalType;
 
 public class Init {
 	public static void main(String[] args) {
@@ -109,6 +111,13 @@ public class Init {
 		
 		String[] secretArr = {"绝密","机密","普通"};
 		saveDropdownList(s,secretArr,SecretGrade.class);
+		
+		//报表
+		String[] hosTypeArr = {"市直医疗卫生单位","卫生院"};
+		saveDropdownList(s,hosTypeArr,HospitalType.class);
+		
+		String[] hosArr = {"四会市第三人民医院","四会市XXX卫生院"};
+		saveDropdownList(s,hosArr,Hospital.class);
 		
 		s.getTransaction().commit();
 		s.close();
