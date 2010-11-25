@@ -46,10 +46,10 @@
 						${y.value }
 					</td>
 					<td align="center">
-						&nbsp;<a href="report.do?method=selectSeason&season=1&year=${y.value}">第一季</a>&nbsp;
-						&nbsp;<a href="report.do?method=selectSeason&season=2&year=${y.value}">第二季</a>&nbsp;
-						&nbsp;<a href="report.do?method=selectSeason&season=3&year=${y.value}">第三季</a>&nbsp;
-						&nbsp;<a href="report.do?method=selectSeason&season=4&year=${y.value}">第四季</a>&nbsp;
+						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=1">第一季</a>&nbsp;
+						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=2">第二季</a>&nbsp;
+						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=3">第三季</a>&nbsp;
+						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=4">第四季</a>&nbsp;
 					</td>
 				</tr>
 				</c:forEach>

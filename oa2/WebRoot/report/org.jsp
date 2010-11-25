@@ -57,7 +57,7 @@
 					<td align="center" width="20%">
 						增加单位：
 					</td>
-					<td align="center">
+					<td align="center" width="60%">
 						<select name="hosId" class="Hospital" id="Hospital">
 							<option value=""></option>
 						</select>
@@ -67,7 +67,8 @@
 					</td>
 				</tr>
 			</table>
-			<br/>
+		</form>
+		<br/>
 			<table width="90%" border="1" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr style="font-size: 14px; font-weight: 600;">					
 					<td align="center">
@@ -79,8 +80,8 @@
 					<td align="center">
 						录入时间
 					</td>
-					<td align="center">
-						删除
+					<td align="center" width="40%">
+						操作
 					</td>
 				</tr>
 				<c:forEach items="${orgList}" var="o" varStatus="status">
@@ -95,11 +96,17 @@
 						${o.date }
 					</td>
 					<td align="center">
-						<a href="${appPath}/report.do?method=removeHospital&hosId=${o.id}&orgTypeId=${param.orgTypeId}">删除</a>
+						<a href="${appPath}/report.do?method=removeHospital&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">删除</a>
+						&nbsp;
+						<a href="${appPath}/report.do?method=downloadReport&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">下载报表</a>
+						<br/>
+						<form method="post" action="${appPath}/excel?orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}" enctype="multipart/form-data" >
+							上传报表：<input type="file" name="myfile" size="1" value="" />
+							<input type="submit" value="上传"/>
+						</form>
 					</td>
 				</tr>
 				</c:forEach>
 			</table>
-		</form>
 	</body>
 </html>

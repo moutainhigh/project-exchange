@@ -1,11 +1,32 @@
 package com.throne212.oa.action;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import jxl.Cell;
+import jxl.CellType;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.write.Blank;
+import jxl.write.Number;
+import jxl.write.WritableCell;
+import jxl.write.WritableCellFeatures;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -16,8 +37,21 @@ import com.throne212.oa.common.Util;
 import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.dao.ReportDao;
 import com.throne212.oa.domain.DropdownList;
+import com.throne212.oa.domain.report.Hospital;
 import com.throne212.oa.domain.report.HospitalType;
 import com.throne212.oa.domain.report.WorkReport;
+import com.throne212.oa.domain.report.WorkReportA1;
+import com.throne212.oa.domain.report.WorkReportA2;
+import com.throne212.oa.domain.report.WorkReportA3;
+import com.throne212.oa.domain.report.WorkReportA4;
+import com.throne212.oa.domain.report.WorkReportB1;
+import com.throne212.oa.domain.report.WorkReportB2;
+import com.throne212.oa.domain.report.WorkReportB3;
+import com.throne212.oa.domain.report.WorkReportB4;
+import com.throne212.oa.domain.report.WorkReportB5;
+import com.throne212.oa.domain.report.WorkReportB6;
+import com.throne212.oa.domain.report.WorkReportB7;
+import com.throne212.oa.domain.report.Year;
 
 public class ReportAction extends DispatchAction{
 	
@@ -98,13 +132,259 @@ public class ReportAction extends DispatchAction{
 	}
 	public ActionForward removeHospital(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
-			reportDao.removeOrgInType(Long.valueOf(request.getParameter("hosId")));
+			reportDao.removeOrgInType(Long.valueOf(request.getParameter("orgId")));
 			request.setAttribute("msg", "移除单位成功");
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "移除单位失败");
 		}
 		return listOrg(mapping,form,request,response);
+	}
+	
+	//上传报表
+	public ActionForward uploadReport(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String upload_flag = (String) request.getAttribute("upload_flag");
+		if("Y".equals(upload_flag)){
+			
+			//得到各类参数
+			Hospital hos = reportDao.getOrgById(Long.valueOf(request.getParameter("orgId")).longValue());
+			String dateType = request.getParameter("dateType");
+			Year y = null;
+			if(!Util.isEmpty(request.getParameter("year"))){
+				y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
+			}
+			Integer season = null;
+			if(!Util.isEmpty(request.getParameter("season"))){
+				season = Integer.valueOf(request.getParameter("season"));
+			}
+			Integer month = null;
+			if(!Util.isEmpty(request.getParameter("month"))){
+				month = Integer.valueOf(request.getParameter("month"));
+				
+			}
+			
+			String excelPath = (String) request.getAttribute("excelPath");
+			
+			try {
+				//通过excel文件创建报表对象
+				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, hos, y, dateType, season, month);
+				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, hos, y, dateType, season, month);
+				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, hos, y, dateType, season, month);
+				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, hos, y, dateType, season, month);
+				
+				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, hos, y, dateType, season, month);
+				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, hos, y, dateType, season, month);
+				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, hos, y, dateType, season, month);
+				WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, hos, y, dateType, season, month);
+				WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, hos, y, dateType, season, month);
+				WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, hos, y, dateType, season, month);
+				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, hos, y, dateType, season, month);
+
+				WorkReport[][] arr = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
+
+				FileInputStream fin = new FileInputStream(excelPath);
+				fill(arr, fin);
+
+				//测试打印
+				for (int i = 0; i < arr.length; i++) {
+					for (int j = 0; j < arr[i].length; j++) {
+						System.out.print("报表"+i+"*"+j+" : ");
+						printReport(arr[i][j]);
+					}
+				}
+				
+				//保存数据
+				for (int i = 0; i < arr.length; i++) {
+					for (int j = 0; j < arr[i].length; j++) {
+						arr[i][j].setOrg(hos);
+						arr[i][j].setDateType(dateType);
+						arr[i][j].setYear(y);
+						arr[i][j].setSeason(season);
+						arr[i][j].setMonth(month);
+						reportDao.saveOrUpdateReport(arr[i][j]);
+					}
+				}
+				
+				hos.setDate(new Date());
+				reportDao.saveOrUpdateHospital(hos);
+				
+				request.setAttribute("msg", "报表导入成功");
+			} catch (RuntimeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				request.setAttribute("msg", "报表上传失败，请检查报表格式是否正确");
+			}
+			
+		}else{
+			request.setAttribute("msg", "报表上传失败");
+		}
+		return listOrg(mapping,form,request,response);
+	}
+	//填充报表数据
+	private void fill(WorkReport[][] reports, InputStream is) throws Exception {
+		Workbook workbook = Workbook.getWorkbook(is);
+		Sheet sheet1 = workbook.getSheet(0);
+		Sheet sheet2 = workbook.getSheet(1);
+
+		fill(reports[0][0], sheet1, 7, 30);
+		fill(reports[0][1], sheet1, 17, 20);
+		fill(reports[0][2], sheet1, 34, 10);
+		fill(reports[0][3], sheet1, 44, 18);
+
+		fill(reports[1][0], sheet2, 11, 26);
+		fill(reports[1][1], sheet2, 26, 23);
+		fill(reports[1][2], sheet2, 42, 22);
+		fill(reports[1][3], sheet2, 60, 25);
+		fill(reports[1][4], sheet2, 77, 16);
+		fill(reports[1][5], sheet2, 94, 15);
+		fill(reports[1][6], sheet2, 105, 18);
+
+		workbook.close();
+	}
+	//填充某一个sheet的报表
+	private void fill(WorkReport report, Sheet sheet, int row, int len) {
+		for (int i = 0; i < len; i++) {
+			Cell c = sheet.getCell(i, row - 1);
+			if (c.getType() == CellType.NUMBER && !Util.isEmpty(c.getContents())) {
+				Integer value = Integer.valueOf(c.getContents());
+				report.setC(i + 1, value);
+			}
+		}
+	}
+	private void fillToExcel(WorkReport report, WritableSheet sheet, int row, int len) {
+		for (int i = 0; i < len; i++) {
+			Number number = new Number(i,row-1,report.getC(i+1).doubleValue());
+			try {
+				sheet.addCell(number);
+			} catch (RowsExceededException e) {
+				e.printStackTrace();
+			} catch (WriteException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public ActionForward downloadReport(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//得到各类参数
+		Hospital hos = reportDao.getOrgById(Long.valueOf(request.getParameter("orgId")).longValue());
+		String dateType = request.getParameter("dateType");
+		Year y = null;
+		if(!Util.isEmpty(request.getParameter("year"))){
+			y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
+		}
+		Integer season = null;
+		if(!Util.isEmpty(request.getParameter("season"))){
+			season = Integer.valueOf(request.getParameter("season"));
+		}
+		Integer month = null;
+		if(!Util.isEmpty(request.getParameter("month"))){
+			month = Integer.valueOf(request.getParameter("month"));
+			
+		}
+		
+		
+		//文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "report"+File.separator+"excel";
+		System.out.println("excel saved path : " + path);
+		String sourceFile = path+File.separator+"template.xls";
+		String targetFile = path+File.separator+hos.getName()+y.getValue()+".xls";
+		/*FileInputStream fin = new FileInputStream(new File(path+File.separator+"template.xls"));
+		FileOutputStream fos = new FileOutputStream(new File(path+File.separator+hos.getName()+y.getValue()+".xls"));
+		int len = -1;
+		byte[] buff = new byte[1024];
+		while((len=fin.read(buff))>0){
+			fos.write(buff, 0, len);
+		}
+		fos.close();
+		fin.close();*/
+		
+		//更新文件
+		WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, hos, y, dateType, season, month);
+		if(reportA1.getId() == null){
+			request.setAttribute("msg", "报表还没有上传");
+			return listOrg(mapping,form,request,response);
+		}
+		WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, hos, y, dateType, season, month);
+		WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, hos, y, dateType, season, month);
+		WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, hos, y, dateType, season, month);
+		
+		WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, hos, y, dateType, season, month);
+		WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, hos, y, dateType, season, month);
+		WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, hos, y, dateType, season, month);
+		WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, hos, y, dateType, season, month);
+		WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, hos, y, dateType, season, month);
+		WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, hos, y, dateType, season, month);
+		WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, hos, y, dateType, season, month);
+		
+		WorkReport[][] reports = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
+		
+		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile),rw);
+		
+		WritableSheet sheet1 = workbook.getSheet(0);
+		WritableSheet sheet2 = workbook.getSheet(1);
+
+		fillToExcel(reports[0][0], sheet1, 7, 30);
+		fillToExcel(reports[0][1], sheet1, 17, 20);
+		fillToExcel(reports[0][2], sheet1, 34, 10);
+		fillToExcel(reports[0][3], sheet1, 44, 18);
+
+		fillToExcel(reports[1][0], sheet2, 11, 26);
+		fillToExcel(reports[1][1], sheet2, 26, 23);
+		fillToExcel(reports[1][2], sheet2, 42, 22);
+		fillToExcel(reports[1][3], sheet2, 60, 25);
+		fillToExcel(reports[1][4], sheet2, 77, 16);
+		fillToExcel(reports[1][5], sheet2, 94, 15);
+		fillToExcel(reports[1][6], sheet2, 105, 18);
+
+		workbook.write();
+		workbook.close();
+		rw.close();
+		
+		//request.getRequestDispatcher("/report/excel/"+hos.getName()+y.getValue()+".xls").forward(request, response);
+		//response.sendRedirect(request.getSession().getServletContext().getAttribute("appPath")+"/report/excel/"+hos.getName()+y.getValue()+".xls");
+		
+		downFile(request,response,"application/vnd.ms-excel",hos.getName()+y.getValue()+".xls",path+File.separator);
+		
+		return null;
+	}
+	
+	private void downFile(HttpServletRequest request, HttpServletResponse response, String contentType, String filename, String path) {
+		response.setContentType(contentType);
+		response.setHeader("Content-disposition", "attachment; filename=" + filename);
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		
+		String absPathFileName = path + filename;
+		try {
+			bis = new BufferedInputStream(new FileInputStream(absPathFileName));
+			bos = new BufferedOutputStream(response.getOutputStream());
+			byte[] buff = new byte[2048];
+			int bytesRead;
+			while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+				bos.write(buff, 0, bytesRead);
+			}
+		} catch (final IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				bis.close();
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void printReport(WorkReport report) {
+		for (int i = 1; i <= 30; i++) {
+			System.out.print(report.getC(i) + ",");
+		}
+		System.out.println();
 	}
 	
 	//数据字典列表

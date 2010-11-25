@@ -46,7 +46,7 @@
 						${y.value }
 					</td>
 					<td align="center">
-						<a href="${appPath}/report.do?method=selectYear&year=${y.value}">查看</a>
+						<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}">查看</a>
 					</td>
 				</tr>
 				</c:forEach>

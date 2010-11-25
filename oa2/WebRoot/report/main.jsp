@@ -26,14 +26,14 @@
 						$(this).css('background','url(${appPath}/images/sub.jpg) 2px 40% no-repeat');
 					}
 					//链接地址
-					var content = $(this).html();
+					/*var content = $(this).html();
 					if(content == '年报表' || content=='1-9月报表' || content=='半年报表'){
 						$('#reportFrame').attr('src','${appPath}/report.do?method=listYear');
 					}else if(content=='季报表'){
 						$('#reportFrame').attr('src','${appPath}/report.do?method=listSeason');
 					}else if(content=='月报表'){
 						$('#reportFrame').attr('src','${appPath}/report.do?method=listMonth');
-					}
+					}*/
 				});
 				$('.treeItem a').click(function(){
 					$(this).css('color','red');
@@ -76,7 +76,7 @@
 							<h2>年报表</h2>
 							<ul>
 								<c:forEach items="${orgTypeList}" var="t">
-								<li><a href="${appPath}/report.do?method=listOrg&dateType=y&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
+								<li><a href="${appPath}/report.do?method=listYear&dateType=y&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
 								<li><a href="#" target="reportFrame">同期对比</a></li>
 							</ul>
@@ -85,7 +85,7 @@
 							<h2>1-9月报表</h2>
 							<ul>
 								<c:forEach items="${orgTypeList}" var="t">
-								<li><a href="${appPath}/report.do?method=listOrg&dateType=9&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
+								<li><a href="${appPath}/report.do?method=listYear&dateType=9&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
 								<li><a href="#" target="reportFrame">同期对比</a></li>
 							</ul>
@@ -94,7 +94,7 @@
 							<h2>半年报表</h2>
 							<ul>
 								<c:forEach items="${orgTypeList}" var="t">
-								<li><a href="${appPath}/report.do?method=listOrg&dateType=h&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
+								<li><a href="${appPath}/report.do?method=listYear&dateType=h&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
 								<li><a href="#" target="reportFrame">同期对比</a></li>
 							</ul>
@@ -103,7 +103,7 @@
 							<h2>季报表</h2>
 							<ul>
 								<c:forEach items="${orgTypeList}" var="t">
-								<li><a href="${appPath}/report.do?method=listOrg&dateType=s&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
+								<li><a href="${appPath}/report.do?method=listSeason&dateType=s&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
 								<li><a href="#" target="reportFrame">同期对比</a></li>
 							</ul>
@@ -112,7 +112,7 @@
 							<h2>月报表</h2>
 							<ul>
 								<c:forEach items="${orgTypeList}" var="t">
-								<li><a href="${appPath}/report.do?method=listOrg&dateType=m&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
+								<li><a href="${appPath}/report.do?method=listMonth&dateType=m&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
 								<li><a href="#" target="reportFrame">同期对比</a></li>
 							</ul>

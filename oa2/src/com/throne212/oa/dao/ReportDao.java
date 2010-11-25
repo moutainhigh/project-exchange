@@ -48,7 +48,7 @@ public class ReportDao {
 		Hospital hos = (Hospital) s.get(Hospital.class, hosId);
 		HospitalType type = (HospitalType) s.get(HospitalType.class, typeId);
 		hos.setOrgType(type);
-		hos.setDate(new Date());
+		//hos.setDate(new Date());
 		s.saveOrUpdate(hos);
 		s.getTransaction().commit();
 		s.close();
@@ -66,11 +66,24 @@ public class ReportDao {
 	
 	public WorkReport getWorkReportById(long id) {
 		Session s = HibernateSessionFactory.getSession();
-		s.beginTransaction();
 		WorkReport doc = (WorkReport) s.get(WorkReport.class, Long.valueOf(id));
-		s.getTransaction().commit();
 		s.close();
 		return doc;
+	}
+	
+	public Hospital getOrgById(long id) {
+		Session s = HibernateSessionFactory.getSession();
+		Hospital h = (Hospital) s.get(Hospital.class, Long.valueOf(id));
+		s.close();
+		return h;
+	}
+	
+	public Year getYear(int year) {
+		Session s = HibernateSessionFactory.getSession();
+		String hql = "from Year y where y.value=?";
+		Year y = (Year) s.createQuery(hql).setParameter(0, Integer.valueOf(year)).uniqueResult();
+		s.close();
+		return y;
 	}
 
 	public void addNewYear(int year) {
@@ -90,10 +103,10 @@ public class ReportDao {
 		s.close();
 	}
 
-	public void updateWorkReport(WorkReport doc) {
+	public void saveOrUpdateHospital(Hospital hos) {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
-		s.saveOrUpdate(doc);
+		s.saveOrUpdate(hos);
 		s.getTransaction().commit();
 		s.close();
 	}
@@ -265,6 +278,43 @@ public class ReportDao {
 		List list = s.createQuery(hql).list();
 		s.close();
 		return list;
+	}
+	
+	public WorkReport getExistReport(Class reportClass,Hospital hos,Year y,String dateType,Integer season,Integer month) throws Exception{
+		List params = new ArrayList();
+		params.add(hos);
+		params.add(y);
+		params.add(dateType);
+		String hql = "from "+reportClass.getName()+" r where r.org=? and year=? and dateType=?";
+		if(season != null){
+			hql = hql + " and season=?";
+			params.add(season);
+		}else if(month != null){
+			hql = hql + " and month=?";
+			params.add(month);
+		}
+		
+		Session s = HibernateSessionFactory.getSession();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.size();i++){
+			q.setParameter(i, params.get(i));
+		}
+		List list = q.list();
+		if(list != null && list.size() > 0){
+			return (WorkReport) list.get(0);
+		}
+		
+		s.close();
+		
+		return (WorkReport) reportClass.newInstance();
+	}
+	
+	public void saveOrUpdateReport(WorkReport report){
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		s.saveOrUpdate(report);
+		s.getTransaction().commit();
+		s.close();
 	}
 	
 }

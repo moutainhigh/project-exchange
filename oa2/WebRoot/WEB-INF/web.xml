@@ -47,13 +47,21 @@
     <servlet-name>ajax</servlet-name>
     <url-pattern>/ajax</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
   	<servlet-name>photo</servlet-name>
   	<servlet-class>com.throne212.oa.servlet.PhotoUploadServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>photo</servlet-name>
     <url-pattern>/photo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>excel</servlet-name>
+  	<servlet-class>com.throne212.oa.servlet.ExcelUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>excel</servlet-name>
+    <url-pattern>/excel</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

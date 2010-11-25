@@ -4,19 +4,14 @@ import java.lang.reflect.Field;
 
 public class WorkReport {
 
-	protected Long id;//ï¿½ï¿½ï¿½
-	protected Year year;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
-	//y:ï¿½ê±¨ï¿½ï¿½;
-	//h:ï¿½Ï°ï¿½ï¿½ï¿½;
-	//9:1-9;
-	//s:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;
-	//m:ï¿½Â±ï¿½ï¿½ï¿½
-	protected String dateType;
-	protected HospitalType orgType;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	protected Hospital org;//ï¿½ï¿½Î»
-	
-	//ï¿½Ö¶ï¿½
+	protected Long id;// Ö÷¼ü
+	protected Year year;// Äê·Ý
+	protected Integer season;// ¼¾¶È
+	protected Integer month;// ÔÂ·Ý
+	protected String dateType;// ÈÕÆÚÀàÐÍ
+	protected Hospital org;// »ú¹¹
+
+	// ×Ö¶Î
 	protected Integer c1;
 	protected Integer c2;
 	protected Integer c3;
@@ -48,26 +43,31 @@ public class WorkReport {
 	protected Integer c29;
 	protected Integer c30;
 
-	public void setC(int index,Integer value){
+	public void setC(int index, Integer value) {
 		Field f;
 		try {
-			f = this.getClass().getDeclaredField("c"+index);
+			f = WorkReport.class.getDeclaredField("c" + index);
+			if(!f.isAccessible())
+				f.setAccessible(true);
 			f.set(this, value);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 	}
-	public Integer getC(int index){
+
+	public Integer getC(int index) {
 		Field f;
 		try {
-			f = this.getClass().getDeclaredField("c"+index);
+			f = WorkReport.class.getDeclaredField("c" + index);
+			if(!f.isAccessible())
+				f.setAccessible(true);
 			return (Integer) f.get(this);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 		return null;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -92,20 +92,28 @@ public class WorkReport {
 		this.dateType = dateType;
 	}
 
-	public HospitalType getOrgType() {
-		return orgType;
-	}
-
-	public void setOrgType(HospitalType orgType) {
-		this.orgType = orgType;
-	}
-
 	public Hospital getOrg() {
 		return org;
 	}
 
 	public void setOrg(Hospital org) {
 		this.org = org;
+	}
+
+	public Integer getSeason() {
+		return season;
+	}
+
+	public void setSeason(Integer season) {
+		this.season = season;
+	}
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
 	}
 
 	public Integer getC1() {

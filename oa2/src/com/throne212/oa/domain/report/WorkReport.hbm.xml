@@ -9,8 +9,9 @@
 		<discriminator column="report_type" force="false" insert="true" not-null="true" />
 		<property name="dateType"/>
 		<many-to-one name="org" lazy="false" cascade="none"></many-to-one>
-		<many-to-one name="orgType" lazy="false" cascade="none"></many-to-one>
 		<many-to-one name="year" lazy="false" cascade="none"></many-to-one>
+		<property name="season"/>
+		<property name="month"/>
 		<!-- 字段 -->
 		<property name="c1"/>
 		<property name="c2"/>

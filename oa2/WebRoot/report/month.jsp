@@ -47,7 +47,7 @@
 					</td>
 					<td align="center">
 						<c:forEach begin="1" end="12" var="m">
-						&nbsp;<a href="report.do?method=selectMonth&month=${m}&year=${y.value}">${m}ÔÂ</a>
+						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&month=${m}">${m}ÔÂ</a>
 						</c:forEach>
 					</td>
 				</tr>
