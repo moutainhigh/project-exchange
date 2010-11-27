@@ -48,9 +48,8 @@
 		</style>
 	</head>
 	<body>
-		<form name="messageForm" method="post" action="${appPath}/report.do" onsubmit="return(checkHospital());">
+		<form name="messageForm" method="post" action="${appPath}/report.do?dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}" onsubmit="return(checkHospital());">
 			<input type="hidden" name="method" value="addHospital"/>
-			<input type="hidden" name="orgTypeId" value="${param.orgTypeId}"/>
 			<div style="height: 25px;"></div>
 			<table width="90%" border="1" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr>					
@@ -96,7 +95,7 @@
 						${o.date }
 					</td>
 					<td align="center">
-						<a href="${appPath}/report.do?method=removeHospital&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">删除</a>
+						<a href="javascript:void(0);" onclick="if(confirm('您确定吗？')){self.location.href='${appPath}/report.do?method=removeHospital&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}'}">删除</a>
 						&nbsp;
 						<a href="${appPath}/report.do?method=downloadReport&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">下载报表</a>
 						<br/>

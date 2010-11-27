@@ -78,7 +78,7 @@
 								<c:forEach items="${orgTypeList}" var="t">
 								<li><a href="${appPath}/report.do?method=listYear&dateType=y&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
-								<li><a href="#" target="reportFrame">同期对比</a></li>
+								<li><a href="${appPath}/report.do?method=listCompare&dateType=y" target="reportFrame">同期对比</a></li>
 							</ul>
 						</div>
 						<div class="treeItem">
@@ -87,7 +87,7 @@
 								<c:forEach items="${orgTypeList}" var="t">
 								<li><a href="${appPath}/report.do?method=listYear&dateType=9&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
-								<li><a href="#" target="reportFrame">同期对比</a></li>
+								<li><a href="${appPath}/report.do?method=listCompare&dateType=9" target="reportFrame">同期对比</a></li>
 							</ul>
 						</div>
 						<div class="treeItem">
@@ -96,7 +96,7 @@
 								<c:forEach items="${orgTypeList}" var="t">
 								<li><a href="${appPath}/report.do?method=listYear&dateType=h&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
-								<li><a href="#" target="reportFrame">同期对比</a></li>
+								<li><a href="${appPath}/report.do?method=listCompare&dateType=h" target="reportFrame">同期对比</a></li>
 							</ul>
 						</div>
 						<div class="treeItem">
@@ -105,7 +105,7 @@
 								<c:forEach items="${orgTypeList}" var="t">
 								<li><a href="${appPath}/report.do?method=listSeason&dateType=s&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
-								<li><a href="#" target="reportFrame">同期对比</a></li>
+								<li><a href="${appPath}/report.do?method=listCompare&dateType=s" target="reportFrame">同期对比</a></li>
 							</ul>
 						</div>
 						<div class="treeItem">
@@ -114,7 +114,7 @@
 								<c:forEach items="${orgTypeList}" var="t">
 								<li><a href="${appPath}/report.do?method=listMonth&dateType=m&orgTypeId=${t.id}" target="reportFrame">${t.name}</a></li>
 								</c:forEach>
-								<li><a href="#" target="reportFrame">同期对比</a></li>
+								<li><a href="${appPath}/report.do?method=listCompare&dateType=m" target="reportFrame">同期对比</a></li>
 							</ul>
 						</div>
 					</td>

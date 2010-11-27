@@ -41,6 +41,7 @@
     	<forward name="month" path="/report/month.jsp"></forward>
     	<forward name="season" path="/report/season.jsp"></forward>
     	<forward name="org" path="/report/org.jsp"></forward>
+    	<forward name="compare" path="/report/compare.jsp"></forward>
     </action>
 
   </action-mappings>

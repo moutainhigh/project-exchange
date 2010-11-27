@@ -5,8 +5,10 @@ import java.text.Collator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -301,6 +303,7 @@ public class ReportDao {
 		}
 		List list = q.list();
 		if(list != null && list.size() > 0){
+			s.close();
 			return (WorkReport) list.get(0);
 		}
 		
@@ -316,5 +319,6 @@ public class ReportDao {
 		s.getTransaction().commit();
 		s.close();
 	}
+	
 	
 }
