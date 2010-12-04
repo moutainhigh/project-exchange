@@ -136,6 +136,7 @@ public class FetchAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 			JdbcUtil.rollback(conn);
+			return "fetch_fail";
 		} finally {
 			if (fis != null)
 				try {

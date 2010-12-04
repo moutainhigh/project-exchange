@@ -23,6 +23,7 @@
     	<action name="fetch_*" method="{1}" class="com.throne212.tg.action.FetchAction">
     		<result name="generate_succ">/generate_succ.jsp</result>
     		<result name="fetch_succ">/fetch_succ.jsp</result>
+    		<result name="fetch_fail">/fetch_fail.jsp</result>
     	</action>	
     </package>
     <package name="json" extends="json-default">
