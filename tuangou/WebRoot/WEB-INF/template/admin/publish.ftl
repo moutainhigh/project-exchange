@@ -14,7 +14,7 @@
 		<div class="wrapper">
 			<#include "left.ftl">
 			<div class="right">
-				
+				团购信息发布
 			</div>
 			<div class="clear"></div>
 		</div>
