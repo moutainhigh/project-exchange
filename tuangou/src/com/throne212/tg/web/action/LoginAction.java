@@ -5,11 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.throne212.info168.web.biz.UserBiz;
-import com.throne212.info168.web.common.Util;
-import com.throne212.info168.web.common.WebConstants;
-import com.throne212.info168.web.domain.Admin;
-import com.throne212.info168.web.domain.User;
+import com.throne212.tg.web.biz.UserBiz;
+import com.throne212.tg.web.common.Util;
+import com.throne212.tg.web.common.WebConstants;
+import com.throne212.tg.web.domain.User;
 
 public class LoginAction extends BaseAction {
 
@@ -26,7 +25,12 @@ public class LoginAction extends BaseAction {
 
 	public String execute() {
 		HttpSession session = ServletActionContext.getRequest().getSession();
-		boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
+		//boolean isResponseCorrect = RandAction.capService.validateResponseForID(session.getId(),rand);
+		Boolean isResponseCorrect = (Boolean) session.getAttribute("isResponseCorrect");
+		if (isResponseCorrect==null || !isResponseCorrect) {
+			this.setMsg("验证码不一致");
+			return "fail";
+		}
 		if (Util.isEmpty(rand) || !isResponseCorrect) {
 			this.setMsg("验证码错误");
 			return "fail";
@@ -41,7 +45,7 @@ public class LoginAction extends BaseAction {
 			return "fail";
 		}
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
-		if (user instanceof Admin) {
+		if (user.getLoginName().equals("admin")) {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
 			return "admin";
 		}

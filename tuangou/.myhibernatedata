@@ -1,5 +1,5 @@
 #
-#Sat Oct 09 23:45:16 CST 2010
+#Sun Dec 05 20:11:32 CST 2010
 genBasicCompId=true
 sessionFactoryName=com.throne212.tg.web.util.HibernateSessionFactory
 profile=
@@ -10,13 +10,13 @@ detectM2M=false
 reStrategyClass=
 springDaoFile=
 useJavaTypes=true
-keyGenerator=
+keyGenerator=increment
 libInstallFolder=WebRoot/WEB-INF/lib
 addLibs2Project=true
 genVersionTag=false
 sessionFactoryId=
 basePersistenceClass=
-reSettingsFile=
+reSettingsFile=/tuangou/hibernate.reveng.xml
 configFile=/tuangou/src/hibernate.cfg.xml
 createConfigFile=true
 addLibs2Classpath=true

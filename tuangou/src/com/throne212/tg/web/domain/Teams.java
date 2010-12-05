@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
  * @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "teams")
+@Table(name = "tg_teams")
 public class Teams implements java.io.Serializable {
 
 	// Fields

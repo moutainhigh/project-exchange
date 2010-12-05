@@ -1,7 +1,7 @@
 package com.throne212.tg.web.action;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.throne212.info168.web.common.WebConstants;
+import com.throne212.tg.web.common.WebConstants;
 
 public class LogoutAction extends BaseAction {
 

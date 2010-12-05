@@ -6,4 +6,9 @@
 	<bean id="baseDao" class="com.throne212.tg.web.dao.impl.BaseDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<bean id="userDao" class="com.throne212.tg.web.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 </beans>

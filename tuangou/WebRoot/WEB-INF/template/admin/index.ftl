@@ -2,13 +2,13 @@
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<title>${appTitle!"团购导航程序"}</title>
-	<link href="${base}/css/basic.css" type="text/css" rel="stylesheet" />
-	<link href="${base}/css/layout.css" type="text/css" rel="stylesheet" />
+	<link href="${base}/admin/css/basic.css" type="text/css" rel="stylesheet" />
+	<link href="${base}/admin/css/layout.css" type="text/css" rel="stylesheet" />
 </head>
 	<body>
 		<div class="header">
 			<h2>网购导航网站后台管理</h2>
-			<img src="images/b2.jpg"/>
+			<img src="${base}/admin/images/b2.jpg"/>
 			<div class="clear"></div>
 		</div>
 		<div class="wrapper">
@@ -24,8 +24,8 @@
 						</tbody></table>
 					</div>
 					<div class="b">
-						<a target="_blank" href="index.php" class="fl">网站首页</a>
-						<a onclick="confirm('确定要退出管理中心吗?')" target="_parent" href="index.php?c=account&amp;m=logout" class="fr">安全退出</a>
+						<a target="_blank" href="${base}/index.htm" class="fl">网站首页</a>
+						<a onclick="confirm('确定要退出管理中心吗?')" target="_parent" href="${base}/logout" class="fr">安全退出</a>
 					</div>
 				</div>
 				<dl>

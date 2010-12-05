@@ -10,5 +10,15 @@ public class WebConstants {
 		WEB_PATH = path;
 	}
 	
+	public static final String APP_PATH = "appPath";
+	public static final String APP_TITLE = "appTitle";
+	public static final String APP_DESC = "appDesc";
+	public static final String APP_KEY_WORDS = "appKeywords";
+	
+	//session
+	public static final String SESS_USER_OBJ = "userObj";
+	public static final String SESS_CITY = "currCity";
+	public static final String SESS_IMAGE = "sess_image";
+	
 	
 }

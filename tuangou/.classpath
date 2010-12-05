@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="cfg"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/FCKeditor-2.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/antlr-2.7.6.jar"/>
@@ -27,6 +26,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ejb3-persistence.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/filterbuilder.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/freemarker.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-3.3.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-annotations.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-commons-annotations.jar"/>
@@ -39,11 +39,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jta.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jtds-1.2.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/junit-3.8.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/junit-4.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/msbase.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mssqlserver.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/msutil.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ognl-2.6.11.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/persistence.jar"/>
@@ -59,10 +56,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-core-2.1.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-spring-plugin-2.1.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/thumbelina.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/velocity-1.5.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/velocity-tools-view-1.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xalan.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-2.1.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcaptcha-1.0-all.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

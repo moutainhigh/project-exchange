@@ -21,6 +21,7 @@
 		org.hibernate.cache.HashtableCacheProvider
 	</property>
 	<mapping class="com.throne212.tg.web.domain.Teams" />
+	<mapping class="com.throne212.tg.web.domain.User" />
 </session-factory>
 </hibernate-configuration>
 

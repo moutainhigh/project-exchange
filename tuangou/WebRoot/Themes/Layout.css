@@ -1,4 +1,4 @@
-﻿/* ----- 图片切换----- */
+/* ----- 图片切换----- */
 
 .pic-imgnews{
 	position:relative;
@@ -32,7 +32,7 @@
 	height:14px;
 	line-height:14px;
 	overflow:hidden;
-	right:3px;
+	right:5px;
 	font-family:Arial;
 	font-size:10px;
 	color:#fff;
@@ -122,7 +122,7 @@
 .togolist dl{
 	float:left;
 	width:225px;
-	margin: 5px;
+	margin: 5px 2px;
 }
 .togolist dt{
 	float:left;
@@ -312,4 +312,7 @@
 .deal_history tr:hover td,.deal_history tr:hover a{color:#c60;}
 
 
-.login{line-height: 350;background: url('images/login_bg.gif') right 50% no-repeat;}
+/*登录*/
+.login{background: url('images/login_bg.gif') right 50% no-repeat;}
+.login ul{margin:5px 0px 5px 50px;}
+.login ul li{line-height: 50px;float:none;}

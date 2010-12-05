@@ -6,4 +6,8 @@
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
 	
+	<bean id="userBiz" class="com.throne212.tg.web.biz.impl.UserBizImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
 </beans>
