@@ -8,13 +8,97 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="action,htm,php,asp,aspx"></constant>
+	<constant name="struts.action.extension" value="action,htm,php,asp,aspx,,"></constant>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
     <package name="struts2" namespace="/" extends="struts-default">
+    	<result-types>
+            <result-type name="staticview" class="com.throne212.tg.web.result.FreemarkerResult"/>
+        </result-types>
 		<action name="test" class="com.throne212.tg.web.action.TestAction">
 			<result name="success" type="freemarker">/WEB-INF/template/test.ftl</result>
+		</action>
+		<action name="test" class="com.throne212.tg.web.action.TestAction">
+			<result name="success" type="staticview">
+				<param name="location">front/page.ftl</param>
+				<param name="contentType">text/html</param>
+				<param name="fileName">${info.id}.html</param>
+				<param name="staticTemplate">front/page.ftl</param>
+				<param name="filePath">info</param>
+			</result>
+		</action>
+    	<!-- 登进 -->
+		<action name="login_action" class="com.throne212.tg.web.action.LoginAction">
+			<result name="admin" type="redirect">/admin/index.htm</result>
+			<result name="success" type="redirect">/user/infoList.htm</result>
+			<result name="fail" type="chain">
+				<param name="actionName">login</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="pre_url" type="redirect">${preUrl}</result>
+		</action>
+		<!-- 登出 -->
+		<action name="logout_action" class="com.throne212.tg.web.action.LogoutAction">
+			<result name="success" type="redirect">/index.htm</result>
+		</action>
+		<!-- 注册 -->
+		<action name="reg_action" class="com.throne212.tg.web.action.RegAction">
+			<result name="success" type="redirect">/user/infoList.htm</result>
+			<result name="fail" type="chain">
+				<param name="actionName">reg</param>
+         		<param name="namespace">/</param> 
+			</result>
+		</action>
+		<!-- 验证码 -->
+		<action name="rand" class="com.throne212.tg.web.action.RandAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+			</result>
+		</action>
+		<!-- 信息首页和详细页面 -->
+		<action name="/info/*/*" class="com.throne212.tg.web.action.InfoAction">
+			<param name="cityPinyin">{1}</param>
+			<param name="catePinyin">{2}</param>
+			<result name="list" type="freemarker">/front/list.ftl</result>
+			<result name="page" type="freemarker">/front/page.ftl</result>
+			<result name="index" type="chain">
+				<param name="actionName">index</param>
+         		<param name="namespace">/</param> 
+			</result>
+		</action>
+		<!-- 信息详细页面 -->
+		<action name="/info/*/*/*" class="com.throne212.tg.web.action.InfoAction">
+			<param name="cityPinyin">{1}</param>
+			<param name="catePinyin">{2}</param>
+			<param name="infoId">{3}</param>
+			<!-- <result name="page" type="freemarker">/front/page.ftl</result> -->
+			<result name="page" type="staticview">
+				<param name="location">front/page.ftl</param>
+				<param name="contentType">text/html</param>
+				<param name="fileName">${info.id}.html</param>
+				<param name="staticTemplate">front/page.ftl</param>
+				<param name="filePath">info</param>
+			</result>
+		</action>
+		<!-- 搜索页面 -->
+		<action name="/search/*/*" class="com.throne212.tg.web.action.SearchAction">
+			<param name="keywords">{1}</param>
+			<param name="catePinyin">{2}</param>
+			<result name="success" type="freemarker">/front/search.ftl</result>
+			<result name="index" type="chain">
+				<param name="actionName">index</param>
+         		<param name="namespace">/</param> 
+			</result>
+		</action>
+		<!-- 直接访问模板文件 -->
+		<action name="*" class="com.throne212.tg.web.action.BaseAction">
+			<result name="success" type="freemarker">/front/{1}.ftl</result>
+			<result name="index" type="chain">
+				<param name="actionName">info/${cityPinyin}</param>
+         		<param name="namespace">/</param> 
+			</result>
 		</action>
     </package>
     

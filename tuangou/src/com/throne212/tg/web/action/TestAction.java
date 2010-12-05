@@ -1,6 +1,6 @@
 package com.throne212.tg.web.action;
 
-public class TestAction {
+public class TestAction extends BaseAction{
 
 	private String name;
 

@@ -2,8 +2,8 @@
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<title>${appTitle!"团购导航程序"}</title>
-	<link href="css/basic.css" type="text/css" rel="stylesheet" />
-	<link href="css/layout.css" type="text/css" rel="stylesheet" />
+	<link href="${base}/css/basic.css" type="text/css" rel="stylesheet" />
+	<link href="${base}/css/layout.css" type="text/css" rel="stylesheet" />
 </head>
 	<body>
 		<div class="header">
