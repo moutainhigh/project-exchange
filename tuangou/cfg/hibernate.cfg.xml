@@ -22,6 +22,10 @@
 	</property>
 	<mapping class="com.throne212.tg.web.domain.Teams" />
 	<mapping class="com.throne212.tg.web.domain.User" />
+	<mapping class="com.throne212.tg.web.domain.Component" />
+	<mapping class="com.throne212.tg.web.domain.TeamCategory" />
+	<mapping class="com.throne212.tg.web.domain.SiteType" />
+	<mapping class="com.throne212.tg.web.domain.Site" />
 </session-factory>
 </hibernate-configuration>
 

@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<#include "head.ftl">
+		<script>
+			var base = '${base}';
+		</script>
 		<script src="${base}/js/login.js"></script>
 	</head>
 	<body>

@@ -15,6 +15,11 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+	<listener>
+		<listener-class>
+			com.throne212.tg.web.listener.CommonListener
+		</listener-class>
+	</listener>
     <!-- struts2 sessiongs -->
     <filter>
     	<filter-name>struts2</filter-name>

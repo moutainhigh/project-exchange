@@ -14,7 +14,9 @@
 		<div class="wrapper">
 			<#include "left.ftl">
 			<div class="right">
-				
+				<div style="font-family: '微软雅黑',Arial,sans-serif; font-size: 28px; text-align: center; padding: 130px 0pt 0pt;">
+					欢迎登陆 <strong>${appTitle!'团购导航网站'}</strong> 管理中心
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>

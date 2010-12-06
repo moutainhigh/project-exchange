@@ -59,9 +59,9 @@ function check_rand(){
 		alertInfo(2,'必须填入验证码');
 		return false;
 	}
-	$.getJSON("ajax/checkRand.action",{rand:rand}, function(rst){
+	$.getJSON(base+"/ajax/checkRand.action",{rand:rand}, function(rst){
   		if('succ'==rst){
-  			alertInfo(2,'格式正确','green');	
+  			alertInfo(2,'正确','green');	
   		}else{
   			alertInfo(2,'验证码输入错误，请检查');
   		}

@@ -78,8 +78,16 @@
          		<param name="namespace">/</param> 
 			</result>
 		</global-results>
+		<!-- 上传图片 -->
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.tg.web.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/upload/success.jsp</result>
+			<result name="error">/upload/fail.jsp</result>
+		</action>
 		<action name="*" method="{1}" class="com.throne212.tg.web.action.AdminAction">
 			<result name="index" type="freemarker">/WEB-INF/template/admin/index.ftl</result>
+			<result name="publish" type="freemarker">/WEB-INF/template/admin/publish.ftl</result>
+			<result name="list" type="freemarker">/WEB-INF/template/admin/list.ftl</result>
 		</action>
     </package>
     

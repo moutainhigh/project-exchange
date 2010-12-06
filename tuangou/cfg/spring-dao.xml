@@ -11,4 +11,8 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="teamDao" class="com.throne212.tg.web.dao.impl.TeamDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 </beans>
