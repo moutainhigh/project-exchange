@@ -14,6 +14,7 @@
 	<bean id="commonBiz" class="com.throne212.tg.web.biz.impl.CommonBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="teamDao" ref="teamDao"></property>
+		<property name="siteDao" ref="siteDao"></property>
 	</bean>
 	
 </beans>

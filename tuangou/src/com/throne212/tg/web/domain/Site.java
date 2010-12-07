@@ -39,6 +39,8 @@ public class Site implements java.io.Serializable {
 	private String contact;
 	@Column(name = "list_order")
 	private String listOrder;
+	@Column(name = "has_link")
+	private Boolean hasLink;//是否已经交换链接
 	
 
 	// Constructors
@@ -127,6 +129,16 @@ public class Site implements java.io.Serializable {
 		this.listOrder = listOrder;
 	}
 
-	// Property accessors
+
+	public Boolean getHasLink() {
+		return hasLink;
+	}
+
+
+	public void setHasLink(Boolean hasLink) {
+		this.hasLink = hasLink;
+	}
+
+	
 
 }

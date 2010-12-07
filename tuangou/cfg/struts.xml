@@ -31,7 +31,7 @@
     	<!-- 登进 -->
 		<action name="login_action" class="com.throne212.tg.web.action.LoginAction">
 			<result name="admin" type="redirect">/admin/index.htm</result>
-			<result name="success" type="redirect">/user/infoList.htm</result>
+			<result name="success" type="redirect">/index.htm</result>
 			<result name="fail" type="chain">
 				<param name="actionName">login</param>
          		<param name="namespace">/</param> 
@@ -88,6 +88,8 @@
 			<result name="index" type="freemarker">/WEB-INF/template/admin/index.ftl</result>
 			<result name="publish" type="freemarker">/WEB-INF/template/admin/publish.ftl</result>
 			<result name="list" type="freemarker">/WEB-INF/template/admin/list.ftl</result>
+			<result name="site_list" type="freemarker">/WEB-INF/template/admin/site_list.ftl</result>
+			<result name="site_edit" type="freemarker">/WEB-INF/template/admin/site_edit.ftl</result>
 		</action>
     </package>
     

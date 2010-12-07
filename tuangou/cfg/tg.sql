@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tg
 Target Host: localhost
 Target Database: tg
-Date: 2010-12-6 17:16:27
+Date: 2010-12-7 20:56:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,7 +68,7 @@ CREATE TABLE `tg_teams` (
 -- Table structure for tg_user
 -- ----------------------------
 CREATE TABLE `tg_user` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_type` varchar(255) DEFAULT NULL,
   `loginName` varchar(20) NOT NULL,
   `password` varchar(50) DEFAULT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `tg_user` (
   `tel` varchar(100) DEFAULT NULL,
   `qq` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
@@ -89,3 +89,4 @@ INSERT INTO `tg_component` VALUES ('4', '精品购物', null, null, '', null, n
 INSERT INTO `tg_component` VALUES ('5', '其它', null, null, '', null, null, null, 'other', 'team_cate');
 INSERT INTO `tg_teams` VALUES ('2', '成都', '章鱼团', '正天影城打折电影票', 'http://tg.chengdu.cn', '1', '100', '0', '1291622756937.jpg', '0', '1', '0', '0', '2010-12-06 00:00:00', '', '2', 'we');
 INSERT INTO `tg_user` VALUES ('1', 'admin', 'admin', '123456', 'admin@tuan.com', '2010-12-05 21:14:44', '123', '123');
+INSERT INTO `tg_user` VALUES ('2', null, 'test001', 'e10adc3949ba59abbe56e057f20f883e', 'wef@12.com2', '2010-12-07 00:00:00', null, null);

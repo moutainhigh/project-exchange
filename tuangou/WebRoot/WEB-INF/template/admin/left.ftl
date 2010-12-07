@@ -17,11 +17,11 @@
 				<dl>
 					<dt><strong>团拍信息</strong></dt>
 					<dd><a href="${base}/admin/publish">发布团拍活动</a></dd>
-					<dd><a href="index.php?d=admin&amp;c=team&amp;m=check">团拍活动审核</a></dd>
+					<dd><a href="#">团拍活动审核</a></dd>
 					<dd><a href="${base}/admin/list">团拍活动管理</a></dd>
-					<dd><a href="index.php?d=admin&amp;c=site&amp;m=add">添加团拍网站</a></dd>
-					<dd><a href="index.php?d=admin&amp;c=site&amp;m=check">团拍网站审核</a></dd>
-					<dd><a href="index.php?d=admin&amp;c=site">团拍网站管理</a></dd>
+					<dd><a href="${base}/admin/saveSite">添加团拍网站</a></dd>
+					<dd><a href="#">团拍网站审核</a></dd>
+					<dd><a href="${base}/admin/siteList">团拍网站管理</a></dd>
 					<dd><a href="index.php?d=admin&amp;c=feedteam">采集团拍活动</a></dd>
 				</dl>
 				<dl>

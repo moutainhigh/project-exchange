@@ -9,6 +9,7 @@ import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
 import com.throne212.tg.web.domain.Component;
 import com.throne212.tg.web.domain.Site;
+import com.throne212.tg.web.domain.SiteType;
 import com.throne212.tg.web.domain.TeamCategory;
 import com.throne212.tg.web.domain.Teams;
 
@@ -53,18 +54,18 @@ public class AdminAction extends BaseAction {
 	//团拍网站
 	private Site site;
 	public String saveSite() {
-		if (team != null && !Util.isEmpty(team.getTitle())) {
-			logger.info("发布新的团购信息。。。");
-			// 图片
-			String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
-			if (image != null) {
-				team.setImage(image);
-				ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
-			}
-			commonBiz.saveOrUpdateEntity(team);
+		if (site != null && !Util.isEmpty(site.getName())) {
+			logger.info("保存或编辑团购网站。。。");
+			commonBiz.saveOrUpdateEntity(site);
 		}
-		comList = commonBiz.getComponentList(TeamCategory.class);
+		comList = commonBiz.getComponentList(SiteType.class);
 		return "site_edit";
+	}
+	public String siteList() {
+		if (page == null || page < 1)
+			page = 1;
+		pageBean = commonBiz.getAllSites(page);
+		return "site_list";
 	}
 	
 	public CommonBiz getCommonBiz() {
