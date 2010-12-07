@@ -1,148 +1,85 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<#include "/front/head.ftl"/>
-		<link href="${base}/front/Themes/reg.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${base}/front/js/reg.js"></script>
+		<#include "head.ftl">
+		<script>
+			var base = '${base}';
+		</script>
+		<script src="${base}/js/reg.js"></script>
 	</head>
-
 	<body>
-		<#include "/front/top.ftl">
-		<div class="all">
-			<div id="content_s">
-				<div id="register_step">
-					<img alt="填写信息" src="${base}/front/Themes/images/input_info_on.jpg?ver=431">
-					<img alt="注册成功" src="${base}/front/Themes/images/register_success_huise.jpg?ver=431">
-				</div>
-				<#include "/front/msg.ftl">
-				<form method="post" name="register_submit" action="${base}/reg_action.htm" id="register_submit">
-					<div style="padding-left: 85px; padding-right: 0pt;">
-						<table height="122" cellspacing="0" cellpadding="0" border="0" width="90%">
-							<tbody>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											登录名:
-										</label>
-										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id">
-									</td>
-									<td width="336" id="loginidinfo" class="reg_bg_two">
-										4-16个字符（包括4、16）或2-8个汉字
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											密码:
-										</label>
-										&nbsp;
-										<input type="password" style="width: 200px;" onblur="check_pwd(this);" name="user.password" id="password">
-									</td>
-									<td id="pwdinfo" class="reg_bg_two">
-										密码须为6位或6以上的字母/数字/下划线
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											重输密码:
-										</label>
-										&nbsp;
-										<input type="password" style="width: 200px;" onblur="check_repwd(this);" id="repassword">
-									</td>
-									<td id="repwdinfo" class="reg_bg_two">
-										&nbsp;
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											电子邮箱:
-										</label>
-										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email">
-									</td>
-									<td id="emailinfo" class="reg_bg_two">
-										忘记密码时，可凭安全邮箱索取密码
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<div id="sel_geo">
-											<label>
-												所在地区:
-											</label>
-											&nbsp;
-											<select name="topArea" id="topArea"></select>
-											<select name="user.area.id" id="city"></select>
-										</div>
-									</td>
-									<td id="geoinfo" class="reg_bg_two">
-										您登录以后，首页将会指向此处，可以只选择省份或直辖市
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											联系电话:
-										</label>
-										&nbsp;
-										<input type="text" id="tel" name="user.contact.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
-									</td>
-									<td id="emailinfo" class="reg_bg_two">
-										常用的联系电话，最好是手机号码
-									</td>
-								</tr>
-								<tr>
-									<td class="reg_bg_one" colspan="4">
-										<label>
-											QQ号码:
-										</label>
-										&nbsp;
-										<input type="text" id="qq" name="user.contact.qq" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
-									</td>
-									<td id="emailinfo" class="reg_bg_two">
-										常用的QQ号码，能较长时间在线为佳
-									</td>
-								</tr>
-								<tr>
-									<td style="padding: 0pt; margin: 0pt;" class="reg_bg_one" colspan="4">
-										<div style="float: left; margin: 3px 5px 3px 0; padding: 10px 0pt 0pt;">
-											<label>
-												验证码:
-											</label>
-											&nbsp;
-											<input type="text" style="margin-bottom: 5px; height: 15px;" onblur="check_rand(this);" name="rand" id="rand" class="auth">
-										</div>
-										<div style="padding-left: 100px;" class="hui">
-											看不清？点击图片换一个
-										</div>
-										<div style="margin:2px auto;text-align:center;">
-											<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='${base}/rand?n='+Math.random();" src="${base}/rand" name="verifyframe"
-												id="verifyframe">
-										</div>
-										<div style="clear:both;"></div>
-									</td>
-									<td id="authinfo" class="reg_bg_two">
-										此步骤有助于防止恶意自动注册行为的发生。
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
 
-					<div id="submit">
-						<div>
-							<input type="button" class="reg" value="注 册" name="send" onclick="chkForm();">
-							<span>&nbsp;&nbsp;表示您同意<a target="_blank" href="#">一路发网络服务使用协议</a>
-							</span>
+		<#include "top.ftl">
+		
+		<#include "nav.ftl">	
+
+		<!-- begin正文框架 -->
+		<form action="${base}/reg_action" method="post">
+		<div class="wrapper">
+			<div class="part02 mar_t6">
+				<div class="">
+					<#include "msg.ftl">
+					<div class="section ">
+						<div class="ptitle">
+							用户注册
+						</div>						
+						<div class=" pad_10 grid">
+							<div class="reg">
+								<ul>
+									<li>
+										<span>登&nbsp;录&nbsp;名：</span>
+										<span><input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id"/></span>
+										<span class="reg_bg_two">4-16个字符（包括4、16）或2-8个汉字</span>
+									</li>
+									<li>
+										<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+										<span><input type="password" style="width: 200px;" onblur="check_pwd(this);" name="user.password" id="password"/></span>
+										<span class="reg_bg_two">密码须为6位或6以上的字母/数字/下划线</span>
+									</li>
+									<li>
+										<span>密码确认：</span>
+										<span><input type="password" style="width: 200px;" onblur="check_repwd(this);" id="repassword"/></span>
+										<span class="reg_bg_two">&nbsp;</span>
+									</li>
+									<li>
+										<span>电子邮箱：</span>
+										<span><input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email"/></span>
+										<span class="reg_bg_two">忘记密码时，可凭安全邮箱索取密码</span>
+									</li>
+									<li>
+										<span>联系电话：</span>
+										<span><input type="text" id="tel" name="user.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')"/>
+										<span class="reg_bg_two">常用的联系电话，最好是手机号码</span>
+									</li>
+									<li>
+										<span>QQ&nbsp;号&nbsp;码：</span>
+										<span><input type="text" id="qq" name="user.qq" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')"/></span>
+										<span class="reg_bg_two">常用的QQ号码，能较长时间在线为佳</span>
+									</li>
+									<li>
+										<span>验&nbsp;证&nbsp;码：</span>
+										<span><input type="text" style="margin-bottom: 5px; height: 15px;width: 200px;" onblur="check_rand(this);" name="rand" id="rand" class="auth"  onkeypress="formKeyPress(event);"/></span>
+										<span class="reg_bg_two"><a href="#" onclick="document.getElementById('verifyframe').src='${base}/rand?n='+Math.random();">看不清？点击图片换一个</a></span>
+									</li>
+									<li class="pad_l50">
+										<img alt="验证码" style="padding: 4px 0pt 0pt;" onclick="this.src='${base}/rand?n='+Math.random();" src="${base}/rand" name="verifyframe"
+												id="verifyframe"/>
+									</li>
+									<li class="pad_l120">
+										<span><input type="button" class="button02" value="注 册" name="send" onclick="chkForm();"/></span>
+									</li>
+								</ul>
+							</div>
+							<div class="clear"></div>
 						</div>
+
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
-		<#include "/front/foot.ftl">
+		</form>
+		<!-- end正文框架 -->
+
+		<#include "foot.ftl">
 	</body>
 </html>
-

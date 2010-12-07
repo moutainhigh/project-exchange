@@ -316,3 +316,10 @@
 .login{background: url('images/login_bg.gif') right 50% no-repeat;}
 .login ul{margin:5px 0px 5px 50px;}
 .login ul li{line-height: 50px;float:none;}
+
+
+/*注册*/
+.reg{background: url('images/login_bg.gif') right 50% no-repeat;}
+.reg ul{margin:5px 0px 5px 20px;}
+.reg ul li{line-height: 25px;float:none;}
+.reg .reg_bg_two{color:gray;}

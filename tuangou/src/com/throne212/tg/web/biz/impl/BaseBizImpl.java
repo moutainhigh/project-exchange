@@ -13,8 +13,8 @@ public class BaseBizImpl implements BaseBiz {
 	protected BaseDao baseDao;
 
 	protected Logger logger = Logger.getLogger(this.getClass());
-	
-	public void saveOrUpdateEntity(Object e){
+
+	public void saveOrUpdateEntity(Object e) {
 		baseDao.saveOrUpdate(e);
 	}
 
@@ -22,11 +22,12 @@ public class BaseBizImpl implements BaseBiz {
 		List<T> list = baseDao.getAll(clazz);
 		return list == null ? new ArrayList<T>() : list;
 	}
-	public <T> List<T> getAll(Class<T> clazz,String col,String orderType){
-		List<T> list = baseDao.getAll(clazz,col,orderType);
+
+	public <T> List<T> getAll(Class<T> clazz, String col, String orderType) {
+		List<T> list = baseDao.getAll(clazz, col, orderType);
 		return list == null ? new ArrayList<T>() : list;
 	}
-	
+
 	public BaseDao getBaseDao() {
 		return baseDao;
 	}
@@ -34,19 +35,20 @@ public class BaseBizImpl implements BaseBiz {
 	public void setBaseDao(BaseDao baseDao) {
 		this.baseDao = baseDao;
 	}
-	
-	public <T> T getEntityById(Class<T> clazz,Long id){
+
+	public <T> T getEntityById(Class<T> clazz, Long id) {
 		return baseDao.getEntityById(clazz, id);
 	}
-	
-	public <T>  boolean checkUnique(Class<T> clazz,String colName,Object value){
+
+	public <T> boolean checkUnique(Class<T> clazz, String colName, Object value) {
 		Object obj = baseDao.getEntityByUniqueColumn(clazz, colName, value);
-		if(obj == null)
+		if (obj == null)
 			return true;
 		else
 			return false;
 	}
-	public <T>  void deleteEntity(Class<T> clazz,Long id){
+
+	public <T> void deleteEntity(Class<T> clazz, Long id) {
 		baseDao.deleteById(clazz, id);
 	}
 

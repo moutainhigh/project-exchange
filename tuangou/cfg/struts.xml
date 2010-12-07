@@ -44,7 +44,7 @@
 		</action>
 		<!-- 注册 -->
 		<action name="reg_action" class="com.throne212.tg.web.action.RegAction">
-			<result name="success" type="redirect">/user/infoList.htm</result>
+			<result name="success" type="redirect">/index.htm</result>
 			<result name="fail" type="chain">
 				<param name="actionName">reg</param>
          		<param name="namespace">/</param> 
