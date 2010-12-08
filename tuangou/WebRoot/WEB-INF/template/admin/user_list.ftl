@@ -37,7 +37,7 @@
 				<form enctype="multipart/form-data" method="post" action="${base}/admin/publish">
 				<table cellspacing="0" cellpadding="0" border="0" class="list-table">
 					<thead>
-						<tr><th class="lt-th" colspan="8"><strong>团拍活动管理</strong></th></tr>
+						<tr><th class="lt-th" colspan="8"><strong>会员管理</strong></th></tr>
 					</thead>
 					<tbody>
 						<!--<tr>
@@ -50,33 +50,30 @@
 							</td>
 						</tr>-->
 						<tr class="lt-title">
-							<th class="first">
-							</th>
-							<th width="">团拍标题及分类</th>
-							<th width="">网站</th>
-							<th width="">市场价(¥)</th>
-							<th width="">团拍价(¥)</th>
-							<th width="">发布时间</th>
-							<th width="">到期时间</th>
-							<th width="" class="last">操作</th>
+							<th class="first"></th>
+							<th width="100">用户名</th>
+							<th width="180">电子邮件</th>
+							<th width="180">QQ</th>
+							<th width="180">电话</th>
+							<th width="120">注册时间</th>
+							<th width="100">用户角色</th>
+							<th width="100" class="last">操作</th>
 						</tr>
-						<#list pageBean.resultList as t>
+						<#list pageBean.resultList as u>
 						<tr>
 							<td class="lt-td first">
-							<input type="checkbox" value="73" name="team_ids" class="team_ids">
+							<input type="checkbox" value="73" name="site_ids" class="site_ids">
 							</td>
-							<td class="lt-td tl">
-							[${t.cate.name}]<a target="_blank" href="#">${t.title}</a>
-							</td>
-							<td class="lt-td">${t.siteName}</td>
-							<td class="lt-td">¥${t.marketPrice}</td>
-							<td class="lt-td">¥${t.teamPrice}</td>
-							<td class="lt-td">${t.createTime?string("yyyy-MM-dd HH-mm-ss")}</td>
-							<td class="lt-td">${t.endTime?string("yyyy-MM-dd HH-mm-ss")}</td>
-							<td class="lt-td last"><!--
-								<a href="index.php?d=admin&amp;c=team&amp;m=edit&amp;id=73">
-									<img height="14" border="0" width="14" alt="修改" src="templates/waituan/images/edit.jpg">
-								</a>&nbsp;&nbsp;-->
+							<td class="lt-td tl">${u.loginName}</td>
+							<td class="lt-td">${u.email}</td>
+							<td class="lt-td">${u.qq!''}</td>
+							<td class="lt-td">${u.tel!''}</td>
+							<td class="lt-td">${u.regDate!''}</td>
+							<td class="lt-td"><#if u.userType?? && u.userType=='admin'>超级管理员<#else>普通会员</#if></td>
+							<td class="lt-td last">
+								<a href="#">
+									<img height="14" border="0" width="14" alt="修改" src="${base}/admin/images/edit.jpg">
+								</a>&nbsp;&nbsp;
 								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="#">
 									<img alt="删除" height="11" border="0" width="11" src="${base}/admin/images/del.jpg">
 								</a>
@@ -101,7 +98,6 @@
 									<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a><#else>[后一页]</#if>
 									<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a><#else>[尾页]</#if>
 								</span>
-				
 							</td>
 						</tr>
 					</tfoot>

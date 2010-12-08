@@ -90,6 +90,9 @@
 			<result name="list" type="freemarker">/WEB-INF/template/admin/list.ftl</result>
 			<result name="site_list" type="freemarker">/WEB-INF/template/admin/site_list.ftl</result>
 			<result name="site_edit" type="freemarker">/WEB-INF/template/admin/site_edit.ftl</result>
+			<result name="user_list" type="freemarker">/WEB-INF/template/admin/user_list.ftl</result>
+			<result name="password" type="freemarker">/WEB-INF/template/admin/password.ftl</result>
+			<result name="site_setting" type="freemarker">/WEB-INF/template/admin/setting.ftl</result>
 		</action>
     </package>
     

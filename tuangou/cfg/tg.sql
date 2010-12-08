@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: tg
 Target Host: localhost
 Target Database: tg
-Date: 2010-12-7 20:56:22
+Date: 2010-12-8 15:27:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,16 +29,17 @@ CREATE TABLE `tg_component` (
 -- Table structure for tg_site
 -- ----------------------------
 CREATE TABLE `tg_site` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `tel` varchar(255) DEFAULT NULL,
   `qq` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `contact` varchar(255) DEFAULT NULL,
   `list_order` int(11) DEFAULT NULL,
-  `site_type` bigint(20) DEFAULT NULL,
+  `siteType_id` bigint(20) DEFAULT NULL,
+  `has_link` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for tg_teams
@@ -87,6 +88,12 @@ INSERT INTO `tg_component` VALUES ('2', '休闲娱乐', null, null, '', null, n
 INSERT INTO `tg_component` VALUES ('3', '美容健身', null, null, '', null, null, null, 'meirong', 'team_cate');
 INSERT INTO `tg_component` VALUES ('4', '精品购物', null, null, '', null, null, null, 'gouwu', 'team_cate');
 INSERT INTO `tg_component` VALUES ('5', '其它', null, null, '', null, null, null, 'other', 'team_cate');
+INSERT INTO `tg_component` VALUES ('6', '单品团拍（首页）', null, null, '', null, null, null, null, 'site_type');
+INSERT INTO `tg_component` VALUES ('7', '单品团拍', null, null, '', null, null, null, null, 'site_type');
+INSERT INTO `tg_component` VALUES ('8', '团拍门户（首页）', null, null, '', null, null, null, null, 'site_type');
+INSERT INTO `tg_component` VALUES ('9', '团拍门户', null, null, '', null, null, null, null, 'site_type');
+INSERT INTO `tg_component` VALUES ('10', '友情链接', null, null, '', null, null, null, null, 'site_type');
+INSERT INTO `tg_site` VALUES ('1', '美团网', '123', '123', 'http://www.baidu.com', '123', '1', '6', '');
 INSERT INTO `tg_teams` VALUES ('2', '成都', '章鱼团', '正天影城打折电影票', 'http://tg.chengdu.cn', '1', '100', '0', '1291622756937.jpg', '0', '1', '0', '0', '2010-12-06 00:00:00', '', '2', 'we');
 INSERT INTO `tg_user` VALUES ('1', 'admin', 'admin', '123456', 'admin@tuan.com', '2010-12-05 21:14:44', '123', '123');
 INSERT INTO `tg_user` VALUES ('2', null, 'test001', 'e10adc3949ba59abbe56e057f20f883e', 'wef@12.com2', '2010-12-07 00:00:00', null, null);

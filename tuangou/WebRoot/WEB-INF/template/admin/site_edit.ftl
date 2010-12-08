@@ -4,6 +4,8 @@
 	<title>${appTitle!"团购导航程序"}</title>
 	<link href="${base}/admin/css/basic.css" type="text/css" rel="stylesheet" />
 	<link href="${base}/admin/css/layout.css" type="text/css" rel="stylesheet" />
+	<script src="${base}/js/jquery.js"></script>
+	<script src="${base}/admin/js/admin.js"></script>
 </head>
 	<body>
 		<div class="header">

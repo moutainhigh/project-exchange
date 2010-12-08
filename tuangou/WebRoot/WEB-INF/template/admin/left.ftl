@@ -28,9 +28,8 @@
 					<dt><strong>系统管理</strong></dt>
 					<dd><a href="index.php?d=admin&amp;c=feedback">意见反馈管理</a></dd>
 					<!--<dd><a href="index.php?d=admin&c=city" target="mainFrame">城市管理</a></dd>-->
-					<dd><a href="index.php?d=admin&amp;c=user">会员管理</a></dd>
-					<dd><a href="index.php?d=admin&amp;c=option">网站设置</a></dd>
-					<dd><a href="index.php?d=admin&amp;c=option&amp;m=about">公司信息</a></dd>
-					<dd><a href="index.php?d=member&amp;m=account">帐号设置</a></dd>
+					<dd><a href="${base}/admin/userList">会员管理</a></dd>
+					<dd><a href="${base}/admin/siteSetting">网站设置</a></dd>
+					<dd><a href="${base}/admin/password">密码修改</a></dd>
 				</dl>
 			</div>

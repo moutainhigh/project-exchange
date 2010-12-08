@@ -42,10 +42,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 	}
 
 	
-
-	public PageBean<User> getAllUsers(Integer page) {
-		if (page == null || page < 1)
-			page = 1;
+	public PageBean<User> getAllUsers(int page) {
 		return userDao.getAllUsers(page);
 	}
 
