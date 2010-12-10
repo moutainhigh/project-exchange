@@ -184,7 +184,7 @@ function validate_form()
 									<span>*电话号码：</span>
 								</li>
 								<li class="a-shuxing-value">
-									<input id="phone" name="info.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'') " value="${userObj.contact.tel}">
+									<input id="phone" name="info.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'') " value="<#if userObj.contact??>${userObj.contact.tel!''}</#if>">
 									<font>*提示：联系方式和E-mail至少选填一个！</font>
 								</li>
 							</ul>
@@ -201,7 +201,7 @@ function validate_form()
 									QQ：
 								</li>
 								<li class="a-shuxing-value">
-									<input onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')" id="qq" name="info.qq" value="${userObj.contact.qq}">
+									<input onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')" id="qq" name="info.qq" value="<#if userObj.contact??>${userObj.contact.qq!''}</#if>">
 								</li>
 							</ul>
 							<div class="clear"></div>
