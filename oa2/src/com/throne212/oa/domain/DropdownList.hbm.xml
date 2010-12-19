@@ -43,5 +43,10 @@
 			<many-to-one name="orgType" lazy="false"></many-to-one>
 			<property name="date"></property>
 		</subclass>
+		<!-- 母婴人员 -->
+		<subclass discriminator-value="muyingworker_org" name="com.throne212.oa.domain.muyingworker.WorkOrg"/>
+		<subclass discriminator-value="muyingworker_speical" name="com.throne212.oa.domain.muyingworker.Special"/>
+		<subclass discriminator-value="muyingworker_title" name="com.throne212.oa.domain.muyingworker.Title"/>
+		<subclass discriminator-value="muyingworker_checkitem" name="com.throne212.oa.domain.muyingworker.CheckItem"/>
 	</class>
 </hibernate-mapping>

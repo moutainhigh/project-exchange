@@ -43,7 +43,13 @@
     	<forward name="org" path="/report/org.jsp"></forward>
     	<forward name="compare" path="/report/compare.jsp"></forward>
     </action>
-
+	<!-- 母婴（人员） -->
+    <action path="/worker" type="com.throne212.oa.action.WorkerAction" parameter="method">
+    	<forward name="edit" path="/worker/edit.jsp"></forward>
+    	<forward name="list" path="/worker/list.jsp"></forward>
+    	<forward name="dic_list" path="/worker/dic_list.jsp"></forward>
+    	<forward name="dic_edit" path="/worker/dic_edit.jsp"></forward>
+    </action>
   </action-mappings>
 
   <message-resources parameter="com.throne212.oa.ApplicationResources" />

@@ -13,6 +13,10 @@ import com.throne212.oa.domain.doctor.Zhen;
 import com.throne212.oa.domain.doctor.Zige;
 import com.throne212.oa.domain.file.FileType;
 import com.throne212.oa.domain.file.SecretGrade;
+import com.throne212.oa.domain.muyingworker.CheckItem;
+import com.throne212.oa.domain.muyingworker.Special;
+import com.throne212.oa.domain.muyingworker.Title;
+import com.throne212.oa.domain.muyingworker.WorkOrg;
 import com.throne212.oa.domain.person.FullDayXueLi;
 import com.throne212.oa.domain.person.KaoHeResult;
 import com.throne212.oa.domain.person.OnJobXueLi;
@@ -118,6 +122,19 @@ public class Init {
 		
 		String[] hosArr = {"四会市第三人民医院","四会市XXX卫生院"};
 		saveDropdownList(s,hosArr,Hospital.class);
+		
+		//母婴人员
+		String[] workOrgArr = {"AAA中介机构","BBB中介机构"};
+		saveDropdownList(s,workOrgArr,WorkOrg.class);
+		
+		String[] titleArr = {"职称001","职称002"};
+		saveDropdownList(s,titleArr,Title.class);
+		
+		String[] speicalArr = {"技术专科001","技术专科002"};
+		saveDropdownList(s,speicalArr,Special.class);
+		
+		String[] checkArr = {"考核项目001","考核项目002","考核项目003","考核项目004","考核项目005"};
+		saveDropdownList(s,checkArr,CheckItem.class);
 		
 		s.getTransaction().commit();
 		s.close();
