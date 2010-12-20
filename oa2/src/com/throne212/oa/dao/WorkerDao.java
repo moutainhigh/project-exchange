@@ -157,7 +157,7 @@ public class WorkerDao {
 				e.printStackTrace();
 			}
 		}
-		sb.append(" order by okDate desc,id desc");
+		sb.append(" order by id desc");
 		System.out.println("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;

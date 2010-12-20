@@ -12,6 +12,7 @@
 		<property name="age"/>
 		<property name="no"/>
 		<property name="date"/>
+		<property name="image"/>
 		<property name="checkDate"/>
 		<property name="checkSummary"/>
 		<property name="comments"/>
@@ -23,5 +24,21 @@
 		<many-to-one name="item3" lazy="false"/>
 		<many-to-one name="item4" lazy="false"/>
 		<many-to-one name="item5" lazy="false"/>
+		
+		<property name="checkDate2"/>
+		<property name="checkSummary2"/>
+		<property name="comments2"/>
+		<property name="checkDate3"/>
+		<property name="checkSummary3"/>
+		<property name="comments3"/>
+		<property name="checkDate4"/>
+		<property name="checkSummary4"/>
+		<property name="comments4"/>
+		<property name="checkDate5"/>
+		<property name="checkSummary5"/>
+		<property name="comments5"/>
+		
+		<property name="checkNum"></property>
+		
 	</class>
 </hibernate-mapping>

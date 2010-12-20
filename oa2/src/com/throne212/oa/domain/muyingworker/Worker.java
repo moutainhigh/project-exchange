@@ -26,6 +26,24 @@ public class Worker {
 	private String checkSummary;//考核结论
 	private String comments;//备注
 	
+	private Date checkDate2;//考核日期
+	private String checkSummary2;//考核结论
+	private String comments2;//备注
+	
+	private Date checkDate3;//考核日期
+	private String checkSummary3;//考核结论
+	private String comments3;//备注
+	
+	private Date checkDate4;//考核日期
+	private String checkSummary4;//考核结论
+	private String comments4;//备注
+	
+	private Date checkDate5;//考核日期
+	private String checkSummary5;//考核结论
+	private String comments5;//备注
+	
+	private Integer checkNum;//考核次数
+	
 	private String image;//照片
 	
 	public Long getId() {
@@ -141,6 +159,84 @@ public class Worker {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public Date getCheckDate2() {
+		return checkDate2;
+	}
+	public void setCheckDate2(Date checkDate2) {
+		this.checkDate2 = checkDate2;
+	}
+	public String getCheckSummary2() {
+		return checkSummary2;
+	}
+	public void setCheckSummary2(String checkSummary2) {
+		this.checkSummary2 = checkSummary2;
+	}
+	public String getComments2() {
+		return comments2;
+	}
+	public void setComments2(String comments2) {
+		this.comments2 = comments2;
+	}
+	public Date getCheckDate3() {
+		return checkDate3;
+	}
+	public void setCheckDate3(Date checkDate3) {
+		this.checkDate3 = checkDate3;
+	}
+	public String getCheckSummary3() {
+		return checkSummary3;
+	}
+	public void setCheckSummary3(String checkSummary3) {
+		this.checkSummary3 = checkSummary3;
+	}
+	public String getComments3() {
+		return comments3;
+	}
+	public void setComments3(String comments3) {
+		this.comments3 = comments3;
+	}
+	public Date getCheckDate4() {
+		return checkDate4;
+	}
+	public void setCheckDate4(Date checkDate4) {
+		this.checkDate4 = checkDate4;
+	}
+	public String getCheckSummary4() {
+		return checkSummary4;
+	}
+	public void setCheckSummary4(String checkSummary4) {
+		this.checkSummary4 = checkSummary4;
+	}
+	public String getComments4() {
+		return comments4;
+	}
+	public void setComments4(String comments4) {
+		this.comments4 = comments4;
+	}
+	public Date getCheckDate5() {
+		return checkDate5;
+	}
+	public void setCheckDate5(Date checkDate5) {
+		this.checkDate5 = checkDate5;
+	}
+	public String getCheckSummary5() {
+		return checkSummary5;
+	}
+	public void setCheckSummary5(String checkSummary5) {
+		this.checkSummary5 = checkSummary5;
+	}
+	public String getComments5() {
+		return comments5;
+	}
+	public void setComments5(String comments5) {
+		this.comments5 = comments5;
+	}
+	public Integer getCheckNum() {
+		return checkNum;
+	}
+	public void setCheckNum(Integer checkNum) {
+		this.checkNum = checkNum;
 	}
 	
 }

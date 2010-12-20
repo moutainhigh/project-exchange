@@ -28,7 +28,7 @@
 		</script>
 	</head>
 	<body>
-			<input type="hidden" name="method" value="listDoctor"/>
+			<input type="hidden" name="method" value="listWorker"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
@@ -52,7 +52,7 @@
 					</td>
 				</tr>
 				<c:forEach items="${dicList}" var="d" varStatus="status">
-				<form action="${appPath}/doctor.do?method=saveDic" method="post">
+				<form action="${appPath}/worker.do?method=saveDic" method="post">
 				<tr class="list_td_context">
 					<td>
 						${status.count}
@@ -64,7 +64,7 @@
 						<input value="${d.listorder}" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
 					<td>
-						<a href="${appPath}/doctor.do?method=deleteDic&id=${d.id}&dicName=${param.dicName}">删除</a>
+						<a href="${appPath}/worker.do?method=deleteDic&id=${d.id}&dicName=${param.dicName}">删除</a>
 						<input type="submit" value="更新保存"/>
 					</td>
 				</tr>
@@ -72,11 +72,11 @@
 				</c:forEach>
 				<tr>
 					<td colspan="4" align="center">
-						<input type="button" value="返回" onclick="javascript:self.location.href='${appPath}/doctor.do?method=listDic'"/>
+						<input type="button" value="返回" onclick="javascript:self.location.href='${appPath}/worker.do?method=listDic'"/>
 					</td>
 				</tr>
 			</table>
-			<form action="${appPath}/doctor.do?method=addDic" method="post" id="addForm" name="addForm">
+			<form action="${appPath}/worker.do?method=addDic" method="post" id="addForm" name="addForm">
 			<input type="hidden" name="d_id" value="${d.id}"/>
 			<input type="hidden" name="dicName" value="${param.dicName}"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center" style="margin-top: 10px;">

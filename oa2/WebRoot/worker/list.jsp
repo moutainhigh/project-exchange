@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -38,9 +39,9 @@
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
-			function deleteDoctor(id){
+			function deleteWorker(id){
 				if(confirm('您确定删除吗？\n本操作将不可以恢复'))
-					self.location.href = '${appPath}/doctor.do?method=deleteDoctor&id='+id;
+					self.location.href = '${appPath}/worker.do?method=deleteworker&id='+id;
 			}
 			function gotoPage(pageIndex,url){
 				if(!url){
@@ -59,66 +60,19 @@
 				url += "pageIndex=" + pageIndex;
 				self.location.href = url;
 			}
-			function cover(id)
-			{
-			     //$("select").each(function(){this.style.visibility="hidden";})
-			     //选择所有的select并设置为隐藏
-			      $("#coverLayer").fadeTo("fast",0.5,function(){$("#coverLayer").css("display","block");})
-			                     .width(Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth))
-			                     .height(Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight));
-			     //显示覆盖层 并设置其高和宽
-			    $("#"+id).show();
-			    //显示LightBox层
-			    $('select').hide();
-			}
-			function discover(id)
-			{
-			     //$("select").each(function(){this.style.visibility="visible";})
-			     $("#coverLayer").fadeOut("normal",function(){$("#coverLayer").css("display","none");})
-			     $("#"+id).fadeOut("normal",function(){$("#lightBox").css("display","none");})
-			     $('select').show();
-			}
-			var currDocId = null;
-			function showInstr(id){
-				currDocId = id;
-				cover('lightBox');
-			}			
-			function unreg(){
-				var reason = $('#reason').val();
-				if(reason){					
-					var str = '${appPath}/doctor.do?method=unregDoctor&id=' + currDocId+'&reason='+reason;
-					self.location.href = str;
-				}else{
-					alert('理由不能为空');
-				}
-			}
 		</script>
 	</head>
 	<body>
-		<div id="coverLayer" style="display: none; background: #000000; position: absolute;"></div>
-		<div id="lightBox"
-			style="display: none; width: 500px; height:auto; position: absolute; z-index: 1002; background: #ffffff; left: 35%; top: 50%; margin-left: -150px; margin-top: -100px; border: #00FFFF double 4px;">
-			<a id="discover" href="#" onclick="discover('lightBox');" style="float:right;color:gray;">关闭</a>
-			<div class="shuoming">
-			  <p><strong>请填写注销理由</strong></p>
-			  <p>
-			  	<textarea name="reason" id="reason" style="width:90%;height: 50px;"></textarea>
-			  </p>
-			</div>
-			<p style="text-align: center; margin: 10px auto;">
-				<input type="button" value=" 确定 " onclick="unreg();" />
-				<input type="button" value=" 放弃 " onclick="discover('lightBox');" />
-			</p>
-		</div>
-		<form name="messageForm" method="get" action="${appPath}/doctor.do">
-			<input type="hidden" name="method" value="listDoctor"/>
+		<form name="messageForm" method="get" action="${appPath}/worker.do">
+			<input type="hidden" name="method" value="listworker"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>医生注册信息查询</font>
+			        <font class=caption>母婴人员信息查询</font>
 			      </td>
 			    </tr>
 			</table>
+			<!--
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td align=center>
@@ -170,7 +124,7 @@
 					  </fieldset>
 			      </td>
 			    </tr>
-			</table>
+			</table>-->
 			<div style="height: 25px;"></div>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_title">					
@@ -178,7 +132,7 @@
 						序号
 					</td>
 					<td align="center">
-						注册编号						
+						单位						
 					</td>
 					<td align="center">
 						姓名
@@ -187,35 +141,31 @@
 						性别
 					</td>
 					<td align="center">
-						身份证号
+						年龄
 					</td>
 					<td align="center">
-						执业地点
+						技术专科
 					</td>
 					<td align="center">
-						批准日期
+						技术职称
 					</td>
 					<td align="center">
-						状态
+						考核字
 					</td>
 					<td align="center">
-						级别
+						发证日期
 					</td>
 					<td align="center">
-						专业技术职<br/>
-						务任职资格						
-					</td>
-					<td align="center">
-						详细
+						详细&删除
 					</td>
 				</tr>
 				<c:forEach items="${pageBean.resultList}" var="d" varStatus="status">
-				<tr class="list_td_context" style="<c:if test="${d.status == 0}">color:gray;</c:if>">
+				<tr class="list_td_context">
 					<td>
 						${status.count}
 					</td>
 					<td>
-						${d.zigeNo }
+						${d.workOrg.name }
 					</td>
 					<td>
 						${d.name }
@@ -228,36 +178,23 @@
 						</c:choose>
 					</td>
 					<td>
-						${d.idNo }
+						${d.age }
 					</td>
 					<td>
-						${d.areaZhen.name } ${d.areaCun.name }
+						${d.special.name}
 					</td>
 					<td>
-						${d.okDate }
+						${d.title.name }
 					</td>
 					<td>
-						<c:choose>
-							<c:when test="${d.status == 1}">正常</c:when>
-							<c:when test="${d.status == 0}">已注销</c:when>
-						</c:choose>
+						${d.no }
 					</td>
 					<td>
-						${d.grade.name }
+						<fmt:formatDate value = "${d.date}" pattern = "yyyy-MM-dd"/>
 					</td>
 					<td>
-						${d.zige.name }
-					</td>
-					<td>
-						<c:if test="${d.status!=0}">
-						<a href="${appPath}/doctor.do?method=viewDoctor&id=${d.id}">变更</a>
-						<a href="javascript:showInstr(${d.id});">注销</a>
-						</c:if>
-						<c:if test="${d.status==0}">
-						<a href="${appPath}/doctor.do?method=resumeDoctor&id=${d.id}">恢复</a>
-						<!--<a href="">查看注销原因</a>-->
-						<a href="javascript:deleteDoctor(${d.id})">删除</a>
-						</c:if>
+						<a href="${appPath}/worker.do?method=viewWorker&id=${d.id}">详细</a>&nbsp;
+						<a href="javascript:deleteWorker(${d.id})">删除</a>
 					</td>
 				</tr>
 				</c:forEach>

@@ -175,7 +175,7 @@ public class DoctorAction extends DispatchAction{
 		dicDao.addDic(dicName, name, i);
 		request.setAttribute("msg", "数据字典项增加成功");
 		if (dicName != null)
-			request.getSession().getServletContext().removeAttribute(dicName);
+			request.getSession().getServletContext().removeAttribute(request.getParameter("dicName"));
 		return this.dicEdit(mapping, form, request, response);
 	}
 	// 删除数据字典
@@ -189,7 +189,7 @@ public class DoctorAction extends DispatchAction{
 		else
 			request.setAttribute("msg", "数据字典项删除失败，请检查是否已经有数据与该字典项关联");
 		if (dicName != null)
-			request.getSession().getServletContext().removeAttribute(dicName);
+			request.getSession().getServletContext().removeAttribute(request.getParameter("dicName"));
 		return this.dicEdit(mapping, form, request, response);
 	}
 	

@@ -23,8 +23,8 @@
 		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="get" action="${appPath}/doctor.do">
-			<input type="hidden" name="method" value="listDoctor"/>
+		<form name="messageForm" method="get" action="${appPath}/worker.do">
+			<input type="hidden" name="method" value="listWorker"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
@@ -53,7 +53,7 @@
 						${d.value}
 					</td>
 					<td>
-						<a href="${appPath}/doctor.do?method=dicEdit&dicName=${d.key}">数据维护</a>
+						<a href="${appPath}/worker.do?method=dicEdit&dicName=${d.key}">数据维护</a>
 					</td>
 				</tr>
 				</c:forEach>

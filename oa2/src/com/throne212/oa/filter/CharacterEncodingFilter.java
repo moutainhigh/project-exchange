@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 public class CharacterEncodingFilter implements Filter {
 
@@ -16,10 +17,16 @@ public class CharacterEncodingFilter implements Filter {
 
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding("GBK");
-		chain.doFilter(request, response);
-
+		chain.doFilter(request, resp);
+		HttpServletResponse response = (HttpServletResponse) resp;
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Cache-Control", "no-store");
+		response.setDateHeader("Expires", 0);
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

@@ -12,6 +12,10 @@
 		<script type="text/javascript" src="${appPath}/js/jquery.datepick.js"></script>
 		<script type="text/javascript" src="${appPath}/js/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript">
+			var rows = '${worker.checkNum}';
+			rows = (rows=='')?1:parseInt(rows);
+			$('#checkNum').val(rows);
+			
 			var msg = '${requestScope.msg}';
 			if(msg != ''){
 				alert(msg);
@@ -31,6 +35,7 @@
 							CheckItem2:'${worker.item2.id}',
 							CheckItem3:'${worker.item3.id}',
 							CheckItem4:'${worker.item4.id}'};
+							
 			$(function(){
 				$('select').each(function(){		
 					if($(this).attr('class')){
@@ -61,15 +66,33 @@
 				});
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+				//隐藏行
+				for(var i=5;i>rows;i--){
+					$('#check'+i).hide();
+				}
 			});
+			
+			function addRow(){
+				if(rows < 5){
+					rows++;
+					$('#check'+rows).show();
+					$('#checkNum').val(rows);
+				}
+			}
+			function deleteRow(){
+				if(rows > 1){
+					$('#check'+rows).hide();
+					rows--;
+					$('#checkNum').val(rows);
+				}
+			}
 		</script>
 	</head>
 	<body>
 		<form name="messageForm" method="post" action="${appPath}/worker.do">
 			<input type="hidden" name="method" value="addWorker"/>
 			<input type="hidden" name="worker.id" value="${worker.id}"/>
-			<input type="hidden" name="worker.status" value="${worker.status}"/>
-			<input type="hidden" name="worker.unregReason" value="${worker.unregReason}"/>
+			<input type="hidden" name="worker.checkNum" value="${worker.checkNum}" id="checkNum"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
@@ -118,14 +141,14 @@
 				<tr class="list_td_context">
 					<td>
 						出生日期：
-						<input type="text" name="worker.birthday" value="${worker.birthday}" id="docName" style="width:140px;" class="datetime"/>
+						<input type="text" name="worker.birthday" value="<fmt:formatDate value = "${worker.birthday}" pattern = "yyyy-MM-dd"/>" id="birthday" style="width:140px;" class="datetime"/>
 					</td>
 					<td>
 						年&nbsp;&nbsp;&nbsp;&nbsp;龄：
 						<input type="text" name="worker.age" value="${worker.age}" id="docName" style="width:140px;"/>
 					</td>
 					<td>
-						技术专科：：
+						技术专科：
 						<select name="worker.special.id" class="Special">
 							<option value=""></option>
 						</select>
@@ -143,8 +166,8 @@
 						<input type="text" name="worker.no" value="${worker.no}" id="docName" style="width:140px;"/>
 					</td>
 					<td>
-						发证日期：：
-						<input type="text" name="worker.date" value="${worker.date}" id="docName" style="width:140px;" class="datetime"/>
+						发证日期：
+						<input type="text" name="worker.date" value="<fmt:formatDate value = "${worker.date}" pattern = "yyyy-MM-dd"/>" id="fazhengDate" style="width:140px;" class="datetime"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -166,19 +189,79 @@
 						</select>&nbsp;
 					</td>
 				</tr>
-				<tr class="list_td_context">
+				<tr class="list_td_context" id="check1">
+					<td>
+						年审考核(<a href="javascript:addRow();">增加</a>/<a href="javascript:deleteRow();">减少</a>)
+					</td>
+					<td>
+						考核日期
+						<input type="text" name="worker.checkDate" value="<fmt:formatDate value = "${worker.checkDate}" pattern = "yyyy-MM-dd"/>" id="checkDate" style="width:140px;" class="datetime"/>
+					</td>
+					<td>考核结论
+						<input type="text" name="worker.checkSummary" value="${worker.checkSummary}" id="docName" style="width:140px;"/>
+					</td>
+					<td>备注
+						<input type="text" name="worker.comments" value="${worker.comments}" id="docName" style="width:140px;"/>
+					</td>
+				</tr>
+				<tr class="list_td_context" id="check2">
 					<td>
 						年审考核
 					</td>
 					<td>
 						考核日期
-						<input type="text" name="worker.checkDate" value="${worker.checkDate}" id="docName" style="width:140px;" class="datetime"/>
+						<input type="text" name="worker.checkDate2" value="<fmt:formatDate value = "${worker.checkDate2}" pattern = "yyyy-MM-dd"/>" id="checkDate2" style="width:140px;" class="datetime"/>
 					</td>
 					<td>考核结论
-						<input type="text" name="worker.no" value="${worker.no}" id="docName" style="width:140px;"/>
+						<input type="text" name="worker.checkSummary2" value="${worker.checkSummary2}" id="docName" style="width:140px;"/>
 					</td>
 					<td>备注
-						<input type="text" name="worker.comments" value="${worker.comments}" id="docName" style="width:140px;"/>
+						<input type="text" name="worker.comments2" value="${worker.comments2}" id="docName" style="width:140px;"/>
+					</td>
+				</tr>
+				<tr class="list_td_context" id="check3">
+					<td>
+						年审考核
+					</td>
+					<td>
+						考核日期
+						<input type="text" name="worker.checkDate3" value="<fmt:formatDate value = "${worker.checkDate3}" pattern = "yyyy-MM-dd"/>" id="checkDate3" style="width:140px;" class="datetime"/>
+					</td>
+					<td>考核结论
+						<input type="text" name="worker.checkSummary3" value="${worker.checkSummary3}" id="docName" style="width:140px;"/>
+					</td>
+					<td>备注
+						<input type="text" name="worker.comments3" value="${worker.comments3}" id="docName" style="width:140px;"/>
+					</td>
+				</tr>
+				<tr class="list_td_context" id="check4">
+					<td>
+						年审考核
+					</td>
+					<td>
+						考核日期
+						<input type="text" name="worker.checkDate4" value="<fmt:formatDate value = "${worker.checkDate4}" pattern = "yyyy-MM-dd"/>" id="checkDate4" style="width:140px;" class="datetime"/>
+					</td>
+					<td>考核结论
+						<input type="text" name="worker.checkSummary4" value="${worker.checkSummary4}" id="docName" style="width:140px;"/>
+					</td>
+					<td>备注
+						<input type="text" name="worker.comments4" value="${worker.comments4}" id="docName" style="width:140px;"/>
+					</td>
+				</tr>
+				<tr class="list_td_context" id="check5">
+					<td>
+						年审考核
+					</td>
+					<td>
+						考核日期
+						<input type="text" name="worker.checkDate5" value="<fmt:formatDate value = "${worker.checkDate5}" pattern = "yyyy-MM-dd"/>" id="checkDate5" style="width:140px;" class="datetime"/>
+					</td>
+					<td>考核结论
+						<input type="text" name="worker.checkSummary5" value="${worker.checkSummary5}" id="docName" style="width:140px;"/>
+					</td>
+					<td>备注
+						<input type="text" name="worker.comments5" value="${worker.comments5}" id="docName" style="width:140px;"/>
 					</td>
 				</tr>
 			</table>
