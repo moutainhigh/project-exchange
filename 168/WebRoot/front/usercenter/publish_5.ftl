@@ -170,12 +170,12 @@ function validate_form()
 									<textarea class="add-k" rows="10" cols="65" id="content" name="info.content"></textarea>
 								</li>
 							</ul>
-							<ul>
+							<ul style="min-height:200px;height:auto;">
 								<li class="a-shuxing-name">
 									上传图片：
 								</li>
 								<li class="a-shuxing-value" style="height:200px;">
-									<div style="height:200px;width:300px;"><iframe src="${base}/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe></div>
+									<div style="width:400px;"><iframe src="${base}/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe></div>
 								</li>
 								<div style="clear:both;"></div>
 							</ul>

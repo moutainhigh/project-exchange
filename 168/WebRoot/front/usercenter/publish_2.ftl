@@ -15,7 +15,7 @@
 					<li class="step-pre">
 						<span>1</span> 
 						<#if pub_list[0]??>
-						<a href="${base}/user/publish/index.htm">${pub_list[0][1]}</a>
+						<a href="${base}/user/publish/index.htm?change=Y">${pub_list[0][1]}</a>
 						<#else>
 						选择城市
 						</#if>

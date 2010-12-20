@@ -113,13 +113,14 @@
 				${c.id }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${c.name}
+				<input value="${c.name}" type="text" name=""/>
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${c.cate.name}
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<a href="javascript:void();" target="_self" onclick="removeKeyword(${c.id });">移除</a>
+				<a href="javascript:void();" target="_self" onclick="removeKeyword(${c.id });">移除</a>&nbsp;
+				<a href="javascript:void();" target="_self" onclick="removeKeyword(${c.id });">修改</a>
 				</td>
 			  </tr>
 			  </c:forEach>
@@ -127,3 +128,4 @@
         </div>
     </body>
 </html>
+			  

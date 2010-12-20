@@ -34,7 +34,8 @@ public class PublishAction extends BaseAction {
 
 		// 如果用户选择了城市以后，就在那个默认城市发布信息
 		Area city = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
-		if (city != null) {
+		String[] change = (String[]) ActionContext.getContext().getParameters().get("change");
+		if (city != null && (change==null || !"Y".equalsIgnoreCase(change[0]))) {
 			param = city.getId();
 			return city();
 		}
