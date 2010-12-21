@@ -9,6 +9,7 @@
   <action-mappings >
     <action path="/test" type="com.throne212.oa.action.TestAction">
     	<forward name="test" path="/test.jsp"></forward>
+    	<forward name="report_test" path="/report/test.jsp"></forward>
     </action>
     <!-- 乡村医生 -->
     <action path="/doctor" type="com.throne212.oa.action.DoctorAction" parameter="method">
@@ -42,6 +43,7 @@
     	<forward name="season" path="/report/season.jsp"></forward>
     	<forward name="org" path="/report/org.jsp"></forward>
     	<forward name="compare" path="/report/compare.jsp"></forward>
+    	<forward name="test" path="/report/test.jsp"></forward>
     </action>
 	<!-- 母婴（人员） -->
     <action path="/worker" type="com.throne212.oa.action.WorkerAction" parameter="method">

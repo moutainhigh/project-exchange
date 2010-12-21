@@ -57,6 +57,7 @@ public class HibernateSessionFactory {
 			threadLocal.set(session);
 		}
 
+		session.clear();
         return session;
     }
 

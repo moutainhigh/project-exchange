@@ -4,10 +4,14 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,11 +25,8 @@ import jxl.Cell;
 import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.write.Blank;
 import jxl.write.Label;
 import jxl.write.Number;
-import jxl.write.WritableCell;
-import jxl.write.WritableCellFeatures;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
@@ -35,7 +36,10 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.hibernate.CacheMode;
+import org.hibernate.Session;
 
+import com.throne212.oa.HibernateSessionFactory;
 import com.throne212.oa.common.Util;
 import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.dao.ReportDao;
@@ -646,7 +650,51 @@ public class ReportAction extends DispatchAction {
 		Field f = clazz.getDeclaredField("componentName");
 		request.setAttribute("dic_name", (String) f.get(clazz.newInstance()));
 		request.setAttribute("dicList", list);
+		List orgTypeList = reportDao.getDicValueList(HospitalType.class.getName());
+		request.setAttribute("orgTypeList", orgTypeList);
 		return mapping.findForward("dic_edit");
+	}
+	
+	public ActionForward test(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//List list = dicDao.getDropdownList("HospitalType");
+		
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		List list = s.createQuery("from HospitalType").setCacheable(false).list();
+		List list2 = s.createQuery("from Hospital").setCacheable(false).list();
+//		List list = new ArrayList();
+//		try {
+//			Connection conn = s.connection();//DriverManager.getConnection("jdbc:mysql://localhost:3306/oa2","oa2","123");
+//			Statement stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery("select name from oa2_dropdown_list where data_type='report_hos_type'");
+//			while(rs.next()){
+//				list.add(rs.getString(1));
+//			}
+//			//conn.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		s.getTransaction().commit();
+		s.close();
+		
+//		List list = new ArrayList();
+//		try {
+//			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/oa2","oa2","123");
+//			Statement stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery("select name from oa2_dropdown_list where data_type='report_hos_type'");
+//			while(rs.next()){
+//				list.add(rs.getString(1));
+//			}
+//			conn.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		request.setAttribute("dicList", list);
+		
+		request.setAttribute("dicList2", list2);
+		return mapping.findForward("test");
 	}
 
 	public ActionForward saveDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -670,11 +718,16 @@ public class ReportAction extends DispatchAction {
 		String name = request.getParameter("d_name");
 		String listorder = request.getParameter("d_listorder");
 		String dicName = request.getParameter("dicName");
+		String hosType = request.getParameter("hos_type");
 		dicName = WorkReport.class.getPackage().getName() + "." + dicName;
 		Integer i = null;
 		if (!Util.isEmpty(listorder))
 			i = Integer.valueOf(Integer.parseInt(listorder));
-		dicDao.addDic(dicName, name, i);
+		if(Util.isEmpty(hosType)){
+			dicDao.addDic(dicName, name, i);
+		}else{
+			dicDao.addHospital(name, i, Long.valueOf(Long.parseLong(hosType)));
+		}		
 		request.setAttribute("msg", "数据字典项增加成功");
 		if (dicName != null)
 			request.getSession().getServletContext().removeAttribute(request.getParameter("dicName"));

@@ -5,6 +5,7 @@
   <StrutsActivity path="/person.do" location="350,250" dimension="228,88" />
   <StrutsActivity path="/file.do" location="950,450" dimension="228,88" />
   <StrutsActivity path="/report.do" location="50,650" dimension="262,84" />
+  <StrutsActivity path="/worker.do" location="1250,750" dimension="262,84" />
   <StrutsActivity path="/test.jsp" location="350,50" dimension="94,48" />
   <StrutsActivity path="/doctor/list.jsp" location="350,150" dimension="136,48" />
   <StrutsActivity path="/doctor/dic_list.jsp" location="50,250" dimension="118,49" />
@@ -27,11 +28,11 @@
   <StrutsActivity path="/report/dic_list.jsp" location="1250,450" dimension="160,48" />
   <StrutsActivity path="/report/default.jsp" location="950,650" dimension="154,48" />
   <StrutsActivity path="/report/dic_edit.jsp" location="1250,550" dimension="160,48" />
-  <StrutsActivity path="/worker.do" location="1250,750" dimension="262,84" />
-  <StrutsActivity path="/worker/list.jsp" />
-  <StrutsActivity path="/worker/dic_list.jsp" />
-  <StrutsActivity path="/worker/dic_edit.jsp" />
-  <StrutsActivity path="/worker/edit.jsp" />
+  <StrutsActivity path="/report/test.jsp" location="350,950" dimension="136,48" />
+  <StrutsActivity path="/worker/list.jsp" location="350,850" dimension="136,48" />
+  <StrutsActivity path="/worker/dic_list.jsp" location="650,850" dimension="160,48" />
+  <StrutsActivity path="/worker/dic_edit.jsp" location="950,850" dimension="160,48" />
+  <StrutsActivity path="/worker/edit.jsp" location="50,950" dimension="136,48" />
   <StrutsTransition id="/file.do,list,/personfile/list.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="950,484" />
@@ -97,18 +98,16 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/worker.do,list,/doctor/list.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1425,750" />
-      <AbsolutePoint location="1425,213" />
-      <AbsolutePoint location="418,213" />
-      <AbsolutePoint location="418,198" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/doctor.do,dic_list,/doctor/dic_list.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="775,92" />
       <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/test.do,report_test,/report/test.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="175,92" />
+      <AbsolutePoint location="418,974" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/worker.do,dic_list,/worker/dic_list.jsp,1" routingType="0">
@@ -137,15 +136,15 @@
       <AbsolutePoint location="117,550" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/worker.do,list,/worker/list.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1381,792" />
-      <AbsolutePoint location="0,0" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/person.do,edit,/person/edit.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/worker.do,list,/worker/list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1381,792" />
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
@@ -169,16 +168,15 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/worker.do,dic_edit,/doctor/dic_edit.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1455,750" />
-      <AbsolutePoint location="1455,174" />
-      <AbsolutePoint location="1110,174" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/person.do,dic_edit,/person/dic_edit.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/report.do,test,/report/test.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="181,692" />
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
@@ -188,15 +186,6 @@
       <AbsolutePoint location="151,813" />
       <AbsolutePoint location="1021,813" />
       <AbsolutePoint location="1021,798" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/worker.do,dic_list,/doctor/dic_list.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1381,834" />
-      <AbsolutePoint location="1381,913" />
-      <AbsolutePoint location="-75,913" />
-      <AbsolutePoint location="-75,274" />
-      <AbsolutePoint location="50,274" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/report.do,year,/report/year.jsp,1" routingType="0">
@@ -213,13 +202,6 @@
       <AbsolutePoint location="1149,973" />
       <AbsolutePoint location="1149,574" />
       <AbsolutePoint location="1250,574" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/worker.do,edit,/doctor/edit.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1485,750" />
-      <AbsolutePoint location="1485,74" />
-      <AbsolutePoint location="1086,74" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/report.do,org,/report/org.jsp,1" routingType="0">

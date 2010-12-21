@@ -44,6 +44,11 @@
 					<td align="center">
 						名称
 					</td>
+					<c:if test="${param.dicName == 'Hospital'}">
+					<td align="center">
+						机构类型
+					</td>
+					</c:if>
 					<td align="center">
 						排序编号
 					</td>
@@ -60,6 +65,11 @@
 					<td><input type="hidden" name="d_id" value="${d.id}"/><input type="hidden" name="dicName" value="${param.dicName}"/>
 						<input value="${d.name}" type="text" name="d_name" style="width: 200px;"/>
 					</td>
+					<c:if test="${param.dicName == 'Hospital'}">
+					<td align="center">
+						${d.orgType.name}
+					</td>
+					</c:if>
 					<td>
 						<input value="${d.listorder}" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
@@ -101,6 +111,20 @@
 						<input value="0" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
 				</tr>
+				<c:if test="${param.dicName == 'Hospital'}">
+				<tr class="list_td_context">
+					<td>
+						单位类型
+					</td>
+					<td>
+						<select name="hos_type">
+							<c:forEach items="${orgTypeList}" var="t">
+							<option value="${t.id}">${t.name}</option>
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+				</c:if>
 				<tr>
 					<td colspan="4" align="center">
 						<input type="button" value="增加" onclick="javascript:addDicForm()"/>

@@ -18,7 +18,7 @@
 			$(function(){
 				//初始化列表数据
 				$('select').each(function(){		
-					if($(this).attr('class')){
+					/*if($(this).attr('class')){
 						var dropdownType = $(this).attr('class');
 						var thisSelect = this;
 						$(this).html('<option value=""></option>');
@@ -30,7 +30,7 @@
 								}						
 							}
 						}); 	
-					}
+					}*/
 					$(this).css({width:'90%'});	
 				}); 	
 			});
@@ -59,6 +59,9 @@
 					<td align="center" width="60%">
 						<select name="hosId" class="Hospital" id="Hospital">
 							<option value=""></option>
+							<c:forEach items="${orgList}" var="o">
+							<option value="${o.id}">${o.name }</option>
+							</c:forEach>
 						</select>
 					</td>
 					<td align="center">
@@ -92,7 +95,10 @@
 						${o.name }
 					</td>
 					<td align="center">
-						${o.date }
+						<c:choose>
+						<c:when test="${empty o.date}"><span style="color:gray;">等待录入</span></c:when>
+						<c:otherwise>${o.date }</c:otherwise>
+						</c:choose>
 					</td>
 					<td align="center">
 						<a href="javascript:void(0);" onclick="if(confirm('您确定吗？')){self.location.href='${appPath}/report.do?method=removeHospital&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}'}">删除</a>

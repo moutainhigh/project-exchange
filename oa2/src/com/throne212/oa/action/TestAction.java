@@ -4,12 +4,17 @@
  */
 package com.throne212.oa.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.hibernate.Session;
+
+import com.throne212.oa.HibernateSessionFactory;
 
 /** 
  * MyEclipse Struts
@@ -34,6 +39,42 @@ public class TestAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		System.out.println("action accessed");
-		return mapping.findForward("test");
+//List list = dicDao.getDropdownList("HospitalType");
+		
+		Session s = HibernateSessionFactory.getSession();
+		List list = s.createQuery("from HospitalType").setCacheable(false).list();
+		List list2 = s.createQuery("from Hospital").setCacheable(false).list();
+//		List list = new ArrayList();
+//		try {
+//			Connection conn = s.connection();//DriverManager.getConnection("jdbc:mysql://localhost:3306/oa2","oa2","123");
+//			Statement stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery("select name from oa2_dropdown_list where data_type='report_hos_type'");
+//			while(rs.next()){
+//				list.add(rs.getString(1));
+//			}
+//			//conn.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		s.close();
+		
+//		List list = new ArrayList();
+//		try {
+//			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/oa2","oa2","123");
+//			Statement stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery("select name from oa2_dropdown_list where data_type='report_hos_type'");
+//			while(rs.next()){
+//				list.add(rs.getString(1));
+//			}
+//			conn.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		request.setAttribute("dicList", list);
+		
+		request.setAttribute("dicList2", list2);
+		return mapping.findForward("report_test");
 	}
 }

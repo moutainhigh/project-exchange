@@ -6,6 +6,8 @@ import org.hibernate.Session;
 
 import com.throne212.oa.HibernateSessionFactory;
 import com.throne212.oa.domain.DropdownList;
+import com.throne212.oa.domain.report.Hospital;
+import com.throne212.oa.domain.report.HospitalType;
 
 public class DropdownListDao {
 
@@ -40,6 +42,23 @@ public class DropdownListDao {
 			drop.setName(name);
 			drop.setListorder(listOrder);
 			s.save(drop);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		s.getTransaction().commit();
+		s.close();
+	}
+	public void addHospital(String name, Integer listOrder,Long hosTypeId ) {
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		try {
+			HospitalType type = (HospitalType) s.get(HospitalType.class, hosTypeId);
+			//DropdownList drop = (DropdownList) Class.forName(dicName).newInstance();
+			Hospital hos = new Hospital();
+			hos.setOrgType(type);
+			hos.setName(name);
+			hos.setListorder(listOrder);
+			s.save(hos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

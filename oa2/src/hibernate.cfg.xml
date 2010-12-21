@@ -7,28 +7,21 @@
 <hibernate-configuration>
 
 <session-factory>
-	<property name="connection.username">root</property>
-	<property name="connection.url">
-		jdbc:mysql://localhost:3306/oa2
-	</property>
-	<property name="dialect">
-		org.hibernate.dialect.MySQLDialect
-	</property>
+	<property name="connection.username">oa2</property>
+	<property name="connection.url">jdbc:mysql://localhost:3306/oa2</property>
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 	<property name="myeclipse.connection.profile">mysql</property>
 	<property name="connection.password">123</property>
-	<property name="connection.driver_class">
-		com.mysql.jdbc.Driver
-	</property>
+	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 	<property name="hbm2ddl.auto">none</property>
+	<property name="cache.use_query_cache">false</property>
 	<mapping resource="com/throne212/oa/domain/doctor/Doctor.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/person/Person.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/file/PersonFile.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/DropdownList.hbm.xml" />
-	<mapping
-		resource="com/throne212/oa/domain/report/WorkReport.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/report/WorkReport.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/report/Year.hbm.xml" />
-	<mapping
-		resource="com/throne212/oa/domain/muyingworker/Worker.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/muyingworker/Worker.hbm.xml" />
 
 </session-factory>
 </hibernate-configuration>
