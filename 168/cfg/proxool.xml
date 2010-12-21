@@ -5,7 +5,7 @@
 
 		<driver-url>jdbc:mysql://localhost:3306/168</driver-url>
 		<driver-properties>
-			<property name="user" value="root" />
+			<property name="user" value="168" />
 			<property name="password" value="123" />
 		</driver-properties>
 

@@ -44,6 +44,12 @@
 				}				
 				document.forms[0].submit();			
 			}
+			function updateKeyword(id){
+				if(!confirm('您确定更新吗？')){
+					return false;
+				}
+				self.location.href = "${appPath}/admin/updateKeyword?keyword.id="+id+"&keyword.name="+$('#key'+id).val();
+			}
 		</script>
     </head>
     <body>
@@ -113,14 +119,14 @@
 				${c.id }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<input value="${c.name}" type="text" name=""/>
+				<input value="${c.name}" type="text" name="" id="key${c.id}"/>
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${c.cate.name}
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				<a href="javascript:void();" target="_self" onclick="removeKeyword(${c.id });">移除</a>&nbsp;
-				<a href="javascript:void();" target="_self" onclick="removeKeyword(${c.id });">修改</a>
+				<a href="javascript:void();" target="_self" onclick="updateKeyword(${c.id });">修改</a>
 				</td>
 			  </tr>
 			  </c:forEach>

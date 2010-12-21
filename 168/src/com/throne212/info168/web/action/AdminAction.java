@@ -457,6 +457,22 @@ public class AdminAction extends BaseAction {
 		keyWordList = commonBiz.getSetting(KeyWordSetting.class);
 		return "keywords";
 	}
+	
+	public String updateKeyword() {
+		if (keyword != null && keyword.getId() != null){
+			commonBiz.saveOrUpdateEntity(keyword);
+			this.setMsg("关键词更新成功");
+		}
+		return keywords();
+	}
+	
+	public String removeKeyword() {
+		if (keyword != null && keyword.getId() != null){
+			commonBiz.deleteEntity(KeyWordSetting.class, keyword.getId());
+			this.setMsg("关键词删除成功");
+		}
+		return keywords();
+	}
 
 	public String getOldpassword() {
 		return oldpassword;

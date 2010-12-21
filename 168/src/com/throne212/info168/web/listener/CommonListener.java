@@ -13,6 +13,7 @@ import java.util.Properties;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -23,6 +24,8 @@ import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.LinkSetting;
 
 public class CommonListener implements ServletContextListener {
+	
+	private Logger logger = Logger.getLogger(this.getClass());
 
 	public void contextDestroyed(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
@@ -49,7 +52,13 @@ public class CommonListener implements ServletContextListener {
 		List allCates = commonBiz.getCates();
 		e.getServletContext().setAttribute(WebConstants.ALL_CATES, allCates);
 		// 设置上下文路径
-		e.getServletContext().setAttribute(WebConstants.APP_PATH, e.getServletContext().getContextPath());
+		String appPath = e.getServletContext().getContextPath();
+		logger.info("appPath="+appPath);
+		if(appPath.equals("/")){
+			appPath = "";
+		}		
+		e.getServletContext().setAttribute(WebConstants.APP_PATH, appPath);
+		
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path + File.separator + "site.properties";
 		BufferedReader reader = null;
