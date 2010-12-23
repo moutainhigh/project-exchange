@@ -23,6 +23,16 @@
 .header .banner-city{float: left;text-align: center;border: 1px solid #02319B;margin-top: 5px;padding:10px 5px;width: 90px;overflow: hidden;}
 .header .banner-city span{font-size: 24px;color:#02319B;font-family: 黑体;}
 
+#city-list{padding:10px; width: 345px; background: #338de1; float: left; clear: both; position:absolute;top:25px; left:310px; z-index:1;}
+#city-list ul{padding-bottom:5px; float:left;width:100%;}
+#city-list li{width:80px; margin-bottom:5px; float:left; margin-left:5px;}
+#city-list a{text-align:center; padding:4px 5px; display:block; color:#fff; font-size:14px;}
+#city-list li a:hover{background:#ddeff5; color:#333; text-decoration:none;}
+#city-list li.current a{background:#ddeff5; color:#333;}
+#city-list .other{zoom: 1; clear: both; font-size: 12px; border-top: #fff 1px dashed; padding-top: 5px;width:99%;}
+#city-list .other a{float:right;color:#fff; font-family:Arial;}
+#city-list .other a:hover{ background:#ddeff5; color:#333; text-decoration:none;}
+
 /*底部*/
 .foot_info{color:#777;clear:both;font-size:12px;line-height:20px;padding: 5px 2px;}
 .foot_info a{color:#777;}

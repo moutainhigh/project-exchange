@@ -73,8 +73,7 @@
 				</div>
 				<!--/city-->
 				<div id="gg">
-					<a target="_blank" href="/caozuo/"><img height="99" width="270" border="0" alt="分类信息发帖" src="http://88ke.hnfsi.com/88ke_imgs/left_gg.jpg">
-					</a>
+					<img height="99" width="270" border="0" alt="分类信息发帖" src="${base}/front/Themes/images/left_gg.jpg"/>
 				</div>
 				<!--new-->
 				<div id="new">
@@ -85,8 +84,8 @@
 						<#list infoBiz.top10NewestInfo as info>						
 						<li>
 							·
-							<a style="color: rgb(0, 94, 188);" target="_blank" href="/info/all//">[${info.area.parent.name}${info.cate.name}]</a>
-							<a target="_blank" title="${info.title}" href="${base}/info/all/${info.cate.pinyin}/${info.id}"><#if info.title?length<=20>${info.title}<#else>${info.title?substring(0,20)}...</#if></a>
+							<a style="color: rgb(0, 94, 188);" target="_blank" href="${base}/info/${info.area.parent.pinyin}/${info.cate.pinyin}">[${info.area.parent.name}${info.cate.name}]</a>
+							<a target="_blank" title="${info.title}" href="${base}/info/${info.area.parent.pinyin}/${info.cate.pinyin}/${info.id}"><#if info.title?length<=20>${info.title}<#else>${info.title?substring(0,20)}...</#if></a>
 						</li>
 						</#list>
 					</ul>
@@ -101,24 +100,28 @@
 						<dd>
 							<a target="_blank" href="/gushi/"><img height="76" width="80" border="0" alt="分类信息成功故事" src="http://88ke.hnfsi.com/88ke_imgs/stroy_img.jpg">
 							</a> 我是一名老司机,开了几十年的车,前两天跑完车回来没事就上网闲逛,看看那些我们用的着的信息，因为工作的关系我还是会关注一些关于司机这方面的信息,...
-							<a title="成功故事" class="gl_3" target="_blank" href="/gushi/">【详情】</a>
+							<a title="成功故事" class="gl_3" target="_blank" href="#">【详情】</a>
 						</dd>
 					</dl>
 				</div>
 				<!--/story-->
 				<!--hotcate-->
+				<!--
 				<div id="hot-cate">
 					<h2>
 						热门类目
 					</h2>
 					<ul>
+				-->
 					<!--
 						<li>
 							<a target="_blank" title="上海宠物寄养" href="#">上海宠物寄养</a>
 						</li>
 					-->
+				<!--
 					</ul>
 				</div>
+				-->
 				<!--hot cate-->
 			</div>
 			<div class="clear"></div>

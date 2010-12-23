@@ -69,7 +69,7 @@
 .wrapper .right{float: right;width: 270px;margin: 3px auto;}
 /*首页增加信息*/
 /*热门类目*/
-#hot-cate{margin-top:8px;}
+#hot-cate{margin-top:8px;white-space: nowrap;overflow: hidden;}
 .hot-cate-n{margin:0;height:29px;line-height:29px;font-weight:bold;font-size:14px;color:#333;background:url(images/left_top_title.jpg) no-repeat;padding-left:10px;}
 #hot-cate h2
 {margin:0;height:29px;line-height:29px;font-weight:bold;font-size:14px;color:#333;background:url(images/left_top_title.jpg) no-repeat;padding-left:10px;}

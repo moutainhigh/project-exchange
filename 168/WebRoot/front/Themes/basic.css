@@ -27,6 +27,7 @@ a:hover{color:#cc0000; text-decoration:underline;}*/
 .inline {_display: inline;}
 .none {display: none;}
 .hide {overflow: hidden;}
+.hidden {display: none;}
 
 /***** 定位 *****/
 .prel {position: relative;zoom: 1}

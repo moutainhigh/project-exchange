@@ -449,6 +449,8 @@ public class AdminAction extends BaseAction {
 		if (keyword != null && keyword.getName() != null && keyword.getCate() != null){
 			commonBiz.saveOrUpdateEntity(keyword);
 			this.setMsg("关键词添加成功");
+			List keywordsList = commonBiz.getSetting(KeyWordSetting.class);
+			ActionContext.getContext().getApplication().put(WebConstants.KEY_WORD_LIST, keywordsList);
 		}
 		return keywords();
 	}
@@ -460,8 +462,13 @@ public class AdminAction extends BaseAction {
 	
 	public String updateKeyword() {
 		if (keyword != null && keyword.getId() != null){
-			commonBiz.saveOrUpdateEntity(keyword);
+			KeyWordSetting keywordInDB = commonBiz.getEntityById(KeyWordSetting.class, keyword.getId());
+			keywordInDB.setName(keyword.getName());
+			commonBiz.saveOrUpdateEntity(keywordInDB);
 			this.setMsg("关键词更新成功");
+			//更新缓存
+			List keywordsList = commonBiz.getSetting(KeyWordSetting.class);
+			ActionContext.getContext().getApplication().put(WebConstants.KEY_WORD_LIST, keywordsList);
 		}
 		return keywords();
 	}
@@ -470,6 +477,8 @@ public class AdminAction extends BaseAction {
 		if (keyword != null && keyword.getId() != null){
 			commonBiz.deleteEntity(KeyWordSetting.class, keyword.getId());
 			this.setMsg("关键词删除成功");
+			List keywordsList = commonBiz.getSetting(KeyWordSetting.class);
+			ActionContext.getContext().getApplication().put(WebConstants.KEY_WORD_LIST, keywordsList);
 		}
 		return keywords();
 	}

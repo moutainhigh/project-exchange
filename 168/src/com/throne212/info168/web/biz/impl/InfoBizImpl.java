@@ -49,7 +49,7 @@ public class InfoBizImpl extends BaseBizImpl implements InfoBiz {
 	public PageBean<Info> getInfoByCateKeywords(Long cateId, String keywords, int pageIndex) {
 		Area area = (Area) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
 		if (area == null) {
-			return infoDao.getInfoByCateAreaKeywords(cateId, null, keywords, pageIndex);
+			return infoDao.getInfoByCateKeywords(cateId, keywords, pageIndex);
 		} else {
 			return infoDao.getInfoByCateAreaKeywords(cateId, area.getId(), keywords, pageIndex);
 		}

@@ -22,8 +22,20 @@
 			</div>
 			<div id="changecity" class="banner-city">
 				<span><#if currCity??>${currCity.name}<#else>全国</#if></span><br>
-				<a title="选择城市" href="${base}/city.htm">[选择城市]</a>
+				<a title="选择城市" href="javascript:showCities();">[其它]</a>
+				<a title="选择城市" href="${base}/city.htm">[更多]</a>
 			</div>
+			<div id="city-list" class="hidden">
+				<ul>
+					<li><a href="${base}/info/all">全国</a></li>
+					<#list hotCities as c>					
+					<li class="${c.pinyin}"><a href="${base}/info/${c['pinyin']}">${c['name']}</a></li>
+					</#list>
+					<#if currCity??><script>window['currCityPinyin']='${currCity.pinyin}';</script></#if>
+				</ul>
+				<div class="other"><a href="javascript:showCities();">[关闭]</a><a title="选择城市" href="${base}/city.htm">[更多城市]</a></div>
+			</div>
+					
 			<div class="search">
 				<div class="search_input">
 					<select id="catePinyin" name="catePinyin">

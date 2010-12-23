@@ -11,6 +11,7 @@ import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.KeyWordSetting;
 
 public class InfoAction extends BaseAction {
 
@@ -81,8 +82,19 @@ public class InfoAction extends BaseAction {
 
 	public String page() {
 		info = infoBiz.getEntityById(Info.class, infoId);
+		replaceKeywords();
 		relateInfos = infoBiz.getRelateInfos(info);
 		return "page";
+	}
+	
+	private void replaceKeywords(){
+		String appPath = (String) ActionContext.getContext().getApplication().get(WebConstants.APP_PATH);
+		String content = info.getContent();
+		List<KeyWordSetting> keywords = (List<KeyWordSetting>) ActionContext.getContext().getApplication().get(WebConstants.KEY_WORD_LIST);
+		for (KeyWordSetting key : keywords) {
+			content = content.replaceAll(key.getName(), "<a target='_blank' href='" + appPath + "/search/" + key.getName() + "/'>" + key.getName() + "</a>");
+		}
+		info.setContent(content);
 	}
 
 	// setter and getter

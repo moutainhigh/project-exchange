@@ -60,13 +60,13 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		info.setIsChecked(false);
 
 		// 替换关键词的链接
-		String appPath = (String) ActionContext.getContext().getApplication().get(WebConstants.APP_PATH);
+		/*String appPath = (String) ActionContext.getContext().getApplication().get(WebConstants.APP_PATH);
 		String content = info.getContent();
 		List<KeyWordSetting> keywords = (List<KeyWordSetting>) ActionContext.getContext().getApplication().get(WebConstants.KEY_WORD_LIST);
 		for (KeyWordSetting key : keywords) {
 			content = content.replaceAll(key.getName(), "<a target='_blank' href='" + appPath + "/search/" + key.getName() + "/'>" + key.getName() + "</a>");
 		}
-		info.setContent(content);
+		info.setContent(content);*/
 
 		baseDao.saveOrUpdate(info);
 		// GenHtmlFacade.getInstance().gen(info);
