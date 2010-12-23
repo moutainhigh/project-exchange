@@ -12,7 +12,8 @@ public class CommonListener implements ServletContextListener{
 
 	public void contextInitialized(ServletContextEvent e) {
 		//设置上下文路径
-		e.getServletContext().setAttribute("appPath","/oa2");
+		//e.getServletContext().setAttribute("appPath","/oa2");
+		e.getServletContext().setAttribute("appPath","");
 		System.out.println(e.getServletContext().getAttribute("appPath"));
 	}
 
