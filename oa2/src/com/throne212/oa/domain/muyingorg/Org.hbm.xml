@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.oa.domain.muyingworker">
+	<class name="Worker" table="oa2_muying_worker">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<property name="name"/>
+		<property name="gender"/>
+		<property name="birthday"/>
+		<property name="age"/>
+		<property name="no"/>
+		<property name="date"/>
+		<property name="image"/>
+		<property name="checkDate"/>
+		<property name="checkSummary"/>
+		<property name="comments"/>
+		<many-to-one name="workOrg" lazy="false"/>
+		<many-to-one name="special" lazy="false"/>
+		<many-to-one name="title" lazy="false"/>
+		<many-to-one name="item1" lazy="false"/>
+		<many-to-one name="item2" lazy="false"/>
+		<many-to-one name="item3" lazy="false"/>
+		<many-to-one name="item4" lazy="false"/>
+		<many-to-one name="item5" lazy="false"/>
+		
+		<property name="checkDate2"/>
+		<property name="checkSummary2"/>
+		<property name="comments2"/>
+		<property name="checkDate3"/>
+		<property name="checkSummary3"/>
+		<property name="comments3"/>
+		<property name="checkDate4"/>
+		<property name="checkSummary4"/>
+		<property name="comments4"/>
+		<property name="checkDate5"/>
+		<property name="checkSummary5"/>
+		<property name="comments5"/>
+		
+		<property name="checkNum"></property>
+		
+	</class>
+</hibernate-mapping>

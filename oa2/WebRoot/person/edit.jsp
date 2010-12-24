@@ -45,7 +45,7 @@
 						var dropdownType = $(this).attr('class');
 						var thisSelect = this;
 						$(this).html('<option value=""></option>');
-						$.getJSON("${appPath}/ajax", {dropdownType:dropdownType}, function(json){
+						$.getJSON("${appPath}/ajax?time="+new Date().getTime(), {dropdownType:dropdownType}, function(json){
 							if(json && json.length){
 								for(var i=0;i<json.length;i++){
 									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
