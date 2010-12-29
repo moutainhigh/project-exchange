@@ -1,42 +1,58 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.throne212.oa.domain.muyingworker">
-	<class name="Worker" table="oa2_muying_worker">
+<hibernate-mapping package="com.throne212.oa.domain.muyingorg">
+	<class name="Org" table="oa2_muying_org">
 		<id column="id" name="id" type="long">
 			<generator class="native" />
 		</id>
 		<property name="name"/>
-		<property name="gender"/>
-		<property name="birthday"/>
-		<property name="age"/>
+		<property name="address"/>
+		<property name="tel"/>
+		<property name="post"/>
+		<property name="style"/>
+		<property name="type"/>
+		<property name="publishDate"/>
+		<property name="person"/>
+		<property name="validDate"/>
 		<property name="no"/>
-		<property name="date"/>
-		<property name="image"/>
-		<property name="checkDate"/>
-		<property name="checkSummary"/>
-		<property name="comments"/>
-		<many-to-one name="workOrg" lazy="false"/>
-		<many-to-one name="special" lazy="false"/>
-		<many-to-one name="title" lazy="false"/>
-		<many-to-one name="item1" lazy="false"/>
-		<many-to-one name="item2" lazy="false"/>
-		<many-to-one name="item3" lazy="false"/>
-		<many-to-one name="item4" lazy="false"/>
-		<many-to-one name="item5" lazy="false"/>
+		<property name="item"/>
+		<property name="fromOrg"/>
 		
-		<property name="checkDate2"/>
-		<property name="checkSummary2"/>
-		<property name="comments2"/>
-		<property name="checkDate3"/>
-		<property name="checkSummary3"/>
-		<property name="comments3"/>
-		<property name="checkDate4"/>
-		<property name="checkSummary4"/>
-		<property name="comments4"/>
-		<property name="checkDate5"/>
-		<property name="checkSummary5"/>
-		<property name="comments5"/>
+		<property name="year"/>
+		<property name="date"/>
+		<property name="result"/>
+		<property name="reason"/>
+		<property name="byWho"/>
+		<property name="other"/>
+		
+		<property name="year2"/>
+		<property name="date2"/>
+		<property name="result2"/>
+		<property name="reason2"/>
+		<property name="byWho2"/>
+		<property name="other2"/>
+		
+		<property name="year3"/>
+		<property name="date3"/>
+		<property name="result3"/>
+		<property name="reason3"/>
+		<property name="byWho3"/>
+		<property name="other3"/>
+		
+		<property name="year4"/>
+		<property name="date4"/>
+		<property name="result4"/>
+		<property name="reason4"/>
+		<property name="byWho4"/>
+		<property name="other4"/>
+		
+		<property name="year5"/>
+		<property name="date5"/>
+		<property name="result5"/>
+		<property name="reason5"/>
+		<property name="byWho5"/>
+		<property name="other5"/>
 		
 		<property name="checkNum"></property>
 		
