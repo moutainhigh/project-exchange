@@ -1,5 +1,7 @@
 package init;
 
+import hibernate.HibernateSessionFactory;
+
 import org.hibernate.Session;
 
 import com.throne212.info168.web.domain.Admin;
@@ -13,7 +15,9 @@ public class Init {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Session s = hibernate.HibernateSessionFactory.getSession();
+		HibernateSessionFactory.getConfiguration().setProperty("hibernate.hbm2ddl.auto", "create");
+		HibernateSessionFactory.rebuildSessionFactory();
+		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
 		String[] topCate = {"招聘信息","培训教育","交友征婚","二手市场","车辆信息","宠物","生活服务","房产","服务信息"};
@@ -42,9 +46,9 @@ public class Init {
 		//user
 		Admin admin = new Admin();
 		admin.setLoginName("admin");
-		admin.setPassword("123");
+		admin.setPassword("123456");
 		s.save(admin);
-		User user = new User("yl","123");
+		User user = new User("yl","123456");
 		s.save(user);
 		
 		s.getTransaction().commit();

@@ -43,7 +43,7 @@
   .a-shuxing li font{color:#999;font-size:12px;}
   #add-k span{color:#FF0000;}
   .a-shuxing-name{width:70px;text-align:right;line-height:24px;}
-  .a-shuxing-value{line-height:18px;}
+  .a-shuxing-value{line-height:28px;}
   .add-k-k{background:#fff;border:1px #C3D7F0 solid;margin:6px;padding:20px;padding-top:5px;}
   .add-k{border:1px #7F9DB9 solid;height:150px;width:500px;}
   .add-anniu input{height:34px;border:none;width:144px;background:url(images/add_anniu.jpg) no-repeat;margin-left:70px;}
@@ -55,3 +55,6 @@
 /*发布成功*/
 .pub_succ h1{margin: 40px auto;font-size: 24px;display: block;text-align: center;color:#FF8C2F;}
 .pub_succ h6{margin: 5px auto;font-size: 12px;display: block;text-align: center;color:gray;}
+
+
+.valid_date{margin-left:10px;}

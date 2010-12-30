@@ -136,6 +136,7 @@
 			<result name="info_list" type="freemarker">/front/usercenter/info.ftl</result>
 			<result name="password" type="freemarker">/front/usercenter/password.ftl</result>
 			<result name="modify" type="freemarker">/front/usercenter/modify.ftl</result>
+			<result name="finance" type="freemarker">/front/usercenter/finance.ftl</result>
 		</action>
     </package>
     <package name="admin" namespace="/admin" extends="struts-default">

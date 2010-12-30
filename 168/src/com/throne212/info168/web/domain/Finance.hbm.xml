@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.info168.web.domain">
+	<class name="Finance" table="168_finance">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="date"></property>
+		<property name="money"></property>
+		<property name="orderNo" unique="true" not-null="true"></property>
+		<many-to-one name="user" cascade="none" lazy="false" class="User" column="user_id"></many-to-one>
+	</class>
+</hibernate-mapping>

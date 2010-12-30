@@ -21,7 +21,7 @@ public class UserAction extends BaseAction {
 
 	// 信息列表
 	private List<Info> infoList;
-	private PageBean<Info> pageBean;
+	private PageBean pageBean;
 	private Integer page;
 
 	private Long[] infoIds;
@@ -90,6 +90,15 @@ public class UserAction extends BaseAction {
 		}
 		return "modify";
 	}
+	
+	
+	//财务管理
+	public String finance(){
+		User userInSession = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		this.user = userBiz.getEntityById(User.class, userInSession.getId());
+		pageBean = userBiz.getFinanceByUser(page, user);
+		return "finance";
+	}
 
 	public UserBiz getUserBiz() {
 		return userBiz;
@@ -139,11 +148,11 @@ public class UserAction extends BaseAction {
 		this.infoList = infoList;
 	}
 
-	public PageBean<Info> getPageBean() {
+	public PageBean getPageBean() {
 		return pageBean;
 	}
 
-	public void setPageBean(PageBean<Info> pageBean) {
+	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
 

@@ -1,6 +1,7 @@
 package com.throne212.info168.web.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -175,6 +176,14 @@ public class PublishAction extends BaseAction {
 		if (image != null) {
 			info.setImage(image);
 			ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+		}
+		
+		//失效日期
+		Integer validDay = info.getValidDay();
+		if(validDay != null && validDay > 0){
+			long addTime = validDay * 24 * 60 * 60 * 1000;
+			Date date = new Date(System.currentTimeMillis()+addTime);
+			info.setEndDate(date);
 		}
 		
 		if (userBiz.publishInfo(info)) {

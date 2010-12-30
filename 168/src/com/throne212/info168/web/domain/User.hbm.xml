@@ -15,6 +15,10 @@
 			<property name="tel"/>
 			<property name="qq"/>
 		</component>
+		<set name="financeHistory" lazy="true" cascade="none" table="168_finance">
+			<key column="user_id"></key>
+			<one-to-many class="Finance"/>
+		</set>
 		<subclass discriminator-value="admin" extends="User" name="Admin" select-before-update="false"/>
 	</class>
 </hibernate-mapping>

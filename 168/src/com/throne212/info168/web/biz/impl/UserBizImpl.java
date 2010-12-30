@@ -1,7 +1,6 @@
 package com.throne212.info168.web.biz.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.info168.web.biz.UserBiz;
@@ -11,8 +10,8 @@ import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.dao.InfoDao;
 import com.throne212.info168.web.dao.UserDao;
 import com.throne212.info168.web.domain.Area;
+import com.throne212.info168.web.domain.Finance;
 import com.throne212.info168.web.domain.Info;
-import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.User;
 
 public class UserBizImpl extends BaseBizImpl implements UserBiz {
@@ -95,6 +94,12 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		if (page == null || page < 1)
 			page = 1;
 		return infoDao.getInfoByUser(user.getId(), page);
+	}
+	
+	public PageBean<Finance> getFinanceByUser(Integer page,User user){
+		if (page == null || page < 1)
+			page = 1;
+		return userDao.getFinanceByUser(page,user);
 	}
 
 	public InfoDao getInfoDao() {

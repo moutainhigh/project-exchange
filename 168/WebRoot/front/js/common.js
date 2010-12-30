@@ -14,6 +14,8 @@ $(function(){
 		$('#pos2').html('信息详情');
 	}else if(loc.indexOf('/search')>0){
 		$('#pos2').html('信息搜索');
+	}else if(loc.indexOf('/finance')>0){
+		$('#pos2').html('财务管理');
 	}
 	
 	//城市隐藏层的位置

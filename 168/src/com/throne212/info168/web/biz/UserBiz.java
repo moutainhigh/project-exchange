@@ -1,6 +1,7 @@
 package com.throne212.info168.web.biz;
 
 import com.throne212.info168.web.common.PageBean;
+import com.throne212.info168.web.domain.Finance;
 import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.User;
 
@@ -20,5 +21,8 @@ public interface UserBiz extends BaseBiz{
 	public PageBean<User> getAllUsers(Integer page);
 	public PageBean<User> getAllUsers(Integer page,String key);
 	public PageBean<Info> getInfosByUser(Integer page,User user);
+	
+	//去所用户的财务信息
+	public PageBean<Finance> getFinanceByUser(Integer page,User user);
 	
 }

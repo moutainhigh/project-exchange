@@ -20,6 +20,11 @@
 						</li>
 					</ul>
 					<ul>
+						<li class="">
+							<a href="${base}/user/finance.htm">财务管理</a>
+						</li>
+					</ul>
+					<ul>
 						<li>
 							<a href="${base}/logout_action.htm">安全退出</a>
 						</li>

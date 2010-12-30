@@ -1,6 +1,7 @@
 package com.throne212.info168.web.domain;
 
 import java.util.Date;
+import java.util.Set;
 
 public class User {
 
@@ -10,7 +11,9 @@ public class User {
 	private String email;//邮件地址
 	private Area area;//所属地区
 	private Date regDate;//注册时间
-	private Contact contact; 
+	private Contact contact; //联系方式
+	private Double balance;//帐户余额
+	private Set<Finance> financeHistory;//财务历史
 
 	public User() {
 		super();
@@ -78,5 +81,22 @@ public class User {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+	public Set<Finance> getFinanceHistory() {
+		return financeHistory;
+	}
+
+	public void setFinanceHistory(Set<Finance> financeHistory) {
+		this.financeHistory = financeHistory;
+	}
+
 
 }

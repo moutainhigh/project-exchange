@@ -204,6 +204,21 @@ function validate_form()
 									<input onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')" id="qq" name="info.qq" value="<#if userObj.contact??>${userObj.contact.qq!''}</#if>">
 								</li>
 							</ul>
+							<ul>
+								<li class="a-shuxing-name">
+									有效期：
+								</li>
+								<li class="a-shuxing-value">
+									<input class="valid_date" type="radio" name="info.validDay" value="-1" checked="checked"/>永久有效
+									<input class="valid_date" type="radio" name="info.validDay" value="3"/>3天
+									<input class="valid_date" type="radio" name="info.validDay" value="7"/>一周
+									<input class="valid_date" type="radio" name="info.validDay" value="15"/>半个月
+									<input class="valid_date" type="radio" name="info.validDay" value="90"/>3个月
+									<input class="valid_date" type="radio" name="info.validDay" value="182"/>半年
+									<input class="valid_date" type="radio" name="info.validDay" value="365"/>1年
+									<input class="valid_date" type="radio" name="info.validDay" value="730"/>2年
+								</li>
+							</ul>
 							<div class="clear"></div>
 							<div class="add-anniu">
 								<input type="button" onclick="validate_form();" id="btn" value="" style="display:none;">

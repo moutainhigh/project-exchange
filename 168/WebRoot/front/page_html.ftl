@@ -8,7 +8,7 @@
 		<title>${info.title}</title>
 		<script src="${base}/js/jquery.js"></script>
 		<script src="${base}/front/js/common.js"></script>
-		
+		<script src="${base}/front/js/page.js"></script>
 		<link href="${base}/front/Themes/page.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>

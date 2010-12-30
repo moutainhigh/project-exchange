@@ -155,8 +155,13 @@ public class Util {
 			e.printStackTrace();
 		}
 	}
+	public static String generateOrderNo(){
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		return fmt.format(new Date()).toString();
+	}
 	public static void main(String[] args) {
 		Date now = new Date();
 		System.out.println(getDate(getDateOnly(now)));
+		System.out.println(generateOrderNo());
 	}
 }

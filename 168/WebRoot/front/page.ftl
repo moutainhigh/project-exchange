@@ -2,9 +2,11 @@
 <html>
 	<head>
 		<#include "/front/head.ftl"/>
+		<script src="${base}/front/js/page.js"></script>
 		<link href="${base}/front/Themes/page.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+		<input type="hidden" name="endTime" id="endTime" value="${info.endDateTimeMill!''}"/>
 		<#include "/front/top.ftl">
 		<div class="wrapper">
 			<div style="overflow: hidden; white-space: nowrap;" id="Guide">
@@ -31,9 +33,9 @@
 						<ul>
 							<li><span>位置：</span> <a href="#">${info.area.parent.name}</a> &gt;&gt; <a href="#">${info.area.name}</a></li>
 							<li><span>类别：</span> <a href="#">${info.cate.parent.name}</a> &gt;&gt; <a href="#">${info.cate.name}</a></li>
-							<li><span>联系Email：</span> <span>${info.email}</span></li>
-							<li><span>联系电话：</span> <span>${info.tel}</span></li>
-							<li><span>联系QQ：</span> <span>${info.qq}</span></li>
+							<li><span>联系Email：</span> <span id="info_email">${info.email}</span></li>
+							<li><span>联系电话：</span> <span id="info_tel">${info.tel}</span></li>
+							<li><span>联系QQ：</span> <span id="info_qq">${info.qq}</span></li>
 							<li class="lastLi"><a href="#">刷新</a> | <a href="#">我要举报</a> | <a href="#">推荐给好友</a></li>
 						</ul>
 						<div class="ad">

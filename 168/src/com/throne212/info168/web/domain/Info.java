@@ -17,7 +17,9 @@ public class Info {
 	private Boolean isChecked;//是否通过审核
 	private Boolean recommend;//热门推荐
 	private Boolean isTop;//置顶
-	private String image;//图品地址
+	private String image;//图片地址
+	private Date endDate;//失效日期
+	private Integer validDay;//有效天数
 
 	public Long getId() {
 		return id;
@@ -129,6 +131,26 @@ public class Info {
 
 	public void setIsTop(Boolean isTop) {
 		this.isTop = isTop;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	
+	public String getEndDateTimeMill(){
+		return endDate == null?"":endDate.getTime()+"";
+	}
+
+	public Integer getValidDay() {
+		return validDay;
+	}
+
+	public void setValidDay(Integer validDay) {
+		this.validDay = validDay;
 	}
 
 }
