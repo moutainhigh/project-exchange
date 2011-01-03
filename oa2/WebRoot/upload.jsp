@@ -21,7 +21,7 @@
 <body bgcolor="#FFFFFF" text="#000000">
 <form name="form1" method="post" action="photo" enctype="multipart/form-data" >
 	<img src="images/nophoto.jpg" style="display: block;margin:0 auto; height: 100px; width: 100px;"/>
-	<input type="file" name="myfile" size="1" class="tx1" value="" /><input type="submit" value="上传"/>
+	<input type="file" name="myfile" size="1" class="tx1" value="" style="width:50px;"/><input type="submit" value="上传"/>
 </form>
 </body>
 </html>

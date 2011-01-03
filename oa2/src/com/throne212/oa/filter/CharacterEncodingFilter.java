@@ -25,8 +25,8 @@ public class CharacterEncodingFilter implements Filter {
 		response.setHeader("Cache-Control", "no-cache");
 		response.setHeader("Cache-Control", "no-store");
 		response.setDateHeader("Expires", 0);
-		response.setContentType("text/html; charset=utf-8");
-		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=GBK");
+		response.setCharacterEncoding("GBK");
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

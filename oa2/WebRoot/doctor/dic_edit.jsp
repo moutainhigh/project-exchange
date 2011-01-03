@@ -25,6 +25,11 @@
 			}
 			$(function(){
 			});
+			function deleteDic(id){
+				if(confirm('确定删除吗？')){
+					self.location.href='${appPath}/doctor.do?method=deleteDic&id='+id+'&dicName=${param.dicName}&time='+new Date().getTime();
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -64,7 +69,7 @@
 						<input value="${d.listorder}" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
 					<td>
-						<a href="${appPath}/doctor.do?method=deleteDic&id=${d.id}&dicName=${param.dicName}">删除</a>
+						<a href="javascript:deleteDic(${d.id});">删除</a>
 						<input type="submit" value="更新保存"/>
 					</td>
 				</tr>

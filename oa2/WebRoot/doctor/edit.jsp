@@ -46,6 +46,7 @@
 								}
 								//alert($(thisSelect).html());
 								$(thisSelect).val(dropArr[dropdownType]);
+								return false;
 							}
 						}); 	
 					}	
@@ -83,7 +84,7 @@
 				str += $('#work_org').val()+" ";
 				str += $('#work_zhiwu').val()+" ";
 				str += $('#work_zhengming').val()+" ";
-				$('#workExpr').append(str+'\n');
+				$('#workExpr').append(str+'\r\n');
 				discover('lightBox');
 			}
 			function addChufaExpr(){
@@ -93,7 +94,7 @@
 				str += $('#chufa_org').val()+" ";
 				str += $('#chufa_zhiwu').val()+" ";
 				str += $('#chufa_zhengming').val()+" ";
-				$('#chufaExpr').append(str+'\n');
+				$('#chufaExpr').append(str+'\r\n');
 				discover('lightBox2');
 			}
 		</script>
@@ -118,7 +119,7 @@
 			  </p>
 			</div>
 			<p style="text-align: center; margin: 10px auto;">
-				<input type="button" value=" 确定 " onclick="addChufaExpr();" />
+				<input type="button" value=" 确定 " onclick="addWorkExpr();" />
 				<input type="button" value=" 放弃 " onclick="discover('lightBox');" />
 			</p>
 		</div>
@@ -294,8 +295,9 @@
 					<td colspan="5">
 						处罚处分：
 						<!-- <input type="text" name="doc.chufa" value="${doc.chufa}" id="chufa" style="width:600px;"/> -->
-						<textarea name="doc.chufa" id="chufaExpr" style="width:600px; height: 50px;"></textarea>
+						<textarea name="doc.chufa" id="chufaExpr" style="width:600px; height: 50px;" readonly="readonly">${doc.chufa }</textarea>
 						<a href="javascript:showInstr2();" style="color:gray;">(增加处罚处分)</a>
+						<a href="javascript:void(0);" onclick="$('#chufaExpr').html('');" style="color:gray;">(清空处罚处分)</a>
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -314,8 +316,9 @@
 					<td colspan="5">
 						工作经历：
 						<!--<input type="text" name="doc.workExpr" value="${doc.workExpr}" id="workExpr" style="width:600px;"/>-->
-						<textarea name="doc.workExpr" id="workExpr" style="width:600px; height: 50px;"></textarea>
+						<textarea name="doc.workExpr" id="workExpr" style="width:600px; height: 50px;" readonly="readonly">${doc.workExpr}</textarea>
 						<a href="javascript:showInstr();" style="color:gray;">(增加工作经历)</a>
+						<a href="javascript:void(0);" onclick="$('#workExpr').html('');" style="color:gray;">(清空工作经历)</a>
 					</td>
 				</tr>
 				<tr class="list_td_context">
