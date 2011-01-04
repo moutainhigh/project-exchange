@@ -4,57 +4,21 @@
 		<#include "head.ftl">
 	</head>
 	<body>
-
-		<#include "top.ftl">
-		
+		<#include "top.ftl">		
 		<#include "nav.ftl">	
-
 		<!-- begin正文框架 -->
 		<div class="wrapper">
 			<div class="part02 mar_t6">
 				<div class="fl w730">
 					<div class="section">
 						<div class="ptitle">
-							成都团购网
+							<#if currCity??>${currCity.name}<#else>全国</#if>团购网
 						</div>
 						<div class=" pad_20 webfriendslist">
 							<ul class="">
-								<li>
-									<a href="#">什么团</a>
-								</li>
-								<li>
-									<a href="#">愉悦团</a>
-								</li>
-								<li>
-									<a href="#">哟实惠</a>
-								</li>
-								<li>
-									<a href="#">团购王</a>
-								</li>
-								<li>
-									<a href="#">什么团</a>
-								</li>
-								<li>
-									<a href="#">愉悦团</a>
-								</li>
-								<li>
-									<a href="#">哟实惠</a>
-								</li>
-								<li>
-									<a href="#">团购王</a>
-								</li>
-								<li>
-									<a href="#">什么团</a>
-								</li>
-								<li>
-									<a href="#">愉悦团</a>
-								</li>
-								<li>
-									<a href="#">哟实惠</a>
-								</li>
-								<li>
-									<a href="#">团购王</a>
-								</li>
+								<#list siteList as s>
+								<li><a href="${s.url}" target="_blank">${s.name}</a></li>
+								</#list>
 							</ul>
 							<div class="clear"></div>
 						</div>

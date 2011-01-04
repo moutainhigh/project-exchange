@@ -1,5 +1,13 @@
 //当前位置
 $(function(){
+	//城市隐藏层的位置
+	$('#city-list').css({'top':$('#changecity').offset()['top'],'left':$('#changecity').offset()['left']});
+	//当前的城市
+	if(window['currCityPinyin']){
+		$('#city-list li.'+window['currCityPinyin']).addClass('current');
+	}else{
+		$('#city-list li').eq(0).addClass('current');
+	}
 });
 
 
@@ -31,4 +39,9 @@ function search(root){
 	var path = root + '/search/' + key + '/' + catePinyin;
 	//alert(path);
 	window.location.href = path;
+}
+
+
+function showCities(){
+	$("#city-list").toggle();
 }

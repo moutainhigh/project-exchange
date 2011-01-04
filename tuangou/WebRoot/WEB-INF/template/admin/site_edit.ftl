@@ -48,6 +48,12 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="mt-td-l">城市：</td>
+							<td class="mt-td-r">
+								<input type="text" value="" size="10" class="text" name="site.city" id="city"><label><input type="checkbox" value="true" name="" onClick="isAll();">全国有效</label>
+							</td>
+						</tr>
+						<tr>
 							<td class="mt-td-l">联系电话：</td>
 							<td class="mt-td-r">
 								<input type="text" value="" size="10" class="text" name="site.tel" id="tel">

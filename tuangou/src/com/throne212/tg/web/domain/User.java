@@ -23,9 +23,8 @@ import javax.persistence.TemporalType;
 public class User  implements java.io.Serializable {
 
 
-    // Fields    
-
-     private Long id;
+	private static final long serialVersionUID = 1L;
+	private Long id;
      private String userType;
      private String loginName;
      private String password;

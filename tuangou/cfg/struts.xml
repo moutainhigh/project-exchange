@@ -57,8 +57,10 @@
 				<param name="inputName">imageStream</param>
 			</result>
 		</action>
-		<!-- 直接访问模板文件 -->
-		<action name="*" class="com.throne212.tg.web.action.BaseAction">
+		<!-- 访问前台功能action -->
+		<action name="/*" class="com.throne212.tg.web.action.FrontAction">
+			<param name="method">{1}</param>
+			<result name="index" type="redirect">/index.htm</result>
 			<result name="success" type="freemarker">/WEB-INF/template/{1}.ftl</result>
 		</action>
     </package>
@@ -93,6 +95,8 @@
 			<result name="user_list" type="freemarker">/WEB-INF/template/admin/user_list.ftl</result>
 			<result name="password" type="freemarker">/WEB-INF/template/admin/password.ftl</result>
 			<result name="site_setting" type="freemarker">/WEB-INF/template/admin/setting.ftl</result>
+			<result name="city" type="freemarker">/WEB-INF/template/admin/city.ftl</result>
+			<result name="category" type="freemarker">/WEB-INF/template/admin/category.ftl</result>
 		</action>
     </package>
     

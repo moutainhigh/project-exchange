@@ -6,6 +6,7 @@ import org.hibernate.Session;
 
 import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.dao.SiteDao;
+import com.throne212.tg.web.domain.City;
 import com.throne212.tg.web.domain.Site;
 
 public class SiteDaoImpl extends BaseDaoImpl implements SiteDao {
@@ -23,6 +24,11 @@ public class SiteDaoImpl extends BaseDaoImpl implements SiteDao {
 		page.setRowPerPage(20);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page; 
+	}
+	
+	public List<Site> getSiteByCity(City city){
+		String hql = "from Site s where s.city=? order by listOrder asc";
+		return this.getHibernateTemplate().find(hql, city.getName());
 	}
 
 }

@@ -25,6 +25,11 @@
 					<dd><a href="index.php?d=admin&amp;c=feedteam">采集团拍活动</a></dd>
 				</dl>
 				<dl>
+					<dt><strong>数据字典管理</strong></dt>
+					<dd><a href="${base}/admin/city">城市管理</a></dd>
+					<dd><a href="${base}/admin/category">分类管理</a></dd>
+				</dl>
+				<dl>
 					<dt><strong>系统管理</strong></dt>
 					<dd><a href="index.php?d=admin&amp;c=feedback">意见反馈管理</a></dd>
 					<!--<dd><a href="index.php?d=admin&c=city" target="mainFrame">城市管理</a></dd>-->

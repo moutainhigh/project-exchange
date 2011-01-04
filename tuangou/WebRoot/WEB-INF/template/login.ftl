@@ -22,6 +22,7 @@
 						<div class="ptitle">
 							用户登录
 						</div>						
+						<#include "msg.ftl">
 						<div class=" pad_10 grid">
 							<div class="login">
 								<ul>

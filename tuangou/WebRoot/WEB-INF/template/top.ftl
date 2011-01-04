@@ -14,10 +14,19 @@
 						<a href="${base}/login.htm" title="会员登录">会员登录</a>
 						</#if>
 					</div>
-					<div class="g_t_r language mar_t3">
-						当前站点&nbsp;[成都团购网站大全]&nbsp;
-						<a href="#">切换站点</a>
+					<div class="g_t_r language mar_t3" id="changecity">
+						当前站点&nbsp;[<#if currCity??>${currCity.name}<#else>全国</#if>]团购网站大全&nbsp;
+						<a href="javascript:showCities();" onClick="">切换站点</a>
 						<img src="${base}/Themes/images/ico-map.gif" alt="切换语言" width="29" height="15" align="middle" />
+						<div id="city-list" class="hidden">
+							<ul>
+								<li><a href="${base}/team/selectCity.htm">全国</a></li>
+								<#list cities as c>					
+								<li class="${c.pinyin}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
+								</#list>
+							</ul>
+							<div class="other"><a href="javascript:showCities();">[关闭]</a></div>
+						</div>
 					</div>
 				</div>
 				<!-- begin导航-->

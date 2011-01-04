@@ -40,8 +40,9 @@ public class Site implements java.io.Serializable {
 	@Column(name = "list_order")
 	private String listOrder;
 	@Column(name = "has_link")
-	private Boolean hasLink;//是否已经交换链接
-	
+	private Boolean hasLink;// 是否已经交换链接
+	@Column(name = "city")
+	private String city = "all";
 
 	// Constructors
 
@@ -49,96 +50,84 @@ public class Site implements java.io.Serializable {
 	public Site() {
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getTel() {
 		return tel;
 	}
-
 
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
-
 	public String getQq() {
 		return qq;
 	}
-
 
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
 
-
 	public String getUrl() {
 		return url;
 	}
-
 
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-
 	public SiteType getSiteType() {
 		return siteType;
 	}
-
 
 	public void setSiteType(SiteType siteType) {
 		this.siteType = siteType;
 	}
 
-
 	public String getContact() {
 		return contact;
 	}
-
 
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
-
 	public String getListOrder() {
 		return listOrder;
 	}
-
 
 	public void setListOrder(String listOrder) {
 		this.listOrder = listOrder;
 	}
 
-
 	public Boolean getHasLink() {
 		return hasLink;
 	}
-
 
 	public void setHasLink(Boolean hasLink) {
 		this.hasLink = hasLink;
 	}
 
-	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 }

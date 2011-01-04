@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Properties;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.tg.web.biz.CommonBiz;
 import com.throne212.tg.web.biz.UserBiz;
@@ -16,6 +17,7 @@ import com.throne212.tg.web.common.EncryptUtil;
 import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
+import com.throne212.tg.web.domain.City;
 import com.throne212.tg.web.domain.Component;
 import com.throne212.tg.web.domain.Site;
 import com.throne212.tg.web.domain.SiteType;
@@ -151,6 +153,61 @@ public class AdminAction extends BaseAction {
 		return "site_setting";
 	}
 	
+	//城市数据字典
+	public String city(){
+		cityList = commonBiz.getAll(City.class, "orderNum", "asc");
+		return "city";
+	}
+	
+	private City city;
+	private List<City> cityList;
+	
+	public String addCity(){
+		if(city != null && !Util.isEmpty(city.getName())){
+			commonBiz.saveOrUpdateEntity(city);
+			this.setMsg("添加城市数据成功");
+			ActionContext.getContext().getApplication().remove(WebConstants.APP_CITIES);
+		}else{
+			this.setMsg("添加城市数据失败，请检查数据");
+		}
+		return city();
+	}
+	public String deleteCity(){
+		if(city != null && city.getId()!=null){
+			commonBiz.deleteEntity(City.class, city.getId());
+			this.setMsg("删除城市数据成功");
+			ActionContext.getContext().getApplication().remove(WebConstants.APP_CITIES);
+		}
+		return city();
+	}
+	
+	//团购信息分类数据字典
+	private TeamCategory category;
+	private List<TeamCategory> categoryList;
+	public String category(){
+		categoryList = commonBiz.getAll(TeamCategory.class, "orderNum", "asc");
+		return "category";
+	}
+	
+	public String addCategory(){
+		if(category != null && !Util.isEmpty(category.getName())){
+			commonBiz.saveOrUpdateEntity(category);
+			this.setMsg("添加分类数据成功");
+			ActionContext.getContext().getApplication().remove(WebConstants.APP_CATEGOTIES);
+		}else{
+			this.setMsg("添加分类数据失败，请检查数据");
+		}
+		return category();
+	}
+	public String deleteCategory(){
+		if(category != null && category.getId()!=null){
+			commonBiz.deleteEntity(TeamCategory.class, category.getId());
+			this.setMsg("删除分类数据成功");
+			ActionContext.getContext().getApplication().remove(WebConstants.APP_CATEGOTIES);
+		}
+		return category();
+	}
+	
 	public CommonBiz getCommonBiz() {
 		return commonBiz;
 	}
@@ -239,6 +296,30 @@ public class AdminAction extends BaseAction {
 	}
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+	public City getCity() {
+		return city;
+	}
+	public void setCity(City city) {
+		this.city = city;
+	}
+	public List<City> getCityList() {
+		return cityList;
+	}
+	public void setCityList(List<City> cityList) {
+		this.cityList = cityList;
+	}
+	public TeamCategory getCategory() {
+		return category;
+	}
+	public void setCategory(TeamCategory category) {
+		this.category = category;
+	}
+	public List<TeamCategory> getCategoryList() {
+		return categoryList;
+	}
+	public void setCategoryList(List<TeamCategory> categoryList) {
+		this.categoryList = categoryList;
 	}
 
 }

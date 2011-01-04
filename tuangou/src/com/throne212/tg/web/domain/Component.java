@@ -65,7 +65,7 @@ public abstract class Component {
 	 * 排序编号
 	 */
 	@Column
-	protected Integer orderNum;
+	protected Integer orderNum = 0;
 
 	@Column
 	protected Integer code;

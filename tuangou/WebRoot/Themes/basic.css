@@ -1,17 +1,17 @@
 body{
 	margin:0px;
 	padding:0px;
-	font:12px/20px "ËÎÌå";
+	font:12px/20px "ï¿½ï¿½ï¿½ï¿½";
 	color:#333;
 	background-color: #fff;
 }
 
 /***** define_fontfamilly *****/
 .entxt {font-family: Arial, Helvetica, sans-serif;}
-.heti {font-family: "ºÚÌå";}
-.yahei {font-family: "Î¢ÈíÑÅºÚ";}
+.heti {font-family: "ï¿½ï¿½ï¿½ï¿½";}
+.yahei {font-family: "Î¢ï¿½ï¿½ï¿½Åºï¿½";}
 
-/******** Çå³ý±êÇ©»ù±¾ÑùÊ½ *********/
+/******** ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½Ê½ *********/
 *{word-break:break-all;}
 div, h1, h2, h3, h4, p, form, label, input, textarea, img,ul,ol,li,dl,dd,dt{margin:0; padding:0;}
 ul,ol{list-style:none;}
@@ -27,8 +27,9 @@ a:hover{color:#cc0000; text-decoration:underline;}
 .inline {_display: inline;}
 .none {display: none;}
 .hide {overflow: hidden;}
+.hidden{display: none;}
 
-/***** ¶¨Î» *****/
+/***** ï¿½ï¿½Î» *****/
 .prel {position: relative;zoom: 1}
 .pabs {position: absolute;}
 .fl{float:left;}
@@ -188,8 +189,8 @@ h4 {font-size:12px;color:#000;}
 .ft24 {font-size: 24px;}
 
 /***** define_fontfamilly *****/
-.heti {font-family: "ºÚÌå";}
-.yahei {font-family: "Î¢ÈíÑÅºÚ";}
+.heti {font-family: "ï¿½ï¿½ï¿½ï¿½";}
+.yahei {font-family: "Î¢ï¿½ï¿½ï¿½Åºï¿½";}
 
 /***** define_width *****/
 .wp5{width:5%}
@@ -248,7 +249,7 @@ h4 {font-size:12px;color:#000;}
 .w980{width:980px}
 .w990{width:990px}
 
-/* ³£ÓÃÁÐ±í */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ */
 .dotli01 li{
 	background:url(images/dot01.gif) left 10px no-repeat;
 	padding-left:10px;
@@ -262,7 +263,7 @@ h4 {font-size:12px;color:#000;}
 	padding-left:14px;
 }
 
-/******** ±ß¿ò ********/
+/******** ï¿½ß¿ï¿½ ********/
 .b_red {border:1px solid #eeaaaa;}
 .b_white {border:1px solid #FFFFFF;}
 .b_pink {border: 3px solid #FCEDED;}
@@ -282,7 +283,7 @@ h4 {font-size:12px;color:#000;}
 .bdt_gray{border-top:1px dotted #ddd}
 .bdb_gray{border-bottom:1px dotted #ddd}
 
-/******** ËÑË÷ and °´Å¥ ********/
+/******** ï¿½ï¿½ï¿½ï¿½ and ï¿½ï¿½Å¥ ********/
 .button01, .button02, .button03{width:80px; height:25px; line-height:25px;+line-height:27px;cursor:pointer;border: 0; color:#828686; font-size:12px;}
 .button01{background:url(images/button-bg01s.gif);}
 .button02{background:url(images/button-bg02s.gif);}
@@ -294,7 +295,7 @@ h4 {font-size:12px;color:#000;}
 .inputxt03{width:150px;}
 .inputxt04{width:250px;}
 
-/******** ±³¾° ********/
+/******** ï¿½ï¿½ï¿½ï¿½ ********/
 .bg01 {background: #eaeaea;}
 .bg02 { background: url(images/section_bg.gif) repeat-x 0 0;}
 .bg03 {background: url(images/home_content.jpg) repeat-x -5px 0;}
@@ -302,7 +303,7 @@ h4 {font-size:12px;color:#000;}
 .bg05 {background: #eef3f7;}
 
 
-/**************** Ò³ÃæÍ¨ÓÃ *****************/
+/**************** Ò³ï¿½ï¿½Í¨ï¿½ï¿½ *****************/
 .wrapper{
 	width:990px;
 	clear:both;
@@ -377,7 +378,7 @@ h4 {font-size:12px;color:#000;}
 }
 .section03 .ptitle .more{float:right; font-size:12px; font-weight:normal;padding:0; display:block;}
 
-/***** ·ÖÒ³ *****/
+/***** ï¿½ï¿½Ò³ *****/
 .pages{
 	clear: both;
 	line-height: 20px;
@@ -396,11 +397,11 @@ h4 {font-size:12px;color:#000;}
 .pages a:hover{border-color: #2E6AB1;}
 .pages span.nextprev{color: #666;background:#fff;}
 .pages span.nextprev{border: 1px solid #ddd;color: #999;background:#fff;}
-/******** ×ó±ß¶þ¼¶µ¼º½ ********/
+/******** ï¿½ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ********/
 .lefNav {
 }
 
-/******** Ò³ÃæÍ·²¿ ********/
+/******** Ò³ï¿½ï¿½Í·ï¿½ï¿½ ********/
 .header-top{
 	width:100%;
 	background: #000066;
@@ -454,7 +455,7 @@ h4 {font-size:12px;color:#000;}
 	padding: 0;
 }
 
-/******** µ¼º½ ********/
+/******** ï¿½ï¿½ï¿½ï¿½ ********/
 .menuzone {
 	height:89px;
 	background: url(images/nav_mzone_bg.jpg) no-repeat 50% 0;
@@ -613,16 +614,16 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
 {position:absolute; left:-9999px; top:-9999px; width:0; height:0; margin:0; padding:0; list-style:none;}
 
 	
-/******** ÎÄÕÂÁÐ±íÏµÁÐ ********/
+/******** ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½Ïµï¿½ï¿½ ********/
 .article h1{
-	font-family:"Î¢ÈíÑÅºÚ";
+	font-family:"Î¢ï¿½ï¿½ï¿½Åºï¿½";
 	font-size: 18px;
 	font-weight: bold;
 	color: #3f8ab6;
 	padding: 10px;
 }
 
-/******** Â·¾¶ÑùÊ½ ********/
+/******** Â·ï¿½ï¿½ï¿½ï¿½Ê½ ********/
 .path {
 	color: #999999;
 	background-repeat: no-repeat;
@@ -631,7 +632,7 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
 	border-bottom: 1px solid #618fa3;
 }
 
-/******** Ò³½Å ********/
+/******** Ò³ï¿½ï¿½ ********/
 
 .footer_bg{
 	width:100%;
@@ -656,7 +657,7 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
     color: #71b2d8;
 }
 
-/* ----- ¶þ¼¶À¸Ä¿²àÀ¸ ----- */
+/* ----- ï¿½ï¿½ï¿½ï¿½8Ä¿ï¿½ï¿½8 ----- */
 #side {
 	background-color: #def0fb;
 	height: 100%;
@@ -770,7 +771,7 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
 	padding: 10px 15px 0 15px;
 }
 
-/* ----- ÕýÎÄÄÚÈÝ ----- */
+/* ----- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ----- */
 .title01{ background:#bcdee8; color: #333; font-size: 14px; font-weight: bold;padding: 5px 20px;}
 .title02{ background: url(images/title_bg02.gif) no-repeat left bottom; color: #333; font-size: 12px; font-weight: bold; padding: 0 5px 5px 5px;}
 .title03{
@@ -790,9 +791,9 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
 }
 
 .title05{ background: url(images/dot05.gif) no-repeat left center; color: #333; font-size: 14px; font-weight: bold; padding: 5px 5px 5px 25px;}
-.title06{color:#3f8ab6; font-family:"ºÚÌå"; font-size: 24px; padding: 0 0 10px 0;}
+.title06{color:#3f8ab6; font-family:"ï¿½ï¿½ï¿½ï¿½"; font-size: 24px; padding: 0 0 10px 0;}
 .title07{padding-bottom:4px;font-size:12px;color:#618fa3;font-weight: bold;border-bottom: 1px solid #618fa3;}
-.title08{padding-bottom:10px;font-size: 24px;color:#618fa3;font-family:"ºÚÌå";border-bottom: 1px solid #618fa3;}
+.title08{padding-bottom:10px;font-size: 24px;color:#618fa3;font-family:"ï¿½ï¿½ï¿½ï¿½";border-bottom: 1px solid #618fa3;}
 
 .Main-Article.hd, .Main-Article.bd {
 	width:588px;
@@ -808,7 +809,7 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
 .Main-Article h1 {
 	-x-system-font:none;
 	color:#000;
-	font-family:"Î¢ÈíÑÅºÚ";
+	font-family:"Î¢ï¿½ï¿½ï¿½Åºï¿½";
 	font-size:20px;
 	font-size-adjust:none;
 	font-stretch:normal;
@@ -835,7 +836,7 @@ background:#82b6d6 url(arrow_over.gif) 95px 6px no-repeat; color:#4f4f4f;
 
 .Main-Article .info .where a, .Main-Article .info .auth a{color:#7E7E7E}
 
-/*-----------------Êý¾Ý±í¸ñµÄÑùÊ½------------------*/
+/*-----------------ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ï¿½ï¿½Ê½------------------*/
 .tblist1 {margin:5px 0;}
 .tblist1 tr {margin-bottom:3px;background-color:#f3f3f3;}
 .tblist1 td { 

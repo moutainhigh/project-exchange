@@ -14,6 +14,8 @@ public class WebConstants {
 	public static final String APP_TITLE = "appTitle";
 	public static final String APP_DESC = "appDesc";
 	public static final String APP_KEY_WORDS = "appKeywords";
+	public static final String APP_CITIES = "cities";
+	public static final String APP_CATEGOTIES = "cates";
 	
 	//session
 	public static final String SESS_USER_OBJ = "userObj";
