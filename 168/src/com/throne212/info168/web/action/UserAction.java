@@ -99,6 +99,11 @@ public class UserAction extends BaseAction {
 		pageBean = userBiz.getFinanceByUser(page, user);
 		return "finance";
 	}
+	private String orderNum;//订单号
+	public String financeForm(){
+		orderNum = Util.generateOrderNo();
+		return "finance_form";
+	}
 
 	public UserBiz getUserBiz() {
 		return userBiz;
@@ -178,6 +183,14 @@ public class UserAction extends BaseAction {
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
+	}
+
+	public String getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
 	}
 
 }

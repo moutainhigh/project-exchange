@@ -31,7 +31,7 @@
 .manager-l div a:hover{color:#f60;text-decoration:underline;}
 .manager-l div span{font-family:"宋体";color:#999;font-size:12px;}
 
-.manager-r{float:left;margin-left:15px;width:730px;height:600px;padding:15px;padding-top:0;}
+.manager-r{float:left;margin-left:15px;width:730px;height:auto;padding:15px;padding-top:0;}
 .manager-r div{border:1px #FFCC00 solid;padding:10px;font-size:12px;font-family:Verdana, Arial, Helvetica, sans-serif;background:#FFFCEE;}
 .manager-r div font{color:#f60;font-size:12px;}
 .manager-r div span{float:right;padding-left:10px;}

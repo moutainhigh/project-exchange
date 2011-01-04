@@ -37,6 +37,7 @@ import com.throne212.info168.web.domain.Info;
 import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.LinkSetting;
 import com.throne212.info168.web.domain.Setting;
+import com.throne212.info168.web.domain.TopPriceSetting;
 import com.throne212.info168.web.domain.User;
 
 import freemarker.template.Configuration;
@@ -482,6 +483,13 @@ public class AdminAction extends BaseAction {
 		}
 		return keywords();
 	}
+	
+	//置顶价格
+	private List<TopPriceSetting> topPriceList;
+	public String topPrice() {
+		topPriceList = commonBiz.getSetting(TopPriceSetting.class);
+		return "top_price";
+	}
 
 	public String getOldpassword() {
 		return oldpassword;
@@ -701,6 +709,14 @@ public class AdminAction extends BaseAction {
 
 	public void setKeyWordList(List<KeyWordSetting> keyWordList) {
 		this.keyWordList = keyWordList;
+	}
+
+	public List<TopPriceSetting> getTopPriceList() {
+		return topPriceList;
+	}
+
+	public void setTopPriceList(List<TopPriceSetting> topPriceList) {
+		this.topPriceList = topPriceList;
 	}
 
 }

@@ -37,7 +37,7 @@
 					<table cellspacing="0" cellpadding="0" border="0" width="330" style="margin-top: 30px;">
 						  <tbody><tr>
 						    <td align="right" width="30%">帐户总额：</td>
-						    <td class="manager-t"><span class="money">${user.balance!'0'}</span>元&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">充值</a></td>
+						    <td class="manager-t"><span class="money">${user.balance!'0'}</span>元&nbsp;&nbsp;&nbsp;&nbsp;<a href="${base}/user/financeForm.htm">充值</a></td>
 						   </tr>
 						  <tr>
 						    <td align="right" width="30%">可用余额：</td>

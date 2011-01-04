@@ -25,4 +25,6 @@ public interface UserBiz extends BaseBiz{
 	//去所用户的财务信息
 	public PageBean<Finance> getFinanceByUser(Integer page,User user);
 	
+	public void addNewFinanceRecord(Finance f);
+	
 }

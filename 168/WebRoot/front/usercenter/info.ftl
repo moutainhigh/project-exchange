@@ -56,7 +56,7 @@
 									<td bgcolor="#eeeeee" align="center" width="5%" style="border-top: 1px solid rgb(0, 94, 188);">
 										&nbsp;
 									</td>
-									<td bgcolor="#eeeeee" width="38%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="33%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										信息标题
 									</td>
 									<td bgcolor="#eeeeee" width="15%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
@@ -71,7 +71,7 @@
 									<td bgcolor="#eeeeee" width="12%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										日期
 									</td>
-									<td bgcolor="#eeeeee" width="5%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
+									<td bgcolor="#eeeeee" width="10%" style="border-top: 1px solid rgb(0, 94, 188); font-weight: bold;">
 										操作
 									</td>
 								</tr>
@@ -97,6 +97,8 @@
 									</td>
 									<td>
 										<a href="${base}/user/delete">删除</a>
+										&nbsp;
+										<a href="${base}/user/delete" style="font-weight:600;color:#803267;">置顶</a>
 									</td>
 								</tr>
 								</#list>

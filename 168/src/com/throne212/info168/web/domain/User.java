@@ -1,10 +1,15 @@
 package com.throne212.info168.web.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;//主键
 	private String loginName;//登录名
 	private String password;//密码

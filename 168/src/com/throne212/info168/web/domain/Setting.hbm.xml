@@ -24,5 +24,11 @@
 		<subclass discriminator-value="key_word" name="KeyWordSetting">
 			<many-to-one name="cate" column="cate_id" class="Category" lazy="false" cascade="none"></many-to-one>
 		</subclass>
+		<!-- 置顶价格 -->
+		<subclass discriminator-value="top_price" name="TopPriceSetting">
+			<many-to-one name="cate" column="cate_id" class="Category" lazy="false" cascade="none"></many-to-one>
+			<many-to-one name="area" column="area_id" class="Area" lazy="false" cascade="none"></many-to-one>
+			<property name="price"></property>
+		</subclass>
 	</class>
 </hibernate-mapping>

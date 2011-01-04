@@ -1,4 +1,7 @@
-#Sat Nov 13 09:29:10 CST 2010
+#Tue Jan 04 21:45:28 CST 2011
 eclipse.preferences.version=1
+encoding//WebRoot/chinabank/AutoReceive.jsp=UTF-8
+encoding//WebRoot/chinabank/Receive.jsp=UTF-8
+encoding//WebRoot/chinabank/Send.jsp=UTF-8
 encoding//cfg/site.properties=UTF-8
 encoding/<project>=UTF-8

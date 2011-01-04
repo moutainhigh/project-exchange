@@ -72,6 +72,11 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 		return true;
 	}
 	
+	//增加财务记录
+	public void addNewFinanceRecord(Finance f){
+		userDao.saveOrUpdate(f);
+	}
+	
 
 	public PageBean<User> getAllUsers(Integer page) {
 		if (page == null || page < 1)
@@ -101,6 +106,7 @@ public class UserBizImpl extends BaseBizImpl implements UserBiz {
 			page = 1;
 		return userDao.getFinanceByUser(page,user);
 	}
+
 
 	public InfoDao getInfoDao() {
 		return infoDao;
