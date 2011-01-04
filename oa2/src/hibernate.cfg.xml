@@ -7,6 +7,23 @@
 <hibernate-configuration>
 
 <session-factory>
+
+	<property name="proxool.pool_alias">oa2Pool</property>
+	<property name="proxool.xml">proxool.xml</property>
+	<property name="connection.provider_class">
+		org.hibernate.connection.ProxoolConnectionProvider
+	</property>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="hibernate.dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<property name="hibernate.cache.provider_class">
+		org.hibernate.cache.HashtableCacheProvider
+	</property>
+	
+	<!--  
 	<property name="connection.username">oa2</property>
 	<property name="connection.url">
 		<![CDATA[jdbc:mysql://localhost:3306/oa2?user=oa2&password=123&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false]]>		
@@ -19,6 +36,7 @@
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>
+	-->
 	<property name="hbm2ddl.auto">none</property>
 	<mapping resource="com/throne212/oa/domain/doctor/Doctor.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/person/Person.hbm.xml" />

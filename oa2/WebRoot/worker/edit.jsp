@@ -48,17 +48,20 @@
 									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
 									$(thisSelect).append(str);
 								}
-								//特殊处理
-								if($(thisSelect).attr('name') == 'worker.item1.id'){
-									$(thisSelect).val(dropArr['CheckItem1']);		
-								}else if($(thisSelect).attr('name') == 'worker.item2.id'){
-									$(thisSelect).val(dropArr['CheckItem2']);		
-								}else if($(thisSelect).attr('name') == 'worker.item3.id'){
-									$(thisSelect).val(dropArr['CheckItem3']);		
-								}else if($(thisSelect).attr('name') == 'worker.item4.id'){
-									$(thisSelect).val(dropArr['CheckItem4']);		
-								}else
-									$(thisSelect).val(dropArr[dropdownType]);								
+								try{
+									//特殊处理
+									if($(thisSelect).attr('name') == 'worker.item1.id'){
+										$(thisSelect).val(dropArr['CheckItem1']);		
+									}else if($(thisSelect).attr('name') == 'worker.item2.id'){
+										$(thisSelect).val(dropArr['CheckItem2']);		
+									}else if($(thisSelect).attr('name') == 'worker.item3.id'){
+										$(thisSelect).val(dropArr['CheckItem3']);		
+									}else if($(thisSelect).attr('name') == 'worker.item4.id'){
+										$(thisSelect).val(dropArr['CheckItem4']);		
+									}else
+										$(thisSelect).val(dropArr[dropdownType]);		
+								}catch(e){}		
+														
 							}
 						}); 	
 					}

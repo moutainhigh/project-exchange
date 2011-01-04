@@ -39,7 +39,9 @@
 									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
 									$(thisSelect).append(str);
 								}
-								$(thisSelect).val(dropArr[dropdownType]);								
+								try{
+									$(thisSelect).val(dropArr[dropdownType]);		
+								}catch(e){}							
 							}
 						}); 	
 					}

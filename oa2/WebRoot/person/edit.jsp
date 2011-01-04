@@ -51,10 +51,13 @@
 									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
 									$(thisSelect).append(str);
 								}
-								if($(thisSelect).attr('name') == 'person.relationZhengzhi.id'){
-									$(thisSelect).val(dropArr['ZhengZhi2']);		
-								}else
-									$(thisSelect).val(dropArr[dropdownType]);								
+								try{
+									if($(thisSelect).attr('name') == 'person.relationZhengzhi.id'){
+										$(thisSelect).val(dropArr['ZhengZhi2']);		
+									}else
+										$(thisSelect).val(dropArr[dropdownType]);		
+								}catch(e){}	
+														
 							}
 						}); 	
 					}

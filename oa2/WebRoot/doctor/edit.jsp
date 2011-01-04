@@ -45,7 +45,9 @@
 									$(thisSelect).append(str);
 								}
 								//alert($(thisSelect).html());
-								$(thisSelect).val(dropArr[dropdownType]);
+								try{
+									$(thisSelect).val(dropArr[dropdownType]);
+								}catch(e){}								
 								return false;
 							}
 						}); 	
