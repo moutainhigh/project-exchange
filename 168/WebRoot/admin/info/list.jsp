@@ -49,11 +49,24 @@
 				});
 				return rst;
 			}
+			$(function(){
+				$("tr").hover(
+				  function () {
+				    $(this).addClass("hover");
+				  },
+				  function () {
+				    $(this).removeClass("hover");
+				  }
+				); 
+			});
 		</script>
+		<style>
+			.hover{background-color: #BACAD7;}
+		</style>
     </head>
     <body>
     <form action="${appPath }/admin/deleteInfo" method="post">
-   		<input type="hidden" name="method" value="newUser"/>
+   		<br /><input type="hidden" name="method" value="newUser"/>
         <div id="wrapper">			
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>

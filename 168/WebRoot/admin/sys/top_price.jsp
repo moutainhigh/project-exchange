@@ -26,6 +26,28 @@
 		  				});
 	  				}
 	  			});
+	  			$.getJSON("${appPath}/ajax/getTopArea.action",null, function(json){
+			  		if(json){
+			  			$('#topArea').html('<option value=""></option>');
+			  			for(var i=0;i<json.list.length;i++){
+			  				var str = '<option value="'+json.list[i]['id']+'">'+json.list[i]['name']+'</option>';
+			  				$('#topArea').append(str);
+			  			}
+			  			$('#topArea').change(function(){
+			  				if($('#topArea').val()){
+				  				$.getJSON("${appPath}/ajax/getCities.action",{parentId:$('#topArea').val()}, function(json){
+				  					if(json){
+				  						$('#city').html('<option value=""></option>');
+					  					for(var i=0;i<json.list.length;i++){
+								  			var str = '<option value="'+json.list[i]['id']+'">'+json.list[i]['name']+'</option>';
+								  			$('#city').append(str);
+								  		}
+							  		}
+				  				});
+			  				}
+			  			});
+			  		}
+				});
 			});
 			function removeKeyword(id){
 				if(!confirm('您确定删除吗？')){
@@ -77,9 +99,19 @@
 				<select id="cate" name="keyword.cate.id"></select>
 				</td>
 			  </tr>
+			  <tr>
+			    <td height="26" colspan="" style="text-align: center;">
+				城市
+				</td>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				<select name="topArea" id="topArea"></select>
+				&nbsp;>&nbsp;
+				<select name="user.area.id" id="city"></select>
+				</td>
+			  </tr>
 			   <tr>
 			    <td height="26" colspan="" style="text-align: center;">
-				关键词名称
+				价格
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
 				<input name="keyword.name" id="keyName" style="width:300px;"/>
@@ -90,7 +122,7 @@
 				&nbsp;
 				</td>
 				<td height="26" colspan="1" style="padding-left: 30px;">
-				<input type="button" onclick="addKeyword();" value=" 添加 "/>
+				<input type="button" onclick="addKeyword();" value=" 保存 "/>
 				</td>
 			  </tr>
 			</table>

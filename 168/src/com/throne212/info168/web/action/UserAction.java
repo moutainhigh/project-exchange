@@ -3,6 +3,7 @@ package com.throne212.info168.web.action;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.throne212.info168.web.biz.InfoBiz;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
 import com.throne212.info168.web.common.PageBean;
@@ -15,6 +16,7 @@ import com.throne212.info168.web.domain.User;
 public class UserAction extends BaseAction {
 
 	private UserBiz userBiz;
+	private InfoBiz infoBiz;
 
 	// 用户bean
 	private User user;
@@ -103,6 +105,20 @@ public class UserAction extends BaseAction {
 	public String financeForm(){
 		orderNum = Util.generateOrderNo();
 		return "finance_form";
+	}
+	
+	//置顶信息
+	private Long infoId;
+	public String topInfo() {
+				
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		
+		Info info = infoBiz.getEntityById(Info.class, infoId);
+		info.setIsTop(true);
+		infoBiz.saveOrUpdateEntity(info);
+		this.setMsg("信息置顶成功");
+		return infoList();
 	}
 
 	public UserBiz getUserBiz() {

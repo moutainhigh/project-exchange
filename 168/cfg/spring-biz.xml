@@ -16,6 +16,7 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="areaDao" ref="areaDao"></property>
 		<property name="cateDao" ref="cateDao"></property>
+		<property name="infoDao" ref="infoDao"></property>
 	</bean>
 	
 	<bean id="infoBiz" class="com.throne212.info168.web.biz.impl.InfoBizImpl">

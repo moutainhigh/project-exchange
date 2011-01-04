@@ -206,6 +206,11 @@
 					list\[\d+\]\.name
 				</param>
 			</result>
+			<result name="top_price" type="json">
+				<param name="includeProperties">  
+					price
+				</param>
+			</result>
 		</action>		
 	</package>
 </struts>

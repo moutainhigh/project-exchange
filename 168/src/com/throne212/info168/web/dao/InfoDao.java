@@ -3,8 +3,10 @@ package com.throne212.info168.web.dao;
 import java.util.List;
 
 import com.throne212.info168.web.common.PageBean;
+import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.TopPriceSetting;
 
 public interface InfoDao extends BaseDao{
 	// 根据栏目找信息
@@ -35,5 +37,7 @@ public interface InfoDao extends BaseDao{
 	//admin
 	public PageBean<Info> getAllInfo(int page);
 	public PageBean<Info> getAllUncheckInfo(int pageIndex);
+	
+	public TopPriceSetting getPriceByCateAndArea(Category cate,Area area);
 
 }

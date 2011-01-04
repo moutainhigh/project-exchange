@@ -11,15 +11,17 @@ import java.util.TreeMap;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.dao.AreaDao;
 import com.throne212.info168.web.dao.CateDao;
+import com.throne212.info168.web.dao.InfoDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.HotCitySetting;
-import com.throne212.info168.web.domain.Setting;
+import com.throne212.info168.web.domain.TopPriceSetting;
 
 public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 
 	private AreaDao areaDao;
 	private CateDao cateDao;
+	private InfoDao infoDao;
 
 	public void setAreaDao(AreaDao areaDao) {
 		this.areaDao = areaDao;
@@ -106,6 +108,26 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 	
 	public List<Area> getSuggCities(String name){
 		return areaDao.getSuggCities(name);
+	}
+	
+	public TopPriceSetting getPriceByCateAndArea(Category cate,Area area){
+		return infoDao.getPriceByCateAndArea(cate, area);
+	}
+
+	public InfoDao getInfoDao() {
+		return infoDao;
+	}
+
+	public void setInfoDao(InfoDao infoDao) {
+		this.infoDao = infoDao;
+	}
+
+	public AreaDao getAreaDao() {
+		return areaDao;
+	}
+
+	public CateDao getCateDao() {
+		return cateDao;
 	}
 
 }

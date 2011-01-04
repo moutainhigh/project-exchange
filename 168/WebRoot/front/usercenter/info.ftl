@@ -21,6 +21,14 @@
 					document.forms[0].submit();
 				}
 			}
+			function topInfo(infoId){
+				$.getJSON("${base}/ajax/getTopPrice.action",{'infoId':infoId}, function(json){
+					alert(json);
+  					if(json){
+  						
+			  		}
+  				});
+			}
 		</script>
 	</head>
 
@@ -98,7 +106,11 @@
 									<td>
 										<a href="${base}/user/delete">删除</a>
 										&nbsp;
-										<a href="${base}/user/delete" style="font-weight:600;color:#803267;">置顶</a>
+										<#if info.isTop?? && info.isTop>
+										<span style="color:#289147;">已置顶</span>
+										<#else>										
+										<a href="javascript:topInfo(${info.id});" style="font-weight:600;color:#803267;">置顶</a>
+										</#if>
 									</td>
 								</tr>
 								</#list>

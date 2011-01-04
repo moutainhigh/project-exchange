@@ -117,6 +117,7 @@
 				<li><a href="${appPath}/admin/hotCity" target="rightFrame">热门城市设置</a></li>
 				<li><a href="${appPath}/admin/link" target="rightFrame">友情链接设置</a></li>
 				<li><a href="${appPath}/admin/keywords" target="rightFrame">关键词设置</a></li>
+				<li><a href="${appPath}/admin/topPrice" target="rightFrame">置顶价格设置</a></li>
 				<li><a href="${appPath}/admin/sys/gen_html.jsp" target="rightFrame">一键生成HTML</a></li>
             </ul>
         </div>

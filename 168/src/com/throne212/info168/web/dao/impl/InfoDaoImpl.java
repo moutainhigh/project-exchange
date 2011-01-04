@@ -10,6 +10,7 @@ import com.throne212.info168.web.dao.InfoDao;
 import com.throne212.info168.web.domain.Area;
 import com.throne212.info168.web.domain.Category;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.TopPriceSetting;
 import com.throne212.info168.web.domain.User;
 
 public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
@@ -91,7 +92,7 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		PageBean<Info> page = new PageBean<Info>();
 		int startIndex = (pageIndex - 1) * WebConstants.INFO_LIST_ROWS;
 		User user = this.getEntityById(User.class, userId);
-		String hql = "from Info i where i.user=? order by publishDate desc";
+		String hql = "from Info i where i.user=? order by isTop desc,publishDate desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, user).get(0);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -174,6 +175,15 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, cate).setMaxResults(10).list();
 		return list;
+	}
+	
+	public TopPriceSetting getPriceByCateAndArea(Category cate,Area area){
+		String hql = "from " + TopPriceSetting.class.getName() + " p where p.cate=? and p.area=?";
+		List<TopPriceSetting> list = this.getHibernateTemplate().find(hql, new Object[]{cate,area});
+		if(list != null && list.size() > 0){
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

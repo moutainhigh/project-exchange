@@ -11,6 +11,8 @@ import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
+import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.TopPriceSetting;
 import com.throne212.info168.web.domain.User;
 
 public class AjaxAction extends BaseAction {
@@ -99,6 +101,21 @@ public class AjaxAction extends BaseAction {
 		return "cate_list";
 	}
 	
+	//获取价格
+	private double price = -1;
+	private Long infoId;
+	public String getTopPrice(){
+		try {
+			Info info = commonBiz.getEntityById(Info.class, infoId);
+			TopPriceSetting p = commonBiz.getPriceByCateAndArea(info.getCate(), info.getArea());
+			if(p!=null)
+				price = p.getPrice();
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return "top_price";
+	}
+	
 	/* setters and getters */
 
 	public List getList() {
@@ -163,6 +180,22 @@ public class AjaxAction extends BaseAction {
 
 	public void setUserSum(Long userSum) {
 		this.userSum = userSum;
+	}
+
+	public Long getInfoId() {
+		return infoId;
+	}
+
+	public void setInfoId(Long infoId) {
+		this.infoId = infoId;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public double getPrice() {
+		return price;
 	}
 
 }
