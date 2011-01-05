@@ -119,6 +119,21 @@ public class WorkerDao {
 				e.printStackTrace();
 			}
 		}
+		// 性别
+		if(condition.getGender() != null){
+			sb.append(" and gender=?");
+			paramValueList.add(condition.getGender());
+		}
+		// 姓名
+		if(!Util.isEmpty(condition.getName())){
+			sb.append(" and name like ?");
+			paramValueList.add("%"+condition.getName()+"%");
+		}
+		// 考核子
+		if(!Util.isEmpty(condition.getNo())){
+			sb.append(" and no like ?");
+			paramValueList.add("%"+condition.getNo()+"%");
+		}
 		// 年龄段
 		if (other.get("startAge") != null && ((String[]) other.get("startAge")).length > 0 && !Util.isEmpty(((String[]) other.get("startAge"))[0])) {
 			long startAge = Long.parseLong(((String[]) other.get("startAge"))[0]);
@@ -133,13 +148,13 @@ public class WorkerDao {
 			sb.append(" and birthday>=?");
 			paramValueList.add(startDate);
 		}
-		// 批注日期段
+		// 发证日期段
 		if (other.get("startPiZhunDate") != null && ((String[]) other.get("startPiZhunDate")).length > 0
 				&& !Util.isEmpty(((String[]) other.get("startPiZhunDate"))[0])) {
 			// if (!Util.isEmpty((String) other.get("startPiZhunDate"))) {
 			try {
 				Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("startPiZhunDate"))[0]);
-				sb.append(" and okDate>=?");
+				sb.append(" and date>=?");
 				paramValueList.add(startDate);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -147,11 +162,10 @@ public class WorkerDao {
 		}
 		if (other.get("endPiZhunDate") != null && ((String[]) other.get("endPiZhunDate")).length > 0
 				&& !Util.isEmpty(((String[]) other.get("endPiZhunDate"))[0])) {
-			// if (!Util.isEmpty((String) other.get("endPiZhunDate"))) {
 			try {
 				Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("endPiZhunDate"))[0]);
 				endDate.setTime(endDate.getTime() + 24L * 60 * 60 * 1000);
-				sb.append(" and okDate<=?");
+				sb.append(" and date<=?");
 				paramValueList.add(endDate);
 			} catch (ParseException e) {
 				e.printStackTrace();

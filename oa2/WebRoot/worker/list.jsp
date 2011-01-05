@@ -20,23 +20,6 @@
 				document.forms[0].submit();
 			}
 			$(function(){
-				//初始化列表数据
-				$('select').each(function(){		
-					if($(this).attr('id')){
-						var dropdownType = $(this).attr('id');
-						var thisSelect = this;
-						$(this).html('<option value=""></option>');
-						$.getJSON("${appPath}/ajax", {dropdownType:dropdownType}, function(json){
-							if(json && json.length){
-								for(var i=0;i<json.length;i++){
-									var str = '<option value="'+json[i]['id']+'">'+json[i]['name']+'</option>';
-									$(thisSelect).append(str);
-								}
-							}
-						}); 	
-					}	
-				}); 	;
-				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
 			function deleteWorker(id){
@@ -64,7 +47,7 @@
 	</head>
 	<body>
 		<form name="messageForm" method="get" action="${appPath}/worker.do">
-			<input type="hidden" name="method" value="listworker"/>
+			<input type="hidden" name="method" value="listWorker"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
@@ -72,7 +55,6 @@
 			      </td>
 			    </tr>
 			</table>
-			<!--
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td align=center>
@@ -81,27 +63,32 @@
 					     <table width="100%" class="cx_tabble">
 					       <tbody>
 					       <tr>
-					         <td width="80" align="right">注册编号：</td>
-					         <td align="left">
-					         	<input type="text" name="doc.zigeNo" value="${param['doc.zigeNo']}" style="width: 200px;"/>
+					         <td width="80" align="right">单位：</td>
+					         <td align="left" width="300">
+					         	<select name="worker.workOrg.id" class="WorkOrg">
+									<option value=""></option>
+									<c:forEach items="${orgList}" var="o">
+									<option value="${o.id}" <c:if test="${o.id==param['worker.workOrg.id']}">selected="selected"</c:if>>${o.name}</option>
+									</c:forEach>
+								</select>
 					         </td>
-					         <td width="155" align="right">姓名：</td>
+					         <td width="150" align="right">姓名：</td>
 					         <td align="left">
-								<input type="text" name="doc.name" value="${param['doc.name']}" style="width: 200px;"/>
+								<input type="text" name="worker.name" value="${param['worker.name']}" style="width: 200px;"/>
 							 </td>
 							</tr>
 							<tr>
-					         <td width="155" align="right">身份证：</td>
+					         <td width="155" align="right">性别：</td>
 					         <td align="left">
-					         	<input type="text" name="doc.idNo" value="${param['doc.idNo']}" style="width: 200px;"/>
+					         	<select name="worker.gender">
+									<option value=""></option>
+									<option value="true" <c:if test="${param['worker.gender']==true}">selected="selected"</c:if>>男</option>
+									<option value="false" <c:if test="${not empty param['worker.gender'] && param['worker.gender']==false}">selected="selected"</c:if>>女</option>
+								</select>
 					         </td>
-					         <td width="155" align="right">状态：</td>
+					         <td width="155" align="right">考核字：</td>
 					         <td align="left">
-					         	<select name="doc.status">
-					         		<option value=""></option>
-					         		<option value="1" <c:if test="${param['doc.status']==1}">selected="selected"</c:if>>正常</option>
-					         		<option value="0" <c:if test="${param['doc.status']==0}">selected="selected"</c:if>>已注销</option>
-					         	</select>
+					         	<input type="text" name="worker.no" value="${param['worker.no']}" style="width: 200px;"/>
 					         </td>
 					       </tr>
 					       <tr>
@@ -109,7 +96,7 @@
 					         <td align="left">
 					         	<input type="text" name="startAge" value="${param.startAge}" style="width: 90px;"/> - <input type="text" name="endAge" value="${param.endAge}" style="width: 90px;"/>
 							 </td>
-							 <td align="right">批准日期：</td>
+							 <td align="right">发证日期：</td>
 					         <td align="left">
 					         	<input type="text" name="startPiZhunDate" value="${param.startPiZhunDate}" class="datetime" style="width: 90px;"/> - <input type="text" name="endPiZhunDate" value="${param.endPiZhunDate}" class="datetime" style="width: 90px;"/>
 							 </td>
@@ -124,7 +111,7 @@
 					  </fieldset>
 			      </td>
 			    </tr>
-			</table>-->
+			</table>
 			<div style="height: 25px;"></div>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_title">					

@@ -20,6 +20,7 @@ import com.throne212.oa.common.Util;
 import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.dao.WorkerDao;
 import com.throne212.oa.domain.DropdownList;
+import com.throne212.oa.domain.muyingworker.WorkOrg;
 import com.throne212.oa.domain.muyingworker.Worker;
 
 public class WorkerAction extends DispatchAction{
@@ -102,6 +103,9 @@ public class WorkerAction extends DispatchAction{
 		}
 		PageBean pageBean = workerDao.findWorkers(page, condition, request.getParameterMap());
 		request.setAttribute("pageBean", pageBean);
+		//设置单位数据列表
+		List orgList = dicDao.getDropdownList(WorkOrg.class.getName());
+		request.setAttribute("orgList", orgList);
 		return mapping.findForward("list");
 	}
 	public ActionForward viewWorker(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {

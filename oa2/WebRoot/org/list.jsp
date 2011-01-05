@@ -56,6 +56,84 @@
 			      </td>
 			    </tr>
 			</table>
+			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
+			    <tr>
+			      <td align=center>
+			        <fieldset style="border: 1px solid #CCCCCC; margin: 10px auto 0px auto; width: 600px; display: block; " class="cx_oper allborder">
+					    <legend style="font-size: 12px; font-weight: 600; color: #556379; margin: 0 5px;"> 查询条件 </legend>
+					     <table width="100%" class="cx_tabble">
+					       <tbody>
+					       <tr>
+					         <td width="80" align="right">机构名称：</td>
+					         <td align="left" width="300">
+					         	<input type="text" name="org.name" value="${param['org.name']}" style="width: 200px;"/>
+					         </td>
+					         <td width="150" align="right">地址：</td>
+					         <td align="left">
+								<input type="text" name="org.address" value="${param['org.address']}" style="width: 200px;"/>
+							 </td>
+							</tr>
+							<tr>
+					         <td width="155" align="right">电话：</td>
+					         <td align="left">
+					         	<input type="text" name="org.tel" value="${param['org.tel']}" style="width: 200px;"/>
+					         </td>
+					         <td width="155" align="right">邮政编码：</td>
+					         <td align="left">
+					         	<input type="text" name="org.post" value="${param['org.post']}" style="width: 200px;"/>
+					         </td>
+					       </tr>
+					       <tr>
+					         <td align="right">所有制形式：</td>
+					         <td align="left">
+					         	<input type="text" name="org.style" value="${param['org.style']}" style="width: 200px;"/>
+							 </td>
+							 <td align="right">机构类别：</td>
+					         <td align="left">
+					         	<input type="text" name="org.type" value="${param['org.type']}" style="width: 200px;"/>
+							 </td>
+					       </tr>
+					       <tr>
+					         <td align="right">发证日期：</td>
+					         <td align="left">
+					         	<input type="text" name="startPiZhunDate" value="${param.startPiZhunDate}" class="datetime" style="width: 90px;"/> - <input type="text" name="endPiZhunDate" value="${param.endPiZhunDate}" class="datetime" style="width: 90px;"/>
+							 </td>
+							 <td align="right">法定代表人：</td>
+					         <td align="left">
+					         	<input type="text" name="org.person" value="${param['org.person']}" style="width: 200px;"/>
+							 </td>
+					       </tr>
+					        <tr>
+					         <td align="right">有效日期：</td>
+					         <td align="left">
+					         	<input type="text" name="startValidDate" value="${param.startValidDate}" class="datetime" style="width: 90px;"/> - <input type="text" name="endValidDate" value="${param.endValidDate}" class="datetime" style="width: 90px;"/>
+							 </td>
+							 <td align="right">登记号：</td>
+					         <td align="left">
+					         	<input type="text" name="org.no" value="${param['org.no']}" style="width: 200px;"/>
+							 </td>
+					       </tr>
+					        <tr>
+					         <td align="right">许可项目：</td>
+					         <td align="left">
+					         	<input type="text" name="org.item" value="${param['org.item']}" style="width: 200px;"/>
+							 </td>
+							 <td align="right">发证机关：</td>
+					         <td align="left">
+					         	<input type="text" name="org.fromOrg" value="${param['org.fromOrg']}" style="width: 200px;"/>
+							 </td>
+					       </tr>
+					       <tr>
+					         <td align="right" colspan="4">
+					         	<input type="submit" value=" 筛  选 " style="width: 80px;margin-right: 30px;"/>
+					         </td>
+					       </tr>
+					     </tbody>
+					     </table>	 
+					  </fieldset>
+			      </td>
+			    </tr>
+			</table>
 			<div style="height: 25px;"></div>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_title">					

@@ -89,6 +89,18 @@
 					$('#checkNum').val(rows);
 				}
 			}
+			function getAge(birthday){
+				if(birthday){
+					var arr = birthday.split("-");
+					var year = arr[0];
+					var month = arr[1];
+					var day = arr[2];
+					var date = new Date(year,month-1,day);
+					var now = new Date();
+					var age = (now.getTime()-date.getTime())/1000/60/60/24/365;
+					$('#age').val(parseInt(age));
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -144,11 +156,11 @@
 				<tr class="list_td_context">
 					<td>
 						出生日期：
-						<input type="text" name="worker.birthday" value="<fmt:formatDate value = "${worker.birthday}" pattern = "yyyy-MM-dd"/>" id="birthday" style="width:140px;" class="datetime"/>
+						<input type="text" name="worker.birthday" value="<fmt:formatDate value = "${worker.birthday}" pattern = "yyyy-MM-dd"/>" id="birthday" style="width:140px;" class="datetime"  onchange="getAge(this.value);"/>
 					</td>
 					<td>
 						年&nbsp;&nbsp;&nbsp;&nbsp;龄：
-						<input type="text" name="worker.age" value="${worker.age}" id="docName" style="width:140px;"/>
+						<input type="text" name="worker.age" value="${worker.age}" id="age" style="width:140px;"/>
 					</td>
 					<td>
 						技术专科：

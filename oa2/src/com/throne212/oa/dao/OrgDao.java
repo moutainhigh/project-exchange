@@ -114,32 +114,23 @@ public class OrgDao {
 						sb.append(" and " + f.getName() + "=?");
 						paramValueList.add(drop);
 					}
+				}else if(f.get(condition) != null && f.getType().getName().equals(String.class.getName())){//字符串
+					String value = (String) f.get(condition);
+					if(!Util.isEmpty(value)){
+						sb.append(" and " + f.getName() + " like ?");
+						paramValueList.add("%"+value+"%");
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		// 年龄段
-		if (other.get("startAge") != null && ((String[]) other.get("startAge")).length > 0 && !Util.isEmpty(((String[]) other.get("startAge"))[0])) {
-			long startAge = Long.parseLong(((String[]) other.get("startAge"))[0]);
-			Date startDate = new Date(System.currentTimeMillis() - startAge * 365 * 24 * 60 * 60 * 1000);
-			sb.append(" and birthday<=?");
-			paramValueList.add(startDate);
-		}
-		if (other.get("endAge") != null && ((String[]) other.get("endAge")).length > 0 && !Util.isEmpty(((String[]) other.get("endAge"))[0])) {
-			// if (!Util.isEmpty((String) other.get("endAge"))) {
-			long endAge = Long.parseLong(((String[]) other.get("endAge"))[0]);
-			Date startDate = new Date(System.currentTimeMillis() - endAge * 365 * 24 * 60 * 60 * 1000);
-			sb.append(" and birthday>=?");
-			paramValueList.add(startDate);
-		}
-		// 批注日期段
+		// 发证日期段
 		if (other.get("startPiZhunDate") != null && ((String[]) other.get("startPiZhunDate")).length > 0
 				&& !Util.isEmpty(((String[]) other.get("startPiZhunDate"))[0])) {
-			// if (!Util.isEmpty((String) other.get("startPiZhunDate"))) {
 			try {
 				Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("startPiZhunDate"))[0]);
-				sb.append(" and okDate>=?");
+				sb.append(" and publishDate>=?");
 				paramValueList.add(startDate);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -147,11 +138,32 @@ public class OrgDao {
 		}
 		if (other.get("endPiZhunDate") != null && ((String[]) other.get("endPiZhunDate")).length > 0
 				&& !Util.isEmpty(((String[]) other.get("endPiZhunDate"))[0])) {
-			// if (!Util.isEmpty((String) other.get("endPiZhunDate"))) {
 			try {
 				Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("endPiZhunDate"))[0]);
 				endDate.setTime(endDate.getTime() + 24L * 60 * 60 * 1000);
-				sb.append(" and okDate<=?");
+				sb.append(" and publishDate<=?");
+				paramValueList.add(endDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		// 有效日期段
+		if (other.get("startValidDate") != null && ((String[]) other.get("startValidDate")).length > 0
+				&& !Util.isEmpty(((String[]) other.get("startValidDate"))[0])) {
+			try {
+				Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("startValidDate"))[0]);
+				sb.append(" and validDate>=?");
+				paramValueList.add(startDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		if (other.get("endValidDate") != null && ((String[]) other.get("endValidDate")).length > 0
+				&& !Util.isEmpty(((String[]) other.get("endValidDate"))[0])) {
+			try {
+				Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(((String[]) other.get("endValidDate"))[0]);
+				endDate.setTime(endDate.getTime() + 24L * 60 * 60 * 1000);
+				sb.append(" and validDate<=?");
 				paramValueList.add(endDate);
 			} catch (ParseException e) {
 				e.printStackTrace();
