@@ -104,7 +104,7 @@
 								</tr>
 								<tr>
 									<td colspan="5" style="text-align:center;padding:5px;">
-										<input type="text" name="topDays" value="1" size="5"/>
+										<input type="text" name="topDays" value="1" size="5"/>天&nbsp;&nbsp;&nbsp;
 										<input type="submit" value=" 信息置顶 " style="width:150px;height:35px;"/>
 									</td>
 								</tr>

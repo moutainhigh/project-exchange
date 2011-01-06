@@ -16,6 +16,7 @@
 		<property name="recommend"></property>
 		<property name="image"></property>
 		<property name="isTop"></property>
+		<property name="topEndDate"></property>
 		<property name="endDate"></property>
 		<property name="validDay"></property>
 		<many-to-one name="area" class="Area" cascade="none" column="area_id" lazy="false" ></many-to-one>

@@ -116,8 +116,10 @@ public class AdminAction extends BaseAction {
 		return infoList();
 	}
 
+	private Integer topDays;
 	public String topInfo() {
 		Info info = infoBiz.getEntityById(Info.class, infoId);
+		info.setTopEndDate(new Date(System.currentTimeMillis()+topDays*24*60*60*1000));
 		info.setIsTop(true);
 		infoBiz.saveOrUpdateEntity(info);
 		this.setMsg("信息置顶成功");
@@ -767,6 +769,14 @@ public class AdminAction extends BaseAction {
 
 	public void setMoney(Double money) {
 		this.money = money;
+	}
+
+	public Integer getTopDays() {
+		return topDays;
+	}
+
+	public void setTopDays(Integer topDays) {
+		this.topDays = topDays;
 	}
 
 }

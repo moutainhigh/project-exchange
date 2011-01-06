@@ -1,5 +1,6 @@
 package com.throne212.info168.web.action;
 
+import java.util.Date;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -128,6 +129,7 @@ public class UserAction extends BaseAction {
 			return "info_top";
 		}
 		info.setIsTop(true);
+		info.setTopEndDate(new Date(System.currentTimeMillis()+topDays*24*60*60*1000));
 		infoBiz.saveOrUpdateEntity(info);
 		user.setBalance(user.getBalance() - money);
 		userBiz.saveOrUpdateEntity(user);

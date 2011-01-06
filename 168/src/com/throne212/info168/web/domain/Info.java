@@ -17,6 +17,7 @@ public class Info {
 	private Boolean isChecked;//是否通过审核
 	private Boolean recommend;//热门推荐
 	private Boolean isTop;//置顶
+	private Date topEndDate;//置顶结束日期
 	private String image;//图片地址
 	private Date endDate;//失效日期
 	private Integer validDay;//有效天数
@@ -151,6 +152,14 @@ public class Info {
 
 	public void setValidDay(Integer validDay) {
 		this.validDay = validDay;
+	}
+
+	public Date getTopEndDate() {
+		return topEndDate;
+	}
+
+	public void setTopEndDate(Date topEndDate) {
+		this.topEndDate = topEndDate;
 	}
 
 }

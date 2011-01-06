@@ -1,5 +1,6 @@
 package com.throne212.info168.web.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -171,9 +172,9 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 	}
 
 	public List<Info> getTopInfos(Category cate) {
-		String hql = "from Info i where i.isChecked=true and i.isTop=true and (i.cate=? or i.cate.parent=?) order by i.publishDate desc";
+		String hql = "from Info i where i.isChecked=true and i.isTop=true and (i.cate=? or i.cate.parent=?) and ? <= i.topEndDate order by i.publishDate desc";
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, cate).setMaxResults(10).list();
+		List<Info> list = s.createQuery(hql).setParameter(0, cate).setParameter(1, cate).setParameter(2, new Date()).setMaxResults(10).list();
 		return list;
 	}
 	

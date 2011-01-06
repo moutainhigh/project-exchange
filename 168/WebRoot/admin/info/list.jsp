@@ -136,7 +136,7 @@
 				<a href="${appPath}/admin/recommend?infoId=${info.id}" target="_self">热门推荐</a>
 				</c:if>
 				<c:if test="${not empty info.isChecked && info.isChecked && (empty info.isTop || info.isTop==false)}">
-				<a href="${appPath}/admin/topInfo?infoId=${info.id}" target="_self">置顶</a>
+				<a href="${appPath}/admin/topInfo?infoId=${info.id}&topDays=10" target="_self">置顶10天</a>
 				</c:if>
 				</td>
 			  </tr>
