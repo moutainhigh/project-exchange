@@ -27,7 +27,7 @@ public class SiteDaoImpl extends BaseDaoImpl implements SiteDao {
 	}
 	
 	public List<Site> getSiteByCity(City city){
-		String hql = "from Site s where s.city=? order by listOrder asc";
+		String hql = "from Site s where s.city=? or s.city='全国' order by listOrder asc";
 		return this.getHibernateTemplate().find(hql, city.getName());
 	}
 

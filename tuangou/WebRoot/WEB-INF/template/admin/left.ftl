@@ -20,7 +20,6 @@
 					<dd><a href="#">团拍活动审核</a></dd>
 					<dd><a href="${base}/admin/list">团拍活动管理</a></dd>
 					<dd><a href="${base}/admin/saveSite">添加团拍网站</a></dd>
-					<dd><a href="#">团拍网站审核</a></dd>
 					<dd><a href="${base}/admin/siteList">团拍网站管理</a></dd>
 					<dd><a href="index.php?d=admin&amp;c=feedteam">采集团拍活动</a></dd>
 				</dl>

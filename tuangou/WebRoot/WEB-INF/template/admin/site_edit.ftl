@@ -30,7 +30,7 @@
 								<label><input type="radio" checked="" value="false" name="site.hasLink">未交换链接</label>
 								<label><input type="radio" value="true" name="site.hasLink">已交换链接</label>
 							</td>
-						</tr>
+						</tr><!--
 						<tr>
 							<td class="mt-td-l">网站类别：</td>
 							<td class="mt-td-r">
@@ -40,41 +40,41 @@
 									<option value="${c.id}">${c.name}</option>
 									</#list>
 								</select></td>
-						</tr>
+						</tr>-->
 						<tr>
 							<td class="mt-td-l">URL：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" class="text" name="site.url" id="url">
+								<input type="text" value="" class="text" name="site.url" id="url" value="${site.url!"http://"}">
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">城市：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" size="10" class="text" name="site.city" id="city"><label><input type="checkbox" value="true" name="" onClick="isAll();">全国有效</label>
+								<input type="text" size="10" class="text" name="site.city" id="city" value="${site.city!"全国"}"><label><input type="checkbox" value="true" name="" onClick="isAll();">全国有效</label>
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">联系电话：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" size="10" class="text" name="site.tel" id="tel">
+								<input type="text" value="" size="10" class="text" name="site.tel" id="tel" value="${site.tel!''}">
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">QQ：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" size="10" class="text" name="site.qq" id="qq">
+								<input type="text" value="" size="10" class="text" name="site.qq" id="qq" value="${site.qq!''}">
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">联系人：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" size="10" class="text" name="site.contact" id="contact">
+								<input type="text" value="" size="10" class="text" name="site.contact" id="contact" value="${site.contact!''}">
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">排序：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" size="10" class="text" name="site.listOrder" id="listOrder">
+								<input type="text" value="" size="10" class="text" name="site.listOrder" id="listOrder" value="${site.listOrder!'0'}">
 							</td>
 						</tr>
 						<tr>

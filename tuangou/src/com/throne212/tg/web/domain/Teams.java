@@ -27,7 +27,7 @@ public class Teams implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private Long id;
 	@Column(name = "city_name", length = 50)
 	private String cityName;
 	@Column(name = "site_name", length = 16)
@@ -69,11 +69,11 @@ public class Teams implements java.io.Serializable {
 	}
 
 	// Property accessors
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

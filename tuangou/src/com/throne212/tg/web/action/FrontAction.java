@@ -50,6 +50,7 @@ public class FrontAction extends BaseAction {
 	private List<Site> siteList;
 	public String index() {
 		city = (City) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
+		//获得特定城市的团购网站名称和链接
 		siteList = commonBiz.getSiteByCity(city);
 		return "success";
 	}

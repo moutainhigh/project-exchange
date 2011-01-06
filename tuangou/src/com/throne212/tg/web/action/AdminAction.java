@@ -64,12 +64,30 @@ public class AdminAction extends BaseAction {
 		return "list";
 	}
 	
+	//删除团购信息
+	public String deleteTeam(){
+		String[] teamIds = (String[]) ActionContext.getContext().getParameters().get("team_ids");
+		if(teamIds != null && teamIds.length > 0){
+			for(String idStr : teamIds){
+				Long id = Long.parseLong(idStr);
+				commonBiz.deleteEntity(Teams.class, id);
+			}
+			this.setMsg("删除团购信息成功");
+		}
+		return list();
+	}
+	
 	//团拍网站
 	private Site site;
 	public String saveSite() {
 		if (site != null && !Util.isEmpty(site.getName())) {
 			logger.info("保存或编辑团购网站。。。");
 			commonBiz.saveOrUpdateEntity(site);
+			return siteList();
+		}else if (site != null && site.getId()!=null && site.getName()==null){//转到编辑页面
+			site = commonBiz.getEntityById(Site.class, site.getId());
+		}else{
+			site = new Site();
 		}
 		comList = commonBiz.getComponentList(SiteType.class);
 		return "site_edit";
@@ -79,6 +97,18 @@ public class AdminAction extends BaseAction {
 			page = 1;
 		pageBean = commonBiz.getAllSites(page);
 		return "site_list";
+	}
+	//删除团购网站
+	public String deleteSites(){
+		String[] teamIds = (String[]) ActionContext.getContext().getParameters().get("site_ids");
+		if(teamIds != null && teamIds.length > 0){
+			for(String idStr : teamIds){
+				Long id = Long.parseLong(idStr);
+				commonBiz.deleteEntity(Site.class, id);
+			}
+			this.setMsg("删除团购网站成功");
+		}
+		return siteList();
 	}
 	
 	//用户
@@ -166,7 +196,7 @@ public class AdminAction extends BaseAction {
 		if(city != null && !Util.isEmpty(city.getName())){
 			commonBiz.saveOrUpdateEntity(city);
 			this.setMsg("添加城市数据成功");
-			ActionContext.getContext().getApplication().remove(WebConstants.APP_CITIES);
+			ActionContext.getContext().getApplication().put(WebConstants.APP_CITIES,commonBiz.getAll(City.class, "orderNum", "asc"));
 		}else{
 			this.setMsg("添加城市数据失败，请检查数据");
 		}
@@ -176,7 +206,7 @@ public class AdminAction extends BaseAction {
 		if(city != null && city.getId()!=null){
 			commonBiz.deleteEntity(City.class, city.getId());
 			this.setMsg("删除城市数据成功");
-			ActionContext.getContext().getApplication().remove(WebConstants.APP_CITIES);
+			ActionContext.getContext().getApplication().put(WebConstants.APP_CITIES,commonBiz.getAll(City.class, "orderNum", "asc"));
 		}
 		return city();
 	}

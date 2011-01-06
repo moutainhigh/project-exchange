@@ -24,7 +24,7 @@ public class Site implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private Long id;
 	@Column(name = "name", length = 50)
 	private String name;
 	@Column(name = "tel", length = 50)
@@ -38,11 +38,11 @@ public class Site implements java.io.Serializable {
 	@Column(name = "contact")
 	private String contact;
 	@Column(name = "list_order")
-	private String listOrder;
+	private String listOrder = "0";
 	@Column(name = "has_link")
 	private Boolean hasLink;// 是否已经交换链接
 	@Column(name = "city")
-	private String city = "all";
+	private String city;
 
 	// Constructors
 
@@ -50,11 +50,11 @@ public class Site implements java.io.Serializable {
 	public Site() {
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
