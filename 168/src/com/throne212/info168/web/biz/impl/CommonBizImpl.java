@@ -100,6 +100,11 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 	public List getSetting(Class clazz){
 		return baseDao.getAll(clazz, "listorder", "asc");
 	}
+	
+	public void saveTopPriceSetting(TopPriceSetting priceSetting){
+		priceSetting.setName(priceSetting.getCate().getName()+priceSetting.getArea().getName()+priceSetting.getPrice());
+		infoDao.saveTopPriceSetting(priceSetting);
+	}
 
 	// 获取栏目数据
 	public List<Category> getCates() {

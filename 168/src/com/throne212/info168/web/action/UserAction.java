@@ -3,6 +3,7 @@ package com.throne212.info168.web.action;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.biz.InfoBiz;
 import com.throne212.info168.web.biz.UserBiz;
 import com.throne212.info168.web.common.EncryptUtil;
@@ -11,12 +12,14 @@ import com.throne212.info168.web.common.Util;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.Contact;
 import com.throne212.info168.web.domain.Info;
+import com.throne212.info168.web.domain.TopPriceSetting;
 import com.throne212.info168.web.domain.User;
 
 public class UserAction extends BaseAction {
 
 	private UserBiz userBiz;
 	private InfoBiz infoBiz;
+	private CommonBiz commonBiz;
 
 	// 用户bean
 	private User user;
@@ -108,17 +111,29 @@ public class UserAction extends BaseAction {
 	}
 	
 	//置顶信息
-	private Long infoId;
+	private Info info;
+	private Integer topDays;
 	public String topInfo() {
-				
-		
+		if(info != null && info.getId() != null){
+			info = commonBiz.getEntityById(Info.class, info.getId());
+		}
+		if(topDays==null){
+			return "info_top";
+		}		
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		
-		Info info = infoBiz.getEntityById(Info.class, infoId);
+		TopPriceSetting priceSetting = commonBiz.getPriceByCateAndArea(info.getCate(), info.getArea());
+		double money = topDays * priceSetting.getPrice();
+		if(user.getBalance() < money){
+			this.setMsg("对不起，你的余额不足，请充值以后进行操作");
+			return "info_top";
+		}
 		info.setIsTop(true);
 		infoBiz.saveOrUpdateEntity(info);
-		this.setMsg("信息置顶成功");
-		return infoList();
+		user.setBalance(user.getBalance() - money);
+		userBiz.saveOrUpdateEntity(user);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ,user);
+		this.setMsg("信息置顶成功，本次消费为：" + money);
+		return "info_top";
 	}
 
 	public UserBiz getUserBiz() {
@@ -207,6 +222,38 @@ public class UserAction extends BaseAction {
 
 	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
+	}
+
+	public InfoBiz getInfoBiz() {
+		return infoBiz;
+	}
+
+	public void setInfoBiz(InfoBiz infoBiz) {
+		this.infoBiz = infoBiz;
+	}
+
+	public Info getInfo() {
+		return info;
+	}
+
+	public void setInfo(Info info) {
+		this.info = info;
+	}
+
+	public CommonBiz getCommonBiz() {
+		return commonBiz;
+	}
+
+	public void setCommonBiz(CommonBiz commonBiz) {
+		this.commonBiz = commonBiz;
+	}
+
+	public Integer getTopDays() {
+		return topDays;
+	}
+
+	public void setTopDays(Integer topDays) {
+		this.topDays = topDays;
 	}
 
 }

@@ -138,6 +138,7 @@
 			<result name="modify" type="freemarker">/front/usercenter/modify.ftl</result>
 			<result name="finance" type="freemarker">/front/usercenter/finance.ftl</result>
 			<result name="finance_form" type="freemarker">/front/usercenter/finance_form.ftl</result>
+			<result name="info_top" type="freemarker">/front/usercenter/info_top.ftl</result>
 		</action>
     </package>
     <package name="admin" namespace="/admin" extends="struts-default">
@@ -169,6 +170,7 @@
 			<result name="gen_html">/admin/sys/gen_html.jsp</result>
 			<result name="keywords">/admin/sys/keywords.jsp</result>
 			<result name="top_price">/admin/sys/top_price.jsp</result>
+			<result name="add_money">/admin/user/money.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

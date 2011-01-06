@@ -9,9 +9,9 @@
         <script src="${appPath}/admin/js/common.js"></script>
         <script type="text/javascript" src="${appPath}/js/jquery.js"></script>
 		<script type="text/javascript">
-			var msg = '${msg}';
+			/*var msg = '${msg}';
 			if(msg!='')
-				alert(msg);
+				alert(msg);*/
 			$(function(){
 				$('#topCate').change(function(){
 	  				if($('#topCate').val()){
@@ -49,13 +49,7 @@
 			  		}
 				});
 			});
-			function removeKeyword(id){
-				if(!confirm('您确定删除吗？')){
-					return false;
-				}
-				self.location.href = "${appPath}/admin/removeKeyword?keyword.id="+id;
-			}
-			function addKeyword(){
+			function addTopPrice(){
 				if($('#keyName').val()==''){
 					alert('请填入关键词名称');
 					return false;
@@ -63,20 +57,34 @@
 				if($('#cate').val()==''){
 					alert('请选择一个具体的分类');
 					return false;
-				}				
+				}
+				if($('#city').val()==''){
+					alert('请选择一个具体的地区');
+					return false;
+				}			
+				if(/^\d{1,10}(\.\d{1,2})?$/.test($('#priceMoney').val())){
+				}else{
+					alert("价格各是不对，请严格输入，例如：1.00");
+					return false;
+				}		
 				document.forms[0].submit();			
 			}
-			function updateKeyword(id){
+			function updateTopPrice(id){
 				if(!confirm('您确定更新吗？')){
 					return false;
 				}
-				self.location.href = "${appPath}/admin/updateKeyword?keyword.id="+id+"&keyword.name="+$('#key'+id).val();
+				if(/^\d{1,10}(\.\d{1,2})?$/.test($('#key'+id).val())){
+					self.location.href = "${appPath}/admin/updateTopPrice?topPriceSetting.id="+id+"&topPriceSetting.price="+$('#key'+id).val();	
+				}else{
+					alert("价格各是不对，请严格输入，例如：1.00");
+				}				
 			}
 		</script>
     </head>
     <body>
+    	<jsp:include page="../msg.jsp"></jsp:include>
    		<input type="hidden" name="method" value="newUser"/>
-   		<form action="${appPath }/admin/addKeyword" method="post">
+   		<form action="${appPath }/admin/addTopPrice" method="post">
         <div id="wrapper">			
 			<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
@@ -96,7 +104,7 @@
 					</c:forEach>
 				</select>
 				&nbsp;>&nbsp;
-				<select id="cate" name="keyword.cate.id"></select>
+				<select id="cate" name="topPriceSetting.cate.id"></select>
 				</td>
 			  </tr>
 			  <tr>
@@ -106,7 +114,7 @@
 				<td height="26" colspan="" style="padding-left: 30px;">
 				<select name="topArea" id="topArea"></select>
 				&nbsp;>&nbsp;
-				<select name="user.area.id" id="city"></select>
+				<select name="topPriceSetting.area.id" id="city"></select>
 				</td>
 			  </tr>
 			   <tr>
@@ -114,7 +122,7 @@
 				价格
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<input name="keyword.name" id="keyName" style="width:300px;"/>
+				<input name="topPriceSetting.price" id="priceMoney" style="width:30px;"/>元/天
 				</td>
 			  </tr>
 			   <tr>
@@ -122,7 +130,7 @@
 				&nbsp;
 				</td>
 				<td height="26" colspan="1" style="padding-left: 30px;">
-				<input type="button" onclick="addKeyword();" value=" 保存 "/>
+				<input type="button" onclick="addTopPrice();" value=" 保存 "/>
 				</td>
 			  </tr>
 			</table>
@@ -136,29 +144,34 @@
 				<strong>编号</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
-				<strong>名称</strong> 
+				<strong>价格</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>所属分类</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>所属城市</strong> 
+				</td>
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>操作</strong> 
 				</td>
 			  </tr>
-			  <c:forEach items="${keyWordList}" var="c" varStatus="status">
+			  <c:forEach items="${topPriceList}" var="c" varStatus="status">
 			  <tr>
 			    <td height="26" colspan="" style="text-align: center;">
 				${c.id }
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<input value="${c.name}" type="text" name="" id="key${c.id}"/>
+				<input value="${c.price}" type="text" name="" id="key${c.id}"/>
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				${c.cate.name}
+				${c.cate.parent.name} &gt; ${c.cate.name}
 				</td>
 				<td height="26" colspan="" style="padding-left: 30px;">
-				<a href="javascript:void();" target="_self" onclick="removeKeyword(${c.id });">移除</a>&nbsp;
-				<a href="javascript:void();" target="_self" onclick="updateKeyword(${c.id });">修改</a>
+				${c.area.parent.name} &gt; ${c.area.name}
+				</td>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				<a href="javascript:void();" target="_self" onclick="updateTopPrice(${c.id });">修改</a>
 				</td>
 			  </tr>
 			  </c:forEach>

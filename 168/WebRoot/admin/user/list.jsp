@@ -18,7 +18,8 @@
     </head>
     <body>
     <form action="${appPath }/admin/userList" method="post">
-        <div id="wrapper">			
+        <div id="wrapper">		
+        	<jsp:include page="../msg.jsp"></jsp:include>	
         	<table width="100%" border="1" align="center" cellpadding="0" bordercolor="#0099CC" cellspacing="1" style="border-collapse: collapse;border:#c8c8e7 1px solid; border-top:0; margin-top:5px;">
 			  <tr>
 			    <td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
@@ -49,6 +50,8 @@
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>注册日期</strong> 
+				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
+				<strong>余额</strong> 
 				</td>
 				<td height="26" colspan="" align="center" background="${appPath}/admin/images/msg_bg.jpg">
 				<strong>操作</strong> 
@@ -72,8 +75,13 @@
 				<td height="26" colspan="" style="padding-left: 30px;">
 				${user.regDate}
 				</td>
+				<td height="26" colspan="" style="padding-left: 30px;">
+				${user.balance}
+				</td>
 				<td>
 					<a href="${appPath}/admin/editUser?user.id=${user.id}">编辑</a>
+					&nbsp;
+					<a href="${appPath}/admin/money?user.id=${user.id}">手动充值</a>
 				</td>
 			  </tr>
 			  </c:forEach>

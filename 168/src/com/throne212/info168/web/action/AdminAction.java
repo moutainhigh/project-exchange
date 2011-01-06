@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -490,6 +491,39 @@ public class AdminAction extends BaseAction {
 		topPriceList = commonBiz.getSetting(TopPriceSetting.class);
 		return "top_price";
 	}
+	private TopPriceSetting topPriceSetting;
+	public String addTopPrice() {
+		if (topPriceSetting != null && topPriceSetting.getPrice() != null && topPriceSetting.getCate() != null && topPriceSetting.getArea()!=null){
+			commonBiz.saveTopPriceSetting(topPriceSetting);
+			this.setMsg("置顶价格添加成功");
+		}
+		return topPrice();
+	}
+	public String updateTopPrice() {
+		if (topPriceSetting != null && topPriceSetting.getId() != null){
+			TopPriceSetting topPriceInDB = commonBiz.getEntityById(TopPriceSetting.class, topPriceSetting.getId());
+			topPriceInDB.setPrice(topPriceSetting.getPrice());
+			commonBiz.saveOrUpdateEntity(topPriceInDB);
+			this.setMsg("置顶价格更新成功");
+		}
+		return topPrice();
+	}
+	//手动充值
+	private Double money;
+	public String money() {
+		return "add_money";
+	}
+	public String addMoney() {
+		if (user != null && user.getId() != null){
+			user = userBiz.getEntityById(User.class, user.getId());
+			BigDecimal balance = new BigDecimal(user.getBalance());
+			BigDecimal mount = new BigDecimal(money);
+			user.setBalance(balance.add(mount).doubleValue());
+			userBiz.saveOrUpdateEntity(user);
+			this.setMsg("用户["+user.getLoginName()+"]充值成功，金额为：" + money);
+		}
+		return userList();
+	}
 
 	public String getOldpassword() {
 		return oldpassword;
@@ -717,6 +751,22 @@ public class AdminAction extends BaseAction {
 
 	public void setTopPriceList(List<TopPriceSetting> topPriceList) {
 		this.topPriceList = topPriceList;
+	}
+
+	public TopPriceSetting getTopPriceSetting() {
+		return topPriceSetting;
+	}
+
+	public void setTopPriceSetting(TopPriceSetting topPriceSetting) {
+		this.topPriceSetting = topPriceSetting;
+	}
+
+	public Double getMoney() {
+		return money;
+	}
+
+	public void setMoney(Double money) {
+		this.money = money;
 	}
 
 }

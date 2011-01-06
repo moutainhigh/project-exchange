@@ -39,5 +39,6 @@ public interface InfoDao extends BaseDao{
 	public PageBean<Info> getAllUncheckInfo(int pageIndex);
 	
 	public TopPriceSetting getPriceByCateAndArea(Category cate,Area area);
+	public void saveTopPriceSetting(TopPriceSetting priceSetting);
 
 }

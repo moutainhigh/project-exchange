@@ -178,12 +178,24 @@ public class InfoDaoImpl extends BaseDaoImpl implements InfoDao {
 	}
 	
 	public TopPriceSetting getPriceByCateAndArea(Category cate,Area area){
-		String hql = "from " + TopPriceSetting.class.getName() + " p where p.cate=? and p.area=?";
-		List<TopPriceSetting> list = this.getHibernateTemplate().find(hql, new Object[]{cate,area});
+		String hql = "from " + TopPriceSetting.class.getName() + " p where (p.cate=? or ? member of p.cate.childs) and (p.area=? or ? member of p.area.childs)";
+		List<TopPriceSetting> list = this.getHibernateTemplate().find(hql, new Object[]{cate,cate,area,area});
 		if(list != null && list.size() > 0){
 			return list.get(0);
 		}
 		return null;
+	}
+	
+	public void saveTopPriceSetting(TopPriceSetting priceSetting){
+		String hql = "from " + TopPriceSetting.class.getName() + " t where t.cate=? and t.area=?";
+		List<TopPriceSetting> list = this.getHibernateTemplate().find(hql, new Object[]{priceSetting.getCate(),priceSetting.getArea()});
+		if(list != null && list.size() > 0){
+			TopPriceSetting price = list.get(0);
+			price.setPrice(priceSetting.getPrice());
+			this.getHibernateTemplate().saveOrUpdate(price);
+		}else{
+			this.getHibernateTemplate().saveOrUpdate(priceSetting);
+		}
 	}
 
 }

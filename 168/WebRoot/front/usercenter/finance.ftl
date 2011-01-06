@@ -26,7 +26,7 @@
 						<tbody>
 							<tr>
 								<td width="150" style="font-size: 14px; color: rgb(255, 255, 255);">
-									我财务信息
+									我的财务信息
 								</td>
 								<td bgcolor="#ffffff" width="570" style="font-size: 12px; color: rgb(51, 51, 51); font-weight: normal; text-align: left; border-top: medium none; padding-left: 10px;">
 									* 如要发现账务信息有误，请及时与我们的客服取得联系！

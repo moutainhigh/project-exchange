@@ -24,5 +24,6 @@ public interface CommonBiz extends BaseBiz{
 	public List<Area> getSuggCities(String name);
 	
 	public TopPriceSetting getPriceByCateAndArea(Category cate,Area area);
+	public void saveTopPriceSetting(TopPriceSetting priceSetting);
 	
 }
