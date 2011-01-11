@@ -1,5 +1,6 @@
 package com.throne212.oa.action;
 
+import java.io.FileOutputStream;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -204,6 +205,27 @@ public class OrgAction extends DispatchAction{
 		Org org = orgDao.getOrgById(Long.parseLong(id));
 		request.setAttribute("org", org);
 		return mapping.findForward("print");
+	}
+	public ActionForward savePos(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String json = request.getParameter("json");
+		if(json!=null){
+			StringBuffer sb = new StringBuffer(json);
+			sb.deleteCharAt(sb.length()-2);
+			System.out.println("new json pos="+sb);
+			
+			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			path = path.substring(0, path.indexOf("WEB-INF"));
+			path += "org/json.txt";
+			System.out.println("json saved path : " + path);
+			
+			FileOutputStream fos = new FileOutputStream(path);
+			fos.write(sb.toString().getBytes());
+			fos.flush();
+			fos.close();
+			
+			
+		}
+		return null;
 	}
 
 }

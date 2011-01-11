@@ -299,6 +299,7 @@
 						<input type="button" name="" value="保 存" onclick="saveForm();">
 						<input type="button" name="" value="放 弃" onclick="self.location.href='${appPath}/org.do?method=listOrg'">
 						<c:if test="${not empty org.id}">
+						<!--<a href="#" onclick="javascript:window.open('${appPath}/org.do?method=getOrgInfo&id=${org.id}','机构证书打印','height=700, width=1024, top=0, left=0, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes,location=yes, status=yes');return false;">打印</a>-->
 						<a href="${appPath}/org.do?method=getOrgInfo&id=${org.id}" target="_blank">打印</a>
 						</c:if>
 					</td>
