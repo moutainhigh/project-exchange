@@ -14,6 +14,7 @@ public class Org {
 	private String type;//机构类别
 	private Date publishDate;//发证日期
 	private String person;//法人代表
+	private Date validDateStart;//有效日期开始
 	private Date validDate;//有效日期
 	private String no;//登记号
 	private String item;//许可项目
@@ -319,6 +320,12 @@ public class Org {
 	}
 	public void setCheckNum(Integer checkNum) {
 		this.checkNum = checkNum;
+	}
+	public Date getValidDateStart() {
+		return validDateStart;
+	}
+	public void setValidDateStart(Date validDateStart) {
+		this.validDateStart = validDateStart;
 	}
 	
 }

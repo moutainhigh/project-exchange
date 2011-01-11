@@ -58,6 +58,7 @@
     	<forward name="list" path="/org/list.jsp"></forward>
     	<forward name="dic_list" path="/org/dic_list.jsp"></forward>
     	<forward name="dic_edit" path="/org/dic_edit.jsp"></forward>
+    	<forward name="print" path="/org/print.jsp"></forward>
     </action>
   </action-mappings>
 

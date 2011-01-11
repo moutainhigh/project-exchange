@@ -198,5 +198,12 @@ public class OrgAction extends DispatchAction{
 		}	
 		System.out.println(Boolean.valueOf(Boolean.parseBoolean("false")));
 	}
+	
+	public ActionForward getOrgInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		Org org = orgDao.getOrgById(Long.parseLong(id));
+		request.setAttribute("org", org);
+		return mapping.findForward("print");
+	}
 
 }

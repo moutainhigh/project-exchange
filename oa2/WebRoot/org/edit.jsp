@@ -112,15 +112,17 @@
 					</td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
+					<td colspan="2">
 						有效日期：
+						<input type="text" name="org.validDateStart" value="<fmt:formatDate value = "${org.validDateStart}" pattern = "yyyy-MM-dd"/>" class="datetime" id="validDateStart" style="width:140px;"/>
+						-
 						<input type="text" name="org.validDate" value="<fmt:formatDate value = "${org.validDate}" pattern = "yyyy-MM-dd"/>" class="datetime" id="validDate" style="width:140px;"/>
 					</td>
 					<td>
 						登记号：
 						<input type="text" name="org.no" value="${org.no}" id="no" style="width:140px;"/>
 					</td>
-					<td colspan="2">
+					<td>
 						许可项目：
 						<input type="text" name="org.item" value="${org.item}" id="item" style="width:240px;"/>
 					</td>
@@ -128,7 +130,7 @@
 				<tr class="list_td_context">
 					<td colspan="4">
 						发证机关：
-						<input type="text" name="org.style" value="${org.style}" id="style" style="width:140px;"/>
+						<input type="text" name="org.fromOrg" value="${org.fromOrg}" id="style" style="width:140px;"/>
 					</td>
 				</tr>
 				<tr class="list_td_context check1">
@@ -296,6 +298,9 @@
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
 						<input type="button" name="" value="放 弃" onclick="self.location.href='${appPath}/org.do?method=listOrg'">
+						<c:if test="${not empty org.id}">
+						<a href="${appPath}/org.do?method=getOrgInfo&id=${org.id}" target="_blank">打印</a>
+						</c:if>
 					</td>
 				</tr>
 			</table>

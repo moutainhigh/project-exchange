@@ -6,6 +6,7 @@
   <StrutsActivity path="/file.do" location="950,450" dimension="228,88" />
   <StrutsActivity path="/report.do" location="50,650" dimension="262,84" />
   <StrutsActivity path="/worker.do" location="1250,750" dimension="262,84" />
+  <StrutsActivity path="/org.do" location="1250,150" dimension="244,84" />
   <StrutsActivity path="/report/test.jsp" location="350,950" dimension="136,48" />
   <StrutsActivity path="/test.jsp" location="350,50" dimension="94,48" />
   <StrutsActivity path="/doctor/list.jsp" location="350,150" dimension="136,48" />
@@ -37,7 +38,7 @@
   <StrutsActivity path="/org/dic_list.jsp" location="1550,650" dimension="142,48" />
   <StrutsActivity path="/org/dic_edit.jsp" location="650,950" dimension="142,48" />
   <StrutsActivity path="/org/edit.jsp" location="950,950" dimension="118,48" />
-  <StrutsActivity path="/org.do" />
+  <StrutsActivity path="/org/print.jsp" location="1250,950" dimension="124,48" />
   <StrutsTransition id="/org.do,dic_edit,/org/dic_edit.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="0,0" />
@@ -121,13 +122,6 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/worker.do,edit,/org/edit.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1411,834" />
-      <AbsolutePoint location="1411,974" />
-      <AbsolutePoint location="1068,974" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/org.do,edit,/org/edit.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="0,0" />
@@ -170,14 +164,6 @@
       <AbsolutePoint location="950,514" />
       <AbsolutePoint location="117,514" />
       <AbsolutePoint location="117,550" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/worker.do,dic_edit,/org/dic_edit.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1381,834" />
-      <AbsolutePoint location="1381,913" />
-      <AbsolutePoint location="721,913" />
-      <AbsolutePoint location="721,950" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/person.do,edit,/person/edit.jsp,1" routingType="0">
@@ -232,18 +218,19 @@
       <AbsolutePoint location="1021,798" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/org.do,print,/org/dic_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1250,213" />
+      <AbsolutePoint location="915,213" />
+      <AbsolutePoint location="915,974" />
+      <AbsolutePoint location="792,974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/report.do,year,/report/year.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="181,734" />
       <AbsolutePoint location="181,774" />
       <AbsolutePoint location="650,774" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/worker.do,dic_list,/org/dic_list.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="1395,750" />
-      <AbsolutePoint location="1395,674" />
-      <AbsolutePoint location="1550,674" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/report.do,dic_edit,/report/dic_edit.jsp,1" routingType="0">
@@ -261,11 +248,12 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/worker.do,list,/org/list.jsp,1" routingType="0">
+  <StrutsTransition id="/org.do,print,/org/print.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="1425,750" />
-      <AbsolutePoint location="1425,574" />
-      <AbsolutePoint location="1550,574" />
+      <AbsolutePoint location="1250,183" />
+      <AbsolutePoint location="1223,183" />
+      <AbsolutePoint location="1223,974" />
+      <AbsolutePoint location="1250,974" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/worker.do,dic_edit,/worker/dic_edit.jsp,1" routingType="0">

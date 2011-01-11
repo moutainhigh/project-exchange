@@ -14,6 +14,7 @@
 		<property name="type"/>
 		<property name="publishDate"/>
 		<property name="person"/>
+		<property name="validDateStart"/>
 		<property name="validDate"/>
 		<property name="no"/>
 		<property name="item"/>
