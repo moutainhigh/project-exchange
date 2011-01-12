@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="${appPath}/js/jquery.js"></script>
 		<style type="text/css">
 <!--
-body{background:url('${appPath}/org/back.jpg') left top no-repeat;font-size:20px;font-weight:600;text-align: center;}
+body{background:url('${appPath}/org/back.jpg') left top no-repeat;font-size:24px;font-weight:600;text-align: center;}
 .style5 {
 	color: #FFDDBB;
 	font-size: 36px;
@@ -46,6 +46,12 @@ body{background:url('${appPath}/org/back.jpg') left top no-repeat;font-size:20px
 .style11 {
 	color: #CCFFFF;
 	font-size: 18px;
+}
+.Layer span{
+	margin: 0 75px;
+}
+#Layer10 span{
+	margin: 0 60px;
 }
 -->
 </style>
@@ -222,35 +228,41 @@ function savePos(){
     
     </div>
 <input   type=button   value=保留坐标   onclick= "savePos();"   class= "NOPRINT "> 
-		<div id="Layer1" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 2; left: 488px; top: 212px;">
+		<div id="Layer1" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 2; left: 488px; top: 212px;">
 			${org.name}
 		</div>
-		<div id="Layer2" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 3; left: 430px; top: 182px;">
+		<div id="Layer2" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 3; left: 430px; top: 182px;">
 			${org.person}
 		</div>
-		<div id="Layer3" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+		<div id="Layer3" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
 			${org.address}
 		</div>
-		<div id="Layer4" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+		<div id="Layer4" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
 			${org.style}
 		</div>
-		<div id="Layer5" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+		<div id="Layer5" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
 			${org.item}
 		</div>
-		<div id="Layer6" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+		<div id="Layer6" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
 			${org.no}
 		</div>
-		<div id="Layer7" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
-			<fmt:formatDate value = "${org.validDateStart}" pattern = "yyyy  M  d "/>
+		<div id="Layer7" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			<span><fmt:formatDate value = "${org.validDateStart}" pattern = "yyyy"/></span>
+			<span><fmt:formatDate value = "${org.validDateStart}" pattern = "M"/></span>
+			<span><fmt:formatDate value = "${org.validDateStart}" pattern = "d"/></span>
 		</div>
-		<div id="Layer8" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
-			<fmt:formatDate value = "${org.validDate}" pattern = "yyyy  M  d"/>
+		<div id="Layer8" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			<span><fmt:formatDate value = "${org.validDate}" pattern = "yyyy"/></span>
+			<span><fmt:formatDate value = "${org.validDate}" pattern = "M"/></span>
+			<span><fmt:formatDate value = "${org.validDate}" pattern = "d"/></span>
 		</div>
-		<div id="Layer9" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+		<div id="Layer9" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
 			${org.fromOrg}
 		</div>
-		<div id="Layer10" class="Layer" style="position: absolute; width: 150px; height: 50px; z-index: 4; left: 430px; top: 182px;">
-			<fmt:formatDate value = "${org.publishDate}" pattern = "yyyy  M  d "/>
+		<div id="Layer10" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			<span><fmt:formatDate value = "${org.publishDate}" pattern = "yyyy"/></span>
+			<span><fmt:formatDate value = "${org.publishDate}" pattern = "M"/></span>
+			<span><fmt:formatDate value = "${org.publishDate}" pattern = "d"/></span>
 		</div>
 	</body>
 </html>
