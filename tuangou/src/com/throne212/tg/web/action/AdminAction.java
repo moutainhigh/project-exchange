@@ -55,12 +55,12 @@ public class AdminAction extends BaseAction {
 
 	// 团购信息列表
 	private PageBean pageBean;
-	private Integer page;
+	private Integer pageIndex;
 
 	public String list() {
-		if (page == null || page < 1)
-			page = 1;
-		pageBean = commonBiz.getAllTeams(page);
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		pageBean = commonBiz.getAllTeams(pageIndex);
 		return "list";
 	}
 	
@@ -93,9 +93,9 @@ public class AdminAction extends BaseAction {
 		return "site_edit";
 	}
 	public String siteList() {
-		if (page == null || page < 1)
-			page = 1;
-		pageBean = commonBiz.getAllSites(page);
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		pageBean = commonBiz.getAllSites(pageIndex);
 		return "site_list";
 	}
 	//删除团购网站
@@ -113,9 +113,9 @@ public class AdminAction extends BaseAction {
 	
 	//用户
 	public String userList() {
-		if (page == null || page < 1)
-			page = 1;
-		pageBean = userBiz.getAllUsers(page);
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		pageBean = userBiz.getAllUsers(pageIndex);
 		return "user_list";
 	}
 
@@ -270,12 +270,14 @@ public class AdminAction extends BaseAction {
 		this.pageBean = pageBean;
 	}
 
-	public Integer getPage() {
-		return page;
+	
+
+	public Integer getPageIndex() {
+		return pageIndex;
 	}
 
-	public void setPage(Integer page) {
-		this.page = page;
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
 	}
 
 	public Site getSite() {

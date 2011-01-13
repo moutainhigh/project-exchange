@@ -56,392 +56,63 @@
 						</div>
 						<div class=" pad_10 grid">
 							<div class="title02">
-								<span class="fr"><a href="#">更多美食天下信息 >></a> </span>美食天下
+								<span class="fr">${teamCate.name}信息列表  </span>${teamCate.name}
 							</div>
-
+                           
 							<ul class=" mar_5">
+								<#list pageBean.resultList as t>
 								<li>
 									<div class="deal">
 										<div class="new_time">
 											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
+											<span class="time_div timeleft" alt="1285689600000"><em><#if t.leftDay??>${t.leftDay} <#else>0</#if></em>天<em><#if t.leftHour??>${t.leftHour}<#else>0</#if></em>小 时<em><#if t.leftMin??>${t.leftMin}<#else>0</#if></em>分<em><#if t.leftSec??>${t.leftSec}<#else>0</#if></em>秒</span>
 										</div>
 										<div class="new_plshc">
 											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
 											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
 										</div>
 										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
+											<a class="image_link" target="_blank" href="${base}/page.htm?team.id=${t.id}"> <img src="${imgSavedPath}/${t.image}" title="${t.siteName}团购网:${t.title}" alt="${t.siteName}团购网:${t.title}" class="normal_image" width="218" height="139" /> </a>
 										</div>
 										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
+											<a class="from" target="_blank" href="#" title="${t.siteName}">${t.siteName}</a>
+											<a class="title" target="_blank" href="${t.url}" title="[团购]${t.title}">${t.shortTitle}</a>
 										</div>
 										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
+											<span>团购价：<strong>${t.teamPrice}元</strong> </span>
+											<span>折扣：<em>${t.discount}折</em> </span>
+											<span>原价：${t.marketPrice}元</span>
+											<span>已售：${t.nowNumber}个</span>
 										</div>
 										<div class="new_ns_gm">
 											<p>
 												多个商圈
 											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
+											<a class="buy" href="${base}/page.htm?team.id=${t.id}" title="去购买" target="_blank" rel="nofollow" ></a>
 										</div>
 									</div>
 								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="deal">
-										<div class="new_time">
-											今日开始，还有
-											<span class="time_div timeleft" alt="1285689600000"><em>1</em>天<em>5</em>小 时<em>1</em>分<em>29</em>秒</span>
-										</div>
-										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
-											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
-										</div>
-										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="${base}/Themes/images/02.jpg" alt="大众点评团团购网:黔道火锅套餐!" class="normal_image" /> </a>
-										</div>
-										<div class="new_ms_bt">
-											<a class="from" target="_blank" href="#" title="大众点评团">大 众点评团</a>
-											<a class="title" target="_blank" href="#" title="[团购]北京大众点评团团购详细信息">黔道火锅套餐!</a>
-										</div>
-										<div class="new_ms_jq">
-											<span>团购价：<strong>35元</strong> </span>
-											<span>折扣：<em>2.3折</em> </span>
-											<span>原价：153元</span>
-											<span>已售：4000个</span>
-										</div>
-										<div class="new_ns_gm">
-											<p>
-												多个商圈
-											</p>
-											<a class="buy" href="#" title="去购买" rel="nofollow" target="_blank"></a>
-										</div>
-									</div>
-								</li>
+							 </#list>
 							</ul>
-
+                           
 							<div class="clear"></div>
 							<div class="pages" style="margin: 10px 10px 10px 400px">
-								<span class="nextprev">第一页</span>
-								<span class="nextprev">上一页</span>
-								<span class="current"> 1</span>
-								<a href="#" title="Go to page 2">2</a>
-								<a href="#" title="Go to page 3">3</a><a href="#" title="Go to page 4">4</a>
-								<a href="#" class="nextprev" title="Go to Next Page"> 下一页</a><a href="#" class="nextprev" title="Go to Next Page">最后一页</a>
+							
+							
+							<div style="display:-moz-inline-box;float:right;">
+									
+									<span class="nextprev">第${pageBean.pageIndex }</font>/${pageBean.maxPage }页</span>
+									<span class="nextprev">每页${pageBean.rowPerPage }条&nbsp;</span>
+									<span class="nextprev">共${pageBean.totalRow }条&nbsp;</span>
+									
+							</div>
+									<div style="display:-moz-inline-box;float:right;">
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(1);">[首页]</a><#else>[首页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/list.htm?teamCate.id=${teamCate.id}');">[前一页]</a><#else>[前一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/list.htm?teamCate.id=${teamCate.id}');">[后一页]</a><#else>[后一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a><#else>[尾页]</#if></span>
+									</div>
+						
 								<div class="clear"></div>
 							</div>
 							<div class="clear"></div>

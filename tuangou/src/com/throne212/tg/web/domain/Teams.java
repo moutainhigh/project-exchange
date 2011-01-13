@@ -1,13 +1,15 @@
 package com.throne212.tg.web.domain;
 
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -222,5 +224,28 @@ public class Teams implements java.io.Serializable {
 		}
 		return new Date(time);
 	}
-
+	public float getDiscount() {
+		 float discount=(float)10*(teamPrice/marketPrice);
+		 int scale = 1;//设置位数   
+		 int roundingMode = 4;//表示四舍五入  
+		  BigDecimal bd = new BigDecimal((double)discount);   
+		  bd = bd.setScale(scale,roundingMode);   
+		  discount = bd.floatValue();  
+		return discount;
+	}
+	public Float getSavedMoney() {
+		return (marketPrice-teamPrice);
+		
+	}
+	public String getShortTitle() {
+		String shortTitle;
+		if (this.title.length()>12) {
+			shortTitle=this.title.substring(0, 12)+"...";
+		}else {
+			shortTitle=this.title;
+		}
+		
+		return shortTitle;
+		
+	}
 }

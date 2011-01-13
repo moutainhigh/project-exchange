@@ -46,11 +46,20 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 	}
 	
 	public List<Site> getSiteByCity(City city){
-		if(city==null)
+		if(city==null||city.getName().equals("全国"))
 			return this.getAll(Site.class, "listOrder", "asc");
 		else{
 			return siteDao.getSiteByCity(city);
 		}
 	}
+public List<Teams> getTopNewTeamsByCateAndCity(int num,String cateName,String cityName) {
+		
+		return teamDao.getTopNewTeamsByCateAndCity(num, cateName, cityName);
+		
+	}
 
+//通过类型Id查询所有团购信息列表
+public PageBean<Teams> getAllTeamsByCateId(int page,long id){
+	   return teamDao.getAllTeamsByCateId(page, id);
+}
 }

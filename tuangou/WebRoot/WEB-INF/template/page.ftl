@@ -29,16 +29,15 @@
 							</div>
 							<div class="c1_2">
 								<span>今日团购：</span>
-								<strong><a href="#">【都买网】</a> </strong>
+								<strong><a href="#">【${team.siteName}】</a> </strong>
 								<h3 class=" bdb_gray">
-									<a href="#" rel="nofollow" target="_blank">【国庆美食】仅26元！原价90元的今天假日海鲜城清蒸大闸蟹一斤，8元预订、消费时支付18元，即可尽享大闸蟹美味！ 六里桥店、密云店、门头沟店、全聚德西三旗店四店通用！</a>
+									<a href="${team.url}" rel="nofollow" target="_blank">${team.summary}</a>
 								</h3>
 							</div>
 							<div class="c1_3">
 								<div class="c1_3_left">
 									<div class="deal_image">
-										<a class="deal_out_link" href="#" rel="nofollow" target="_blank"> <img src="${base}/Themes/images/02.jpg" alt="【国庆美食】仅26元！原价90元的今天假日海鲜城清蒸大闸蟹一斤，8元预订、消费时支付18元，即可尽享大闸蟹美味！六里桥店、密云店、门头
-沟店、全聚德西三旗店四店通用！" width="360" height="240"/>
+										<a class="deal_out_link" href="${team.url}" rel="nofollow" target="_blank"> <img src="${imgSavedPath}/${team.image}" title="${team.summary}" alt="${team.summary}" width="360" height="240"/>
 										</a>
 									</div>
 									<ul>
@@ -53,8 +52,12 @@
 										</li>
 									</ul>
 									<div class="fl" style="margin: 10px 0pt;">
+										
+										<#if site??>
 										该团购活动由都买网组织，参与此团购将会与
-										<a href="#" title="都买网" target="_blank">都买网</a>产生直接买卖关系。
+										<a href="${site.url}" title="${team.siteName}" target="_blank">${team.siteName}</a>产生直接买卖关系。
+									  	<#else>
+									  	</#if>
 									</div>
 								</div>
 								<div class="c1_3_right deal_block">
@@ -63,27 +66,28 @@
 											<div class="deal_time">
 												<div class="time">
 													剩余时间:
-													<span class="time_div timeleft" alt="1286467200000"><em>2</em>天<em>9</em>小 时<em>53</em>分<em>45</em>秒</span>
+													<span class="time_div timeleft" alt="1286467200000"><em><#if team.leftDay??>${team.leftDay} <#else>0</#if></em>天<em><#if team.leftHour??>${team.leftHour}<#else>0</#if></em>小 时<em><#if team.leftMin??>${team.leftMin}<#else>0</#if></em>分<em><#if team.leftSec??>${team.leftSec}<#else>0</#if></em>秒</span>
 												</div>
 											</div>
-											北京
+											${team.cityName}
 										</div>
 										<div class="deal_infos_2 fc">
 											<div class="fl">
-												<span>现价：<strong>8</strong>元</span>
-												<span>原价：8元</span>
-												<span>折扣：0折</span>
+												<span>现价：<strong>${team.teamPrice}</strong>元</span>
+												<span>原价：${team.marketPrice}元</span>
+												<span>折扣：${team.discount}折</span>
 											</div>
 											<div class="fr" style="margin-right: 30px; text-align: center;">
-												<a href="#" rel="nofollow" target="_blank" class="buy"></a>
-												<span>节省：0元</span>
+												<a href="${team.url}" rel="nofollow" target="_blank" class="buy"></a>
+												<span>节省：${team.savedMoney}元</span>
 											</div>
 										</div>
 										<div>
-											已售出：45个
+											已售出：${team.nowNumber}个
 										</div>
 										<div style="height: 23px;">
-											<a style="float: right; margin-right: 13px;" href="#" rel="nofollow" title="举报不良信息、网页出错或其它问题" target="_blank">我要举报</a> 有效期：截止至2010年12月23日
+											<a style="float: right; margin-right: 13px;" href="#" rel="nofollow" title="举报不良信息、网页出错或其它问题" target="_blank">我要举报</a> 有效期：截止至${team.endTime?string("yyyy-MM-dd HH:mm:ss")}
+											}
 										</div>
 									</div>
 									<div class="deal_ts">
@@ -129,7 +133,7 @@
 											</a>
 										</div>
 										<div class="tuan_wai_right">
-											<span class="red">此团购信息来源于都买网</span>
+											<span class="red">此团购信息来源于<#if site??>${site.name}</span>
 
 											<dl>
 
@@ -137,7 +141,7 @@
 													电话：
 												</dt>
 												<dd>
-													010-86061545
+													${site.tel}
 												</dd>
 
 
@@ -145,15 +149,15 @@
 													QQ：
 												</dt>
 												<dd>
-													97416905
+													${site.qq}
 												</dd>
 
 
 												<dt>
-													MSN：
+													联系人：
 												</dt>
 												<dd>
-													doumaii@hotmail.cn
+													${site.contact}
 												</dd>
 
 
@@ -166,7 +170,10 @@
 											</dl>
 
 											查看
-											<a href="#" title="都买网北京" target="_blank">都买网北京</a> 的所有团购信息
+											<a href="${site.url}" title="${site.name}" target="_blank">${site.name}</a> 的所有团购信息
+											<#else>
+											对不起，没有关于此团购网的信息
+											</#if>
 										</div>
 										<div class="clear"></div>
 									</div>

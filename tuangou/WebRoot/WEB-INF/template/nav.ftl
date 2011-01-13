@@ -9,23 +9,13 @@
 						<a href="#" class="top_link"><span class="down">今日团购</span> </a>
 						<ul class="sub">
 							<li>
-								<a href="#">全部团购<span class="ft10">(1406)</span> </a>
+								<a href="${base}/index.htm">全部团购<span class="ft10">(1406)</span> </a>
 							</li>
+							<#list cates as c>
 							<li>
-								<a href="#">美食天下<span class="ft10">(70)</span> </a>
+								<a href="${base}/list.htm?teamCate.id=${c.id}">${c.name}<span class="ft10">(70)</span> </a>
 							</li>
-							<li>
-								<a href="#">生活娱乐<span class="ft10">(382)</span> </a>
-							</li>
-							<li>
-								<a href="#">美容美发<span class="ft10">(67)</span> </a>
-							</li>
-							<li>
-								<a href="#">网购精品<span class="ft10">(878)</span> </a>
-							</li>
-							<li>
-								<a href="#">其他团购<span class="ft10">(9)</span> </a>
-							</li>
+							</#list>
 						</ul>
 					</li>
 					<li class="top">

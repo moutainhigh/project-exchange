@@ -6,6 +6,7 @@
 	<link href="${base}/admin/css/layout.css" type="text/css" rel="stylesheet" />
 	<script src="${base}/js/jquery.js"></script>
 	<script src="${base}/admin/js/admin.js"></script>
+	<script src="${base}/js/common.js"></script>
 	<script type="text/javascript">
 		var msg = '${msg?default("")}';
 		if(msg != ''){
@@ -83,10 +84,10 @@
 									<font color="blue">${pageBean.pageIndex }</font>/${pageBean.maxPage }&nbsp;
 									每页${pageBean.rowPerPage }条&nbsp;
 									共${pageBean.totalRow }条&nbsp;
-									<#if !pageBean.isFirstPage><a href="javascript:gotoPage(1);">[首页]</a><#else>[首页]</#if>
-									<#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex });">[前一页]</a><#else>[前一页]</#if>
-									<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a><#else>[后一页]</#if>
-									<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a><#else>[尾页]</#if>
+									<#if !pageBean.isFirstPage><a href="javascript:gotoPage(1,'${base}/admin/siteList.htm');">[首页]</a><#else>[首页]</#if>
+									<#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/admin/siteList.htm');">[前一页]</a><#else>[前一页]</#if>
+									<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/admin/siteList.htm');">[后一页]</a><#else>[后一页]</#if>
+									<#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage },'${base}/admin/siteList.htm');">[尾页]</a><#else>[尾页]</#if>
 								</span>
 							</td>
 						</tr>

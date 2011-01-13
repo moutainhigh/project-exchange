@@ -19,5 +19,8 @@ public interface CommonBiz extends BaseBiz {
 	
 	//获取不同城市的团购站点
 	public List<Site> getSiteByCity(City city);
-	
+	//获取不同城市不同信息类别的最新10条团购信息
+	public List<Teams> getTopNewTeamsByCateAndCity(int num,String cateName,String cityName);
+	//通过类型名字查询所有团购信息列表
+	public PageBean<Teams> getAllTeamsByCateId(int page,long id); 
 }

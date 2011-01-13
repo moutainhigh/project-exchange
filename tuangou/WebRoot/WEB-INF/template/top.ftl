@@ -20,7 +20,7 @@
 						<img src="${base}/Themes/images/ico-map.gif" alt="切换语言" width="29" height="15" align="middle" />
 						<div id="city-list" class="hidden">
 							<ul>
-								<li><a href="${base}/selectCity.htm">全国</a></li>
+								
 								<#list cities as c>					
 								<li class="${c.pinyin}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
 								</#list>
