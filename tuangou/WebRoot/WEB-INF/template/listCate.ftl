@@ -4,26 +4,16 @@
 		<#include "head.ftl">
 	</head>
 	<body>
-		<#include "top.ftl">		
+
+		<#include "top.ftl">
+		
 		<#include "nav.ftl">	
+
 		<!-- begin正文框架 -->
 		<div class="wrapper">
 			<div class="part02 mar_t6">
 				<div class="fl w730">
-					<div class="section">
-						<div class="ptitle">
-							<#if currCity??>${currCity.name}<#else>全国</#if>团购网
-						</div>
-						<div class=" pad_20 webfriendslist">
-							<ul class="">
-								<#list siteList as s>
-								<li><a href="${s.url}" target="_blank">${s.name}</a></li>
-								</#list>
-							</ul>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="section mar_t6">
+					<div class="section ">
 						<div class="ptitle">
 							团购网站大全
 						</div>
@@ -39,10 +29,13 @@
 									<a href="http://www.tuan800.com/login" title="您可以在这里定制查看您关心的团购网站"> <span>个人定制的团购</span> <img class="help_img" alt="您可以在这里定制查看您关心的团购网站" src="${base}/Themes/images/small_help.gif" /> </a>
 								</li>
 							</ul>
+
 							<div class="new_nav_n2">
 								<a class="grid_button on" href="#" title="网格模式"><span></span>网格</a>
 								<a class="row_button " href="#" title="单行模式"><span></span>单行</a>
 							</div>
+
+
 							<div class="new_nav_n1">
 								<span>排序</span>
 								<select name="" onchange="change_to_order_by_type(this);" class="order_by_type">
@@ -61,17 +54,13 @@
 								</select>
 							</div>
 						</div>
-						
-						
 						<div class=" pad_10 grid">
-					<span class="new_nav_2" style="font-size:16px">	<#if currCity??>${currCity.name}站<#else>全国站</#if>的团购消息</span>
-						<#list cates as cate>
-							<div class="title02  mar_t10">
-								<span class="fr"><a href="${base}/list.htm?teamCate.id=${cate.id}&city.id=${currCity.id}">更多<#if currCity??>${currCity.name}站<#else>全国站</#if>${cate.name}的信息 >></a> </span>${cate.name}
+							<div class="title02">
+								<span class="fr">所有${teamCate.name}信息列表  </span>${teamCate.name}
 							</div>
+                           
 							<ul class=" mar_5">
-							<#if cateAndTeamsMap["${cate.name}"]??>
-							<#list cateAndTeamsMap["${cate.name}"] as t>
+								<#list pageBean.resultList as t>
 								<li>
 									<div class="deal">
 										<div class="new_time">
@@ -83,7 +72,7 @@
 											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
 										</div>
 										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="#"> <img src="upload/${t.image}" title="${t.siteName}团购网:${t.title}" alt="${t.siteName}团购网:${t.title}" class="normal_image" width="218" height="139" /> </a>
+											<a class="image_link" target="_blank" href="${base}/page.htm?team.id=${t.id}"> <img src="upload/${t.image}" title="${t.siteName}团购网:${t.title}" alt="${t.siteName}团购网:${t.title}" class="normal_image" width="218" height="139" /> </a>
 										</div>
 										<div class="new_ms_bt">
 											<a class="from" target="_blank" href="#" title="${t.siteName}">${t.siteName}</a>
@@ -103,20 +92,37 @@
 										</div>
 									</div>
 								</li>
-								</#list>
-							<#else>
-								<li>对不起，暂无此类信息！</li>
-									</#if>
-								
+							 </#list>
 							</ul>
+                           
 							<div class="clear"></div>
+							<div class="pages" style="margin: 10px 10px 10px 400px">
+							
+							
+							<div style="display:-moz-inline-box;float:right;">
+									
+									<span class="nextprev">第${pageBean.pageIndex }</font>/${pageBean.maxPage }页</span>
+									<span class="nextprev">每页${pageBean.rowPerPage }条&nbsp;</span>
+									<span class="nextprev">共${pageBean.totalRow }条&nbsp;</span>
+									
+							</div>
+									<div style="display:-moz-inline-box;float:right;">
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(1,'${base}/listCate.htm?teamCate.id=${teamCate.id}');">[首页]</a><#else>[首页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/listCate.htm?teamCate.id=${teamCate.id}');">[前一页]</a><#else>[前一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/listCate.htm?teamCate.id=${teamCate.id}');">[后一页]</a><#else>[后一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage },'${base}/listCate.htm?teamCate.id=${teamCate.id}');">[尾页]</a><#else>[尾页]</#if></span>
+									</div>
 						
-							</#list>
+								<div class="clear"></div>
+							</div>
+							<div class="clear"></div>
 						</div>
+
 					</div>
 				</div>
 
-				<div class="fr w254 nowrap">
+				<div class="fr w254">
+
 					<div class="pic-imgnews">
 						<img src="${base}/Themes/images/banner.jpg" alt="切换广告" width="252" height="178" />
 						<ul>
@@ -194,6 +200,8 @@
 									<a href="#">推荐2009届大学毕业生参与工作能</a>
 								</li>
 							</ul>
+
+
 							<div class="clear"></div>
 						</div>
 					</div>

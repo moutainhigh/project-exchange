@@ -37,7 +37,7 @@
 							<div class="c1_3">
 								<div class="c1_3_left">
 									<div class="deal_image">
-										<a class="deal_out_link" href="${team.url}" rel="nofollow" target="_blank"> <img src="${imgSavedPath}/${team.image}" title="${team.summary}" alt="${team.summary}" width="360" height="240"/>
+										<a class="deal_out_link" href="${team.url}" rel="nofollow" target="_blank"> <img src="upload/${team.image}" title="${team.summary}" alt="${team.summary}" width="360" height="240"/>
 										</a>
 									</div>
 									<ul>

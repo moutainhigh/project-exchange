@@ -43,6 +43,7 @@ public class CommonListener implements ServletContextListener {
 		CommonBiz commonBiz = (CommonBiz) ac.getBean("commonBiz");
 		List<City> cities = commonBiz.getAll(City.class, "orderNum", "asc");
 		e.getServletContext().setAttribute(WebConstants.APP_CITIES, cities);
+		e.getServletContext().setAttribute(WebConstants.SESS_CITY, cities.get(0));
 		List<TeamCategory> cates = commonBiz.getAll(TeamCategory.class, "orderNum", "asc");
 		e.getServletContext().setAttribute(WebConstants.APP_CATEGOTIES, cates);
 		

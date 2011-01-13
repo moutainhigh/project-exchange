@@ -9,11 +9,11 @@
 						<a href="#" class="top_link"><span class="down">今日团购</span> </a>
 						<ul class="sub">
 							<li>
-								<a href="${base}/index.htm">全部团购<span class="ft10">(1406)</span> </a>
+								<a href="${base}/index.htm">全部团购<span class="ft10">(${Session.allCount})</span> </a>
 							</li>
 							<#list cates as c>
 							<li>
-								<a href="${base}/list.htm?teamCate.id=${c.id}">${c.name}<span class="ft10">(70)</span> </a>
+								<a href="${base}/listCate.htm?teamCate.id=${c.id}">${c.name}<span class="ft10">(${Session.cateAndCountMap["${c.name}"]})</span> </a>
 							</li>
 							</#list>
 						</ul>

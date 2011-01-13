@@ -53,13 +53,30 @@ public class CommonBizImpl extends BaseBizImpl implements CommonBiz {
 		}
 	}
 public List<Teams> getTopNewTeamsByCateAndCity(int num,String cateName,String cityName) {
+		if ("全国".equals(cityName)) {
+			return teamDao.getTopNewTeamsByCateOfAllCtiy(num, cateName);
+			
+		} else {
+			return teamDao.getTopNewTeamsByCateAndCity(num, cateName, cityName);
+		}
 		
-		return teamDao.getTopNewTeamsByCateAndCity(num, cateName, cityName);
 		
 	}
 
-//通过类型Id查询所有团购信息列表
-public PageBean<Teams> getAllTeamsByCateId(int page,long id){
-	   return teamDao.getAllTeamsByCateId(page, id);
+//通过类型Id和城市名查询所有团购信息列表
+	public PageBean<Teams> getAllTeamsByCateIdAndCityName(int page,long cateId,String cityName){
+	   return teamDao.getAllTeamsByCateIdAndCityName(page, cateId, cityName);
 }
+	
+	//通过类型Id查询所有团购信息列表
+	
+	public PageBean<Teams> getAllTeamsByCateId(int page,long cateId){
+		
+		return teamDao.getAllTeamsByCateId(page, cateId);
+		
+		
+		
+		
+	}
+	
 }

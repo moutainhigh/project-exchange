@@ -45,6 +45,7 @@ public class FrontAction extends BaseAction {
 	public String selectCity() {
 		if (city != null && city.getId() != null) {
 			city = commonBiz.getEntityById(City.class, city.getId());
+			siteList=commonBiz.getSiteByCity(city);
 			ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
 		} else {
 			ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, null);
@@ -54,7 +55,9 @@ public class FrontAction extends BaseAction {
 	
 	private List<Site> siteList;
 	private Map<String, List<Teams>> cateAndTeamsMap;//用于保存首页展示的团购信息，Key 分类名    Value 每类的最新10条团购信息
-	private List<TeamCategory> cates;
+	private long allCount;//保存所有团购信息数
+	private Map<String, Long> cateAndCountMap=new HashMap<String, Long>();//保存各类的团购信息数
+	private List<TeamCategory> actionCates;
 	public String index() {
 		city = (City) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
 		//获得特定城市的团购网站名称和链接
@@ -62,16 +65,23 @@ public class FrontAction extends BaseAction {
 		String cityName;
 		//获取城市名
 		if(null==city){
-			cityName=WebConstants.DEFAULT_CITY_NAME;
+			city=commonBiz.getAll(City.class).get(0);
+			cityName=city.getName();
+			ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
 		}else{
 			cityName=city.getName();
 		}
 		logger.debug("cityName---"+cityName);
-		cates = commonBiz.getAll(TeamCategory.class, "orderNum", "asc");
+		actionCates = commonBiz.getAll(TeamCategory.class, "orderNum", "asc");
+		allCount=commonBiz.getEntitySum(Teams.class);		
+       logger.debug(allCount);
 		cateAndTeamsMap=new HashMap<String, List<Teams>>();
-		for (TeamCategory teamCategory : cates) {
+		for (TeamCategory teamCategory : actionCates) {
 			cateAndTeamsMap.put(teamCategory.getName(), commonBiz.getTopNewTeamsByCateAndCity(WebConstants.NUM_PER_CATE, teamCategory.getName(), cityName));
-	       logger.debug("***********"+teamCategory.getName());
+	        cateAndCountMap.put(teamCategory.getName(), commonBiz.getEntitySumByColsValue(Teams.class, "cate", "name", teamCategory.getName()));
+	        ActionContext.getContext().getSession().put(WebConstants.SESS_CATE_COUNT, cateAndCountMap);
+	        ActionContext.getContext().getSession().put(WebConstants.SESS_ALL_COUNT, allCount);
+	        logger.debug("***********"+teamCategory.getName());
 	       logger.debug("size of "+teamCategory.getName()+cateAndTeamsMap.get(teamCategory.getName()).size());
 		}
 		return "success";
@@ -95,14 +105,29 @@ public class FrontAction extends BaseAction {
 	public String list() {
 		if (pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		
-		pageBean = commonBiz.getAllTeamsByCateId(pageIndex, teamCate.getId());
+		city=commonBiz.getEntityById(City.class, city.getId());
+		pageBean = commonBiz.getAllTeamsByCateIdAndCityName(pageIndex, teamCate.getId(), city.getName());
 		teamCate=commonBiz.getEntityById(TeamCategory.class, teamCate.getId());
 				logger.debug("size of pageBean.getResultList()==========="+pageBean.getResultList().size());
 				return "success";
 		
 	}
 	
+	public String listCate() {
+		
+		
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+//		city=commonBiz.getEntityById(City.class, city.getId());
+		pageBean = commonBiz.getAllTeamsByCateId(pageIndex, teamCate.getId());
+		logger.debug(pageBean.getResultList().size());
+		teamCate=commonBiz.getEntityById(TeamCategory.class, teamCate.getId());
+		logger.debug(teamCate.getName());
+		
+		
+		return "success";
+		
+	}
 
 	public City getCity() {
 		return city;
@@ -188,12 +213,22 @@ public class FrontAction extends BaseAction {
 		this.teamCate = teamCate;
 	}
 
-	public List<TeamCategory> getCates() {
-		return cates;
+
+
+	public long getAllCount() {
+		return allCount;
 	}
 
-	public void setCates(List<TeamCategory> cates) {
-		this.cates = cates;
+	public void setAllCount(long allCount) {
+		this.allCount = allCount;
+	}
+
+	public Map<String, Long> getCateAndCountMap() {
+		return cateAndCountMap;
+	}
+
+	public void setCateAndCountMap(Map<String, Long> cateAndCountMap) {
+		this.cateAndCountMap = cateAndCountMap;
 	}
 
 	

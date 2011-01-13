@@ -8,8 +8,10 @@ import com.throne212.tg.web.domain.Teams;
 public interface TeamDao extends BaseDao {
 	public PageBean<Teams> getAllTeams(int page);
 	public List<Teams> getTopNewTeamsByCateAndCity(int num,String cate,String cityName);
-	//通过类型id查询所有团购信息列表
-	public PageBean<Teams> getAllTeamsByCateId(int page,long id); 
+	public List<Teams> getTopNewTeamsByCateOfAllCtiy(int num,String cate);
+	//通过类型id和城市名查询所有团购信息列表
+	public PageBean<Teams> getAllTeamsByCateIdAndCityName(int page,long cateId,String cityName); 
+	public PageBean<Teams> getAllTeamsByCateId(int page,long cateId);
 		
 	
 }

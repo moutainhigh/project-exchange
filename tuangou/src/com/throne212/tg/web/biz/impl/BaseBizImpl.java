@@ -55,4 +55,25 @@ public class BaseBizImpl implements BaseBiz {
 	public <T> T getEntityByUnique(Class<T> clazz, String colName, Object value) {
 		return baseDao.getEntityByUniqueColumn(clazz, colName, value);
 	}
+	public <T> long getEntitySum(Class<T> clazz){
+		
+		return baseDao.getEntitySum(clazz);
+	}
+	public int loadRecordCount(final String hql, final Object[] cols){
+		
+		return baseDao.loadRecordCount(hql, cols);
+		
+	}
+	
+	public <T> long getEntitySumByColValue(Class<T> clazz,String col,String value){
+		
+		
+		return baseDao.getEntitySumByColValue(clazz, col, value);
+	}
+	public <T> long getEntitySumByColsValue(Class<T> clazz,String colOne,String colTwo, String value){
+		
+		
+		return baseDao.getEntitySumByColsValue(clazz, colOne, colTwo, value);
+		
+	}
 }

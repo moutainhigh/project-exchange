@@ -13,6 +13,7 @@
 		<div class="wrapper">
 			<div class="part02 mar_t6">
 				<div class="fl w730">
+				
 					<div class="section ">
 						<div class="ptitle">
 							团购网站大全
@@ -20,7 +21,7 @@
 						<div class="new_nav_2">
 							<ul>
 								<li>
-									<a href="#" class="on" title="所有团购">所有团购</a>
+									<a href="${base}/index.htm" class="on" title="所有团购">所有团购</a>
 								</li>
 								<li>
 									<a href="#" title="只显示今天发布的团购"> <span>今天发布的团购</span> <img class="help_img" alt="只显示今天新发布的团购信息，不包括之前发布的但是目前仍然有效的团购" title="只显示今天新发布的团购信息，不包括之前发布的但是目前仍然有效的团购" src="${base}/Themes/images/small_help.gif" /> </a>
@@ -55,6 +56,7 @@
 							</div>
 						</div>
 						<div class=" pad_10 grid">
+							<span class="new_nav_2" style="font-size:16px">	<#if currCity??>${currCity.name}站<#else>全国站</#if>的团购消息</span>
 							<div class="title02">
 								<span class="fr">${teamCate.name}信息列表  </span>${teamCate.name}
 							</div>
@@ -72,7 +74,7 @@
 											<a class="new_plshc_a1" title="对此团购发表评论" href="#" target="_blank">(55)</a>
 										</div>
 										<div class="new_ms_imgbox">
-											<a class="image_link" target="_blank" href="${base}/page.htm?team.id=${t.id}"> <img src="${imgSavedPath}/${t.image}" title="${t.siteName}团购网:${t.title}" alt="${t.siteName}团购网:${t.title}" class="normal_image" width="218" height="139" /> </a>
+											<a class="image_link" target="_blank" href="${base}/page.htm?team.id=${t.id}"> <img src="upload/${t.image}" title="${t.siteName}团购网:${t.title}" alt="${t.siteName}团购网:${t.title}" class="normal_image" width="218" height="139" /> </a>
 										</div>
 										<div class="new_ms_bt">
 											<a class="from" target="_blank" href="#" title="${t.siteName}">${t.siteName}</a>
@@ -107,10 +109,10 @@
 									
 							</div>
 									<div style="display:-moz-inline-box;float:right;">
-									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(1);">[首页]</a><#else>[首页]</#if></span>
-									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/list.htm?teamCate.id=${teamCate.id}');">[前一页]</a><#else>[前一页]</#if></span>
-									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/list.htm?teamCate.id=${teamCate.id}');">[后一页]</a><#else>[后一页]</#if></span>
-									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a><#else>[尾页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(1,'${base}/list.htm?teamCate.id=${teamCate.id}&city.id=${city.id}');">[首页]</a><#else>[首页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/list.htm?teamCate.id=${teamCate.id}&city.id=${city.id}');">[前一页]</a><#else>[前一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/list.htm?teamCate.id=${teamCate.id}&city.id=${city.id}');">[后一页]</a><#else>[后一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage },'${base}/list.htm?teamCate.id=${teamCate.id}&city.id=${city.id}');">[尾页]</a><#else>[尾页]</#if></span>
 									</div>
 						
 								<div class="clear"></div>

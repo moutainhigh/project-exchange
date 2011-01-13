@@ -9,6 +9,8 @@ public interface BaseDao {
 	public <T> List<T> getAll(Class<T> clazz, String orderBy, String style);
 	public <T> List<T> getAll(Class<T> clazz, String orderBy, String style, int startIndex, int length);
 	public <T> long getEntitySum(Class<T> clazz);
+	public <T> long getEntitySumByColValue(Class<T> clazz,String col,String value);
+	public <T> long getEntitySumByColsValue(Class<T> clazz,String colOne,String colTwo, String value);
 
 	public <T> T getEntityById(Class<T> clazz, Long id);
 

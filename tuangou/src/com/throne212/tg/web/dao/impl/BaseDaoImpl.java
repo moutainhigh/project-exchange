@@ -164,5 +164,22 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 			return rst;
 		}
 	}
-
+	public <T> long getEntitySumByColValue(Class<T> clazz,String col,String value){
+		String hql = "select count(*) from " + clazz.getName()+" e where e."+col+"='"+value+"'";
+		Long rst = (Long) this.getHibernateTemplate().find(hql).get(0);
+		if(rst == null || rst < 0){
+			return -1;
+		}else{
+			return rst;
+		}
+	}
+	public <T> long getEntitySumByColsValue(Class<T> clazz,String colOne,String colTwo, String value){
+		String hql = "select count(*) from " + clazz.getName()+" e where e."+colOne+"."+colTwo+"='"+value+"'";
+		Long rst = (Long) this.getHibernateTemplate().find(hql).get(0);
+		if(rst == null || rst < 0){
+			return -1;
+		}else{
+			return rst;
+		}
+	}
 }
