@@ -33,6 +33,7 @@ public class WebConstants {
 	public static final int INFO_LIST_ROWS_ADMIN = 20;
 	public static final int USER_LIST_ROWS_ADMIN = 20;
 	public static final int FINANCE_LIST_ROWS_ADMIN = 20;
+	public static final double TOP_PRICE = 1;//信息置顶默认价格
 	
 	
 }

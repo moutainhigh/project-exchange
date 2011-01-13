@@ -6,9 +6,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -17,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.throne212.info168.web.action.AdminAction;
 import com.throne212.info168.web.biz.CommonBiz;
 import com.throne212.info168.web.common.WebConstants;
 import com.throne212.info168.web.domain.HotCitySetting;
@@ -24,7 +30,7 @@ import com.throne212.info168.web.domain.KeyWordSetting;
 import com.throne212.info168.web.domain.LinkSetting;
 
 public class CommonListener implements ServletContextListener {
-	
+
 	private Logger logger = Logger.getLogger(this.getClass());
 
 	public void contextDestroyed(ServletContextEvent arg0) {
@@ -53,17 +59,17 @@ public class CommonListener implements ServletContextListener {
 		e.getServletContext().setAttribute(WebConstants.ALL_CATES, allCates);
 		// 设置上下文路径
 		String appPath = e.getServletContext().getContextPath();
-		logger.info("appPath="+appPath);
-		if(appPath.equals("/")){
+		logger.info("appPath=" + appPath);
+		if (appPath.equals("/")) {
 			appPath = "";
-		}		
+		}
 		e.getServletContext().setAttribute(WebConstants.APP_PATH, appPath);
-		
+
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path + File.separator + "site.properties";
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new InputStreamReader(new FileInputStream(path),"GBK"));
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "GBK"));
 			Properties props = new Properties();
 			props.load(reader);
 			e.getServletContext().setAttribute(WebConstants.APP_TITLE, props.get("site_title"));
@@ -73,8 +79,8 @@ public class CommonListener implements ServletContextListener {
 			e1.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		} finally{
-			if(reader != null){
+		} finally {
+			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e1) {
@@ -82,7 +88,26 @@ public class CommonListener implements ServletContextListener {
 				}
 			}
 		}
-		
+		updateStaticViews();
 	}
 
+	// 定时更新信息静态页面
+	private void updateStaticViews() {
+		Calendar sTime = GregorianCalendar.getInstance();
+		sTime.setTime(new Date());
+		sTime.set(GregorianCalendar.MINUTE, 0);
+		sTime.set(GregorianCalendar.SECOND, 0);
+		sTime.set(GregorianCalendar.HOUR_OF_DAY, 3);
+		new Timer(true).schedule(new TimerTask() {
+			@Override
+			public void run() {
+				try {
+					if (AdminAction.instance != null)
+						AdminAction.instance.generateHtml();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}, new Date(sTime.getTimeInMillis()), 1000 * 60 * 60 * 24 * 3 );// 3天一次，每天的凌晨3点
+	}
 }

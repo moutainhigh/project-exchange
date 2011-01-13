@@ -25,7 +25,7 @@
 											登录名:
 										</label>
 										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id">
+										<input type="text" style="width: 200px;" onblur="check_loginid(this);" name="user.loginName" id="login_id" value="<#if user??>${user.loginName!''}</#if>">
 									</td>
 									<td width="336" id="loginidinfo" class="reg_bg_two">
 										4-16个字符（包括4、16）或2-8个汉字
@@ -61,7 +61,7 @@
 											电子邮箱:
 										</label>
 										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email">
+										<input type="text" value="<#if user??>${user.email!''}</#if>" style="width: 200px;" onblur="check_email(this);" name="user.email" id="email">
 									</td>
 									<td id="emailinfo" class="reg_bg_two">
 										忘记密码时，可凭安全邮箱索取密码
@@ -88,7 +88,7 @@
 											联系电话:
 										</label>
 										&nbsp;
-										<input type="text" id="tel" name="user.contact.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
+										<input type="text" id="tel" name="user.contact.tel" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')" value="<#if user?? && user.contact??>${user.contact.tel!''}</#if>">
 									</td>
 									<td id="emailinfo" class="reg_bg_two">
 										常用的联系电话，最好是手机号码
@@ -100,7 +100,7 @@
 											QQ号码:
 										</label>
 										&nbsp;
-										<input type="text" id="qq" name="user.contact.qq" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')">
+										<input type="text" id="qq" name="user.contact.qq" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" onkeyup="value=value.replace(/[^\d]/g,'')" value="<#if user?? && user.contact??>${user.contact.qq!''}</#if>">
 									</td>
 									<td id="emailinfo" class="reg_bg_two">
 										常用的QQ号码，能较长时间在线为佳

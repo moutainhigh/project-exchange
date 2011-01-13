@@ -110,6 +110,8 @@ public class AjaxAction extends BaseAction {
 			TopPriceSetting p = commonBiz.getPriceByCateAndArea(info.getCate(), info.getArea());
 			if(p!=null)
 				price = p.getPrice();
+			else
+				price = WebConstants.TOP_PRICE;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}

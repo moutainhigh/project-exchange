@@ -16,6 +16,9 @@
     	<result-types>
             <result-type name="staticview" class="com.throne212.info168.web.result.FreemarkerResult"/>
         </result-types>
+        <global-results>
+        	<result name="404">/error/404.html</result>
+        </global-results>
         <!-- 测试 
 		<action name="test" class="com.throne212.info168.web.action.TestAction">
 			<result name="success" type="staticview">/index.html</result>

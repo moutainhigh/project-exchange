@@ -84,11 +84,12 @@ public class UserAction extends BaseAction {
 		this.setMsg("信息删除成功");
 		return infoList();
 	}
-	
-	//修改联系方式
+
+	// 修改联系方式
 	private Contact contact;
+
 	public String modify() {
-		if(contact!=null){
+		if (contact != null) {
 			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 			user.setContact(contact);
 			userBiz.saveOrUpdateEntity(user);
@@ -96,44 +97,49 @@ public class UserAction extends BaseAction {
 		}
 		return "modify";
 	}
-	
-	
-	//财务管理
-	public String finance(){
+
+	// 财务管理
+	public String finance() {
 		User userInSession = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		this.user = userBiz.getEntityById(User.class, userInSession.getId());
 		pageBean = userBiz.getFinanceByUser(page, user);
 		return "finance";
 	}
-	private String orderNum;//订单号
-	public String financeForm(){
+
+	private String orderNum;// 订单号
+
+	public String financeForm() {
 		orderNum = Util.generateOrderNo();
 		return "finance_form";
 	}
-	
-	//置顶信息
+
+	// 置顶信息
 	private Info info;
 	private Integer topDays;
+
 	public String topInfo() {
-		if(info != null && info.getId() != null){
+		if (info != null && info.getId() != null) {
 			info = commonBiz.getEntityById(Info.class, info.getId());
 		}
-		if(topDays==null){
+		if (topDays == null) {
 			return "info_top";
-		}		
+		}
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		TopPriceSetting priceSetting = commonBiz.getPriceByCateAndArea(info.getCate(), info.getArea());
-		double money = topDays * priceSetting.getPrice();
-		if(user.getBalance() < money){
+		double price = WebConstants.TOP_PRICE;
+		if (priceSetting.getPrice() != null)
+			price = priceSetting.getPrice();
+		double money = topDays * price;
+		if (user.getBalance() < money) {
 			this.setMsg("对不起，你的余额不足，请充值以后进行操作");
 			return "info_top";
 		}
 		info.setIsTop(true);
-		info.setTopEndDate(new Date(System.currentTimeMillis()+topDays*24*60*60*1000));
+		info.setTopEndDate(new Date(System.currentTimeMillis() + topDays * 24 * 60 * 60 * 1000));
 		infoBiz.saveOrUpdateEntity(info);
 		user.setBalance(user.getBalance() - money);
 		userBiz.saveOrUpdateEntity(user);
-		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ,user);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		this.setMsg("信息置顶成功，本次消费为：" + money);
 		return "info_top";
 	}

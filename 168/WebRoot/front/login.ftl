@@ -25,7 +25,7 @@
 											登录名:
 										</label>
 										&nbsp;
-										<input type="text" value="" style="width: 200px;" onblur="check_loginid(this);" name="username" id="login_id">
+										<input type="text" value="${username!''}" style="width: 200px;" onblur="check_loginid(this);" name="username" id="login_id">
 									</td>
 									<td width="336" id="loginidinfo" class="reg_bg_two">
 										<a href="reg.html">注册新账号</a>

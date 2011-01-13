@@ -337,11 +337,14 @@ public class AdminAction extends BaseAction {
 	}
 
 	private FreemarkerManager freemarkerManager;
+	
+	public static AdminAction instance;
 
 	@Inject
 	public void setFreemarkerManager(FreemarkerManager mgr) {
-		System.out.println("自动调用设置freemarker管理器...");
+		//System.out.println("自动调用设置freemarker管理器...");
 		this.freemarkerManager = mgr;
+		instance = this;
 	}
 
 	private Info info;

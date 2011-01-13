@@ -109,11 +109,13 @@
 									</td>
 									<td>
 										<a href="${base}/user/delete">删除</a>
-										&nbsp;
-										<#if info.isTop?? && info.isTop>
-										<span style="color:#289147;">已置顶</span>
-										<#else>										
-										<a href="javascript:topInfo(${info.id});" style="font-weight:600;color:#803267;">置顶</a>
+										<#if info.isChecked?? && info.isChecked==true>
+											&nbsp;
+											<#if info.isTop?? && info.isTop>
+											<span style="color:#289147;">已置顶</span>
+											<#else>						
+											<a href="javascript:topInfo(${info.id});" style="font-weight:600;color:#803267;">置顶</a>
+											</#if>
 										</#if>
 									</td>
 								</tr>

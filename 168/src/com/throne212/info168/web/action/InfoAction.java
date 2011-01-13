@@ -44,8 +44,8 @@ public class InfoAction extends BaseAction {
 			Area city = null;
 			if (!"all".equals(cityPinyin)) {
 				city = commonBiz.getEntityByUnique(Area.class, "pinyin", cityPinyin);
-				if (city != null && city.getParent() != null && city.getParent().getParent() == null)
-					ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
+				//if (city != null && city.getParent() != null && city.getParent().getParent() == null)
+				//	ActionContext.getContext().getSession().put(WebConstants.SESS_CITY, city);
 			}
 			cate = commonBiz.getEntityByUnique(Category.class, "pinyin", catePinyin);
 			if (infoId == null) {// 列表页面
@@ -82,6 +82,9 @@ public class InfoAction extends BaseAction {
 
 	public String page() {
 		info = infoBiz.getEntityById(Info.class, infoId);
+		if(info == null){
+			return "404";
+		}
 		replaceKeywords();
 		relateInfos = infoBiz.getRelateInfos(info);
 		return "page";
@@ -92,7 +95,7 @@ public class InfoAction extends BaseAction {
 		String content = info.getContent();
 		List<KeyWordSetting> keywords = (List<KeyWordSetting>) ActionContext.getContext().getApplication().get(WebConstants.KEY_WORD_LIST);
 		for (KeyWordSetting key : keywords) {
-			content = content.replaceAll(key.getName(), "<a target='_blank' href='" + appPath + "/search/" + key.getName() + "/'>" + key.getName() + "</a>");
+			content = content.replaceFirst(key.getName(), "<a target='_blank' href='" + appPath + "/search/" + key.getName() + "/'>" + key.getName() + "</a>");
 		}
 		info.setContent(content);
 	}
