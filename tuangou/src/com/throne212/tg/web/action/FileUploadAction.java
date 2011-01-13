@@ -17,7 +17,10 @@ public class FileUploadAction extends BaseAction {
 	public String execute(){
 		if (myfile != null) {
 			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			logger.debug(">>>>>>>>>>>>>>>>>>>"+path);
+			logger.debug("+++++++++"+Thread.currentThread().getContextClassLoader().getResource("/"));
 			path = path.substring(0, path.indexOf("WEB-INF"));
+			logger.debug("》》》》》》》》》》》》"+path);
 			path += "upload";
 			logger.debug("image saved path : " + path);
 			int dot = myfileFileName.lastIndexOf(".");
