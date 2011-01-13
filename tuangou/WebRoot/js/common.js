@@ -41,7 +41,16 @@ function search(root){
 	window.location.href = path;
 }
 
+function searchResource(){
+   var searchInput=$('#searchInput').val();
+   if(searchInput==null||''==searchInput){
+   alert("Please enter keyword!");
+   return false;
+   }
+	document.forms['searchForm'].submit();
 
+
+}
 function showCities(){
 	$("#city-list").toggle();
 }

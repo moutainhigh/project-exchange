@@ -29,7 +29,7 @@
 							</div>
 							<div class="c1_2">
 								<span>今日团购：</span>
-								<strong><a href="#">【${team.siteName}】</a> </strong>
+								<strong><a href="${site.url}">【${team.siteName}】</a> </strong>
 								<h3 class=" bdb_gray">
 									<a href="${team.url}" rel="nofollow" target="_blank">${team.summary}</a>
 								</h3>

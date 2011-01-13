@@ -32,18 +32,19 @@
 
 					</li>
 				</ul>
-
+				<form name="searchForm" action="${base}/search.htm" method="post">
 				<div class="right_header">
 					<div class="fl white mar_t3">
 						搜索资源
 					</div>
 					<div class="fl picture-input mar_l5">
-						<input type="text" class="search gray" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue" value="--请输入关键字--" />
+						<input type="text" id="searchInput" name="searchKeyword" class="search gray" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue" value="--请输入关键字--" />
 					</div>
 					<div class="fl">
-						<input class="hledat" type="image" src="${base}/Themes/images/search-button.gif" name="" value="Search" alt="Search" />
+						<input class="hledat" type="image" src="${base}/Themes/images/search-button.gif" name="" value="Search" alt="Search" onclick="searchResource();" />
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 		<!-- end导航框架 -->

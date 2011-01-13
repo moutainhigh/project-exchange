@@ -71,12 +71,13 @@ public List<Teams> getTopNewTeamsByCateAndCity(int num,String cateName,String ci
 	//通过类型Id查询所有团购信息列表
 	
 	public PageBean<Teams> getAllTeamsByCateId(int page,long cateId){
-		
 		return teamDao.getAllTeamsByCateId(page, cateId);
+	}
+	//按关键字搜索团购信息
+	public PageBean<Teams> searchTeamsByKeyword(int page,String keyword){
 		
-		
+		return teamDao.searchTeamsByKeyword(page, keyword);
 		
 		
 	}
-	
 }

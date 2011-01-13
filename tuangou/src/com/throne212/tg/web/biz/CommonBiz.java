@@ -26,4 +26,7 @@ public interface CommonBiz extends BaseBiz {
 	
 	//通过类型ID查询所有团购信息列表
 	public PageBean<Teams> getAllTeamsByCateId(int page,long cateId);
+	
+	//按关键字搜索团购信息
+	public PageBean<Teams> searchTeamsByKeyword(int page,String keyword);
 }

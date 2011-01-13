@@ -98,5 +98,26 @@ public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 		
 		
 	}
-	
+	//通过关键字搜索团购信息
+	public PageBean<Teams> searchTeamsByKeyword(int pageIndex,String keyword){
+		
+		
+		PageBean<Teams> page = new PageBean<Teams>();
+		int startIndex = (pageIndex - 1) * WebConstants.NUM_PER_PAGE_SEARCH_TEAM;
+		String hql = "from Teams t where t.title like '%"+keyword+"%' or t.summary like '%"+keyword+"%' order by t.createTime desc";
+		logger.debug(hql);
+		logger.debug("select count(*) " + hql);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Teams> list = s.createQuery(hql).setMaxResults(WebConstants.NUM_PER_PAGE_SEARCH_TEAM).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.NUM_PER_PAGE_SEARCH_TEAM);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+		
+		
+		
+	}
 }

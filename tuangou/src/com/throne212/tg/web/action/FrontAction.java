@@ -128,6 +128,21 @@ public class FrontAction extends BaseAction {
 		return "success";
 		
 	}
+	
+	private String searchKeyword;
+	public String search() {
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		pageBean = commonBiz.searchTeamsByKeyword(pageIndex, searchKeyword);
+        ActionContext.getContext().getSession().put("keyword", searchKeyword);
+
+		logger.debug(pageBean.getResultList().size());
+//		teamCate=commonBiz.getEntityById(TeamCategory.class, teamCate.getId());
+//		logger.debug(teamCate.getName());
+		
+		return "success";
+		
+	}
 
 	public City getCity() {
 		return city;
@@ -229,6 +244,14 @@ public class FrontAction extends BaseAction {
 
 	public void setCateAndCountMap(Map<String, Long> cateAndCountMap) {
 		this.cateAndCountMap = cateAndCountMap;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
 	

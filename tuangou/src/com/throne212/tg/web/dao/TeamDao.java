@@ -12,6 +12,7 @@ public interface TeamDao extends BaseDao {
 	//通过类型id和城市名查询所有团购信息列表
 	public PageBean<Teams> getAllTeamsByCateIdAndCityName(int page,long cateId,String cityName); 
 	public PageBean<Teams> getAllTeamsByCateId(int page,long cateId);
-		
+	//按关键字搜索团购信息
+	public PageBean<Teams> searchTeamsByKeyword(int page,String keyword);
 	
 }
