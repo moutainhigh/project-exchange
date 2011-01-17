@@ -13,6 +13,9 @@ import com.throne212.tg.web.domain.Site;
 public class SiteDaoImpl extends BaseDaoImpl implements SiteDao {
 
 	public PageBean<Site> getAllSites(int pageIndex) {
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
 		PageBean<Site> page = new PageBean<Site>();
 		int startIndex = (pageIndex - 1) * WebConstants.NUM_PER_BACK_PAGE_SITE;
 		String hql = "from Site t order by id desc";

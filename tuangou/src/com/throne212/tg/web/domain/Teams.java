@@ -63,6 +63,17 @@ public class Teams implements java.io.Serializable {
 	private TeamCategory cate;
 	@Column(name = "summary")
 	private String summary;
+	
+	@Column(name = "comment_times")
+	private long commentTimes;//评论次数
+	@Column(name = "suport_times")
+	private long suportTimes;//顶的次数
+	@Column(name = "collect_times")
+	private long collectTimes;//收藏次数
+	@Column(name = "buy_times")
+	private long buyTimes;//已购买的次数
+	@Column(name = "click_times")
+	private long clickTimes;//点击次数
 
 	// Constructors
 
@@ -247,5 +258,45 @@ public class Teams implements java.io.Serializable {
 		
 		return shortTitle;
 		
+	}
+
+	public long getCommentTimes() {
+		return commentTimes;
+	}
+
+	public void setCommentTimes(long commentTimes) {
+		this.commentTimes = commentTimes;
+	}
+
+	public long getSuportTimes() {
+		return suportTimes;
+	}
+
+	public void setSuportTimes(long suportTimes) {
+		this.suportTimes = suportTimes;
+	}
+
+	public long getCollectTimes() {
+		return collectTimes;
+	}
+
+	public void setCollectTimes(long collectTimes) {
+		this.collectTimes = collectTimes;
+	}
+
+	public long getBuyTimes() {
+		return buyTimes;
+	}
+
+	public void setBuyTimes(long buyTimes) {
+		this.buyTimes = buyTimes;
+	}
+
+	public long getClickTimes() {
+		return clickTimes;
+	}
+
+	public void setClickTimes(long clickTimes) {
+		this.clickTimes = clickTimes;
 	}
 }

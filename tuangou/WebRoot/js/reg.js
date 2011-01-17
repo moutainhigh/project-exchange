@@ -109,7 +109,7 @@ function check_rand(){
 //表单提交
 function chkForm(){
 	if(check_loginid() && check_pwd() && check_repwd && check_email() && check_rand()){
-		document.forms[0].submit();
+		document.forms['reg'].submit();
 	}
 	return false;	
 }

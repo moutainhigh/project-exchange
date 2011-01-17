@@ -76,4 +76,10 @@ public class BaseBizImpl implements BaseBiz {
 		return baseDao.getEntitySumByColsValue(clazz, colOne, colTwo, value);
 		
 	}
+	public <T> List<T> getAll(Class<T> clazz, String orderBy, String style, int startIndex, int length){
+		
+		
+		
+		return baseDao.getAll(clazz, orderBy, style, startIndex, length);
+	}
 }

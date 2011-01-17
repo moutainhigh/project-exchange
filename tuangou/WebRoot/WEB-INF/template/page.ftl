@@ -4,7 +4,7 @@
 		<#include "head.ftl">
 	</head>
 	<body>
-
+ 
 		<#include "top.ftl">
 		
 		<#include "nav.ftl">	
@@ -29,16 +29,21 @@
 							</div>
 							<div class="c1_2">
 								<span>今日团购：</span>
-								<strong><a href="${site.url}">【${team.siteName}】</a> </strong>
+								<strong><#if site??><a href="${site.url}">【${team.siteName!""}】</a> <#else>【${team.siteName!""}】</#if></strong>
 								<h3 class=" bdb_gray">
-									<a href="${team.url}" rel="nofollow" target="_blank">${team.summary}</a>
+									<a href="${team.url!"http://"}" rel="nofollow" target="_blank">${team.summary!""}</a>
 								</h3>
 							</div>
 							<div class="c1_3">
 								<div class="c1_3_left">
 									<div class="deal_image">
-										<a class="deal_out_link" href="${team.url}" rel="nofollow" target="_blank"> <img src="upload/${team.image}" title="${team.summary}" alt="${team.summary}" width="360" height="240"/>
+									<#if team.image??>
+										<a class="deal_out_link" href="${team.url!"http://"}" rel="nofollow" target="_blank"> <img src="upload/${team.image}" title="${team.summary!""}" alt="${team.summary!""}" width="360" height="240"/>
 										</a>
+										<#else>
+										<a class="deal_out_link" href="${team.url!"http://"}" rel="nofollow" target="_blank"> <img src="Themes/images/02.jpg" title="${team.summary!""}" alt="${team.summary!""}" width="360" height="240"/>
+										</a>
+										</#if>
 									</div>
 									<ul>
 										<li class="ding_li">
@@ -55,7 +60,7 @@
 										
 										<#if site??>
 										该团购活动由都买网组织，参与此团购将会与
-										<a href="${site.url}" title="${team.siteName}" target="_blank">${team.siteName}</a>产生直接买卖关系。
+										<a href="${site.url!"http://"}" title="${team.siteName!""}" target="_blank">${team.siteName!""}</a>产生直接买卖关系。
 									  	<#else>
 									  	</#if>
 									</div>
@@ -69,21 +74,21 @@
 													<span class="time_div timeleft" alt="1286467200000"><em><#if team.leftDay??>${team.leftDay} <#else>0</#if></em>天<em><#if team.leftHour??>${team.leftHour}<#else>0</#if></em>小 时<em><#if team.leftMin??>${team.leftMin}<#else>0</#if></em>分<em><#if team.leftSec??>${team.leftSec}<#else>0</#if></em>秒</span>
 												</div>
 											</div>
-											${team.cityName}
+											${team.cityName!""}
 										</div>
 										<div class="deal_infos_2 fc">
 											<div class="fl">
-												<span>现价：<strong>${team.teamPrice}</strong>元</span>
-												<span>原价：${team.marketPrice}元</span>
-												<span>折扣：${team.discount}折</span>
+												<span>现价：<strong>${team.teamPrice!""}</strong>元</span>
+												<span>原价：${team.marketPrice!""}元</span>
+												<span>折扣：${team.discount!""}折</span>
 											</div>
 											<div class="fr" style="margin-right: 30px; text-align: center;">
-												<a href="${team.url}" rel="nofollow" target="_blank" class="buy"></a>
-												<span>节省：${team.savedMoney}元</span>
+												<a href="${team.url!"http://"}" rel="nofollow" target="_blank" class="buy"></a>
+												<span>节省：${team.savedMoney!""}元</span>
 											</div>
 										</div>
 										<div>
-											已售出：${team.nowNumber}个
+											已售出：${team.nowNumber!""}个
 										</div>
 										<div style="height: 23px;">
 											<a style="float: right; margin-right: 13px;" href="#" rel="nofollow" title="举报不良信息、网页出错或其它问题" target="_blank">我要举报</a> 有效期：截止至${team.endTime?string("yyyy-MM-dd HH:mm:ss")}
@@ -133,40 +138,35 @@
 											</a>
 										</div>
 										<div class="tuan_wai_right">
-											<span class="red">此团购信息来源于<#if site??>${site.name}</span>
-
+											<span class="red">此团购信息来源于<#if site??><#if site.name??>${site.name}<#else>暂无</#if></span>
+											
 											<dl>
-
+												<#if site.tel??>
 												<dt>
 													电话：
 												</dt>
+											
 												<dd>
 													${site.tel}
 												</dd>
-
-
+												</#if>
+												<#if site.qq??>
 												<dt>
 													QQ：
 												</dt>
 												<dd>
 													${site.qq}
 												</dd>
-
-
+												</#if>
+												<#if site.contact??>
 												<dt>
 													联系人：
 												</dt>
 												<dd>
 													${site.contact}
 												</dd>
-
-
-												<dt>
-													邮箱：
-												</dt>
-												<dd>
-													service@doumaii.com
-												</dd>
+												</#if>
+																								
 											</dl>
 
 											查看
@@ -200,6 +200,7 @@
 						</div>
 
 					</div>
+					<#include "msg.ftl">
 					<div class="section mar_t6">
 						<div class="ptitle">
 							团购活动评论
@@ -208,6 +209,8 @@
 							<ul class="commentlist">
 								<table width="100%" border="0" cellspacing="0" class="wp100" style="border-collapse: collapse;">
 									<tbody>
+									<#if commentsPageBean??>
+										<#list commentsPageBean.resultList as c>
 										<tr>
 											<td>
 												<li>
@@ -220,14 +223,14 @@
 														</div>
 														<div class="commenttitle">
 															<div class="fl">
-																<a href="#" title=""><span style="" class="fcred fb">用户名</span> </a>
+																<a href="#" title=""><span style="" class="fcred fb"><#if c.userName??>${c.userName} <#else> </#if></span> </a>
 															</div>
 															<div class="fr ft10 fcgray">
-																2010/4/20 22:24:23
+																<#if c.lastModifyDate??>${c.lastModifyDate?string('yyyy-MM-dd HH:mm:ss')} <#else> </#if>
 															</div>
 														</div>
 														<div class="comment mar_t5">
-															我的八百邻卡要是去到其他城市可以用吗
+														<#if c.content??>${c.content} <#else> </#if>
 														</div>
 													</div>
 													<div class="gmreply ">
@@ -243,89 +246,29 @@
 												</li>
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<li>
-													<div class="commentmain">
-														<div class="commentuser">
-															<div class="user50">
-																<a href="#" title=""><img style="width: 50px; height: 50px;" src="" width="50" height="50" /> </a>
-															</div>
-															<div class=" margin_t10 fl" style="background: none repeat scroll 0% 0% transparent;"></div>
-														</div>
-														<div class="commenttitle">
-															<div class="fl">
-																<a href="#" title=""><span style="" class="fcred fb">用户名</span> </a>
-															</div>
-															<div class="fr ft10 fcgray">
-																2010/4/20 22:24:23
-															</div>
-														</div>
-														<div class="comment mar_t5">
-															我的八百邻卡要是去到其他城市可以用吗
-														</div>
-													</div>
-													<div class="gmreply ">
-														<div class="clearfix mar_b5">
-															<div class="fl green">
-																八百邻管理员回复：
-															</div>
-														</div>
-														<div>
-															您好，八百邻在成都，绵阳均通用。
-														</div>
-													</div>
-												</li>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<li>
-													<div class="commentmain">
-														<div class="commentuser">
-															<div class="user50">
-																<a href="#" title=""><img style="width: 50px; height: 50px;" src="" width="50" height="50" /> </a>
-															</div>
-															<div class=" margin_t10 fl" style="background: none repeat scroll 0% 0% transparent;"></div>
-														</div>
-														<div class="commenttitle">
-															<div class="fl">
-																<a href="#" title=""><span style="" class="fcred fb">用户名</span> </a>
-															</div>
-															<div class="fr ft10 fcgray">
-																2010/4/20 22:24:23
-															</div>
-														</div>
-														<div class="comment mar_t5">
-															我的八百邻卡要是去到其他城市可以用吗
-														</div>
-													</div>
-													<div class="gmreply ">
-														<div class="clearfix mar_b5">
-															<div class="fl green">
-																八百邻管理员回复：
-															</div>
-														</div>
-														<div>
-															您好，八百邻在成都，绵阳均通用。
-														</div>
-													</div>
-												</li>
-											</td>
-										</tr>
+										</#list>
+										<#else>
+										</#if>
 									</tbody>
 								</table>
 							</ul>
 							<div class="clear"></div>
-							<div class="pages" style="margin: 10px 10px 10px 400px">
-								<span class="nextprev">第一页</span>
-								<span class="nextprev">上一页</span>
-								<span class="current"> 1</span>
-								<a href="#" title="Go to page 2">2</a>
-								<a href="#" title="Go to page 3">3</a><a href="#" title="Go to page 4">4</a>
-								<a href="#" class="nextprev" title="Go to Next Page"> 下一页</a><a href="#" class="nextprev" title="Go to Next Page">最后一页</a>
-								<div class="clear"></div>
+							<#if commentsPageBean??>
+							<div class="pages" style="margin: 10px 10px 10px 400px display: -moz-inline-box; float: right;">
+							 <span class="nextprev">第${commentsPageBean.pageIndex }</font>/${commentsPageBean.maxPage }页</span>
+									<span class="nextprev">每页${commentsPageBean.rowPerPage }条&nbsp;</span>
+									<span class="nextprev">共${commentsPageBean.totalRow }条&nbsp;</span>
+									<span class="nextprev"><#if !commentsPageBean.isFirstPage><a href="javascript:gotoPage(1,'${base}/page.htm?team.id=${team.id}');">[首页]</a><#else>[首页]</#if></span>
+									<span class="nextprev"><#if !commentsPageBean.isFirstPage><a href="javascript:gotoPage(${commentsPageBean.prePageIndex },'${base}/page.htm?team.id=${team.id}');">[前一页]</a><#else>[前一页]</#if></span>
+									<span class="nextprev"><#if !commentsPageBean.isLastPage><a href="javascript:gotoPage(${commentsPageBean.nextPageIndex },'${base}/page.htm?team.id=${team.id}');">[后一页]</a><#else>[后一页]</#if></span>
+									<span class="nextprev"><#if !commentsPageBean.isLastPage><a href="javascript:gotoPage(${commentsPageBean.maxPage },'${base}/page.htm?team.id=${team.id}');">[尾页]</a><#else>[尾页]</#if></span>
+									
+						
 							</div>
+						
+							<#else>
+							</#if>
+							<form name="commentForm" action="${base}/comment_action" method="post">
 							<div class="commentbox bd3top">
 								<div class="mar_l10 mar_b5 clearfix">
 									<div class="red" style="margin-top: 3px;">
@@ -334,18 +277,24 @@
 								</div>
 								<div class="mar_l10 mar_b5">
 									你的用户名：
-									<input name="input" type="text" />
+									<#if userObj??>
+									<input name="comment.userName" type="text" value="${userObj.loginName}" />
+									<#else>
+									<input name="comment.userName" type="text"  />
+									</#if>
 								</div>
 								<div class="mar_l10 mar_b5">
-									<textarea name="txtBCCommentDetail" rows="4" class="h80 w542"></textarea>
+									<textarea name="comment.content" rows="4" class="h80 w542"></textarea>
 								</div>
 								<div style="" class="mar_l10 mar_b10 red">
 									您还可以添加400个中文字或800个字母或标点
 								</div>
 								<div class="mar_l10 mar_b5 tright">
+								   <input name="team.id" type="hidden" value="${team.id}"  />
 									<input name="ImageButton1" value="发表评论" class=" button03" type="submit" />
 								</div>
 							</div>
+							</form>
 							<div class="clear">
 							</div>
 						</div>
@@ -456,240 +405,13 @@
 					</div>
 				</div>
 
-				<div class="fr w254">
-
-					<div class="pic-imgnews">
-						<img src="${base}/Themes/images/banner.jpg" alt="切换广告" width="252" height="178" />
-						<ul>
-							<li class="current">
-								1
-							</li>
-							<li>
-								2
-							</li>
-							<li>
-								3
-							</li>
-						</ul>
-					</div>
-					<div class="section mar_t6">
-						<div class="ptitle">
-							关注我们
-						</div>
-						<div class=" pad_10 concern_us">
-							<ul>
-								<li class="li_img1">
-									<a target="_blank" href="http://m.tuan800.com/">m.tuan800.com</a>手机访问
-								</li>
-								<li class="li_img2">
-									<a target="_blank" href="http://www.tuan800.com/blog">关注</a>官方博客
-								</li>
-								<li class="li_img3">
-									<span>105702964</span>官方用户QQ群
-								</li>
-								<li class="li_img3">
-									<span>78738282</span>商务合作QQ群
-								</li>
-								<li class="li_img6">
-									<a href="mailto:ad@tuan800.com">ad@tuan800.com</a>商务联系
-								</li>
-								<li class="li_img4">
-									<a target="_blank" href="http://t.sina.com.cn/tuan800">关注</a>团800微博
-								</li>
-								<li class="li_img5">
-									<a href="javascript:void(0)" onclick="$('.collect_hidden').toggle();return false;">收藏</a>添加收藏团800
-								</li>
-							</ul>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="section03 mar_t6">
-						<div class="ptitle">
-							<ul class="tlboxtitle fl">
-								<li class="current">
-									晒团吧
-								</li>
-								<li>
-									<a href="#" title="推荐任务" class="white">转让求购</a>
-								</li>
-							</ul>
-						</div>
-						<div class=" pad_10">
-							<ul class="dotli01">
-								<li>
-									<a href="#">参与麦可思测评与研究项目</a>
-								</li>
-								<li>
-									<a href="#">推荐麦可思测评与研究项目</a>
-								</li>
-								<li>
-									<a href="#">用我们的研究报告与数据</a>
-								</li>
-								<li>
-									<a href="#">推荐麦可思给您的朋友</a>
-								</li>
-								<li>
-									<a href="#">参与2009届大学毕业生工作能力测评</a>
-								</li>
-								<li>
-									<a href="#">推荐2009届大学毕业生参与工作能</a>
-								</li>
-							</ul>
-
-
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="section03 mar_t6">
-						<div class="ptitle">
-							<ul class="tlboxtitle fl">
-								<li class="current">
-									销售排行榜
-								</li>
-								<li>
-									<a href="#" title="推荐任务" class="white">点击排行榜</a>
-								</li>
-							</ul>
-						</div>
-						<div class=" pad_10">
-							<ul class="top_deal_ads">
-
-								<li class="no_border">
-									<div class="count">
-										28486
-									</div>
-									<div class="info">
-										<a class="from" target="_blank" href="#" title="一起呀">【一起呀】</a>
-										<a title="成龙影城第四波！15元超值亚洲最大影城观影白天场(电影票1张+果汁1杯)！所有影片不加钱均可看(含3D)！有效期至年底，&lt;
-span&gt;十一黄金周至贺岁档所有大片一网打尽！&lt;/span&gt;数量有限，抓紧时间哦！" class="text" href="#" target="_blank"> 成龙影城第四波！15元超值亚洲最大影城观影白天场(电影票1张+果汁1杯)！所有影片不加钱均可看(含3D)！有效期至年底，<span>十一黄金周至 贺岁档所有大片一网打尽！</span>数量有限，抓紧时间哦！ </a>
-									</div>
-								</li>
-
-								<li>
-									<div class="count">
-										10963
-									</div>
-									<div class="info">
-										<a class="from" target="_blank" href="#" title="一起呀">【一起呀】</a>
-										<a title="成龙影城第三波！13元超值亚洲最大影城观影白天场(电影票1张+果汁1杯)！所有影片不加钱均可看(含3D)！限量1万份，有效期至年
-底，&lt;span&gt;十一黄金周至贺岁档所有大片一网打尽！&lt;/span&gt;" class="text" href="#" target="_blank"> （卖光）成龙影城第三波！13元超值亚洲最大影城观影白天场(电影票1张+果汁1杯)！所有影片不加钱均可看(含3D)！限量1万份，有效期至年底，<span>十 一黄金周至贺岁档所有大片一网打尽！</span> </a>
-									</div>
-								</li>
-
-								<li>
-									<div class="count">
-										5520
-									</div>
-									<div class="info">
-										<a class="from" target="_blank" href="#" title="搜狐爱家团">【搜狐爱家 团】</a>
-										<a title="“福记”燕鲍2人套餐(木瓜鲜奶炖燕窝2位+鲍鱼捞香饭2位+老火例汤2位+白灼大海虾+劲爆金蒜牛柳粒+双椒大鱼头+清炒鸡毛菜+上海小
-笼包+果汁2杯)。独具一格的美味珍馐，难得一见的顶级饕餮大餐！" class="text" href="#" target="_blank"> “福记”燕鲍2人套餐(木瓜鲜奶炖燕窝2位+鲍鱼捞香饭2位+老火例汤2位+白灼大海虾+劲爆金蒜牛柳粒+双椒大鱼头+清炒鸡毛菜+上海小笼包+果汁2 杯)。独具一格的美味珍馐，难得一见的顶级饕餮大餐！ </a>
-									</div>
-								</li>
-
-								<li>
-									<div class="count">
-										4000
-									</div>
-									<div class="info">
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/dazhongdianpingtuan" title="大众点评团">【大 众点评团】</a>
-										<a title="黔道火锅套餐!" class="text" href="#" target="_blank"> 黔道火锅套餐! </a>
-									</div>
-								</li>
-
-								<li>
-									<div class="count">
-										3289
-									</div>
-									<div class="info">
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/miaohoo" title="秒货网">【秒货网】</a>
-										<a title="麦当劳B套餐 ！I’m lovin’ 
-it！全北京麦当劳通用，共享超值优惠！从小吃到大的麦当劳，最具人气的经典美味！绝对震撼价！（兑换券将在活动结束后统一发送）" class="text" href="#" target="_blank"> 麦当劳B套餐 ！I’m lovin’ it！全北京麦当劳通用，共享超值优惠！从小吃到大的麦当劳，最具人气的经典美味！绝对震撼价！（兑换券将在活动结束后统一发送） </a>
-									</div>
-								</li>
-							</ul>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="section03 mar_t6">
-						<div class="ptitle">
-							<ul class="tlboxtitle fl">
-								<li class="current">
-									最新团购评论
-								</li>
-								<li>
-									<a href="#" title="推荐任务" class="white">最新网站评论</a>
-								</li>
-							</ul>
-						</div>
-						<div class=" pad_10">
-							<div class="togolist">
-								<dl>
-									<dt>
-										<a href="#"><img src="${base}/Themes/images/01.jpg" width="220" height="137" alt="" /> </a>
-									</dt>
-									<dd>
-										<b><a href="#" class="blue">琴岛火锅店套餐</a> </b>
-										<p>
-											热线电话0313-8888888，好吃得不得了
-										</p>
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<a href="#"><img src="${base}/Themes/images/01.jpg" width="220" height="137" alt="" /> </a>
-									</dt>
-									<dd>
-										<b><a href="#" class="blue">张家口汽车保险推荐1</a> </b>
-										<p>
-											热线电话0313-8888888，好吃得不得了
-										</p>
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-										<a href="#"><img src="${base}/Themes/images/01.jpg" width="220" height="137" alt="" /> </a>
-									</dt>
-									<dd>
-										<b><a href="#" class="blue">张家口汽车保险推荐1</a> </b>
-										<p>
-											热线电话0313-8888888，好吃得不得了
-										</p>
-									</dd>
-								</dl>
-								<div class="clear"></div>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="section mar_t6">
-						<div class="ptitle">
-							其他城市网购大全
-						</div>
-						<div class=" pad_10 citylist">
-							<ul>
-								<li>
-									<a href="#">上海</a>
-								</li>
-								<li>
-									<a href="#">北京</a>
-								</li>
-								<li>
-									<a href="#">深圳</a>
-								</li>
-								<li>
-									<a href="#">内蒙古</a>
-								</li>
-							</ul>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div>
+				  <#include "rightbar.ftl">
 				<div class="clear"></div>
 			</div>
 		</div>
 		<!-- end正文框架 -->
 
 		<#include "foot.ftl">
+		
 	</body>
 </html>

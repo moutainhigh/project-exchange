@@ -1,4 +1,5 @@
 		<!-- begin头部logo框架 -->
+		<#escape x as (x)!""> 
 		<div class="header-top">
 			<div class="header mauto">
 				<div class="logo">
@@ -36,4 +37,5 @@
 			</div>
 			<div class="clear"></div>
 		</div>
+		</#escape> 
 		<!-- end头部logo栏框架 -->

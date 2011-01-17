@@ -54,3 +54,68 @@ function searchResource(){
 function showCities(){
 	$("#city-list").toggle();
 }
+
+function showTargetInfo(li){
+		
+		if(li.id=='saituanba'){
+		li.className="current";
+		document.getElementById('zhuanrang').className="";	
+		
+		var div1=document.getElementById('saituandiv');
+		div1.style.display="";
+		document.getElementById('zhuanrangdiv').style.display="none";
+		}
+		if(li.id=='zhuanrang'){
+		
+		li.className="current";
+		document.getElementById('saituanba').className="";
+		var div1=document.getElementById('zhuanrangdiv');
+		div1.style.display="";
+		document.getElementById('saituandiv').style.display="none";
+		
+		}
+
+}	
+function showTargetInfoForSaleAndClick(li){
+		
+		if(li.id=='clickrank'){
+		li.className="current";
+		document.getElementById('salerank').className="";	
+		
+		var div1=document.getElementById('clickrankdiv');
+		div1.style.display="";
+		document.getElementById('salerankdiv').style.display="none";
+		}
+		if(li.id=='salerank'){
+		
+		li.className="current";
+		document.getElementById('clickrank').className="";
+		var div1=document.getElementById('salerankdiv');
+		div1.style.display="";
+		document.getElementById('clickrankdiv').style.display="none";
+		
+		}
+
+}	
+
+function showTargetInfoForComment(li){
+		
+		if(li.id=='teamcomment'){
+		li.className="current";
+		document.getElementById('sitecomment').className="";	
+		
+		var div1=document.getElementById('teamcommentdiv');
+		div1.style.display="";
+		document.getElementById('sitecommentdiv').style.display="none";
+		}
+		if(li.id=='sitecomment'){
+		
+		li.className="current";
+		document.getElementById('teamcomment').className="";
+		var div1=document.getElementById('sitecommentdiv');
+		div1.style.display="";
+		document.getElementById('teamcommentdiv').style.display="none";
+		
+		}
+
+}	

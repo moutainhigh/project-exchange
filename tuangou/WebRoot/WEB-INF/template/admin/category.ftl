@@ -63,9 +63,9 @@
 						</tr>
 						<#list categoryList as c>
 						<tr>
-							<td class="lt-td">${c.orderNum}</td>
-							<td class="lt-td tl">${c.name}</td>
-							<td class="lt-td">${c.pinyin}</td>
+							<td class="lt-td">${c.orderNum!''}</td>
+							<td class="lt-td tl">${c.name!''}</td>
+							<td class="lt-td">${c.pinyin!''}</td>
 							<td class="lt-td last">
 								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="#">
 									<img alt="删除" height="11" border="0" width="11" src="${base}/admin/images/del.jpg">

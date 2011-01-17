@@ -14,7 +14,7 @@
 		<#include "nav.ftl">	
 
 		<!-- begin正文框架 -->
-		<form action="${base}/reg_action" method="post">
+		<form name="reg" action="${base}/reg_action" method="post">
 		<div class="wrapper">
 			<div class="part02 mar_t6">
 				<div class="">
@@ -66,7 +66,7 @@
 												id="verifyframe"/>
 									</li>
 									<li class="pad_l120">
-										<span><input type="button" class="button02" value="注 册" name="send" onclick="chkForm();"/></span>
+										<span><input type="button" class="button02" value="注 册" name="send" onclick="checkForm();"/></span>
 									</li>
 								</ul>
 							</div>

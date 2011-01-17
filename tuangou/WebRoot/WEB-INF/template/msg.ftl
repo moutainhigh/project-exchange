@@ -4,5 +4,6 @@
 						${msg}
 					</div>
 				</div>
+				<#else>
 				</#if >
 

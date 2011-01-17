@@ -57,11 +57,29 @@
 				<param name="inputName">imageStream</param>
 			</result>
 		</action>
+		
+		<action name="comment_action" class="com.throne212.tg.web.action.CommentAction">
+			<result name="comment" type="chain">
+				<param name="actionName">page</param>
+				<param name="namespace">/</param> 
+			</result> 
+			<result name="fail" type="chain">
+				<param name="actionName">login</param>
+         		<param name="namespace">/</param> 
+			</result>
+			
+		</action>
+		
+		
+		
+		
 		<!-- 访问前台功能action -->
 		<action name="/*" class="com.throne212.tg.web.action.FrontAction">
 			<param name="method">{1}</param>
 			<result name="index" type="redirect">/index.htm</result>
 			<result name="success" type="freemarker">/WEB-INF/template/{1}.ftl</result>
+			
+			
 		</action>
     </package>
     
@@ -97,6 +115,11 @@
 			<result name="site_setting" type="freemarker">/WEB-INF/template/admin/setting.ftl</result>
 			<result name="city" type="freemarker">/WEB-INF/template/admin/city.ftl</result>
 			<result name="category" type="freemarker">/WEB-INF/template/admin/category.ftl</result>
+			<result name="save_news" type="freemarker">/WEB-INF/template/admin/news_publish.ftl</result>
+			<result name="edit_news" type="freemarker">/WEB-INF/template/admin/news_edit.ftl</result>
+			<result name="list_news" type="freemarker">/WEB-INF/template/admin/news_list.ftl</result>
+			<result name="list_comment" type="freemarker">/WEB-INF/template/admin/comment_list.ftl</result>
+		
 		</action>
     </package>
     

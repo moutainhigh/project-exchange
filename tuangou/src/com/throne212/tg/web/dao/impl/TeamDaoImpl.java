@@ -12,6 +12,9 @@ import com.throne212.tg.web.domain.Teams;
 public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 
 	public PageBean<Teams> getAllTeams(int pageIndex) {
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
 		PageBean<Teams> page = new PageBean<Teams>();
 		int startIndex = (pageIndex - 1) * WebConstants.NUM_PER_BACK_PAGE_TEAM;
 		String hql = "from Teams t order by createTime desc";
@@ -47,7 +50,9 @@ public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 	
 	//通过类型id查询所有团购信息列表
 	public PageBean<Teams> getAllTeamsByCateId(int pageIndex,long cateId){
-		
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
 		PageBean<Teams> page = new PageBean<Teams>();
 		int startIndex = (pageIndex - 1) * WebConstants.NUM_PER_FRONT_PAGE_TEAM;
 		String hql = "from Teams t where t.cate.id='"+cateId+"' order by t.createTime desc";
@@ -72,7 +77,9 @@ public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 	}
 	//通过类型id和城市名查询所有团购信息列表
 	public PageBean<Teams> getAllTeamsByCateIdAndCityName(int pageIndex,long cateId,String cityName){
-		
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
 		PageBean<Teams> page = new PageBean<Teams>();
 		int startIndex = (pageIndex - 1) * WebConstants.NUM_PER_FRONT_PAGE_TEAM;
 		String hql;

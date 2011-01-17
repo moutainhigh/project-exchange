@@ -1,4 +1,5 @@
 		<!-- begin导航框架 -->
+		<#escape x as (x)!""> 
 		<div class="menuzone">
 			<div class="mainmenu">
 				<ul class="main-nav fl">
@@ -8,14 +9,23 @@
 					<li class="top">
 						<a href="#" class="top_link"><span class="down">今日团购</span> </a>
 						<ul class="sub">
+						<#if Session??>
+						<#if Session["allCount"]??>
 							<li>
 								<a href="${base}/index.htm">全部团购<span class="ft10">(${Session.allCount})</span> </a>
 							</li>
+						<#else>
+						<a href="${base}/index.htm">全部团购<span class="ft10">(0)</span> </a>
+						</#if>
+						</#if>
+							<#if cates??>
 							<#list cates as c>
 							<li>
 								<a href="${base}/listCate.htm?teamCate.id=${c.id}">${c.name}<span class="ft10">(${Session.cateAndCountMap["${c.name}"]})</span> </a>
 							</li>
 							</#list>
+							<#else>
+							</#if>
 						</ul>
 					</li>
 					<li class="top">
@@ -47,4 +57,5 @@
 				</form>
 			</div>
 		</div>
+		</#escape> 
 		<!-- end导航框架 -->

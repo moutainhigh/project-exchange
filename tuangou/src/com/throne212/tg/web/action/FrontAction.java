@@ -11,9 +11,12 @@ import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
 import com.throne212.tg.web.domain.City;
+import com.throne212.tg.web.domain.Comment;
+import com.throne212.tg.web.domain.News;
 import com.throne212.tg.web.domain.Site;
 import com.throne212.tg.web.domain.TeamCategory;
 import com.throne212.tg.web.domain.Teams;
+import com.throne212.tg.web.domain.User;
 
 public class FrontAction extends BaseAction {
 
@@ -52,7 +55,9 @@ public class FrontAction extends BaseAction {
 		}
 		return "index";
 	}
-	
+	private List<Comment> threeNewCommentsList;//获取最新的3条团购信息评论
+	private List<Teams> fiveMostClickList;//获取点击次数最多的前5条团购信息
+	private List<News> newsList;//获取新发布的6条新闻信息（按orderNum升序）
 	private List<Site> siteList;
 	private Map<String, List<Teams>> cateAndTeamsMap;//用于保存首页展示的团购信息，Key 分类名    Value 每类的最新10条团购信息
 	private long allCount;//保存所有团购信息数
@@ -62,6 +67,20 @@ public class FrontAction extends BaseAction {
 		city = (City) ActionContext.getContext().getSession().get(WebConstants.SESS_CITY);
 		//获得特定城市的团购网站名称和链接
 		siteList = commonBiz.getSiteByCity(city);
+		//获取新发布的6条新闻信息（按orderNum升序）
+		newsList=commonBiz.getAll(News.class, "orderNum", "asc", 0, 6);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_NEWS_LIST, newsList);
+		logger.debug("size of newsList-----"+newsList.size());
+		//获取点击次数最多的前5条团购信息
+		fiveMostClickList=commonBiz.getAll(Teams.class, "clickTimes", "desc", 0, 5);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_MOST_CLICK_TEAMS, fiveMostClickList);
+		logger.debug("size of fiveMostClickList----"+fiveMostClickList.size());
+		//获取最新的3条团购信息评论
+		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
+		logger.debug("size of threeNewCommentsList -----"+threeNewCommentsList.size());
+		
+		
 		String cityName;
 		//获取城市名
 		if(null==city){
@@ -75,32 +94,45 @@ public class FrontAction extends BaseAction {
 		actionCates = commonBiz.getAll(TeamCategory.class, "orderNum", "asc");
 		allCount=commonBiz.getEntitySum(Teams.class);		
        logger.debug(allCount);
-		cateAndTeamsMap=new HashMap<String, List<Teams>>();
+       ActionContext.getContext().getSession().put(WebConstants.SESS_ALL_COUNT, allCount);
+       cateAndTeamsMap=new HashMap<String, List<Teams>>();
 		for (TeamCategory teamCategory : actionCates) {
 			cateAndTeamsMap.put(teamCategory.getName(), commonBiz.getTopNewTeamsByCateAndCity(WebConstants.NUM_PER_CATE, teamCategory.getName(), cityName));
 	        cateAndCountMap.put(teamCategory.getName(), commonBiz.getEntitySumByColsValue(Teams.class, "cate", "name", teamCategory.getName()));
 	        ActionContext.getContext().getSession().put(WebConstants.SESS_CATE_COUNT, cateAndCountMap);
-	        ActionContext.getContext().getSession().put(WebConstants.SESS_ALL_COUNT, allCount);
 	        logger.debug("***********"+teamCategory.getName());
-	       logger.debug("size of "+teamCategory.getName()+cateAndTeamsMap.get(teamCategory.getName()).size());
+	        logger.debug("size of "+teamCategory.getName()+cateAndTeamsMap.get(teamCategory.getName()).size());
 		}
 		return "success";
 	}
 	
 	private Teams team;
 	private Site site;
+	private PageBean<Comment> commentsPageBean;
+	
+
 	//获取单条团购信息的详情
 	public String page() {
-		
+		logger.debug(team.getId());
 		team=commonBiz.getEntityById(Teams.class, team.getId());
 		//获得此团购消息的来源网的详情
 		site=commonBiz.getEntityByUnique(Site.class, "name", team.getSiteName());
+		logger.debug(team.getId());
+		logger.debug(pageIndex);
+		//根据团购信息ID获取此团购的评论信息
+		commentsPageBean=commonBiz.getAllCommentsByTeamId(pageIndex, team.getId());
+		logger.debug("size of commentsPageBean===="+commentsPageBean.getResultList().size());
+		team.setClickTimes(team.getClickTimes()+1);//点击次数加1
+		commonBiz.saveOrUpdateEntity(team);
 		return "success";
 	}
 	
+
+
+	
 	//显示某一团购类型的所有团购信息
 	private PageBean<Teams> pageBean;
-	private Integer pageIndex;
+	private Integer pageIndex=0;
 	private TeamCategory teamCate;
 	public String list() {
 		if (pageIndex == null || pageIndex < 1)
@@ -253,6 +285,38 @@ public class FrontAction extends BaseAction {
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
+	public PageBean<Comment> getCommentsPageBean() {
+		return commentsPageBean;
+	}
 
+	public void setCommentsPageBean(PageBean<Comment> commentsPageBean) {
+		this.commentsPageBean = commentsPageBean;
+	}
+
+	public List<News> getNewsList() {
+		return newsList;
+	}
+
+	public void setNewsList(List<News> newsList) {
+		this.newsList = newsList;
+	}
+
+	public List<Teams> getFiveMostClickList() {
+		return fiveMostClickList;
+	}
+
+	public void setFiveMostClickList(List<Teams> fiveMostClickList) {
+		this.fiveMostClickList = fiveMostClickList;
+	}
+
+	public List<Comment> getThreeNewCommentsList() {
+		return threeNewCommentsList;
+	}
+
+	public void setThreeNewCommentsList(List<Comment> threeNewCommentsList) {
+		this.threeNewCommentsList = threeNewCommentsList;
+	}
+
+	
 	
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.domain.City;
+import com.throne212.tg.web.domain.Comment;
 import com.throne212.tg.web.domain.Component;
+import com.throne212.tg.web.domain.News;
 import com.throne212.tg.web.domain.Site;
 import com.throne212.tg.web.domain.Teams;
 
@@ -29,4 +31,11 @@ public interface CommonBiz extends BaseBiz {
 	
 	//按关键字搜索团购信息
 	public PageBean<Teams> searchTeamsByKeyword(int page,String keyword);
+	//按团购信息查询评论
+	public PageBean<Comment> getAllCommentsByTeamId(int page,long teamId);
+	//分页获取所有新闻信息
+	public PageBean<News> getAllNews(int page);
+	
+	//分页获取所有评论信息
+	public PageBean<Comment> getAllComments(int page);
 }

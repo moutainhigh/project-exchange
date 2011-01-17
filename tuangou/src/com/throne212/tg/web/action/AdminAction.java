@@ -19,6 +19,7 @@ import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
 import com.throne212.tg.web.domain.City;
 import com.throne212.tg.web.domain.Component;
+import com.throne212.tg.web.domain.News;
 import com.throne212.tg.web.domain.Site;
 import com.throne212.tg.web.domain.SiteType;
 import com.throne212.tg.web.domain.TeamCategory;
@@ -238,6 +239,63 @@ public class AdminAction extends BaseAction {
 		return category();
 	}
 	
+	private News news;
+	
+
+	public String saveNews() {
+		if (news!=null&&null==news.getId()) {
+			logger.debug(news.getId());
+			logger.debug("添加新闻信息。。。");
+			commonBiz.saveOrUpdateEntity(news);
+			return newsList();
+		}else if(news!=null){
+			logger.debug("修改新闻信息...");
+			logger.debug("".equals(String.valueOf(news.getId())));
+			logger.debug(String.valueOf(news.getId()));
+//			news=commonBiz.getEntityById(News.class, news.getId());
+			commonBiz.saveOrUpdateEntity(news);
+			return newsList();
+		}
+		logger.debug("显示发布新闻页面。。。");
+		return "save_news";
+	
+		
+	}
+	public String editNews() {
+		if(news!=null&&news.getId()!=null){
+			logger.debug(news.getId());
+			
+			news=commonBiz.getEntityById(News.class, news.getId());
+			logger.debug(news.getContent());
+			logger.debug(news.getTitle());
+		}
+		return "edit_news";
+		
+	}
+	public String newsList() {
+		
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		pageBean = commonBiz.getAllNews(pageIndex);
+		return "list_news";
+		
+		
+	}
+	//显示所有评论
+	public String commentList() {
+		
+		
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		pageBean = commonBiz.getAllComments(pageIndex);
+		logger.debug("size of pageBean.getTotalRow()---"+pageBean.getTotalRow());
+		return "list_comment";
+		
+		
+	}
+	
+	
+	
 	public CommonBiz getCommonBiz() {
 		return commonBiz;
 	}
@@ -353,5 +411,11 @@ public class AdminAction extends BaseAction {
 	public void setCategoryList(List<TeamCategory> categoryList) {
 		this.categoryList = categoryList;
 	}
+	public News getNews() {
+		return news;
+	}
 
+	public void setNews(News news) {
+		this.news = news;
+	}
 }

@@ -14,7 +14,7 @@
 		<#include "nav.ftl">	
 
 		<!-- begin正文框架 -->
-		<form action="${base}/login_action" method="post">
+		<form name="login" action="${base}/login_action" method="post">
 		<div class="wrapper">
 			<div class="part02 mar_t6">
 				<div class="">
