@@ -57,9 +57,12 @@
 							<input type="checkbox" value="${c.id}" name="site_ids" class="site_ids">
 							</td>
 							<td class="lt-td tl">${c.userName!""}</td>
+							<#if c.team??>
 								<a  href="${base}/page.htm?team.id=${c.team.id}" title="${c.team.shortTitle!""}" target="_blank" >
-							<td class="lt-td">${c.team.shortTitle!""}</td>
 							 </a>
+							 <#else>
+							<td class="lt-td">${c.team.shortTitle!""}</td>
+							</#if>
 							<td class="lt-td">${c.team.shortTitle!""}</td>
 							<td class="lt-td">${c.shortContent!""}</td>
 							<td class="lt-td">${c.lastModifyDate!""}</td>

@@ -7,7 +7,7 @@
 						<a href="${base}/index.htm" class="current"><span class="down">站点首页</span> </a>
 					</li>
 					<li class="top">
-						<a href="#" class="top_link"><span class="down">今日团购</span> </a>
+						<a href="${base}/index.htm" class="top_link"><span class="down">今日团购</span> </a>
 						<ul class="sub">
 						<#if Session??>
 						<#if Session["allCount"]??>
