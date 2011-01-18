@@ -273,18 +273,10 @@ it！全北京麦当劳通用，共享超值优惠！从小吃到大的麦当劳
 						</div>
 						<div class=" pad_10 citylist">
 							<ul>
-								<li>
-									<a href="#">上海</a>
-								</li>
-								<li>
-									<a href="#">北京</a>
-								</li>
-								<li>
-									<a href="#">深圳</a>
-								</li>
-								<li>
-									<a href="#">内蒙古</a>
-								</li>
+								
+								<#list cities as c>					
+								<li class="${c.pinyin}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
+								</#list>
 							</ul>
 							<div class="clear"></div>
 						</div>

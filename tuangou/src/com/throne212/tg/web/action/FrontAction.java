@@ -110,7 +110,7 @@ public class FrontAction extends BaseAction {
 	private Site site;
 	private PageBean<Comment> commentsPageBean;
 	
-
+   private List<Teams> similarTeamsList;//按团购信息关键字查询类似团购信息
 	//获取单条团购信息的详情
 	public String page() {
 		logger.debug(team.getId());
@@ -124,6 +124,20 @@ public class FrontAction extends BaseAction {
 		logger.debug("size of commentsPageBean===="+commentsPageBean.getResultList().size());
 		team.setClickTimes(team.getClickTimes()+1);//点击次数加1
 		commonBiz.saveOrUpdateEntity(team);
+		
+		//按团购信息关键字查询类似团购信息
+		similarTeamsList=commonBiz.getSimilarTeams(6, team.getCate().getName(), team.getKeywords());
+		
+		//获取新发布的6条新闻信息（按orderNum升序）
+		newsList=commonBiz.getAll(News.class, "orderNum", "asc", 0, 6);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_NEWS_LIST, newsList);
+		//获取点击次数最多的前5条团购信息
+		fiveMostClickList=commonBiz.getAll(Teams.class, "clickTimes", "desc", 0, 5);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_MOST_CLICK_TEAMS, fiveMostClickList);
+		//获取最新的3条团购信息评论
+		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
+		
 		return "success";
 	}
 	
@@ -140,7 +154,18 @@ public class FrontAction extends BaseAction {
 		city=commonBiz.getEntityById(City.class, city.getId());
 		pageBean = commonBiz.getAllTeamsByCateIdAndCityName(pageIndex, teamCate.getId(), city.getName());
 		teamCate=commonBiz.getEntityById(TeamCategory.class, teamCate.getId());
-				logger.debug("size of pageBean.getResultList()==========="+pageBean.getResultList().size());
+		logger.debug("size of pageBean.getResultList()==========="+pageBean.getResultList().size());
+				
+		//获取新发布的6条新闻信息（按orderNum升序）
+		newsList=commonBiz.getAll(News.class, "orderNum", "asc", 0, 6);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_NEWS_LIST, newsList);
+		//获取点击次数最多的前5条团购信息
+		fiveMostClickList=commonBiz.getAll(Teams.class, "clickTimes", "desc", 0, 5);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_MOST_CLICK_TEAMS, fiveMostClickList);
+		//获取最新的3条团购信息评论
+		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
+				
 				return "success";
 		
 	}
@@ -155,6 +180,16 @@ public class FrontAction extends BaseAction {
 		logger.debug(pageBean.getResultList().size());
 		teamCate=commonBiz.getEntityById(TeamCategory.class, teamCate.getId());
 		logger.debug(teamCate.getName());
+		
+		//获取新发布的6条新闻信息（按orderNum升序）
+		newsList=commonBiz.getAll(News.class, "orderNum", "asc", 0, 6);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_NEWS_LIST, newsList);
+		//获取点击次数最多的前5条团购信息
+		fiveMostClickList=commonBiz.getAll(Teams.class, "clickTimes", "desc", 0, 5);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_MOST_CLICK_TEAMS, fiveMostClickList);
+		//获取最新的3条团购信息评论
+		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
 		
 		
 		return "success";
@@ -171,6 +206,17 @@ public class FrontAction extends BaseAction {
 		logger.debug(pageBean.getResultList().size());
 //		teamCate=commonBiz.getEntityById(TeamCategory.class, teamCate.getId());
 //		logger.debug(teamCate.getName());
+		
+		//获取新发布的6条新闻信息（按orderNum升序）
+		newsList=commonBiz.getAll(News.class, "orderNum", "asc", 0, 6);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_NEWS_LIST, newsList);
+		//获取点击次数最多的前5条团购信息
+		fiveMostClickList=commonBiz.getAll(Teams.class, "clickTimes", "desc", 0, 5);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_MOST_CLICK_TEAMS, fiveMostClickList);
+		//获取最新的3条团购信息评论
+		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
+		
 		
 		return "success";
 		
@@ -315,6 +361,14 @@ public class FrontAction extends BaseAction {
 
 	public void setThreeNewCommentsList(List<Comment> threeNewCommentsList) {
 		this.threeNewCommentsList = threeNewCommentsList;
+	}
+
+	public List<Teams> getSimilarTeamsList() {
+		return similarTeamsList;
+	}
+
+	public void setSimilarTeamsList(List<Teams> similarTeamsList) {
+		this.similarTeamsList = similarTeamsList;
 	}
 
 	

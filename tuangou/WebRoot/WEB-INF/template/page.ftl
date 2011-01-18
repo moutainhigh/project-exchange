@@ -304,103 +304,31 @@
 							团历史类似团购
 						</div>
 						<table class="deal_history" border="0" cellpadding="0" cellspacing="0">
+							<#if similarTeamsList??>
 							<tbody>
+							<#list similarTeamsList as st>
 								<tr>
 									<td>
-										2010年9月27日
+										${st.createTime?string('yyyy-MM-dd')}
 									</td>
 									<td class="title">
 										【
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/matuan9" title="麻团团购">麻团团购</a>】
-										<a href="#" target="_blank"> 好吃不发胖的泰国进口美食！！泰国SAMUI苏梅香酥烤椰... </a>
+										<a class="from" target="_blank" href="${st.url!'http://'}" title="${st.siteName!''}">${st.siteName!''}</a>】
+										<a href="${st.url!'http://'}" target="_blank"> ${st.secondShortTitle!''} </a>
 									</td>
 									<td class="price current">
-										￥4.9
+										￥${st.teamPrice!''}
 									</td>
 									<td class="price original">
-										￥19
+										￥${st.marketPrice!''}
 									</td>
 									<td>
-										2.6折
+										${st.discount!''}折
 									</td>
 								</tr>
-								<tr>
-									<td>
-										2010年9月27日
-									</td>
-									<td class="title">
-										【
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/24quan" title="24券">24券</a>】
-										<a href="#" target="_blank"> 世界顶级冰淇淋品牌莫凡彼movenpick冰淇淋套餐，... </a>
-									</td>
-									<td class="price current">
-										￥20
-									</td>
-									<td class="price original">
-										￥70
-									</td>
-									<td>
-										2.9折
-									</td>
-								</tr>
-								<tr>
-									<td>
-										2010年9月27日
-									</td>
-									<td class="title">
-										【
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/wancoo" title="万酷团">万酷团</a>】
-										<a href="#" target="_blank"> 价88元，原价298元花开日式料理双人套餐【烤三文鱼头... </a>
-									</td>
-									<td class="price current">
-										￥88
-									</td>
-									<td class="price original">
-										￥298
-									</td>
-									<td>
-										3折
-									</td>
-								</tr>
-								<tr>
-									<td>
-										2010年9月27日
-									</td>
-									<td class="title">
-										【
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/nuomi" title="糯米网">糯米团</a>】
-										<a href="#" target="_blank"> 22年西北美食老品牌!仅69元享西贝莜面村原价155元... </a>
-									</td>
-									<td class="price current">
-										￥69
-									</td>
-									<td class="price original">
-										￥155
-									</td>
-									<td>
-										4.5折
-									</td>
-								</tr>
-								<tr>
-									<td>
-										2010年9月27日
-									</td>
-									<td class="title">
-										【
-										<a class="from" target="_blank" href="http://www.tuan800.com/tuangou/shenghuobang" title="生活帮">生活帮</a>】
-										<a href="#" target="_blank"> 辣上瘾餐厅超足份量精品双人套餐（麻辣香锅秘制锅底+两荤... </a>
-									</td>
-									<td class="price current">
-										￥39
-									</td>
-									<td class="price original">
-										￥105
-									</td>
-									<td>
-										3.7折
-									</td>
-								</tr>
+								</#list>
 							</tbody>
+							</#if>
 						</table>
 					</div>
 				</div>

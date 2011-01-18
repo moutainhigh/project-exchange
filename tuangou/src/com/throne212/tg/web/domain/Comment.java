@@ -29,7 +29,7 @@ public class Comment extends Component {
 	private String replyName;
 	@Column(name = "reply_content")
 	private String replyContent;
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = Teams.class)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Teams.class)
 	private Teams team;
 	
 	public Teams getTeam() {

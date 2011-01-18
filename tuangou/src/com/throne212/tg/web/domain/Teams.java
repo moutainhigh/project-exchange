@@ -74,8 +74,12 @@ public class Teams implements java.io.Serializable {
 	private long buyTimes;//已购买的次数
 	@Column(name = "click_times")
 	private long clickTimes;//点击次数
+	@Column(name = "keywords")
+	private String keywords;//关键字
 
 	// Constructors
+
+
 
 	/** default constructor */
 	public Teams() {
@@ -259,6 +263,19 @@ public class Teams implements java.io.Serializable {
 		return shortTitle;
 		
 	}
+	
+	public String getSecondShortTitle() {
+		String secondShortTitle;
+		if (this.title.length()>20) {
+			secondShortTitle=this.title.substring(0, 20)+"...";
+		}else {
+			secondShortTitle=this.title;
+		}
+		
+		return secondShortTitle;
+		
+	}
+	
 
 	public long getCommentTimes() {
 		return commentTimes;
@@ -298,5 +315,12 @@ public class Teams implements java.io.Serializable {
 
 	public void setClickTimes(long clickTimes) {
 		this.clickTimes = clickTimes;
+	}
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 }

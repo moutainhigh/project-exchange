@@ -124,4 +124,12 @@ public List<Teams> getTopNewTeamsByCateAndCity(int num,String cateName,String ci
 		return commentDao.getAllComments(page);
 		
 	}
+	//按团购信息关键字查询类似团购信息
+	public List<Teams> getSimilarTeams(int num,String cate,String keywords){
+		
+		
+		return teamDao.getSimilarTeams(num, cate, keywords);
+		
+		
+	}
 }

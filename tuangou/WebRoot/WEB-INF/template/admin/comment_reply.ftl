@@ -16,8 +16,8 @@
 		<div class="wrapper">
 			<#include "left.ftl">
 			<div class="right">
-				<form enctype="multipart/form-data" method="post" action="${base}/admin/saveNews">
-				<input type="hidden" name="news.id" value="<#if news??>${news.id!''}</#if>"/>
+				<form enctype="multipart/form-data" method="post" action="${base}/admin/updateComment">
+				<input type="hidden" name="comment.id" value="<#if comment??>${comment.id!''}</#if>"/>
 				<table cellspacing="0" cellpadding="0" border="0" class="modify-table">
 					<thead>
 						<tr><th class="mt-th" colspan="2"><strong>评论信息回复</strong></th></tr>
@@ -26,29 +26,24 @@
 						<tr>
 							<td class="mt-td-l first">用户名：</td>
 							<td class="mt-td-r first">
-								<input type="text" value="<#if news??>${news.title!''}</#if>" maxlength="60" size="60" class="text" name="news.title" id="newsTitle">
+								<input type="text" value="<#if comment??>${comment.userName!''}</#if>" maxlength="60" size="10" class="text" name="comment.userName" id="commentuserName">
 								
 							</td>
 						</tr>
-						<tr>
-							<td class="mt-td-l">团购信息标题：</td>
-							<td class="mt-td-r">
-								<input type="text" value="" class="text" name="news.url" id="newsUrl" value="<#if news??>${news.url!''}</#if>">
-							</td>
-						</tr>
+						
 				
 						
 					
 						<tr>
 							<td class="mt-td-l">评论内容：</td>
 							<td class="mt-td-r">
-								<textarea rows="10" name="news.content" cols="80" value="<#if news??>${news.content!''}</#if>"></textarea>
+								<textarea rows="10" name="comment.content" cols="80" value="<#if comment??>${comment.content!''}</#if>"><#if comment??>${comment.content!''}</#if></textarea>
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">回复内容：</td>
 							<td class="mt-td-r">
-								<textarea rows="10" name="news.content" cols="80" value="<#if news??>${news.content!''}</#if>"></textarea>
+								<textarea rows="10" name="comment.replyContent" cols="80" value="<#if comment??>${comment.replyContent!''}</#if>"><#if comment??>${comment.replyContent!''}</#if></textarea>
 							</td>
 						</tr>
 						<tr>

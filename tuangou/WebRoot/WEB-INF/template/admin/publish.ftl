@@ -75,6 +75,13 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="mt-td-l">关键字：</td>
+							<td class="mt-td-r">
+								<input type="text" value="" maxlength="20" size="30" class="text" id="keywords" name="team.keywords">&nbsp;以空格分隔
+							</td>
+						</tr>
+						
+						<tr>
 							<td class="mt-td-l">当前人数：</td>
 							<td class="mt-td-r">
 								<input type="text" value="0" maxlength="10" size="10" class="text" id="now_number" name="team.nowNumber">&nbsp;须整数

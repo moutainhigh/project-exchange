@@ -38,4 +38,6 @@ public interface CommonBiz extends BaseBiz {
 	
 	//分页获取所有评论信息
 	public PageBean<Comment> getAllComments(int page);
+	//按团购信息关键字查询类似团购信息
+	public List<Teams> getSimilarTeams(int num,String cate,String keywords);
 }

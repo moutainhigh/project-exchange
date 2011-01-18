@@ -44,9 +44,9 @@
 					<tbody>
 						<tr class="lt-title">
 							<th class="first">&nbsp;</th>
-							<th width="190">用户名</th>
-							<th width="191">团购信息</th>
-							<th width="90">评论内容</th>
+							<th width="90">用户名</th>
+						
+							<th width="290">评论内容</th>
 							<th width="140">时间</th>
 						
 							<th width="80" class="last">操作</th>
@@ -57,18 +57,12 @@
 							<input type="checkbox" value="${c.id}" name="site_ids" class="site_ids">
 							</td>
 							<td class="lt-td tl">${c.userName!""}</td>
-							<#if c.team??>
-								<a  href="${base}/page.htm?team.id=${c.team.id}" title="${c.team.shortTitle!""}" target="_blank" >
-							 </a>
-							 <#else>
-							<td class="lt-td">${c.team.shortTitle!""}</td>
-							</#if>
-							<td class="lt-td">${c.team.shortTitle!""}</td>
+							
 							<td class="lt-td">${c.shortContent!""}</td>
 							<td class="lt-td">${c.lastModifyDate!""}</td>
 						
 							<td class="lt-td last">
-								<a href="${base}/admin/replyComment?news.id=${c.id}">
+								<a href="${base}/admin/replyComment?comment.id=${c.id}">
 									<img height="14" border="0" width="14" alt="修改" src="${base}/admin/images/edit.jpg">
 								</a>&nbsp;&nbsp;
 								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="#">

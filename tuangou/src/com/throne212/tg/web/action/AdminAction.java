@@ -18,6 +18,7 @@ import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
 import com.throne212.tg.web.domain.City;
+import com.throne212.tg.web.domain.Comment;
 import com.throne212.tg.web.domain.Component;
 import com.throne212.tg.web.domain.News;
 import com.throne212.tg.web.domain.Site;
@@ -247,6 +248,7 @@ public class AdminAction extends BaseAction {
 			logger.debug(news.getId());
 			logger.debug("添加新闻信息。。。");
 			commonBiz.saveOrUpdateEntity(news);
+			this.setMsg("添加新闻信息成功");
 			return newsList();
 		}else if(news!=null){
 			logger.debug("修改新闻信息...");
@@ -254,6 +256,7 @@ public class AdminAction extends BaseAction {
 			logger.debug(String.valueOf(news.getId()));
 //			news=commonBiz.getEntityById(News.class, news.getId());
 			commonBiz.saveOrUpdateEntity(news);
+			this.setMsg("修改新闻信息成功");
 			return newsList();
 		}
 		logger.debug("显示发布新闻页面。。。");
@@ -293,6 +296,33 @@ public class AdminAction extends BaseAction {
 		
 		
 	}
+	
+	//回复评论
+	private Comment comment;
+	public String replyComment() {
+		if(comment!=null){
+		comment=commonBiz.getEntityById(Comment.class, comment.getId());
+		logger.debug(comment.getContent());
+		return "reply_comment";
+		}
+		logger.debug("is null");
+		return "reply_comment";
+	}
+	
+	public String updateComment(){
+		
+		if(comment!=null&&!Util.isEmpty(comment.getReplyContent())){
+
+			commonBiz.saveOrUpdateEntity(comment);	
+			this.setMsg("回复成功");
+			return this.commentList();
+			
+		}
+		return "reply_comment";
+		
+		
+	}
+	
 	
 	
 	
@@ -417,5 +447,13 @@ public class AdminAction extends BaseAction {
 
 	public void setNews(News news) {
 		this.news = news;
+	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 }

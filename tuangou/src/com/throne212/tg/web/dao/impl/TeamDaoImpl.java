@@ -127,4 +127,36 @@ public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 		
 		
 	}
+	//按团购信息关键字查询类似团购信息
+
+	public List<Teams> getSimilarTeams(int num,String cateName,String keywords){
+		if (null==keywords) {
+			
+		keywords="";
+			
+		}
+		keywords=keywords.trim();
+		
+		String[] keywordArray=keywords.split(" ");
+		StringBuilder hqlBuilder=new StringBuilder();
+		hqlBuilder.append("from Teams t where t.cate.name='"+cateName+"' and (");
+		for (int i = 0; i < keywordArray.length; i++) {
+			logger.debug(""+keywordArray[i]);
+			hqlBuilder.append(" t.summary like '%"+keywordArray[i]+"%' or");
+		}
+		hqlBuilder.append(" 0=1) order by t.createTime desc");
+		logger.debug(hqlBuilder.toString());
+		
+//		String hql="from Teams t where t.cate.name='"+cateName+"' and t.summary like '%"+cityName+"%' order by t.createTime desc";
+		String hql=hqlBuilder.toString();
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Teams> list = s.createQuery(hql).setMaxResults(num).list();
+		return list;
+		
+		
+		
+		
+		
+		
+	}
 }

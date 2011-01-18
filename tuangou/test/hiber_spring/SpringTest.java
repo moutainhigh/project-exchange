@@ -1,6 +1,7 @@
 package hiber_spring;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,22 +16,28 @@ public class SpringTest {
 	public static void main(String[] args) {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring*.xml");
 		CommonBiz commonBiz = (CommonBiz) ac.getBean("commonBiz");
-		PageBean<Teams> teamPage=commonBiz.getAllTeams(1);
-		Teams teamInfo;
-		for (Iterator<Teams> iterator=teamPage.getResultList().iterator();iterator.hasNext();) {
-	    teamInfo=iterator.next();
-        System.out.println(teamInfo.getTitle());
-
-}
+//		PageBean<Teams> teamPage=commonBiz.getAllTeams(1);
+//		Teams teamInfo;
+//		for (Iterator<Teams> iterator=teamPage.getResultList().iterator();iterator.hasNext();) {
+//	    teamInfo=iterator.next();
+//        System.out.println(teamInfo.getTitle());
+//
+//}
+//		
+//		PageBean<Comment> commPageBean=commonBiz.getAllCommentsByTeamId(1, (long)1);
+//		System.out.println(commPageBean.getResultList().size());
+//		Comment comment;
+//		for (Iterator<Comment> iterator=commPageBean.getResultList().iterator();iterator.hasNext();) {
+//			comment=iterator.next();
+//	        System.out.println(comment.getDescription());
+//
+//	}
 		
-		PageBean<Comment> commPageBean=commonBiz.getAllCommentsByTeamId(1, (long)1);
-		System.out.println(commPageBean.getResultList().size());
-		Comment comment;
-		for (Iterator<Comment> iterator=commPageBean.getResultList().iterator();iterator.hasNext();) {
-			comment=iterator.next();
-	        System.out.println(comment.getDescription());
-
-	}
+		List<Teams> teamList=commonBiz.getSimilarTeams(3, "美食天地", "了");
+		
+		for (Teams teams : teamList) {
+			System.out.println(teams.getTitle());
+		}
 		
 	
 	}

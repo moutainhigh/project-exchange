@@ -33,7 +33,7 @@
 						<tr>
 							<td class="mt-td-l">URL：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" class="text" name="news.url" id="newsUrl" value="<#if news??>${news.url!''}</#if>">
+								<input type="text"  class="text" name="news.url" id="newsUrl" value="<#if news??>${news.url!''}</#if>">
 							</td>
 						</tr>
 						<tr>
@@ -47,13 +47,13 @@
 						<tr>
 							<td class="mt-td-l">新闻内容：</td>
 							<td class="mt-td-r">
-								<textarea rows="10" name="news.content" cols="80" value="<#if news??>${news.content!''}</#if>"></textarea>
+								<textarea rows="10" name="news.content" cols="80" value="<#if news??>${news.content!''}</#if>"><#if news??>${news.content!''}</#if></textarea>
 							</td>
 						</tr>
 						<tr>
 							<td class="mt-td-l">排序：</td>
 							<td class="mt-td-r">
-								<input type="text" value="" size="10" class="text" name="news.orderNum" id="newsOrderNum" value="<#if news??>${news.orderNum!'0'}</#if>">
+								<input type="text"  size="10" class="text" name="news.orderNum" id="newsOrderNum" value="<#if news??>${news.orderNum!'0'}</#if>">
 							</td>
 						</tr>
 						<tr>
