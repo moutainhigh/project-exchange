@@ -7,11 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.throne212.tg.web.biz.CommonBiz;
-import com.throne212.tg.web.domain.City;
 import com.throne212.tg.web.domain.Comment;
-import com.throne212.tg.web.domain.TeamCategory;
 import com.throne212.tg.web.domain.Teams;
-import com.throne212.tg.web.domain.User;
 
 
 

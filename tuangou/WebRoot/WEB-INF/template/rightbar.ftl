@@ -1,6 +1,6 @@
 
 <!-- right 广告  评论信息 -->
-<#escape x as (x)!""> 
+
 <div class="fr w254 nowrap">
 					<div class="pic-imgnews">
 						<img src="${base}/Themes/images/banner.jpg" alt="切换广告" width="252" height="178" />
@@ -272,14 +272,16 @@ it！全北京麦当劳通用，共享超值优惠！从小吃到大的麦当劳
 							其他城市网购大全
 						</div>
 						<div class=" pad_10 citylist">
+						<#if cities??>
 							<ul>
 								
 								<#list cities as c>					
-								<li class="${c.pinyin}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
+								<li class="${c.pinyin!''}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
 								</#list>
 							</ul>
+							</#if>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
-				</#escape> 
+			

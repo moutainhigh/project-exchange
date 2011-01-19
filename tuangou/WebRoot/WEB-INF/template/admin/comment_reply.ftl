@@ -18,6 +18,7 @@
 			<div class="right">
 				<form enctype="multipart/form-data" method="post" action="${base}/admin/updateComment">
 				<input type="hidden" name="comment.id" value="<#if comment??>${comment.id!''}</#if>"/>
+				<input type="hidden" name="team.id" value="<#if team??>${team.id!''}</#if>"/>
 				<table cellspacing="0" cellpadding="0" border="0" class="modify-table">
 					<thead>
 						<tr><th class="mt-th" colspan="2"><strong>评论信息回复</strong></th></tr>
@@ -31,7 +32,13 @@
 							</td>
 						</tr>
 						
-				
+				<tr>
+							<td class="mt-td-l first">团购信息：</td>
+							<td class="mt-td-r first">
+								<input type="text" value="<#if team??>${team.title!''}</#if>" maxlength="80" size="80" class="text" name="comment.team.title" id="commentTeamTitle" disabled="true">
+								
+							</td>
+						</tr>
 						
 					
 						<tr>

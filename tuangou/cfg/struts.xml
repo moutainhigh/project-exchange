@@ -120,6 +120,8 @@
 			<result name="list_news" type="freemarker">/WEB-INF/template/admin/news_list.ftl</result>
 			<result name="list_comment" type="freemarker">/WEB-INF/template/admin/comment_list.ftl</result>
 			<result name="reply_comment" type="freemarker">/WEB-INF/template/admin/comment_reply.ftl</result>
+			<result name="advert" type="freemarker">/WEB-INF/template/admin/advert.ftl</result>
+		
 		</action>
     </package>
     

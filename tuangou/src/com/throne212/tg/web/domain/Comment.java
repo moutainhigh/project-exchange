@@ -29,7 +29,7 @@ public class Comment extends Component {
 	private String replyName;
 	@Column(name = "reply_content")
 	private String replyContent;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Teams.class)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = Teams.class)
 	private Teams team;
 	
 	public Teams getTeam() {
@@ -73,4 +73,17 @@ public class Comment extends Component {
 		
 		
 	}
+	
+	public String getShortReplyContent() {
+		String shortReplyContent=this.replyContent;
+		if (this.replyContent.length()>6) {
+			shortReplyContent=this.replyContent.substring(0, 6)+"...";
+		return shortReplyContent;
+		}
+		
+		return shortReplyContent;
+		
+		
+	}
+	
 }

@@ -45,8 +45,9 @@
 						<tr class="lt-title">
 							<th class="first">&nbsp;</th>
 							<th width="90">用户名</th>
-						
-							<th width="290">评论内容</th>
+							<th width="190">团购信息</th>
+							<th width="190">评论内容</th>
+							<th width="190">回复内容</th>
 							<th width="140">时间</th>
 						
 							<th width="80" class="last">操作</th>
@@ -58,14 +59,19 @@
 							</td>
 							<td class="lt-td tl">${c.userName!""}</td>
 							
+							<td class="lt-td"><#if c.team??>${c.team.shortTitle!""}</#if></td>
+							
 							<td class="lt-td">${c.shortContent!""}</td>
+							
+							<td class="lt-td"><#if c.replyContent??>${c.shortReplyContent!""}</#if></td>
+							
 							<td class="lt-td">${c.lastModifyDate!""}</td>
 						
 							<td class="lt-td last">
 								<a href="${base}/admin/replyComment?comment.id=${c.id}">
 									<img height="14" border="0" width="14" alt="修改" src="${base}/admin/images/edit.jpg">
 								</a>&nbsp;&nbsp;
-								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="#">
+								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="${base}/admin/deleteComment?comment.id=${c.id}">
 									<img alt="删除" height="11" border="0" width="11" src="${base}/admin/images/del.jpg">
 								</a>
 							</td>

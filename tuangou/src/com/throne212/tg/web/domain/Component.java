@@ -18,7 +18,7 @@ import com.throne212.tg.web.common.Util;
 @javax.persistence.Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "com_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "tg_component")
-public abstract class Component {
+public abstract class Component implements java.io.Serializable {
 
 	protected static String componentName;
 

@@ -34,6 +34,7 @@
 					<dd><a href="${base}/admin/saveNews">新闻发布</a></dd>
 					<dd><a href="${base}/admin/newsList">新闻管理</a></dd>
 					<dd><a href="${base}/admin/commentList">评论管理</a></dd>
+					<dd><a href="${base}/admin/advert">广告管理</a></dd>
 					<dd><a href="index.php?d=admin&amp;c=feedback">意见反馈管理</a></dd>
 					<!--<dd><a href="index.php?d=admin&c=city" target="mainFrame">城市管理</a></dd>-->
 					<dd><a href="${base}/admin/userList">会员管理</a></dd>

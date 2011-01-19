@@ -23,7 +23,7 @@
 							<ul>
 								
 								<#list cities as c>					
-								<li class="${c.pinyin}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
+								<li class="${c.pinyin!''}"><a href="${base}/selectCity.htm?city.id=${c.id}">${c['name']}</a></li>
 								</#list>
 							</ul>
 							<div class="other"><a href="javascript:showCities();">[关闭]</a></div>

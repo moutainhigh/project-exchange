@@ -65,7 +65,7 @@
 								<a href="${base}/admin/editNews?news.id=${t.id}">
 									<img height="14" border="0" width="14" alt="修改" src="${base}/admin/images/edit.jpg">
 								</a>&nbsp;&nbsp;
-								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="#">
+								<a alt="删除" onclick="return confirm('是否真的删除吗?')" href="${base}/admin/deleteNews?news.id=${t.id}">
 									<img alt="删除" height="11" border="0" width="11" src="${base}/admin/images/del.jpg">
 								</a>
 							</td>

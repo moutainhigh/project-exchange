@@ -9,7 +9,6 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Properties;
 
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.tg.web.biz.CommonBiz;
 import com.throne212.tg.web.biz.UserBiz;
@@ -17,6 +16,7 @@ import com.throne212.tg.web.common.EncryptUtil;
 import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
+import com.throne212.tg.web.domain.Advert;
 import com.throne212.tg.web.domain.City;
 import com.throne212.tg.web.domain.Comment;
 import com.throne212.tg.web.domain.Component;
@@ -242,7 +242,7 @@ public class AdminAction extends BaseAction {
 	
 	private News news;
 	
-
+//添加新闻
 	public String saveNews() {
 		if (news!=null&&null==news.getId()) {
 			logger.debug(news.getId());
@@ -264,6 +264,7 @@ public class AdminAction extends BaseAction {
 	
 		
 	}
+	//修改新闻
 	public String editNews() {
 		if(news!=null&&news.getId()!=null){
 			logger.debug(news.getId());
@@ -275,6 +276,19 @@ public class AdminAction extends BaseAction {
 		return "edit_news";
 		
 	}
+	
+	public String deleteNews() {
+		
+		if (news!=null&&news.getId()!=null) {
+			
+			commonBiz.deleteEntity(News.class, news.getId());
+			this.setMsg("删除新闻信息成功！");
+		}
+		
+		return newsList();
+		
+	}
+	
 	public String newsList() {
 		
 		if (pageIndex == null || pageIndex < 1)
@@ -302,28 +316,84 @@ public class AdminAction extends BaseAction {
 	public String replyComment() {
 		if(comment!=null){
 		comment=commonBiz.getEntityById(Comment.class, comment.getId());
+		team=commonBiz.getEntityById(Teams.class, comment.getTeam().getId());
+		logger.debug("title of team"+team.getTitle());
 		logger.debug(comment.getContent());
 		return "reply_comment";
 		}
 		logger.debug("is null");
 		return "reply_comment";
 	}
-	
+	//更新回复
 	public String updateComment(){
-		
 		if(comment!=null&&!Util.isEmpty(comment.getReplyContent())){
-
+			logger.debug("updating.............");
+			team=commonBiz.getEntityById(Teams.class, team.getId());
+			comment.setTeam(team);
 			commonBiz.saveOrUpdateEntity(comment);	
+			logger.debug("team id =="+comment.getTeam().getId());
 			this.setMsg("回复成功");
 			return this.commentList();
 			
 		}
 		return "reply_comment";
+	}
+	
+	
+	public String deleteComment() {
+		if(comment!=null&&comment.getId()!=null)
+		{
+			commonBiz.deleteEntity(Comment.class, comment.getId());
+			this.setMsg("删除评论成功！");
+		}
+		return commentList();
+	}
+	
+	//广告管理列表
+	private List<Advert> advertList;
+	public String advert() {
+		advertList=commonBiz.getAll(Advert.class, "orderNum", "asc");
 		
+		return "advert";
 		
 	}
 	
 	
+	
+	//添加广告
+	private Advert advert;
+	
+
+	public String addAdvert() {
+		
+		if (advert!=null&&advert.getTitle()!=null) {
+			logger.info("发布广告信息。。。");
+			// 图片
+			String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+			if (image != null) {
+				advert.setImg(image);
+				ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+			}
+			commonBiz.saveOrUpdateEntity(advert);
+			this.setMsg("发布成功！");
+			advertList=commonBiz.getAll(Advert.class, "orderNum", "asc");
+			return "advert";
+		}
+		this.setMsg("发布失败！");
+		return "advert";
+		
+	}
+	
+	
+	public String deleteAdvert() {
+		if (advert!=null&&advert.getId()!=null) {
+			commonBiz.deleteEntity(Advert.class, advert.getId());
+			this.setMsg("成功删除！");
+			advertList=commonBiz.getAll(Advert.class, "orderNum", "asc");
+		}
+		
+		return "advert";
+	}
 	
 	
 	public CommonBiz getCommonBiz() {
@@ -455,5 +525,20 @@ public class AdminAction extends BaseAction {
 
 	public void setComment(Comment comment) {
 		this.comment = comment;
+	}
+
+	public List<Advert> getAdvertList() {
+		return advertList;
+	}
+
+	public void setAdvertList(List<Advert> advertList) {
+		this.advertList = advertList;
+	}
+	public Advert getAdvert() {
+		return advert;
+	}
+
+	public void setAdvert(Advert advert) {
+		this.advert = advert;
 	}
 }
