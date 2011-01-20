@@ -3,12 +3,9 @@ package hiber_spring;
 import java.util.Date;
 
 import org.hibernate.Session;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.throne212.tg.web.biz.CommonBiz;
 import com.throne212.tg.web.domain.Comment;
-import com.throne212.tg.web.domain.Teams;
+import com.throne212.tg.web.domain.User;
 
 
 
@@ -20,33 +17,33 @@ public class Init {
 		
 		
 		
-		ApplicationContext ac = new ClassPathXmlApplicationContext("spring*.xml");
-		CommonBiz commonBiz = (CommonBiz) ac.getBean("commonBiz");
-		Teams team=commonBiz.getEntityById(Teams.class, (long)1);
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("spring*.xml");
+//		CommonBiz commonBiz = (CommonBiz) ac.getBean("commonBiz");
+//		Teams team=commonBiz.getEntityById(Teams.class, (long)1);
 //		
 		
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
 		
-//		
-//		User user=new User();
-//		User admin=new User();
-//		user.setUserType("user");
-//		user.setLoginName("test001");
-//		user.setPassword("123456");
-//		user.setQq("12245465");
-//		user.setRegDate(new Date());
-//		user.setTel("13025656877");
-//		
-//		admin.setUserType("admin");
-//		admin.setLoginName("admin");
-//		admin.setRegDate(new Date());
-//		admin.setQq("4545646521");
-//		admin.setPassword("123456");
-//		admin.setTel("12302325623");
-//		s.save(user);
-//		s.save(admin);
+
+		User user=new User();
+		User admin=new User();
+		user.setUserType("user");
+		user.setLoginName("test001");
+		user.setPassword("123456");
+		user.setQq("12245465");
+		user.setRegDate(new Date());
+		user.setTel("13025656877");
+		
+		admin.setUserType("admin");
+		admin.setLoginName("admin");
+		admin.setRegDate(new Date());
+		admin.setQq("4545646521");
+		admin.setPassword("123456");
+		admin.setTel("12302325623");
+		s.save(user);
+		s.save(admin);
 		
 //		TeamCategory cate=new TeamCategory();
 //		cate.setCode(22);
@@ -241,19 +238,19 @@ public class Init {
 		
 		
 		
-		Comment comment;
-		for(int i=0;i<5;i++){
-			comment=new Comment();
-			team.setClickTimes(55);
-			team.setCommentTimes(22);
-			comment.setTeam(team);
-			comment.setUserName("userName"+i);
-			comment.setLastModifyDate(new Date());
-			comment.setCreatedDate(new Date());
-			comment.setContent("content 您好，八百邻在成都，绵阳均通用。");
-			s.save(comment);
-			
-		}
+//		Comment comment;
+//		for(int i=0;i<5;i++){
+//			comment=new Comment();
+//			team.setClickTimes(55);
+//			team.setCommentTimes(22);
+//			comment.setTeam(team);
+//			comment.setUserName("userName"+i);
+//			comment.setLastModifyDate(new Date());
+//			comment.setCreatedDate(new Date());
+//			comment.setContent("content 您好，八百邻在成都，绵阳均通用。");
+//			s.save(comment);
+//			
+//		}
 
 		
 		

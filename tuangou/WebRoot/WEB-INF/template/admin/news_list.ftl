@@ -21,7 +21,7 @@
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${base}/admin/deleteNews';
+				document.forms[0].action = '${base}/admin/deleteNewss';
 				document.forms[0].submit();
 			}
 		}
@@ -36,7 +36,7 @@
 		<div class="wrapper">
 			<#include "left.ftl">
 			<div class="right">
-				<form enctype="multipart/form-data" method="post" action="${base}/admin/deleteSites">
+				<form enctype="multipart/form-data" method="post" action="${base}/admin/deleteNewss">
 				<table cellspacing="0" cellpadding="0" border="0" class="list-table">
 					<thead>
 						<tr><th class="lt-th" colspan="8"><strong>新闻信息管理</strong></th></tr>
@@ -54,7 +54,7 @@
 						<#list pageBean.resultList as t>
 						<tr>
 							<td class="lt-td first">
-							<input type="checkbox" value="${t.id}" name="site_ids" class="site_ids">
+							<input type="checkbox" value="${t.id}" name="news_ids" class="news_ids">
 							</td>
 							<td class="lt-td tl">${t.title!""}</td>
 							<td class="lt-td">${t.url!""}</td>

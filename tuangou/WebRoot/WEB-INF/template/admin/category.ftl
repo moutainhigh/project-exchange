@@ -16,8 +16,8 @@
 		<div class="wrapper">
 			<#include "left.ftl">
 			<div class="right">
-				<form enctype="multipart/form-data" method="post" action="${base}/admin/addCity">
-				<input type="hidden" name="site.id" value="<#if site??>${site.id!''}</#if>"/>
+				<form enctype="multipart/form-data" method="post" action="${base}/admin/addCategory">
+				<input type="hidden" name="site.id" value="<#if category??>${category.id!''}</#if>"/>
 				<table cellspacing="0" cellpadding="0" border="0" class="modify-table">
 					<thead>
 						<tr><th class="mt-th" colspan="2"><strong>添加新的团购分类</strong></th></tr>

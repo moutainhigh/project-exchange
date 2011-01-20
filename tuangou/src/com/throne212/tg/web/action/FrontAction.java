@@ -10,6 +10,7 @@ import com.throne212.tg.web.biz.CommonBiz;
 import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
+import com.throne212.tg.web.domain.Advert;
 import com.throne212.tg.web.domain.City;
 import com.throne212.tg.web.domain.Comment;
 import com.throne212.tg.web.domain.News;
@@ -55,6 +56,8 @@ public class FrontAction extends BaseAction {
 		}
 		return "index";
 	}
+	private Advert firstAdvert;
+	private List<Advert> advertList;
 	private List<Comment> threeNewCommentsList;//获取最新的3条团购信息评论
 	private List<Teams> fiveMostClickList;//获取点击次数最多的前5条团购信息
 	private List<News> newsList;//获取新发布的6条新闻信息（按orderNum升序）
@@ -79,7 +82,13 @@ public class FrontAction extends BaseAction {
 		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
 		logger.debug("size of threeNewCommentsList -----"+threeNewCommentsList.size());
-		
+		//获取广告信息
+		advertList=commonBiz.getAll(Advert.class, "orderNum", "asc", 0, 5);
+		firstAdvert=advertList.get(0);
+		advertList.remove(0);
+		logger.debug(advertList.size());
+		ActionContext.getContext().getSession().put(WebConstants.SESS_ADVERTS, advertList);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_FIRST_ADVERT, firstAdvert);
 		
 		String cityName;
 		//获取城市名
@@ -138,6 +147,14 @@ public class FrontAction extends BaseAction {
 		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
 		
+		//获取广告信息
+		advertList=commonBiz.getAll(Advert.class, "orderNum", "asc", 0, 5);
+		firstAdvert=advertList.get(0);
+		advertList.remove(0);
+		logger.debug(advertList.size());
+		ActionContext.getContext().getSession().put(WebConstants.SESS_ADVERTS, advertList);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_FIRST_ADVERT, firstAdvert);
+		
 		return "success";
 	}
 	
@@ -165,7 +182,15 @@ public class FrontAction extends BaseAction {
 		//获取最新的3条团购信息评论
 		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
-				
+			
+		//获取广告信息
+		advertList=commonBiz.getAll(Advert.class, "orderNum", "asc", 0, 5);
+		firstAdvert=advertList.get(0);
+		advertList.remove(0);
+		logger.debug(advertList.size());
+		ActionContext.getContext().getSession().put(WebConstants.SESS_ADVERTS, advertList);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_FIRST_ADVERT, firstAdvert);
+		
 				return "success";
 		
 	}
@@ -190,6 +215,13 @@ public class FrontAction extends BaseAction {
 		//获取最新的3条团购信息评论
 		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
+		//获取广告信息
+		advertList=commonBiz.getAll(Advert.class, "orderNum", "asc", 0, 5);
+		firstAdvert=advertList.get(0);
+		advertList.remove(0);
+		logger.debug(advertList.size());
+		ActionContext.getContext().getSession().put(WebConstants.SESS_ADVERTS, advertList);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_FIRST_ADVERT, firstAdvert);
 		
 		
 		return "success";
@@ -216,6 +248,13 @@ public class FrontAction extends BaseAction {
 		//获取最新的3条团购信息评论
 		threeNewCommentsList=commonBiz.getAll(Comment.class, "lastModifyDate", "desc", 0, 3);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_THREE_COMMENTS,threeNewCommentsList);
+		//获取广告信息
+		advertList=commonBiz.getAll(Advert.class, "orderNum", "asc", 0, 5);
+		firstAdvert=advertList.get(0);
+		advertList.remove(0);
+		logger.debug(advertList.size());
+		ActionContext.getContext().getSession().put(WebConstants.SESS_ADVERTS, advertList);
+		ActionContext.getContext().getSession().put(WebConstants.SESS_FIRST_ADVERT, firstAdvert);
 		
 		
 		return "success";
@@ -369,6 +408,22 @@ public class FrontAction extends BaseAction {
 
 	public void setSimilarTeamsList(List<Teams> similarTeamsList) {
 		this.similarTeamsList = similarTeamsList;
+	}
+
+	public Advert getFirstAdvert() {
+		return firstAdvert;
+	}
+
+	public void setFirstAdvert(Advert firstAdvert) {
+		this.firstAdvert = firstAdvert;
+	}
+
+	public List<Advert> getAdvertList() {
+		return advertList;
+	}
+
+	public void setAdvertList(List<Advert> advertList) {
+		this.advertList = advertList;
 	}
 
 	

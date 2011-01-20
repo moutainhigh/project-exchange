@@ -2,7 +2,7 @@
 <!-- right 广告  评论信息 -->
 
 <div class="fr w254 nowrap">
-					<div class="pic-imgnews">
+			<!--		<div class="pic-imgnews">
 						<img src="${base}/Themes/images/banner.jpg" alt="切换广告" width="252" height="178" />
 						<ul>
 							<li class="current">
@@ -16,6 +16,61 @@
 							</li>
 						</ul>
 					</div>
+					
+					
+					-->
+					
+					<DIV align="center" ></div>
+
+<script type="text/javascript">
+var MaxScreen = 2 ;
+var CurScreen = 1 ;
+</script>
+
+<div class="flashNews">
+<#if firstAdvert??>
+<div id="Switch_1">                                 <a  href="${firstAdvert.url!"http://"}" target="_blank" blockid="1121"><img src="upload/${firstAdvert.img!"upload/02.jpg"}" width="252" height="178" alt="${firstAdvert.title!""}" onmouseover="pauseSwitch();"  onmouseout="goonSwitch();"/></a></div>
+</#if>
+
+<#list advertList as a>
+<div id="Switch_2" style="display:none;"><a  href="${a.url!"http://"}" target="_blank" blockid="1121"><img src="upload/${a.img!"upload/02.jpg"}" width="252" height="178" alt="${a.title!""}" onmouseover="pauseSwitch();"  onmouseout="goonSwitch();"/></a></div>
+</#list>
+
+<div id="SwitchTitle" onmouseover="pauseSwitch();"  onmouseout="goonSwitch();"></div>
+<ul id="SwitchNav"></ul>
+<div class="bg" onmouseover="pauseSwitch();"  onmouseout="goonSwitch();"></div>
+</div>
+
+<script type="text/javascript">
+var Switcher = new Array();
+<#if firstAdvert??>
+Switcher[1] = Array() ;
+Switcher[1]['title'] = "${firstAdvert.title!""}" ;
+Switcher[1]['stitle'] = "${firstAdvert.words!""}" ;
+Switcher[1]['link'] = "${firstAdvert.url!""}" ;
+</#if>
+<#list advertList as a>
+
+Switcher[${a_index}+2] = Array() ;
+Switcher[${a_index}+2]['title'] = "${a.title!""}" ;
+Switcher[${a_index}+2]['stitle'] = "${a.words!""}" ;
+Switcher[${a_index}+2]['link'] = "${a.url!""}" ;
+
+</#list>
+var refreshSwitchTimer = null;
+switchPic(CurScreen);
+refreshSwitchTimer = setTimeout('reSwitchPic();', 3000);
+</script>
+
+					
+					
+					<!---->	
+					
+					
+					
+					
+					
+					
 					<div class="section mar_t6">
 						<div class="ptitle">
 							关注我们

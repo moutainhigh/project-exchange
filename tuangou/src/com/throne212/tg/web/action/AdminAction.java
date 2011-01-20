@@ -288,6 +288,20 @@ public class AdminAction extends BaseAction {
 		return newsList();
 		
 	}
+	//删除多个新闻信息
+	public String deleteNewss(){
+		
+		String[] newsIds = (String[]) ActionContext.getContext().getParameters().get("news_ids");
+		if(newsIds != null && newsIds.length > 0){
+			for(String idStr : newsIds){
+				Long id = Long.parseLong(idStr);
+				commonBiz.deleteEntity(News.class, id);
+			}
+			this.setMsg("删除新闻成功！");
+		}
+		return newsList();
+
+	}
 	
 	public String newsList() {
 		
@@ -339,7 +353,7 @@ public class AdminAction extends BaseAction {
 		return "reply_comment";
 	}
 	
-	
+	//删除评论
 	public String deleteComment() {
 		if(comment!=null&&comment.getId()!=null)
 		{
@@ -348,6 +362,24 @@ public class AdminAction extends BaseAction {
 		}
 		return commentList();
 	}
+	
+	//删除多个评论
+	public String deleteComments() {
+		
+		String[] commentIds = (String[]) ActionContext.getContext().getParameters().get("comment_ids");
+		if(commentIds != null && commentIds.length > 0){
+			for(String idStr : commentIds){
+				Long id = Long.parseLong(idStr);
+				commonBiz.deleteEntity(Comment.class, id);
+			}
+			this.setMsg("删除评论成功！");
+		}
+		return commentList();
+
+		
+		
+	}
+	
 	
 	//广告管理列表
 	private List<Advert> advertList;
@@ -384,7 +416,7 @@ public class AdminAction extends BaseAction {
 		
 	}
 	
-	
+	//删除广告
 	public String deleteAdvert() {
 		if (advert!=null&&advert.getId()!=null) {
 			commonBiz.deleteEntity(Advert.class, advert.getId());

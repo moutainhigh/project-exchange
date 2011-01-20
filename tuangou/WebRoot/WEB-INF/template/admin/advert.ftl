@@ -30,6 +30,14 @@
 								<input type="text" value="" maxlength="60" size="60" class="text" name="advert.title" id="advertTitle">
 							</td>
 						</tr>
+						
+							<tr>
+							<td class="mt-td-l">广告语：</td>
+							<td class="mt-td-r">
+								<input type="text" value="" maxlength="60" size="60" class="text" name="advert.words" id="advertWords">
+							</td>
+						</tr>
+						
 						<tr>
 							<td class="mt-td-l">广告链接：</td>
 							<td class="mt-td-r">
@@ -50,6 +58,7 @@
 								<input type="text" value="" class="text" name="advert.orderNum" id="orderNum">
 							</td>
 						</tr>
+						
 						<tr>
 							<td class="mt-td-l">&nbsp;</td>
 							<td class="mt-td-r">
@@ -65,8 +74,9 @@
 					</thead>
 					<tbody>
 						<tr class="lt-title">
-							<th width="100">排序编号</th>
+							<th width="30">排序编号</th>
 							<th width="100">标题</th>
+							<th width="100">广告语</th>
 							<th width="100">链接</th>
 							<th width="100">图片名</th>
 							
@@ -77,6 +87,7 @@
 						<tr>
 							<td class="lt-td">${a.orderNum!''}</td>
 							<td class="lt-td tl">${a.title!''}</td>
+								<td class="lt-td tl">${a.words!''}</td>
 							<td class="lt-td">${a.url!''}</td>
 							<td class="lt-td">${a.img!''}</td>
 							<td class="lt-td last">

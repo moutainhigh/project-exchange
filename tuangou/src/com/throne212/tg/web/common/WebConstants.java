@@ -27,6 +27,8 @@ public class WebConstants {
 	public static final String SESS_NEWS_LIST="newsList";
 	public static final String SESS_MOST_CLICK_TEAMS="fiveMostClickList";
 	public static final String SESS_THREE_COMMENTS="threeNewCommentsList";
+	public static final String SESS_ADVERTS="advertList";
+	public static final String SESS_FIRST_ADVERT="firstAdvert";
 	//前台web parameter
 	public static final int NUM_PER_CATE=9;//每种类型的团购信息在首页显示最新10条
 	public static final String DEFAULT_CITY_NAME="全国";//默认城市名

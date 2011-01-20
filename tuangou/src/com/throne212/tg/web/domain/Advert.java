@@ -23,6 +23,9 @@ public class Advert extends Component {
 	private String img;
 	@Column(name = "url")
 	private String url;
+	@Column(name = "words")
+	private String words;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -41,5 +44,12 @@ public class Advert extends Component {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	public String getWords() {
+		return words;
+	}
+	public void setWords(String words) {
+		this.words = words;
+	}
+
 	
 }

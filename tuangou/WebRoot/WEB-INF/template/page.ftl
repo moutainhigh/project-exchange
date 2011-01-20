@@ -233,16 +233,18 @@
 														<#if c.content??>${c.content} <#else> </#if>
 														</div>
 													</div>
+													<#if c.replyContent??>
 													<div class="gmreply ">
 														<div class="clearfix mar_b5">
 															<div class="fl green">
-																八百邻管理员回复：
+																管理员回复：
 															</div>
 														</div>
 														<div>
-															您好，八百邻在成都，绵阳均通用。
+															${c.replyContent!""}
 														</div>
 													</div>
+													</#if>
 												</li>
 											</td>
 										</tr>
