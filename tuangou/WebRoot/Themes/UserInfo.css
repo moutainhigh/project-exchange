@@ -1,0 +1,1171 @@
+
+a {
+color:#006666;
+}
+a:hover {
+color:#0006E9;
+}
+.grzx_box {
+background:url("http://s0.tuan800.net/images/grzx_bg1.jpg") repeat-y scroll 0 0 transparent;
+float:left;
+height:auto;
+width:960px;
+}
+.grzx_left {
+border-top:1px solid #C7C7C5;
+float:left;
+height:auto;
+padding:0 6px;
+width:156px;
+}
+.grzd_right {
+border-top:1px solid #369FA7;
+float:right;
+height:auto;
+padding:1px 2px 0;
+width:778px;
+}
+.grzd_bottom_border {
+background:url("http://s0.tuan800.net/images/grzx_bg2.jpg") no-repeat scroll 0 0 transparent;
+clear:both;
+height:1px;
+width:960px;
+}
+.grzx_bt {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -149px -533px transparent;
+color:#000000;
+font-size:14px;
+font-weight:bold;
+height:27px;
+line-height:27px;
+margin:5px 0;
+text-align:center;
+width:154px;
+}
+.grzx_left li {
+background:url("http://s1.tuan800.net/images/sp_1.png") repeat-x scroll 0 -2341px transparent;
+height:30px;
+}
+.grzx_left li li {
+background:none repeat scroll 0 0 transparent;
+}
+.grzx_left span {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll 0 -394px transparent;
+float:left;
+height:30px;
+width:25px;
+}
+.grzx_left p {
+background:url("http://s1.tuan800.net/images/profile.png") no-repeat scroll 0 0 transparent;
+color:#006666;
+font-size:12px;
+font-weight:bold;
+height:30px;
+line-height:30px;
+padding-left:30px;
+text-align:left;
+}
+.grzx_left p a {
+color:#006666;
+}
+.grzx_left p font {
+color:#989898;
+font-size:12px;
+font-weight:normal;
+}
+.grzx_a1 p {
+background-position:0 5px;
+}
+.grzx_a2 p {
+background-position:0 -42px;
+}
+.grzx_a3 p {
+background-position:0 -88px;
+}
+.grzx_a4 p {
+background-position:0 -135px;
+}
+.grzx_a5 p {
+background-position:0 -180px;
+}
+.grzx_a6 p {
+background-position:0 -225px;
+}
+.grzx_a7 p {
+background-position:0 -270px;
+}
+.grzx_a8 p {
+background-position:0 -315px;
+}
+.grzx_a9 p {
+background-position:1px -360px;
+}
+.grzx_a10 p {
+background-position:0 -407px;
+}
+.grzx_left .grzx_a1_ul {
+background:none repeat scroll 0 0 transparent;
+height:auto;
+padding-left:30px;
+width:124px;
+}
+.grzx_a1_ul li {
+color:#454545;
+font-size:12px;
+height:25px;
+line-height:25px;
+text-align:left;
+width:124px;
+}
+.grzx_a1_ul li a {
+color:#454545;
+}
+.right_bt, .right_bt_hd {
+background:url("http://s1.tuan800.net/images/sp_1.png") repeat-x scroll 0 -2378px transparent;
+border-bottom:1px dotted #454545;
+color:#000000;
+font-size:14px;
+font-weight:normal;
+height:39px;
+line-height:39px;
+text-align:left;
+text-indent:20px;
+width:778px;
+}
+.right_jbzl {
+float:left;
+height:auto;
+padding:20px;
+width:738px;
+}
+.jbzl_left {
+float:left;
+width:380px;
+}
+.jbzl_right {
+border:1px dotted #454545;
+float:left;
+padding:10px;
+width:336px;
+}
+.jbzl_left_a1 {
+float:left;
+width:104px;
+}
+.jbzl_left_a1 img {
+border:1px solid #B4B4B4;
+height:100px;
+padding:1px;
+width:100px;
+}
+.left_a1_tx {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -337px -533px transparent;
+color:#E10000;
+font-size:12px;
+height:23px;
+line-height:23px;
+margin-top:5px;
+text-align:center;
+width:104px;
+}
+.left_a1_tx a {
+color:#E10000;
+}
+.left_a1_jf {
+color:#000000;
+font-size:12px;
+height:25px;
+line-height:25px;
+text-align:center;
+width:104px;
+}
+.left_a1_jf span {
+color:#E10000;
+}
+.jbzl_left_a2 {
+color:#000000;
+float:left;
+font-size:14px;
+line-height:22px;
+padding:0 10px;
+text-align:left;
+width:256px;
+}
+.jbzl_right_a1 {
+background:url("http://s0.tuan800.net/images/tuan_bg_jpg_2.png") no-repeat scroll 0 -133px transparent;
+float:left;
+height:50px;
+width:50px;
+}
+.jbzl_right_a2 {
+float:left;
+padding-left:10px;
+width:276px;
+}
+.jbzl_right_a2 p {
+color:#006666;
+font-size:14px;
+font-weight:bold;
+line-height:23px;
+padding-bottom:10px;
+text-align:left;
+width:276px;
+}
+.jbzl_right_a2 input {
+color:#000000;
+font-size:12px;
+height:20px;
+line-height:20px;
+margin:0 auto;
+width:256px;
+}
+.jbzl_right_a2_an {
+height:30px;
+margin:0 auto;
+padding-top:10px;
+width:109px;
+}
+.jbzl_right_a2_an a {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll 0 -533px transparent;
+display:block;
+height:30px;
+width:109px;
+}
+.right_bt_hd {
+border-top:1px solid #369FA7;
+float:left;
+}
+.right_hd_bt {
+color:#369FA7;
+font-size:12px;
+}
+.hd_border_bottom {
+border-bottom:1px solid #ECECEC;
+color:#000000;
+font-size:12px;
+line-height:20px;
+padding:10px 0;
+}
+.red_zi12 {
+color:#FF0000;
+}
+.hui_zi12 {
+color:#A2A2A2;
+line-height:20px;
+}
+.hd_p {
+color:#000000;
+height:20px;
+overflow:hidden;
+width:360px;
+}
+.xggrzl_bg, .yqjl_bg {
+background:url("http://s1.tuan800.net/images/sp_1.png") repeat-x scroll 0 -2428px transparent;
+border:1px solid #C7C7C7;
+height:35px;
+width:736px;
+}
+.zggrzl_bg_bt {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll 0 -580px transparent;
+color:#000000;
+display:inline;
+float:left;
+font-size:12px;
+font-weight:bold;
+height:31px;
+line-height:31px;
+margin-left:10px;
+margin-top:5px;
+text-align:center;
+width:120px;
+}
+.xggrzl_form {
+color:#000000;
+float:left;
+font-size:12px;
+padding-top:10px;
+width:738px;
+}
+.xggrzl_form ul {
+clear:both;
+width:738px;
+}
+.xggrzl_form li {
+float:left;
+height:24px;
+}
+.xggrzl_form_a1 {
+padding-top:5px;
+text-align:right;
+width:70px;
+}
+.xggrzl_form_a3 {
+text-align:left;
+width:380px;
+}
+.xggrzl_form_a2 {
+color:#FF0000;
+font-size:12px;
+height:24px;
+line-height:24px;
+padding-left:3px;
+text-align:left;
+}
+.xggrzl_form_a4 {
+clear:both;
+height:22px;
+padding-top:10px;
+width:738px;
+}
+.xggrzl_form .jf_cp {
+padding-left:35px;
+}
+.form_a4_1 {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -11px -444px transparent;
+display:block;
+float:left;
+height:22px;
+margin-right:15px;
+width:73px;
+}
+.form_a4_2 {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -85px -444px transparent;
+display:block;
+float:left;
+height:22px;
+width:66px;
+}
+.xggrsz_border_bottom {
+border-bottom:1px dotted #000000;
+padding:10px 0;
+}
+.liu_zi14 {
+color:#00737B;
+font-size:14px;
+font-weight:bold;
+}
+.liu_zi14 span {
+padding-right:5px;
+}
+.liu_zi14_form {
+color:#000000;
+font-size:12px;
+font-weight:normal;
+padding-left:10px;
+padding-top:10px;
+}
+.xggrsz_an {
+height:22px;
+margin:0 auto;
+padding-top:20px;
+width:154px;
+}
+.xgmm_tishi {
+color:#FF0000;
+font-size:12px;
+line-height:25px;
+padding-bottom:10px;
+text-align:left;
+width:738px;
+}
+.grzx_tishi {
+border:1px dotted #D9D9D9;
+color:#515151;
+float:left;
+font-size:12px;
+line-height:20px;
+padding:10px;
+width:716px;
+}
+.grzx_tishi span {
+color:#E00101;
+float:left;
+font-weight:bold;
+width:70px;
+}
+.grzx_tishi p {
+float:left;
+width:646px;
+}
+.gmjl_bt_a1 {
+float:left;
+height:30px;
+padding-top:5px;
+width:500px;
+}
+.gmjl_bt_a1 ul {
+padding-left:10px;
+}
+.gmjl_bt_a1 li {
+color:#000000;
+float:left;
+font-size:12px;
+height:31px;
+line-height:31px;
+text-align:center;
+width:120px;
+}
+.gmjl_bt_a1 li a {
+color:#000000;
+display:block;
+}
+.gmjl_bt_a1 li a:hover {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll 0 -580px transparent;
+display:block;
+font-weight:bold;
+}
+.profile_on {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll 0 -580px transparent;
+display:block;
+font-weight:bold;
+}
+.gmjl_bt_a2 {
+color:#000000;
+float:right;
+font-size:12px;
+height:35px;
+line-height:35px;
+text-align:left;
+width:200px;
+}
+.gmjl_bt_a2 span {
+float:left;
+}
+.gmjl_bt_a2 select {
+color:#666666;
+float:left;
+font-size:12px;
+height:20px;
+margin-top:8px;
+text-align:left;
+}
+.gmjl_img {
+border:1px solid #B4B4B4;
+height:60px;
+padding:2px;
+width:99px;
+}
+.gmjl_bt {
+color:#8B8B8B;
+font-size:12px;
+height:20px;
+line-height:20px;
+overflow:hidden;
+text-align:left;
+width:300px;
+}
+.gmjl_bt a {
+color:#000000;
+}
+.gmjl_bt .from {
+color:#047DB6;
+}
+.gmjl_bj_img {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -185px -444px transparent;
+display:block;
+float:left;
+height:20px;
+width:20px;
+}
+.gmjl_bj_a1, .gmjl_bj_a2 {
+color:#000000;
+font-size:12px;
+height:23px;
+line-height:23px;
+overflow:hidden;
+padding:0 5px;
+text-align:left;
+width:370px;
+}
+.gmjl_bj_a2 a {
+color:#006666;
+float:left;
+padding-right:15px;
+}
+.gmjl_text_yc {
+background:none repeat scroll 0 0 #F7F7F7;
+border:1px solid #CBEBEE;
+float:left;
+padding:5px;
+text-align:left;
+width:360px;
+}
+.gmjl_text_yc ul {
+width:360px;
+}
+.gmjl_text_yc li {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -560px -442px transparent;
+clear:both;
+color:#000000;
+font-size:12px;
+height:20px;
+line-height:20px;
+overflow:hidden;
+text-align:left;
+text-indent:23px;
+}
+.gmjl_text_yc li a {
+color:#000000;
+}
+.hei_zi12 {
+color:#000000;
+}
+.gmjl_sc {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -285px -444px transparent;
+color:#000000;
+display:block;
+float:left;
+font-size:12px;
+height:20px;
+line-height:20px;
+text-align:left;
+text-indent:25px;
+width:60px;
+}
+.gmjl_zr {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -374px -444px transparent;
+color:#000000;
+display:block;
+float:left;
+font-size:12px;
+height:20px;
+line-height:20px;
+text-align:left;
+text-indent:25px;
+width:50px;
+}
+.gmjl_sht, .shcjl_sc, .shcjl_sht, .shcjl_bj, .gmjl_bj {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -460px -440px transparent;
+color:#000000;
+display:inline-block;
+font-size:12px;
+height:20px;
+line-height:20px;
+padding-top:3px;
+text-align:left;
+text-indent:25px;
+width:100px;
+}
+.gmjl_bj {
+background-position:-183px -441px;
+line-height:20px;
+}
+.shcjl_sc {
+background-position:-285px -442px;
+width:90px;
+}
+.shcjl_sht {
+background-position:-460px -441px;
+width:86px;
+}
+.shcjl_bj {
+background-position:-183px -441px;
+width:90px;
+}
+.jqjl_bt {
+float:left;
+}
+.jqjl_shx {
+float:left;
+padding-top:7px;
+}
+.jqjl_jqjiek {
+height:auto;
+margin:0 auto;
+width:380px;
+}
+.jqjl_a2 {
+float:left;
+padding-left:10px;
+width:320px;
+}
+.jqjl_a2 p {
+color:#006666;
+font-size:12px;
+font-weight:bold;
+line-height:23px;
+text-align:left;
+width:320px;
+}
+.jqjl_a2 p input {
+color:#666666;
+float:left;
+font-size:12px;
+height:20px;
+line-height:20px;
+margin-right:10px;
+text-align:left;
+width:200px;
+}
+.jqjl_jqan {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -464px -533px transparent;
+float:left;
+height:25px;
+width:90px;
+}
+.yqjl_bg li {
+color:#006666;
+float:left;
+font-size:12px;
+height:22px;
+line-height:22px;
+margin-top:7px;
+text-align:center;
+}
+.yqjl_bg .li_right {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -958px -683px transparent;
+}
+.yqjl_border_dotted {
+border-bottom:1px dotted #D9D9D9;
+padding:10px 0;
+}
+.yqjl_link a {
+color:#006666;
+text-decoration:underline;
+}
+.yqjl_link a:hover {
+color:#0000FF;
+}
+.mydh_cp {
+padding-left:35px;
+}
+.mydh_bt {
+font-size:12px;
+height:40px;
+line-height:20px;
+overflow:hidden;
+padding:0 3px;
+text-align:left;
+width:370px;
+}
+.mydh_bt span {
+color:#006666;
+display:inline;
+}
+.mydh_bt span a {
+color:#006666;
+}
+.mydh_bt p {
+color:#8B8B8B;
+display:inline;
+}
+.mydh_bt p a {
+color:#8B8B8B;
+}
+.mydh_yxq {
+color:#000000;
+padding:0 3px;
+text-align:left;
+width:370px;
+}
+.mydh_shc {
+background:none repeat scroll 0 0 #FFFDEC;
+border:1px solid #C6C6C6;
+color:#000000;
+font-size:12px;
+height:28px;
+line-height:28px;
+margin-top:10px;
+padding-left:6px;
+text-align:left;
+width:730px;
+}
+.znx_botoom_a1 input {
+float:left;
+margin-top:8px;
+}
+.znx_botoom_a1 span {
+float:left;
+height:28px;
+line-height:28px;
+padding-right:10px;
+}
+.znx_botoom_a1 a {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -566px -533px transparent;
+display:block;
+float:left;
+height:21px;
+margin-top:3px;
+width:65px;
+}
+.znx_botoom_a1 .shuaxin {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -649px -533px transparent;
+height:21px;
+margin-left:10px;
+width:45px;
+}
+.znx_botoom_a1 button {
+float:left;
+height:23px;
+margin:2px 5px 0;
+padding:0;
+}
+.mydh_dqjf {
+color:#E00101;
+float:left;
+font-size:12px;
+height:35px;
+line-height:35px;
+padding-left:20px;
+text-align:left;
+width:300px;
+}
+.mydh_gdtg_link {
+color:#000000;
+float:right;
+font-size:12px;
+line-height:35px;
+padding-right:10px;
+}
+.mytz_bt, .grzx_zhanneix {
+color:#000000;
+font-size:12px;
+height:20px;
+line-height:20px;
+overflow:hidden;
+padding:0 5px;
+text-align:left;
+width:333px;
+}
+.grzx_zhanneix {
+width:428px;
+}
+.znx_botoom_a1 {
+float:left;
+height:28px;
+width:300px;
+}
+.xznx_form_left_a1, .xznx_form_left_a2 {
+color:#000000;
+float:left;
+font-size:12px;
+height:20px;
+line-height:20px;
+padding-bottom:10px;
+text-align:right;
+width:65px;
+}
+.xznx_form_right_a1, .xznx_form_right_a2, .xznx_form_right_a4 {
+color:#000000;
+float:left;
+font-size:12px;
+height:20px;
+line-height:20px;
+padding-bottom:10px;
+text-align:left;
+width:670px;
+}
+.xznx_form_right_a2 input {
+height:18px;
+width:660px;
+}
+.xznx_form_right_a3 {
+color:#000000;
+float:left;
+font-size:12px;
+line-height:20px;
+padding-bottom:10px;
+text-align:left;
+width:670px;
+}
+.xznx_form_right_a3 textarea {
+height:200px;
+width:660px;
+}
+.xznx_form_right_a4 input {
+float:left;
+height:18px;
+width:70px;
+}
+.xznx_form_right_a4 span {
+float:left;
+height:20px;
+padding-left:10px;
+width:94px;
+}
+.xznx_form_bottom {
+background:none repeat scroll 0 0 #FFFDEC;
+border:1px solid #C6C6C6;
+float:left;
+height:28px;
+margin-top:10px;
+padding-left:15px;
+width:721px;
+}
+.xznx_anfs {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -719px -533px transparent;
+display:block;
+float:left;
+height:21px;
+margin-right:10px;
+margin-top:3px;
+width:45px;
+}
+.xznx_anqx {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -780px -533px transparent;
+display:block;
+float:left;
+height:21px;
+margin-top:3px;
+width:45px;
+}
+.xgtx_left {
+float:left;
+padding:0 10px 10px;
+text-align:center;
+width:320px;
+}
+.xgtx_right {
+background:none repeat scroll 0 0 #FFFEF4;
+border:1px dotted #454545;
+float:left;
+padding:10px;
+width:376px;
+}
+.xgtx_left_a1 {
+color:#006666;
+font-size:12px;
+font-weight:bold;
+line-height:20px;
+padding-top:5px;
+text-align:center;
+width:320px;
+}
+.xgtx_left_img {
+border:1px solid #B4B4B4;
+height:100px;
+margin:0 auto;
+padding:1px;
+width:100px;
+}
+.xgtx_left_a2 {
+color:#000000;
+font-size:12px;
+line-height:20px;
+padding-top:20px;
+text-align:left;
+width:320px;
+}
+.xgtx_left_a3 {
+height:20px;
+text-align:left;
+width:320px;
+}
+.a3_input {
+background:none repeat scroll 0 0 #F0F0F0;
+border:1px solid #CCCCCC;
+float:left;
+height:18px;
+margin-right:5px;
+width:220px;
+}
+.a3_an_ll {
+background:none repeat scroll 0 0 #F0F0F0;
+border:1px solid #CCCCCC;
+color:#000000;
+display:block;
+float:left;
+font-size:12px;
+height:20px;
+line-height:18px;
+text-align:center;
+width:69px;
+}
+.xgtx_left_a4 {
+color:#ABABAB;
+font-size:12px;
+line-height:20px;
+padding-top:10px;
+text-align:left;
+width:320px;
+}
+.xgtx_left_a4 span {
+color:#FF0000;
+float:left;
+text-align:left;
+width:40px;
+}
+.xgtx_left_a4 p {
+float:left;
+text-align:left;
+width:280px;
+}
+.xgtx_left_a5 {
+height:22px;
+margin:0 auto;
+width:110px;
+}
+.a5_anqr {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -465px -577px transparent;
+display:block;
+float:left;
+height:22px;
+margin-right:6px;
+margin-top:10px;
+width:52px;
+}
+.a5_anqx {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -523px -577px transparent;
+display:block;
+float:left;
+height:22px;
+margin-top:10px;
+width:52px;
+}
+.xgtx_right p {
+color:#DD0000;
+font-size:12px;
+line-height:20px;
+padding-bottom:10px;
+text-align:left;
+width:376px;
+}
+.my_post_topic_type_image img {
+height:26px;
+width:23px;
+}
+.grzx_zhanneix a {
+color:#000000;
+}
+.hei_cu {
+color:#000000;
+font-weight:bold;
+}
+.znx_yd_a1 {
+color:#369FA7;
+float:left;
+font-size:12px;
+font-weight:bold;
+height:35px;
+line-height:35px;
+padding-left:15px;
+padding-right:10px;
+text-align:left;
+}
+.znx_yd_a2 {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -833px -533px transparent;
+display:block;
+float:left;
+height:21px;
+margin-top:8px;
+width:45px;
+}
+.znx_zt {
+background:none repeat scroll 0 0 #EDF6F6;
+color:#000000;
+float:left;
+font-size:12px;
+line-height:23px;
+padding:10px;
+text-align:left;
+width:718px;
+}
+.znx_zt p {
+display:block;
+float:left;
+text-align:left;
+width:650px;
+}
+.znx_zt strong {
+display:block;
+float:left;
+text-align:right;
+width:60px;
+}
+.znx_text {
+color:#000000;
+float:left;
+font-size:14px;
+line-height:25px;
+padding:20px;
+text-align:left;
+width:698px;
+}
+.znx_text p {
+text-indent:30px;
+}
+.znx_kshf {
+background:none repeat scroll 0 0 #FFFDEC;
+border:1px solid #C6C6C6;
+float:left;
+padding:10px;
+width:716px;
+}
+.znx_kshf p {
+color:#369FA7;
+font-size:12px;
+font-weight:bold;
+height:25px;
+line-height:25px;
+text-align:left;
+width:716px;
+}
+.form_style div {
+margin:5px 0;
+overflow:hidden;
+}
+.form_style label {
+float:left;
+margin-right:10px;
+text-align:right;
+width:80px;
+}
+.form_style input {
+float:left;
+width:600px;
+}
+.form_style textarea {
+color:#000000;
+float:left;
+font-size:12px;
+height:70px;
+line-height:20px;
+text-align:left;
+width:600px;
+}
+.form_style .submit_button {
+background:url("http://s1.tuan800.net/images/tuan800_bg.png") no-repeat scroll -719px -533px transparent;
+border:0 none;
+display:block;
+height:21px;
+margin:7px 0 0 92px;
+width:45px;
+}
+.form_style .text {
+float:left;
+}
+.page_div {
+float:left;
+width:100%;
+}
+#simple_captcha {
+height:32px;
+line-height:32px;
+}
+#captcha {
+margin-top:5px;
+width:150px;
+}
+.profile_table {
+font-size:12px;
+}
+.profile_table th {
+background-color:#FFFDEC;
+border-color:#C6C6C6 #C6C6C6 #C6C6C6 -moz-use-text-color;
+border-style:solid solid solid none;
+border-width:1px 1px 1px 0;
+color:#369FA7;
+font-weight:400;
+height:30px;
+text-align:center;
+vertical-align:middle;
+}
+.profile_table .th_1 {
+border-left:1px solid #C6C6C6;
+}
+.profile_table td {
+background:none repeat scroll 0 0 #F1F1F1;
+border-bottom:1px solid #FFFFFF;
+color:#000000;
+font-size:12px;
+line-height:20px;
+padding:6px 3px;
+text-align:left;
+vertical-align:middle;
+}
+.profile_table .td_tc {
+text-align:center;
+}
+span.expiring_deal {
+background-color:#FF9D4F;
+}
+.expiring_deal td {
+background-color:#FF9D4F;
+}
+.personal_info {
+border:1px solid #369FA7;
+padding:1px 2px;
+}
+.personal_info .right_bt, .personal_info .right_bt_hd, .personal_info .right_jbzl, .personal_info .xggrzl_bg {
+float:none;
+width:auto;
+}
+.personal_content {
+overflow:hidden;
+padding:20px;
+}
+.upload_user_logo_img {
+float:left;
+text-align:center;
+width:140px;
+}
+.personal_right {
+float:left;
+line-height:30px;
+}
+.personal_info .page_div {
+float:none;
+}
+.personal_info .site_deal_right {
+width:780px;
+}
+.personal_info .site_deal {
+border-bottom:1px dotted #CCCCCC;
+float:none;
+overflow:hidden;
+}
+.position_box {
+height:0;
+position:relative;
+width:0;
+z-index:1;
+}
+.position_content {
+background:none repeat scroll 0 0 #FFFDD6;
+border:1px solid #D5D185;
+padding:10px 20px;
+position:absolute;
+right:-100px;
+top:0;
+width:160px;
+z-index:2;
+}
+.position_content input {
+width:100px;
+}
+.grid_table {
+border:1px solid #C6C6C6;
+}
+.grid_table th {
+border-color:#C6C6C6 #C6C6C6 -moz-use-text-color -moz-use-text-color;
+border-style:solid solid none none;
+border-width:1px 1px 0 0;
+}
+.grid_table .th_1 {
+border-color:-moz-use-text-color #C6C6C6 -moz-use-text-color -moz-use-text-color;
+border-style:none solid none none;
+border-width:0 1px 0 0;
+}
+.forum_links {
+width:80px;
+}
+.forum_links a {
+color:#666666;
+display:block;
+}
+.forum_links a:hover {
+color:#006666;
+}
+.forum_links span {
+display:inline-block;
+text-align:right;
+width:40px;
+}
+.beizhu {
+color:#666666;
+display:inline-block;
+float:left;
+overflow:hidden;
+white-space:nowrap;
+width:300px;
+}

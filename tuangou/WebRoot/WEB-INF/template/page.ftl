@@ -92,7 +92,7 @@
 										</div>
 										<div style="height: 23px;">
 											<a style="float: right; margin-right: 13px;" href="#" rel="nofollow" title="举报不良信息、网页出错或其它问题" target="_blank">我要举报</a> 有效期：截止至${team.endTime?string("yyyy-MM-dd HH:mm:ss")}
-											}
+											
 										</div>
 									</div>
 									<div class="deal_ts">

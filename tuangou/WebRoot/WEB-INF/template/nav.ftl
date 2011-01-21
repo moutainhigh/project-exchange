@@ -35,7 +35,7 @@
 						<a href="#" class="top_link"><span class="down">团购地图</span> </a>
 					</li>
 					<li class="top">
-						<a href="#" class="top_link"><span class="down">个人中心</span> </a>
+						<a href="${base}/userCenter_enter_action" class="top_link"><span class="down">个人中心</span> </a>
 					</li>
 					<li class="top">
 						<a href="#" class="top_link"><span class="down">积分兑换</span> </a>

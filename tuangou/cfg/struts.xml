@@ -57,7 +57,7 @@
 				<param name="inputName">imageStream</param>
 			</result>
 		</action>
-		
+			<!--评论 -->
 		<action name="comment_action" class="com.throne212.tg.web.action.CommentAction">
 			<result name="comment" type="chain">
 				<param name="actionName">page</param>
@@ -69,8 +69,15 @@
 			</result>
 			
 		</action>
-		
-		
+		<!--用户中心 -->
+		<action name="userCenter_*_action" method="{1}" class="com.throne212.tg.web.action.UserCenterAction">
+		<result name="login" type="chain">
+			<param name="actionName">login</param>
+			<param name="namespace">/</param> 
+			</result> 
+		<result name="entered" type="freemarker">/WEB-INF/template/userInfo.ftl</result>
+		<result name="showInfoChange" type="freemarker">/WEB-INF/template/userInfo_change.ftl</result>
+		</action>
 		
 		
 		<!-- 访问前台功能action -->

@@ -32,6 +32,9 @@ public class User implements java.io.Serializable {
 	private Date regDate;
 	private String tel;
 	private String qq;
+	private String location;
+	private String birthday;
+	private Boolean gender;
 
 	// Constructors
 
@@ -124,6 +127,30 @@ public class User implements java.io.Serializable {
 
 	public void setQq(String qq) {
 		this.qq = qq;
+	}
+	@Column(name = "location", length = 100)
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	@Column(name = "birthday", length = 100)
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	@Column(name = "gender", length=20)
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
 	}
 
 }
