@@ -144,7 +144,7 @@ public class User implements java.io.Serializable {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	@Column(name = "gender", length=20)
+	@Column(name = "gender", length=4)
 	public Boolean getGender() {
 		return gender;
 	}

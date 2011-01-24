@@ -260,6 +260,8 @@ public class FrontAction extends BaseAction {
 		return "success";
 		
 	}
+	
+
 
 	public City getCity() {
 		return city;

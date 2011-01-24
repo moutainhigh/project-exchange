@@ -61,6 +61,11 @@ public class Teams implements java.io.Serializable {
 	private Boolean isTop;
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = TeamCategory.class)
 	private TeamCategory cate;
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = User.class)
+	private User collectUser;
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = User.class)
+	private User buyedUser;
+	
 	@Column(name = "summary")
 	private String summary;
 	
@@ -322,5 +327,21 @@ public class Teams implements java.io.Serializable {
 
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
+	}
+
+	public User getCollectUser() {
+		return collectUser;
+	}
+
+	public void setCollectUser(User collectUser) {
+		this.collectUser = collectUser;
+	}
+
+	public User getBuyedUser() {
+		return buyedUser;
+	}
+
+	public void setBuyedUser(User buyedUser) {
+		this.buyedUser = buyedUser;
 	}
 }

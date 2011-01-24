@@ -77,6 +77,8 @@
 			</result> 
 		<result name="entered" type="freemarker">/WEB-INF/template/userInfo.ftl</result>
 		<result name="showInfoChange" type="freemarker">/WEB-INF/template/userInfo_change.ftl</result>
+		<result name="showChangePwd" type="freemarker">/WEB-INF/template/userInfo_change_pwd.ftl</result>
+		
 		</action>
 		
 		

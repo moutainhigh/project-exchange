@@ -8,7 +8,7 @@
       <ul>
         <li><a href="${base}/userCenter_showInfoChange_action">修改个人资料</a></li>
         <li><a href="http://www.tuan800.com/profile/edit_system_setting">修改个人设置</a></li>
-        <li><a href="http://www.tuan800.com/profile/edit_password">修改密码</a></li>
+        <li><a href="${base}/userCenter_showChangePwd_action">修改密码</a></li>
       </ul>
     </li>
     <li class="grzx_a2">
