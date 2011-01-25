@@ -32,7 +32,7 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>医生注册信息数据字典 - ${dic_name }</font>
+			        <font class=caption>母婴人员数据字典 - ${dic_name }</font>
 			      </td>
 			    </tr>
 			</table>

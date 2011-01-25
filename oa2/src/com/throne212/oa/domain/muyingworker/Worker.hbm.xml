@@ -11,7 +11,7 @@
 		<property name="birthday"/>
 		<property name="age"/>
 		<property name="no"/>
-		<property name="date"/>
+		<property name="date" column="date_col"/>
 		<property name="image"/>
 		<property name="checkDate"/>
 		<property name="checkSummary"/>

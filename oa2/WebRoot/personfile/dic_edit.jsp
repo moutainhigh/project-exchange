@@ -32,7 +32,7 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>人事档案数据字典 - ${dic_name }</font>
+			        <font class=caption>人事文件数据字典 - ${dic_name }</font>
 			      </td>
 			    </tr>
 			</table>

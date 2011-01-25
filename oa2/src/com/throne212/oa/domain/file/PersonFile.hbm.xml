@@ -9,7 +9,7 @@
 
 		<property name="comments" length="1024"></property>
 		<property name="content" length="102400"></property>
-		<property name="date"></property>
+		<property name="date" column="date_col"></property>
 		<property name="desc" length="1024" column="description"></property>
 		<property name="fileNo"></property>
 		<property name="mainWords"></property>

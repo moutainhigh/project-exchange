@@ -3,10 +3,10 @@
 	<proxool>
 		<alias>oa2Pool</alias>
 
-		<driver-url>jdbc:mysql://localhost:3306/oa2</driver-url>
+		<driver-url>jdbc:oracle:thin:@localhost:1521:oracle</driver-url>
 		<driver-properties>
-			<property name="user" value="oa2" />
-			<property name="password" value="123" />
+			<property name="user" value="mzoanew" />
+			<property name="password" value="mzoanew" />
 		</driver-properties>
 
 		<!--<driver-url>jdbc:mysql://localhost:3306/agency</driver-url>
@@ -15,7 +15,7 @@
 			<property name="password" value="adminadmin" />
 		</driver-properties>
 		-->
-		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
 		<maximum-connection-count>100</maximum-connection-count>
 		<minimum-connection-count>1</minimum-connection-count>
 	</proxool>

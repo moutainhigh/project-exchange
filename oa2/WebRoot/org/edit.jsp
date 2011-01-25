@@ -64,12 +64,12 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>编辑母婴人员注册信息</font>
+			        <font class=caption>编辑母婴机构注册信息</font>
 			      </td>
 			    </tr>
 			</table>
 			<div style="height: 25px;"></div>
-			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
+			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_title">					
 					<td align="center" colspan="5">
 						&nbsp;

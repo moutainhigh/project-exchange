@@ -21,7 +21,7 @@
 		<property name="fromOrg"/>
 		
 		<property name="year"/>
-		<property name="date"/>
+		<property name="date" column="date_col"/>
 		<property name="result"/>
 		<property name="reason"/>
 		<property name="byWho"/>

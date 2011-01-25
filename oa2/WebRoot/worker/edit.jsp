@@ -102,6 +102,10 @@
 				}
 			}
 		</script>
+		<style>
+			.CheckItem{width:120px;}
+			td{height:40px;}
+		</style>
 	</head>
 	<body>
 		<form name="messageForm" method="post" action="${appPath}/worker.do">
@@ -116,7 +120,7 @@
 			    </tr>
 			</table>
 			<div style="height: 25px;"></div>
-			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
+			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_title">					
 					<td align="center" colspan="5">
 						&nbsp;
