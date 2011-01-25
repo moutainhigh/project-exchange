@@ -34,10 +34,12 @@ public class WebConstants {
 	public static final String DEFAULT_CITY_NAME="全国";//默认城市名
 	public static final int NUM_PER_FRONT_PAGE_TEAM=9;// 前台每页团购信息记录数目
 	public static final int NUM_PER_PAGE_SEARCH_TEAM=2;//前台每页的团购信息搜索结果数
+	public static final int NUM_PER_PAGE_COLLECT_TEAM=5;//个人中心每页团购信息收藏数
 	//后台配置
 	public static final int NUM_PER_BACK_PAGE_TEAM=10;//  后台每页团购信息记录数目
 	public static final int NUM_PER_BACK_PAGE_SITE=5;//  后台每页团购网站记录数目
 	public static final int NUM_PER_BACK_PAGE_USER=5;//后台每页用户信息记录数目
 	public static final int NUM_PER_BACK_PAGE_CATE=2;//后台每页分类信息记录数目
 	public static final int NUM_PER_BACK_PAGE_CITY=2;//后台每页城市信息记录数目
+	
 }

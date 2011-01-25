@@ -18,4 +18,8 @@ public interface TeamDao extends BaseDao {
 	//按团购信息关键字查询类似团购信息
 	public List<Teams> getSimilarTeams(int num,String cate,String keywords);
 	
+	//查询用户收藏的团购信息
+	public PageBean<Teams> getAllCollectTeamsOfUser(int pageIndex,String loginName);
+	
+	
 }

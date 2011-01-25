@@ -132,4 +132,11 @@ public List<Teams> getTopNewTeamsByCateAndCity(int num,String cateName,String ci
 		
 		
 	}
+	//查询用户收藏的团购信息
+	public PageBean<Teams> getAllCollectTeamsOfUser(int pageIndex,String loginName){
+		
+		
+		return teamDao.getAllCollectTeamsOfUser(pageIndex, loginName);
+		
+	}
 }

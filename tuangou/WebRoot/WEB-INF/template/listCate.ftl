@@ -68,7 +68,7 @@
 											<span class="time_div timeleft" alt="1285689600000"><em><#if t.leftDay??>${t.leftDay} <#else>0</#if></em>天<em><#if t.leftHour??>${t.leftHour}<#else>0</#if></em>小 时<em><#if t.leftMin??>${t.leftMin}<#else>0</#if></em>分<em><#if t.leftSec??>${t.leftSec}<#else>0</#if></em>秒</span>
 										</div>
 										<div class="new_plshc">
-											<a class="new_plshc_a2" href="javascript:void(0);">(19)</a>
+											<a class="new_plshc_a2" title="收藏此团购" href="${base}/commonAction_collect?team.id=${t.id}">(${t.collectTimes!'0'})</a>
 											<a class="new_plshc_a1" title="对此团购发表评论" href="${base}/page.htm?team.id=${t.id}" target="_blank">(${t.commentTimes!'0'})</a>
 										</div>
 										<div class="new_ms_imgbox">

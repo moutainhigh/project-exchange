@@ -27,6 +27,7 @@
 								<a class="douban" href="#" target="_blank">豆瓣</a>
 								<a class="sina" href="#" target="_blank">新浪微博</a>
 							</div>
+							<#include "anotherMsg.ftl">
 							<div class="c1_2">
 								<span>今日团购：</span>
 								<strong><#if site??><a href="${site.url}">【${team.siteName!""}】</a> <#else>【${team.siteName!""}】</#if></strong>
@@ -50,7 +51,7 @@
 											<a class="list_ding" title="顶您喜爱的团购" onclick="deal_ajax_ding('/deal_ratings/promote/25950', '#ding-25950')" id="ding-25950" href="#">顶<font>1</font>次</a>
 										</li>
 										<li class="concern_li">
-											<a class="concerned_deal" title="收藏此团购" value="/concern/add_concern/25950" href="#"> 收藏<font>0</font>次 </a>
+											<a class="concerned_deal" title="收藏此团购" value="/concern/add_concern/25950" href="#"> 收藏<font>${team.collectTimes!'0'}</font>次 </a>
 										</li>
 										<li class="buy_li">
 											<a class="purchased_deal" title="我已参与此团购" href="#" value="/concern/add_buy/25950"> 买了<font>0</font>次 </a>

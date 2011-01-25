@@ -5,11 +5,17 @@ package com.throne212.tg.web.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +41,12 @@ public class User implements java.io.Serializable {
 	private String location;
 	private String birthday;
 	private Boolean gender;
-
+	
+	
+   private Set<Teams>  collectTeams;
+	
+	
+   private Set<Teams> buyedTeams;
 	// Constructors
 
 	/** default constructor */
@@ -151,6 +162,30 @@ public class User implements java.io.Serializable {
 
 	public void setGender(Boolean gender) {
 		this.gender = gender;
+	}
+	@ManyToMany(targetEntity=Teams.class,fetch = FetchType.EAGER,
+            cascade={CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinTable(name = "user_collectTeams", joinColumns = { 
+		   @JoinColumn(name = "User_ID", referencedColumnName = "id") }, 
+		   inverseJoinColumns = { @JoinColumn(name = "Teams_ID", referencedColumnName = "id") })
+	public Set<Teams> getCollectTeams() {
+		return collectTeams;
+	}
+
+	public void setCollectTeams(Set<Teams> collectTeams) {
+		this.collectTeams = collectTeams;
+	}
+	@ManyToMany(targetEntity=Teams.class,fetch = FetchType.EAGER,
+            cascade={CascadeType.MERGE,CascadeType.PERSIST})
+   @JoinTable(name = "user_buyedTeams", joinColumns = { 
+		   @JoinColumn(name = "User_ID", referencedColumnName = "id") }, 
+		   inverseJoinColumns = { @JoinColumn(name = "Teams_ID", referencedColumnName = "id") })
+	public Set<Teams> getBuyedTeams() {
+		return buyedTeams;
+	}
+
+	public void setBuyedTeams(Set<Teams> buyedTeams) {
+		this.buyedTeams = buyedTeams;
 	}
 
 }

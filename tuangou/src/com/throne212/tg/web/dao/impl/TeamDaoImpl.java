@@ -159,4 +159,37 @@ public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 		
 		
 	}
+	
+	//查询用户收藏的团购信息
+	public PageBean<Teams> getAllCollectTeamsOfUser(int pageIndex,String loginName){
+		
+		
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<Teams> page = new PageBean<Teams>();
+		int startIndex = (pageIndex - 1) * WebConstants.NUM_PER_PAGE_COLLECT_TEAM;
+//		String hql = "from Teams t left join t.collectUsers u where u.loginName='"+loginName+"' order by t.createTime desc";
+		String hql="select distinct t from User u,Teams t where u.loginName='"+loginName+"' and u in elements(t.collectUsers) order by t.createTime desc";
+		logger.debug(hql);
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		int count = s.createQuery(hql).list().size();
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count);// 总记录数目
+		List<Teams> list = s.createQuery(hql).setMaxResults(WebConstants.NUM_PER_PAGE_COLLECT_TEAM).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.NUM_PER_PAGE_COLLECT_TEAM);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 }

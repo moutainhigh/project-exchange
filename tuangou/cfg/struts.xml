@@ -67,7 +67,17 @@
 				<param name="actionName">login</param>
          		<param name="namespace">/</param> 
 			</result>
+			</action>
 			
+		<action name="commonAction_*" method="{1}" class="com.throne212.tg.web.action.CommonAction">
+			<result name="login" type="chain">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param> 
+			</result> 
+				<result name="collect" type="chain">
+				<param name="actionName">page</param>
+				<param name="namespace">/</param> 
+			</result> 
 		</action>
 		<!--用户中心 -->
 		<action name="userCenter_*_action" method="{1}" class="com.throne212.tg.web.action.UserCenterAction">
@@ -78,7 +88,7 @@
 		<result name="entered" type="freemarker">/WEB-INF/template/userInfo.ftl</result>
 		<result name="showInfoChange" type="freemarker">/WEB-INF/template/userInfo_change.ftl</result>
 		<result name="showChangePwd" type="freemarker">/WEB-INF/template/userInfo_change_pwd.ftl</result>
-		
+		<result name="show_collect_teams" type="freemarker">/WEB-INF/template/userInfo_show_collect.ftl</result>
 		</action>
 		
 		

@@ -22,7 +22,7 @@ public interface BaseBiz {
 	public <T> long getEntitySumByColValue(Class<T> clazz,String col,String value);
 	public <T> long getEntitySumByColsValue(Class<T> clazz,String colOne,String colTwo, String value);
 	public <T> List<T> getAll(Class<T> clazz, String orderBy, String style, int startIndex, int length);
-		
+	public <T> void merge(T entity);
 	
 
 }

@@ -6,6 +6,15 @@ import org.apache.log4j.Logger;
 public class BaseAction {
 	protected Logger logger = Logger.getLogger(this.getClass());
 	protected String msg;// 错误提示信息
+	protected String anotherMsg; //其它提示消息
+
+	public String getAnotherMsg() {
+		return anotherMsg;
+	}
+
+	public void setAnotherMsg(String anotherMsg) {
+		this.anotherMsg = anotherMsg;
+	}
 
 	public String getMsg() {
 		return msg;

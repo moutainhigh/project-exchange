@@ -82,4 +82,9 @@ public class BaseBizImpl implements BaseBiz {
 		
 		return baseDao.getAll(clazz, orderBy, style, startIndex, length);
 	}
+	
+	public <T> void merge(T entity){
+		
+		baseDao.merge(entity);
+	}
 }

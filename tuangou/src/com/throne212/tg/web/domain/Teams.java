@@ -4,6 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -61,10 +63,15 @@ public class Teams implements java.io.Serializable {
 	private Boolean isTop;
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = TeamCategory.class)
 	private TeamCategory cate;
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = User.class)
-	private User collectUser;
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, targetEntity = User.class)
-	private User buyedUser;
+
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER,
+		    mappedBy="collectTeams",
+		    targetEntity=User.class)
+	private Set<User> collectUsers;
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER,
+		    mappedBy="buyedTeams",
+		    targetEntity=User.class)
+	private Set<User> buyedUsers;
 	
 	@Column(name = "summary")
 	private String summary;
@@ -329,19 +336,21 @@ public class Teams implements java.io.Serializable {
 		this.keywords = keywords;
 	}
 
-	public User getCollectUser() {
-		return collectUser;
+	public Set<User> getCollectUsers() {
+		return collectUsers;
 	}
 
-	public void setCollectUser(User collectUser) {
-		this.collectUser = collectUser;
+	public void setCollectUsers(Set<User> collectUsers) {
+		this.collectUsers = collectUsers;
 	}
 
-	public User getBuyedUser() {
-		return buyedUser;
+	public Set<User> getBuyedUsers() {
+		return buyedUsers;
 	}
 
-	public void setBuyedUser(User buyedUser) {
-		this.buyedUser = buyedUser;
+	public void setBuyedUsers(Set<User> buyedUsers) {
+		this.buyedUsers = buyedUsers;
 	}
+
+	
 }
