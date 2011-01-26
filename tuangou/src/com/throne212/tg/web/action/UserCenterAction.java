@@ -1,6 +1,7 @@
 package com.throne212.tg.web.action;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -10,6 +11,7 @@ import com.throne212.tg.web.common.EncryptUtil;
 import com.throne212.tg.web.common.PageBean;
 import com.throne212.tg.web.common.Util;
 import com.throne212.tg.web.common.WebConstants;
+import com.throne212.tg.web.domain.Advert;
 import com.throne212.tg.web.domain.Teams;
 import com.throne212.tg.web.domain.User;
 
@@ -128,6 +130,24 @@ public String showCollectTeams(){
 	
 	
 }
+
+public String showBoughtTeams() {
+	
+	User user = (User) ActionContext.getContext().getSession().get(
+			WebConstants.SESS_USER_OBJ);
+	if (user == null) {
+		this.setMsg("请先登录后再进行操作！");
+		return "login";
+	}
+	pageBean=commonBiz.getAllBoughtTeamsOfUser(pageIndex, user.getLoginName());
+	
+	
+	return "show_bought_teams";
+	
+	
+	
+	
+}
 private Teams team;
 public String deleteCollectTeam(){
 	
@@ -144,12 +164,15 @@ public String deleteCollectTeam(){
 		collectUsers=team.getCollectUsers();
 		Set<Teams> collectTeams = new HashSet<Teams>();
 		collectTeams=	user.getCollectTeams();
-		collectTeams.remove(team);
-		collectUsers.remove(user);
+		
+		logger.debug(collectTeams.size());
+		collectTeams=this.removeTeam(collectTeams, team);
+		logger.debug(collectTeams.size());
+		collectUsers=this.removeUser(collectUsers, user);
 		team.setCollectUsers(collectUsers);
 		user.setCollectTeams(collectTeams);
-		commonBiz.merge(user);
-		commonBiz.merge(team);
+//		team.setCollectTimes(team.getCollectTimes()-1);
+		
 		commonBiz.saveOrUpdateEntity(user);
 		commonBiz.saveOrUpdateEntity(team);
 		this.setMsg("成功删除收藏！");
@@ -159,6 +182,96 @@ public String deleteCollectTeam(){
 	}
 
 	return "show_collect_teams";
+}
+
+
+public String deleteBoughtTeam() {
+	
+	User user = (User) ActionContext.getContext().getSession().get(
+			WebConstants.SESS_USER_OBJ);
+	if (user == null) {
+		this.setMsg("请先登录后再进行操作！");
+		return "login";
+	}
+	if(team!=null&&team.getId()!=null){
+		team=commonBiz.getEntityById(Teams.class, team.getId());
+		Set<User> boughtUsers =new HashSet<User>();
+		boughtUsers=team.getBuyedUsers();
+		Set<Teams> boughtTeams = new HashSet<Teams>();
+		boughtTeams=	user.getBuyedTeams();
+		
+		logger.debug(boughtTeams.size());
+		boughtTeams=this.removeTeam(boughtTeams, team);
+		logger.debug(boughtTeams.size());
+		boughtUsers=this.removeUser(boughtUsers, user);
+		team.setBuyedUsers(boughtUsers);
+		user.setBuyedTeams(boughtTeams);
+	
+		
+		commonBiz.saveOrUpdateEntity(user);
+		commonBiz.saveOrUpdateEntity(team);
+		this.setMsg("成功删除已购买记录！");
+		return showBoughtTeams();
+	}
+	return "show_bought_teams";
+	
+}
+public String showChangePhoto() {
+	User user = (User) ActionContext.getContext().getSession().get(
+			WebConstants.SESS_USER_OBJ);
+	if (user == null) {
+		this.setMsg("请先登录后再进行操作！");
+		return "login";
+	}
+	return "showChangePhoto";
+	
+	
+}
+public String changePhoto() {
+	User user = (User) ActionContext.getContext().getSession().get(
+			WebConstants.SESS_USER_OBJ);
+	if (user == null) {
+		this.setMsg("请先登录后再进行操作！");
+		return "login";
+	}
+	String photo = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+	if (photo != null) {
+		user.setPhoto(photo);
+		ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+	}
+	commonBiz.saveOrUpdateEntity(user);
+	this.setMsg("设置成功！");
+	return "showChangePhoto";
+}
+
+
+private Set<User> removeUser(Set<User> set,User u) {
+	User userToRmv=new User();
+	for (Iterator iterator = set.iterator(); iterator.hasNext();) {
+		User name = (User) iterator.next();
+		if (name.getId().equals(u.getId())) {
+			logger.debug(">>>>>>>>>>>>>>"+name.getId()+"equals"+u.getId());
+			userToRmv=name;
+			
+			
+		}
+	}
+	set.remove(userToRmv);
+	return set;
+}
+
+private Set<Teams> removeTeam(Set<Teams> set,Teams team) {
+	Teams teamToRmv=new Teams();
+	for (Iterator iterator = set.iterator(); iterator.hasNext();) {
+		Teams name = (Teams) iterator.next();
+		if (name.getId().equals(team.getId())) {
+			logger.debug(">>>>>>>>>>>>>>"+name.getId()+"equals"+team.getId());
+			teamToRmv=name;
+		}
+	}
+	set.remove(teamToRmv);
+	return set;
+	
 }
 
 

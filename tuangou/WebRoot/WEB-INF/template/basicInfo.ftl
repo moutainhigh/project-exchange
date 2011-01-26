@@ -1,8 +1,8 @@
 <div class="right_jbzl">
   <div class="jbzl_left">
     <div class="jbzl_left_a1">
-      <img alt="我的头像" class="user_image" src="http://s0.tuan800.net/images/user_default_logo_normal.gif">
-      <div class="left_a1_tx"><a href="http://www.tuan800.com/profile/upload_user_logo">修改头像</a></div>
+      <img alt="我的头像" class="user_image" src="upload/${userObj.photo!'03.jpg'}">
+      <div class="left_a1_tx"><a href="${base}/userCenter_showChangePhoto_action">修改头像</a></div>
     
     </div>
     <div class="jbzl_left_a2">
@@ -19,3 +19,4 @@
   </div>
  
 </div>
+

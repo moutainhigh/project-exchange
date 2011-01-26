@@ -78,6 +78,11 @@
 				<param name="actionName">page</param>
 				<param name="namespace">/</param> 
 			</result> 
+			
+				<result name="bought" type="chain">
+				<param name="actionName">page</param>
+				<param name="namespace">/</param> 
+			</result> 
 		</action>
 		<!--用户中心 -->
 		<action name="userCenter_*_action" method="{1}" class="com.throne212.tg.web.action.UserCenterAction">
@@ -89,6 +94,8 @@
 		<result name="showInfoChange" type="freemarker">/WEB-INF/template/userInfo_change.ftl</result>
 		<result name="showChangePwd" type="freemarker">/WEB-INF/template/userInfo_change_pwd.ftl</result>
 		<result name="show_collect_teams" type="freemarker">/WEB-INF/template/userInfo_show_collect.ftl</result>
+		<result name="show_bought_teams" type="freemarker">/WEB-INF/template/userInfo_show_bought.ftl</result>
+		<result name="showChangePhoto" type="freemarker">/WEB-INF/template/userInfo_change_photo.ftl</result>
 		</action>
 		
 		

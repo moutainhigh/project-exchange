@@ -30,7 +30,7 @@
      <div class="right_jbzl" style="padding-top: 0px;">
         <form method="post" id="js_password_reset_form" class="edit_user" action="${base}/userCenter_changePwd_action"><div style="margin: 0pt; padding: 0pt; display: inline;"></div>
           <div class="xggrzl_bg">
-            <div class="zggrzl_bg_bt">我的收藏记录</div>
+            <div class="zggrzl_bg_bt">我的购买记录</div>
           </div>
          <div class="xggrzl_form">
                       <table width="738" cellspacing="0" cellpadding="0" border="0" class="profile_table">
@@ -70,8 +70,7 @@
       原价：<del>${t.marketPrice!'0'}</del>元
   </td>
   <td width="132" valign="top" align="center">
-    <a deal_id="173815" onclick="return confirm('是否真的删除吗?')"  href="${base}/userCenter_deleteCollectTeam_action?team.id=${t.id}" title="从我的收藏中删除"  class="shcjl_sc">删除</a>
-     <a title="标记已购买" href="javascript:void(0)" onclick="mark_concern_deal_bought('/profile/mark_concern_deal_bought/173815', 173815, '#concerned_deal_173815');" class="shcjl_bj">标记已购买</a>
+    <a deal_id="173815" onclick="return confirm('是否真的删除吗?')"  href="${base}/userCenter_deleteBoughtTeam_action?team.id=${t.id}" title="从我的购买中删除"  class="shcjl_sc">删除</a>
     
   </td>
   </tr>
@@ -97,10 +96,10 @@
 									
 							</div>
 									<div style="display:-moz-inline-box;float:right;">
-									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(1,'${base}/userCenter_showCollectTeams_action');">[首页]</a><#else>[首页]</#if></span>
-									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/userCenter_showCollectTeams_action');">[前一页]</a><#else>[前一页]</#if></span>
-									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/userCenter_showCollectTeams_action');">[后一页]</a><#else>[后一页]</#if></span>
-									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage },'${base}/userCenter_showCollectTeams_action');">[尾页]</a><#else>[尾页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(1,'${base}/userCenter_showBoughtTeams_action');">[首页]</a><#else>[首页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isFirstPage><a href="javascript:gotoPage(${pageBean.prePageIndex },'${base}/userCenter_showBoughtTeams_action');">[前一页]</a><#else>[前一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.nextPageIndex },'${base}/userCenter_showBoughtTeams_action');">[后一页]</a><#else>[后一页]</#if></span>
+									<span class="nextprev"><#if !pageBean.isLastPage><a href="javascript:gotoPage(${pageBean.maxPage },'${base}/userCenter_showBoughtTeams_action');">[尾页]</a><#else>[尾页]</#if></span>
 									</div>
 						
 								<div class="clear"></div>

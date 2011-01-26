@@ -41,7 +41,7 @@ public class User implements java.io.Serializable {
 	private String location;
 	private String birthday;
 	private Boolean gender;
-	
+	private String photo;
 	
    private Set<Teams>  collectTeams;
 	
@@ -186,6 +186,14 @@ public class User implements java.io.Serializable {
 
 	public void setBuyedTeams(Set<Teams> buyedTeams) {
 		this.buyedTeams = buyedTeams;
+	}
+	@Column(name = "photo", length = 100)
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 }

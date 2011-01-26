@@ -12,10 +12,10 @@
       </ul>
     </li>
     <li class="grzx_a2">
-      <p><a href="http://www.tuan800.com/profile/purchased">我的购买</a><font>（1）</font></p>
+      <p><a href="${base}/userCenter_showBoughtTeams_action">我的购买</a><font></font></p>
     </li>
     <li class="grzx_a3">
-      <p><a href="${base}/userCenter_showCollectTeams_action">我的收藏</a><font>（0）</font></p>
+      <p><a href="${base}/userCenter_showCollectTeams_action">我的收藏</a><font></font></p>
     </li>
   </ul>
 </div>

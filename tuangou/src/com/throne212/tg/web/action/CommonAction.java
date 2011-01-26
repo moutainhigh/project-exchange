@@ -26,12 +26,11 @@ public class CommonAction extends BaseAction {
 			collectUsers=team.getCollectUsers();
 			Set<Teams> collectTeams = new HashSet<Teams>();
 			collectTeams=	user.getCollectTeams();
-			if (!checkIfCollected(collectUsers, user.getLoginName())) {
+			if (!checkIfExist(collectUsers, user.getLoginName())) {
 				collectUsers.add(user);
 				team.setCollectUsers(collectUsers);
 				team.setCollectTimes(team.getClickTimes() + 1);
 				commonBiz.saveOrUpdateEntity(team);
-				
 				collectTeams.add(team);
 				user.setCollectTeams(collectTeams);
 				commonBiz.saveOrUpdateEntity(user);
@@ -55,8 +54,50 @@ public class CommonAction extends BaseAction {
 
 		return "collect";
 	}
+	
+	public String bought() {
+		User user = (User) ActionContext.getContext().getSession().get(
+				WebConstants.SESS_USER_OBJ);
+		if (user == null) {
+			this.setMsg("请先登录后再进行操作！");
+			return "login";
+		}
+		if (team != null && team.getId() != null) {
+			team = commonBiz.getEntityById(Teams.class, team.getId());
+			Set<User> buyedUsers =new HashSet<User>();
+			buyedUsers=team.getBuyedUsers();
+			Set<Teams> boughtTeams = new HashSet<Teams>();
+			boughtTeams=	user.getBuyedTeams();
+			if (!checkIfExist(buyedUsers, user.getLoginName())) {
+				buyedUsers.add(user);
+				team.setBuyedUsers(buyedUsers);
+				team.setBuyTimes(team.getBuyTimes()+1);
+				commonBiz.saveOrUpdateEntity(team);
+				boughtTeams.add(team);
+				user.setBuyedTeams(boughtTeams);
+				commonBiz.saveOrUpdateEntity(user);
+				this.setAnotherMsg("成功标记已买此团购消息！");
+				
+			} else {
 
-	  private boolean checkIfCollected(Set<User> users, String customer) {
+				this.setAnotherMsg("你已标注过此团购信息！");
+				return "bought";
+			}
+
+
+		}
+		
+		return "bought";
+		
+		
+		
+		
+	}
+	
+	
+	
+
+	  private boolean checkIfExist(Set<User> users, String customer) {
 		boolean isExist = false;
 		for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
 			User user = (User) iterator.next();

@@ -20,6 +20,7 @@ public interface TeamDao extends BaseDao {
 	
 	//查询用户收藏的团购信息
 	public PageBean<Teams> getAllCollectTeamsOfUser(int pageIndex,String loginName);
-	
+	//查询用户已购买的团购信息
+	public PageBean<Teams> getAllBoughtTeamsOfUser(int pageIndex,String loginName);
 	
 }

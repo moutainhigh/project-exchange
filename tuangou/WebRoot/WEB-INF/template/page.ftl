@@ -51,10 +51,10 @@
 											<a class="list_ding" title="顶您喜爱的团购" onclick="deal_ajax_ding('/deal_ratings/promote/25950', '#ding-25950')" id="ding-25950" href="#">顶<font>1</font>次</a>
 										</li>
 										<li class="concern_li">
-											<a class="concerned_deal" title="收藏此团购" value="/concern/add_concern/25950" href="#"> 收藏<font>${team.collectTimes!'0'}</font>次 </a>
+											<a class="concerned_deal" title="收藏此团购" value="/concern/add_concern/25950" href="${base}/commonAction_collect?team.id=${team.id}"> 收藏<font>${team.collectTimes!'0'}</font>次 </a>
 										</li>
 										<li class="buy_li">
-											<a class="purchased_deal" title="我已参与此团购" href="#" value="/concern/add_buy/25950"> 买了<font>0</font>次 </a>
+											<a class="purchased_deal" title="我已参与此团购" href="${base}/commonAction_bought?team.id=${team.id}" value="/concern/add_buy/25950"> 买了<font>${team.buyTimes!'0'}</font>次 </a>
 										</li>
 									</ul>
 									<div class="fl" style="margin: 10px 0pt;">
