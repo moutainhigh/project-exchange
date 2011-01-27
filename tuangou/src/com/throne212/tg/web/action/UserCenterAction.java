@@ -41,25 +41,31 @@ public class UserCenterAction extends BaseAction {
 		
 	}
 	
-
+private String location;
+private String birthday;
+private Boolean gender;
+private String qq;
+private String tel;
+private String email;
 	public String changeUserInfo() {
 		User userObj=(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (userObj==null) {
 			this.setMsg("请先登录！");
 			return "login";
 		}
-		if ("".equals(user.getLocation())||"".equals(user.getBirthday())||null==user.getGender()) {
+		if ("".equals(location)||"".equals(birthday)||null==gender) {
 			this.setMsg("请填入完整的资料内容！");
 			return "showInfoChange";
 		}
-		user.setLoginName(userObj.getLoginName());
-
-		user.setPassword(userObj.getPassword());
-		user.setUserType(userObj.getUserType());
-		user.setRegDate(userObj.getRegDate());
-	    logger.debug(user.getGender());
-	    logger.debug(user.getLoginName());
-	    logger.debug(user.getPassword());
+		if (user!=null&&user.getId()!=null) {
+			user=commonBiz.getEntityById(User.class, user.getId());
+		}
+		user.setLocation(location);
+		user.setBirthday(birthday);
+		user.setGender(gender);
+		user.setQq(qq);
+		user.setTel(tel);
+		user.setEmail(email);
 		commonBiz.saveOrUpdateEntity(user);
 		user=commonBiz.getEntityById(User.class, user.getId());
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
@@ -216,6 +222,72 @@ public String deleteBoughtTeam() {
 	return "show_bought_teams";
 	
 }
+public String collectToBought() {
+	
+	User user = (User) ActionContext.getContext().getSession().get(
+			WebConstants.SESS_USER_OBJ);
+	if (user == null) {
+		this.setMsg("请先登录后再进行操作！");
+		return "login";
+	}
+	if (team != null && team.getId() != null) {
+		team = commonBiz.getEntityById(Teams.class, team.getId());
+		Set<User> buyedUsers =new HashSet<User>();
+		buyedUsers=team.getBuyedUsers();
+		Set<Teams> boughtTeams = new HashSet<Teams>();
+		boughtTeams=	user.getBuyedTeams();
+		if (!checkIfExist(buyedUsers, user.getLoginName())) {
+			buyedUsers.add(user);
+			team.setBuyedUsers(buyedUsers);
+			team.setBuyTimes(team.getBuyTimes()+1);
+			commonBiz.saveOrUpdateEntity(team);
+			boughtTeams.add(team);
+			user.setBuyedTeams(boughtTeams);
+			commonBiz.saveOrUpdateEntity(user);
+			this.setMsg("成功标记团购消息！");
+			
+			team=commonBiz.getEntityById(Teams.class, team.getId());
+			Set<User> collectUsers =new HashSet<User>();
+			collectUsers=team.getCollectUsers();
+			Set<Teams> collectTeams = new HashSet<Teams>();
+			collectTeams=	user.getCollectTeams();
+			collectTeams=this.removeTeam(collectTeams, team);
+			collectUsers=this.removeUser(collectUsers, user);
+			team.setCollectUsers(collectUsers);
+			user.setCollectTeams(collectTeams);
+			commonBiz.saveOrUpdateEntity(user);
+			commonBiz.saveOrUpdateEntity(team);
+			return showCollectTeams();
+			
+			
+			
+		} else {
+
+			this.setMsg("你已标注过此团购信息！");
+			return "bought";
+		}
+
+
+	}
+	
+	return "bought";
+	
+
+}
+
+private boolean checkIfExist(Set<User> users, String customer) {
+	boolean isExist = false;
+	for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
+		User user = (User) iterator.next();
+		if (user.getLoginName().equals(customer)) {
+			isExist = true;
+		}
+	}
+	return isExist;
+
+}
+
+
 public String showChangePhoto() {
 	User user = (User) ActionContext.getContext().getSession().get(
 			WebConstants.SESS_USER_OBJ);
@@ -346,6 +418,54 @@ private Set<Teams> removeTeam(Set<Teams> set,Teams team) {
 
 		public void setTeam(Teams team) {
 			this.team = team;
+		}
+
+		public String getLocation() {
+			return location;
+		}
+
+		public void setLocation(String location) {
+			this.location = location;
+		}
+
+		public String getBirthday() {
+			return birthday;
+		}
+
+		public void setBirthday(String birthday) {
+			this.birthday = birthday;
+		}
+
+		public Boolean getGender() {
+			return gender;
+		}
+
+		public void setGender(Boolean gender) {
+			this.gender = gender;
+		}
+
+		public String getQq() {
+			return qq;
+		}
+
+		public void setQq(String qq) {
+			this.qq = qq;
+		}
+
+		public String getTel() {
+			return tel;
+		}
+
+		public void setTel(String tel) {
+			this.tel = tel;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
 	

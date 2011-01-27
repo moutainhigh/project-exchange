@@ -71,7 +71,7 @@
   </td>
   <td width="132" valign="top" align="center">
     <a deal_id="173815" onclick="return confirm('是否真的删除吗?')"  href="${base}/userCenter_deleteCollectTeam_action?team.id=${t.id}" title="从我的收藏中删除"  class="shcjl_sc">删除</a>
-     <a title="标记已购买" href="javascript:void(0)" onclick="mark_concern_deal_bought('/profile/mark_concern_deal_bought/173815', 173815, '#concerned_deal_173815');" class="shcjl_bj">标记已购买</a>
+     <a title="标记已购买" href="${base}/userCenter_collectToBought_action?team.id=${t.id}" onclick="return confirm('确定标记为已买?')" class="shcjl_bj">标记已购买</a>
     
   </td>
   </tr>

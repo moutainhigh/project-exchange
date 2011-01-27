@@ -12,7 +12,7 @@
       城市： ${userObj.location!'未填'} <br>
       		QQ:      ${userObj.qq!'未填'}<br>
       		电话： ${userObj.tel!'未填'}<br>
-      性别： <#if userObj.gender??><#if userObj.gender>女<#else>男</#if> <#else>未知 </#if><br>
+      性别： <#if userObj.gender??><#if userObj.gender>男<#else>女</#if> <#else>未知 </#if><br>
       生日： ${userObj.birthday!'未填'}
       </#if>
     </div>

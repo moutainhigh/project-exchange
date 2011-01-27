@@ -94,8 +94,7 @@ public class CommonAction extends BaseAction {
 		
 	}
 	
-	
-	
+
 
 	  private boolean checkIfExist(Set<User> users, String customer) {
 		boolean isExist = false;

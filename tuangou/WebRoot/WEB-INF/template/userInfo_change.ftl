@@ -36,29 +36,29 @@
           <ul>
             <li class="xggrzl_form_a1">所在城市：</li>
             <li class="xggrzl_form_a3">
-                <input type="text" name="user.location" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.location!''}">
+                <input type="text" name="location" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.location!''}">
              <span class="xggrzl_form_a2">*必填 </span>
             </li>
           </ul>
           <ul>
             <li class="xggrzl_form_a1">生日：</li>
         <li class="xggrzl_form_a3">
-                <input type="text" name="user.birthday" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.birthday!''}">
+                <input type="text" name="birthday" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.birthday!''}">
              <span class="xggrzl_form_a2">*格式（yyyy-mm-dd） </span>
             </li>
           </ul>
           <ul>
             <li class="xggrzl_form_a1">姓别：</li>
             <li class="xggrzl_form_a3">
-              <input type="radio" value="1" name="user.gender" id="user_gender_1" > <span>男</span>
-              <input type="radio" value="0" name="user.gender" id="user_gender_2"> <span>女</span>
+              <input type="radio" value="true" name="gender" checked="checked" id="user_gender_1" > <span>男</span>
+              <input type="radio" value="false" name="gender" id="user_gender_2"> <span>女</span>
                 <span class="xggrzl_form_a2">*必填 </span>
             </li>
           </ul>
            <ul>
             <li class="xggrzl_form_a1">QQ：</li>
             <li class="xggrzl_form_a3">
-                <input type="text" name="user.qq" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.qq!''}">
+                <input type="text" name="qq" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.qq!''}">
            
             </li>
           </ul>
@@ -66,7 +66,7 @@
            <ul>
             <li class="xggrzl_form_a1">电话：</li>
             <li class="xggrzl_form_a3">
-                <input type="text" name="user.tel" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.tel!''}">
+                <input type="text" name="tel" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.tel!''}">
              
             </li>
           </ul>
@@ -74,7 +74,7 @@
            <ul>
             <li class="xggrzl_form_a1">Email：</li>
             <li class="xggrzl_form_a3">
-                <input type="text" name="user.email" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.email!''}">
+                <input type="text" name="email" style="width: 120px; height: 18px; font-size: 12px; text-align: left; color: rgb(0, 0, 0); line-height: 18px;" class="js_city_input_text" value="${userObj.email!''}">
              
             </li>
           </ul>

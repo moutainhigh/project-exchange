@@ -68,7 +68,7 @@
          		<param name="namespace">/</param> 
 			</result>
 			</action>
-			
+			<!--收藏或标注已买 -->
 		<action name="commonAction_*" method="{1}" class="com.throne212.tg.web.action.CommonAction">
 			<result name="login" type="chain">
 				<param name="actionName">login</param>
