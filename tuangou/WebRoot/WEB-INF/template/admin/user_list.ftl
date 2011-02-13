@@ -66,7 +66,7 @@
 							<input type="checkbox" value="73" name="site_ids" class="site_ids">
 							</td>
 							<td class="lt-td tl">${u.loginName}</td>
-							<td class="lt-td">${u.email}</td>
+							<td class="lt-td">${u.email!''}</td>
 							<td class="lt-td">${u.qq!''}</td>
 							<td class="lt-td">${u.tel!''}</td>
 							<td class="lt-td">${u.regDate!''}</td>

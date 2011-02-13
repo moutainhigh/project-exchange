@@ -165,7 +165,7 @@ public class User implements java.io.Serializable {
 	}
 	@ManyToMany(targetEntity=Teams.class,fetch = FetchType.EAGER,
             cascade={CascadeType.MERGE,CascadeType.PERSIST})
-    @JoinTable(name = "user_collectTeams", joinColumns = { 
+    @JoinTable(name = "user_collectteams", joinColumns = { 
 		   @JoinColumn(name = "User_ID", referencedColumnName = "id") }, 
 		   inverseJoinColumns = { @JoinColumn(name = "Teams_ID", referencedColumnName = "id") })
 	public Set<Teams> getCollectTeams() {
@@ -177,7 +177,7 @@ public class User implements java.io.Serializable {
 	}
 	@ManyToMany(targetEntity=Teams.class,fetch = FetchType.EAGER,
             cascade={CascadeType.MERGE,CascadeType.PERSIST})
-   @JoinTable(name = "user_buyedTeams", joinColumns = { 
+   @JoinTable(name = "user_buyedteams", joinColumns = { 
 		   @JoinColumn(name = "User_ID", referencedColumnName = "id") }, 
 		   inverseJoinColumns = { @JoinColumn(name = "Teams_ID", referencedColumnName = "id") })
 	public Set<Teams> getBuyedTeams() {

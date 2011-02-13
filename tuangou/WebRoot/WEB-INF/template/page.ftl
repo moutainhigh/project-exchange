@@ -217,9 +217,10 @@
 												<li>
 													<div class="commentmain">
 														<div class="commentuser">
+																<!--
 															<div class="user50">
 																<a href="#" title=""><img style="width: 50px; height: 50px;" src="" width="50" height="50" /> </a>
-															</div>
+															</div> -->
 															<div class=" margin_t10 fl" style="background: none repeat scroll 0% 0% transparent;"></div>
 														</div>
 														<div class="commenttitle">

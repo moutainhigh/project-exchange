@@ -107,7 +107,7 @@ function check_rand(){
 }
 
 //表单提交
-function chkForm(){
+function checkForm(){
 	if(check_loginid() && check_pwd() && check_repwd && check_email() && check_rand()){
 		document.forms['reg'].submit();
 	}
