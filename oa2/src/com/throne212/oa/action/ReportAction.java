@@ -144,7 +144,22 @@ public class ReportAction extends DispatchAction {
 
 	public ActionForward removeHospital(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
-			reportDao.removeOrgInType(Long.valueOf(request.getParameter("orgId")));
+			//reportDao.removeOrgInType(Long.valueOf(request.getParameter("orgId")));
+			// 得到各类参数
+			String dateType = request.getParameter("dateType");
+			Year y = null;
+			if (!Util.isEmpty(request.getParameter("year"))) {
+				y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
+			}
+			Integer season = null;
+			if (!Util.isEmpty(request.getParameter("season"))) {
+				season = Integer.valueOf(request.getParameter("season"));
+			}
+			Integer month = null;
+			if (!Util.isEmpty(request.getParameter("month"))) {
+				month = Integer.valueOf(request.getParameter("month"));
+			}
+			reportDao.removeOrgReport(Long.valueOf(request.getParameter("orgId")), y, season, month, dateType);
 			request.setAttribute("msg", "移除单位成功");
 		} catch (RuntimeException e) {
 			e.printStackTrace();
@@ -738,6 +753,9 @@ public class ReportAction extends DispatchAction {
 	public ActionForward deleteDic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
 		String dicName = request.getParameter("dicName");
+		if(Hospital.class.getSimpleName().equals(dicName)){
+			reportDao.removeOrgReport(Long.valueOf(Long.parseLong(id)));
+		}
 		dicName = WorkReport.class.getPackage().getName() + "." + dicName;
 		int rst = dicDao.deleteDic(dicName, Long.valueOf(Long.parseLong(id)));
 		if (rst > 0)

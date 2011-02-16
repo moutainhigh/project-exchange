@@ -56,6 +56,39 @@ public class ReportDao {
 		s.close();
 	}
 	
+	public void removeOrgReport(Long hosId,Year y,Integer season,Integer month,String dateType){
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		Hospital hos = (Hospital) s.get(Hospital.class, hosId);
+		hos.setDate(null);//录入时间设置为空
+		s.saveOrUpdate(hos);		
+		//删除报表
+		/*String hql = "delete from " + WorkReport.class.getSimpleName() + " where org=? and year=? and season=? and month=? and dateType=?";
+		int rst = s.createQuery(hql)
+						.setParameter(0, hos)
+						.setParameter(1, y)
+						.setParameter(2, season)
+						.setParameter(3, month)
+						.setParameter(4, dateType)
+						.executeUpdate();
+		System.out.println("删除报表记录数为：" + rst);*/
+		
+		s.getTransaction().commit();
+		s.close();
+	}
+	public void removeOrgReport(Long hosId){
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();		
+		//删除报表
+		String hql = "delete from " + WorkReport.class.getSimpleName() + " where org.id=?";
+		int rst = s.createQuery(hql)
+						.setParameter(0, hosId)
+						.executeUpdate();
+		System.out.println("删除报表记录数为：" + rst);		
+		s.getTransaction().commit();
+		s.close();
+	}
+	
 	public void removeOrgInType(Long hosId){
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
