@@ -22,8 +22,8 @@ public class CommonListener implements ServletContextListener {
 		// 设置上下文路径
 		String appPath = e.getServletContext().getContextPath();
 		logger.info("appPath=" + appPath);
-		if (appPath.equals("/")) {
-			appPath = "";
+		if (!appPath.equals("/")) {
+			appPath = appPath + "/";
 		}
 		e.getServletContext().setAttribute(WebConstants.APP_PATH, appPath);
 		//设置系统名称

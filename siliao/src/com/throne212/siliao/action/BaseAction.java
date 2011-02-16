@@ -2,8 +2,10 @@ package com.throne212.siliao.action;
 
 import org.apache.log4j.Logger;
 
+import com.opensymphony.xwork2.Action;
+
 //所有Action的基础类
-public class BaseAction {
+public class BaseAction implements Action{
 	protected Logger logger = Logger.getLogger(this.getClass());
 	protected String msg;// 错误提示信息
 

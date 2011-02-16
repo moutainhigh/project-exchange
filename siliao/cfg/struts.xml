@@ -13,131 +13,23 @@
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
     <package name="struts2" extends="struts-default" namespace="/">        
-        <!-- 测试 
-		<action name="test" class="com.throne212.info168.web.action.TestAction">
-			<result name="success" type="staticview">/index.html</result>
-		</action>-->
-		<action name="test" class="com.throne212.info168.web.action.TestAction">
-			<result name="success" type="staticview">
-				<param name="location">front/page.ftl</param>
-				<param name="contentType">text/html</param>
-				<param name="fileName">${info.id}.html</param>
-				<param name="staticTemplate">front/page.ftl</param>
-				<param name="filePath">info</param>
-			</result>
+		<action name="test" class="com.throne212.siliao.action.TestAction">
+			<result name="success">/index.html</result>
 		</action>
-    	<!-- 登进 -->
-		<action name="login_action" class="com.throne212.info168.web.action.LoginAction">
-			<result name="admin" type="redirect">/admin/index.htm</result>
-			<result name="success" type="redirect">/user/infoList.htm</result>
-			<result name="fail" type="chain">
-				<param name="actionName">login</param>
-         		<param name="namespace">/</param> 
-			</result>
-			<result name="pre_url" type="redirect">${preUrl}</result>
+		<!-- 登入 -->
+		<action name="login" class="com.throne212.siliao.action.LoginAction">
+			<result name="success">/html/index.jsp</result>
+			<result name="fail">/login.jsp</result>
 		</action>
 		<!-- 登出 -->
-		<action name="logout_action" class="com.throne212.info168.web.action.LogoutAction">
-			<result name="success" type="redirect">/index.htm</result>
+		<action name="logout" class="com.throne212.siliao.action.LogoutAction">
+			<result name="success" type="redirect">/login.jsp</result>
 		</action>
-		<!-- 注册 -->
-		<action name="reg_action" class="com.throne212.info168.web.action.RegAction">
-			<result name="success" type="redirect">/user/infoList.htm</result>
-			<result name="fail" type="chain">
-				<param name="actionName">reg</param>
-         		<param name="namespace">/</param> 
-			</result>
-		</action>
-		<!-- 验证码 -->
-		<action name="rand" class="com.throne212.info168.web.action.RandAction">
-			<result name="success" type="stream">
-				<param name="contentType">image/jpeg</param>
-				<param name="inputName">imageStream</param>
-			</result>
-		</action>
-		<!-- 信息首页和详细页面 -->
-		<action name="/info/*/*" class="com.throne212.info168.web.action.InfoAction">
-			<param name="cityPinyin">{1}</param>
-			<param name="catePinyin">{2}</param>
-			<result name="list" type="freemarker">/front/list.ftl</result>
-			<result name="page" type="freemarker">/front/page.ftl</result>
-			<result name="index" type="chain">
-				<param name="actionName">index</param>
-         		<param name="namespace">/</param> 
-			</result>
-		</action>
-		<!-- 信息详细页面 -->
-		<action name="/info/*/*/*" class="com.throne212.info168.web.action.InfoAction">
-			<param name="cityPinyin">{1}</param>
-			<param name="catePinyin">{2}</param>
-			<param name="infoId">{3}</param>
-			<!-- <result name="page" type="freemarker">/front/page.ftl</result> -->
-			<result name="page" type="staticview">
-				<param name="location">front/page.ftl</param>
-				<param name="contentType">text/html</param>
-				<param name="fileName">${info.id}.html</param>
-				<param name="staticTemplate">front/page.ftl</param>
-				<param name="filePath">info</param>
-			</result>
-		</action>
-		<!-- 搜索页面 -->
-		<action name="/search/*/*" class="com.throne212.info168.web.action.SearchAction">
-			<param name="keywords">{1}</param>
-			<param name="catePinyin">{2}</param>
-			<result name="success" type="freemarker">/front/search.ftl</result>
-			<result name="index" type="chain">
-				<param name="actionName">index</param>
-         		<param name="namespace">/</param> 
-			</result>
-		</action>
-		<!-- 直接访问模板文件 -->
-		<action name="*" class="com.throne212.info168.web.action.BaseAction">
-			<result name="success" type="freemarker">/front/{1}.ftl</result>
-			<result name="index" type="chain">
-				<param name="actionName">info/${cityPinyin}</param>
-         		<param name="namespace">/</param> 
-			</result>
+		<action name="personal_*" method="{1}" class="com.throne212.siliao.action.PersonalAction">
+			<result name="password">/html/personal/password.jsp</result>
 		</action>
     </package>
-    <package name="user" namespace="/user" extends="struts-default">
-    	<interceptors>
-            <interceptor name="auth" class="com.throne212.info168.web.filter.AccessInterceptor"/>
-            <interceptor-stack name="authStack">
-            	<interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="auth" />
-            </interceptor-stack>
-        </interceptors>
-        <default-interceptor-ref name="authStack"/>
-        <global-results>
-			<result name="login" type="chain">
-				<param name="actionName">login</param>
-         		<param name="namespace">/</param> 
-			</result>
-		</global-results>
-		<action name="publish/*/*" method="{1}" class="com.throne212.info168.web.action.PublishAction">
-			<param name="param">{2}</param>
-			<result name="city" type="freemarker">/front/usercenter/publish_1.ftl</result>
-			<result name="cate1" type="freemarker">/front/usercenter/publish_2.ftl</result>
-			<result name="cate2" type="freemarker">/front/usercenter/publish_3.ftl</result>
-			<result name="area" type="freemarker">/front/usercenter/publish_4.ftl</result>
-			<result name="form" type="freemarker">/front/usercenter/publish_5.ftl</result>
-			<result name="success" type="freemarker">/front/usercenter/publish_succ.ftl</result>
-		</action>
-		<!-- 上传图片 -->
-		<action name="FileUploadAction_*" method="{1}" class="com.throne212.info168.web.action.FileUploadAction">
-			<interceptor-ref name="fileUploadStack"></interceptor-ref>
-			<result name="success">/upload/success.jsp</result>
-			<result name="error">/upload/fail.jsp</result>
-		</action>
-		<action name="*" method="{1}" class="com.throne212.info168.web.action.UserAction">
-			<result name="info_list" type="freemarker">/front/usercenter/info.ftl</result>
-			<result name="password" type="freemarker">/front/usercenter/password.ftl</result>
-			<result name="modify" type="freemarker">/front/usercenter/modify.ftl</result>
-			<result name="finance" type="freemarker">/front/usercenter/finance.ftl</result>
-			<result name="finance_form" type="freemarker">/front/usercenter/finance_form.ftl</result>
-			<result name="info_top" type="freemarker">/front/usercenter/info_top.ftl</result>
-		</action>
-    </package>
+    <!--  
     <package name="admin" namespace="/admin" extends="struts-default">
     	<interceptors>
             <interceptor name="auth" class="com.throne212.info168.web.filter.AdminAccessInterceptor"/>
@@ -170,17 +62,10 @@
 			<result name="add_money">/admin/user/money.jsp</result>
 		</action>
     </package>
+    -->
+    <!--  
 	<package name="json" extends="json-default" namespace="/ajax">
-		<global-results>
-			<result name="msg" type="json">
-				<param name="root">msg</param>
-			</result>
-			<result name="list" type="json">
-				<param name="includeProperties">list.*</param>
-			</result>
-		</global-results>
-     	<!-- AjaxAction -->
-        <action name="*" method="{1}" class="com.throne212.info168.web.action.AjaxAction">
+        <action name="*" method="{1}" class="com.throne212.siliao.action.AjaxAction">
         	<result name="area_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
@@ -212,4 +97,5 @@
 			</result>
 		</action>		
 	</package>
+	-->
 </struts>

@@ -28,6 +28,7 @@
 		<property name="beanNames">
 			<list>
 				<value>baseBiz</value>
+				<value>userBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

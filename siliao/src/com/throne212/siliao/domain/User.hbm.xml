@@ -10,6 +10,16 @@
 		<property name="loginName" column="loginName" length="20" not-null="true" unique="true"></property>
 		<property name="password" column="password" length="50" not-null="true"></property>
 		<property name="email" length="100"></property>
-		<subclass discriminator-value="admin" extends="User" name="Admin" select-before-update="false"/>
+		<property name="name"></property>
+		<property name="address"></property>
+		<property name="age"></property>
+		<property name="gender"></property>
+		<property name="post"></property>
+		<property name="remark" length="1024"></property>
+		<property name="tel"></property>
+		<subclass discriminator-value="admin" extends="User" name="Admin"/>
+		<subclass discriminator-value="provider" extends="User" name="Provider"/>
+		<subclass discriminator-value="manager" extends="User" name="Manager"/>
+		<subclass discriminator-value="responsor" extends="User" name="Responsor"/>
 	</class>
 </hibernate-mapping>

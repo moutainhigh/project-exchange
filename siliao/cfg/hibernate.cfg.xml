@@ -20,8 +20,9 @@
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
 	</property>
-	<property name="hbm2ddl.auto">create</property>
+	<property name="hbm2ddl.auto">none</property>
 	<mapping resource="com/throne212/siliao/domain/User.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Factory.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

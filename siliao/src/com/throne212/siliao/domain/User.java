@@ -3,13 +3,20 @@ package com.throne212.siliao.domain;
 import java.io.Serializable;
 
 //用户的抽象类
-public class User implements Serializable{
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Long id;//主键
-	private String loginName;//登录名
-	private String password;//密码
-	private String email;//邮件地址
+	private Long id;// 主键
+	private String loginName;// 登录名
+	private String password;// 密码
+	private String email;// 邮件地址
+	private String name;// 姓名
+	private String remark;// 备注
+	private String tel;// 电话号码
+	private Integer age;// 年龄
+	private Boolean gender;// 性别
+	private String address;// 地址
+	private String post;// 邮编
 
 	public User() {
 		super();
@@ -48,6 +55,60 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
+	}
 
 }
