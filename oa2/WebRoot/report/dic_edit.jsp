@@ -24,6 +24,7 @@
 				f.submit();
 			}
 			$(function(){
+				$('#add_btn').click(addDicForm);
 			});
 		</script>
 	</head>
@@ -74,7 +75,7 @@
 						<input value="${d.listorder}" type="text" name="d_listorder" style="width: 50px;"/>
 					</td>
 					<td>
-						<a href="${appPath}/report.do?method=deleteDic&id=${d.id}&dicName=${param.dicName}">删除</a>
+						<a href="javascript:if(confirm('删除以后，报表数据也将一起被删除，不可恢复。您确认吗？')){self.location.href='${appPath}/report.do?method=deleteDic&id=${d.id}&dicName=${param.dicName}'}">删除</a>
 						<input type="submit" value="更新保存"/>
 					</td>
 				</tr>
@@ -127,7 +128,7 @@
 				</c:if>
 				<tr>
 					<td colspan="4" align="center">
-						<input type="button" value="增加" onclick="javascript:addDicForm()"/>
+						<input type="button" value="增加" id="add_btn"/>
 						<input type="reset" value="重置"/>
 					</td>
 				</tr>
