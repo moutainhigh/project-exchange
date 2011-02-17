@@ -45,6 +45,8 @@
 	<mapping resource="com/throne212/oa/domain/DropdownList.hbm.xml" />
 	<mapping
 		resource="com/throne212/oa/domain/report/WorkReport.hbm.xml" />
+	<mapping
+		resource="com/throne212/oa/domain/report/ReportFile.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/report/Year.hbm.xml" />
 	<mapping
 		resource="com/throne212/oa/domain/muyingworker/Worker.hbm.xml" />
