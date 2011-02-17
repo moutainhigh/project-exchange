@@ -41,7 +41,7 @@
 		<subclass discriminator-value="report_hos_type" name="com.throne212.oa.domain.report.HospitalType"/>
 		<subclass discriminator-value="report_hos" name="com.throne212.oa.domain.report.Hospital">
 			<many-to-one name="orgType" lazy="false"></many-to-one>
-			<property name="date" column="date_col"></property>
+			<!--<property name="date" column="date_col"></property>-->
 		</subclass>
 		<!-- 母婴人员 -->
 		<subclass discriminator-value="muyingworker_org" name="com.throne212.oa.domain.muyingworker.WorkOrg"/>

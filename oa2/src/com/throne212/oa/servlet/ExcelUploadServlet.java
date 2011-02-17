@@ -56,6 +56,7 @@ public class ExcelUploadServlet extends HttpServlet{
 						fos.close();
 						is.close();
 						request.setAttribute("excelPath", absPath);
+						request.setAttribute("targetFileName", targetFileName);
 						System.out.println("Excel报表上传成功");
 						//上传成功
 						request.setAttribute("upload_flag", "Y");

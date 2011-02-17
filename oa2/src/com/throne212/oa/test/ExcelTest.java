@@ -81,7 +81,7 @@ public class ExcelTest {
 		for (int i = 0; i < len; i++) {
 			Cell c = sheet.getCell(i, row - 1);
 			if (c.getType() == CellType.NUMBER && !Util.isEmpty(c.getContents())) {
-				Integer value = Integer.valueOf(c.getContents());
+				Double value = Double.valueOf(c.getContents());
 				report.setC(i + 1, value);
 			}
 		}

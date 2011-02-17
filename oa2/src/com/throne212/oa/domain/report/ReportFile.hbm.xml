@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.throne212.oa.domain.report.ReportFile" table="oa2_report_file">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<property name="dateType"/>
+		<many-to-one name="org" lazy="false" cascade="none" column="hos_id"></many-to-one>
+		<property name="year"/>
+		<property name="season"/>
+		<property name="month"/>
+		<property name="fileName"></property>
+		<property name="date" column="date_col"></property>
+		<set name="reports" cascade="all" lazy="false">
+			<key column="file_id"></key>
+			<one-to-many class="com.throne212.oa.domain.report.WorkReport"/>
+		</set>
+	</class>
+</hibernate-mapping>

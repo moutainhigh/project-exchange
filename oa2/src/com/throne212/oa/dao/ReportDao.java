@@ -24,6 +24,7 @@ import com.throne212.oa.common.Util;
 import com.throne212.oa.domain.DropdownList;
 import com.throne212.oa.domain.report.Hospital;
 import com.throne212.oa.domain.report.HospitalType;
+import com.throne212.oa.domain.report.ReportFile;
 import com.throne212.oa.domain.report.WorkReport;
 import com.throne212.oa.domain.report.Year;
 
@@ -44,6 +45,14 @@ public class ReportDao {
 		return list;
 	}
 	
+	public List getHospitalByTypeAndYear(Long typeId,Year y){
+		Session s = HibernateSessionFactory.getSession();
+		HospitalType type = (HospitalType) s.get(HospitalType.class, typeId);
+		List list = s.createQuery("from Hospital h where h.orgType=? and y=?").setParameter(0, type).setParameter(1, y).list();
+		s.close();
+		return list;
+	}
+	
 	public void addOrgInType(Long hosId,Long typeId){
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
@@ -56,31 +65,11 @@ public class ReportDao {
 		s.close();
 	}
 	
-	public void removeOrgReport(Long hosId,Year y,Integer season,Integer month,String dateType){
-		Session s = HibernateSessionFactory.getSession();
-		s.beginTransaction();
-		Hospital hos = (Hospital) s.get(Hospital.class, hosId);
-		hos.setDate(null);//录入时间设置为空
-		s.saveOrUpdate(hos);		
-		//删除报表
-		/*String hql = "delete from " + WorkReport.class.getSimpleName() + " where org=? and year=? and season=? and month=? and dateType=?";
-		int rst = s.createQuery(hql)
-						.setParameter(0, hos)
-						.setParameter(1, y)
-						.setParameter(2, season)
-						.setParameter(3, month)
-						.setParameter(4, dateType)
-						.executeUpdate();
-		System.out.println("删除报表记录数为：" + rst);*/
-		
-		s.getTransaction().commit();
-		s.close();
-	}
 	public void removeOrgReport(Long hosId){
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();		
 		//删除报表
-		String hql = "delete from " + WorkReport.class.getSimpleName() + " where org.id=?";
+		String hql = "delete from " + ReportFile.class.getSimpleName() + " where org.id=?";
 		int rst = s.createQuery(hql)
 						.setParameter(0, hosId)
 						.executeUpdate();
@@ -150,7 +139,7 @@ public class ReportDao {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
-		String hql = "select count(*) from WorkReport r where r.year.value=?";
+		String hql = "select count(*) from WorkReportFile r where r.year.value=?";
 		Long count = (Long) s.createQuery(hql).setInteger(0, year).uniqueResult();
 		if(count.intValue() > 0){
 			s.close();
@@ -353,5 +342,170 @@ public class ReportDao {
 		s.close();
 	}
 	
+	//new
+	public List getFiles(Long typeId,Integer year,String dateType,Integer n) {
+		List list = null;
+		Session s = HibernateSessionFactory.getSession();
+		if("s".equalsIgnoreCase(dateType)){
+			String hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.season=? and f.org.orgType.id=?";
+			list = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, typeId).list();
+		}else if("m".equalsIgnoreCase(dateType)){
+			String hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.month=? and f.org.orgType.id=?";
+			list = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, typeId).list();
+		}else{
+			String hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.orgType.id=?";
+			list = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, typeId).list();
+		}
+		s.close();
+		return list;
+	}
+	
+	public void addEmptyReportFile(Long hosId,String dateType,Integer year,Integer n){
+		Session s = HibernateSessionFactory.getSession();
+		//首先查看是否已经有报表文件了
+		List list = null;
+		if("s".equalsIgnoreCase(dateType)){
+			String hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.season=? and f.org.id=?";
+			list = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, hosId).list();
+		}else if("m".equalsIgnoreCase(dateType)){
+			String hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.month=? and f.org.id=?";
+			list = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, hosId).list();
+		}else{
+			String hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=?";
+			list = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).list();
+		}
+		s.close();	
+		//如果没有，则加一个空的
+		if(list == null || list.size() == 0){
+			ReportFile file = new ReportFile();
+			file.setYear(year);
+			file.setDateType(dateType);
+			file.setOrg(this.getOrgById(hosId.longValue()));
+			file.setReports(null);
+			if("s".equalsIgnoreCase(dateType)){
+				file.setSeason(n);
+			}else if("m".equalsIgnoreCase(dateType)){
+				file.setMonth(n);
+			}
+			s = HibernateSessionFactory.getSessionFactory().openSession();
+			s.beginTransaction();
+			s.saveOrUpdate(file);
+			s.getTransaction().commit();
+			s.close();
+		}
+			
+	}
+	
+	public void removeEmptyReportFile(Long hosId,String dateType,Integer year,Integer n){
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		
+		String hql = null;
+		int len = -1;
+		if("s".equalsIgnoreCase(dateType)){
+			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.season=? and f.org.id=?";
+			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, hosId).executeUpdate();
+		}else if("m".equalsIgnoreCase(dateType)){
+			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.month=? and f.org.id=?";
+			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, hosId).executeUpdate();
+		}else{
+			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=?";
+			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).executeUpdate();
+		}		
+		System.out.println("删除记录数为：" + len);
+		
+		s.getTransaction().commit();
+		s.close();
+	}
+	public ReportFile getExistReportFile(Hospital hos,Integer year,String dateType,Integer season,Integer month) throws Exception{
+		List params = new ArrayList();
+		params.add(hos);
+		params.add(year);
+		params.add(dateType);
+		String hql = "from "+ReportFile.class.getName()+" f where f.org=? and f.year=? and f.dateType=?";
+		if("s".equalsIgnoreCase(dateType)){
+			hql = hql + " and f.season=?";
+			params.add(season);
+		}else if("m".equalsIgnoreCase(dateType)){
+			hql = hql + " and f.month=?";
+			params.add(month);
+		}
+		
+		Session s = HibernateSessionFactory.getSession();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.size();i++){
+			q.setParameter(i, params.get(i));
+		}
+		List list = q.list();
+		if(list != null && list.size() > 0){
+			s.close();
+			return (ReportFile) list.get(0);//返回一个已经有的
+		}
+		s.close();
+		//返回一个新的
+		ReportFile file = new ReportFile();
+		file.setYear(year);
+		file.setDateType(dateType);
+		file.setOrg(hos);
+		file.setReports(null);
+		if("s".equalsIgnoreCase(dateType)){
+			file.setSeason(season);
+		}else if("m".equalsIgnoreCase(dateType)){
+			file.setMonth(month);
+		}
+		//保存
+		s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		s.saveOrUpdate(file);
+		s.getTransaction().commit();
+		s.close();
+		
+		return file;
+	}
+	public WorkReport getExistReport(Class reportClass,ReportFile file) throws Exception{
+		String hql = "from "+reportClass.getName()+" r where r.file=?";
+		Session s = HibernateSessionFactory.getSession();
+		Query q = s.createQuery(hql);
+		q.setParameter(0, file);
+		List list = q.list();
+		if(list != null && list.size() > 0){
+			s.close();
+			return (WorkReport) list.get(0);
+		}
+		s.close();
+		
+		//返回一个新的
+		WorkReport r = (WorkReport) reportClass.newInstance();
+		r.setFile(file);
+		return r;
+	}
+	public ReportFile getExistReportFileNoCreate(Hospital hos,Integer year,String dateType,Integer season,Integer month) throws Exception{
+		List params = new ArrayList();
+		params.add(hos);
+		params.add(year);
+		params.add(dateType);
+		String hql = "from "+ReportFile.class.getName()+" f where f.org=? and f.year=? and f.dateType=?";
+		if("s".equalsIgnoreCase(dateType)){
+			hql = hql + " and f.season=?";
+			params.add(season);
+		}else if("m".equalsIgnoreCase(dateType)){
+			hql = hql + " and f.month=?";
+			params.add(month);
+		}
+		
+		Session s = HibernateSessionFactory.getSession();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.size();i++){
+			q.setParameter(i, params.get(i));
+		}
+		List list = q.list();
+		if(list != null && list.size() > 0){
+			s.close();
+			return (ReportFile) list.get(0);//返回一个已经有的
+		}
+		s.close();
+		//返回null
+		return null;
+	}
 	
 }

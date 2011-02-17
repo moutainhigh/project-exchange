@@ -46,6 +46,7 @@ import com.throne212.oa.dao.ReportDao;
 import com.throne212.oa.domain.DropdownList;
 import com.throne212.oa.domain.report.Hospital;
 import com.throne212.oa.domain.report.HospitalType;
+import com.throne212.oa.domain.report.ReportFile;
 import com.throne212.oa.domain.report.WorkReport;
 import com.throne212.oa.domain.report.WorkReportA1;
 import com.throne212.oa.domain.report.WorkReportA2;
@@ -71,7 +72,15 @@ public class ReportAction extends DispatchAction {
 		request.setAttribute("orgTypeList", orgTypeList);
 		return mapping.findForward("main");
 	}
+	
+	//第一个页面
+	public ActionForward index(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List yearList = reportDao.getAllYears();
+		request.setAttribute("years", yearList);
+		return mapping.findForward("default");
+	}
 
+	//第二个页面
 	public ActionForward listYear(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List yearList = reportDao.getAllYears();
 		request.setAttribute("years", yearList);
@@ -88,12 +97,6 @@ public class ReportAction extends DispatchAction {
 		List yearList = reportDao.getAllYears();
 		request.setAttribute("years", yearList);
 		return mapping.findForward("season");
-	}
-
-	public ActionForward index(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List yearList = reportDao.getAllYears();
-		request.setAttribute("years", yearList);
-		return mapping.findForward("default");
 	}
 
 	public ActionForward addYear(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -126,31 +129,40 @@ public class ReportAction extends DispatchAction {
 	// 机构列表
 	public ActionForward listOrg(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Long typeId = Long.valueOf(request.getParameter("orgTypeId"));
+		Integer year = Integer.valueOf(request.getParameter("year"));
+		String dateType = request.getParameter("dateType");
+		Integer season = null;
+		if (!Util.isEmpty(request.getParameter("season"))) {
+			season = Integer.valueOf(request.getParameter("season"));
+		}
+		Integer month = null;
+		if (!Util.isEmpty(request.getParameter("month"))) {
+			month = Integer.valueOf(request.getParameter("month"));
+		}
+		//获取数据
+		List fileList = null;
+		if(season != null){
+			fileList = reportDao.getFiles(typeId,year,dateType,season);
+		}else if(month != null){
+			fileList = reportDao.getFiles(typeId,year,dateType,month);
+		}else{
+			fileList = reportDao.getFiles(typeId,year,dateType,null);
+		}
+		request.setAttribute("fileList", fileList);
+		//获取当前类型下的医院列表
 		List orgList = reportDao.getHospitalByType(typeId);
-		request.setAttribute("orgList", orgList);
+		request.setAttribute("orgList", orgList);		
 		return mapping.findForward("org");
 	}
 
 	public ActionForward addHospital(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
-			reportDao.addOrgInType(Long.valueOf(request.getParameter("hosId")), Long.valueOf(request.getParameter("orgTypeId")));
-			request.setAttribute("msg", "添加单位成功");
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			request.setAttribute("msg", "添加单位失败");
-		}
-		return listOrg(mapping, form, request, response);
-	}
-
-	public ActionForward removeHospital(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		try {
-			//reportDao.removeOrgInType(Long.valueOf(request.getParameter("orgId")));
-			// 得到各类参数
+			//reportDao.addOrgInType(Long.valueOf(request.getParameter("hosId")), Long.valueOf(request.getParameter("orgTypeId")));
+			//添加一个空的文件上传，即为添加单位
+			Long hosId = Long.valueOf(request.getParameter("hosId"));
+			
+			Integer year = Integer.valueOf(request.getParameter("year"));
 			String dateType = request.getParameter("dateType");
-			Year y = null;
-			if (!Util.isEmpty(request.getParameter("year"))) {
-				y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
-			}
 			Integer season = null;
 			if (!Util.isEmpty(request.getParameter("season"))) {
 				season = Integer.valueOf(request.getParameter("season"));
@@ -159,11 +171,49 @@ public class ReportAction extends DispatchAction {
 			if (!Util.isEmpty(request.getParameter("month"))) {
 				month = Integer.valueOf(request.getParameter("month"));
 			}
-			reportDao.removeOrgReport(Long.valueOf(request.getParameter("orgId")), y, season, month, dateType);
-			request.setAttribute("msg", "移除单位成功");
+			//进行操作
+			if(season != null){
+				reportDao.addEmptyReportFile(hosId,dateType,year,season);
+			}else if(month != null){
+				reportDao.addEmptyReportFile(hosId,dateType,year,month);
+			}else{
+				reportDao.addEmptyReportFile(hosId,dateType,year,null);
+			}
+			
+			request.setAttribute("msg", "添加单位成功");
+		} catch (RuntimeException e) {
+			e.printStackTrace();;
+			request.setAttribute("msg", "添加单位失败");
+		}
+		return listOrg(mapping, form, request, response);
+	}
+
+	public ActionForward removeHospital(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			Long hosId = Long.valueOf(request.getParameter("orgId"));
+			
+			Integer year = Integer.valueOf(request.getParameter("year"));
+			String dateType = request.getParameter("dateType");
+			Integer season = null;
+			if (!Util.isEmpty(request.getParameter("season"))) {
+				season = Integer.valueOf(request.getParameter("season"));
+			}
+			Integer month = null;
+			if (!Util.isEmpty(request.getParameter("month"))) {
+				month = Integer.valueOf(request.getParameter("month"));
+			}
+			//进行操作
+			if(season != null){
+				reportDao.removeEmptyReportFile(hosId,dateType,year,season);
+			}else if(month != null){
+				reportDao.removeEmptyReportFile(hosId,dateType,year,month);
+			}else{
+				reportDao.removeEmptyReportFile(hosId,dateType,year,null);
+			}
+			request.setAttribute("msg", "移除单位报表成功");
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "移除单位失败");
+			request.setAttribute("msg", "移除单位报表失败");
 		}
 		return listOrg(mapping, form, request, response);
 	}
@@ -176,9 +226,9 @@ public class ReportAction extends DispatchAction {
 			// 得到各类参数
 			Hospital hos = reportDao.getOrgById(Long.valueOf(request.getParameter("orgId")).longValue());
 			String dateType = request.getParameter("dateType");
-			Year y = null;
+			Integer year = null;
 			if (!Util.isEmpty(request.getParameter("year"))) {
-				y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
+				year = Integer.valueOf(request.getParameter("year"));
 			}
 			Integer season = null;
 			if (!Util.isEmpty(request.getParameter("season"))) {
@@ -191,21 +241,27 @@ public class ReportAction extends DispatchAction {
 			}
 
 			String excelPath = (String) request.getAttribute("excelPath");
+			String targetFileName = (String) request.getAttribute("targetFileName");
 
 			try {
+				//得到文件对象
+				ReportFile file = reportDao.getExistReportFile(hos, year, dateType, season,month);
+				file.setDate(new Date());
+				file.setFileName(targetFileName);
+				
 				// 通过excel文件创建报表对象
-				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, hos, y, dateType, season, month);
-				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, hos, y, dateType, season, month);
-				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, hos, y, dateType, season, month);
-				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, hos, y, dateType, season, month);
+				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, file);
+				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, file);
+				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, file);
+				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, file);
 
-				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, hos, y, dateType, season, month);
-				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, hos, y, dateType, season, month);
-				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, hos, y, dateType, season, month);
-				WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, hos, y, dateType, season, month);
-				WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, hos, y, dateType, season, month);
-				WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, hos, y, dateType, season, month);
-				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, hos, y, dateType, season, month);
+				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, file);
+				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, file);
+				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, file);
+				WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, file);
+				WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, file);
+				WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, file);
+				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, file);
 
 				WorkReport[][] arr = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
 
@@ -223,16 +279,10 @@ public class ReportAction extends DispatchAction {
 				// 保存数据
 				for (int i = 0; i < arr.length; i++) {
 					for (int j = 0; j < arr[i].length; j++) {
-						arr[i][j].setOrg(hos);
-						arr[i][j].setDateType(dateType);
-						arr[i][j].setYear(y);
-						arr[i][j].setSeason(season);
-						arr[i][j].setMonth(month);
 						reportDao.saveOrUpdateReport(arr[i][j]);
 					}
 				}
 
-				hos.setDate(new Date());
 				reportDao.saveOrUpdateHospital(hos);
 
 				request.setAttribute("msg", "报表导入成功");
@@ -272,10 +322,17 @@ public class ReportAction extends DispatchAction {
 
 	// 填充某一个sheet的报表
 	private void fill(WorkReport report, Sheet sheet, int row, int len) {
+		//加了表头以后的处理
+		Cell firstCell = sheet.getCell(0, 0);
+		String first = firstCell.getContents();
+		if(first!=null && first.indexOf("表一")<0){//包含一个表头
+			row++;//顺延一行
+		}
+		
 		for (int i = 0; i < len; i++) {
 			Cell c = sheet.getCell(i, row - 1);
 			if (c.getType() == CellType.NUMBER && !Util.isEmpty(c.getContents())) {
-				Integer value = Integer.valueOf(c.getContents());
+				Double value = Double.valueOf(c.getContents());
 				report.setC(i + 1, value);
 			}
 		}
@@ -296,7 +353,7 @@ public class ReportAction extends DispatchAction {
 		}
 	}
 
-	public ActionForward downloadReport(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward downloadReport_old(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// 得到各类参数
 		Hospital hos = reportDao.getOrgById(Long.valueOf(request.getParameter("orgId")).longValue());
@@ -382,6 +439,47 @@ public class ReportAction extends DispatchAction {
 
 		return null;
 	}
+	
+	public ActionForward downloadReport(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		// 得到各类参数
+		Hospital hos = reportDao.getOrgById(Long.valueOf(request.getParameter("orgId")).longValue());
+		String dateType = request.getParameter("dateType");
+		Integer year = null;
+		if (!Util.isEmpty(request.getParameter("year"))) {
+			year = Integer.valueOf(request.getParameter("year"));
+		}
+		Integer season = null;
+		if (!Util.isEmpty(request.getParameter("season"))) {
+			season = Integer.valueOf(request.getParameter("season"));
+		}
+		Integer month = null;
+		if (!Util.isEmpty(request.getParameter("month"))) {
+			month = Integer.valueOf(request.getParameter("month"));
+
+		}
+
+		// 更新文件
+		ReportFile file = reportDao.getExistReportFile(hos, year, dateType, season, month);
+		if(file.getFileName() == null || file.getDate() == null){
+			request.setAttribute("msg", "报表文件不存在或已经被删除了，请重新上传");
+			return listOrg(mapping, form, request, response);
+		}
+		
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "report"+File.separator+"excel"+File.separator+file.getFileName();
+		File f = new File(path);
+		if(!f.exists()){
+			request.setAttribute("msg", "报表文件不存在或已经被删除了");
+			return listOrg(mapping, form, request, response);
+		}
+		
+		downFile(request, response, "application/vnd.ms-excel", file.getFileName(), path);
+
+		return null;
+	}
+	
 
 	private void downFile(HttpServletRequest request, HttpServletResponse response, String contentType, String filename, String path) {
 		response.setContentType(contentType);
@@ -389,7 +487,7 @@ public class ReportAction extends DispatchAction {
 		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
 
-		String absPathFileName = path + filename;
+		String absPathFileName = path;
 		try {
 			bis = new BufferedInputStream(new FileInputStream(absPathFileName));
 			bos = new BufferedOutputStream(response.getOutputStream());
@@ -489,40 +587,56 @@ public class ReportAction extends DispatchAction {
 				Hospital hos = (Hospital) orgList.get(i);
 				// 更新文件
 				// 今年的报表
-				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, hos, y, dateType, season, month);
-				if (reportA1.getId() == null) {
-					request.setAttribute("msg", "今年报表没有上传或不完整(" + hos.getName() + ")");
+				ReportFile file = reportDao.getExistReportFileNoCreate(hos,y.getValue(),dateType,season,month);
+				if (file == null || file.getDate()==null || file.getFileName()==null) {
+					request.setAttribute("msg", "今年报表没有上传(" + hos.getName() + ")");
 					return listCompare(mapping, form, request, response);
 				}
-				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, hos, y, dateType, season, month);
-				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, hos, y, dateType, season, month);
-				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, hos, y, dateType, season, month);
-				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, hos, y, dateType, season, month);
-				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, hos, y, dateType, season, month);
-				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, hos, y, dateType, season, month);
-				WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, hos, y, dateType, season, month);
-				WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, hos, y, dateType, season, month);
-				WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, hos, y, dateType, season, month);
-				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, hos, y, dateType, season, month);
+				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, file);
+				if (reportA1 == null || reportA1.getId()==null) {
+					request.setAttribute("msg", "今年报表数据不完整(" + hos.getName() + ")");
+					return listCompare(mapping, form, request, response);
+				}
+				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, file);
+				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, file);
+				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, file);
+
+				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, file);
+				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, file);
+				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, file);
+				WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, file);
+				WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, file);
+				WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, file);
+				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, file);
 				WorkReport[][] thisReport = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
 
 				// 去年的报表
 				Year lastYear = reportDao.getYear(y.getValue().intValue()-1);
-				reportA1 = reportDao.getExistReport(WorkReportA1.class, hos, lastYear, dateType, season, month);
+				if(lastYear == null){
+					request.setAttribute("msg", "没有这个年份的数据："+(y.getValue().intValue()-1));
+					return listCompare(mapping, form, request, response);
+				}
+				file = reportDao.getExistReportFileNoCreate(hos,lastYear.getValue(),dateType,season,month);
+				if (file == null || file.getDate()==null || file.getFileName()==null) {
+					request.setAttribute("msg", "今年报表没有上传(" + hos.getName() + ")");
+					return listCompare(mapping, form, request, response);
+				}
+				reportA1 = reportDao.getExistReport(WorkReportA1.class, file);
 				if (reportA1.getId() == null) {
 					request.setAttribute("msg", "去年报表没有上传完整(" + hos.getName() + ")");
 					return listCompare(mapping, form, request, response);
 				}
-				reportA2 = reportDao.getExistReport(WorkReportA2.class, hos, lastYear, dateType, season, month);
-				reportA3 = reportDao.getExistReport(WorkReportA3.class, hos, lastYear, dateType, season, month);
-				reportA4 = reportDao.getExistReport(WorkReportA4.class, hos, lastYear, dateType, season, month);
-				reportB1 = reportDao.getExistReport(WorkReportB1.class, hos, lastYear, dateType, season, month);
-				reportB2 = reportDao.getExistReport(WorkReportB2.class, hos, lastYear, dateType, season, month);
-				reportB3 = reportDao.getExistReport(WorkReportB3.class, hos, lastYear, dateType, season, month);
-				reportB4 = reportDao.getExistReport(WorkReportB4.class, hos, lastYear, dateType, season, month);
-				reportB5 = reportDao.getExistReport(WorkReportB5.class, hos, lastYear, dateType, season, month);
-				reportB6 = reportDao.getExistReport(WorkReportB6.class, hos, lastYear, dateType, season, month);
-				reportB7 = reportDao.getExistReport(WorkReportB7.class, hos, lastYear, dateType, season, month);
+				reportA2 = reportDao.getExistReport(WorkReportA2.class, file);
+				reportA3 = reportDao.getExistReport(WorkReportA3.class, file);
+				reportA4 = reportDao.getExistReport(WorkReportA4.class, file);
+
+				reportB1 = reportDao.getExistReport(WorkReportB1.class, file);
+				reportB2 = reportDao.getExistReport(WorkReportB2.class, file);
+				reportB3 = reportDao.getExistReport(WorkReportB3.class, file);
+				reportB4 = reportDao.getExistReport(WorkReportB4.class, file);
+				reportB5 = reportDao.getExistReport(WorkReportB5.class, file);
+				reportB6 = reportDao.getExistReport(WorkReportB6.class, file);
+				reportB7 = reportDao.getExistReport(WorkReportB7.class, file);
 				WorkReport[][] lastReport = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
 
 				WritableSheet sheet1 = workbook.getSheet(0);

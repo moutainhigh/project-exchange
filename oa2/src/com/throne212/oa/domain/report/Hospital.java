@@ -1,6 +1,6 @@
 package com.throne212.oa.domain.report;
 
-import java.util.Date;
+import java.util.Set;
 
 import com.throne212.oa.domain.DropdownList;
 
@@ -10,7 +10,6 @@ public class Hospital extends DropdownList {
 
 	private HospitalType orgType;// 机构类型
 
-	private Date date;// 录入时间
 
 	public HospitalType getOrgType() {
 		return orgType;
@@ -19,13 +18,4 @@ public class Hospital extends DropdownList {
 	public void setOrgType(HospitalType orgType) {
 		this.orgType = orgType;
 	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 }

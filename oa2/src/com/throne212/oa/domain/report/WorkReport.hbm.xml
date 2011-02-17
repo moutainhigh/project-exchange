@@ -7,45 +7,38 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="report_type" force="false" insert="true" not-null="true" />
-		<property name="dateType"/>
-		<many-to-one name="org" lazy="false" cascade="none"></many-to-one>
-		<many-to-one name="year" lazy="false" cascade="none"></many-to-one>
-		<property name="season"/>
-		<property name="month"/>
+		<many-to-one name="file" column="file_id" lazy="false" cascade="save-update"></many-to-one>
 		<!-- 字段 -->
-		<property name="c1"/>
-		<property name="c2"/>
-		<property name="c3"/>
-		<property name="c4"/>
-		<property name="c5"/>
-		<property name="c6"/>
-		<property name="c7"/>
-		<property name="c8"/>
-		<property name="c9"/>
-		<property name="c10"/>
-		<property name="c11"/>
-		<property name="c12"/>
-		<property name="c13"/>
-		<property name="c14"/>
-		<property name="c15"/>
-		<property name="c16"/>
-		<property name="c17"/>
-		<property name="c18"/>
-		<property name="c19"/>
-		<property name="c20"/>
-		<property name="c21"/>
-		<property name="c22"/>
-		<property name="c23"/>
-		<property name="c24"/>
-		<property name="c25"/>
-		<property name="c26"/>
-		<property name="c27"/>
-		<property name="c28"/>
-		<property name="c29"/>
-		<property name="c30"/>
-		
-		
-		
+		<property type="double" name="c1"/>
+		<property type="double" name="c2"/>
+		<property type="double" name="c3"/>
+		<property type="double" name="c4"/>
+		<property type="double" name="c5"/>
+		<property type="double" name="c6"/>
+		<property type="double" name="c7"/>
+		<property type="double" name="c8"/>
+		<property type="double" name="c9"/>
+		<property type="double" name="c10"/>
+		<property type="double" name="c11"/>
+		<property type="double" name="c12"/>
+		<property type="double" name="c13"/>
+		<property type="double" name="c14"/>
+		<property type="double" name="c15"/>
+		<property type="double" name="c16"/>
+		<property type="double" name="c17"/>
+		<property type="double" name="c18"/>
+		<property type="double" name="c19"/>
+		<property type="double" name="c20"/>
+		<property type="double" name="c21"/>
+		<property type="double" name="c22"/>
+		<property type="double" name="c23"/>
+		<property type="double" name="c24"/>
+		<property type="double" name="c25"/>
+		<property type="double" name="c26"/>
+		<property type="double" name="c27"/>
+		<property type="double" name="c28"/>
+		<property type="double" name="c29"/>
+		<property type="double" name="c30"/>
 		<!-- 子类 -->
 		<subclass discriminator-value="A1" name="com.throne212.oa.domain.report.WorkReportA1"/>
 		<subclass discriminator-value="A2" name="com.throne212.oa.domain.report.WorkReportA2"/>
