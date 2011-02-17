@@ -86,26 +86,26 @@
 						操作
 					</td>
 				</tr>
-				<c:forEach items="${orgList}" var="o" varStatus="status">
+				<c:forEach items="${fileList}" var="o" varStatus="status">
 				<tr style="font-size: 12px;">					
 					<td align="center">
 						${status.count }
 					</td>
 					<td align="center">
-						${o.name }
+						${o.org.name }
 					</td>
 					<td align="center">
 						<c:choose>
 						<c:when test="${empty o.date}"><span style="color:gray;">等待录入</span></c:when>
-						<c:otherwise>${o.date }</c:otherwise>
+						<c:otherwise>${o.date}</c:otherwise>
 						</c:choose>
 					</td>
 					<td align="center">
-						<a href="javascript:void(0);" onclick="if(confirm('您确定吗？')){self.location.href='${appPath}/report.do?method=removeHospital&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}'}">删除</a>
+						<a href="javascript:void(0);" onclick="if(confirm('您确定吗？')){self.location.href='${appPath}/report.do?method=removeHospital&orgId=${o.org.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}'}">删除</a>
 						&nbsp;
-						<a href="${appPath}/report.do?method=downloadReport&orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">下载报表</a>
+						<a href="${appPath}/report.do?method=downloadReport&orgId=${o.org.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">下载报表</a>
 						<br/>
-						<form method="post" action="${appPath}/excel?orgId=${o.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}" enctype="multipart/form-data" >
+						<form method="post" action="${appPath}/excel?orgId=${o.org.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}" enctype="multipart/form-data" >
 							上传报表：<input type="file" name="myfile" size="1" value="" />
 							<input type="submit" value="上传"/>
 						</form>
