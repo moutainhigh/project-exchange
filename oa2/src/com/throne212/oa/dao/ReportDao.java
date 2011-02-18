@@ -403,14 +403,41 @@ public class ReportDao {
 		String hql = null;
 		int len = -1;
 		if("s".equalsIgnoreCase(dateType)){
-			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.season=? and f.org.id=?";
-			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, hosId).executeUpdate();
+			hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=? and f.season=?";
+			ReportFile file = (ReportFile) s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).setParameter(3, n).uniqueResult();
+			hql = "delete from " + WorkReport.class.getName() + " r where r.file=?";
+			len = s.createQuery(hql).setParameter(0, file).executeUpdate();
+			//删除报表文件
+			Session newSession = HibernateSessionFactory.getSessionFactory().openSession();
+			newSession.beginTransaction();
+			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=? and f.month=?";
+			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).setParameter(3, n).executeUpdate();
+			newSession.getTransaction().commit();
+			newSession.close();
 		}else if("m".equalsIgnoreCase(dateType)){
-			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.month=? and f.org.id=?";
-			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, n).setParameter(3, hosId).executeUpdate();
+			hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=? and f.month=?";
+			ReportFile file = (ReportFile) s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).setParameter(3, n).uniqueResult();
+			hql = "delete from " + WorkReport.class.getName() + " r where r.file=?";
+			len = s.createQuery(hql).setParameter(0, file).executeUpdate();
+			//删除报表文件
+			Session newSession = HibernateSessionFactory.getSessionFactory().openSession();
+			newSession.beginTransaction();
+			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=? and f.month=?";
+			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).setParameter(3, n).executeUpdate();
+			newSession.getTransaction().commit();
+			newSession.close();
 		}else{
+			hql = "from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=?";
+			ReportFile file = (ReportFile) s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).uniqueResult();
+			hql = "delete from " + WorkReport.class.getName() + " r where r.file=?";
+			len = s.createQuery(hql).setParameter(0, file).executeUpdate();
+			//删除报表文件
+			Session newSession = HibernateSessionFactory.getSessionFactory().openSession();
+			newSession.beginTransaction();
 			hql = "delete from " + ReportFile.class.getName() + " f where f.dateType=? and f.year=? and f.org.id=?";
 			len = s.createQuery(hql).setParameter(0, dateType).setParameter(1, year).setParameter(2, hosId).executeUpdate();
+			newSession.getTransaction().commit();
+			newSession.close();
 		}		
 		System.out.println("删除记录数为：" + len);
 		
