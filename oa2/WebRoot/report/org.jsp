@@ -101,7 +101,7 @@
 						</c:choose>
 					</td>
 					<td align="center">
-						<a href="javascript:void(0);" onclick="if(confirm('您确定吗？')){self.location.href='${appPath}/report.do?method=removeHospital&orgId=${o.org.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}'}">删除</a>
+						<a href="javascript:if(confirm('您确定吗？')){self.location.href='${appPath}/report.do?method=removeHospital&orgId=${o.org.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}'}">删除</a>
 						&nbsp;
 						<a href="${appPath}/report.do?method=downloadReport&orgId=${o.org.id}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&year=${param.year}&month=${param.month}&season=${param.season}">下载报表</a>
 						<br/>
