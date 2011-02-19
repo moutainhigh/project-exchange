@@ -5,8 +5,9 @@ import com.throne212.siliao.biz.UserBiz;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Admin;
-import com.throne212.siliao.domain.Manager;
+import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
+import com.throne212.siliao.domain.ProviderAccount;
 import com.throne212.siliao.domain.Responsor;
 import com.throne212.siliao.domain.User;
 
@@ -43,11 +44,11 @@ public class LoginAction extends BaseAction {
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		if (user instanceof Admin) {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
-		} else if (user instanceof Provider) {
+		} else if (user instanceof ProviderAccount) {
 			logger.info("供应饲料厂登录成功：" + user.getLoginName());
 		} else if (user instanceof Responsor) {
 			logger.info("管区负责人登录成功：" + user.getLoginName());
-		} else if (user instanceof Manager) {
+		} else if (user instanceof ManagerAccount) {
 			logger.info("饲料经理登录成功：" + user.getLoginName());
 		}
 		return "success";

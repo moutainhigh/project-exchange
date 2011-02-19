@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.throne212.siliao.domain">
-	<class name="User" table="siliao_user">
+	<class name="User" table="YH_USER">
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>

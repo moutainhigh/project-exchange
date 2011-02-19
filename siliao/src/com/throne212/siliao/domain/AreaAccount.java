@@ -2,12 +2,12 @@ package com.throne212.siliao.domain;
 
 import java.io.Serializable;
 
-//农户
-public class Farmer extends MyEntity implements Serializable {
+//管区负责人
+public class AreaAccount extends User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Area area;// 所属管区
+	private Area area;// 所属的管区
 
 	public Area getArea() {
 		return area;

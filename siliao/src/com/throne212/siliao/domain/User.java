@@ -3,10 +3,9 @@ package com.throne212.siliao.domain;
 import java.io.Serializable;
 
 //用户的抽象类
-public class User implements Serializable {
+public abstract class User extends MyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Long id;// 主键
 	private String loginName;// 登录名
 	private String password;// 密码
 	private String email;// 邮件地址
