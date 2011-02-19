@@ -15,12 +15,12 @@
 		com.mysql.jdbc.Driver
 	</property>
 	<property name="hibernate.dialect">
-		org.hibernate.dialect.MySQLDialect
+		org.hibernate.dialect.OracleDialect
 	</property>
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
 	</property>
-	<property name="hbm2ddl.auto">none</property>
+	<property name="hbm2ddl.auto">create</property>
 	<mapping resource="com/throne212/siliao/domain/User.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/Factory.hbm.xml" />
 </session-factory>
