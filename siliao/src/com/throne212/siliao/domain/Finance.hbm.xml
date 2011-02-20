@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.siliao.domain">
+	<class name="Finance" abstract="true" table="YH_FINANCE">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="order" column="order_id"></many-to-one>
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="enable" column="enable_flag"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+		<!-- 子类log -->
+		<joined-subclass name="FarmerFinance" table="YH_FINANCE_FARMER">
+			<key column="finance_id"></key>
+			<property name="amount"></property>
+			<property name="model"></property>
+			<property name="money"></property>
+			<property name="rateFromDate"></property>
+			<property name="rateMoney"></property>
+			<property name="size" column="size_no"></property>
+			<many-to-one name="factory" column="factory_id"></many-to-one>
+			<many-to-one name="farmer" column="farmer_id"></many-to-one>
+			<many-to-one name="provider" column="provider_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="ProviderFinance" table="YH_FINANCE_PROVIDER">
+			<key column="finance_id"></key>
+			<property name="amount"></property>
+			<property name="money"></property>
+			<property name="rateFromDate"></property>
+			<property name="rateMoney"></property>
+			<many-to-one name="farmer" column="farmer_id"></many-to-one>
+			<many-to-one name="provider" column="provider_id"></many-to-one>
+			<many-to-one name="farm" column="farm_id"></many-to-one>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

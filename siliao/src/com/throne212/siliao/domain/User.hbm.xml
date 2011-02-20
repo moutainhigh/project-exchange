@@ -11,15 +11,32 @@
 		<property name="password" column="password" length="50" not-null="true"></property>
 		<property name="email" length="100"></property>
 		<property name="name"></property>
-		<property name="address"></property>
+		<property name="address" length="512"></property>
 		<property name="age"></property>
 		<property name="gender"></property>
 		<property name="post"></property>
 		<property name="remark" length="1024"></property>
 		<property name="tel"></property>
-		<subclass discriminator-value="admin" extends="User" name="Admin"/>
-		<subclass discriminator-value="provider" extends="User" name="Provider"/>
-		<subclass discriminator-value="manager" extends="User" name="Manager"/>
-		<subclass discriminator-value="responsor" extends="User" name="Responsor"/>
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="enable" column="enable_flag"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+		<subclass discriminator-value="admin" extends="User" name="Admin">
+		</subclass>
+		<subclass discriminator-value="provider" extends="User" name="ProviderAccount">
+			<many-to-one name="provider" column="provider_id"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="manager" extends="User" name="ManagerAccount">
+			<many-to-one name="farm" column="farm_id"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="responsor" extends="User" name="AreaAccount">
+			<many-to-one name="area" column="area_id"></many-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

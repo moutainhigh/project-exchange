@@ -5,7 +5,7 @@
 
 		<driver-url>jdbc:oracle:thin:@127.0.0.1:1521:</driver-url>
 		<driver-properties>
-			<property name="user" value="system" />
+			<property name="user" value="siliao" />
 			<property name="password" value="123" />
 		</driver-properties>
 

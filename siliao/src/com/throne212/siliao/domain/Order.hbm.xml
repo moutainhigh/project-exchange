@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.siliao.domain">
+	<class name="Order" table="YH_ORDER">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		
+		<property name="orderId" not-null="true" length="100" unique="true"></property>
+		
+		<property name="agentUnitPrice"></property>
+		<property name="amount"></property>
+		<property name="applyRemark"></property>
+		<many-to-one name="areaAccount" column="area_user_id"></many-to-one>
+		<many-to-one name="manager" column="manager_id"></many-to-one>
+		<many-to-one name="providerAccount" column="provider_user_id"></many-to-one>
+		<many-to-one name="factory" column="factory_id"></many-to-one>
+		<many-to-one name="farm" column="farm_id"></many-to-one>
+		<many-to-one name="farmer" column="farmer_id"></many-to-one>
+		<many-to-one name="provider" column="provider_id"></many-to-one>
+		<property name="model"></property>
+		<property name="orderNo"></property>
+		<property name="planDate"></property>
+		<property name="priceOnOrder"></property>
+		<property name="reason" length="512"></property>
+		<property name="remark" length="1024"></property>
+		<property name="shenheRemark" length="512"></property>
+		<property name="shenheResult"></property>
+		<property name="shenpiRemark" length="512"></property>
+		<property name="shenpiResult"></property>
+		<property name="size" column="size_no"></property>
+		<property name="status"></property>
+		<property name="translater"></property>
+		
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="enable" column="enable_flag"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+	</class>
+</hibernate-mapping>

@@ -15,7 +15,7 @@
 		com.mysql.jdbc.Driver
 	</property>
 	<property name="hibernate.dialect">
-		org.hibernate.dialect.OracleDialect
+		org.hibernate.dialect.Oracle10gDialect
 	</property>
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
@@ -23,6 +23,14 @@
 	<property name="hbm2ddl.auto">create</property>
 	<mapping resource="com/throne212/siliao/domain/User.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/Factory.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Log.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Farm.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Provider.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Area.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Farmer.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Finance.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Order.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/Rate.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

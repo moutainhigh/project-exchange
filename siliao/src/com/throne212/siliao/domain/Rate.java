@@ -9,6 +9,7 @@ public class Rate extends MyEntity implements Serializable {
 
 	private Farm farm;// 目标农场
 	private Provider provider;// 目标供应商
+	private Double value;//月利率
 
 	public Farm getFarm() {
 		return farm;
@@ -24,6 +25,14 @@ public class Rate extends MyEntity implements Serializable {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+
+	public Double getValue() {
+		return value;
+	}
+
+	public void setValue(Double value) {
+		this.value = value;
 	}
 
 }

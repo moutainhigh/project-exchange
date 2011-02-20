@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.siliao.domain">
+	<class name="Log" abstract="true" table="YH_LOG">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="byWho" column="by_who"></property>
+		<property name="logTime" column="log_time" type="timestamp"></property>
+		<property name="msg" length="1024"></property>
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="enable" column="enable_flag"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+		<!-- 子类log -->
+		<joined-subclass name="FactoryLog" table="YH_LOG_FACTORY">
+			<key column="log_id"></key>
+			<many-to-one name="factory" column="factory_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="RateLog" table="YH_LOG_RATE">
+			<key column="log_id"></key>
+			<many-to-one name="rate" column="rate_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="AreaLog" table="YH_LOG_AREA">
+			<key column="log_id"></key>
+			<many-to-one name="area" column="area_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="FarmLog" table="YH_LOG_FARM">
+			<key column="log_id"></key>
+			<many-to-one name="farm" column="farm_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="ProviderLog" table="YH_LOG_PROVIDER">
+			<key column="log_id"></key>
+			<many-to-one name="provider" column="provider_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="UserLog" table="YH_LOG_USER">
+			<key column="log_id"></key>
+			<many-to-one name="user" column="user_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="FarmerLog" table="YH_LOG_FARMER">
+			<key column="log_id"></key>
+			<many-to-one name="farmer" column="farmer_id"></many-to-one>
+		</joined-subclass>
+		<joined-subclass name="OrderLog" table="YH_LOG_ORDER">
+			<key column="log_id"></key>
+			<many-to-one name="order" column="order_id"></many-to-one>
+			<many-to-one name="user" column="user_id"></many-to-one>
+			<property name="fromStatus"></property>
+			<property name="remark" length="1024"></property>
+			<property name="toStatus"></property>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

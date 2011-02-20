@@ -2,14 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.throne212.siliao.domain">
-	<class name="Factory" table="YH_FACTORY">
+	<class name="Farmer" table="YH_FARMER">
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-		<property name="creator"></property>
-		<property name="head"></property>
-		<property name="name" not-null="true"></property>
-		<property name="remark" length="512"></property>
+		<property name="name"></property>
+		<property name="email"></property>
+		<property name="no"></property>
+		<property name="ramark" length="512"></property>
+		<property name="tel"></property>
+		<many-to-one name="area" column="area_id"></many-to-one>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
