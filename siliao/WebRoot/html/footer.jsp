@@ -3,12 +3,12 @@
 <html>
   <head>
     <title>欢迎使用！</title>
-	<link rel="stylesheet" type="text/css" href="styles.css" >
+	<link rel="stylesheet" type="text/css" href="css/basic.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/Layout.css" media="screen" />
   </head>
-  <body style="font-size:12px;color:dark-blue;scroll:no;border-top:solid 1px #666;">
-<div style="text-align:right;padding:6px;">
-		&copy;  2011 厚溥信息技术有限公司制
+  <body>
+<div  class="footer02">
+		技术支持：饲料经营系统<span class=" mar_l100" style="font-family: Arial, Helvetica, sans-serif;">Copyright&nbsp;&copy;&nbsp;Fodder Corporation.2011 </span>
 </div>
   </body>
 </html>
-

@@ -1,14 +1,14 @@
 @import url("menu.css");
 
 body {
-	font-family: "å®‹ä½“", "Arial", "Helvetica", "sans-serif";
+	font-family: "ËÎÌå", "Arial", "Helvetica", "sans-serif";
 	font-size: 12px;
 	padding:6px;
 }
 .star_pic{
 	width:16px;
 }
-/*buttonæ ·å¼*/
+/*buttonÑùÊ½*/
 .common_button {
 	border: #2C59AA 1px solid; 
 	padding:1px 2px 0px 2px; 
@@ -20,24 +20,27 @@ body {
 	cursor:hand;
 	width:16px;
 }
-/*è¡¨ç¤ºå¼ºè°ƒï¼Œç”¨äºæç¤ºå¿…è¾“é¡¹*/
+/*±íÊ¾Ç¿µ÷£¬ÓÃÓÚÌáÊ¾±ØÊäÏî*/
 .red_star{
 	color:red;
 	font-weight:bold;
 }
 /*
-	åˆ—è¡¨é¡µæ ·å¼
+	ÁĞ±íÒ³ÑùÊ½
 */
 .page_title{
-	font-family:"Verdana","å®‹ä½“", "Arial", "Helvetica", "sans-serif";
-	font-size: 14px;
-	font-weight:bold;
+	background: url(images/ico.gif) no-repeat right center;
+	font-family: "Î¢ÈíÑÅºÚ";
+	border-bottom:3px solid #7FC2F3;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 10px;
 }
 .button_bar{
 	text-align:right;
 	padding:1px;
 }
-/*æŸ¥è¯¢è¡¨å•æ ·å¼*/
+/*²éÑ¯±íµ¥ÑùÊ½*/
 .query_form_table{
 	width:100%;
 	border-collapse:collapse; 
@@ -62,7 +65,7 @@ body {
 	width:18%;
 }
 
-/*åˆ—è¡¨æ ·å¼*/
+/*ÁĞ±íÑùÊ½*/
 .data_list_table{
 	width:100%;
 	border-collapse:collapse; 
@@ -147,7 +150,7 @@ TH.locked {
 
 
 td {
-	font-family: "å®‹ä½“", "Arial", "Helvetica", "sans-serif";
+	font-family: "ËÎÌå", "Arial", "Helvetica", "sans-serif";
 	font-size: 12px;
 }
 form {
@@ -202,7 +205,7 @@ a:active {
 	background-color: #FF0101;
 }
 .navMenu {
-	font-family: "å®‹ä½“", "Arial", "Helvetica", "sans-serif";
+	font-family: "ËÎÌå", "Arial", "Helvetica", "sans-serif";
 	font-size: 12px;
 	background-color: #F1F1F1;
 	color: #7D7D7D;

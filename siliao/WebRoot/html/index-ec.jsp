@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <HTML>
 <HEAD>
-<TITLE>${appTitle}</TITLE>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>客户关系管理系统</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script language="JavaScript">
 <!--
@@ -919,7 +919,7 @@ function initialise() {
 	L0306 = theMenu.addChild(L03, "Document", "用户管理", "account/service/userQuery.html", "系统管理员分配各个人员的角色...");
 
 	L04 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
-	L0401 = theMenu.addChild(L04, "Document", "密码修改", "personal/password.jsp", "修改个人密码，防止盗用...");
+	L0401 = theMenu.addChild(L04, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
 	L0402 = theMenu.addChild(L04, "Document", "信息补全", "personal/infoAdd.html", "添加维护个人资料信息");
 	
         
@@ -942,20 +942,9 @@ if (self.name == 'menu') {
 	var thePage = pageFromSearch('Welcome.html', theMenu, true);
 	
 //下面用js脚本写FRAMESET结构；
-
-//if (theBrowser.IE){
 	self.document.writeln('<frameset rows="*" cols="160,*" border="0"  noresize framespacing="2">'); 
-	self.document.writeln('<frame name="menu" src="${appPath}html/menu.jsp"  border="0" scrolling="auto" marginwidth="0"  leftmargin="0" marginheight="0" APPLICATION="yes">');
-	self.document.writeln('<frame name="text" src="${appPath}html/mywork.jsp"  frameborder="no"  marginwidth="0" marginheight="0" APPLICATION="yes">');
-	self.document.writeln('</frameset>');
-//}else{
-//	self.document.writeln('<frameset rows="*" cols="160,*" border="0"  noresize framespacing="2">'); 
-//		self.document.writeln('<frame name="left" frameborder="no"  scrolling="no"  noresize marginwidth="0"  marginheight="0" >');
-//		self.document.writeln('<frame name="menu" src="${appPath}html/menu.jsp"  border="0" scrolling="auto" marginwidth="0"  leftmargin="0" marginheight="0" APPLICATION="yes">');
-//	self.document.writeln('<frame name="text" src="desk.htm"  frameborder="no"  marginwidth="0" marginheight="0" APPLICATION="yes">');
-//	self.document.writeln('</frameset>');
-//}
-
+	self.document.writeln('<frame name="menu" src="menu.jsp"  border="0" scrolling="auto" marginwidth="0"  leftmargin="0" marginheight="0" APPLICATION="yes">');
+	self.document.writeln('<frame name="text" src="mywork.jsp"  frameborder="no"  marginwidth="0" marginheight="0" APPLICATION="yes">');
 }
 
 //-->
@@ -969,3 +958,4 @@ Your browser does not support JavaScript
 </NOSCRIPT>
 
 </HTML>
+

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>jb-aptech毕业设计项目</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="../../css/style.css" rel="stylesheet" type="text/css">
+<script src="../../script/common.js"></script>
+<script language="javascript" type="text/javascript" >
+function abc(sel)
+{
+	if(sel.value == 1)
+	{
+		document.getElementById('abc').disabled='';
+	}
+}
+
+</script>
+</head>
+<body>
+
+<div class="page_title">饲料管理系统 > 单据管理 > 修改农场</div>
+<br />
+
+修改农场
+<span class="red_star">(系统管理员填写)</span>：
+<table class="query_form_table">
+	<tr>
+		<th>农场管区名</th>
+		<td>
+			<input value="海北农场"  /><span class="red_star">*</span>
+		</td>
+		<th>类别</th>
+		<td>
+
+				<select>
+				<option value=1>管区</option>
+				<option value=2>农场</option>
+			</select><span class="red_star">*</span>
+		</td>
+	</tr>
+	<tr>
+		<th>所属农场</th>
+		<td colspan="3">
+
+				<select id="abc" disabled>
+				<option>无</option>
+				<option>三仓农场</option>
+				<option>海北农场</option>
+			</select><span class="red_star">*(类别为"管区"时选择此项)</span>
+		</td>
+	</tr>
+	<tr>
+		<th>负责人</th>
+		<td>
+			<select>
+				<option>唐庆林</option>
+				<option>沈晨</option>
+				<option>张月高</option>
+				<option>王寿林</option>
+			</select>
+			<span class="red_star">*(农场或管区负责人)</span>
+		</td>
+		<th>备注</th>
+		<td>
+			<input value="管理员"  />
+		</td>
+	</tr>
+</table>
+<br />
+
+操作记录：
+<table class="data_list_table">
+	<tr>
+		<th>编号</th>
+		<th>操作人</th>
+		<th>操作时间</th>
+		<th>操作过程</th>
+		<th>农场管区名</th>
+		<th>类别</th>
+		<th>所属农场</th>
+		<th>负责人</th>
+		<th>备注</th>
+	</tr>
+	<tr>
+		<td class="list_data_text">1</td>
+		<td class="list_data_text">沈晨</td>
+		<td class="list_data_text">2010-10-10</td>
+		<td class="list_data_text">新建</td>
+		<td class="list_data_text">海北一区</td>
+		<td class="list_data_text">管区</td>
+		<td class="list_data_text">海北农场</td>
+		<td class="list_data_text">唐庆林</td>
+		<td class="list_data_text">1234</td>
+	</tr>
+	<tr>
+		<td class="list_data_text">2</td>
+		<td class="list_data_text">沈晨</td>
+		<td class="list_data_text">2010-10-15</td>
+		<td class="list_data_text">修改</td>
+		<td class="list_data_text">海北农场</td>
+		<td class="list_data_text">农场</td>
+		<td class="list_data_text"></td>
+		<td class="list_data_text">唐庆林</td>
+		<td class="list_data_text">1234</td>
+	</tr>
+</table>
+
+<div class="button_bar">
+	<button class="common_button" onclick="back();">返回</button>
+	<button class="common_button" onclick="save('dict.html');">修改</button>
+</div>
+<p>　</p>
+</body>
+</html>

@@ -1,194 +1,80 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<HTML>
-	<HEAD>
-		<TITLE>${appTitle} - 登录</TITLE>
-		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-		<style>
-th {
-	font-size: 12px;
-	text-align: right;
-	font-weight: normal;
-}
-
-td {
-	font-size: 12px;
-	text-align: left;
-}
-
-input {
-	width: 100px;
-	font-size: 12px;
-	border: solid 1px lightblue;
-}
-</style>
-	<script type="text/javascript">
-		function login(){
-			var f = document.forms[0];
-			var username = f.username.value;
-			var password = f.password.value;
-			if(username=='' || password==''){
-				alert('请输入用户名和密码');
-				return false;
-			}else{
-				f.submit();
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>${appTitle}</title>
+		<link rel="stylesheet" type="text/css" href="${appPath}html/css/basic.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="${appPath}html/css/Layout.css" media="screen" />
+		<script type="text/javascript" src="${appPath}html/script/jquery.js"></script>
+		<script type="text/javascript">
+			function login(){
+				var pwd = $('#password').attr('value');
+				var user = $('#username').attr('value');
+				if(user=='' || pwd==''){
+					alert('请填入用户名和密码，然后再登录');
+					return false;
+				}else{
+					document.forms[0].submit();
+				}
 			}
-		}
-	</script>
-	</HEAD>
-	<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 style="text-align: center; padding-top: 20px;">
+		</script>
+		<script type="text/javascript">
+			function breakout_of_frame()
+			{
+			  // see http://www.thesitewizard.com/archive/framebreak.shtml
+			  // for an explanation of this script and how to use it on your
+			  // own website
+			  if (top.location != location) {
+			    top.location.href = document.location.href ;
+			  }
+			}
+		</script>
+	</head>
+
+	<body class="bg01" style="text-align: center;" onload="breakout_of_frame();">
 		<form action="${appPath}login.htm" method="post">
-		<TABLE WIDTH=800 BORDER=0 CELLPADDING=0 CELLSPACING=0 align="center">
-			<TR>
-				<TD COLSPAN=7>
-					<IMG SRC="${appPath}html/images/login/login_01.jpg" WIDTH=800 HEIGHT=71 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=71 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD COLSPAN=7>
-					&nbsp;
-
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=66 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD COLSPAN=7>
-					<IMG SRC="${appPath}html/images/login/login_03.jpg" WIDTH=800 HEIGHT=6 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=6 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD COLSPAN=3>
-					&nbsp;
-				</TD>
-				<TD COLSPAN=3 ROWSPAN=2>
-					<IMG SRC="${appPath}html/images/login/login_05.jpg" WIDTH=426 HEIGHT=83 ALT="">
-				</TD>
-
-				<TD ROWSPAN=3>
-					&nbsp;
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=44 ALT="">
-				</TD>
-			</TR>
-			<TR>
-
-				<TD ROWSPAN=4>
-					&nbsp;
-				</TD>
-				<TD COLSPAN=2>
-					<IMG SRC="${appPath}html/images/login/login_08.jpg" WIDTH=94 HEIGHT=39 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=39 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD ROWSPAN=3>
-					<IMG SRC="${appPath}html/images/login/login_09.jpg" WIDTH=15 HEIGHT=141 ALT="">
-				</TD>
-				<TD COLSPAN=2 ROWSPAN=2 background="${appPath}html/images/login/login_10.jpg">
-					<table width="100%">
-						<tr>
-							<th>
-								用户名
-							</th>
-							<td>
-								<input size="10" maxlength="20" name="username"/>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								密码
-							</th>
-							<td>
-								<input type="password" size="10" maxlength="20" name="password"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								&nbsp;
-							</td>
-							<td>
-								<input name="rand" type="hidden" value=""/>
-								<img onclick="login();" src="${appPath}html/images/login/login_button.jpg" width="73" height="25">
-							</td>
-						</tr>
-					</table>
-				</TD>
-				<TD COLSPAN=2>
-					<IMG SRC="${appPath}html/images/login/login_11.jpg" WIDTH=304 HEIGHT=86 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=86 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD ROWSPAN=2>
-					<IMG SRC="${appPath}html/images/login/login_12.jpg" WIDTH=19 HEIGHT=55 ALT="">
-				</TD>
-
-				<TD COLSPAN=2 ROWSPAN=3>
-					&nbsp;
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=28 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD COLSPAN=2>
-					<IMG SRC="${appPath}html/images/login/login_14.jpg" WIDTH=201 HEIGHT=27 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=27 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD COLSPAN=6>
-					<jsp:include page="msg.jsp"></jsp:include>
-				</TD>
-			</TR>
-			<TR>
-
-				<TD COLSPAN=7 background="${appPath}html/images/login/login_16.jpg" style="text-align: right; padding-right: 25px;">
-					&copy;  2009 厚溥信息技术有限公司制
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=1 HEIGHT=55 ALT="">
-				</TD>
-			</TR>
-			<TR>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=150 HEIGHT=1 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=15 HEIGHT=1 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=79 HEIGHT=1 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=122 HEIGHT=1 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=19 HEIGHT=1 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=285 HEIGHT=1 ALT="">
-				</TD>
-				<TD>
-					<IMG SRC="${appPath}html/images/login/spacer.gif" WIDTH=130 HEIGHT=1 ALT="">
-				</TD>
-				<TD></TD>
-			</TR>
-		</TABLE>
+			<div id="main_container2" class="mar_t50">
+				<div class="header">
+					<div id="logo">
+						<span><img src="html/css/images/logo.jpg" alt="" title="" width="296" height="47" border="0" /> </span>
+					</div>
+				</div>
+				<div id="middle_box">
+					<div class="middle_box_content">
+						<div class="login_frame">
+							<div class="clearfix mar_b5 mar_t10">
+								<div class="bdbottom pad_b10">
+									<p class="mar_b10">
+										<span>用户名：</span>
+										<input name="username" id="username" tabindex="1" class="logininput4" type="text" />
+									</p>
+									<p class="mar_b10">
+										<span>密&nbsp;&nbsp;码：</span>
+										<input name="password" id="password" tabindex="2" class="logininput4" type="password" />
+									</p>
+									<!--  <p class="mar_b5">
+									<span>验证码：</span>
+									<input name="" tabindex="2" class="logininput3" type="text"/>
+								</p>-->
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="mar_b5 mar_t5  pad_l50">
+								<input onClick="login();" class="button04" value="" title="登录" type="button">
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<p>
+						技术支持：饲料经营系统
+					</p>
+					<p class="mar_t5" style="font-family: Arial, Helvetica, sans-serif;">
+						Copyright&nbsp;&copy;&nbsp;Fodder Corporation.2011
+					</p>
+				</div>
+			</div>
 		</form>
-	</BODY>
-</HTML>
+	</body>
+</html>

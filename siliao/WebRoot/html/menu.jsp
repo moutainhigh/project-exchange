@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <TITLE>客户关系管理系统</TITLE>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!--字体大小和顏色可以改变，其余不要改变-->
 <STYLE ID="JoustStyles" TYPE="text/css">
@@ -129,8 +129,8 @@ if (self.name != 'menu') { self.location.href = 'index2.html'; }
 //-->
 </script>
 </HEAD>
-<BODY LINK="#FFFFFF" marginwidth="1" marginheight="1" onResize="frameResized();" topmargin="0" leftmargin="0" bgcolor="#0066cc" text="#FFFFFF" vlink="#FFFFFF" alink="#FFFFFF">
-<DIV ID="menuTop">&nbsp;
+<BODY LINK="#FFFFFF" marginwidth="1" marginheight="1" onResize="frameResized();" topmargin="0" leftmargin="0" style="background:#125290 url(css/images/menu_bg.gif) center 10px no-repeat;" text="#FFFFFF" vlink="#FFFFFF" alink="#FFFFFF">
+<DIV ID="menuTop" style="padding-top:30px;">&nbsp;
 </DIV>
 <SCRIPT LANGUAGE="JavaScript">
 <!--
@@ -164,6 +164,9 @@ setBottom();
 
 </BODY>
 </HTML>
+
+
+
 
 
 
