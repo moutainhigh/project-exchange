@@ -40,6 +40,12 @@ public class PersonalAction extends BaseAction {
 		}
 		return "password";
 	}
+	
+	//信息补全
+	public String modifyUser(){
+		
+		return "user_info";
+	}
 
 	public UserBiz getUserBiz() {
 		return userBiz;

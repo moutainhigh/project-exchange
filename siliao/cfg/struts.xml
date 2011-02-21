@@ -12,10 +12,18 @@
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
-    <package name="struts2" extends="struts-default" namespace="/">        
-		<action name="test" class="com.throne212.siliao.action.TestAction">
-			<result name="success">/index.html</result>
-		</action>
+    <package name="struts2" extends="struts-default" namespace="/">    
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.siliao.filter.AccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
 		<!-- 登入 -->
 		<action name="login" class="com.throne212.siliao.action.LoginAction">
 			<result name="success">/html/index.jsp</result>
@@ -25,45 +33,17 @@
 		<action name="logout" class="com.throne212.siliao.action.LogoutAction">
 			<result name="success" type="redirect">/login.jsp</result>
 		</action>
+		<!-- 个人信息 -->
 		<action name="personal_*" method="{1}" class="com.throne212.siliao.action.PersonalAction">
 			<result name="password">/html/personal/password.jsp</result>
+			<result name="user_info">/html/personal/user_info.jsp</result>
+		</action>
+		<!-- 数据设定 -->
+		<action name="personal_*" method="{1}" class="com.throne212.siliao.action.DataAction">
+			<result name="password">/html/personal/password.jsp</result>
+			<result name="user_info">/html/personal/user_info.jsp</result>
 		</action>
     </package>
-    <!--  
-    <package name="admin" namespace="/admin" extends="struts-default">
-    	<interceptors>
-            <interceptor name="auth" class="com.throne212.info168.web.filter.AdminAccessInterceptor"/>
-            <interceptor-stack name="authStack">
-            	<interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="auth" />
-            </interceptor-stack>
-        </interceptors>
-        <default-interceptor-ref name="authStack"/>
-        <global-results>
-			<result name="login" type="chain">
-				<param name="actionName">login</param>
-         		<param name="namespace">/</param> 
-			</result>
-		</global-results>
-		<action name="*" method="{1}" class="com.throne212.info168.web.action.AdminAction">
-			<result name="index">/admin/manage.jsp</result>
-			<result name="password">/admin/welcome/pwd.jsp</result>
-			<result name="info_list">/admin/info/list.jsp</result>
-			<result name="info_edit">/admin/info/edit.jsp</result>
-			<result name="hot_city">/admin/sys/hot_city.jsp</result>
-			<result name="site_setting">/admin/sys/site_setting.jsp</result>
-			<result name="user_list">/admin/user/list.jsp</result>
-			<result name="user_edit">/admin/user/edit.jsp</result>
-			<result name="user_info_list">/admin/user/user_info_list.jsp</result>
-			<result name="link">/admin/sys/link.jsp</result>
-			<result name="gen_html">/admin/sys/gen_html.jsp</result>
-			<result name="keywords">/admin/sys/keywords.jsp</result>
-			<result name="top_price">/admin/sys/top_price.jsp</result>
-			<result name="add_money">/admin/user/money.jsp</result>
-		</action>
-    </package>
-    -->
-    <!--  
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.siliao.action.AjaxAction">
         	<result name="area_list" type="json">
@@ -97,5 +77,4 @@
 			</result>
 		</action>		
 	</package>
-	-->
 </struts>

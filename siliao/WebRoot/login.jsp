@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -56,6 +57,15 @@
 									<span>验证码：</span>
 									<input name="" tabindex="2" class="logininput3" type="text"/>
 								</p>-->
+									<p class="mar_b5">
+									<c:if test="${not empty msg}">
+									<div style="background:none;text-align:center; height:30px; font-size:12px;color:red;margin:10px auto;border:0;padding:1px;" id="reqMsg">
+										<div style="margin:2px auto;border:1px solid #FF0000; background-color:#FFCE00; line-height:30px;height:30px; width:200px;">
+											${msg}
+										</div>
+									</div>
+									</c:if >
+									</p>
 								</div>
 								<div class="clear"></div>
 							</div>

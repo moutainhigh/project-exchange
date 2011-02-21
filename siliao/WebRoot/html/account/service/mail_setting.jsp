@@ -7,8 +7,7 @@
 		<link href="${appPath}html/css/style.css" rel="stylesheet" type="text/css">
 		<script src="${appPath}html/script/jquery.js"></script>
 		<script src="${appPath}html/script/common.js"></script>
-		<script src="${appPath}html/script/pwd.js"></script>
-
+		<script src="${appPath}html/script/mail.js"></script>
 	</head>
 	<body>
 		<div class="page_title">
@@ -16,44 +15,53 @@
 		</div>
 		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />
-		密码修改：
-		<form action="${appPath}personal_changePwd.htm" method="get">
+
+		自动邮件收发设置：
+		<form action="${appPath}data_updateMailSetting.htm" method="get">
 			<table class="query_form_table">
 				<tr>
 					<th>
-						请输入原密码
+						开关
 					</th>
 					<td colspan="3">
-						<input value="" type="password" name="oldpassword" id="oldpassword" />
+						<input type="radio" name="on" />
+						开
+						<input type="radio" name="on" />
+						关
 					</td>
 
 				</tr>
 				<tr>
 					<th>
-						请输入现密码
+						邮箱用户名
 					</th>
-					<td colspan="3">
-						<input value="" type="password" name="newpassword" id="newpassword" />
+					<td colspan=3>
+						<input value="" />
 					</td>
-
 				</tr>
 				<tr>
-					<th>
-						请再输入一次现密码
+					<th height="22">
+						邮箱密码
 					</th>
-					<td colspan="3">
-						<input value="" type="password" name="renewpassword" id="renewpassword" />
+					<td colspan=3>
+						<input value="" />
 					</td>
-
 				</tr>
-
+				<tr>
+					<th height="22">
+						SMTP/POP3服务器地址
+					</th>
+					<td colspan=3>
+						<input value="" />
+					</td>
+				</tr>
 			</table>
 			<br />
 			<div class="button_bar">
 				<button class="common_button" onclick="back();">
 					返回
 				</button>
-				<button class="common_button" onclick="modifyPwd();">
+				<button class="common_button" onclick="save('companyQuery.html');">
 					保存
 				</button>
 			</div>
