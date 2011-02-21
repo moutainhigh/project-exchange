@@ -5,18 +5,17 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BaseBiz;
-import com.throne212.siliao.biz.UserBiz;
-import com.throne212.siliao.common.EncryptUtil;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.MailSetting;
 import com.throne212.siliao.domain.User;
+import com.throne212.siliao.domain.UserLog;
 
 public class DataAction extends BaseAction {
 
 	private BaseBiz baseBiz;
 	
-	private boolean on=false;
+	private Boolean on;
 	private String username;
 	private String password;
 	private String smtp;
@@ -58,6 +57,16 @@ public class DataAction extends BaseAction {
 		mailSetting.setCreateDate(new Date());
 		baseBiz.saveOrUpdateEntity(mailSetting);
 		
+		UserLog log= new UserLog();
+		log.setByWho(user);
+		log.setCreateDate(new Date());
+		log.setCreateName(user.getName());
+		log.setEnable(true);
+		log.setLogTime(new Date());
+		log.setMsg(WebConstants.OP_UPDATE);
+		log.setUser(user);
+		baseBiz.saveOrUpdateEntity(log);
+		
 		
 		
 		this.setMsg("设置成功！");
@@ -65,6 +74,10 @@ public class DataAction extends BaseAction {
 	}
 
 
+	
+	
+	
+	
 	public BaseBiz getBaseBiz() {
 		return baseBiz;
 	}
@@ -75,12 +88,15 @@ public class DataAction extends BaseAction {
 	}
 
 
-	public boolean isOn() {
+	
+
+
+	public Boolean getOn() {
 		return on;
 	}
 
 
-	public void setOn(boolean on) {
+	public void setOn(Boolean on) {
 		this.on = on;
 	}
 

@@ -1,11 +1,14 @@
 package com.throne212.siliao.action;
 
+import java.util.Date;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.UserBiz;
 import com.throne212.siliao.common.EncryptUtil;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.User;
+import com.throne212.siliao.domain.UserLog;
 
 public class PersonalAction extends BaseAction {
 	private UserBiz userBiz;
@@ -68,8 +71,23 @@ public class PersonalAction extends BaseAction {
 		userForModifyUser.setGender(gender);
 
 		userBiz.saveOrUpdateEntity(userForModifyUser);
+		
+		UserLog log=new UserLog();
+		log.setByWho(user);
+		log.setCreateDate(new Date());
+		log.setCreateName(user.getName());
+		log.setEnable(true);
+		log.setLogTime(new Date());
+		log.setMsg(WebConstants.OP_UPDATE);
+		log.setUser(user);
+		userBiz.saveOrUpdateEntity(log);
+		
+		
+		
+		
 		this.setMsg("修改成功！");
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, userForModifyUser);
+		
 		return "user_info";
 	}
 

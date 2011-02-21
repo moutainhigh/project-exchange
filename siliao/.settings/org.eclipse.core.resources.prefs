@@ -1,6 +1,11 @@
-#Wed Feb 16 15:59:08 CST 2011
+#Mon Feb 21 16:46:13 CST 2011
 eclipse.preferences.version=1
+encoding//WebRoot/html/account/service=UTF-8
+encoding//WebRoot/html/account/service/userModify.html=UTF-8
+encoding//WebRoot/html/account/service/userQuery.html=UTF-8
+encoding//WebRoot/html/account/service/userQuery.jsp=UTF-8
 encoding//WebRoot/html/css/menu.css=UTF-8
 encoding//WebRoot/html/css/style.css=UTF-8
+encoding//WebRoot/html/script/mail.js=UTF-8
 encoding//WebRoot/msg.jsp=UTF-8
 encoding/<project>=UTF-8

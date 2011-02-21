@@ -28,7 +28,7 @@
 						用户名
 					</th>
 					<td>
-						<input name="loginName" value="${sessionScope.userObj.loginName}"
+						<input name="loginName" id="loginName" value="${sessionScope.userObj.loginName}"
 							disabled />
 						<span class="red_star">*(用来登录的用户名)</span>
 					</td>
@@ -36,7 +36,7 @@
 						密码
 					</th>
 					<td>
-						<input name="password" value="${sessionScope.userObj.password}"
+						<input name="password" id="password" value="${sessionScope.userObj.password}"
 							type="password" disabled />
 						<span class="red_star">*</span>
 					</td>
@@ -47,18 +47,7 @@
 					</th>
 					<td>
 						<select disabled>
-							<option>
-								管区负责人
-							</option>
-							<option>
-								饲料经理
-							</option>
-							<option>
-								供货饲料厂
-							</option>
-							<option>
-								系统管理员
-							</option>
+							<option>${sessionScope.userObj.userRole}</option>
 						</select>
 						<span class="red_star">*(人员的权限分配)</span>
 					</td>
@@ -66,7 +55,7 @@
 						备注
 					</th>
 					<td>
-						<input value="${sessionScope.userObj.remark}" disabled />
+						<input name="remark" id="remark" value="${sessionScope.userObj.remark}" disabled />
 					</td>
 				</tr>
 				<tr>
@@ -74,14 +63,14 @@
 						邮箱地址
 					</th>
 					<td>
-						<input name="email" value="${sessionScope.userObj.email}" />
+						<input name="email" id="email" value="${sessionScope.userObj.email}" />
 						<span class="red_star"></span>
 					</td>
 					<th>
 						手机号码
 					</th>
 					<td>
-						<input name="tel" value="${sessionScope.userObj.tel}" />
+						<input name="tel" id="tel" value="${sessionScope.userObj.tel}" />
 					</td>
 				</tr>
 				<tr>
@@ -89,7 +78,7 @@
 						年龄
 					</th>
 					<td>
-						<input name="age" value="${sessionScope.userObj.age}" />
+						<input name="age" id="age" value="${sessionScope.userObj.age}" />
 						<span class="red_star"></span>
 					</td>
 					<th>
@@ -107,14 +96,14 @@
 						家庭住址
 					</th>
 					<td>
-						<input name="address" value="${sessionScope.userObj.address}" />
+						<input name="address" id="address" value="${sessionScope.userObj.address}" />
 						<span class="red_star"></span>
 					</td>
 					<th>
 						邮政编码
 					</th>
 					<td>
-						<input name="post" value="${sessionScope.userObj.post}" />
+						<input name="post" id ="post" value="${sessionScope.userObj.post}" />
 					</td>
 				</tr>
 
@@ -126,7 +115,7 @@
 				<button class="common_button" onclick="back();">
 					返回
 				</button>
-				<button class="common_button" onclick="modifyUser();">
+				<button class="common_button" onclick="return modifyUser();">
 					创建
 				</button>
 			</div>
