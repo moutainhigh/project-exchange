@@ -39,6 +39,12 @@
 			<result name="user_info">/html/personal/user_info.jsp</result>
 		</action>
 		<!-- 数据设定 -->
+		<action name="data_*" method="{1}" class="com.throne212.siliao.action.DataAction">
+			<result name="fail">/html/account/service/mail_setting.jsp</result>
+			<result name="mail_setting">/html/account/service/mail_setting.jsp</result>
+		</action>
+		
+		<!-- 设定 -->
 		<action name="personal_*" method="{1}" class="com.throne212.siliao.action.DataAction">
 			<result name="password">/html/personal/password.jsp</result>
 			<result name="user_info">/html/personal/user_info.jsp</result>

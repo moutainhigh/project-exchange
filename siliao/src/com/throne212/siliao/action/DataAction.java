@@ -1,20 +1,98 @@
 package com.throne212.siliao.action;
 
+import java.util.Date;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BaseBiz;
 import com.throne212.siliao.biz.UserBiz;
 import com.throne212.siliao.common.EncryptUtil;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.domain.MailSetting;
 import com.throne212.siliao.domain.User;
 
 public class DataAction extends BaseAction {
 
 	private BaseBiz baseBiz;
 	
-	public String updateMailSetting(){
+	private boolean on=false;
+	private String username;
+	private String password;
+	private String smtp;
 		
+		
+	public String updateMailSetting(){
+		User user=(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		
+		if (Util.isEmpty(username) || Util.isEmpty(password)||Util.isEmpty(smtp)) {
+			this.setMsg("请填入完整信息！");
+			return "fail";
+		}
+		
+		
+		MailSetting mailSetting=baseBiz.getEntityByUnique(MailSetting.class, "username", username);
+		if(mailSetting==null){
+			mailSetting=new MailSetting();
+		}
+		mailSetting.setUsername(username);
+		mailSetting.setPassword(password);
+		mailSetting.setSmtp(smtp);
+		mailSetting.setEnable(on);
+		mailSetting.setCreateName(user.getLoginName());
+		mailSetting.setCreateDate(new Date());
+		baseBiz.saveOrUpdateEntity(mailSetting);
+		this.setMsg("设置成功！");
 		return "mail_setting";
+	}
+
+
+	public BaseBiz getBaseBiz() {
+		return baseBiz;
+	}
+
+
+	public void setBaseBiz(BaseBiz baseBiz) {
+		this.baseBiz = baseBiz;
+	}
+
+
+	public boolean isOn() {
+		return on;
+	}
+
+
+	public void setOn(boolean on) {
+		this.on = on;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getSmtp() {
+		return smtp;
+	}
+
+
+	public void setSmtp(String smtp) {
+		this.smtp = smtp;
 	}
 
 }

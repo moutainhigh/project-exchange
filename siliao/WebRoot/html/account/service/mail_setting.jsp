@@ -13,7 +13,7 @@
 		<div class="page_title">
 			饲料管理系统 > 数据设定 > 密码修改
 		</div>
-		<jsp:include page="../../msg.jsp"></jsp:include>
+		<jsp:include page="../../../msg.jsp"></jsp:include>
 		<br />
 
 		自动邮件收发设置：
@@ -36,7 +36,7 @@
 						邮箱用户名
 					</th>
 					<td colspan=3>
-						<input value="" />
+						<input name="username" id="username" value="" />
 					</td>
 				</tr>
 				<tr>
@@ -44,7 +44,7 @@
 						邮箱密码
 					</th>
 					<td colspan=3>
-						<input value="" />
+						<input name="password" id="password" value="" />
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +52,7 @@
 						SMTP/POP3服务器地址
 					</th>
 					<td colspan=3>
-						<input value="" />
+						<input name="smtp" id="smtp" value="" />
 					</td>
 				</tr>
 			</table>
@@ -61,7 +61,7 @@
 				<button class="common_button" onclick="back();">
 					返回
 				</button>
-				<button class="common_button" onclick="save('companyQuery.html');">
+				<button class="common_button" onclick="modifyMailSetting();">
 					保存
 				</button>
 			</div>
