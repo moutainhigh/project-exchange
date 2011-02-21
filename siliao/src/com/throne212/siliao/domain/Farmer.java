@@ -11,7 +11,7 @@ public class Farmer extends MyEntity implements Serializable {
 	private String tel;// 手机号码
 	private String email;// 邮箱地址
 	private String no;// 唐口号
-	private String ramark;// 备注
+	private String remark;// 备注
 	private Area area;// 所属管区
 
 	public Area getArea() {
@@ -54,12 +54,13 @@ public class Farmer extends MyEntity implements Serializable {
 		this.no = no;
 	}
 
-	public String getRamark() {
-		return ramark;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setRamark(String ramark) {
-		this.ramark = ramark;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
+
 
 }

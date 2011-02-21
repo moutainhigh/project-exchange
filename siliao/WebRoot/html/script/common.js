@@ -6,7 +6,7 @@ function help(msg){
 }
 
 function to(url){
-	window.location.href=url;
+	self.location.href=url;
 }
 function back(){
 	history.go(-1);
@@ -35,3 +35,32 @@ function setCurTime(oid){
 	var oCtl = document.getElementById(oid);
 	oCtl.value = timeString;
 }
+
+
+function gotoPage(pageIndex,url){
+	if(!pageIndex || pageIndex==''){
+		alert('请填入页码');
+		return false;
+	}
+	if(!url){
+		url = self.location.href;
+	}
+	if(url.indexOf("?") > 0){
+		if(url.indexOf("pageIndex=") > 0){
+			url = url.replace(/pageIndex=\d*/g,'');
+			//alert(url);
+			url = url.replace(/&{2,}/g,'&');
+		}
+		url += '&';
+	}else{
+		url += '?';
+	}
+	url += "pageIndex=" + pageIndex;
+	self.location.href = url;
+}
+
+
+//让消息框慢慢消退
+$(function(){
+	$('#reqMsg').fadeOut(5000); 
+});

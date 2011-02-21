@@ -25,9 +25,9 @@
 						开关
 					</th>
 					<td colspan="3">
-						<input type="radio" name="on" value="true" <c:if test="${sessionScope.userObj.on==true}">checked="checked"</c:if>/>
+						<input type="radio" name="on" value="true" <c:if test="${mailSetting.enable==true}">checked="checked"</c:if>/>
 						开
-						<input type="radio" name="on" value="false" <c:if test="${sessionScope.userObj.on==false}">checked="checked"</c:if>/>
+						<input type="radio" name="on" value="false" <c:if test="${mailSetting.enable==false}">checked="checked"</c:if>/>
 						关
 					</td>
 

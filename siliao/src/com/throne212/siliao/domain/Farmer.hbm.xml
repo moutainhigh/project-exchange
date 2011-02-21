@@ -9,9 +9,9 @@
 		<property name="name"></property>
 		<property name="email"></property>
 		<property name="no"></property>
-		<property name="ramark" length="512"></property>
+		<property name="remark" length="512"></property>
 		<property name="tel"></property>
-		<many-to-one name="area" column="area_id"></many-to-one>
+		<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>

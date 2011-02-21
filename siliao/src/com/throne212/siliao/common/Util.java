@@ -18,9 +18,12 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.throne212.siliao.domain.Log;
+import com.throne212.siliao.domain.User;
 
 public class Util {
 	private static Logger logger = Logger.getLogger(Util.class);
@@ -158,6 +161,24 @@ public class Util {
 	public static String generateOrderNo(){
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		return fmt.format(new Date()).toString();
+	}
+	//获取日志基础数据
+	public static <T extends Log> T getBaseLog(Class<T> logClass,String msg){
+		Log log = null;
+		try {
+			log = logClass.newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} 
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		log.setByWho(user);
+		log.setCreateDate(new Date());
+		log.setCreateName(user.getName());
+		log.setEnable(true);
+		log.setLogTime(new Date());
+		log.setMsg(msg);
+		return (T) log;
 	}
 	public static void main(String[] args) {
 		Date now = new Date();

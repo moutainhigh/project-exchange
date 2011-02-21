@@ -8,7 +8,7 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="htm,php,asp,aspx,action,,"></constant>
+	<constant name="struts.action.extension" value="htm,php,asp,aspx,action,xls,,"></constant>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
@@ -23,6 +23,16 @@
         <default-interceptor-ref name="authStack"/>
         <global-results>
 			<result name="login">/login.jsp</result>
+			<result name="excel" type="stream">  
+                <!-- 下载文件类型定义 -->  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <!-- 下载文件处理方法 -->  
+                <param name="contentDisposition">  
+                    attachment;filename="${msg}"  
+                </param>  
+                <!-- 下载文件输出流定义 -->  
+                <param name="inputName">downloadFile</param>  
+            </result>
 		</global-results>
 		<!-- 登入 -->
 		<action name="login" class="com.throne212.siliao.action.LoginAction">
@@ -43,6 +53,8 @@
 		<action name="data_*" method="{1}" class="com.throne212.siliao.action.DataAction">
 			<result name="fail">/html/account/service/mail_setting.jsp</result>
 			<result name="mail_setting">/html/account/service/mail_setting.jsp</result>
+			<result name="farmer_edit">/html/account/service/farmer_edit.jsp</result>
+			<result name="farmer_list">/html/account/service/farmer_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

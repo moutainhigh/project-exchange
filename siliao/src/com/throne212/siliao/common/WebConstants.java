@@ -38,6 +38,8 @@ public class WebConstants {
 	public static final String OP_DELETE = "删除";
 	
 	
+	public static final int PAGE_SIZE = 20;
+	
 	
 	
 }
