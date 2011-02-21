@@ -18,7 +18,7 @@
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
 		<!-- 子类log -->
-		<joined-subclass name="FarmerFinance" table="YH_FINANCE_FARMER">
+		<joined-subclass name="FarmerFinance" table="yh_finance_farmer">
 			<key column="finance_id"></key>
 			<property name="amount"></property>
 			<property name="model"></property>
@@ -30,7 +30,7 @@
 			<many-to-one name="farmer" column="farmer_id"></many-to-one>
 			<many-to-one name="provider" column="provider_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="ProviderFinance" table="YH_FINANCE_PROVIDER">
+		<joined-subclass name="ProviderFinance" table="yh_finance_provider">
 			<key column="finance_id"></key>
 			<property name="amount"></property>
 			<property name="money"></property>

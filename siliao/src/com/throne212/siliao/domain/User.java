@@ -2,6 +2,8 @@ package com.throne212.siliao.domain;
 
 import java.io.Serializable;
 
+import com.throne212.siliao.common.WebConstants;
+
 //用户的抽象类
 public abstract class User extends MyEntity implements Serializable {
 
@@ -20,6 +22,20 @@ public abstract class User extends MyEntity implements Serializable {
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getUserRole(){
+		if(this instanceof Admin){
+			return WebConstants.USER_NAME_ADMIN;
+		}else if(this instanceof AreaAccount){
+			return WebConstants.USER_NAME_AREA;
+		}if(this instanceof ManagerAccount){
+			return WebConstants.USER_NAME_MANAGER;
+		}if(this instanceof ProviderAccount){
+			return WebConstants.USER_NAME_PROVIDER;
+		}else{
+			return "";
+		}
 	}
 
 	public Long getId() {

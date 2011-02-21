@@ -12,8 +12,7 @@ function back(){
 	history.go(-1);
 }
 function save(url){
-	alert('保存成功！');
-	to(url);
+	
 }
 function add(url){
 	alert('新建成功！');

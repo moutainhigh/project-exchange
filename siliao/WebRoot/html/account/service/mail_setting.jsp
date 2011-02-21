@@ -36,7 +36,7 @@
 						邮箱用户名
 					</th>
 					<td colspan=3>
-						<input name="username" id="username" value="" />
+						<input name="username" id="username" value="${mailSetting.username} " />
 					</td>
 				</tr>
 				<tr>
@@ -44,7 +44,7 @@
 						邮箱密码
 					</th>
 					<td colspan=3>
-						<input name="password" id="password" value="" />
+						<input name="password" id="password" value="${mailSetting.password }" />
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +52,7 @@
 						SMTP/POP3服务器地址
 					</th>
 					<td colspan=3>
-						<input name="smtp" id="smtp" value="" />
+						<input name="smtp" id="smtp" value="${mailSetting.smtp }" />
 					</td>
 				</tr>
 			</table>

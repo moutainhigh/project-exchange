@@ -28,12 +28,16 @@ public class WebConstants {
 	
 	
 	//other
-	public static final int INFO_LIST_ROWS = 10;
-	public static final int INFO_LIST_ROWS_SEARCH = 20;
-	public static final int INFO_LIST_ROWS_ADMIN = 20;
-	public static final int USER_LIST_ROWS_ADMIN = 20;
-	public static final int FINANCE_LIST_ROWS_ADMIN = 20;
-	public static final double TOP_PRICE = 1;//信息置顶默认价格
+	public static final String USER_NAME_ADMIN = "系统管理员";
+	public static final String USER_NAME_MANAGER = "饲料经理";
+	public static final String USER_NAME_PROVIDER = "供应饲料厂负责人";
+	public static final String USER_NAME_AREA = "管区厂负责人";
+	
+	public static final String OP_CREATE = "创建";
+	public static final String OP_UPDATE = "更新";
+	public static final String OP_DELETE = "删除";
+	
+	
 	
 	
 }

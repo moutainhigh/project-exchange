@@ -920,7 +920,7 @@ function initialise() {
 
 	L04 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
 	L0401 = theMenu.addChild(L04, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
-	L0402 = theMenu.addChild(L04, "Document", "信息补全", "personal/infoAdd.html", "添加维护个人资料信息");
+	L0402 = theMenu.addChild(L04, "Document", "信息补全", "${appPath}html/personal/infoAdd.jsp", "添加维护个人资料信息");
 	
         
 	theMenu.entry[l2ID].isopen = true;

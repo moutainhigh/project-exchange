@@ -1,6 +1,7 @@
 package com.throne212.siliao.action;
 
 import java.util.Date;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BaseBiz;
@@ -20,7 +21,17 @@ public class DataAction extends BaseAction {
 	private String password;
 	private String smtp;
 		
-		
+	private MailSetting mailSetting;
+	public MailSetting getMailSetting() {
+		return mailSetting;
+	}
+
+
+	public void setMailSetting(MailSetting mailSetting) {
+		this.mailSetting = mailSetting;
+	}
+
+
 	public String updateMailSetting(){
 		User user=(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		
@@ -29,8 +40,13 @@ public class DataAction extends BaseAction {
 			return "fail";
 		}
 		
+		List<MailSetting> list=baseBiz.getAll(MailSetting.class);
+		if (list.size()==0) {
+			mailSetting=null;
+		} else {
+			mailSetting=list.get(0);
+		}
 		
-		MailSetting mailSetting=baseBiz.getEntityByUnique(MailSetting.class, "username", username);
 		if(mailSetting==null){
 			mailSetting=new MailSetting();
 		}
@@ -41,6 +57,9 @@ public class DataAction extends BaseAction {
 		mailSetting.setCreateName(user.getLoginName());
 		mailSetting.setCreateDate(new Date());
 		baseBiz.saveOrUpdateEntity(mailSetting);
+		
+		
+		
 		this.setMsg("设置成功！");
 		return "mail_setting";
 	}

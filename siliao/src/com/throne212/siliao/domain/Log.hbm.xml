@@ -6,9 +6,9 @@
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-		<property name="byWho" column="by_who"></property>
 		<property name="logTime" column="log_time" type="timestamp"></property>
 		<property name="msg" length="1024"></property>
+		<many-to-one name="byWho" column="by_who"></many-to-one>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -20,35 +20,35 @@
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
 		<!-- 子类log -->
-		<joined-subclass name="FactoryLog" table="YH_LOG_FACTORY">
+		<joined-subclass name="FactoryLog" table="yh_log_factory">
 			<key column="log_id"></key>
 			<many-to-one name="factory" column="factory_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="RateLog" table="YH_LOG_RATE">
+		<joined-subclass name="RateLog" table="yh_log_rate">
 			<key column="log_id"></key>
 			<many-to-one name="rate" column="rate_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="AreaLog" table="YH_LOG_AREA">
+		<joined-subclass name="AreaLog" table="yh_log_area">
 			<key column="log_id"></key>
 			<many-to-one name="area" column="area_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="FarmLog" table="YH_LOG_FARM">
+		<joined-subclass name="FarmLog" table="yh_log_farm">
 			<key column="log_id"></key>
 			<many-to-one name="farm" column="farm_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="ProviderLog" table="YH_LOG_PROVIDER">
+		<joined-subclass name="ProviderLog" table="yh_log_provider">
 			<key column="log_id"></key>
 			<many-to-one name="provider" column="provider_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="UserLog" table="YH_LOG_USER">
+		<joined-subclass name="UserLog" table="yh_log_user">
 			<key column="log_id"></key>
 			<many-to-one name="user" column="user_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="FarmerLog" table="YH_LOG_FARMER">
+		<joined-subclass name="FarmerLog" table="yh_log_farmer">
 			<key column="log_id"></key>
 			<many-to-one name="farmer" column="farmer_id"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="OrderLog" table="YH_LOG_ORDER">
+		<joined-subclass name="OrderLog" table="yh_log_order">
 			<key column="log_id"></key>
 			<many-to-one name="order" column="order_id"></many-to-one>
 			<many-to-one name="user" column="user_id"></many-to-one>

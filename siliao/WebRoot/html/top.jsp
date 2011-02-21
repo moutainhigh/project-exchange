@@ -14,7 +14,7 @@
         <div class="white mar_t5 clearfix" style="height: 16px;">
           <p class="fl"> 当前用户：</p>
           <!-- 请控制此处用户名显示字数(最多6个汉字,12个字母数字)，否则超长用户名将会导致页面结构混乱 -->
-          <p class="fl mar_r10 w120 h18 hide yellow">沈晨（系统管理员）</p>
+          <p class="fl mar_r10 h18 hide yellow">${userObj.name}（${userObj.userRole}）</p>
           <p class="fl"> <a href="${appPath}logout.htm" title="退出" class="gray">[退出]</a></p>
           
           <!-- to Programmer -->
