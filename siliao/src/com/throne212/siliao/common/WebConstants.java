@@ -37,6 +37,8 @@ public class WebConstants {
 	public static final String OP_UPDATE = "更新";
 	public static final String OP_DELETE = "删除";
 	
+	public static final String RATE_TYPE_FARM = "f";//农场
+	public static final String RATE_TYPE_PROVIDER = "p";//供应厂
 	
 	public static final int PAGE_SIZE = 20;
 	

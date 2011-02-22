@@ -57,6 +57,8 @@
 			<result name="farmer_list">/html/account/service/farmer_list.jsp</result>
 			<result name="user_edit">/html/account/service/user_edit.jsp</result>
 			<result name="user_list">/html/account/service/user_list.jsp</result>
+			<result name="rate_edit">/html/account/service/rate_edit.jsp</result>
+			<result name="rate_list">/html/account/service/rate_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
@@ -68,8 +70,18 @@
 				</param>
 			</result>
 			<result name="role_list" type="json">
+				<param name="includeProperties">list\[\d+\]</param>
+			</result>
+			<result name="list" type="json">
 				<param name="includeProperties">  
-					list\[\d+\]
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="farm_provider_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
 				</param>
 			</result>
 		</action>		

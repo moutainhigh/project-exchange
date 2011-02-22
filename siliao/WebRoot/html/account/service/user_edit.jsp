@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -102,6 +103,36 @@
 	
 </table>
 			
+			<br />
+			操作记录：
+<table class="data_list_table">
+	<tr>
+		<th>编号</th>
+		<th>操作人</th>
+		<th>操作时间</th>
+		<th>操作过程</th>
+		<th>用户名</th>
+		<th>姓名</th>
+		<th>角色</th>
+		<th>备注</th>
+		<th>邮箱地址</th>
+		<th>手机号码</th>
+	</tr>
+	<c:forEach items="${logList}" var="l" varStatus="s">
+	<tr>
+		<td class="list_data_text">${s.count }</td>
+		<td class="list_data_text">${l.byWho.name }</td>
+		<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
+		<td class="list_data_text">${l.msg }</td>
+		<td class="list_data_text">${l.user.loginName }</td>
+		<td class="list_data_text">${l.user.name }</td>
+		<td class="list_data_text">${l.user.userRole }</td>
+		<td class="list_data_text">${l.user.remark }</td>
+		<td class="list_data_text">${l.user.email }</td>
+		<td class="list_data_text">${l.user.tel }</td>
+	</tr>
+	</c:forEach>
+</table>
 			<br />
 			<div class="button_bar">
 				<button class="common_button" onclick="back();">

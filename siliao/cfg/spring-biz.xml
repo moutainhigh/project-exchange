@@ -14,6 +14,7 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="farmerDao" ref="farmerDao"></property>
 		<property name="userDao" ref="userDao"></property>
+		<property name="rateDao" ref="rateDao"></property>
 	</bean>
 	
 </beans>

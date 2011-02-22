@@ -7,6 +7,10 @@
 			<generator class="increment" />
 		</id>
 		<property name="value"></property>
+		<property name="rateType" column="rate_type"></property>
+		<property name="fromDate"></property>
+		<property name="endDate"></property>
+		<property name="remark" length="512"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -17,7 +21,7 @@
 		<property name="segment4"></property>
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
-		<many-to-one name="provider" column="provider_id"></many-to-one>
-		<many-to-one name="farm" column="farm_id"></many-to-one>
+		<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
+		<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>
 	</class>
 </hibernate-mapping>

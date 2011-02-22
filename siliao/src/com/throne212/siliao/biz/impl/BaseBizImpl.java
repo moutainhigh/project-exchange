@@ -59,5 +59,9 @@ public class BaseBizImpl implements BaseBiz {
 	public Long getEntitySum(Class clazz) {
 		return baseDao.getEntitySum(clazz);
 	}
+	
+	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue){
+		return baseDao.getAllLike(clazz,colName,likeValue);
+	}
 
 }

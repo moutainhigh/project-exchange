@@ -20,5 +20,7 @@ public interface BaseBiz {
 	public <T> void deleteEntity(Class<T> clazz, Long id);
 
 	public Long getEntitySum(Class clazz);
+	
+	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue);
 
 }

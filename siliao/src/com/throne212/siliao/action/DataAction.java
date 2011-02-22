@@ -15,9 +15,11 @@ import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Admin;
 import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.domain.Log;
 import com.throne212.siliao.domain.MailSetting;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.ProviderAccount;
+import com.throne212.siliao.domain.Rate;
 import com.throne212.siliao.domain.User;
 import com.throne212.siliao.domain.UserLog;
 
@@ -30,6 +32,7 @@ public class DataAction extends BaseAction {
 	private PageBean pageBean;
 	private Integer page;
 	private InputStream downloadFile;
+	private List<Log> logList;
 
 	private Boolean on;
 	private String username;
@@ -111,6 +114,7 @@ public class DataAction extends BaseAction {
 			return farmerList();
 		} else if (farmer != null && farmer.getId() != null) {// 查看农户详情
 			farmer = dataBiz.getEntityById(Farmer.class, farmer.getId());
+			logList = dataBiz.getFarmerLogList(farmer);
 			return "farmer_edit";
 		}
 		return "farmer_edit";
@@ -120,7 +124,7 @@ public class DataAction extends BaseAction {
 	private Date toDate;
 
 	public String farmerList() {
-		pageBean = dataBiz.getFarmList(farmer, fromDate, toDate, page);
+		pageBean = dataBiz.getFarmerList(farmer, fromDate, toDate, page);
 		return "farmer_list";
 	}
 
@@ -194,6 +198,7 @@ public class DataAction extends BaseAction {
 			}
 		} else if (user != null && user.getId() != null) {// 查看用户户详情
 			user = dataBiz.getEntityById(User.class, user.getId());
+			logList = dataBiz.getUserLogList(user);
 			return "user_edit";
 		}
 		return "user_edit";
@@ -220,6 +225,60 @@ public class DataAction extends BaseAction {
 		if (path != null) {
 			try {
 				this.setMsg("用户列表");
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
+	
+	
+	// 利率
+	private Rate rate;
+	public String saveRate() {
+		if (rate == null) {
+			this.setMsg("利率保存失败，请检查数据是否录入完整");
+			return "rate_edit";
+		}
+		if (rate != null && rate.getValue()!=null) {// 添加或更新利率记录
+			rate = dataBiz.saveRate(rate);
+			this.setMsg("利率保存成功");
+			rate = null;
+			return rateList();
+		} else if (rate != null && rate.getId() != null) {// 查看利率详情
+			rate = dataBiz.getEntityById(Rate.class, rate.getId());
+			logList = dataBiz.getRateLogList(rate);
+			return "rate_edit";
+		}
+		return "rate_edit";
+	}
+
+	private Date fromDate2;
+	private Date toDate2;
+	private String rateName;
+
+	public String rateList() {
+		pageBean = dataBiz.getRateList(rate, fromDate, toDate,fromDate2, toDate2,rateName, page);
+		return "rate_list";
+	}
+
+	public String deleteRate() {
+		if (rate != null && rate.getId() != null) {
+			dataBiz.deleteRate(rate);
+			this.setMsg("利率删除成功");
+		} else {
+			this.setMsg("利率删除失败，参数不完整");
+		}
+		return rateList();
+	}
+
+	public String exportRateExcel() {
+		String path = dataBiz.getRateExcelDownloadFile(rate, fromDate, toDate,fromDate2, toDate2,rateName);
+		if (path != null) {
+			try {
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -348,6 +407,46 @@ public class DataAction extends BaseAction {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<Log> getLogList() {
+		return logList;
+	}
+
+	public void setLogList(List<Log> logList) {
+		this.logList = logList;
+	}
+
+	public Rate getRate() {
+		return rate;
+	}
+
+	public void setRate(Rate rate) {
+		this.rate = rate;
+	}
+
+	public Date getFromDate2() {
+		return fromDate2;
+	}
+
+	public void setFromDate2(Date fromDate2) {
+		this.fromDate2 = fromDate2;
+	}
+
+	public Date getToDate2() {
+		return toDate2;
+	}
+
+	public void setToDate2(Date toDate2) {
+		this.toDate2 = toDate2;
+	}
+
+	public String getRateName() {
+		return rateName;
+	}
+
+	public void setRateName(String rateName) {
+		this.rateName = rateName;
 	}
 
 }

@@ -16,6 +16,9 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.throne212.siliao.dao.BaseDao;
+import com.throne212.siliao.domain.Log;
+import com.throne212.siliao.domain.MyEntity;
+import com.throne212.siliao.domain.User;
 
 public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 
@@ -163,4 +166,17 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		}
 	}
 
+	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue) {
+		String hql = "from " + clazz.getName() + " where " + colName + " like ?";
+		return this.getHibernateTemplate().find(hql, "%" + likeValue + "%");
+	}
+
+	public <T extends Log> List<T> getLogList(MyEntity entity,String refName){
+		String entityName = entity.getClass().getSimpleName()+"Log";
+		if(entity instanceof User){
+			entityName = "UserLog";
+		}
+		String hql = "from "+entityName+" l where l."+refName+"=? order by logTime asc";
+		return this.getHibernateTemplate().find(hql, entity);
+	}
 }

@@ -3,6 +3,9 @@ package com.throne212.siliao.dao;
 import java.util.Collection;
 import java.util.List;
 
+import com.throne212.siliao.domain.Log;
+import com.throne212.siliao.domain.MyEntity;
+
 //通用的基础DAO
 public interface BaseDao {
 
@@ -41,5 +44,9 @@ public interface BaseDao {
 	public void commit();
 
 	public int loadRecordCount(final String hql, final Object[] cols);
+	
+	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue);
+	
+	public <T extends Log> List<T> getLogList(MyEntity entity,String refName);
 
 }

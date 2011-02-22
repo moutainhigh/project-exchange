@@ -8,6 +8,6 @@ import com.throne212.siliao.domain.Farmer;
 
 public interface FarmerDao extends BaseDao{
 
-	public PageBean<Farmer> getFarmList(Farmer condition,Date fromDate,Date toDate,int page);
-	public List<Farmer> getFarmList(Farmer condition,Date fromDate,Date toDate);
+	public PageBean<Farmer> getFarmerList(Farmer condition,Date fromDate,Date toDate,int page);
+	public List<Farmer> getFarmerList(Farmer condition,Date fromDate,Date toDate);
 }

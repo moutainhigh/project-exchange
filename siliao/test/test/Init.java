@@ -133,7 +133,7 @@ public class Init {
 		baseBiz.saveOrUpdateEntity(factoryLog);
 		
 		Provider provider = new Provider();
-		provider.setName("正大");
+		provider.setName("海北正大");
 		provider.setCreateDate(new Date());
 		provider.setCreateName(admin.getName());
 		provider.setEnable(true);

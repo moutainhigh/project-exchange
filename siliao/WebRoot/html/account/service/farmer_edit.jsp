@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -92,6 +93,36 @@
 				</tr>
 			</table>
 			<br />
+			操作记录：
+			<table class="data_list_table">
+				<tr>
+					<th>编号</th>
+					<th>操作人</th>
+					<th>操作时间</th>
+					<th>操作过程</th>
+					<th>养殖户姓名</th>
+					<th>管区号</th>
+					<th>手机号码</th>
+					<th>塘口号</th>
+					<th>邮箱地址</th>
+					<th>备注</th>
+				</tr>
+				<c:forEach items="${logList}" var="l" varStatus="s">
+				<tr>
+					<td class="list_data_text">${s.count }</td>
+					<td class="list_data_text">${l.byWho.name }</td>
+					<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
+					<td class="list_data_text">${l.msg }</td>
+					<td class="list_data_text">${l.farmer.name }</td>
+					<td class="list_data_text">${l.farmer.area.name }</td>
+					<td class="list_data_text">${l.farmer.tel }</td>
+					<td class="list_data_text">${l.farmer.no }</td>
+					<td class="list_data_text">${l.farmer.tel }</td>
+					<td class="list_data_text">${l.farmer.remark }</td>
+				</tr>
+				</c:forEach>
+			</table>
+						
 			<div class="button_bar">
 				<button class="common_button" onclick="back();">
 					返回

@@ -10,17 +10,16 @@ import org.hibernate.Session;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
-import com.throne212.siliao.dao.FarmerDao;
-import com.throne212.siliao.domain.Area;
-import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.dao.RateDao;
+import com.throne212.siliao.domain.Rate;
 
-public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
+public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 
-	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, int pageIndex) {
-		PageBean<Farmer> page = new PageBean<Farmer>();
+	public PageBean<Rate> getRateList(Rate condition,Date fromDate,Date toDate,Date fromDate2,Date toDate2,String rateName,int pageIndex) {
+		PageBean<Rate> page = new PageBean<Rate>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate);
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 
@@ -42,52 +41,63 @@ public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 		return page;
 	}
 
-	private Object[] buildFilterHQL(Farmer condition, Date fromDate, Date toDate) {
+	private Object[] buildFilterHQL(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2,String rateName) {
 		Object[] rst = new Object[2];
-		StringBuffer sb = new StringBuffer("from Farmer where (enable is null or enable=true)");
+		StringBuffer sb = new StringBuffer("from Rate where (enable is null or enable=true)");
 		List paramValueList = new ArrayList();
+		
+		if(!Util.isEmpty(rateName)){
+			if(rateName.contains("农场")){
+				sb.append(" and farm.name like ?");
+				paramValueList.add("%" + rateName + "%");
+			}else{
+				sb.append(" and provider.name like ?");
+				paramValueList.add("%" + rateName + "%");
+			}
+		}
+		
 		if (condition != null) {
 			// 构建下拉项的条件
-			if (condition.getArea() != null && condition.getArea().getId() != null) {
-				Area area = (Area) this.getHibernateTemplate().get(Area.class, condition.getArea().getId());
-				sb.append(" and area=?");
-				paramValueList.add(area);
-			}
-			if (!Util.isEmpty(condition.getName())) {
-				sb.append(" and name like ?");
-				paramValueList.add("%" + condition.getName() + "%");
-			}
-			if (!Util.isEmpty(condition.getTel())) {
-				sb.append(" and tel like ?");
-				paramValueList.add("%" + condition.getTel() + "%");
+			if (!Util.isEmpty(condition.getCreateName())) {
+				sb.append(" and createName like ?");
+				paramValueList.add("%" + condition.getCreateName() + "%");
 			}
 			if (!Util.isEmpty(condition.getRemark())) {
 				sb.append(" and remark like ?");
 				paramValueList.add("%" + condition.getRemark() + "%");
 			}
-			if (!Util.isEmpty(condition.getNo())) {
-				sb.append(" and no like ?");
-				paramValueList.add("%" + condition.getNo() + "%");
+			if(condition.getValue()!=null){
+				sb.append(" and value=?");
+				paramValueList.add(condition.getValue());
 			}
 		}
-		// 创建时间段
+		// 有效时间段
 		if (fromDate != null) {
-			sb.append(" and createDate>=?");
+			sb.append(" and fromDate>=?");
 			paramValueList.add(fromDate);
 		}
 		if (toDate != null) {
-			sb.append(" and createDate<=?");
+			sb.append(" and fromDate<=?");
 			paramValueList.add(toDate);
 		}
-		sb.append(" order by createDate desc,id asc");
+		// 有效时间段2
+		if (fromDate2 != null) {
+			sb.append(" and endDate>=?");
+			paramValueList.add(fromDate2);
+		}
+		if (toDate2 != null) {
+			sb.append(" and endDate<=?");
+			paramValueList.add(toDate2);
+		}
+		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
 		return rst;
 	}
 
-	public List<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate);
+	public List<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2,String rateName) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
