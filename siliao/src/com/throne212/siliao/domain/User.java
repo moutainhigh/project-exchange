@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.throne212.siliao.common.WebConstants;
 
 //用户的抽象类
-public abstract class User extends MyEntity implements Serializable {
+public class User extends MyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String loginName;// 登录名

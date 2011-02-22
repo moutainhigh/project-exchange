@@ -2,14 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.throne212.siliao.domain">
-	<class name="Factory" table="yh_factory">
+	<class name="FarmAbs" table="yh_farm">
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-		<property name="creator"></property>
-		<property name="head"></property>
+		<discriminator column="farm_type" type="string" force="false" insert="true" />
 		<property name="name" not-null="true"></property>
-		<property name="remark" length="512"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -20,5 +18,11 @@
 		<property name="segment4"></property>
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
+		<subclass discriminator-value="farm" extends="FarmAbs" name="Farm">
+			<one-to-one name="manager" lazy="false"></one-to-one>
+		</subclass>
+		<subclass discriminator-value="area" extends="FarmAbs" name="Area">
+			<many-to-one name="farm" column="farm_id"></many-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

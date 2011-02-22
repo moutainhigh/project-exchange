@@ -55,6 +55,8 @@
 			<result name="mail_setting">/html/account/service/mail_setting.jsp</result>
 			<result name="farmer_edit">/html/account/service/farmer_edit.jsp</result>
 			<result name="farmer_list">/html/account/service/farmer_list.jsp</result>
+			<result name="user_edit">/html/account/service/user_edit.jsp</result>
+			<result name="user_list">/html/account/service/user_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
@@ -65,27 +67,9 @@
 					list\[\d+\]\.name
 				</param>
 			</result>
-			<result name="user_sum" type="json">
+			<result name="role_list" type="json">
 				<param name="includeProperties">  
-					userSum
-				</param>
-			</result>
-			<result name="sugg_city" type="json">
-				<param name="includeProperties">  
-					list\[\d+\]\.id,
-					list\[\d+\]\.name,
-					list\[\d+\]\.pinyin
-				</param>
-			</result>	
-			<result name="cate_list" type="json">
-				<param name="includeProperties">  
-					list\[\d+\]\.id,
-					list\[\d+\]\.name
-				</param>
-			</result>
-			<result name="top_price" type="json">
-				<param name="includeProperties">  
-					price
+					list\[\d+\]
 				</param>
 			</result>
 		</action>		

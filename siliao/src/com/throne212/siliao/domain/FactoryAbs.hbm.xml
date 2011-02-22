@@ -2,11 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.throne212.siliao.domain">
-	<class name="Area" table="yh_area">
+	<class name="FactoryAbs" table="yh_factory">
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-		<property name="name"></property>
+		<discriminator column="factory_type" type="string" force="false" insert="true" />
+		<property name="name" not-null="true"></property>
+		<property name="remark" length="512"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -17,6 +19,12 @@
 		<property name="segment4"></property>
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
-		<many-to-one name="farm" column="farm_id"></many-to-one>
+		<subclass discriminator-value="factory" extends="FactoryAbs" name="Factory">
+			
+		</subclass>
+		<subclass discriminator-value="provider" extends="FactoryAbs" name="Provider">
+			<many-to-one name="factory" column="factory_id"></many-to-one>
+			<one-to-one name="account" lazy="false"></one-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

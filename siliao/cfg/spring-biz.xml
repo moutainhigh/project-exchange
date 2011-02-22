@@ -13,6 +13,7 @@
 	<bean id="dataBiz" class="com.throne212.siliao.biz.impl.DataBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="farmerDao" ref="farmerDao"></property>
+		<property name="userDao" ref="userDao"></property>
 	</bean>
 	
 </beans>

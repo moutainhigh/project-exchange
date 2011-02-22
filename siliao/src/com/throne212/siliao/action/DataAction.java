@@ -12,8 +12,12 @@ import com.throne212.siliao.biz.DataBiz;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.domain.Admin;
+import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.MailSetting;
+import com.throne212.siliao.domain.ManagerAccount;
+import com.throne212.siliao.domain.ProviderAccount;
 import com.throne212.siliao.domain.User;
 import com.throne212.siliao.domain.UserLog;
 
@@ -130,15 +134,97 @@ public class DataAction extends BaseAction {
 		return farmerList();
 	}
 
-	public String exportFarmerExcel(){
+	public String exportFarmerExcel() {
 		String path = dataBiz.getFarmerExcelDownloadFile(farmer, fromDate, toDate);
-		if(path != null){
+		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-		}else{
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
+
+	// 用户管理
+	private User user;
+	private String role;
+
+	public String saveUser() {
+		if (user == null) {
+			this.setMsg("用户保存失败，请检查数据是否录入完整");
+			return "user_edit";
+		}
+		if (user != null && !Util.isEmpty(user.getLoginName())) {// 添加或更新用户信息
+			if (user.getId() == null) {
+				User userInDB = dataBiz.getEntityByUnique(User.class, "loginName", user.getLoginName());
+				if (userInDB != null) {
+					this.setMsg("已存在此用户,请重新输入用户名!");
+					return "user_edit";
+				}
+			}
+			User newUser = null;
+			if (!Util.isEmpty(role)) {
+				if (WebConstants.USER_NAME_ADMIN.endsWith(role)) {// 添加或更新系统管理员
+					newUser = new Admin();
+				} else if (WebConstants.USER_NAME_AREA.endsWith(role)) {
+					newUser = new AreaAccount();
+				} else if (WebConstants.USER_NAME_MANAGER.endsWith(role)) {
+					newUser = new ManagerAccount();
+				} else if (WebConstants.USER_NAME_PROVIDER.endsWith(role)) {
+					newUser = new ProviderAccount();
+				}
+				newUser.setLoginName(user.getLoginName());
+				newUser.setId(user.getId());
+				newUser.setPassword(user.getPassword());
+				newUser.setRemark(user.getRemark());
+				newUser.setEmail(user.getEmail());
+				newUser.setTel(user.getTel());
+				newUser.setName(user.getName());
+
+				user = dataBiz.saveUser(newUser);
+				this.setMsg("用户保存成功【" + user.getName() + "】");
+				this.setUser(null);
+				this.setRole(null);
+				return userList();
+			}else{
+				this.setMsg("用户角色参数缺失");
+			}
+		} else if (user != null && user.getId() != null) {// 查看用户户详情
+			user = dataBiz.getEntityById(User.class, user.getId());
+			return "user_edit";
+		}
+		return "user_edit";
+	}
+
+	// 条件字段
+	public String userList() {
+		pageBean = dataBiz.getUserList(user, fromDate, toDate, page, role);
+		return "user_list";
+	}
+
+	public String deleteUser() {
+		if (user != null && user.getId() != null) {
+			dataBiz.deleteUser(user);
+			this.setMsg("用户删除成功");
+		} else {
+			this.setMsg("用户删除失败，参数不完整");
+		}
+		return userList();
+	}
+
+	public String exportUserExcel() {
+		String path = dataBiz.getUserExcelDownloadFile(user, fromDate, toDate, role);
+		if (path != null) {
+			try {
+				this.setMsg("用户列表");
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
 			this.setMsg("文件下载失败");
 		}
 		return "excel";
@@ -246,6 +332,22 @@ public class DataAction extends BaseAction {
 
 	public void setDownloadFile(InputStream downloadFile) {
 		this.downloadFile = downloadFile;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

@@ -916,7 +916,7 @@ function initialise() {
 	L0303 = theMenu.addChild(L03, "Document", "农户管理", "${appPath}data_farmerList.htm", "添加删除修改农户信息");
 	L0304 = theMenu.addChild(L03, "Document", "厂商维护", "account/service/companyQuery.html", "添加删除修改厂商...");
 	L0305 = theMenu.addChild(L03, "Document", "邮件设定", "${appPath}data_mailSetting.htm", "设定系统自动发送邮件....");
-	L0306 = theMenu.addChild(L03, "Document", "用户管理", "account/service/userQuery.html", "系统管理员分配各个人员的角色...");
+	L0306 = theMenu.addChild(L03, "Document", "用户管理", "${appPath}data_userList.htm", "系统管理员分配各个人员的角色...");
 
 	L04 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
 	L0401 = theMenu.addChild(L04, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
