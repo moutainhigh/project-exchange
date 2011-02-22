@@ -3,7 +3,7 @@ package com.throne212.siliao.domain;
 import java.io.Serializable;
 
 //厂商的抽象类
-public abstract class FactoryAbs extends MyEntity implements Serializable {
+public class FactoryAbs extends MyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	protected String name;
