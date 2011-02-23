@@ -39,7 +39,7 @@
 				document.forms[0].action = "${appPath}data_userList.htm";
 				document.forms[0].submit();
 			}
-			function export(){
+			function exportExcel(){
 				document.forms[0].action = "${appPath}data_exportUserExcel.xls";
 				document.forms[0].submit();
 			}
@@ -107,7 +107,7 @@
 			<button class="common_button" onclick="query();">
 				查询
 			</button>
-			<button class="common_button" onclick="export();">
+			<button class="common_button" onclick="exportExcel();">
 				导出Excel
 			</button>
 		</div>

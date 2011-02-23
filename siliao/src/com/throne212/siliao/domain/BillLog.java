@@ -3,21 +3,22 @@ package com.throne212.siliao.domain;
 import java.io.Serializable;
 
 //单据操作日志
-public class OrderLog extends Log implements Serializable {
+public class BillLog extends Log implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Order order;// 单据
+	private Bill bill;// 单据
 	private User user;// 操作人
 	private Integer fromStatus;// 起初状态
 	private Integer toStatus;// 最终状态
 	private String remark;//操作意见
 
-	public Order getOrder() {
-		return order;
+
+	public Bill getBill() {
+		return bill;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setBill(Bill bill) {
+		this.bill = bill;
 	}
 
 	public User getUser() {

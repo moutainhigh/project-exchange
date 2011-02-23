@@ -17,4 +17,9 @@
 		<property name="rateDao" ref="rateDao"></property>
 	</bean>
 	
+	<bean id="billBiz" class="com.throne212.siliao.biz.impl.BillBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="billDao" ref="billDao"></property>
+	</bean>
+	
 </beans>

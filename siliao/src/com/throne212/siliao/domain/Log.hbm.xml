@@ -48,9 +48,9 @@
 			<key column="log_id"></key>
 			<many-to-one name="farmer" column="farmer_id" lazy="false"></many-to-one>
 		</joined-subclass>
-		<joined-subclass name="OrderLog" table="yh_log_order">
+		<joined-subclass name="BillLog" table="yh_log_bill">
 			<key column="log_id"></key>
-			<many-to-one name="order" column="order_id" lazy="false"></many-to-one>
+			<many-to-one name="bill" column="bill_id" lazy="false"></many-to-one>
 			<many-to-one name="user" column="user_id" lazy="false"></many-to-one>
 			<property name="fromStatus"></property>
 			<property name="remark" length="1024"></property>

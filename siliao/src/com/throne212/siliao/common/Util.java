@@ -22,6 +22,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.Log;
 import com.throne212.siliao.domain.User;
 
@@ -180,9 +181,31 @@ public class Util {
 		log.setMsg(msg);
 		return (T) log;
 	}
+	//生成单据号
+	public static String genOrderId(String str1,String str2,long num){
+		if(str1==null || str2==null){
+			return null;
+		}
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append(PinyinToolkit.cn2PinyinOnly2Char(str1).toUpperCase());
+		sb.append(PinyinToolkit.cn2PinyinOnly2Char(str2).toUpperCase());
+		
+		String str = num+"";
+		int len = 6-str.length();
+		for(int i = 0; i<len;i++){
+			str = "0" + str;
+		}
+		
+		sb.append(str);
+		
+		return sb.toString();		
+	}
+	
 	public static void main(String[] args) {
 		Date now = new Date();
 		System.out.println(getDate(getDateOnly(now)));
 		System.out.println(generateOrderNo());
+		System.out.println(genOrderId("北海农场","天邦",1));
 	}
 }

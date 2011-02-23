@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 //单据
-public class Order extends MyEntity implements Serializable {
+public class Bill extends MyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

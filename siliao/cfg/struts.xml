@@ -45,7 +45,7 @@
 		</action>
 		<!-- 个人信息 -->
 		<action name="personal_*" method="{1}" class="com.throne212.siliao.action.PersonalAction">
-		  <result name="fail">/login.jsp</result>
+		  	<result name="fail">/login.jsp</result>
 			<result name="password">/html/personal/password.jsp</result>
 			<result name="user_info">/html/personal/infoAdd.jsp</result>
 		</action>
@@ -59,6 +59,9 @@
 			<result name="user_list">/html/account/service/user_list.jsp</result>
 			<result name="rate_edit">/html/account/service/rate_edit.jsp</result>
 			<result name="rate_list">/html/account/service/rate_list.jsp</result>
+		</action>
+		<action name="bill_*" method="{1}" class="com.throne212.siliao.action.BillAction">
+			<result name="add_bill">/html/bill/add_bill.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

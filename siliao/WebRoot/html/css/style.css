@@ -123,7 +123,7 @@ THEAD TH.locked {
 	BORDER-RIGHT: silver 1px solid; FONT-SIZE: 12px; CURSOR: default; POSITION: relative; BACKGROUND-COLOR: #E0E0E0; TEXT-ALIGN: center
 }
 THEAD TH {
-	Z-INDEX: 20; TOP: expression(document.getElementById("tbl-container").scrollTop-2)
+	Z-INDEX: 20; TOP: expression(try{document.getElementById("tbl-container").scrollTop-2}catch(e){})
 }
 THEAD TH.locked {
 	Z-INDEX: 30
