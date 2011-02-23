@@ -17,9 +17,15 @@ import com.throne212.siliao.biz.DataBiz;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.dao.FarmAbsDao;
 import com.throne212.siliao.dao.FarmerDao;
 import com.throne212.siliao.dao.RateDao;
 import com.throne212.siliao.dao.UserDao;
+import com.throne212.siliao.domain.Area;
+import com.throne212.siliao.domain.AreaLog;
+import com.throne212.siliao.domain.Farm;
+import com.throne212.siliao.domain.FarmAbs;
+import com.throne212.siliao.domain.FarmLog;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.FarmerLog;
 import com.throne212.siliao.domain.Log;
@@ -33,6 +39,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	private FarmerDao farmerDao;
 	private UserDao userDao;
 	private RateDao rateDao;
+	private FarmAbsDao farmAbsDao;
 
 	// 农户
 	public Farmer saveFarmer(Farmer farmer) {
@@ -348,6 +355,138 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 
 	public List<Log> getRateLogList(Rate rate) {
 		return baseDao.getLogList(rate, "rate");
+	}
+
+	// 农场
+	public <T extends FarmAbs> T saveFarmAbs(T farmAbs) {
+
+		// 判断是否为新的农场或管区
+		if (farmAbs.getId() == null) {
+			farmAbs.setEnable(true);
+			farmAbs.setCreateDate(new Date());
+			farmAbs.setCreateName(((User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ)).getName());
+			baseDao.saveOrUpdate(farmAbs);
+			// 保存日志
+			if (farmAbs instanceof Farm) {
+
+				FarmLog log = Util.getBaseLog(FarmLog.class, WebConstants.OP_CREATE);
+				log.setFarm((Farm) farmAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("添加农场【" + farmAbs.getName() + "】成功");
+			} else if (farmAbs instanceof Area) {
+
+				AreaLog log = Util.getBaseLog(AreaLog.class, WebConstants.OP_CREATE);
+				log.setArea((Area) farmAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("添加管区【" + farmAbs.getName() + "】成功");
+
+			}
+
+		} else {
+			baseDao.saveOrUpdate(farmAbs);
+			// 保存日志
+			if (farmAbs instanceof Farm) {
+
+				FarmLog log = Util.getBaseLog(FarmLog.class, WebConstants.OP_UPDATE);
+				log.setFarm((Farm) farmAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("更新农场【" + farmAbs.getName() + "】成功");
+			} else if (farmAbs instanceof Area) {
+
+				AreaLog log = Util.getBaseLog(AreaLog.class, WebConstants.OP_UPDATE);
+				log.setArea((Area) farmAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("更新管区【" + farmAbs.getName() + "】成功");
+
+			}
+
+		}
+		return farmAbs;
+
+	}
+
+	public FarmAbs deleteFarmAbs(FarmAbs farmAbs) {
+		farmAbs = baseDao.getEntityById(FarmAbs.class, farmAbs.getId());
+		farmAbs.setEnable(false);
+		baseDao.saveOrUpdate(farmAbs);
+		logger.info("逻辑删除农场或管区【" + farmAbs.getName() + "】成功");
+		return farmAbs;
+
+	}
+
+	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer page, String farmType, Long farmId,
+			Long farmManagerId) {
+
+		int pageIndex = 1;
+		if (page != null) {
+			pageIndex = page.intValue();
+		}
+		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, farmManagerId);
+	}
+
+	public String getFarmAbsExcelDownloadFile(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, Long farmManagerId) {
+
+		List<FarmAbs> farmAbsList = farmAbsDao.getFarmAbsList(condition, fromDate, toDate, farmType, farmId, farmManagerId);
+
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel";
+		System.out.println("excel saved path : " + path);
+		// String sourceFile = path + File.separator + "template.xls";
+		String targetFile = path + File.separator + System.currentTimeMillis() + ".xls";
+		Workbook rw = null;
+		try {
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
+			WritableSheet sheet = workbook.createSheet("农场或管区列表", 0);
+
+			// 加表头
+			WritableFont font = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD);
+			WritableCellFormat format = new WritableCellFormat(font);
+			sheet.addCell(new Label(0, 0, "编号", format));
+			sheet.addCell(new Label(1, 0, "农场管区名", format));
+			sheet.addCell(new Label(2, 0, "所属农场名", format));
+			sheet.addCell(new Label(3, 0, "负责人", format));
+			sheet.addCell(new Label(4, 0, "备注", format));
+			sheet.addCell(new Label(5, 0, "创建人", format));
+			sheet.addCell(new Label(6, 0, "创建时间", format));
+			// 加内容
+			int i = 1;
+			for (FarmAbs f : farmAbsList) {
+				sheet.addCell(new Number(0, i, f.getId()));
+				sheet.addCell(new Label(1, i, f.getName()));
+				if(f instanceof Area){
+					Area a =(Area)f;
+					sheet.addCell(new Label(2, i, a.getFarm().getName()));
+					sheet.addCell(new Label(3, i, a.getAccount().getName()));
+				}else{
+					Farm farm = (Farm)f;
+					sheet.addCell(new Label(2, i, ""));
+					sheet.addCell(new Label(3, i, farm.getManager().getName()));
+				}
+				sheet.addCell(new Label(4, i, f.getRemark()));
+				sheet.addCell(new Label(5, i, f.getCreateName()));
+				sheet.addCell(new Label(6, i++, f.getCreateDate().toString()));
+			}
+
+			workbook.write();
+			workbook.close();
+			return targetFile;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rw != null)
+				rw.close();
+		}
+		return null;
+	}
+
+	public FarmAbsDao getFarmAbsDao() {
+		return farmAbsDao;
+	}
+
+	public void setFarmAbsDao(FarmAbsDao farmAbsDao) {
+		this.farmAbsDao = farmAbsDao;
 	}
 
 }

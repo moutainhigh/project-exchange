@@ -8,6 +8,7 @@ import com.throne212.siliao.biz.BaseBiz;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.Farm;
+import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
 
 
@@ -41,6 +42,22 @@ public class AjaxAction extends BaseAction {
 		list.add(WebConstants.USER_NAME_MANAGER);
 		return "role_list";
 	}
+	//获取所有的农场
+	public String getAllFarm() {
+		list = baseBiz.getAll(Farm.class, "id", "asc");
+		return "farm_list";
+	}
+	public String getManagerList(){
+		list=baseBiz.getAll(ManagerAccount.class,"id","asc");
+		return "manager_list";
+	}
+	
+	public String getFarmTypeList() {
+		list = new ArrayList();
+		list.add(WebConstants.FARM_TYPE_AREA);
+		list.add(WebConstants.FARM_TYPE_FARM);
+		return "farm_type_list";
+	}
 	
 	//获取农场和供应厂
 	public String getFarmAndProviders() {
@@ -50,6 +67,7 @@ public class AjaxAction extends BaseAction {
 		list = farmList;
 		return "farm_provider_list";
 	}
+	
 	public String getFarm() {
 		list = baseBiz.getAll(Farm.class,"id","asc");
 		return "farm_provider_list";
@@ -58,6 +76,7 @@ public class AjaxAction extends BaseAction {
 		list = baseBiz.getAll(Provider.class,"id","asc");
 		return "farm_provider_list";
 	}
+	
 	public String queryRateName(){
 		String[] q = (String[]) ActionContext.getContext().getParameters().get("q");
 		if(q != null && q.length > 0 && q[0]!=null){

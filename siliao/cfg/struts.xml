@@ -59,6 +59,8 @@
 			<result name="user_list">/html/account/service/user_list.jsp</result>
 			<result name="rate_edit">/html/account/service/rate_edit.jsp</result>
 			<result name="rate_list">/html/account/service/rate_list.jsp</result>
+			<result name="farmabs_edit">/html/account/service/farmabs_edit.jsp</result>
+			<result name="farmabs_list">/html/account/service/farmabs_list.jsp</result> 
 		</action>
 		<action name="bill_*" method="{1}" class="com.throne212.siliao.action.BillAction">
 			<result name="add_bill">/html/bill/add_bill.jsp</result>
@@ -82,6 +84,23 @@
 				</param>
 			</result>
 			<result name="farm_provider_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="farm_type_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]
+				</param>
+			</result>
+			<result name="farm_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="manager_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
 					list\[\d+\]\.name

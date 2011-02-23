@@ -13,7 +13,10 @@ import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Admin;
+import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
+import com.throne212.siliao.domain.Farm;
+import com.throne212.siliao.domain.FarmAbs;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.Log;
 import com.throne212.siliao.domain.MailSetting;
@@ -288,6 +291,103 @@ public class DataAction extends BaseAction {
 		}
 		return "excel";
 	}
+	
+	
+	//农场
+	private Long farmManagerId;
+	private Long farmId;
+	private String farmType;
+
+	private FarmAbs farmAbs;
+	
+	public String saveFarmAbs() {
+		if (farmAbs == null) {
+			this.setMsg("农场管区保存失败，请检查数据是否录入完整");
+			return "farmabs_edit";
+		}
+		if (farmAbs != null && !Util.isEmpty(farmAbs.getName())) {// 添加或更新用户信息
+			if (farmAbs.getId() == null) {
+				FarmAbs farmInDB = dataBiz.getEntityByUnique(FarmAbs.class, "name", farmAbs.getName());
+				if (farmInDB != null) {
+					this.setMsg("已存在此农场或管区,请重新输入!");
+					return "farmabs_edit";
+				}
+			}
+//			FarmAbs newfarmAbs = null;
+			if (!Util.isEmpty(farmType)) {
+				if (WebConstants.FARM_TYPE_FARM.endsWith(farmType)) {// 添加或更新系统管理员
+					Farm newfarmAbs = new Farm();
+					ManagerAccount managerAccount=baseBiz.getEntityById(ManagerAccount.class, farmManagerId);
+					newfarmAbs.setId(farmAbs.getId());
+					newfarmAbs.setName(farmAbs.getName());
+					newfarmAbs.setManager(managerAccount);
+					newfarmAbs.setRemark(farmAbs.getRemark());
+					newfarmAbs.setCreateName(farmAbs.getCreateName());
+					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
+					this.setMsg("农场或管区保存成功【" + newfarmAbs.getName() + "】");
+					this.setFarmAbs(null);
+					this.setFarmType(null);
+					
+					return farmAbsList();
+					
+				} else if (WebConstants.FARM_TYPE_AREA.endsWith(farmType)) {
+					Area newfarmAbs = new Area();
+					Farm farm=baseBiz.getEntityById(Farm.class, farmId);
+					ManagerAccount managerAccount=baseBiz.getEntityById(ManagerAccount.class, farmManagerId);
+					farm.setManager(managerAccount);
+					
+					newfarmAbs.setId(farmAbs.getId());
+					newfarmAbs.setName(farmAbs.getName());
+					newfarmAbs.setFarm(farm);
+					newfarmAbs.setRemark(farmAbs.getRemark());
+					newfarmAbs.setCreateName(farmAbs.getCreateName());
+					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
+					this.setMsg("农场或管区保存成功【" + newfarmAbs.getName() + "】");
+					this.setFarmAbs(null);
+					this.setFarmType(null);
+					return farmAbsList();
+				}
+			
+			}else{
+				this.setMsg("类型参数缺失");
+			}
+		} else if (farmAbs != null && farmAbs.getId() != null) {// 查看用户户详情
+			farmAbs = dataBiz.getEntityById(FarmAbs.class, farmAbs.getId());
+			return "farmabs_edit";
+		}
+		return "farmabs_edit";
+	}
+
+	public String farmAbsList() {
+			pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType,farmId,farmManagerId);
+			return "farmabs_list";
+	}
+
+	public String deleteFarmAbs() {
+		if (farmAbs != null && farmAbs.getId() != null) {
+			dataBiz.deleteFarmAbs(farmAbs);
+			this.setMsg("农场或管区删除成功");
+		} else {
+			this.setMsg("农场或管区删除失败，参数不完整");
+		}
+		return farmAbsList();
+	}
+	
+	
+	public String exportFarmAbsExcel() {
+		String path = dataBiz.getFarmAbsExcelDownloadFile(farmAbs, fromDate, toDate, farmType,farmId,farmManagerId);
+		if (path != null) {
+			try {
+				this.setMsg("农场或管区列表");
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
 
 	public BaseBiz getBaseBiz() {
 		return baseBiz;
@@ -447,6 +547,38 @@ public class DataAction extends BaseAction {
 
 	public void setRateName(String rateName) {
 		this.rateName = rateName;
+	}
+
+	public Long getFarmManagerId() {
+		return farmManagerId;
+	}
+
+	public void setFarmManagerId(Long farmManagerId) {
+		this.farmManagerId = farmManagerId;
+	}
+
+	public Long getFarmId() {
+		return farmId;
+	}
+
+	public void setFarmId(Long farmId) {
+		this.farmId = farmId;
+	}
+
+	public String getFarmType() {
+		return farmType;
+	}
+
+	public void setFarmType(String farmType) {
+		this.farmType = farmType;
+	}
+
+	public FarmAbs getFarmAbs() {
+		return farmAbs;
+	}
+
+	public void setFarmAbs(FarmAbs farmAbs) {
+		this.farmAbs = farmAbs;
 	}
 
 }

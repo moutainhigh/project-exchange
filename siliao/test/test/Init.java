@@ -67,6 +67,8 @@ public class Init {
 		man.setRemark("协调饲料厂和管区负责人关系的中间人");
 		man.setFarm(farm);
 		baseBiz.saveOrUpdateEntity(man);
+		farm.setManager(man);
+		baseBiz.saveOrUpdateEntity(farm);
 		
 		UserLog log2 = new UserLog();
 		log2.setByWho(admin);
@@ -84,6 +86,7 @@ public class Init {
 		area.setCreateDate(new Date());
 		area.setCreateName(admin.getName());
 		area.setEnable(true);
+		area.setFarm(farm);
 		baseBiz.saveOrUpdateEntity(area);
 		
 		AreaLog areaLog = new AreaLog();
@@ -103,6 +106,8 @@ public class Init {
 		aa.setRemark("管区经理");
 		aa.setArea(area);
 		baseBiz.saveOrUpdateEntity(aa);
+		area.setAccount(aa);
+		baseBiz.saveOrUpdateEntity(area);
 		
 		UserLog log3 = new UserLog();
 		log3.setByWho(admin);
@@ -113,7 +118,6 @@ public class Init {
 		log3.setMsg(WebConstants.OP_CREATE);
 		log3.setUser(aa);		
 		baseBiz.saveOrUpdateEntity(log3);
-		
 		
 		Factory factory = new Factory();
 		factory.setName("正大");
@@ -157,6 +161,8 @@ public class Init {
 		pa.setRemark("供应饲料厂负责人");
 		pa.setProvider(provider);
 		baseBiz.saveOrUpdateEntity(pa);
+		provider.setAccount(pa);
+		baseBiz.saveOrUpdateEntity(provider);
 		
 		UserLog log4 = new UserLog();
 		log4.setByWho(admin);

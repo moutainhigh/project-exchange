@@ -33,6 +33,10 @@ public class WebConstants {
 	public static final String USER_NAME_PROVIDER = "供应饲料厂负责人";
 	public static final String USER_NAME_AREA = "管区厂负责人";
 	
+	//farm type
+	public static final String FARM_TYPE_AREA="管区";
+	public static final String FARM_TYPE_FARM="农场";
+	
 	public static final String OP_CREATE = "创建";
 	public static final String OP_UPDATE = "更新";
 	public static final String OP_DELETE = "删除";

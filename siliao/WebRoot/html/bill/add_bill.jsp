@@ -83,7 +83,7 @@
 		<div class="page_title">
 			饲料管理系统 > 单据管理 > 新建利率
 		</div>
-		<jsp:include page="../../../msg.jsp"></jsp:include>
+		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />
 		新建利率
 		<span class="red_star"></span>：

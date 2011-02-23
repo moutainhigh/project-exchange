@@ -8,6 +8,7 @@
 		</id>
 		<discriminator column="farm_type" type="string" force="false" insert="true" />
 		<property name="name" not-null="true"></property>
+		<property name="remark" length="512"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -22,6 +23,7 @@
 			<one-to-one name="manager" lazy="false"></one-to-one>
 		</subclass>
 		<subclass discriminator-value="area" extends="FarmAbs" name="Area">
+			<one-to-one name="account" lazy="false"></one-to-one>
 			<many-to-one name="farm" column="farm_id"></many-to-one>
 		</subclass>
 	</class>

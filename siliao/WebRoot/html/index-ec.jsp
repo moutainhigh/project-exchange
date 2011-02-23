@@ -912,7 +912,7 @@ function initialise() {
 
 	L03 = theMenu.addChild(l2ID, "Folder", "数据设定", "", "设定饲料厂商的数据...");
 	L0301 = theMenu.addChild(L03, "Document", "利率设定", "${appPath}data_rateList.htm", "设定每个饲料厂和每个农场账户的利率...");
-	L0302 = theMenu.addChild(L03, "Document", "农场维护", "account/service/farmQuery.html", "添加删除修改农场，设定农场负责人...");
+	L0302 = theMenu.addChild(L03, "Document", "农场维护", "${appPath}data_farmAbsList.htm", "添加删除修改农场，设定农场负责人...");
 	L0303 = theMenu.addChild(L03, "Document", "农户管理", "${appPath}data_farmerList.htm", "添加删除修改农户信息");
 	L0304 = theMenu.addChild(L03, "Document", "厂商维护", "account/service/companyQuery.html", "添加删除修改厂商...");
 	L0305 = theMenu.addChild(L03, "Document", "邮件设定", "${appPath}data_mailSetting.htm", "设定系统自动发送邮件....");
