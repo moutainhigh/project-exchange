@@ -2,6 +2,8 @@ package com.throne212.siliao.domain;
 
 import java.io.Serializable;
 
+import com.throne212.siliao.common.WebConstants;
+
 //农场的抽象类
 public class FarmAbs extends MyEntity implements Serializable {
 
@@ -28,6 +30,14 @@ public class FarmAbs extends MyEntity implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	
+	public String getFarmType(){
+		if(this instanceof Area){
+			return WebConstants.FARM_TYPE_AREA;
+		}else{
+			return WebConstants.FARM_TYPE_FARM;
+		}
 	}
 	
 	public String getFarmName(){

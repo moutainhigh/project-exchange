@@ -19,18 +19,13 @@ import com.throne212.siliao.domain.ManagerAccount;
 
 public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 
-	
-	
-	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,Integer pageIndex,String farmType,Long farmId,Long farmManagerId)
-	{
-		
+	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer pageIndex, String farmType, Long farmId, String accountName) {
+
 		PageBean<FarmAbs> page = new PageBean<FarmAbs>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		
-	
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate,farmType,farmId,farmManagerId);
-		
-		
+
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName);
+
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 
@@ -52,8 +47,8 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 		return page;
 
 	}
-	
-	private Object[] buildFilterHQL(FarmAbs condition, Date fromDate, Date toDate, String farmType,Long farmId,Long farmManagerId) {
+
+	private Object[] buildFilterHQL(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName) {
 		Object[] rst = new Object[2];
 		// 角色
 		String className = "FarmAbs";
@@ -62,17 +57,17 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 				className = Farm.class.getSimpleName();
 			} else if (WebConstants.FARM_TYPE_AREA.endsWith(farmType)) {
 				className = Area.class.getSimpleName();
-			} 
+			}
 		}
 		StringBuffer sb = new StringBuffer("from " + className + " where (enable is null or enable=true)");
 		List paramValueList = new ArrayList();
 		if (condition != null) {
-			
+
 			if (!Util.isEmpty(condition.getName())) {
 				sb.append(" and name like ?");
 				paramValueList.add("%" + condition.getName() + "%");
 			}
-			
+
 			if (!Util.isEmpty(condition.getRemark())) {
 				sb.append(" and remark like ?");
 				paramValueList.add("%" + condition.getRemark() + "%");
@@ -81,8 +76,7 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 				sb.append(" and createName like ?");
 				paramValueList.add("%" + condition.getCreateName() + "%");
 			}
-			
-			
+
 		}
 		// 创建时间段
 		if (fromDate != null) {
@@ -93,19 +87,17 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 			sb.append(" and createDate<=?");
 			paramValueList.add(toDate);
 		}
-		
-		if (!Util.isEmpty(farmType)) {
-		if (WebConstants.FARM_TYPE_AREA.endsWith(farmType)){
-		
-		if(farmManagerId!=null){
-			sb.append(" and farm.manager.id=?");
-			paramValueList.add(farmManagerId);
-		}
-		if(farmId!=null){
-			sb.append(" and farm.id=?");
-			paramValueList.add(farmId);
-		}
-		}
+
+		if (WebConstants.FARM_TYPE_AREA.equals(farmType)) {
+
+			if (!Util.isEmpty(accountName)) {
+				sb.append(" and account.name like ? ");
+				paramValueList.add("%"+accountName+"%");
+			}
+			if (farmId != null) {
+				sb.append(" and farm.id=?");
+				paramValueList.add(farmId);
+			}
 		}
 		sb.append(" order by id");
 		logger.debug("hql=[" + sb.toString() + "]");
@@ -114,11 +106,8 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 		return rst;
 	}
 
-
-	
-	
-	public List<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, Long farmManagerId) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate,farmType,farmId,farmManagerId);
+	public List<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -129,10 +118,6 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 		}
 		return q.list();
 	}
-	
-	
-	
-	
 
 	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
 		// TODO Auto-generated method stub

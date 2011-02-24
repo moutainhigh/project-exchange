@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.throne212.siliao.common.PageBean;
+import com.throne212.siliao.domain.Area;
+import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmAbs;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.Log;
@@ -33,12 +35,14 @@ public interface DataBiz extends BaseBiz{
 	//农场
 	public <T extends FarmAbs> T saveFarmAbs(T farmAbs);
 	public FarmAbs deleteFarmAbs(FarmAbs farmAbs);
-	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,Integer pageIndex,String farmType,Long farmId,Long farmManagerId);
-	public String getFarmAbsExcelDownloadFile(FarmAbs condition,Date fromDate,Date toDate,String farmType,Long farmId,Long farmManagerId);
+	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,Integer pageIndex,String farmType,Long farmId,String accountName);
+	public String getFarmAbsExcelDownloadFile(FarmAbs condition,Date fromDate,Date toDate,String farmType,Long farmId,String accountName);
 	
 	//其它
 	public List<Log> getFarmerLogList(Farmer farmer);
 	public List<Log> getUserLogList(User user);
 	public List<Log> getRateLogList(Rate rate);
+	public List<Log> getFarmLogList(Farm farm);
+	public List<Log> getAreaLogList(Area area);
 	
 }

@@ -8,7 +8,7 @@ import com.throne212.siliao.domain.FarmAbs;
 
 public interface FarmAbsDao extends BaseDao {
 	
-	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,Integer pageIndex,String farmType,Long farmId,Long farmManagerId);
-	public List<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,String farmType,Long farmId,Long farmManagerId);
+	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,Integer pageIndex,String farmType,Long farmId,String accountName);
+	public List<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,String farmType,Long farmId,String accountName);
 
 }

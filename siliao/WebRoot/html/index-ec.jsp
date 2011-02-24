@@ -896,7 +896,7 @@ function initialise() {
 	
 	L01 = theMenu.addChild(l2ID, "Folder", "单据管理", "", "单据管理...");
 	L0101 = theMenu.addChild(L01, "Document", "我的单据", "bill/mylist.html", "查询提交我的单据...");
-	L0102 = theMenu.addChild(L01, "Document", "新建单据", "${appPath}html/bill/add_bill.jsp", "养殖户或者饲料经理建立草稿单据...");
+	L0102 = theMenu.addChild(L01, "Document", "新建单据", "${appPath}html/bill/bill_edit.jsp", "养殖户或者饲料经理建立草稿单据...");
 	L0103 = theMenu.addChild(L01, "Document", "待我处理", "bill/myTask.html", "审批单据或者饲料厂在此发料...");
 	L0104 = theMenu.addChild(L01, "Document", "单据查询", "bill/billQuery.html", "供管理员查询所有单据并修改...");
 	L0105 = theMenu.addChild(L01, "Document", "自助对账", "bill/billCheck.html", "供管理员将送达后的饲料记录在案...");

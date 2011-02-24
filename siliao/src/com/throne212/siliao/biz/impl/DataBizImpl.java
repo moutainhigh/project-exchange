@@ -356,6 +356,14 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	public List<Log> getRateLogList(Rate rate) {
 		return baseDao.getLogList(rate, "rate");
 	}
+	
+	public List<Log> getFarmLogList(Farm farm){
+		return baseDao.getLogList(farm, "farm");
+	}
+	public List<Log> getAreaLogList(Area area){
+		return baseDao.getLogList(area, "area");
+	}
+	
 
 	// 农场
 	public <T extends FarmAbs> T saveFarmAbs(T farmAbs) {
@@ -368,7 +376,6 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			baseDao.saveOrUpdate(farmAbs);
 			// 保存日志
 			if (farmAbs instanceof Farm) {
-
 				FarmLog log = Util.getBaseLog(FarmLog.class, WebConstants.OP_CREATE);
 				log.setFarm((Farm) farmAbs);
 				baseDao.saveOrUpdate(log);
@@ -386,20 +393,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			baseDao.saveOrUpdate(farmAbs);
 			// 保存日志
 			if (farmAbs instanceof Farm) {
-
 				FarmLog log = Util.getBaseLog(FarmLog.class, WebConstants.OP_UPDATE);
 				log.setFarm((Farm) farmAbs);
 				baseDao.saveOrUpdate(log);
 				logger.info("更新农场【" + farmAbs.getName() + "】成功");
 			} else if (farmAbs instanceof Area) {
-
 				AreaLog log = Util.getBaseLog(AreaLog.class, WebConstants.OP_UPDATE);
 				log.setArea((Area) farmAbs);
 				baseDao.saveOrUpdate(log);
 				logger.info("更新管区【" + farmAbs.getName() + "】成功");
-
 			}
-
 		}
 		return farmAbs;
 
@@ -415,18 +418,18 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	}
 
 	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer page, String farmType, Long farmId,
-			Long farmManagerId) {
+			String accountName) {
 
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, farmManagerId);
+		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, accountName);
 	}
 
-	public String getFarmAbsExcelDownloadFile(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, Long farmManagerId) {
+	public String getFarmAbsExcelDownloadFile(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName) {
 
-		List<FarmAbs> farmAbsList = farmAbsDao.getFarmAbsList(condition, fromDate, toDate, farmType, farmId, farmManagerId);
+		List<FarmAbs> farmAbsList = farmAbsDao.getFarmAbsList(condition, fromDate, toDate, farmType, farmId, accountName);
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -465,7 +468,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 				}
 				sheet.addCell(new Label(4, i, f.getRemark()));
 				sheet.addCell(new Label(5, i, f.getCreateName()));
-				sheet.addCell(new Label(6, i++, f.getCreateDate().toString()));
+				sheet.addCell(new Label(6, i++, Util.getDate(f.getCreateDate())));
 			}
 
 			workbook.write();

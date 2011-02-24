@@ -196,7 +196,7 @@ public class DataAction extends BaseAction {
 				this.setUser(null);
 				this.setRole(null);
 				return userList();
-			}else{
+			} else {
 				this.setMsg("用户角色参数缺失");
 			}
 		} else if (user != null && user.getId() != null) {// 查看用户户详情
@@ -237,16 +237,16 @@ public class DataAction extends BaseAction {
 		}
 		return "excel";
 	}
-	
-	
+
 	// 利率
 	private Rate rate;
+
 	public String saveRate() {
 		if (rate == null) {
 			this.setMsg("利率保存失败，请检查数据是否录入完整");
 			return "rate_edit";
 		}
-		if (rate != null && rate.getValue()!=null) {// 添加或更新利率记录
+		if (rate != null && rate.getValue() != null) {// 添加或更新利率记录
 			rate = dataBiz.saveRate(rate);
 			this.setMsg("利率保存成功");
 			rate = null;
@@ -264,7 +264,7 @@ public class DataAction extends BaseAction {
 	private String rateName;
 
 	public String rateList() {
-		pageBean = dataBiz.getRateList(rate, fromDate, toDate,fromDate2, toDate2,rateName, page);
+		pageBean = dataBiz.getRateList(rate, fromDate, toDate, fromDate2, toDate2, rateName, page);
 		return "rate_list";
 	}
 
@@ -279,7 +279,7 @@ public class DataAction extends BaseAction {
 	}
 
 	public String exportRateExcel() {
-		String path = dataBiz.getRateExcelDownloadFile(rate, fromDate, toDate,fromDate2, toDate2,rateName);
+		String path = dataBiz.getRateExcelDownloadFile(rate, fromDate, toDate, fromDate2, toDate2, rateName);
 		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
@@ -291,15 +291,14 @@ public class DataAction extends BaseAction {
 		}
 		return "excel";
 	}
-	
-	
-	//农场
+
+	// 农场
 	private Long farmManagerId;
 	private Long farmId;
 	private String farmType;
 
 	private FarmAbs farmAbs;
-	
+
 	public String saveFarmAbs() {
 		if (farmAbs == null) {
 			this.setMsg("农场管区保存失败，请检查数据是否录入完整");
@@ -313,11 +312,11 @@ public class DataAction extends BaseAction {
 					return "farmabs_edit";
 				}
 			}
-//			FarmAbs newfarmAbs = null;
+			// FarmAbs newfarmAbs = null;
 			if (!Util.isEmpty(farmType)) {
 				if (WebConstants.FARM_TYPE_FARM.endsWith(farmType)) {// 添加或更新系统管理员
 					Farm newfarmAbs = new Farm();
-					ManagerAccount managerAccount=baseBiz.getEntityById(ManagerAccount.class, farmManagerId);
+					ManagerAccount managerAccount = baseBiz.getEntityById(ManagerAccount.class, farmManagerId);
 					newfarmAbs.setId(farmAbs.getId());
 					newfarmAbs.setName(farmAbs.getName());
 					newfarmAbs.setManager(managerAccount);
@@ -327,16 +326,16 @@ public class DataAction extends BaseAction {
 					this.setMsg("农场或管区保存成功【" + newfarmAbs.getName() + "】");
 					this.setFarmAbs(null);
 					this.setFarmType(null);
-					
+
 					return farmAbsList();
-					
+
 				} else if (WebConstants.FARM_TYPE_AREA.endsWith(farmType)) {
 					Area newfarmAbs = new Area();
-					Farm farm=baseBiz.getEntityById(Farm.class, farmId);
-					ManagerAccount managerAccount=baseBiz.getEntityById(ManagerAccount.class, farmManagerId);
-					farm.setManager(managerAccount);
-					
+					Farm farm = baseBiz.getEntityById(Farm.class, farmId);
+					AreaAccount account = baseBiz.getEntityById(AreaAccount.class, farmManagerId);
+
 					newfarmAbs.setId(farmAbs.getId());
+					newfarmAbs.setAccount(account);
 					newfarmAbs.setName(farmAbs.getName());
 					newfarmAbs.setFarm(farm);
 					newfarmAbs.setRemark(farmAbs.getRemark());
@@ -347,20 +346,23 @@ public class DataAction extends BaseAction {
 					this.setFarmType(null);
 					return farmAbsList();
 				}
-			
-			}else{
+
+			} else {
 				this.setMsg("类型参数缺失");
 			}
-		} else if (farmAbs != null && farmAbs.getId() != null) {// 查看用户户详情
+		} else if (farmAbs != null && farmAbs.getId() != null) {// 查看农场详情
 			farmAbs = dataBiz.getEntityById(FarmAbs.class, farmAbs.getId());
+			logList = (farmAbs instanceof Farm)?dataBiz.getFarmLogList((Farm) farmAbs):dataBiz.getAreaLogList((Area) farmAbs);
 			return "farmabs_edit";
 		}
 		return "farmabs_edit";
 	}
 
+	private String accountName;
+	
 	public String farmAbsList() {
-			pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType,farmId,farmManagerId);
-			return "farmabs_list";
+		pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType, farmId, accountName);
+		return "farmabs_list";
 	}
 
 	public String deleteFarmAbs() {
@@ -372,10 +374,9 @@ public class DataAction extends BaseAction {
 		}
 		return farmAbsList();
 	}
-	
-	
+
 	public String exportFarmAbsExcel() {
-		String path = dataBiz.getFarmAbsExcelDownloadFile(farmAbs, fromDate, toDate, farmType,farmId,farmManagerId);
+		String path = dataBiz.getFarmAbsExcelDownloadFile(farmAbs, fromDate, toDate, farmType, farmId, accountName);
 		if (path != null) {
 			try {
 				this.setMsg("农场或管区列表");
@@ -579,6 +580,14 @@ public class DataAction extends BaseAction {
 
 	public void setFarmAbs(FarmAbs farmAbs) {
 		this.farmAbs = farmAbs;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 }

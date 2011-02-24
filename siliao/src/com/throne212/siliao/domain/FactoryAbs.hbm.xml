@@ -24,7 +24,7 @@
 		</subclass>
 		<subclass discriminator-value="provider" extends="FactoryAbs" name="Provider">
 			<many-to-one name="factory" column="factory_id"></many-to-one>
-			<one-to-one name="account" lazy="false"></one-to-one>
+			<many-to-one name="account" lazy="false"></many-to-one>
 		</subclass>
 	</class>
 </hibernate-mapping>

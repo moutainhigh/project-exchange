@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BaseBiz;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Area;
+import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
@@ -49,7 +50,11 @@ public class AjaxAction extends BaseAction {
 	}
 	public String getManagerList(){
 		list=baseBiz.getAll(ManagerAccount.class,"id","asc");
-		return "manager_list";
+		return "list";
+	}
+	public String getAreaAccountList(){
+		list=baseBiz.getAll(AreaAccount.class,"id","asc");
+		return "list";
 	}
 	
 	public String getFarmTypeList() {
@@ -89,6 +94,23 @@ public class AjaxAction extends BaseAction {
 			}
 			if(proList!=null && proList.size()>0){
 				list.addAll(proList);
+			}
+		}
+		return "list";
+	}
+	
+	public String queryFarmAbsName(){
+		String[] q = (String[]) ActionContext.getContext().getParameters().get("q");
+		if(q != null && q.length > 0 && q[0]!=null){
+			String key = q[0].trim();
+			List farmList = baseBiz.getAllLike(Farm.class, "name", key);
+			List areaList = baseBiz.getAllLike(Area.class, "name", key);
+			list = new ArrayList();
+			if(farmList!=null && farmList.size()>0){
+				list.addAll(farmList);
+			}
+			if(areaList!=null && areaList.size()>0){
+				list.addAll(areaList);
 			}
 		}
 		return "list";

@@ -8,14 +8,34 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="${appPath}html/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="${appPath}html/css/jquery.datepick.css" />
+		<link rel="stylesheet" type="text/css" href="${appPath}html/css/jquery.autocomplete.css" />
 		<script src="${appPath}html/script/jquery.js"></script>
 		<script src="${appPath}html/script/common.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
+		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
 		
-		var currFarmType= '${farmType}';
+			var currFarmType= '${farmType}';
 			$(function(){
+				//初始化日期输入数据
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+				$("#farmabsName").autocomplete('${appPath}ajax/queryFarmAbsName?time='+new Date().getTime(), {
+					multiple: false,
+					minChars: 1,
+					parse: function(data) {
+						return $.map(data['list'], function(row) {
+							return {
+								data: row['name'],
+								value: row['name'],
+								result: row['name']
+							}
+						});
+					},
+					formatItem: function(item) {
+						return item;
+					}
+				});
 				$.getJSON("${appPath}ajax/getFarmTypeList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#farmType').html('<option value=""></option>');
@@ -25,12 +45,13 @@
 						}
 						if(currFarmType != ''){
 							$('#farmType').val(currFarmType);
+							selectType(currFarmType);
 						}
 					}
 				});
 			});	
 		
-			var currFarmName= '${farmName}';
+			var currFarmName= '${farmId}';
 			$(function(){
 				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -48,9 +69,8 @@
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
 			
-			
 			var currFarmManager= '${farmManager}';
-				$(function(){
+			$(function(){
 				$.getJSON("${appPath}ajax/getManagerList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#farmManager').html('<option value=""></option>');
@@ -66,8 +86,6 @@
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
-			
-		
 		
 			function deleteFarmAbs(id){
 				if(window.confirm('您确定删除吗？')){
@@ -107,19 +125,18 @@
 		</td>
 		<th>类别</th>
 		<td>
-			<select id="farmabsFarmType" name="farmType"  onchange="selectType(this.value);"></select>			
+			<select name="farmType" id="farmType" onchange="selectType(this.value);"></select>			
 		</td>
 	</tr>
 	<tr id="area_tr" style="display: none;">
 		
 		<th height="22">管区负责人</th>
 		<td>
-			<input value="" name="areaAccount"/>
+			<input value="${accountName}" name="accountName"/>
 		</td>
 		<th>所属农场</th>
 		<td>
 			<select id="farmName" name="farmId"></select>
-			
 		</td>	
 	</tr>
 	<tr>

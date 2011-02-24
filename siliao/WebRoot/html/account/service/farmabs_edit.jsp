@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -13,9 +14,9 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript">
 			var currFarmAbsId = '${farmAbs.id}';
-			var currFarmType= '${farmType}';
-			var currFarmName= '${farmName}';
-			var currFarmManager= '${farmManager}';
+			var currFarmType= '${farmAbs.farmType}';
+			var currFarmName= '<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.farm.id}</c:if>';
+			var currFarmManager= '<c:if test="${'农场' == farmAbs.farmType}">${farmAbs.manager.id}</c:if><c:if test="${'管区' == farmAbs.farmType}">${farmAbs.account.id}</c:if>';
 			$(function(){
 				$.getJSON("${appPath}ajax/getFarmTypeList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -26,6 +27,7 @@
 						}
 						if(currFarmType != ''){
 							$('#farmType').val(currFarmType);
+							selectType(currFarmType);
 						}
 					}
 				});
@@ -40,19 +42,7 @@
 							$('#farmName').val(currFarmName);
 						}
 					}
-				});
-				$.getJSON("${appPath}ajax/getManagerList?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#farmManager').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#farmManager').append(str);
-						}
-						if(currFarmManager != ''){
-							$('#farmManager').val(currFarmManager);
-						}
-					}
-				});
+				});				
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});			
@@ -73,8 +63,32 @@
 			function selectType(type){
 				if('管区' == type){
 					$('#area_tr').show();
+					$.getJSON("${appPath}ajax/getAreaAccountList?time="+new Date().getTime(), {}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#farmManager').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#farmManager').append(str);
+							}
+							if(currFarmManager != ''){
+								$('#farmManager').val(currFarmManager);
+							}
+						}
+					});
 				}else{
 					$('#area_tr').hide();
+					$.getJSON("${appPath}ajax/getManagerList?time="+new Date().getTime(), {}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#farmManager').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#farmManager').append(str);
+							}
+							if(currFarmManager != ''){
+								$('#farmManager').val(currFarmManager);
+							}
+						}
+					});
 				}
 			}
 		</script>
@@ -89,7 +103,6 @@
 		<form action="${appPath}data_saveFarmAbs.htm" method="get">
 			<input type="hidden" name="farmAbs.id" value="${farmAbs.id}"/>
 			<c:if test="${not empty farmAbs.id}">
-			<input type="hidden" name="farmAbs.name" value="${farmAbs.name}"/>
 			<input type="hidden" name="farmName" value="${farmName}"/>
 			<input type="hidden" name="farmManager" value="${farmManager}"/>
 			</c:if>
@@ -116,7 +129,7 @@
 	    <th>负责人</th>
 		<td>
 			<select id="farmManager" name="farmManagerId"></select>
-			<span class="red_star">*(这里出现角色为饲料经理的选项)</span>
+			<span class="red_star">*(请先选择农场类型)</span>
 		</td>		
 		<th>备注</th>
 		<td>
@@ -125,6 +138,45 @@
 	</tr>
 	
 </table>
+
+操作记录：
+<table class="data_list_table">
+	<tr>
+		<th>编号</th>
+		<th>操作人</th>
+		<th>操作时间</th>
+		<th>操作过程</th>
+		<th>农场管区名</th>
+		<th>类别</th>
+		<th>所属农场</th>
+		<th>负责人</th>
+		<th>备注</th>
+	</tr>
+	
+	<c:forEach items="${logList}" var="l" varStatus="status">
+				<tr>
+					<td class="list_data_text">${status.count }</td>
+					<td class="list_data_text">${l.byWho.name }</td>
+					<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
+					<td class="list_data_text">${l.msg }</td>
+		<td class="list_data_text">
+			<c:if test="${'农场' == farmAbs.farmType}">${l.farm.name}</c:if>
+			<c:if test="${'管区' == farmAbs.farmType}">${l.area.name}</c:if>
+		</td>
+		<td class="list_data_text">
+			<c:if test="${'农场' == farmAbs.farmType}">农场</c:if>
+			<c:if test="${'管区' == farmAbs.farmType}">管区</c:if>
+		</td>
+		<td class="list_data_text"><c:if test="${'管区' == farmAbs.farmType}">${farmAbs.farm.name}</c:if>&nbsp;</td>
+		<td class="list_data_text">
+			<c:if test="${'农场' == farmAbs.farmType}">${farmAbs.manager.name}</c:if>
+			<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.account.name}</c:if>
+		</td>
+		<td class="list_data_text">${farmAbs.remark}</td>
+	</tr>
+	</c:forEach>
+</table>
+
 			
 			<br />
 			<div class="button_bar">

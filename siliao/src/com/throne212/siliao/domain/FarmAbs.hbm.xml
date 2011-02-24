@@ -20,11 +20,11 @@
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
 		<subclass discriminator-value="farm" extends="FarmAbs" name="Farm">
-			<one-to-one name="manager" lazy="false"></one-to-one>
+			<many-to-one name="manager" lazy="false"></many-to-one>
 		</subclass>
 		<subclass discriminator-value="area" extends="FarmAbs" name="Area">
-			<one-to-one name="account" lazy="false"></one-to-one>
-			<many-to-one name="farm" column="farm_id"></many-to-one>
+			<many-to-one name="account" lazy="false"></many-to-one>
+			<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>
 		</subclass>
 	</class>
 </hibernate-mapping>
