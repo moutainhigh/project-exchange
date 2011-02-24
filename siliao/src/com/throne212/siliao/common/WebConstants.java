@@ -48,6 +48,13 @@ public class WebConstants {
 	public static final String RATE_TYPE_FARM = "f";//农场
 	public static final String RATE_TYPE_PROVIDER = "p";//供应厂
 	
+	//bill  状态
+	public static final int BILL_STATUS_DRAFT = 1;//草稿
+	public static final int BILL_STATUS_SUBMIT = 2;//已提交
+	public static final int BILL_STATUS_CONFIRM = 3;//已审核
+	public static final int BILL_STATUS_SENT = 4;//已发料
+	public static final int BILL_STATUS_FINISH = 5;//已送达
+	
 	public static final int PAGE_SIZE = 20;
 	
 	

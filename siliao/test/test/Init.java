@@ -6,11 +6,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.throne212.siliao.biz.BaseBiz;
+import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Admin;
 import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.AreaLog;
+import com.throne212.siliao.domain.Bill;
+import com.throne212.siliao.domain.BillOrderNum;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.FactoryLog;
 import com.throne212.siliao.domain.Farm;
@@ -173,6 +176,21 @@ public class Init {
 		log4.setMsg(WebConstants.OP_CREATE);
 		log4.setUser(pa);		
 		baseBiz.saveOrUpdateEntity(log4);
+		
+		BillOrderNum num = new BillOrderNum();
+		num.setNum(0L);
+		baseBiz.saveOrUpdateEntity(num);
+		
+		Bill bill=new Bill();
+		long currNum = num.getNum()+1;
+		bill.setOrderId(Util.genOrderId(farm.getName(),provider.getName(),currNum));
+		bill.setFarm(farm);
+		bill.setFactory(factory);
+		bill.setSize("2751");
+		bill.setModel("3.0");
+		bill.setAmount(300.0);
+		bill.setPlanDate(new Date());
+		baseBiz.saveOrUpdateEntity(bill);
 		
 	}
 }

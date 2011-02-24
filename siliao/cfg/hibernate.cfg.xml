@@ -28,6 +28,7 @@
 	<mapping resource="com/throne212/siliao/domain/Farmer.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/Finance.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/Bill.hbm.xml" />
+	<mapping resource="com/throne212/siliao/domain/BillOrderNum.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/Rate.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/MailSetting.hbm.xml" />
 </session-factory>

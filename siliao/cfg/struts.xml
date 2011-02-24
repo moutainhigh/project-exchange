@@ -65,7 +65,8 @@
 			<result name="factory_list">/html/account/service/factory_list.jsp</result>
 		</action>
 		<action name="bill_*" method="{1}" class="com.throne212.siliao.action.BillAction">
-			<result name="bill_edit">/html/bill/bill_edit.jsp</result>
+			<result name="add_bill">/html/bill/bill_edit.jsp</result>
+			<result name="bill_list">/html/bill/bill_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

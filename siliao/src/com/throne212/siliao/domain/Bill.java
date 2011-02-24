@@ -3,6 +3,8 @@ package com.throne212.siliao.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.throne212.siliao.common.WebConstants;
+
 //单据
 public class Bill extends MyEntity implements Serializable {
 
@@ -37,6 +39,29 @@ public class Bill extends MyEntity implements Serializable {
 	private String remark;//备注
 	
 	private String reason;//票据状态修改原因
+	
+	
+	public String getStatusTxt() {
+		switch (this.status) {
+		case WebConstants.BILL_STATUS_DRAFT:
+			return "草稿";
+		case WebConstants.BILL_STATUS_SUBMIT:
+			return "已提交";
+		case WebConstants.BILL_STATUS_CONFIRM:
+			return "已审核";
+		case WebConstants.BILL_STATUS_SENT:
+			return "已发料";
+		case WebConstants.BILL_STATUS_FINISH:
+			return "已送达";
+		default:
+			break;
+		}
+		return "";
+		
+		
+		
+	}
+	
 
 	public AreaAccount getAreaAccount() {
 		return areaAccount;

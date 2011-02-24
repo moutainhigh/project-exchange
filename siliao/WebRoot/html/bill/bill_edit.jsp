@@ -13,21 +13,84 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript">
+			var currFarm= '${bill.farm.id}';
+			var currFactory ='${bill.factory.id}';
 			$(function(){
-				
+				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#farm').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++){
+							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+							$('#farm').append(str);
+						}
+						if(currFarm != ''){
+							$('#farm').val(currFarm);
+						}
+					}
+				});		
+				$.getJSON("${appPath}ajax/getAllFactory?time="+new Date().getTime(), {}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#factory').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++){
+							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+							$('#factory').append(str);
+						}
+						if(currFactory != ''){
+							$('#factory').val(currFactory);
+						}
+					}
+				});			
+				//初始化日期输入数据
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
+			function submitBill(){
+				if($('#farmerName').val() == null || $('#farmerName').val()==''){
+					alert('养殖户的姓名不能为空');
+					return false;
+				}else if($('#farm').val() == null || $('#farm').val()==''){
+					alert('农场不能为空');
+					return false;
+				}else if($('#factory').val() == null || $('#factory').val()==''){
+					alert('饲料厂商不能为空');
+					return false;
+				}else if($('#size').val() == null || $('#size').val()==''){
+					alert('型号不能为空');
+					return false;
+				}else if($('#model').val() == null || $('#model').val()==''){
+					alert('规格不能为空');
+					return false;
+				}
+
+				else{
+					document.forms[0].action = "${appPath}bill_addNewBill.htm?action=addNew";
+					document.forms[0].submit();
+				}
+			}
+			function submitBillDraft(){
+				if($('#farmerName').val() == null || $('#farmerName').val()==''){
+					alert('养殖户的姓名不能为空');
+					return false;
+				}
+
+				else{
+				document.forms[0].action = "${appPath}bill_addNewBill.htm?action=saveDraft";
+				
+				document.forms[0].submit();
+				}
+			}		
+			
 		</script>
 	</head>
 	<body>
-		<form action="${appPath}data_saveRate.htm" method="get">
-			<input type="hidden" name="rate.id" value="${rate.id}" />
+		<form action="${appPath}bill_addNewBill.htm" method="get">
+			<input type="hidden" name="bill.id" value="${bill.id}" />
 			<div class="page_title">
 				饲料管理系统 > 单据管理 > 新建单据
 			</div>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			<br />
 			发料计划
-			<span class="red_star">(此项为农场负责人填写)</span>：
+			<span class="red_star">(此项为管区负责人填写)</span>：
 			<table class="query_form_table">
 				<tr>
 					<th>
@@ -48,30 +111,14 @@
 						养殖户姓名
 					</th>
 					<td>
-						<input value="黄颂和" />
+						<input id="farmerName" name="bill.farmer.name" value="${bill.farmer.name}" />
 						<span class="red_star">*(务必准确)</span>
 					</td>
 					<th>
 						农场
 					</th>
 					<td>
-						<select>
-							<option>
-								请选择...
-							</option>
-							<option selected>
-								海北
-							</option>
-							<option>
-								金港
-							</option>
-							<option>
-								三仓
-							</option>
-							<option>
-								仓东
-							</option>
-						</select>
+						<select id="farm" name="bill.farm.id"></select>
 						<span class="red_star">*</span>
 					</td>
 				</tr>
@@ -80,33 +127,14 @@
 						饲料厂商
 					</th>
 					<td>
-						<select>
-							<option>
-								请选择...
-							</option>
-							<option selected>
-								正大
-							</option>
-							<option>
-								通威
-							</option>
-							<option>
-								海辰
-							</option>
-							<option>
-								南山
-							</option>
-							<option>
-								天邦
-							</option>
-						</select>
+					<select id="factory" name="bill.factory.id"></select>
 						<span class="red_star">*</span>
 					</td>
 					<th>
 						型号
 					</th>
 					<td>
-						<input value="2732" />
+						<input id="size" name="bill.size" value="${bill.size}" />
 						<span class="red_star">*</span>
 					</td>
 				</tr>
@@ -115,14 +143,14 @@
 						规格
 					</th>
 					<td>
-						<input value="2.0" />
+						<input id="model" name="bill.model" value="${bill.model}" />
 						<span class="red_star">*</span>
 					</td>
 					<th>
 						吨数
 					</th>
 					<td>
-						<input value="10" />
+						<input id="amount" name="bill.amount" value="${bill.amount}" />
 						<span class="red_star">*(吨)</span>
 					</td>
 				</tr>
@@ -131,13 +159,13 @@
 						申请备注
 					</th>
 					<td>
-						<input value="饲料厂送料申请0.16吨" size="30" />
+						<input id="" name="bill.applyRemark" value="${bill.applyRemark}" size="30" />
 					</td>
 					<th>
 						计划到料日期
 					</th>
 					<td>
-						<input value="2011-1-11" style="width: 20%" />
+						<input id="" name="bill.planDate" value="${bill.planDate}" style="width: 20%" />
 					</td>
 				</tr>
 
@@ -196,7 +224,8 @@
 						</td>
 
 					</tr>
-				</table> <br /> 发料配置<span class="red_star">(此项农场负责人不可见)</span>：
+				</table> <br /> 
+				发料配置<span class="red_star">(此项农场负责人不可见)</span>：
 				<table class="query_form_table" id="table1">
 					<tr>
 
@@ -281,10 +310,10 @@
 					<button class="common_button" onclick="back();">
 						返回
 					</button>
-					<button class="common_button" onclick="save('dict.html');">
+					<button class="common_button" onclick="return submitBill();">
 						提交
 					</button>
-					<button class="common_button" onclick="save('dict.html');">
+					<button class="common_button" onclick="return submitBillDraft();">
 						保存为草稿
 					</button>
 				</div>
