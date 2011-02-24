@@ -61,6 +61,8 @@
 			<result name="rate_list">/html/account/service/rate_list.jsp</result>
 			<result name="farmabs_edit">/html/account/service/farmabs_edit.jsp</result>
 			<result name="farmabs_list">/html/account/service/farmabs_list.jsp</result> 
+			<result name="factory_edit">/html/account/service/factory_edit.jsp</result>
+			<result name="factory_list">/html/account/service/factory_list.jsp</result>
 		</action>
 		<action name="bill_*" method="{1}" class="com.throne212.siliao.action.BillAction">
 			<result name="bill_edit">/html/bill/bill_edit.jsp</result>
@@ -89,7 +91,7 @@
 					list\[\d+\]\.name
 				</param>
 			</result>
-			<result name="farm_type_list" type="json">
+			<result name="type_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]
 				</param>
@@ -101,6 +103,23 @@
 				</param>
 			</result>
 			<result name="manager_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="factoryType_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]
+				</param>
+			</result>
+			<result name="factory_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="factory_account_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
 					list\[\d+\]\.name

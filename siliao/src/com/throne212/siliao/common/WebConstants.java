@@ -37,6 +37,10 @@ public class WebConstants {
 	public static final String FARM_TYPE_AREA="管区";
 	public static final String FARM_TYPE_FARM="农场";
 	
+	//factory type
+	public static final String FACTORY_TYPE_PROVIDER = "供货饲料厂";
+	public static final String FACTORY_TYPE_FACTORY = "饲料厂商";
+	
 	public static final String OP_CREATE = "创建";
 	public static final String OP_UPDATE = "更新";
 	public static final String OP_DELETE = "删除";

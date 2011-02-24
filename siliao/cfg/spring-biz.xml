@@ -16,6 +16,7 @@
 		<property name="userDao" ref="userDao"></property>
 		<property name="rateDao" ref="rateDao"></property>
 		<property name="farmAbsDao" ref="farmAbsDao"></property>
+		<property name="factoryDao" ref="factoryDao"></property>
 	</bean>
 	
 	<bean id="billBiz" class="com.throne212.siliao.biz.impl.BillBizImpl">

@@ -5,10 +5,13 @@ import java.util.List;
 
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.domain.Area;
+import com.throne212.siliao.domain.Factory;
+import com.throne212.siliao.domain.FactoryAbs;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmAbs;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.Log;
+import com.throne212.siliao.domain.Provider;
 import com.throne212.siliao.domain.Rate;
 import com.throne212.siliao.domain.User;
 
@@ -38,11 +41,19 @@ public interface DataBiz extends BaseBiz{
 	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition,Date fromDate,Date toDate,Integer pageIndex,String farmType,Long farmId,String accountName);
 	public String getFarmAbsExcelDownloadFile(FarmAbs condition,Date fromDate,Date toDate,String farmType,Long farmId,String accountName);
 	
+	//厂商
+	public <T extends FactoryAbs> T saveFactoryAbs(T factoryAbs);
+	public FactoryAbs deleteFactory(FactoryAbs factoryAbs);
+	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName);
+	public String getFactoryExcelDownloadFile(FactoryAbs condition,Date fromDate,Date toDate,String type,Long factoryId,String accountName);
+	
 	//其它
 	public List<Log> getFarmerLogList(Farmer farmer);
 	public List<Log> getUserLogList(User user);
 	public List<Log> getRateLogList(Rate rate);
 	public List<Log> getFarmLogList(Farm farm);
 	public List<Log> getAreaLogList(Area area);
+	public List<Log> getFactoryLogList(Factory f);
+	public List<Log> getProviderLogList(Provider p);
 	
 }

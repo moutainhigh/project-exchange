@@ -17,18 +17,24 @@ import com.throne212.siliao.biz.DataBiz;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.dao.FactoryDao;
 import com.throne212.siliao.dao.FarmAbsDao;
 import com.throne212.siliao.dao.FarmerDao;
 import com.throne212.siliao.dao.RateDao;
 import com.throne212.siliao.dao.UserDao;
 import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaLog;
+import com.throne212.siliao.domain.Factory;
+import com.throne212.siliao.domain.FactoryAbs;
+import com.throne212.siliao.domain.FactoryLog;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmAbs;
 import com.throne212.siliao.domain.FarmLog;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.FarmerLog;
 import com.throne212.siliao.domain.Log;
+import com.throne212.siliao.domain.Provider;
+import com.throne212.siliao.domain.ProviderLog;
 import com.throne212.siliao.domain.Rate;
 import com.throne212.siliao.domain.RateLog;
 import com.throne212.siliao.domain.User;
@@ -40,6 +46,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	private UserDao userDao;
 	private RateDao rateDao;
 	private FarmAbsDao farmAbsDao;
+	private FactoryDao factoryDao;
 
 	// 农户
 	public Farmer saveFarmer(Farmer farmer) {
@@ -356,14 +363,22 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	public List<Log> getRateLogList(Rate rate) {
 		return baseDao.getLogList(rate, "rate");
 	}
-	
-	public List<Log> getFarmLogList(Farm farm){
+
+	public List<Log> getFarmLogList(Farm farm) {
 		return baseDao.getLogList(farm, "farm");
 	}
-	public List<Log> getAreaLogList(Area area){
+
+	public List<Log> getAreaLogList(Area area) {
 		return baseDao.getLogList(area, "area");
 	}
 	
+	public List<Log> getFactoryLogList(Factory f) {
+		return baseDao.getLogList(f, "factory");
+	}
+	
+	public List<Log> getProviderLogList(Provider p) {
+		return baseDao.getLogList(p, "provider");
+	}
 
 	// 农场
 	public <T extends FarmAbs> T saveFarmAbs(T farmAbs) {
@@ -457,12 +472,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			for (FarmAbs f : farmAbsList) {
 				sheet.addCell(new Number(0, i, f.getId()));
 				sheet.addCell(new Label(1, i, f.getName()));
-				if(f instanceof Area){
-					Area a =(Area)f;
+				if (f instanceof Area) {
+					Area a = (Area) f;
 					sheet.addCell(new Label(2, i, a.getFarm().getName()));
 					sheet.addCell(new Label(3, i, a.getAccount().getName()));
-				}else{
-					Farm farm = (Farm)f;
+				} else {
+					Farm farm = (Farm) f;
 					sheet.addCell(new Label(2, i, ""));
 					sheet.addCell(new Label(3, i, farm.getManager().getName()));
 				}
@@ -490,6 +505,129 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 
 	public void setFarmAbsDao(FarmAbsDao farmAbsDao) {
 		this.farmAbsDao = farmAbsDao;
+	}
+
+	public FactoryDao getFactoryDao() {
+		return factoryDao;
+	}
+
+	public void setFactoryDao(FactoryDao factoryDao) {
+		this.factoryDao = factoryDao;
+	}
+	
+	public <T extends FactoryAbs> T saveFactoryAbs(T factoryAbs) {
+		// 判断是否为新的厂商
+		if (factoryAbs.getId() == null) {
+			factoryAbs.setEnable(true);
+			factoryAbs.setCreateDate(new Date());
+			factoryAbs.setCreateName(((User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ)).getName());
+			baseDao.saveOrUpdate(factoryAbs);
+			// 保存日志
+			if (factoryAbs instanceof Factory) {
+				FactoryLog log = Util.getBaseLog(FactoryLog.class, WebConstants.OP_CREATE);
+				log.setFactory((Factory) factoryAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("添加厂商【" + factoryAbs.getName() + "】成功");
+			} else if (factoryAbs instanceof Provider) {
+				ProviderLog log = Util.getBaseLog(ProviderLog.class, WebConstants.OP_CREATE);
+				log.setProvider((Provider) factoryAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("添加供应厂【" + factoryAbs.getName() + "】成功");
+			}
+
+		} else {
+			baseDao.saveOrUpdate(factoryAbs);
+			// 保存日志
+			if (factoryAbs instanceof Factory) {
+				FactoryLog log = Util.getBaseLog(FactoryLog.class, WebConstants.OP_UPDATE);
+				log.setFactory((Factory) factoryAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("更新农场【" + factoryAbs.getName() + "】成功");
+			} else if (factoryAbs instanceof Provider) {
+				ProviderLog log = Util.getBaseLog(ProviderLog.class, WebConstants.OP_UPDATE);
+				log.setProvider((Provider) factoryAbs);
+				baseDao.saveOrUpdate(log);
+				logger.info("更新管区【" + factoryAbs.getName() + "】成功");
+			}
+		}
+		return factoryAbs;
+
+	}
+
+	public FactoryAbs deleteFactory(FactoryAbs factoryAbs) {
+		factoryAbs = baseDao.getEntityById(FactoryAbs.class, factoryAbs.getId());
+		factoryAbs.setEnable(false);
+		baseDao.saveOrUpdate(factoryAbs);
+		logger.info("逻辑删除用户【" + factoryAbs.getName() + "】成功");
+		return factoryAbs;
+	}
+
+	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName) {
+		int pageIndex = 1;
+		if (page != null) {
+			pageIndex = page.intValue();
+		}
+		return factoryDao.getFactoryAbsList(condition, fromDate, toDate, pageIndex, type, factoryId, accountName);
+	}
+
+	public String getFactoryExcelDownloadFile(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName) {
+		List<FactoryAbs> factoryList = factoryDao.getFactoryList(condition, fromDate, toDate, type, factoryId, accountName);
+
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel";
+		System.out.println("excel saved path : " + path);
+		// String sourceFile = path + File.separator + "template.xls";
+		String targetFile = path + File.separator + System.currentTimeMillis() + ".xls";
+		Workbook rw = null;
+		try {
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
+			WritableSheet sheet = workbook.createSheet("厂商列表", 0);
+
+			// 加表头
+			WritableFont font = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD);
+			WritableCellFormat format = new WritableCellFormat(font);
+			sheet.addCell(new Label(0, 0, "编号", format));
+			sheet.addCell(new Label(1, 0, "供货饲料厂", format));
+			sheet.addCell(new Label(2, 0, "所属厂商", format));
+			sheet.addCell(new Label(3, 0, "类别", format));
+			sheet.addCell(new Label(4, 0, "负责人", format));
+			sheet.addCell(new Label(5, 0, "备注", format));
+			sheet.addCell(new Label(6, 0, "创建人", format));
+
+			// 加内容
+			int i = 1;
+			for (FactoryAbs f : factoryList) {
+				if (f instanceof Provider) {
+					Provider p = (Provider) f;
+					sheet.addCell(new Number(0, i, p.getId()));
+					sheet.addCell(new Label(1, i, p.getName()));
+					sheet.addCell(new Label(2, i, p.getFactory().getName()));
+					sheet.addCell(new Label(3, i, WebConstants.FACTORY_TYPE_PROVIDER));
+					sheet.addCell(new Label(4, i, p.getAccount().getName()));
+					sheet.addCell(new Label(5, i, p.getRemark()));
+					sheet.addCell(new Label(6, i++, p.getCreateName()));
+				} else if (f instanceof Factory) {
+					Factory ff = (Factory) f;
+					sheet.addCell(new Number(0, i, f.getId()));
+					sheet.addCell(new Label(2, i, f.getName()));
+					sheet.addCell(new Label(3, i, WebConstants.FACTORY_TYPE_FACTORY));
+					sheet.addCell(new Label(5, i, f.getRemark()));
+					sheet.addCell(new Label(6, i++, f.getCreateName()));
+				}
+			}
+
+			workbook.write();
+			workbook.close();
+			return targetFile;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rw != null)
+				rw.close();
+		}
+		return null;
 	}
 
 }

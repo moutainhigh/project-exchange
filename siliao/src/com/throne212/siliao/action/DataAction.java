@@ -15,12 +15,15 @@ import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Admin;
 import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
+import com.throne212.siliao.domain.Factory;
+import com.throne212.siliao.domain.FactoryAbs;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmAbs;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.Log;
 import com.throne212.siliao.domain.MailSetting;
 import com.throne212.siliao.domain.ManagerAccount;
+import com.throne212.siliao.domain.Provider;
 import com.throne212.siliao.domain.ProviderAccount;
 import com.throne212.siliao.domain.Rate;
 import com.throne212.siliao.domain.User;
@@ -352,14 +355,14 @@ public class DataAction extends BaseAction {
 			}
 		} else if (farmAbs != null && farmAbs.getId() != null) {// 查看农场详情
 			farmAbs = dataBiz.getEntityById(FarmAbs.class, farmAbs.getId());
-			logList = (farmAbs instanceof Farm)?dataBiz.getFarmLogList((Farm) farmAbs):dataBiz.getAreaLogList((Area) farmAbs);
+			logList = (farmAbs instanceof Farm) ? dataBiz.getFarmLogList((Farm) farmAbs) : dataBiz.getAreaLogList((Area) farmAbs);
 			return "farmabs_edit";
 		}
 		return "farmabs_edit";
 	}
 
 	private String accountName;
-	
+
 	public String farmAbsList() {
 		pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType, farmId, accountName);
 		return "farmabs_list";
@@ -388,6 +391,83 @@ public class DataAction extends BaseAction {
 			this.setMsg("文件下载失败");
 		}
 		return "excel";
+	}
+
+	// 厂商维护
+	private FactoryAbs factoryAbs;
+	private String factoryType; // 类别
+	private Long factoryId; // 所属厂商ID
+	private Long accountId; // 负责人ID
+
+	public String saveFactory() {
+		if (factoryAbs == null) {
+			this.setMsg("厂商保存失败，请检查数据是否录入完整");
+			return "factory_edit";
+		}
+		if (factoryAbs != null && !Util.isEmpty(factoryAbs.getName())) {// 添加或更新厂商信息
+			if (factoryAbs.getId() == null) {
+				FactoryAbs factoryInDB = dataBiz.getEntityByUnique(FactoryAbs.class, "name", factoryAbs.getName());
+				if (factoryInDB != null) {
+					this.setMsg("已存在此供应厂或厂商,请重新输入!");
+					return "factory_edit";
+				}
+			}
+			// FactoryAbs new factoryAbs = null;
+			if (!Util.isEmpty(factoryType)) {
+				if (WebConstants.FACTORY_TYPE_FACTORY.endsWith(factoryType)) {
+					Factory f = new Factory();
+					f.setId(factoryAbs.getId());
+					f.setName(factoryAbs.getName());
+					f.setRemark(factoryAbs.getRemark());
+					f.setCreateName(factoryAbs.getCreateName());
+					f = dataBiz.saveFactoryAbs(f);
+					this.setMsg("厂商或饲料供应厂保存成功【" + f.getName() + "】");
+					this.setFactoryAbs(null);
+					this.setFactoryType(null);
+					return factoryList();
+
+				} else if (WebConstants.FACTORY_TYPE_PROVIDER.endsWith(factoryType)) {
+					Provider p = new Provider();
+					Factory f = baseBiz.getEntityById(Factory.class, factoryId);
+					ProviderAccount account = baseBiz.getEntityById(ProviderAccount.class, accountId);
+
+					p.setId(factoryAbs.getId());
+					p.setAccount(account);
+					p.setName(factoryAbs.getName());
+					p.setFactory(f);
+					p.setRemark(factoryAbs.getRemark());
+					p.setCreateName(factoryAbs.getCreateName());
+					p = dataBiz.saveFactoryAbs(p);
+					this.setMsg("厂商或饲料供应厂保存成功【" + f.getName() + "】");
+					this.setFactoryAbs(null);
+					this.setFactoryType(null);
+					return factoryList();
+				}
+			} else {
+				this.setMsg("类型参数缺失");
+			}
+
+		} else if (factoryAbs != null && factoryAbs.getId() != null) {// 
+			factoryAbs = dataBiz.getEntityById(FactoryAbs.class, factoryAbs.getId());
+			logList = (factoryAbs instanceof Factory) ? dataBiz.getFactoryLogList((Factory) factoryAbs) : dataBiz.getProviderLogList((Provider) factoryAbs);
+			return "factory_edit";
+		}
+		return "factory_edit";
+	}
+
+	public String factoryList() {
+		pageBean = dataBiz.getFactoryAbsList(factoryAbs, fromDate, toDate, page, factoryType, factoryId, accountName);
+		return "factory_list";
+	}
+
+	public String deleteFactory() {
+		if (factoryAbs != null && factoryAbs.getId() != null) {
+			dataBiz.deleteFactory(factoryAbs);
+			this.setMsg("厂商删除成功");
+		} else {
+			this.setMsg("厂商删除失败，参数不完整");
+		}
+		return factoryList();
 	}
 
 	public BaseBiz getBaseBiz() {
@@ -588,6 +668,38 @@ public class DataAction extends BaseAction {
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
+	}
+
+	public FactoryAbs getFactoryAbs() {
+		return factoryAbs;
+	}
+
+	public void setFactoryAbs(FactoryAbs factoryAbs) {
+		this.factoryAbs = factoryAbs;
+	}
+
+	public String getFactoryType() {
+		return factoryType;
+	}
+
+	public void setFactoryType(String factoryType) {
+		this.factoryType = factoryType;
+	}
+
+	public Long getFactoryId() {
+		return factoryId;
+	}
+
+	public void setFactoryId(Long factoryId) {
+		this.factoryId = factoryId;
+	}
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 }

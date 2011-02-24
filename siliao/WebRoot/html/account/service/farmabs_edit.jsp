@@ -101,83 +101,124 @@
 		<br />
 		新建农场或管区
 		<form action="${appPath}data_saveFarmAbs.htm" method="get">
-			<input type="hidden" name="farmAbs.id" value="${farmAbs.id}"/>
+			<input type="hidden" name="farmAbs.id" value="${farmAbs.id}" />
 			<c:if test="${not empty farmAbs.id}">
-			<input type="hidden" name="farmName" value="${farmName}"/>
-			<input type="hidden" name="farmManager" value="${farmManager}"/>
+				<input type="hidden" name="farmName" value="${farmName}" />
+				<input type="hidden" name="farmManager" value="${farmManager}" />
 			</c:if>
 			<table class="query_form_table">
-	<tr>
-		<th>农场或管区名称</th>
-		<td>
-			<input id="farmAbsName" name="farmAbs.name"value="${farmAbs.name}"  />
-		</td>
-		<th>类别</th>
-		<td>
-			<select id="farmType" name="farmType"  onchange="selectType(this.value);"></select>
-			
-		</td>
-	</tr>
-	<tr id="area_tr" style="display: none;">
-		<th>所属农场</th>
-		<td colspan="3">
-		<select id="farmName" name="farmId"></select>
-			<span class="red_star">*(如果类别为农场，则无此项)</span>
-		</td>
-	</tr>
-	<tr>
-	    <th>负责人</th>
-		<td>
-			<select id="farmManager" name="farmManagerId"></select>
-			<span class="red_star">*(请先选择农场类型)</span>
-		</td>		
-		<th>备注</th>
-		<td>
-			<input id="farmAbsRemark" name="farmAbs.remark" value="${farmAbs.remark}"  />
-		</td>
-	</tr>
-	
-</table>
-
-操作记录：
-<table class="data_list_table">
-	<tr>
-		<th>编号</th>
-		<th>操作人</th>
-		<th>操作时间</th>
-		<th>操作过程</th>
-		<th>农场管区名</th>
-		<th>类别</th>
-		<th>所属农场</th>
-		<th>负责人</th>
-		<th>备注</th>
-	</tr>
-	
-	<c:forEach items="${logList}" var="l" varStatus="status">
 				<tr>
-					<td class="list_data_text">${status.count }</td>
-					<td class="list_data_text">${l.byWho.name }</td>
-					<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
-					<td class="list_data_text">${l.msg }</td>
-		<td class="list_data_text">
-			<c:if test="${'农场' == farmAbs.farmType}">${l.farm.name}</c:if>
-			<c:if test="${'管区' == farmAbs.farmType}">${l.area.name}</c:if>
-		</td>
-		<td class="list_data_text">
-			<c:if test="${'农场' == farmAbs.farmType}">农场</c:if>
-			<c:if test="${'管区' == farmAbs.farmType}">管区</c:if>
-		</td>
-		<td class="list_data_text"><c:if test="${'管区' == farmAbs.farmType}">${farmAbs.farm.name}</c:if>&nbsp;</td>
-		<td class="list_data_text">
-			<c:if test="${'农场' == farmAbs.farmType}">${farmAbs.manager.name}</c:if>
-			<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.account.name}</c:if>
-		</td>
-		<td class="list_data_text">${farmAbs.remark}</td>
-	</tr>
-	</c:forEach>
-</table>
+					<th>
+						农场或管区名称
+					</th>
+					<td>
+						<input id="farmAbsName" name="farmAbs.name" value="${farmAbs.name}" />
+					</td>
+					<th>
+						类别
+					</th>
+					<td>
+						<select id="farmType" name="farmType" onchange="selectType(this.value);"></select>
 
-			
+					</td>
+				</tr>
+				<tr id="area_tr" style="display: none;">
+					<th>
+						所属农场
+					</th>
+					<td colspan="3">
+						<select id="farmName" name="farmId"></select>
+						<span class="red_star">*(如果类别为农场，则无此项)</span>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						负责人
+					</th>
+					<td>
+						<select id="farmManager" name="farmManagerId"></select>
+						<span class="red_star">*(请先选择农场类型)</span>
+					</td>
+					<th>
+						备注
+					</th>
+					<td>
+						<input id="farmAbsRemark" name="farmAbs.remark" value="${farmAbs.remark}" />
+					</td>
+				</tr>
+
+			</table>
+
+			操作记录：
+			<table class="data_list_table">
+				<tr>
+					<th>
+						编号
+					</th>
+					<th>
+						操作人
+					</th>
+					<th>
+						操作时间
+					</th>
+					<th>
+						操作过程
+					</th>
+					<th>
+						农场管区名
+					</th>
+					<th>
+						类别
+					</th>
+					<th>
+						所属农场
+					</th>
+					<th>
+						负责人
+					</th>
+					<th>
+						备注
+					</th>
+				</tr>
+
+				<c:forEach items="${logList}" var="l" varStatus="status">
+					<tr>
+						<td class="list_data_text">
+							${status.count }
+						</td>
+						<td class="list_data_text">
+							${l.byWho.name }
+						</td>
+						<td class="list_data_text">
+							<fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd" />
+						</td>
+						<td class="list_data_text">
+							${l.msg }
+						</td>
+						<td class="list_data_text">
+							<c:if test="${'农场' == farmAbs.farmType}">${l.farm.name}</c:if>
+							<c:if test="${'管区' == farmAbs.farmType}">${l.area.name}</c:if>
+						</td>
+						<td class="list_data_text">
+							<c:if test="${'农场' == farmAbs.farmType}">农场</c:if>
+							<c:if test="${'管区' == farmAbs.farmType}">管区</c:if>
+						</td>
+						<td class="list_data_text">
+							<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.farm.name}</c:if>
+							&nbsp;
+						</td>
+						<td class="list_data_text">
+							<c:if test="${'农场' == farmAbs.farmType}">${farmAbs.manager.name}</c:if>
+							<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.account.name}</c:if>
+						</td>
+						<td class="list_data_text">
+							${farmAbs.remark}
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+
+
 			<br />
 			<div class="button_bar">
 				<button class="common_button" onclick="back();">
