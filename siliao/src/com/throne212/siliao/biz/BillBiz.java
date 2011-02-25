@@ -8,6 +8,7 @@ import com.throne212.siliao.domain.Bill;
 public interface BillBiz extends BaseBiz{
 
 	public Bill addNewBill(Bill bill);
+	public Bill saveBillDraft(Bill bill);
 	//查询单据
 	public PageBean<Bill> getBillList(Bill condition,Date fromDate,Date toDate,Integer page);
 	public String getBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate);

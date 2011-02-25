@@ -8,49 +8,76 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="${appPath}html/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="${appPath}html/css/jquery.datepick.css" />
+		<link rel="stylesheet" type="text/css" href="${appPath}html/css/jquery.autocomplete.css" />
 		<script src="${appPath}html/script/jquery.js"></script>
 		<script src="${appPath}html/script/common.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
+		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
-			var currFarm= '${bill.farm.id}';
-			var currFactory ='${bill.factory.id}';
+			var userRole = '${userObj.userRole}';
+			var farmId = '${bill.farm.id}';
+			var factoryId = '${bill.factory.id}';
+			var s = '${bill.status}';
 			$(function(){
-				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#farm').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#farm').append(str);
-						}
-						if(currFarm != ''){
-							$('#farm').val(currFarm);
-						}
-					}
-				});		
-				$.getJSON("${appPath}ajax/getAllFactory?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#factory').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#factory').append(str);
-						}
-						if(currFactory != ''){
-							$('#factory').val(currFactory);
-						}
-					}
-				});			
+				//订单状态处理
+				if(s > 1){
+					$('table').eq(0).find('input,select').attr('disabled',true);
+				}
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
-			});
-			function submitBill(){
+				//农户名字的autocomplete
+				$("#farmerName").autocomplete('${appPath}ajax/queryFarmerName?time='+new Date().getTime(), {
+					multiple: false,
+					minChars: 1,
+					parse: function(data) {
+						return $.map(data['list'], function(row) {
+							return {
+								data: row['name'],
+								value: row['name'],
+								result: row['name']
+							}
+						});
+					},
+					formatItem: function(item) {
+						return item;
+					}
+				});
+				//农场下拉菜单
+				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#farmId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++){
+							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+							$('#farmId').append(str);
+						}
+						if(farmId != ''){
+							$('#farmId').val(farmId);
+						}
+					}
+				});
+				//饲料厂商下拉菜单
+				$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#factoryId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++){
+							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+							$('#factoryId').append(str);
+						}
+						if(factoryId != ''){
+							$('#factoryId').val(factoryId);
+						}
+					}
+				});
+			});	
+			function addNewBill(){
 				if($('#farmerName').val() == null || $('#farmerName').val()==''){
 					alert('养殖户的姓名不能为空');
 					return false;
-				}else if($('#farm').val() == null || $('#farm').val()==''){
+				}else if($('#farmId').val() == null || $('#farmId').val()==''){
 					alert('农场不能为空');
 					return false;
-				}else if($('#factory').val() == null || $('#factory').val()==''){
+				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('饲料厂商不能为空');
 					return false;
 				}else if($('#size').val() == null || $('#size').val()==''){
@@ -59,36 +86,34 @@
 				}else if($('#model').val() == null || $('#model').val()==''){
 					alert('规格不能为空');
 					return false;
-				}
-
-				else{
-					document.forms[0].action = "${appPath}bill_addNewBill.htm?action=addNew";
+				}else{
+					document.forms[0].action = "${appPath}bill_addNewBill.htm";
 					document.forms[0].submit();
 				}
 			}
-			function submitBillDraft(){
-				if($('#farmerName').val() == null || $('#farmerName').val()==''){
-					alert('养殖户的姓名不能为空');
+			function saveBillDraft(){
+				if($('#farmId').val() == null || $('#farmId').val()==''){
+					alert('农场不能为空');
 					return false;
+				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
+					alert('饲料厂商不能为空');
+					return false;
+				}else{
+					document.forms[0].action = "${appPath}bill_saveBillDraft.htm";
+					document.forms[0].submit();
 				}
-
-				else{
-				document.forms[0].action = "${appPath}bill_addNewBill.htm?action=saveDraft";
-				
-				document.forms[0].submit();
-				}
-			}		
-			
+			}
 		</script>
 	</head>
 	<body>
-		<form action="${appPath}bill_addNewBill.htm" method="get">
+		<form action="${appPath}bill_saveBill.htm" method="get">
 			<input type="hidden" name="bill.id" value="${bill.id}" />
 			<div class="page_title">
 				饲料管理系统 > 单据管理 > 新建单据
 			</div>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			<br />
+			
 			发料计划
 			<span class="red_star">(此项为管区负责人填写)</span>：
 			<table class="query_form_table">
@@ -97,13 +122,15 @@
 						单据编号
 					</th>
 					<td>
+						${bill.orderId}
 						<span class="red_star">(单据编号提交以后产生)</span>
+						<input type="hidden" name="bill.orderId" value="${bill.orderId}"/>
 					</td>
 					<th>
 						当前单据状态
 					</th>
 					<td>
-						拟制中
+						${bill.statusTxt}
 					</td>
 				</tr>
 				<tr>
@@ -118,7 +145,7 @@
 						农场
 					</th>
 					<td>
-						<select id="farm" name="bill.farm.id"></select>
+						<select id="farmId" name="bill.farm.id"></select>
 						<span class="red_star">*</span>
 					</td>
 				</tr>
@@ -127,7 +154,7 @@
 						饲料厂商
 					</th>
 					<td>
-					<select id="factory" name="bill.factory.id"></select>
+					<select id="factoryId" name="bill.factory.id"></select>
 						<span class="red_star">*</span>
 					</td>
 					<th>
@@ -165,13 +192,12 @@
 						计划到料日期
 					</th>
 					<td>
-						<input id="" name="bill.planDate" value="${bill.planDate}" style="width: 20%" />
+						<input id="" name="bill.planDate" value="${bill.planDate}" style="width: 200px;" class="datetime"/>
 					</td>
 				</tr>
-
 			</table>
 			<br />
-			<span style="display: true;"> 代理配置<span class="red_star">(此项为饲料经理填写)</span>：
+			代理配置<span class="red_star">(此项为饲料经理填写)</span>：
 				<table class="query_form_table" id="table1">
 					<tr>
 
@@ -213,8 +239,6 @@
 					</tr>
 
 					<tr>
-
-
 						<th>
 							饲料经理意见
 						</th>
@@ -222,7 +246,6 @@
 							<input value="同意发料，请正大速办！" name="T6" size="100" />
 							<span class="red_star">*</span>
 						</td>
-
 					</tr>
 				</table> <br /> 
 				发料配置<span class="red_star">(此项农场负责人不可见)</span>：
@@ -310,10 +333,10 @@
 					<button class="common_button" onclick="back();">
 						返回
 					</button>
-					<button class="common_button" onclick="return submitBill();">
+					<button class="common_button" onclick="return addNewBill();">
 						提交
 					</button>
-					<button class="common_button" onclick="return submitBillDraft();">
+					<button class="common_button" onclick="return saveBillDraft();">
 						保存为草稿
 					</button>
 				</div>

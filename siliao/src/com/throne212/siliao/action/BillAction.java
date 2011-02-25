@@ -30,82 +30,85 @@ public class BillAction extends BaseAction {
 	}
 
 	private Bill bill;
-    private String action;
+	private String action;
 
-
-	public String addNewBill() {	
-
+	public String addNewBill() {
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
-			return "add_bill";
+			return "bill_edit";
 		}
-		
-		if(bill.getFarmer().getName()!=null&&!bill.getFarmer().getName().equals("")){
-			Farmer farmer=	billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
-				if (farmer==null) {
-					this.setMsg("保存失败，不存在此农户！");
-					return "add_bill";
-				}
-				bill.setFarmer(farmer);
+		if (bill.getFarmer().getName() != null && !bill.getFarmer().getName().equals("")) {
+			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
+			if (farmer == null) {
+				this.setMsg("保存失败，不存在此农户！");
+				return "bill_edit";
 			}
-		
-		if(bill.getFactory().getId()!=null&&!"".equals(bill.getFactory().getId())){
-		Factory factory=	billBiz.getEntityById(Factory.class,bill.getFactory().getId());
-			if (factory==null) {
+			bill.setFarmer(farmer);
+		}
+		if (bill.getFactory().getId() != null && !"".equals(bill.getFactory().getId())) {
+			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());
+			if (factory == null) {
 				this.setMsg("保存失败，不存在此厂商！");
-				return "add_bill";
+				return "bill_edit";
 			}
 			bill.setFactory(factory);
 		}
-		
-		if(bill.getFarm().getId()!=null&&!"".equals(bill.getFarm().getId())){
-			Farm farm=	billBiz.getEntityById(Farm.class,bill.getFarm().getId());
-				if (farm==null) {
-					this.setMsg("保存失败，不存在此农场！");
-					return "add_bill";
-				}
-				bill.setFarm(farm);
+		if (bill.getFarm().getId() != null && !"".equals(bill.getFarm().getId())) {
+			Farm farm = billBiz.getEntityById(Farm.class, bill.getFarm().getId());
+			if (farm == null) {
+				this.setMsg("保存失败，不存在此农场！");
+				return "bill_edit";
 			}
-		
-		//添加
-		if(bill.getId()==null&&!"".equals(bill.getFarmer().getName())){
-			if("addNew".equals(action)){
-				bill.setStatus(WebConstants.BILL_STATUS_SUBMIT);
-				billBiz.addNewBill(bill);
-				this.setMsg("已提交申请单据！");
-				return "add_bill";
-			}else if ("saveDraft".equals(action)) {
-				bill.setStatus(WebConstants.BILL_STATUS_DRAFT);
-				billBiz.addNewBill(bill);
-				this.setMsg("成功保存草稿！");
-				return "add_bill";
-			}else {
-				this.setMsg("提交错误！");
-				return "add_bill";
-			}
-			
-		}else if (bill.getId()!=null&&"".equals(bill.getFarmer().getName())) {
-			//查看单据详情
-			bill=billBiz.getEntityById(Bill.class, bill.getId());
-			return "add_bill";
+			bill.setFarm(farm);
 		}
-		return "add_bill";
+		// 添加
+		bill.setStatus(WebConstants.BILL_STATUS_SUBMIT);
+		billBiz.addNewBill(bill);
+		this.setMsg("已提交申请单据！");
+		return "bill_edit";
 	}
-	//查询单据
+
+	public String saveBillDraft() {
+		if (bill == null) {
+			this.setMsg("单据保存失败，请检查数据是否录入完整");
+			return "bill_edit";
+		}
+		if (bill.getFactory().getId() != null && !"".equals(bill.getFactory().getId())) {
+			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());
+			if (factory == null) {
+				this.setMsg("保存失败，不存在此厂商！");
+				return "bill_edit";
+			}
+			bill.setFactory(factory);
+		}
+		if (bill.getFarm().getId() != null && !"".equals(bill.getFarm().getId())) {
+			Farm farm = billBiz.getEntityById(Farm.class, bill.getFarm().getId());
+			if (farm == null) {
+				this.setMsg("保存失败，不存在此农场！");
+				return "bill_edit";
+			}
+			bill.setFarm(farm);
+		}
+		bill.setStatus(WebConstants.BILL_STATUS_DRAFT);
+		billBiz.saveBillDraft(bill);
+		this.setMsg("成功保存草稿！");
+		return "bill_edit";
+	}
+
+	// 查询单据
 	private Integer page;
 	private PageBean pageBean;
 	private Date fromDate;
 	private Date toDate;
-	
+
 	public String billList() {
-		
+
 		pageBean = billBiz.getBillList(bill, fromDate, toDate, page);
 		return "bill_list";
-		
-	}
-	
-	private InputStream downloadFile;
 
+	}
+
+	private InputStream downloadFile;
 
 	public String exportBillExcel() {
 		String path = billBiz.getBillExcelDownloadFile(bill, fromDate, toDate);
@@ -128,6 +131,7 @@ public class BillAction extends BaseAction {
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
+
 	public String getAction() {
 		return action;
 	}
@@ -167,6 +171,7 @@ public class BillAction extends BaseAction {
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
+
 	public InputStream getDownloadFile() {
 		return downloadFile;
 	}

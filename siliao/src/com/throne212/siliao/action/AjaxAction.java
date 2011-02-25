@@ -10,6 +10,7 @@ import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
+import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
 import com.throne212.siliao.domain.ProviderAccount;
@@ -105,7 +106,16 @@ public class AjaxAction extends BaseAction {
 		}
 		return "list";
 	}
-
+	
+	public String queryFarmerName() {
+		String[] q = (String[]) ActionContext.getContext().getParameters().get("q");
+		if (q != null && q.length > 0 && q[0] != null) {
+			String key = q[0].trim();
+			list = baseBiz.getAll(Farmer.class);
+		}
+		return "list";
+	}
+	
 	public String queryFarmAbsName() {
 		String[] q = (String[]) ActionContext.getContext().getParameters().get("q");
 		if (q != null && q.length > 0 && q[0] != null) {

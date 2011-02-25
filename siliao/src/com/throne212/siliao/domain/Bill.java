@@ -46,7 +46,7 @@ public class Bill extends MyEntity implements Serializable {
 		case WebConstants.BILL_STATUS_DRAFT:
 			return "草稿";
 		case WebConstants.BILL_STATUS_SUBMIT:
-			return "已提交";
+			return "审核中";
 		case WebConstants.BILL_STATUS_CONFIRM:
 			return "已审核";
 		case WebConstants.BILL_STATUS_SENT:
@@ -56,10 +56,7 @@ public class Bill extends MyEntity implements Serializable {
 		default:
 			break;
 		}
-		return "";
-		
-		
-		
+		return "草稿";
 	}
 	
 

@@ -20,65 +20,66 @@ import com.throne212.siliao.dao.BillDao;
 import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.BillLog;
 import com.throne212.siliao.domain.BillOrderNum;
+import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
-import com.throne212.siliao.domain.Farmer;
-import com.throne212.siliao.domain.Provider;
 
 public class BillBizImpl extends BaseBizImpl implements BillBiz {
 
 	private BillDao billDao;
 
-	public synchronized  Bill addNewBill(Bill bill) {
-		
-		//单据
-		if (bill.getId() == null) {
-			// 判断是否为新的单据
-			Farm farm = billDao.getEntityById(Farm.class, bill.getFarm().getId());
-			Provider provider = billDao.getEntityById(Provider.class, bill.getProvider().getId());
-			BillOrderNum num = baseDao.getAll(BillOrderNum.class).get(0);
-			long currNum = num.getNum()+1;
-			num.setNum(currNum);
-			baseDao.saveOrUpdate(num);
-			bill.setOrderId(Util.genOrderId(farm.getName(),provider.getName(),currNum));
-			baseDao.saveOrUpdate(bill);
-
-			// 保存日志
-			BillLog log = Util.getBaseLog(BillLog.class, WebConstants.OP_CREATE);
-			log.setBill(bill);
-			baseDao.saveOrUpdate(log);
-			logger.info("添加单据【" + bill.getOrderId() + "】成功");
-		
-		} else {
-			//更新
-			Bill billInDB = baseDao.getEntityById(Bill.class, bill.getId());
-			bill.setEnable(billInDB.getEnable());
-			bill.setCreateDate(billInDB.getCreateDate());
-			bill.setCreateName(billInDB.getCreateName());
-			baseDao.saveOrUpdate(bill);
-			
-			BillLog log = Util.getBaseLog(BillLog.class, WebConstants.OP_UPDATE);
-			log.setBill(bill);
-			baseDao.saveOrUpdate(log);
-			logger.info("更新单据【" + bill.getOrderId() + "】成功");
-			
-		}
-		
-		return bill;
-
+	private synchronized long getCurrNum() {
+		BillOrderNum num = baseDao.getAll(BillOrderNum.class).get(0);
+		long currNum = num.getNum() + 1;
+		num.setNum(currNum);
+		baseDao.saveOrUpdate(num);
+		return currNum;
 	}
-	
-	//查询单据
-	public PageBean<Bill> getBillList(Bill condition,Date fromDate,Date toDate,Integer page){
+
+	//提交单据
+	public Bill addNewBill(Bill bill) {
+		Farm farm = billDao.getEntityById(Farm.class, bill.getFarm().getId());
+		Factory factory = billDao.getEntityById(Factory.class, bill.getFactory().getId());
+		// 生成订单号
+		bill.setOrderId(Util.genOrderId(farm.getName(), factory.getName(), getCurrNum()));
+		baseDao.saveOrUpdate(bill);
+		// 保存日志
+		BillLog log = Util.getBaseLog(BillLog.class, "草稿 -> 审核中");
+		log.setBill(bill);
+		log.setRemark(bill.getApplyRemark());
+		baseDao.saveOrUpdate(log);
 		
+		logger.info("提交单据【" + bill.getOrderId() + "】成功");
+		return bill;
+	}
+
+	public Bill saveBillDraft(Bill bill) {
+		Farm farm = billDao.getEntityById(Farm.class, bill.getFarm().getId());
+		Factory factory = billDao.getEntityById(Factory.class, bill.getFactory().getId());
+		// 生成订单号
+		bill.setOrderId(Util.genOrderId(farm.getName(), factory.getName(), getCurrNum()));
+		baseDao.saveOrUpdate(bill);
+		// 保存日志
+		BillLog log = Util.getBaseLog(BillLog.class, "无 -> 审核中");
+		log.setBill(bill);
+		log.setRemark(bill.getApplyRemark());
+		baseDao.saveOrUpdate(log);
+		
+		logger.info("保存单据草稿【" + bill.getOrderId() + "】成功");
+		return bill;
+	}
+
+	// 查询单据
+	public PageBean<Bill> getBillList(Bill condition, Date fromDate, Date toDate, Integer page) {
+
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
 		return billDao.getBillList(condition, fromDate, toDate, pageIndex);
-		
-		
+
 	}
-	public String getBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate){
+
+	public String getBillExcelDownloadFile(Bill condition, Date fromDate, Date toDate) {
 		List<Bill> billList = billDao.getBillList(condition, fromDate, toDate);
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -113,14 +114,14 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 				sheet.addCell(new Label(1, i, f.getProvider().getName()));
 				sheet.addCell(new Label(2, i, f.getFactory().getName()));
 				sheet.addCell(new Label(3, i, f.getPlanDate().toString()));
-//				sheet.addCell(new Label(4, i, f.getTel()));//发料日期
-//				sheet.addCell(new Label(5, i, f.getEmail()));//到料日期
-				
+				// sheet.addCell(new Label(4, i, f.getTel()));//发料日期
+				// sheet.addCell(new Label(5, i, f.getEmail()));//到料日期
+
 				sheet.addCell(new Label(6, i++, f.getSize()));
 				sheet.addCell(new Number(7, i++, f.getAmount()));
-//				sheet.addCell(new Label(8, i++, f.getSize()));//合计金额
+				// sheet.addCell(new Label(8, i++, f.getSize()));//合计金额
 				sheet.addCell(new Label(9, i++, f.getStatusTxt()));
-//				sheet.addCell(new Label(10, i++, f.getSize()));//当前处理人
+				// sheet.addCell(new Label(10, i++, f.getSize()));//当前处理人
 				sheet.addCell(new Label(11, i++, f.getFarm().getName()));
 			}
 
@@ -135,12 +136,8 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 				rw.close();
 		}
 		return null;
-	
-		
-		
-		
+
 	}
-	
 
 	public BillDao getBillDao() {
 		return billDao;
