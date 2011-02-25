@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <HTML>
 <HEAD>
 <TITLE>客户关系管理系统</TITLE>
@@ -895,11 +897,21 @@ function initialise() {
 	l2ID = theMenu.addEntry(-1, "Folder", "饲料管理系统", "mywork.htm", "饲料管理系统");
 	
 	L01 = theMenu.addChild(l2ID, "Folder", "单据管理", "", "单据管理...");
-	L0101 = theMenu.addChild(L01, "Document", "我的单据", "bill/mylist.html", "查询提交我的单据...");
+	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='管区负责人'}">
+	L0101 = theMenu.addChild(L01, "Document", "我的单据", "${appPath}bill_myBillList.htm", "查询提交我的单据...");
+	</c:if>
+	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='管区负责人' || userObj.userRole=='系统管理员'}">
 	L0102 = theMenu.addChild(L01, "Document", "新建单据", "${appPath}html/bill/bill_edit.jsp", "养殖户或者饲料经理建立草稿单据...");
-	L0103 = theMenu.addChild(L01, "Document", "待我处理", "bill/myTask.html", "审批单据或者饲料厂在此发料...");
-	L0104 = theMenu.addChild(L01, "Document", "单据查询", "${appPath}bill_billList.htm", "供管理员查询所有单据并修改...");
-	L0105 = theMenu.addChild(L01, "Document", "自助对账", "bill/billCheck.html", "供管理员将送达后的饲料记录在案...");
+	</c:if>
+	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='供应饲料厂负责人'}">
+	L0103 = theMenu.addChild(L01, "Document", "待我处理", "${appPath}bill_waitBillList.htm", "审批单据或者饲料厂在此发料...");
+	</c:if>
+	<c:if test="${userObj.userRole=='系统管理员'}">
+	L0104 = theMenu.addChild(L01, "Document", "单据查询", "${appPath}bill_adminBillList.htm", "供管理员查询所有单据并修改...");
+	</c:if>
+	<c:if test="${userObj.userRole=='管区负责人' || userObj.userRole=='系统管理员'}">
+	L0105 = theMenu.addChild(L01, "Document", "自助对账", "${appPath}bill_sentBillList.htm", "供管理员将送达后的饲料记录在案...");
+	</c:if>
 
 	
 	L02 = theMenu.addChild(l2ID, "Folder", "账务统计", "", "饲料经理可以在此统计数据...");

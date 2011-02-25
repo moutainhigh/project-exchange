@@ -12,13 +12,13 @@
 		<property name="agentUnitPrice"></property>
 		<property name="amount"></property>
 		<property name="applyRemark"></property>
-		<many-to-one name="areaAccount" column="area_user_id"></many-to-one>
-		<many-to-one name="manager" column="manager_id"></many-to-one>
-		<many-to-one name="providerAccount" column="provider_user_id"></many-to-one>
-		<many-to-one name="factory" column="factory_id"></many-to-one>
-		<many-to-one name="farm" column="farm_id"></many-to-one>
-		<many-to-one name="farmer" column="farmer_id"></many-to-one>
-		<many-to-one name="provider" column="provider_id"></many-to-one>
+		<many-to-one name="areaAccount" column="area_user_id" lazy="false"></many-to-one>
+		<many-to-one name="manager" column="manager_id" lazy="false"></many-to-one>
+		<many-to-one name="providerAccount" column="provider_user_id" lazy="false"></many-to-one>
+		<many-to-one name="factory" column="factory_id" lazy="false"></many-to-one>
+		<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>
+		<many-to-one name="farmer" column="farmer_id" lazy="false"></many-to-one>
+		<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
 		<property name="model"></property>
 		<property name="orderNo"></property>
 		<property name="planDate"></property>
@@ -32,6 +32,12 @@
 		<property name="size" column="size_no"></property>
 		<property name="status"></property>
 		<property name="translater"></property>
+		<property name="currUserName"></property>
+		<property name="finishDate"></property>
+		<property name="sendDate"></property>
+		<property name="finishAmount"></property>
+		<property name="finishPrice"></property>
+		<property name="finishRemark" length="512"></property>
 		
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>

@@ -18,6 +18,8 @@ import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.FactoryLog;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmLog;
+import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.domain.FarmerLog;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
 import com.throne212.siliao.domain.ProviderAccount;
@@ -105,8 +107,8 @@ public class Init {
 		AreaAccount aa = new AreaAccount();
 		aa.setLoginName("aa001");
 		aa.setPassword("123");
-		aa.setName("管区经理001");
-		aa.setRemark("管区经理");
+		aa.setName("管区负责人001");
+		aa.setRemark("管区负责人");
 		aa.setArea(area);
 		baseBiz.saveOrUpdateEntity(aa);
 		area.setAccount(aa);
@@ -191,6 +193,21 @@ public class Init {
 		bill.setAmount(300.0);
 		bill.setPlanDate(new Date());
 		baseBiz.saveOrUpdateEntity(bill);
+		
+		Farmer farmer = new Farmer();
+		farmer.setName("zhangsan");
+		farmer.setArea(area);
+		farmer.setCreateDate(new Date());
+		farmer.setCreateName(admin.getName());
+		baseBiz.saveOrUpdateEntity(farmer);
+		
+		FarmerLog farmerLog = new FarmerLog();
+		farmerLog.setByWho(admin);
+		farmerLog.setCreateDate(new Date());
+		farmerLog.setFarmer(farmer);
+		farmerLog.setLogTime(new Date());
+		farmerLog.setMsg(WebConstants.OP_CREATE);
+		baseBiz.saveOrUpdateEntity(farmerLog);
 		
 	}
 }

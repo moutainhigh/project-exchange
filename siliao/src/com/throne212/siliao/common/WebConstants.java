@@ -31,7 +31,7 @@ public class WebConstants {
 	public static final String USER_NAME_ADMIN = "系统管理员";
 	public static final String USER_NAME_MANAGER = "饲料经理";
 	public static final String USER_NAME_PROVIDER = "供应饲料厂负责人";
-	public static final String USER_NAME_AREA = "管区厂负责人";
+	public static final String USER_NAME_AREA = "管区负责人";
 	
 	//farm type
 	public static final String FARM_TYPE_AREA="管区";

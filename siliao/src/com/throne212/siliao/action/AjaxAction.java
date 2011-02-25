@@ -111,7 +111,7 @@ public class AjaxAction extends BaseAction {
 		String[] q = (String[]) ActionContext.getContext().getParameters().get("q");
 		if (q != null && q.length > 0 && q[0] != null) {
 			String key = q[0].trim();
-			list = baseBiz.getAll(Farmer.class);
+			list = baseBiz.getAllLike(Farmer.class, "name", key);
 		}
 		return "list";
 	}

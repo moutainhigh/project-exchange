@@ -30,13 +30,13 @@
 		<subclass discriminator-value="admin" extends="User" name="Admin">
 		</subclass>
 		<subclass discriminator-value="provider" extends="User" name="ProviderAccount">
-			<many-to-one name="provider" column="provider_id"></many-to-one>
+			<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
 		</subclass>
 		<subclass discriminator-value="manager" extends="User" name="ManagerAccount">
-			<many-to-one name="farm" column="farm_id"></many-to-one>
+			<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>
 		</subclass>
 		<subclass discriminator-value="responsor" extends="User" name="AreaAccount">
-			<many-to-one name="area" column="area_id"></many-to-one>
+			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
 		</subclass>
 	</class>
 </hibernate-mapping>

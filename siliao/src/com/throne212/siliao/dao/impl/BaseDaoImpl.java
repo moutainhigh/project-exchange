@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.throne212.siliao.dao.BaseDao;
+import com.throne212.siliao.domain.BillOrderNum;
 import com.throne212.siliao.domain.Log;
 import com.throne212.siliao.domain.MyEntity;
 import com.throne212.siliao.domain.User;
@@ -68,7 +69,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> List<T> getAll(Class<T> clazz) {
-		return this.getHibernateTemplate().find("from " + clazz.getSimpleName());
+		return this.getHibernateTemplate().find("from " + clazz.getSimpleName()+(clazz.getName().equals(BillOrderNum.class.getName())?"":" where (enable is null or enable=true)"));
 	}
 
 	public <T> List<T> getEntitiesByIds(Class<T> clazz, Long[] ids) {
@@ -125,7 +126,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> List<T> getAll(Class<T> clazz, String orderBy, String style) {
-		String hql = "from " + clazz.getName() + " order by " + orderBy + " " + style;
+		String hql = "from " + clazz.getName()+(clazz.getName().equals(BillOrderNum.class.getName())?"":" where (enable is null or enable=true)") + " order by " + orderBy + " " + style;
 		return this.getHibernateTemplate().find(hql);
 	}
 
@@ -133,7 +134,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		List<T> list = null;
 		list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session s) throws HibernateException, SQLException {
-				String hql = "from " + clazz.getName() + " order by " + orderBy + " " + style;
+				String hql = "from " + clazz.getName() + " where (enable is null or enable=true) order by " + orderBy + " " + style;
 				Query q = s.createQuery(hql);
 				q.setFirstResult(startIndex);
 				q.setMaxResults(length);
@@ -167,7 +168,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue) {
-		String hql = "from " + clazz.getName() + " where " + colName + " like ?";
+		String hql = "from " + clazz.getName() + " where " + colName + " like ? and (enable is null or enable=true)";
 		return this.getHibernateTemplate().find(hql, "%" + likeValue + "%");
 	}
 

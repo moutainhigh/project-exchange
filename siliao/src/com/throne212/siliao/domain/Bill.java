@@ -40,11 +40,21 @@ public class Bill extends MyEntity implements Serializable {
 	
 	private String reason;//票据状态修改原因
 	
+	private Date sendDate;//发料日期
+	private Date finishDate;//到料日期
+	private String currUserName;//当前处理人
+	
+	private Double finishPrice;//倒料合价
+	private String finishRemark;//倒料备注
+	private Double finishAmount;//倒料吨数
+	
 	
 	public String getStatusTxt() {
+		if(status==null)
+			return "拟定中";
 		switch (this.status) {
 		case WebConstants.BILL_STATUS_DRAFT:
-			return "草稿";
+			return "拟定中";
 		case WebConstants.BILL_STATUS_SUBMIT:
 			return "审核中";
 		case WebConstants.BILL_STATUS_CONFIRM:
@@ -53,10 +63,20 @@ public class Bill extends MyEntity implements Serializable {
 			return "已发料";
 		case WebConstants.BILL_STATUS_FINISH:
 			return "已送达";
+		case WebConstants.BILL_STATUS_DELETE:
+			return "已删除";
 		default:
 			break;
 		}
-		return "草稿";
+		return "拟定中";
+	}
+	
+	public String getBillPrice(){//获取合计金额
+		if(priceOnOrder!=null && amount!=null && agentUnitPrice!=null){
+			return (priceOnOrder + agentUnitPrice) * amount + "";
+		}else{
+			return "";
+		}
 	}
 	
 
@@ -250,6 +270,60 @@ public class Bill extends MyEntity implements Serializable {
 
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+
+
+	public Date getSendDate() {
+		return sendDate;
+	}
+
+
+	public void setSendDate(Date sendDate) {
+		this.sendDate = sendDate;
+	}
+
+
+	public Date getFinishDate() {
+		return finishDate;
+	}
+
+
+	public void setFinishDate(Date finishDate) {
+		this.finishDate = finishDate;
+	}
+
+
+	public String getCurrUserName() {
+		return currUserName;
+	}
+
+
+	public void setCurrUserName(String currUserName) {
+		this.currUserName = currUserName;
+	}
+
+	public Double getFinishPrice() {
+		return finishPrice;
+	}
+
+	public void setFinishPrice(Double finishPrice) {
+		this.finishPrice = finishPrice;
+	}
+
+	public String getFinishRemark() {
+		return finishRemark;
+	}
+
+	public void setFinishRemark(String finishRemark) {
+		this.finishRemark = finishRemark;
+	}
+
+	public Double getFinishAmount() {
+		return finishAmount;
+	}
+
+	public void setFinishAmount(Double finishAmount) {
+		this.finishAmount = finishAmount;
 	}
 
 }

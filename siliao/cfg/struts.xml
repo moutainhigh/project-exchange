@@ -66,7 +66,12 @@
 		</action>
 		<action name="bill_*" method="{1}" class="com.throne212.siliao.action.BillAction">
 			<result name="bill_edit">/html/bill/bill_edit.jsp</result>
-			<result name="bill_list">/html/bill/bill_list.jsp</result>
+			<result name="my_bill_list">/html/bill/my_bill_list.jsp</result>
+			<result name="wait_bill_edit">/html/bill/wait_bill_edit.jsp</result>
+			<result name="wait_bill_list">/html/bill/wait_bill_list.jsp</result>
+			<result name="admin_bill_edit">/html/bill/admin_bill_edit.jsp</result>
+			<result name="admin_bill_list">/html/bill/admin_bill_list.jsp</result>
+			<result name="sent_bill_list">/html/bill/sent_bill_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
