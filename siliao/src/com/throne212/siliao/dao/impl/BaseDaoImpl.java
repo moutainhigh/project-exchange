@@ -36,7 +36,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value) {
-		String hql = "from " + clazz.getSimpleName() + " e where e." + colName + "=?";
+		String hql = "from " + clazz.getSimpleName() + " e where e." + colName + "=? "+(clazz.getName().equals(BillOrderNum.class.getName())?"":" and (enable is null or enable=true)");
 		return this.getHibernateTemplate().find(hql, value);
 	}
 

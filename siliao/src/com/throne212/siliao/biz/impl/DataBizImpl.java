@@ -630,4 +630,9 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return null;
 	}
 
+	
+	public List<Farmer> getFarmerByArea(Long areaId){
+		Area area = this.getEntityById(Area.class, areaId);
+		return baseDao.getEntitiesByColumn(Farmer.class, "area", area);
+	}
 }

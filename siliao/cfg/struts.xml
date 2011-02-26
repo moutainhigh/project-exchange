@@ -72,6 +72,7 @@
 			<result name="admin_bill_edit">/html/bill/admin_bill_edit.jsp</result>
 			<result name="admin_bill_list">/html/bill/admin_bill_list.jsp</result>
 			<result name="sent_bill_list">/html/bill/sent_bill_list.jsp</result>
+			<result name="sent_bill_edit">/html/bill/sent_bill_edit.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

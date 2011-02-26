@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BaseBiz;
+import com.throne212.siliao.biz.DataBiz;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
@@ -18,6 +19,15 @@ import com.throne212.siliao.domain.ProviderAccount;
 public class AjaxAction extends BaseAction {
 
 	private BaseBiz baseBiz;
+	private DataBiz dataBiz;
+
+	public DataBiz getDataBiz() {
+		return dataBiz;
+	}
+
+	public void setDataBiz(DataBiz dataBiz) {
+		this.dataBiz = dataBiz;
+	}
 
 	public BaseBiz getBaseBiz() {
 		return baseBiz;
@@ -157,6 +167,13 @@ public class AjaxAction extends BaseAction {
 		return "type_list";
 	}
 	
+	//根据管区获取所有农户
+	private Long areaId;
+	public String getFarmersByArea(){
+		list = dataBiz.getFarmerByArea(areaId);
+		return "list";
+	}
+	
 	public String getProviderAccountList(){
 		list = baseBiz.getAll(ProviderAccount.class, "id", "asc");
 		return "list";
@@ -173,6 +190,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setList(List list) {
 		this.list = list;
+	}
+
+	public Long getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(Long areaId) {
+		this.areaId = areaId;
 	}
 
 }

@@ -56,4 +56,6 @@ public interface DataBiz extends BaseBiz{
 	public List<Log> getFactoryLogList(Factory f);
 	public List<Log> getProviderLogList(Provider p);
 	
+	public List<Farmer> getFarmerByArea(Long areaId);
+	
 }

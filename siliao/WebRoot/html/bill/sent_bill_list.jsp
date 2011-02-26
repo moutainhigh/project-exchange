@@ -148,37 +148,26 @@
 		<table class="data_list_table">
 			<tr>
 				<th>单据编号</th>
-				<th>供货厂商</th>
-				<th>饲料厂商</th>
-				<th>计划到料日期</th>
-				<th>发料日期</th>
-				<th>到料日期</th>
+				<th>供货饲料厂</th>
+				<th>养殖户姓名</th>
 				<th>型号</th>
 				<th>规格</th>
-				<th>用料量(吨)</th>
-				<th>合计金额</th>
-				<th>单据状态</th>
-				<th>当前处理人</th>
-				<th>所属区域</th>
+				<th>吨数</th>
+				<th>发料日期</th>
 				<th>操作</th>
 			</tr>
 			<c:forEach items="${pageBean.resultList}" var="b">
 				<tr>
 					<td class="list_data_text">${b.orderId}</td>
 					<td class="list_data_text">${b.provider.name}</td>
-					<td class="list_data_text">${b.factory.name}</td>
-					<td class="list_data_text"><fmt:formatDate value="${b.planDate}" pattern="yyyy-MM-dd"/></td>
-					<td class="list_data_text"><fmt:formatDate value="${b.sendDate}" pattern="yyyy-MM-dd"/></td>
-					<td class="list_data_text"><fmt:formatDate value="${b.finishDate}" pattern="yyyy-MM-dd"/></td>
+					<td class="list_data_text">${b.farmer.name}</td>
 					<td class="list_data_text">${b.size}</td>
 					<td class="list_data_text">${b.model}</td>
-					<td class="list_data_text">${b.amount}</td>
-					<td class="list_data_text">${b.billPrice}</td>
-					<td class="list_data_text">${b.statusTxt}</td>
-					<td class="list_data_text">${b.currUserName}</td>
-					<td class="list_data_text">${b.farmer.area.name}</td>
-					<td class="list_data_op">
-						<img onclick="to('${appPath}bill_editSentBill.htm?bill.id=${b.id}')" title="查看" src="${appPath}html/images/bt_edit.gif" class="op_button" />
+					<td class="list_data_text">${b.amount}</td>					
+					<td class="list_data_text"><fmt:formatDate value="${b.sendDate}" pattern="yyyy-MM-dd"/></td>
+					<td class="list_data_text">
+						已发料 -> 
+						<button class="common_button" onclick="to('${appPath}bill_editSentBill.htm?bill.id=${b.id}')">已送达</button> 
 					</td>
 				</tr>
 			</c:forEach>
