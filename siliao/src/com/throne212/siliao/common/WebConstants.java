@@ -56,6 +56,10 @@ public class WebConstants {
 	public static final int BILL_STATUS_FINISH = 5;//已送达
 	public static final int BILL_STATUS_DELETE = 6;//已删除
 	
+	//财务类型
+	public static final int FINANCE_STATUS_GET = 1;//收款
+	public static final int FINANCE_STATUS_PAY = 2;//支付
+	
 	public static final int PAGE_SIZE = 20;
 	
 	

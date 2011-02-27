@@ -6,6 +6,7 @@
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
+		<property name="type" column="finance_type"></property>
 		<many-to-one name="bill" column="bill_id"></many-to-one>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
