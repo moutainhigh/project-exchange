@@ -31,6 +31,7 @@
 				<value>userBiz</value>
 				<value>dataBiz</value>
 				<value>billBiz</value>
+				<value>statBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

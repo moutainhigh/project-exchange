@@ -19,6 +19,7 @@ import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.dao.BillDao;
 import com.throne212.siliao.domain.Admin;
+import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.BillLog;
@@ -26,8 +27,10 @@ import com.throne212.siliao.domain.BillOrderNum;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.domain.FarmerFinance;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
+import com.throne212.siliao.domain.ProviderFinance;
 import com.throne212.siliao.domain.User;
 
 public class BillBizImpl extends BaseBizImpl implements BillBiz {
@@ -481,5 +484,56 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	public void setBillDao(BillDao billDao) {
 		this.billDao = billDao;
 	}
-
+	public Bill finishBill(Bill b,String[] billDetail){
+		Bill bill = baseDao.getEntityById(Bill.class, b.getId());
+		bill.setFinishDate(b.getFinishDate());
+		bill.setFinishAmount(b.getFinishAmount());
+		bill.setFinishPrice(b.getFinishPrice());
+		bill.setFinishRemark(b.getFinishRemark());
+		bill.setStatus(WebConstants.BILL_STATUS_FINISH);
+		
+		//保存农户财务明细
+		for(String detail : billDetail){
+			String[] arr = detail.split(",");
+			long areaId = Long.parseLong(arr[0]);
+			long farmerId = Long.parseLong(arr[1]);
+			double amount = Double.parseDouble(arr[2]);
+			double totalPrice = Double.parseDouble(arr[3]);
+			FarmerFinance ff = new FarmerFinance();
+			ff.setAmount(amount);
+			ff.setArea(this.getEntityById(Area.class, areaId));
+			ff.setBill(bill);
+			ff.setCreateDate(new Date());
+			ff.setCreateName(((User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ)).getName());
+			ff.setEnable(true);
+			ff.setFactory(bill.getFactory());
+			ff.setFarmer(this.getEntityById(Farmer.class, farmerId));
+			ff.setModel(bill.getModel());
+			ff.setMoney(totalPrice);
+			ff.setProvider(bill.getProvider());
+			ff.setRateFromDate(bill.getFinishDate());
+			ff.setSize(bill.getSize());
+			billDao.saveOrUpdate(ff);
+			logger.info("农户分配财务信息保存成功【"+ff.getFarmer().getName()+"】");
+		}
+		
+		//保存供应厂财务明细
+		ProviderFinance pf = new ProviderFinance();
+		pf.setBill(bill);
+		pf.setCreateDate(new Date());
+		pf.setCreateName(((User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ)).getName());
+		pf.setEnable(true);
+		pf.setProvider(bill.getProvider());
+		pf.setAmount(bill.getFinishAmount());
+		pf.setFarm(bill.getFarm());
+		pf.setFarmer(bill.getFarmer());
+		pf.setMoney(bill.getFinishPrice());
+		pf.setRateFromDate(bill.getFinishDate());
+		billDao.saveOrUpdate(pf);
+		logger.info("供应厂分配财务信息保存成功【"+pf.getProvider().getName()+"】");
+		
+		//保存单据
+		billDao.saveOrUpdate(bill);
+		return bill;
+	}
 }

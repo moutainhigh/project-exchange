@@ -21,8 +21,9 @@
 			var providerId = '${bill.provider.id}';
 			var s = '${bill.status}';
 			$(function(){
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});	
-			function finish(){
+			function finishBill(){
 				if($('#finishDate').val() == null || $('#finishDate').val()==''){
 					alert('到料日期不能为空');
 					return false;
@@ -33,9 +34,17 @@
 					alert('到料合价不能为空');
 					return false;
 				}else{
-					//document.forms[0].action = "${appPath}bill_changeBillStatus.htm";
-					//document.forms[0].submit();
-					alert('待实现');
+					var amount = 0;
+					$('.amount_td').each(function(){
+						amount += parseFloat($(this).text());
+					});
+					//alert('total:' + amount);
+					if(amount != $('#finishAmount').val()){
+						alert('对不起，您分配的吨数不正确\n完成吨数为【'+$('#finishAmount').val()+'】，但是您分配的吨数合计为【'+amount+'】');
+						return false;
+					}
+					document.forms[0].action = "${appPath}bill_finishBill.htm";
+					document.forms[0].submit();
 				}
 			}
 			function listFarmer(selectDom){
@@ -62,20 +71,39 @@
 					$(amountDom).parent().parent().find('.totalPrice').val(val * unitPrice);
 				}
 			}
-			function addItem(currTr){
+			function addItem(btn){
 				//alert('待实现');
+				currTr = $(btn).parent().parent();
+				var areaName = $(currTr).find('.areaList').find("option:selected").text();
+				var farmerName = $(currTr).find('.farmerList').find("option:selected").text();
+				var amount = $(currTr).find('.amount').val();
+				var totalPrice = $(currTr).find('.totalPrice').val();
+				
+				//添加到隐藏变量
+				var areaId = $(currTr).find('.areaList').find("option:selected").val();
+				var farmerId = $(currTr).find('.farmerList').find("option:selected").val();
+				var detail = '';
+				detail += areaId+',';
+				detail += farmerId+',';
+				detail += amount+',';
+				detail += totalPrice;
+				
 				var str = '<tr>';
-				var str += '	<td class="list_data_text">海北一区</td>';
-				var str += '	<td class="list_data_text">黄颂和</td>';
-				var str += '	<td class="list_data_text">5</td>';
-				var str += '	<td class="list_data_text">3340</td>';
-				var str += '	<td class="list_data_text">16700</td>';
-				var str += '	<td class="list_data_text"></td>';
-				var str += '</tr>';
-				$('#item_tr').append(str);
+				str += '	<td class="list_data_text">'+areaName+'<input type="hidden" name="billDetail" value="'+detail+'" />'+'</td>';
+				str += '	<td class="list_data_text">'+farmerName+'</td>';
+				str += '	<td class="list_data_text amount_td">'+amount+'</td>';
+				str += '	<td class="list_data_text">${bill.priceOnOrder}</td>';
+				str += '	<td class="list_data_text">'+totalPrice+'</td>';
+				str += '	<td class="list_data_text"><button class="common_button" onclick="return $(this).parent().parent().remove();">删除</button></td>';
+				str += '</tr>';
+				$('#item_tr').before(str);
+				
 				return false;
 			}
 		</script>
+		<style>
+			#item_tr td{background-color: #6EC2FD}
+		</style>
 	</head>
 	<body>
 		<form action="${appPath}bill_saveBill.htm" method="get">
@@ -138,8 +166,8 @@
 
 			<br />
 			养殖户到料分配列表：
-			<table class="data_list_table">
-				<tr id="item_tr">
+			<table class="data_list_table" id="detail_table">
+				<tr>
 					<th>管区</th>
 					<th>用料人</th>
 					<th>数量</th>
@@ -155,9 +183,9 @@
 					<td class="list_data_text">16700</td>
 					<td class="list_data_text"></td>
 				</tr>-->
-				<tr>
+				<tr id="item_tr">
 					<td class="list_data_text">
-						<select class="areaList" onchange="listFarmer(this)" id="areaList">
+						<select class="areaList" onchange="listFarmer(this)">
 							<option value=""></option>
 							<option value="${bill.areaAccount.area.id }">${bill.areaAccount.area.name }</option>
 						</select>
@@ -167,14 +195,14 @@
 					<td class="list_data_text">${bill.priceOnOrder}</td>
 					<td class="list_data_text"><input class="totalPrice" value=""></td>
 					<td class="list_data_text">
-						<button class="common_button" onclick="return addItem(this);">添加</button>  
+						<input class="common_button" type="button" onclick="return addItem(this);" value="添加">
 					</td>
 				</tr>
 			</table>
 						
 			<br />
 			<div class="button_bar">
-				<button class="common_button" onclick="return finish();">
+				<button class="common_button" onclick="return finishBill();">
 					倒料信息提交
 				</button>
 				<button class="common_button" onclick="back();">

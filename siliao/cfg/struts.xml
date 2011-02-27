@@ -64,6 +64,7 @@
 			<result name="factory_edit">/html/account/service/factory_edit.jsp</result>
 			<result name="factory_list">/html/account/service/factory_list.jsp</result>
 		</action>
+		<!-- 单据 -->
 		<action name="bill_*" method="{1}" class="com.throne212.siliao.action.BillAction">
 			<result name="bill_edit">/html/bill/bill_edit.jsp</result>
 			<result name="my_bill_list">/html/bill/my_bill_list.jsp</result>
@@ -73,6 +74,10 @@
 			<result name="admin_bill_list">/html/bill/admin_bill_list.jsp</result>
 			<result name="sent_bill_list">/html/bill/sent_bill_list.jsp</result>
 			<result name="sent_bill_edit">/html/bill/sent_bill_edit.jsp</result>
+		</action>
+		<!-- 统计 -->
+		<action name="stat_*" method="{1}" class="com.throne212.siliao.action.StatAction">
+			<result name="factory_list">/html/account/factory_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

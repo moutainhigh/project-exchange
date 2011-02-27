@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BillBiz;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.WebConstants;
@@ -34,7 +35,7 @@ public class BillAction extends BaseAction {
 	private Bill bill;
 	private String action;
 
-	//提交单据
+	// 提交单据
 	public String addNewBill() {
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
@@ -44,7 +45,7 @@ public class BillAction extends BaseAction {
 			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
 			if (farmer == null) {
 				this.setMsg("保存失败，不存在此农户！");
-				if(bill.getId() != null)
+				if (bill.getId() != null)
 					bill = billBiz.getEntityById(Bill.class, bill.getId());
 				return "bill_edit";
 			}
@@ -54,7 +55,7 @@ public class BillAction extends BaseAction {
 			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());
 			if (factory == null) {
 				this.setMsg("保存失败，不存在此厂商！");
-				if(bill.getId() != null)
+				if (bill.getId() != null)
 					bill = billBiz.getEntityById(Bill.class, bill.getId());
 				return "bill_edit";
 			}
@@ -64,33 +65,33 @@ public class BillAction extends BaseAction {
 			Farm farm = billBiz.getEntityById(Farm.class, bill.getFarm().getId());
 			if (farm == null) {
 				this.setMsg("保存失败，不存在此农场！");
-				if(bill.getId() != null)
+				if (bill.getId() != null)
 					bill = billBiz.getEntityById(Bill.class, bill.getId());
 				return "bill_edit";
 			}
 			bill.setFarm(farm);
 		}
-		//数据处理
-		//如果provider.id为空，则设置provider为空
-		if(bill.getProvider() != null && bill.getProvider().getId() == null)
+		// 数据处理
+		// 如果provider.id为空，则设置provider为空
+		if (bill.getProvider() != null && bill.getProvider().getId() == null)
 			bill.setProvider(null);
-		//如果areaAccount.id为空，则设置areaAccount为空
-		if(bill.getAreaAccount() != null && bill.getAreaAccount().getId() == null)
+		// 如果areaAccount.id为空，则设置areaAccount为空
+		if (bill.getAreaAccount() != null && bill.getAreaAccount().getId() == null)
 			bill.setAreaAccount(null);
-		//设置经理为空
+		// 设置经理为空
 		bill.setManager(null);
 		// 添加
 		bill.setStatus(WebConstants.BILL_STATUS_SUBMIT);
-		if(bill.getId() == null)
-			billBiz.addNewBill(bill);//提交一个新的单据
+		if (bill.getId() == null)
+			billBiz.addNewBill(bill);// 提交一个新的单据
 		else
-			billBiz.submitDraftBill(bill);//提交草稿的单据
+			billBiz.submitDraftBill(bill);// 提交草稿的单据
 		this.setMsg("已提交申请单据！");
 		bill = null;
 		return myBillList();
 	}
 
-	//保存草稿
+	// 保存草稿
 	public String saveBillDraft() {
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
@@ -122,23 +123,24 @@ public class BillAction extends BaseAction {
 	// 查询单据
 	private Integer page;
 	private PageBean pageBean;
-	private Date fromDate;//创建日期
+	private Date fromDate;// 创建日期
 	private Date toDate;
-	private String currMan;//当前处理人
-	private Date planFromDate;//计划
-	private Date planToDate; 
-	private Date sendFromDate;//送达
-	private Date sendToDate; 
-	private List<BillLog> billLog;//日志列表
+	private String currMan;// 当前处理人
+	private Date planFromDate;// 计划
+	private Date planToDate;
+	private Date sendFromDate;// 送达
+	private Date sendToDate;
+	private List<BillLog> billLog;// 日志列表
 
-	//我的单据
+	// 我的单据
 	public String myBillList() {
 		pageBean = billBiz.getMyBillList(bill, fromDate, toDate, currMan, planFromDate, planToDate, sendFromDate, sendToDate, page);
 		return "my_bill_list";
 	}
-	//继续编辑单据
-	public String editBill(){
-		if(bill == null || bill.getId() == null){
+
+	// 继续编辑单据
+	public String editBill() {
+		if (bill == null || bill.getId() == null) {
 			this.setMsg("参数错误");
 			return myBillList();
 		}
@@ -149,7 +151,7 @@ public class BillAction extends BaseAction {
 
 	private InputStream downloadFile;
 
-	//导出我的单据的excel
+	// 导出我的单据的excel
 	public String exportMyBillExcel() {
 		String path = billBiz.getMyBillExcelDownloadFile(bill, fromDate, toDate, currMan, planFromDate, planToDate, sendFromDate, sendToDate);
 		if (path != null) {
@@ -163,8 +165,8 @@ public class BillAction extends BaseAction {
 		}
 		return "excel";
 	}
-	
-	//确认单据
+
+	// 确认单据
 	public String confirmBill() {
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
@@ -174,7 +176,7 @@ public class BillAction extends BaseAction {
 			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
 			if (farmer == null) {
 				this.setMsg("保存失败，不存在此农户！");
-				if(bill.getId() != null)
+				if (bill.getId() != null)
 					bill = billBiz.getEntityById(Bill.class, bill.getId());
 				return "bill_edit";
 			}
@@ -184,7 +186,7 @@ public class BillAction extends BaseAction {
 			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());
 			if (factory == null) {
 				this.setMsg("保存失败，不存在此厂商！");
-				if(bill.getId() != null)
+				if (bill.getId() != null)
 					bill = billBiz.getEntityById(Bill.class, bill.getId());
 				return "bill_edit";
 			}
@@ -194,43 +196,44 @@ public class BillAction extends BaseAction {
 			Farm farm = billBiz.getEntityById(Farm.class, bill.getFarm().getId());
 			if (farm == null) {
 				this.setMsg("保存失败，不存在此农场！");
-				if(bill.getId() != null)
+				if (bill.getId() != null)
 					bill = billBiz.getEntityById(Bill.class, bill.getId());
 				return "bill_edit";
 			}
 			bill.setFarm(farm);
 		}
-		//数据处理
-		//如果provider.id为空，则设置provider为空
-		if(bill.getProvider() != null && bill.getProvider().getId() == null)
+		// 数据处理
+		// 如果provider.id为空，则设置provider为空
+		if (bill.getProvider() != null && bill.getProvider().getId() == null)
 			bill.setProvider(null);
-		//如果areaAccount.id为空，则设置areaAccount为空
-		if(bill.getAreaAccount() != null && bill.getAreaAccount().getId() == null)
+		// 如果areaAccount.id为空，则设置areaAccount为空
+		if (bill.getAreaAccount() != null && bill.getAreaAccount().getId() == null)
 			bill.setAreaAccount(null);
-		//状态
+		// 状态
 		Boolean pass = bill.getShenpiResult();
-		if(pass!=null && pass){
+		if (pass != null && pass) {
 			bill.setStatus(WebConstants.BILL_STATUS_CONFIRM);
-			billBiz.confirmBill(bill);//通过审核
+			billBiz.confirmBill(bill);// 通过审核
 			this.setMsg("已审核通过单据！");
-		}else{
+		} else {
 			bill.setStatus(WebConstants.BILL_STATUS_DRAFT);
-			billBiz.saveBillDraft(bill);//驳回
+			billBiz.saveBillDraft(bill);// 驳回
 			this.setMsg("已驳回单据！");
-		}		
+		}
 		bill = null;
 		return myBillList();
 	}
-	
-	
-	//待我处理
-	private String accountName;//管区负责人
+
+	// 待我处理
+	private String accountName;// 管区负责人
+
 	public String waitBillList() {
-		pageBean = billBiz.getWaitBillList(bill, fromDate, toDate, currMan, accountName,page);
+		pageBean = billBiz.getWaitBillList(bill, fromDate, toDate, currMan, accountName, page);
 		return "wait_bill_list";
 	}
-	public String editWaitBill(){
-		if(bill == null || bill.getId() == null){
+
+	public String editWaitBill() {
+		if (bill == null || bill.getId() == null) {
 			this.setMsg("参数错误");
 			return waitBillList();
 		}
@@ -238,8 +241,9 @@ public class BillAction extends BaseAction {
 		billLog = billBiz.getBillLogList(bill);
 		return "wait_bill_edit";
 	}
+
 	public String exportWaitBillExcel() {
-		String path = billBiz.getWaitBillExcelDownloadFile(bill, fromDate, toDate, currMan,accountName);
+		String path = billBiz.getWaitBillExcelDownloadFile(bill, fromDate, toDate, currMan, accountName);
 		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
@@ -251,31 +255,31 @@ public class BillAction extends BaseAction {
 		}
 		return "excel";
 	}
-	//发料
-	public String sendBill(){
+
+	// 发料
+	public String sendBill() {
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
 			return waitBillList();
 		}
 		bill = billBiz.sendBill(bill);
-		if(bill.getShenheResult() != null && bill.getShenheResult()){//发料
+		if (bill.getShenheResult() != null && bill.getShenheResult()) {// 发料
 			this.setMsg("发料成功");
-		}else{
+		} else {
 			this.setMsg("发料请求被驳回");
 		}
 		bill = null;
 		return waitBillList();
 	}
-	
-	
-	
-	//单据查询，系统管理专用
+
+	// 单据查询，系统管理专用
 	public String adminBillList() {
-		pageBean = billBiz.getAdminBillList(bill, fromDate, toDate, currMan, accountName,page);
+		pageBean = billBiz.getAdminBillList(bill, fromDate, toDate, currMan, accountName, page);
 		return "admin_bill_list";
 	}
-	public String editAdminBill(){
-		if(bill == null || bill.getId() == null){
+
+	public String editAdminBill() {
+		if (bill == null || bill.getId() == null) {
 			this.setMsg("参数错误");
 			return adminBillList();
 		}
@@ -283,8 +287,9 @@ public class BillAction extends BaseAction {
 		billLog = billBiz.getBillLogList(bill);
 		return "admin_bill_edit";
 	}
+
 	public String exportAdminBillExcel() {
-		String path = billBiz.getAdminBillExcelDownloadFile(bill, fromDate, toDate, currMan,accountName);
+		String path = billBiz.getAdminBillExcelDownloadFile(bill, fromDate, toDate, currMan, accountName);
 		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
@@ -296,35 +301,36 @@ public class BillAction extends BaseAction {
 		}
 		return "excel";
 	}
-	//修改状态
-	public String changeBillStatus(){
+
+	// 修改状态
+	public String changeBillStatus() {
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
 			return adminBillList();
 		}
 		bill = billBiz.changeBillStatus(bill);
-		this.setMsg("状态修改成功【"+bill.getStatusTxt()+"】");
+		this.setMsg("状态修改成功【" + bill.getStatusTxt() + "】");
 		bill = null;
 		return adminBillList();
 	}
-	
-	
-	//对账
-	//单据查询，系统管理专用
+
+	// 对账
 	public String sentBillList() {
-		pageBean = billBiz.getSentBillList(bill, fromDate, toDate, currMan, accountName,page);
+		pageBean = billBiz.getSentBillList(bill, fromDate, toDate, currMan, accountName, page);
 		return "sent_bill_list";
 	}
-	public String editSentBill(){
-		if(bill == null || bill.getId() == null){
+
+	public String editSentBill() {
+		if (bill == null || bill.getId() == null) {
 			this.setMsg("参数错误");
 			return adminBillList();
 		}
 		bill = billBiz.getEntityById(Bill.class, bill.getId());
 		return "sent_bill_edit";
 	}
+
 	public String exportSentBillExcel() {
-		String path = billBiz.getSentBillExcelDownloadFile(bill, fromDate, toDate, currMan,accountName);
+		String path = billBiz.getSentBillExcelDownloadFile(bill, fromDate, toDate, currMan, accountName);
 		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
@@ -335,6 +341,22 @@ public class BillAction extends BaseAction {
 			this.setMsg("文件下载失败");
 		}
 		return "excel";
+	}
+
+	public String finishBill() {
+		if (bill == null) {
+			this.setMsg("单据保存失败，请检查数据是否录入完整");
+			return editSentBill();
+		}
+		String[] billDetail = (String[]) ActionContext.getContext().getParameters().get("billDetail");
+		if (billDetail == null || billDetail.length == 0) {
+			this.setMsg("单据保存失败，请检查数据分配信息是否录入完整");
+			return editSentBill();
+		}
+		bill = billBiz.finishBill(bill, billDetail);
+		this.setMsg("单据到料成功【" + bill.getStatusTxt() + "】");
+		bill = null;
+		return sentBillList();
 	}
 
 	public Bill getBill() {

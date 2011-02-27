@@ -29,4 +29,5 @@ public interface BillBiz extends BaseBiz{
 	//对账处理
 	public PageBean<Bill> getSentBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page);
 	public String getSentBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName);
+	public Bill finishBill(Bill bill,String[] billDetail);
 }

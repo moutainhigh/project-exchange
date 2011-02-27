@@ -24,4 +24,9 @@
 		<property name="billDao" ref="billDao"></property>
 	</bean>
 	
+	<bean id="statBiz" class="com.throne212.siliao.biz.impl.StatBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="financeDao" ref="financeDao"></property>
+	</bean>
+	
 </beans>

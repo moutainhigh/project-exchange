@@ -23,6 +23,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="financeDao" class="com.throne212.siliao.dao.impl.FinanceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<bean id="farmAbsDao" class="com.throne212.siliao.dao.impl.FarmAbsDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

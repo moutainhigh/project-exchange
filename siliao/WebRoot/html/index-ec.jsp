@@ -915,7 +915,7 @@ function initialise() {
 
 	
 	L02 = theMenu.addChild(l2ID, "Folder", "账务统计", "", "饲料经理可以在此统计数据...");
-	L0201 = theMenu.addChild(L02, "Document", "厂商统计", "account/listCompany.html", "统计本区域内对各个厂商采购情况...");
+	L0201 = theMenu.addChild(L02, "Document", "厂商统计", "${appPath}stat_queryFactory.htm", "统计本区域内对各个厂商采购情况...");
 	L0202 = theMenu.addChild(L02, "Document", "农户统计", "account/listFarmer.html", "查询养殖户的付款情况...");
 	L0203 = theMenu.addChild(L02, "Document", "厂商结算", "account/listCompanyAccount.html", "厂商账户内的余额和利息结算...");
 	L0204 = theMenu.addChild(L02, "Document", "农户结算", "account/listFarmerAccount.html", "结算农户的利息和存款欠款情况...");

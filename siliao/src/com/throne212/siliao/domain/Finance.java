@@ -7,14 +7,14 @@ public class Finance extends MyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	protected Bill order;// 属于哪个订单的
+	protected Bill bill;// 属于哪个订单的
 
-	public Bill getOrder() {
-		return order;
+	public Bill getBill() {
+		return bill;
 	}
 
-	public void setOrder(Bill order) {
-		this.order = order;
+	public void setBill(Bill bill) {
+		this.bill = bill;
 	}
 
 }
