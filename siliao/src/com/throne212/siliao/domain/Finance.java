@@ -35,6 +35,8 @@ public class Finance extends MyEntity implements Serializable {
 			return "收款";
 		}else if(type == WebConstants.FINANCE_STATUS_PAY){
 			return "支付";
+		}else if(type == 0){
+			return "单据财务";
 		}
 		return "";
 	}

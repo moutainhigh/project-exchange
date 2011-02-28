@@ -513,6 +513,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 			ff.setProvider(bill.getProvider());
 			ff.setRateFromDate(bill.getFinishDate());
 			ff.setSize(bill.getSize());
+			ff.setType(0);
 			billDao.saveOrUpdate(ff);
 			logger.info("农户分配财务信息保存成功【"+ff.getFarmer().getName()+"】");
 		}
@@ -529,6 +530,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		pf.setFarmer(bill.getFarmer());
 		pf.setMoney(bill.getFinishPrice());
 		pf.setRateFromDate(bill.getFinishDate());
+		pf.setType(0);
 		billDao.saveOrUpdate(pf);
 		logger.info("供应厂分配财务信息保存成功【"+pf.getProvider().getName()+"】");
 		
