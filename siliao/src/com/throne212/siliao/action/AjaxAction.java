@@ -174,6 +174,12 @@ public class AjaxAction extends BaseAction {
 		return "list";
 	}
 	
+	//获取所有的农户
+	public String getALLFarmer(){
+		list = baseBiz.getAll(Farmer.class, "id", "asc");
+		return "list";
+	}
+	
 	public String getProviderAccountList(){
 		list = baseBiz.getAll(ProviderAccount.class, "id", "asc");
 		return "list";

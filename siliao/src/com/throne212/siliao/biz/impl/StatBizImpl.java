@@ -231,4 +231,81 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		financeDao.saveOrUpdate(pf);
 		return pf;
 	}
+	
+	
+	//农户结算
+	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate,Integer page){
+		int pageIndex = 1;
+		if (page != null) {
+			pageIndex = page.intValue();
+		}
+		return financeDao.getFarmerSettleFinanceList(condition, sendFromDate, sendToDate,finishFromDate,finishToDate, pageIndex);
+	}
+	public String  getFarmerSettleFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate){
+		List<FarmerFinance> farmerFinanceList = financeDao.getFarmerSettleFinanceExcelDownloadFile(condition, sendFromDate, sendToDate,finishFromDate,finishToDate);
+
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel";
+		System.out.println("excel saved path : " + path);
+		// String sourceFile = path + File.separator + "template.xls";
+		String targetFile = path + File.separator + System.currentTimeMillis() + ".xls";
+		Workbook rw = null;
+		try {
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
+			WritableSheet sheet = workbook.createSheet("厂商统计列表", 0);
+
+			// 加表头
+			
+			WritableFont font = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD);
+			WritableCellFormat format = new WritableCellFormat(font);
+			sheet.addCell(new Label(0, 0, "序号", format));
+			sheet.addCell(new Label(1, 0, "养殖户姓名", format));
+			sheet.addCell(new Label(2, 0, "供货饲料厂", format));
+			sheet.addCell(new Label(3, 0, "饲料厂商", format));
+			sheet.addCell(new Label(4, 0, "发料日期", format));
+			sheet.addCell(new Label(5, 0, "到料日期", format));
+			sheet.addCell(new Label(6, 0, "型号", format));
+			sheet.addCell(new Label(7, 0, "规格", format));
+			sheet.addCell(new Label(8, 0, "用料量(吨)", format));
+			sheet.addCell(new Label(9, 0, "合计金额", format));
+			sheet.addCell(new Label(10, 0, "单笔本息", format));
+			sheet.addCell(new Label(11, 0, "所属区域", format));
+			
+			// 加内容
+			int i = 1;
+			for (FarmerFinance f : farmerFinanceList) {
+				sheet.addCell(new Number(0, i, f.getId()));
+				sheet.addCell(new Label(1, i, f.getFarmer().getName()));
+				sheet.addCell(new Label(2, i, f.getProvider().getName()));
+				sheet.addCell(new Label(3, i, f.getFactory().getName()));
+				sheet.addCell(new Label(4, i, f.getBill().getSendDate().toString()));
+				sheet.addCell(new Label(5, i, f.getBill().getFinishDate().toString())); 
+				sheet.addCell(new Label(6, i++, f.getSize()));
+				sheet.addCell(new Label(7, i++, f.getModel()));
+				sheet.addCell(new Number(8, i++, f.getAmount()));
+				sheet.addCell(new Number(9, i++, f.getMoney()));
+				sheet.addCell(new Label(10, i++, f.getSize()));//单笔本息
+				sheet.addCell(new Label(11, i++, f.getArea().getName()));
+			}
+			workbook.write();
+			workbook.close();
+			return targetFile;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rw != null)
+				rw.close();
+		}
+		return null;
+	}
+	public FarmerFinance payFarmer(FarmerFinance ff){
+		if(ff.getMoney() > 0){
+			ff.setMoney(ff.getMoney() * -1);
+		}
+		ff.setType(WebConstants.FINANCE_STATUS_GET);
+		financeDao.saveOrUpdate(ff);
+		return ff;
+	}
 }

@@ -115,6 +115,37 @@ public class StatAction extends BaseAction {
 		}
 		return settleFactory();
 	}
+	
+	
+	//农户结算
+	public String settleFarmer() {
+		pageBean = statBiz.getFarmerSettleFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, page);
+		return "farmer_settlement";
+	}
+
+	public String exportSettleFarmerFinanceExcel() {
+		String path = statBiz.getFarmerSettleFinanceExcelDownloadFile(ff, sendFromDate, sendToDate,fnishiFromDate,finishToDate);
+		if (path != null) {
+			try {
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
+	//从农户那里收款
+	public String payFarmer(){
+		ff = statBiz.payFarmer(ff);
+		if(ff.getId() == null){
+			this.setMsg("收款失败，请联系管理员");
+		}else{
+			this.setMsg("收款成功，金额为：" + ff.getMoney());
+		}
+		return settleFarmer();
+	}
 
 	public ProviderFinance getPf() {
 		return pf;
