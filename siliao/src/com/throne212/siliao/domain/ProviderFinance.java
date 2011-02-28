@@ -10,10 +10,12 @@ public class ProviderFinance extends Finance implements Serializable {
 
 	private Farmer farmer;
 	private Provider provider;
+	private Factory factory;
 	private Double amount;// 累计吨数
 	private Double money;// 合计金额
 	private Date rateFromDate;// 起息日
 	private Double rateMoney;// 累计利息
+	private Double totalMoney;// 本息
 	private Farm farm;// 属于农场
 
 	public Farmer getFarmer() {
@@ -70,6 +72,22 @@ public class ProviderFinance extends Finance implements Serializable {
 
 	public void setFarm(Farm farm) {
 		this.farm = farm;
+	}
+
+	public Factory getFactory() {
+		return factory;
+	}
+
+	public void setFactory(Factory factory) {
+		this.factory = factory;
+	}
+
+	public Double getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(Double totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
 }

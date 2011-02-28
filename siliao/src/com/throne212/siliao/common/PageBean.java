@@ -7,6 +7,7 @@ public class PageBean<T> {
 	private int rowPerPage;	//每页显示行数
 	private int pageIndex;	//当前显示页码
 	private List<T> resultList;	//结果集合
+	private Object total;//合计
 	
 	/**
 	 * 构造方法
@@ -115,6 +116,14 @@ public class PageBean<T> {
 	
 	public int getNextPageIndex() {
 		return this.getIsLastPage() ? this.pageIndex : (this.pageIndex + 1);
+	}
+
+	public Object getTotal() {
+		return total;
+	}
+
+	public void setTotal(Object total) {
+		this.total = total;
 	}
 }
 

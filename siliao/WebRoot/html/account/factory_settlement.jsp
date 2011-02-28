@@ -111,6 +111,9 @@
 				<button class="common_button" onclick="query();">
 					查询
 				</button>
+				<button class="common_button" onclick="to('${appPath}html/account/factory_pay.jsp');">
+					付款
+				</button>
 				<button class="common_button" onclick="exportExcel();">
 					导出excel
 				</button>
@@ -122,6 +125,8 @@
 				<th>供货饲料厂</th>
 				<th>累计供货量(吨)</th>
 				<th>合计金额</th>
+				<th>起息日</th>
+				<th>累计结息</th>
 				<th>单笔本息合计</th>
 				<th>农场</th>
 			</tr>
@@ -133,15 +138,21 @@
 					<td class="list_data_text">
 						${f.provider.factory.name }
 					</td>
-				
 					<td class="list_data_text">
 						${f.provider.name}
 					</td>
 					<td class="list_data_text">
-						${f.amount}
+						<c:if test="${f.type==2}">存款</c:if>
+						<c:if test="${empty f.type || f.type==0}">${f.amount}</c:if>
 					</td>
 					<td class="list_data_text">
 						${f.money}
+					</td>
+					<td class="list_data_text">
+						<fmt:formatDate value="${f.rateFromDate}" pattern="yyyy-MM-dd"/>
+					</td>
+					<td class="list_data_text">
+						${f.rateMoney}
 					</td>
 					<td class="list_data_text">
 						${f.totalMoney}
@@ -158,7 +169,9 @@
 				<td class="list_data_ltext"></td>
 				<td class="list_data_text">${pageBean.total[0]}</td>
 				<td class="list_data_text">${pageBean.total[1]}</td>
+				<td class="list_data_ltext"></td>
 				<td class="list_data_text">${pageBean.total[2]}</td>
+				<td class="list_data_text">${pageBean.total[3]}</td>
 				<td class="list_data_text"></td>
 			</tr>
 					

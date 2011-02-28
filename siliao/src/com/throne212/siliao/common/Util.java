@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +23,6 @@ import com.opensymphony.xwork2.ActionContext;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
-import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.Log;
 import com.throne212.siliao.domain.User;
 
@@ -202,10 +202,22 @@ public class Util {
 		return sb.toString();		
 	}
 	
+	public static double addMoney(double d1,double d2){
+		BigDecimal m1 = new BigDecimal(Double.toString(d1));
+		BigDecimal m2 = new BigDecimal(Double.toString(d2));
+		return roundMoney(m1.add(m2).doubleValue());
+	}
+	
+	public static double roundMoney(double val){
+		long b = (long)Math.round(val * 100); //小数点后两位前移，并四舍五入 
+		return (double)b / 100.00; //还原小数点后两位
+	}
+	
 	public static void main(String[] args) {
-		Date now = new Date();
-		System.out.println(getDate(getDateOnly(now)));
-		System.out.println(generateOrderNo());
-		System.out.println(genOrderId("北海农场","天邦",1));
+//		Date now = new Date();
+//		System.out.println(getDate(getDateOnly(now)));
+//		System.out.println(generateOrderNo());
+//		System.out.println(genOrderId("北海农场","天邦",1));
+		System.out.println(roundMoney(23.2983242));
 	}
 }

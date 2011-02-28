@@ -1,6 +1,7 @@
 package com.throne212.siliao.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.throne212.siliao.common.WebConstants;
 
@@ -11,6 +12,8 @@ public class Finance extends MyEntity implements Serializable {
 
 	protected Bill bill;// 属于哪个订单的
 	protected Integer type;//支出或收入
+	protected Date payDate;//支付日期
+	protected String remark;//付款或收款备注
 
 	public Bill getBill() {
 		return bill;
@@ -28,6 +31,22 @@ public class Finance extends MyEntity implements Serializable {
 		this.type = type;
 	}
 	
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 	public String getTypeTxt(){
 		if(type == null)
 			return "";

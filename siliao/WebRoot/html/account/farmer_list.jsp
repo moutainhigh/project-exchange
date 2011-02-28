@@ -15,12 +15,29 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
-			var currFactoryId = '${pf.factory.id}';
-			var providerId = '${pf.provider.id}';
-			var farmId = '${pf.farm.id}';
+			var currFactoryId = '${ff.factory.id}';
+			var providerId = '${ff.provider.id}';
+			var farmId = '${ff.area.farm.id}';
 			$(function(){
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+				//农户名字的autocomplete
+				$("#farmerName").autocomplete('${appPath}ajax/queryFarmerName?time='+new Date().getTime(), {
+					multiple: false,
+					minChars: 1,
+					parse: function(data) {
+						return $.map(data['list'], function(row) {
+							return {
+								data: row['name'],
+								value: row['name'],
+								result: row['name']
+							}
+						});
+					},
+					formatItem: function(item) {
+						return item;
+					}
+				});
 				//厂商列表
 				$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -63,46 +80,71 @@
 			});	
 			
 			function query(){
-				document.forms[0].action = "${appPath}stat_queryFactory.htm";
+				document.forms[0].action = "${appPath}stat_queryFarmer.htm";
 				document.forms[0].submit();
 			}
 			function exportExcel(){
-				document.forms[0].action = "${appPath}stat_exportProviderFinanceExcel.xls";
+				document.forms[0].action = "${appPath}stat_exportFarmerFinanceExcel.xls";
 				document.forms[0].submit();
 			}
 		</script>
 	</head>
 	<body>
 		<div class="page_title">
-			饲料管理系统 > 财务统计 > 厂商统计
+			饲料管理系统 > 财务统计 > 农户统计
 		</div>
 		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />
-		<form action="${appPath}stat_queryFactory.htm" method="get">
+		<form action="${appPath}stat_queryFarmer.htm" method="get">
 			<table class="query_form_table">
-				<tr>
-					<th>厂商编号</th>
-					<td>	
-						<select id="factoryId" name="pf.factory.id"></select>
-					</td>
-					<th>供货饲料厂</th>
+	<tr>
+		<th>养殖户姓名</th>
+		<td>	
+			<input id="farmerName" name="ff.farmer.name" value="${ff.farmer.name}"/>
+		</td>
+		<th>供货饲料厂</th>
+		<td>
+				<select id="providerList" name="ff.provider.id"></select>
+		</td>	
+	</tr>
+	<tr>
+		
+		<th height="22">发料日期</th>
 					<td>
-						<select id="providerList" name="pf.provider.id"></select>
-					</td>	
-				</tr>
-				<tr>
-					<th height="22">发料日期</th>
-					<td>
-						<input size="10" name="fromDate" class="datetime" value="<fmt:formatDate value="${fromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="sendFromDate" class="datetime" value="<fmt:formatDate value="${sendFromDate}" pattern="yyyy-MM-dd"/>"/>
 						-
-						<input size="10" name="toDate" class="datetime" value="<fmt:formatDate value="${toDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="sendToDate" class="datetime" value="<fmt:formatDate value="${sendToDate}" pattern="yyyy-MM-dd"/>"/>
 					</td>
-					<th>农场名称</th>
+		<th>饲料厂商</th>
+		<td>
+			<select id="factoryId" name="ff.factoryId"></select>
+		</td>
+	</tr>
+	<tr>
+		
+		<th height="22">饲料规格</th>
+		<td>
+			<input name="ff.size" value="${ff.size }" size="10" />
+		<th>饲料型号</th>
+		<td>
+			<input name="ff.model" value="${ff.size  }"  size="10" />
+		</td>
+	</tr>
+	<tr>
+		
+			<th height="22">到料日期</th>
 					<td>
-						<select id="farmName" name="pf.farm.id"></select>
+						<input size="10" name="finishFromDate" class="datetime" value="<fmt:formatDate value="${finishFromDate}" pattern="yyyy-MM-dd"/>"/>
+						-
+						<input size="10" name="finishToDate" class="datetime" value="<fmt:formatDate value="${finishToDate}" pattern="yyyy-MM-dd"/>"/>
 					</td>
-				</tr>
-			</table>
+		<th>农场名称</th>
+		<td>
+			<select id="farmName" name="ff.area.farm.id"></select>
+		</td>
+		
+	</tr>	
+</table>
 		</form>
 			<div class="button_bar">
 				<button class="common_button" onclick="help('');">
@@ -118,12 +160,17 @@
 		<table class="data_list_table">
 			<tr>
 				<th>序号</th>
+				<th>养殖户姓名</th>
+				<th>供货厂商</th>
 				<th>饲料厂商</th>
-				<th>供货饲料厂</th>
-				<th>累计供货量(吨)</th>
+				<th>发料日期</th>
+				<th>到料日期</th>
+				<th>型号</th>
+				<th>规格</th>
+				<th>用料量(吨)</th>
 				<th>合计金额</th>
-				<th>单笔本息合计</th>
-				<th>农场</th>
+				<th>单笔本息</th>
+				<th>所属区域</th>
 			</tr>
 		<c:forEach items="${pageBean.resultList}" var="f">
 			<tr>
@@ -131,11 +178,26 @@
 						${f.id}
 					</td>
 					<td class="list_data_text">
-						${f.provider.factory.name }
+						${f.farmer.name }
 					</td>
 				
 					<td class="list_data_text">
 						${f.provider.name}
+					</td>
+					<td class="list_data_text">
+						${f.factory.name}
+					</td>
+					<td class="list_data_text">
+						${f.bill.sendDate}
+					</td>
+					<td class="list_data_text">
+						${f.bill.finishDate}
+					</td>
+					<td class="list_data_text">
+						${f.size}
+					</td>
+					<td class="list_data_text">
+						${f.model}
 					</td>
 					<td class="list_data_text">
 						${f.amount}
@@ -147,7 +209,7 @@
 						${f.totalMoney}
 					</td>
 					<td class="list_data_text">
-						${f.farm.name}
+						${f.farmer.area.name}
 					</td>
 				</tr>
 			</c:forEach>
@@ -156,15 +218,21 @@
 				<td class="list_data_number">合计</td>
 				<td class="list_data_text"></td>
 				<td class="list_data_ltext"></td>
+				<td class="list_data_text"></td>
+				<td class="list_data_ltext"></td>
+				<td class="list_data_text"></td>
+				<td class="list_data_ltext"></td>
+				<td class="list_data_text"></td>
 				<td class="list_data_text">${pageBean.total[0]}</td>
 				<td class="list_data_text">${pageBean.total[1]}</td>
 				<td class="list_data_text">${pageBean.total[2]}</td>
 				<td class="list_data_text"></td>
+				
 			</tr>
 					
 			
 			<tr>
-				<th colspan="9" class="pager">
+				<th colspan="12" class="pager">
 					<div class="pager">
 						共${pageBean.totalRow}条记录 每页<input value="${pageBean.rowPerPage }" size="2" />
 						条 第

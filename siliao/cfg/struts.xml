@@ -78,6 +78,9 @@
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.siliao.action.StatAction">
 			<result name="factory_list">/html/account/factory_list.jsp</result>
+			<result name="farmer_list">/html/account/farmer_list.jsp</result>
+			<result name="factory_settlement">/html/account/factory_settlement.jsp</result>
+			<result name="farmer_settlement">/html/account/farmer_settlement.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

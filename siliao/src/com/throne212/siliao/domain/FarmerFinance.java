@@ -18,6 +18,7 @@ public class FarmerFinance extends Finance implements Serializable {
 	private Date rateFromDate;// 起息日
 	private Double rateMoney;// 单笔利息
 	private Area area;// 属于区域
+	private Double totalMoney;// 本息
 
 	public Farmer getFarmer() {
 		return farmer;
@@ -97,6 +98,14 @@ public class FarmerFinance extends Finance implements Serializable {
 
 	public void setArea(Area area) {
 		this.area = area;
+	}
+
+	public Double getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(Double totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
 }
