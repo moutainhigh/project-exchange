@@ -19,11 +19,11 @@ import com.throne212.siliao.domain.User;
 
 public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
-	public PageBean<User> getUserList(User condition, Date fromDate, Date toDate, int pageIndex,String role) {
+	public PageBean<User> getUserList(User condition, Date fromDate, Date toDate, int pageIndex,String role,String orderBy,String orderType) {
 		PageBean<User> page = new PageBean<User>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate,role);
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate,role,orderBy,orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 
@@ -45,7 +45,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		return page;
 	}
 
-	private Object[] buildFilterHQL(User condition, Date fromDate, Date toDate, String role) {
+	private Object[] buildFilterHQL(User condition, Date fromDate, Date toDate, String role,String orderBy,String orderType) {
 		Object[] rst = new Object[2];
 		// 角色
 		String className = "User";
@@ -90,15 +90,21 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 			sb.append(" and createDate<=?");
 			paramValueList.add(toDate);
 		}
-		sb.append(" order by id");
+		
+		//排序
+		if(!Util.isEmpty(orderBy)){
+			sb.append(" order by " + orderBy + " " + orderType);
+		}else{
+			sb.append(" order by id");
+		}
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
 		return rst;
 	}
 
-	public List<User> getUserList(User condition, Date fromDate, Date toDate, String role) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, role);
+	public List<User> getUserList(User condition, Date fromDate, Date toDate, String role,String orderBy,String orderType) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, role,orderBy,orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();

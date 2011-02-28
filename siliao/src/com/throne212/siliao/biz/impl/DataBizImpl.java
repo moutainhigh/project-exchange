@@ -195,16 +195,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return user;
 	}
 
-	public PageBean<User> getUserList(User condition, Date fromDate, Date toDate, Integer page, String role) {
+	public PageBean<User> getUserList(User condition, Date fromDate, Date toDate, Integer page, String role,String orderBy,String orderType) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return userDao.getUserList(condition, fromDate, toDate, pageIndex, role);
+		return userDao.getUserList(condition, fromDate, toDate, pageIndex, role, orderBy,orderType);
 	}
 
-	public String getUserExcelDownloadFile(User condition, Date fromDate, Date toDate, String role) {
-		List<User> userList = userDao.getUserList(condition, fromDate, toDate, role);
+	public String getUserExcelDownloadFile(User condition, Date fromDate, Date toDate, String role,String orderBy,String orderType) {
+		List<User> userList = userDao.getUserList(condition, fromDate, toDate, role,orderBy, orderType);
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));

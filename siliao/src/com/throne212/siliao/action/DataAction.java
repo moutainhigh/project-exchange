@@ -39,6 +39,8 @@ public class DataAction extends BaseAction {
 	private Integer page;
 	private InputStream downloadFile;
 	private List<Log> logList;
+	private String orderBy;
+	private String orderType;
 
 	private Boolean on;
 	private String username;
@@ -212,7 +214,7 @@ public class DataAction extends BaseAction {
 
 	// 条件字段
 	public String userList() {
-		pageBean = dataBiz.getUserList(user, fromDate, toDate, page, role);
+		pageBean = dataBiz.getUserList(user, fromDate, toDate, page, role,orderBy,orderType);
 		return "user_list";
 	}
 
@@ -227,7 +229,7 @@ public class DataAction extends BaseAction {
 	}
 
 	public String exportUserExcel() {
-		String path = dataBiz.getUserExcelDownloadFile(user, fromDate, toDate, role);
+		String path = dataBiz.getUserExcelDownloadFile(user, fromDate, toDate, role,orderBy,orderType);
 		if (path != null) {
 			try {
 				this.setMsg("用户列表");
@@ -700,6 +702,22 @@ public class DataAction extends BaseAction {
 
 	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
+	}
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
 	}
 
 }

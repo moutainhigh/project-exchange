@@ -26,8 +26,8 @@ public interface DataBiz extends BaseBiz{
 	//用户
 	public <T extends User> T saveUser(T user);
 	public User deleteUser(User user);
-	public PageBean<User> getUserList(User condition,Date fromDate,Date toDate,Integer page,String role);
-	public String getUserExcelDownloadFile(User condition,Date fromDate,Date toDate,String role);
+	public PageBean<User> getUserList(User condition,Date fromDate,Date toDate,Integer page,String role,String orderBy,String orderType);
+	public String getUserExcelDownloadFile(User condition,Date fromDate,Date toDate,String role,String orderBy,String orderType);
 	
 	//利率
 	public Rate saveRate(Rate rate);
