@@ -3,9 +3,11 @@ package com.throne212.siliao.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.throne212.siliao.common.FactoryStatDO;
 import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.ProviderStatDO;
+import com.throne212.siliao.common.SysStatDO;
 import com.throne212.siliao.domain.FarmerFinance;
 import com.throne212.siliao.domain.ProviderFinance;
 
@@ -30,4 +32,8 @@ public interface FinanceDao extends BaseDao {
 	//农场统计
 	public List<FarmerStatDO> getFarmStatList(Long farmId);
 	public List<ProviderStatDO> getProviderStatList(Long farmId);
+	
+	//集团统计
+	public List<SysStatDO> getAllFarmStatList();
+	public List<FactoryStatDO> getAllFactoryStatList();
 }

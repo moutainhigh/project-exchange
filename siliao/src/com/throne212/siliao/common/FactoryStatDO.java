@@ -2,18 +2,18 @@ package com.throne212.siliao.common;
 
 import java.math.BigDecimal;
 
-public class FarmerStatDO {
+public class FactoryStatDO {
 	private Long orderNum;
-	private String areaName;
-	private String areaAccount;
+	private String factoryName;
 	private Double totalAmount;
 	private Double totalMoney;
-	private Double totalOwn;
-	private Double totalPay;
 	private Object total;
+	// for集团统计的字段
+	private Double totalPay;// 已付款
+	private Double ownBalance;// 欠款余额
 
 	public String getPayPercentage() {
-		if(totalPay == null || totalMoney==null || totalMoney==0)
+		if (totalPay == null || totalMoney == null || totalMoney == 0)
 			return "";
 		Double percentage = (float) 100 * (Math.abs(totalPay) / totalMoney);
 		int scale = 1;// 设置位数
@@ -32,20 +32,12 @@ public class FarmerStatDO {
 		this.orderNum = orderNum;
 	}
 
-	public String getAreaName() {
-		return areaName;
+	public String getFactoryName() {
+		return factoryName;
 	}
 
-	public void setAreaName(String areaName) {
-		this.areaName = areaName;
-	}
-
-	public String getAreaAccount() {
-		return areaAccount;
-	}
-
-	public void setAreaAccount(String areaAccount) {
-		this.areaAccount = areaAccount;
+	public void setFactoryName(String factoryName) {
+		this.factoryName = factoryName;
 	}
 
 	public Double getTotalAmount() {
@@ -64,12 +56,12 @@ public class FarmerStatDO {
 		this.totalMoney = totalMoney;
 	}
 
-	public Double getTotalOwn() {
-		return totalOwn;
+	public Object getTotal() {
+		return total;
 	}
 
-	public void setTotalOwn(Double totalOwn) {
-		this.totalOwn = totalOwn;
+	public void setTotal(Object total) {
+		this.total = total;
 	}
 
 	public Double getTotalPay() {
@@ -80,12 +72,12 @@ public class FarmerStatDO {
 		this.totalPay = totalPay;
 	}
 
-	public Object getTotal() {
-		return total;
+	public Double getOwnBalance() {
+		return ownBalance;
 	}
 
-	public void setTotal(Object total) {
-		this.total = total;
+	public void setOwnBalance(Double ownBalance) {
+		this.ownBalance = ownBalance;
 	}
 
 }

@@ -32,4 +32,9 @@ public interface StatBiz extends BaseBiz {
 	
 	//农场统计
 	public Object[] getFarmStatListArr(Long farmId);
+	public String exportFarmStatList(Long farmId);
+	
+	//集团统计
+	public Object[] getSysStatListArr();
+	public String exportSysStatList();
 }

@@ -2,10 +2,10 @@ package com.throne212.siliao.common;
 
 import java.math.BigDecimal;
 
-public class FarmerStatDO {
+public class SysStatDO {
 	private Long orderNum;
-	private String areaName;
-	private String areaAccount;
+	private String farmName;
+	private String manager;
 	private Double totalAmount;
 	private Double totalMoney;
 	private Double totalOwn;
@@ -13,8 +13,8 @@ public class FarmerStatDO {
 	private Object total;
 
 	public String getPayPercentage() {
-		if(totalPay == null || totalMoney==null || totalMoney==0)
-			return "";
+		if (totalPay == null || totalMoney == null || totalMoney == 0)
+			return "N/A";
 		Double percentage = (float) 100 * (Math.abs(totalPay) / totalMoney);
 		int scale = 1;// 设置位数
 		int roundingMode = 4;// 表示四舍五入
@@ -32,20 +32,20 @@ public class FarmerStatDO {
 		this.orderNum = orderNum;
 	}
 
-	public String getAreaName() {
-		return areaName;
+	public String getFarmName() {
+		return farmName;
 	}
 
-	public void setAreaName(String areaName) {
-		this.areaName = areaName;
+	public void setFarmName(String farmName) {
+		this.farmName = farmName;
 	}
 
-	public String getAreaAccount() {
-		return areaAccount;
+	public String getManager() {
+		return manager;
 	}
 
-	public void setAreaAccount(String areaAccount) {
-		this.areaAccount = areaAccount;
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 
 	public Double getTotalAmount() {

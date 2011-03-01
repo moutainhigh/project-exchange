@@ -208,6 +208,12 @@ public class Util {
 		return roundMoney(m1.add(m2).doubleValue());
 	}
 	
+	public static double subMoney(double d1,double d2){
+		BigDecimal m1 = new BigDecimal(Double.toString(d1));
+		BigDecimal m2 = new BigDecimal(Double.toString(d2));
+		return roundMoney(m1.subtract(m2).doubleValue());
+	}
+	
 	public static double roundMoney(double val){
 		long b = (long)Math.round(val * 100); //小数点后两位前移，并四舍五入 
 		return (double)b / 100.00; //还原小数点后两位

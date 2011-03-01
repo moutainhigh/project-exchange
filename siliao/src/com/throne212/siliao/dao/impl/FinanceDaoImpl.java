@@ -7,9 +7,11 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.throne212.siliao.common.FactoryStatDO;
 import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.ProviderStatDO;
+import com.throne212.siliao.common.SysStatDO;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.dao.FinanceDao;
@@ -689,8 +691,116 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		if(pfList != null && pfList.size() > 0){
 			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate});
 		}
-		
+		return pfList;
+	}
+	
+	
+	//集团统计
+	public List<SysStatDO> getAllFarmStatList() {
+		List<SysStatDO> statList = new ArrayList<SysStatDO>();
+		List<Farm> farmList = this.getHibernateTemplate().find("from Farm where (enable is null or enable=true)");
+		double sumAmount = 0;
+		double sumMoney = 0;
+		double sumMoneyWithRate = 0;
+		double sumPay = 0;
+		for (Farm farm : farmList) {
+			SysStatDO statDO = new SysStatDO();
+			statDO.setOrderNum(farm.getId());
+			statDO.setFarmName(farm.getName());
+			statDO.setManager(farm.getManager().getName());
 
+			// 获得用料量合计(吨)
+			Double totalAmount = (Double) this.getHibernateTemplate().find("select sum(amount) from FarmerFinance where area.farm=? and type=0", farm).get(0);
+			statDO.setTotalAmount(totalAmount==null?0:totalAmount);
+
+			// 获得总料款合计
+			Double totalMoney = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance where area.farm=? and type=0", farm).get(0);
+			statDO.setTotalMoney(totalMoney==null?0:totalMoney);
+
+			// 获得单笔本息合计
+			double totalMoneyWithRate = 0;
+			// 得到供应厂的利率设置
+			double rate = 0;
+			String hql = "from Rate r where r.farm=? and fromDate<=? and endDate>=? and (enable is null or enable=true)";
+			List list = this.getHibernateTemplate().find(hql, new Object[] { farm, new Date(), new Date() });
+			if (list != null && list.size() > 0) {
+				Rate r = (Rate) list.get(0);
+				rate = r.getValue();
+			} else {
+				logger.info("没有找到相关联的利率【" + farm.getName() + "】，使用默认的0利率");
+			}
+			List<FarmerFinance> tmpList = this.getHibernateTemplate().find("from FarmerFinance ff where area.farm=? and type=0", new Object[] { farm });
+			for (FarmerFinance ff : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				double ratePerDay = rate / 30;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					rateMoney += ratePerDay * ff.getMoney();
+				}
+				totalMoneyWithRate = rateMoney + ff.getMoney();
+			}
+			statDO.setTotalOwn(Util.roundMoney(totalMoneyWithRate));
+
+			// 获得已付款
+			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance where (area.farm=? or farmer.area.farm=?) and type=" + WebConstants.FINANCE_STATUS_GET, new Object[]{farm,farm}).get(0);
+			statDO.setTotalPay(totalPay==null?0:totalPay);
+
+			statList.add(statDO);
+			
+			//进行合计
+			sumAmount = Util.addMoney(sumAmount, statDO.getTotalAmount());
+			sumMoney = Util.addMoney(sumMoney, statDO.getTotalMoney());
+			sumMoneyWithRate = Util.addMoney(sumMoneyWithRate, statDO.getTotalOwn());
+			sumPay = Util.addMoney(sumPay, statDO.getTotalPay());
+		}
+		if(statList != null && statList.size() > 0){
+			statList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate,sumPay});
+		}
+		return statList;
+	}
+
+	public List<FactoryStatDO> getAllFactoryStatList() {
+		List<Factory> List = this.getHibernateTemplate().find("from Factory where enable is null or enable=true");
+		List<FactoryStatDO> pfList = new ArrayList<FactoryStatDO>();
+		double sumAmount = 0;
+		double sumMoney = 0;
+		double sumPay = 0;
+		double sumBalance = 0;
+		for (Factory f : List) {
+			FactoryStatDO pDO = new FactoryStatDO();
+			pDO.setOrderNum(f.getId());
+			pDO.setFactoryName(f.getName());
+
+			// 获得用料量合计(吨)
+			Double totalAmount = (Double) this.getHibernateTemplate().find("select sum(amount) from ProviderFinance where (factory=? or provider.factory=?) and type=0", new Object[] { f,f }).get(0);
+			pDO.setTotalAmount(totalAmount==null?0:totalAmount);
+
+			// 获得总料款合计
+			Double totalMoney = (Double) this.getHibernateTemplate().find("select sum(money) from ProviderFinance where (factory=? or provider.factory=?) and type=0", new Object[] { f,f }).get(0);
+			pDO.setTotalMoney(totalMoney==null?0:totalMoney);
+
+			// 获得已经付款
+			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from ProviderFinance where (factory=? or provider.factory=?) and type="+WebConstants.FINANCE_STATUS_PAY, new Object[] { f,f }).get(0);
+			pDO.setTotalPay(totalPay==null?0:Math.abs(totalPay));
+			
+			//欠款余额
+			pDO.setOwnBalance(Util.subMoney(pDO.getTotalMoney(),pDO.getTotalPay()));
+			
+			pfList.add(pDO);
+			
+			
+			//进行合计
+			sumAmount = Util.addMoney(sumAmount, pDO.getTotalAmount());
+			sumMoney = Util.addMoney(sumMoney, pDO.getTotalMoney());
+			sumPay = Util.addMoney(sumMoney, pDO.getTotalPay());
+			sumBalance = Util.addMoney(sumBalance, pDO.getOwnBalance());
+		}
+		//添加合计到DO
+		if(pfList != null && pfList.size() > 0){
+			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumPay,sumBalance});
+		}
 		return pfList;
 	}
 }

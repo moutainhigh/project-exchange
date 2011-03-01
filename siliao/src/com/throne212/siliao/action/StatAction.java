@@ -8,9 +8,11 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.StatBiz;
+import com.throne212.siliao.common.FactoryStatDO;
 import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.ProviderStatDO;
+import com.throne212.siliao.common.SysStatDO;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Admin;
 import com.throne212.siliao.domain.AreaAccount;
@@ -176,6 +178,54 @@ public class StatAction extends BaseAction {
 		providerStatList = (List<ProviderStatDO>) arr[1];
 		return "farm_list";
 	}
+	public String exportFarmStatExcel(){
+		String path = null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Admin){
+			if(farmId == null)
+				return "farm_list";
+			path = statBiz.exportFarmStatList(farmId);
+		}else if(user instanceof AreaAccount){
+			path = statBiz.exportFarmStatList(((AreaAccount)user).getArea().getFarm().getId());
+		}else if(user instanceof ManagerAccount){
+			path = statBiz.exportFarmStatList(((ManagerAccount)user).getFarm().getId());
+		}
+		if (path != null) {
+			try {
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
+	
+	//集团统计
+	private List<SysStatDO> farmStatList;
+	private List<FactoryStatDO> factoryStatList;
+
+	public String querySysStat() {
+		Object[] arr = statBiz.getSysStatListArr();
+		farmStatList = (List<SysStatDO>) arr[0];
+		factoryStatList = (List<FactoryStatDO>) arr[1];
+		return "sys_list";
+	}
+	
+	public String exportSysStatExcel(){
+		String path = statBiz.exportSysStatList();
+		if (path != null) {
+			try {
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
 
 	public ProviderFinance getPf() {
 		return pf;
@@ -287,6 +337,22 @@ public class StatAction extends BaseAction {
 
 	public void setProviderStatList(List<ProviderStatDO> providerStatList) {
 		this.providerStatList = providerStatList;
+	}
+
+	public List<SysStatDO> getFarmStatList() {
+		return farmStatList;
+	}
+
+	public void setFarmStatList(List<SysStatDO> farmStatList) {
+		this.farmStatList = farmStatList;
+	}
+
+	public List<FactoryStatDO> getFactoryStatList() {
+		return factoryStatList;
+	}
+
+	public void setFactoryStatList(List<FactoryStatDO> factoryStatList) {
+		this.factoryStatList = factoryStatList;
 	}
 
 }

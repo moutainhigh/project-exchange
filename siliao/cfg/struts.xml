@@ -82,6 +82,7 @@
 			<result name="factory_settlement">/html/account/factory_settlement.jsp</result>
 			<result name="farmer_settlement">/html/account/farmer_settlement.jsp</result>
 			<result name="farm_list">/html/account/farm_list.jsp</result>
+			<result name="sys_list">/html/account/sys_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
