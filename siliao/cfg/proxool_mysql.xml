@@ -5,8 +5,8 @@
 
 		<driver-url>jdbc:mysql://localhost:3306/siliao</driver-url>
 		<driver-properties>
-			<property name="user" value="siliao" />
-			<property name="password" value="123" />
+			<property name="user" value="root" />
+			<property name="password" value="ni741" />
 		</driver-properties>
 		
 		<driver-class>com.mysql.jdbc.Driver</driver-class>
