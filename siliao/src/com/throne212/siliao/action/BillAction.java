@@ -9,6 +9,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.BillBiz;
 import com.throne212.siliao.common.PageBean;
+import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.BillLog;
@@ -326,6 +327,9 @@ public class BillAction extends BaseAction {
 			return adminBillList();
 		}
 		bill = billBiz.getEntityById(Bill.class, bill.getId());
+		if(bill != null){
+			bill.setFinishPrice(Util.multiplyMoney(bill.getAmount(), bill.getPriceOnOrder()));
+		}
 		return "sent_bill_edit";
 	}
 

@@ -528,7 +528,12 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		pf.setAmount(bill.getFinishAmount());
 		pf.setFarm(bill.getFarm());
 		pf.setFarmer(bill.getFarmer());
-		pf.setMoney(bill.getFinishPrice());
+		//pf.setMoney(bill.getFinishPrice());
+		//获取实付料款
+		double agentMoney = bill.getAmount() * bill.getAgentUnitPrice();
+		double actualMoney = bill.getFinishPrice() - agentMoney;
+		pf.setMoney(Util.roundMoney(actualMoney));
+		
 		pf.setRateFromDate(bill.getFinishDate());
 		pf.setType(0);
 		billDao.saveOrUpdate(pf);
