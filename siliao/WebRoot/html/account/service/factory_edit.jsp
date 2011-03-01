@@ -92,7 +92,6 @@
 		<form action="${appPath}data_saveFactory.htm" method="get">
 			<input type="hidden" name="factoryAbs.id" value="${factoryAbs.id}"/>
 			<c:if test="${not empty factoryAbs.id}">
-			<input type="hidden" name="factoryId" value="${factoryId}"/>
 			<input type="hidden" name="factoryAccountId" value="${factoryAccountId}"/>
 			</c:if>
 			<table class="query_form_table">

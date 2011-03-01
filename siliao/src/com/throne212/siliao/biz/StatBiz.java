@@ -1,7 +1,9 @@
 package com.throne212.siliao.biz;
 
 import java.util.Date;
+import java.util.List;
 
+import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.domain.FarmerFinance;
 import com.throne212.siliao.domain.ProviderFinance;
@@ -27,4 +29,7 @@ public interface StatBiz extends BaseBiz {
 	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate, Integer page);
 	public String  getFarmerSettleFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate);
 	public FarmerFinance payFarmer(FarmerFinance pf);
+	
+	//农场统计
+	public Object[] getFarmStatListArr(Long farmId);
 }

@@ -919,7 +919,7 @@ function initialise() {
 	L0202 = theMenu.addChild(L02, "Document", "农户统计", "${appPath}stat_queryFarmer.htm", "查询养殖户的付款情况...");
 	L0203 = theMenu.addChild(L02, "Document", "厂商结算", "${appPath}stat_settleFactory.htm", "厂商账户内的余额和利息结算...");
 	L0204 = theMenu.addChild(L02, "Document", "农户结算", "${appPath}stat_settleFarmer.htm", "结算农户的利息和存款欠款情况...");
-	L0205 = theMenu.addChild(L02, "Document", "农场统计", "account/farmTable.html", "饲料经理查询各个区域内的发料供料，采购，完成计划百分比等...");	
+	L0205 = theMenu.addChild(L02, "Document", "农场统计", "${appPath}stat_queryFarmStat.htm", "饲料经理查询各个区域内的发料供料，采购，完成计划百分比等...");	
 	L0205 = theMenu.addChild(L02, "Document", "集团统计", "account/listTotal.html", "总公司管理员在此查询各农场饲料销售情况");	
 
 	L03 = theMenu.addChild(l2ID, "Folder", "数据设定", "", "设定饲料厂商的数据...");

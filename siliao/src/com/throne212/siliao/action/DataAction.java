@@ -328,6 +328,11 @@ public class DataAction extends BaseAction {
 					newfarmAbs.setRemark(farmAbs.getRemark());
 					newfarmAbs.setCreateName(farmAbs.getCreateName());
 					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
+					
+					//设置area到account
+					managerAccount.setFarm(newfarmAbs);
+					baseBiz.saveOrUpdateEntity(managerAccount);
+					
 					this.setMsg("农场或管区保存成功【" + newfarmAbs.getName() + "】");
 					this.setFarmAbs(null);
 					this.setFarmType(null);
@@ -346,6 +351,11 @@ public class DataAction extends BaseAction {
 					newfarmAbs.setRemark(farmAbs.getRemark());
 					newfarmAbs.setCreateName(farmAbs.getCreateName());
 					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
+					
+					//设置area到account
+					account.setArea(newfarmAbs);
+					baseBiz.saveOrUpdateEntity(account);
+					
 					this.setMsg("农场或管区保存成功【" + newfarmAbs.getName() + "】");
 					this.setFarmAbs(null);
 					this.setFarmType(null);
@@ -440,7 +450,11 @@ public class DataAction extends BaseAction {
 					p.setRemark(factoryAbs.getRemark());
 					p.setCreateName(factoryAbs.getCreateName());
 					p = dataBiz.saveFactoryAbs(p);
-					this.setMsg("厂商或饲料供应厂保存成功【" + f.getName() + "】");
+					
+					account.setProvider(p);
+					baseBiz.saveOrUpdateEntity(account);
+					
+					this.setMsg("厂商或饲料供应厂保存成功【" + p.getName() + "】");
 					this.setFactoryAbs(null);
 					this.setFactoryType(null);
 					return factoryList();

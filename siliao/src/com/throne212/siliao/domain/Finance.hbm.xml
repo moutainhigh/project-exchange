@@ -32,6 +32,7 @@
 			<many-to-one name="factory" column="factory_id" lazy="false"></many-to-one>
 			<many-to-one name="farmer" column="farmer_id" lazy="false"></many-to-one>
 			<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
+			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
 		</joined-subclass>
 		<joined-subclass name="ProviderFinance" table="yh_finance_provider">
 			<key column="finance_id"></key>

@@ -213,6 +213,29 @@ public class Util {
 		return (double)b / 100.00; //还原小数点后两位
 	}
 	
+	public static double calRateMoney(double money,double rate,Date fromDate){
+		// 统计天数
+		long days = (System.currentTimeMillis() - fromDate.getTime()) / 1000 / 60 / 60 / 24;
+		double rateMoney = 0;
+		double ratePerDay = rate / 30;
+		// 累计计算利息
+		for (long j = 0; j < days; j++) {
+			rateMoney += ratePerDay * money;
+		}
+		return rateMoney;
+	}
+	public static double calTotalMoney(double money,double rate,Date fromDate){
+		// 统计天数
+		long days = (System.currentTimeMillis() - fromDate.getTime()) / 1000 / 60 / 60 / 24;
+		double rateMoney = 0;
+		double ratePerDay = rate / 30;
+		// 累计计算利息
+		for (long j = 0; j < days; j++) {
+			rateMoney += ratePerDay * money;
+		}
+		return addMoney(money, rateMoney);
+	}
+	
 	public static void main(String[] args) {
 //		Date now = new Date();
 //		System.out.println(getDate(getDateOnly(now)));

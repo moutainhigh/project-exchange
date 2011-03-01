@@ -4,12 +4,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.biz.StatBiz;
+import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
-import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.common.ProviderStatDO;
+import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.domain.Admin;
+import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.FarmerFinance;
+import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.ProviderFinance;
+import com.throne212.siliao.domain.User;
 
 public class StatAction extends BaseAction {
 
@@ -146,6 +154,28 @@ public class StatAction extends BaseAction {
 		}
 		return settleFarmer();
 	}
+	
+	//农场统计
+	private Long farmId;
+	private List<FarmerStatDO> farmerStatList;
+	private List<ProviderStatDO> providerStatList;
+
+	public String queryFarmStat() {
+		Object[] arr = null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Admin){
+			if(farmId == null)
+				return "farm_list";
+			arr = statBiz.getFarmStatListArr(farmId);
+		}else if(user instanceof AreaAccount){
+			arr = statBiz.getFarmStatListArr(((AreaAccount)user).getArea().getFarm().getId());
+		}else if(user instanceof ManagerAccount){
+			arr = statBiz.getFarmStatListArr(((ManagerAccount)user).getFarm().getId());
+		}
+		farmerStatList = (List<FarmerStatDO>) arr[0];
+		providerStatList = (List<ProviderStatDO>) arr[1];
+		return "farm_list";
+	}
 
 	public ProviderFinance getPf() {
 		return pf;
@@ -233,6 +263,30 @@ public class StatAction extends BaseAction {
 
 	public void setFinishToDate(Date finishToDate) {
 		this.finishToDate = finishToDate;
+	}
+
+	public Long getFarmId() {
+		return farmId;
+	}
+
+	public void setFarmId(Long farmId) {
+		this.farmId = farmId;
+	}
+
+	public List<FarmerStatDO> getFarmerStatList() {
+		return farmerStatList;
+	}
+
+	public void setFarmerStatList(List<FarmerStatDO> farmerStatList) {
+		this.farmerStatList = farmerStatList;
+	}
+
+	public List<ProviderStatDO> getProviderStatList() {
+		return providerStatList;
+	}
+
+	public void setProviderStatList(List<ProviderStatDO> providerStatList) {
+		this.providerStatList = providerStatList;
 	}
 
 }

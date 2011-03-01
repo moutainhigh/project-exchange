@@ -3,7 +3,9 @@ package com.throne212.siliao.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
+import com.throne212.siliao.common.ProviderStatDO;
 import com.throne212.siliao.domain.FarmerFinance;
 import com.throne212.siliao.domain.ProviderFinance;
 
@@ -25,4 +27,7 @@ public interface FinanceDao extends BaseDao {
 	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate, Integer page);
 	public List<FarmerFinance> getFarmerSettleFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate);
 
+	//农场统计
+	public List<FarmerStatDO> getFarmStatList(Long farmId);
+	public List<ProviderStatDO> getProviderStatList(Long farmId);
 }

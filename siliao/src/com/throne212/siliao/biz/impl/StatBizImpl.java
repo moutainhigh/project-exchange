@@ -13,6 +13,7 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
 import com.throne212.siliao.biz.StatBiz;
+import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
@@ -307,5 +308,12 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		ff.setType(WebConstants.FINANCE_STATUS_GET);
 		financeDao.saveOrUpdate(ff);
 		return ff;
+	}
+	
+	//农场统计
+	public Object[] getFarmStatListArr(Long farmId){
+		List list1 = financeDao.getFarmStatList(farmId);
+		List list2 = financeDao.getProviderStatList(farmId);
+		return new Object[]{list1,list2};
 	}
 }

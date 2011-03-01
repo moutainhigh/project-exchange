@@ -7,10 +7,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
+import com.throne212.siliao.common.ProviderStatDO;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.dao.FinanceDao;
+import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmerFinance;
@@ -86,7 +89,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 
 	private Object[] buildFilterHQL(ProviderFinance condition, Date fromDate, Date toDate) {
 		Object[] rst = new Object[2];
-		StringBuffer sb = new StringBuffer("from ProviderFinance where (enable is null or enable=true) and type!=" + WebConstants.FINANCE_STATUS_PAY);
+		StringBuffer sb = new StringBuffer("from ProviderFinance where (enable is null or enable=true) and type=0");
 		List paramValueList = new ArrayList();
 		if (condition != null) {
 			// 构建下拉项的条件
@@ -138,8 +141,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 	}
 
 	// 农户统计
-	public PageBean<FarmerFinance> getFarmerFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate,
-			Date finishToDate, Integer pageIndex) {
+	public PageBean<FarmerFinance> getFarmerFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate, Integer pageIndex) {
 
 		PageBean<FarmerFinance> page = new PageBean<FarmerFinance>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
@@ -206,7 +208,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 
 	private Object[] buildFilterHQL(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate) {
 		Object[] rst = new Object[2];
-		StringBuffer sb = new StringBuffer("from FarmerFinance where (enable is null or enable=true) and type!=" + WebConstants.FINANCE_STATUS_PAY);
+		StringBuffer sb = new StringBuffer("from FarmerFinance where (enable is null or enable=true) and type=0");
 		List paramValueList = new ArrayList();
 		if (condition != null) {
 			// 构建下拉项的条件
@@ -264,8 +266,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		return rst;
 	}
 
-	public List<FarmerFinance> getFarmerFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate,
-			Date finishToDate) {
+	public List<FarmerFinance> getFarmerFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate) {
 		Object[] hqlArr = buildFilterHQL(condition, sendFromDate, sendToDate, finishFromDate, finishToDate);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
@@ -311,7 +312,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		// 设置利率金额
 		for (Object o : page.getResultList()) {
 			ProviderFinance pf = (ProviderFinance) o;
-			
+
 			// 得到供应厂的利率设置
 			double rate = 0;
 			hql = "from Rate r where r.provider=? and fromDate<=? and endDate>=?";
@@ -335,8 +336,8 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 
 			// 合计计算
 			if (pf.getType() != null || pf.getType() == WebConstants.FINANCE_STATUS_PAY) {// 付款类型
-				
-			}else{
+
+			} else {
 				totalAmount = Util.addMoney(totalAmount, pf.getAmount());
 			}
 			totalMoney = Util.addMoney(totalMoney, pf.getMoney());
@@ -401,10 +402,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		return q.list();
 	}
-	
-	
+
 	// 农户结算
-	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate, Integer pageIndex) {
+	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate, Integer pageIndex) {
 
 		PageBean<FarmerFinance> page = new PageBean<FarmerFinance>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
@@ -533,7 +533,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		return rst;
 	}
 
-	public List<FarmerFinance> getFarmerSettleFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate) {
+	public List<FarmerFinance> getFarmerSettleFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate) {
 		Object[] hqlArr = buildFilterHQLForSettle(condition, sendFromDate, sendToDate, finishFromDate, finishToDate);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
@@ -546,4 +546,151 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		return q.list();
 	}
 
+	// 农场统计
+	public List<FarmerStatDO> getFarmStatList(Long farmId) {
+		Farm farm = null;
+		List<Area> areaList = null;
+		if (farmId != null) {
+			farm = (Farm) this.getHibernateTemplate().get(Farm.class, farmId);
+		}
+		// 查询管区
+		List<FarmerStatDO> farmerStatList = new ArrayList<FarmerStatDO>();
+
+		if (farm != null) {
+			areaList = this.getHibernateTemplate().find("from Area where farm=? and (enable is null or enable=true)", farm);
+		}
+
+		double sumAmount = 0;
+		double sumMoney = 0;
+		double sumMoneyWithRate = 0;
+		double sumPay = 0;
+		for (Area area : areaList) {
+			FarmerStatDO farmerStatDO = new FarmerStatDO();
+			farmerStatDO.setOrderNum(area.getId());
+			farmerStatDO.setAreaName(area.getName());
+			farmerStatDO.setAreaAccount(area.getAccount().getName());
+
+			// 获得用料量合计(吨)
+			Double totalAmount = (Double) this.getHibernateTemplate().find("select sum(amount) from FarmerFinance where area=? and type=0", area).get(0);
+			farmerStatDO.setTotalAmount(totalAmount==null?0:totalAmount);
+
+			// 获得总料款合计
+			Double totalMoney = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance where area=? and type=0", area).get(0);
+			farmerStatDO.setTotalMoney(totalMoney==null?0:totalMoney);
+
+			// 获得单笔本息合计
+			double totalMoneyWithRate = 0;
+			// 得到供应厂的利率设置
+			double rate = 0;
+			String hql = "from Rate r where r.farm=? and fromDate<=? and endDate>=? and (enable is null or enable=true)";
+			List list = this.getHibernateTemplate().find(hql, new Object[] { farm, new Date(), new Date() });
+			if (list != null && list.size() > 0) {
+				Rate r = (Rate) list.get(0);
+				rate = r.getValue();
+			} else {
+				logger.info("没有找到相关联的利率【" + farm.getName() + "】，使用默认的0利率");
+			}
+			List<FarmerFinance> tmpList = this.getHibernateTemplate().find("from FarmerFinance ff where area=? and type=0", new Object[] { area });
+			for (FarmerFinance ff : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				double ratePerDay = rate / 30;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					rateMoney += ratePerDay * ff.getMoney();
+				}
+				totalMoneyWithRate = rateMoney + ff.getMoney();
+			}
+			farmerStatDO.setTotalOwn(Util.roundMoney(totalMoneyWithRate));
+
+			// 获得已付款
+			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance where (area=? or farmer.area=?) and type=" + WebConstants.FINANCE_STATUS_GET, new Object[]{area,area}).get(0);
+			farmerStatDO.setTotalPay(totalPay==null?0:totalPay);
+
+			farmerStatList.add(farmerStatDO);
+			
+			//进行合计
+			sumAmount = Util.addMoney(sumAmount, farmerStatDO.getTotalAmount());
+			sumMoney = Util.addMoney(sumMoney, farmerStatDO.getTotalMoney());
+			sumMoneyWithRate = Util.addMoney(sumMoneyWithRate, farmerStatDO.getTotalOwn());
+			sumPay = Util.addMoney(sumPay, farmerStatDO.getTotalPay());
+		}
+		if(farmerStatList != null && farmerStatList.size() > 0){
+			farmerStatList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate,sumPay});
+		}
+		return farmerStatList;
+	}
+
+	public List<ProviderStatDO> getProviderStatList(Long farmId) {
+		Farm farm = null;
+		List<Provider> List = null;
+		if (farmId != null) {
+			farm = (Farm) this.getHibernateTemplate().get(Farm.class, farmId);
+			List = this.getHibernateTemplate().find("from Provider where enable is null or enable=true");
+		} else {
+			return null;
+		}
+
+		List<ProviderStatDO> pfList = new ArrayList<ProviderStatDO>();
+		double sumAmount = 0;
+		double sumMoney = 0;
+		double sumMoneyWithRate = 0;
+		for (Provider p : List) {
+			ProviderStatDO pDO = new ProviderStatDO();
+			pDO.setOrderNum(p.getId());
+			pDO.setProviderName(p.getName());
+			pDO.setFarmName(farm.getName());
+
+			// 获得用料量合计(吨)
+			Double totalAmount = (Double) this.getHibernateTemplate().find("select sum(amount) from ProviderFinance where provider=? and farm=? and type=0", new Object[] { p, farm }).get(0);
+			pDO.setTotalAmount(totalAmount==null?0:totalAmount);
+
+			// 获得总料款合计
+			Double totalMoney = (Double) this.getHibernateTemplate().find("select sum(money) from ProviderFinance where provider=? and farm=? and type=0", new Object[] { p, farm }).get(0);
+			pDO.setTotalMoney(totalMoney==null?0:totalMoney);
+
+			// 获得单笔本息合计
+			double totalMoneyWithRate = 0;
+			// 得到供应厂的利率设置
+			double rate = 0;
+			String hql = "from Rate r where r.provider=? and fromDate<=? and endDate>=? and (enable is null or enable=true)";
+			List list = this.getHibernateTemplate().find(hql, new Object[] { p, new Date(), new Date() });
+			if (list != null && list.size() > 0) {
+				Rate r = (Rate) list.get(0);
+				rate = r.getValue();
+			} else {
+				logger.info("没有找到相关联的利率【" + p.getName() + "】，使用默认的0利率");
+			}
+			List<ProviderFinance> tmpList = this.getHibernateTemplate().find("from ProviderFinance pf where provider=? and farm=? and type=0", new Object[] { p, farm });
+			for (ProviderFinance pf : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				double ratePerDay = rate / 30;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					rateMoney += ratePerDay * pf.getMoney();
+				}
+				totalMoneyWithRate = rateMoney + pf.getMoney();
+			}
+			if (totalMoneyWithRate != 0)
+				pDO.setTotalRateMoney(Util.roundMoney(totalMoneyWithRate));
+
+			pfList.add(pDO);
+			
+			
+			//进行合计
+			sumAmount = Util.addMoney(sumAmount, pDO.getTotalAmount());
+			sumMoney = Util.addMoney(sumMoney, pDO.getTotalMoney());
+			sumMoneyWithRate = Util.addMoney(sumMoneyWithRate, pDO.getTotalRateMoney()==null?0:pDO.getTotalRateMoney());
+		}
+		//添加合计到DO
+		if(pfList != null && pfList.size() > 0){
+			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate});
+		}
+		
+
+		return pfList;
+	}
 }
