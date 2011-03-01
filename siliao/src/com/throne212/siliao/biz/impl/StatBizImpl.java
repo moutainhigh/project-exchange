@@ -13,7 +13,11 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
 import com.throne212.siliao.biz.StatBiz;
+import com.throne212.siliao.common.FactoryStatDO;
+import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
+import com.throne212.siliao.common.ProviderStatDO;
+import com.throne212.siliao.common.SysStatDO;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.dao.FinanceDao;
@@ -316,10 +320,103 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		return new Object[]{list1,list2};
 	}
 	public String exportFarmStatList(Long farmId){
-		List list1 = financeDao.getFarmStatList(farmId);
-		List list2 = financeDao.getProviderStatList(farmId);
+		List<FarmerStatDO> list1 = financeDao.getFarmStatList(farmId);
+		List<ProviderStatDO> list2 = financeDao.getProviderStatList(farmId);
+		
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel";
+		System.out.println("excel saved path : " + path);
+		// String sourceFile = path + File.separator + "template.xls";
+		String targetFile = path + File.separator + System.currentTimeMillis() + ".xls";
+		Workbook rw = null;
+		try {
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
+			WritableSheet sheet = workbook.createSheet("农场统计列表", 0);
+
+			// 加表头
+			
+			WritableFont font = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD);
+			WritableCellFormat format = new WritableCellFormat(font);
+			sheet.addCell(new Label(0, 0, "序号", format));
+			sheet.addCell(new Label(1, 0, "管区", format));
+			sheet.addCell(new Label(2, 0, "管区负责人", format));
+			sheet.addCell(new Label(3, 0, "用料量合计(吨)", format));
+			sheet.addCell(new Label(4, 0, "总料款合计", format));
+			sheet.addCell(new Label(5, 0, "欠款本息", format));
+			sheet.addCell(new Label(6, 0, "已付款", format));
+			sheet.addCell(new Label(7, 0, "付款率", format));
+			
+			
+			// 加内容
+			int i = 1;
+			for (FarmerStatDO f : list1) {
+				sheet.addCell(new Number(0, i, f.getOrderNum()));
+				sheet.addCell(new Label(1, i, f.getAreaName()));
+				sheet.addCell(new Label(2, i, f.getAreaAccount()));
+				sheet.addCell(new Number(3, i, f.getTotalAmount()));
+				sheet.addCell(new Number(4, i, f.getTotalMoney()));
+				sheet.addCell(new Number(5, i, f.getTotalOwn())); 
+				sheet.addCell(new Number(6, i++, f.getTotalPay()));
+				sheet.addCell(new Label(7, i++, f.getPayPercentage()));
+				
+			}
+			//合计
+			Double[]doubles1=(Double[])list2.get(0).getTotal();
+			sheet.addCell(new Label(0, i, "合计"));
+			sheet.addCell(new Label(1, i, ""));
+			sheet.addCell(new Label(2, i, ""));
+			sheet.addCell(new Number(3, i, doubles1[0]));
+			sheet.addCell(new Number(4, i, doubles1[1]));
+			sheet.addCell(new Number(5, i,doubles1[2])); 
+			sheet.addCell(new Number(6, i++,doubles1[3] ));
+			sheet.addCell(new Label(7, i++,""));
+			
+			WritableSheet sheet2 = workbook.createSheet("饲料厂供料情况", 0);
+			// 加表头
+
+			sheet2.addCell(new Label(0, 0, "序号", format));
+			sheet2.addCell(new Label(1, 0, "供货饲料厂", format));
+			sheet2.addCell(new Label(2, 0, "累计供货量(吨)", format));
+			sheet2.addCell(new Label(3, 0, "合计金额", format));
+			sheet2.addCell(new Label(4, 0, "单笔本息合计", format));
+			sheet2.addCell(new Label(5, 0, "农场", format));
+			
+			
+			// 加内容
+			int i2 = 1;
+			for (ProviderStatDO f2 : list2) {
+				sheet.addCell(new Number(0, i2, f2.getOrderNum()));
+				sheet.addCell(new Label(1, i2, f2.getProviderName()));
+				sheet.addCell(new Number(2, i2, f2.getTotalAmount()));
+				sheet.addCell(new Number(3, i2, f2.getTotalMoney()));
+				sheet.addCell(new Number(4, i2, f2.getTotalRateMoney()));
+				sheet.addCell(new Label(5, i2, f2.getFarmName())); 
+				
+			}
+			//合计
+			Double[]doubles2=(Double[])list2.get(0).getTotal();
+			sheet.addCell(new Label(0, i2, "合计"));
+			sheet.addCell(new Label(1, i2, ""));
+			sheet.addCell(new Number(2, i2,doubles2[0] ));
+			sheet.addCell(new Number(3, i2, doubles2[1]));
+			sheet.addCell(new Number(4, i2, doubles2[2]));
+			sheet.addCell(new Number(5, i2, doubles2[3]));
+			
+			workbook.write();
+			workbook.close();
+			return targetFile;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rw != null)
+				rw.close();
+		}
+		return null;
+
 		//excel编辑代码...
-		return "";
+		
 	}
 	
 	//集团统计
@@ -329,8 +426,103 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		return new Object[]{list1,list2};
 	}
 	public String exportSysStatList(){
-		List list1 = financeDao.getAllFarmStatList();
-		List list2 = financeDao.getAllFactoryStatList();
+		List<SysStatDO> list1 = financeDao.getAllFarmStatList();
+		List<FactoryStatDO> list2 = financeDao.getAllFactoryStatList();
+		
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel";
+		System.out.println("excel saved path : " + path);
+		// String sourceFile = path + File.separator + "template.xls";
+		String targetFile = path + File.separator + System.currentTimeMillis() + ".xls";
+		Workbook rw = null;
+		try {
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
+			WritableSheet sheet = workbook.createSheet("农场统计列表", 0);
+
+			// 加表头
+			
+			WritableFont font = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD);
+			WritableCellFormat format = new WritableCellFormat(font);
+			sheet.addCell(new Label(0, 0, "序号", format));
+			sheet.addCell(new Label(1, 0, "管区", format));
+			sheet.addCell(new Label(2, 0, "管区负责人", format));
+			sheet.addCell(new Label(3, 0, "用料量合计(吨)", format));
+			sheet.addCell(new Label(4, 0, "总料款合计", format));
+			sheet.addCell(new Label(5, 0, "欠款本息", format));
+			sheet.addCell(new Label(6, 0, "已付款", format));
+			sheet.addCell(new Label(7, 0, "付款率", format));
+			
+			
+			// 加内容
+			int i = 1;
+			for (FarmerStatDO f : list1) {
+				sheet.addCell(new Number(0, i, f.getOrderNum()));
+				sheet.addCell(new Label(1, i, f.getAreaName()));
+				sheet.addCell(new Label(2, i, f.getAreaAccount()));
+				sheet.addCell(new Number(3, i, f.getTotalAmount()));
+				sheet.addCell(new Number(4, i, f.getTotalMoney()));
+				sheet.addCell(new Number(5, i, f.getTotalOwn())); 
+				sheet.addCell(new Number(6, i++, f.getTotalPay()));
+				sheet.addCell(new Label(7, i++, f.getPayPercentage()));
+				
+			}
+			//合计
+			Double[]doubles1=(Double[])list2.get(0).getTotal();
+			sheet.addCell(new Label(0, i, "合计"));
+			sheet.addCell(new Label(1, i, ""));
+			sheet.addCell(new Label(2, i, ""));
+			sheet.addCell(new Number(3, i, doubles1[0]));
+			sheet.addCell(new Number(4, i, doubles1[1]));
+			sheet.addCell(new Number(5, i,doubles1[2])); 
+			sheet.addCell(new Number(6, i++,doubles1[3] ));
+			sheet.addCell(new Label(7, i++,""));
+			
+			WritableSheet sheet2 = workbook.createSheet("饲料厂供料情况", 0);
+			// 加表头
+
+			sheet2.addCell(new Label(0, 0, "序号", format));
+			sheet2.addCell(new Label(1, 0, "供货饲料厂", format));
+			sheet2.addCell(new Label(2, 0, "累计供货量(吨)", format));
+			sheet2.addCell(new Label(3, 0, "合计金额", format));
+			sheet2.addCell(new Label(4, 0, "单笔本息合计", format));
+			sheet2.addCell(new Label(5, 0, "农场", format));
+			
+			
+			// 加内容
+			int i2 = 1;
+			for (ProviderStatDO f2 : list2) {
+				sheet.addCell(new Number(0, i2, f2.getOrderNum()));
+				sheet.addCell(new Label(1, i2, f2.getProviderName()));
+				sheet.addCell(new Number(2, i2, f2.getTotalAmount()));
+				sheet.addCell(new Number(3, i2, f2.getTotalMoney()));
+				sheet.addCell(new Number(4, i2, f2.getTotalRateMoney()));
+				sheet.addCell(new Label(5, i2, f2.getFarmName())); 
+				
+			}
+			//合计
+			Double[]doubles2=(Double[])list2.get(0).getTotal();
+			sheet.addCell(new Label(0, i2, "合计"));
+			sheet.addCell(new Label(1, i2, ""));
+			sheet.addCell(new Number(2, i2,doubles2[0] ));
+			sheet.addCell(new Number(3, i2, doubles2[1]));
+			sheet.addCell(new Number(4, i2, doubles2[2]));
+			sheet.addCell(new Number(5, i2, doubles2[3]));
+			
+			workbook.write();
+			workbook.close();
+			return targetFile;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rw != null)
+				rw.close();
+		}
+		return null;
+
+		
+		
 		//excel编辑代码...
 		return "";
 	}
