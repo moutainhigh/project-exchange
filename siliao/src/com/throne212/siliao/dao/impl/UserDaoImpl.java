@@ -80,6 +80,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 				sb.append(" and email like ?");
 				paramValueList.add("%" + condition.getEmail() + "%");
 			}
+			
 		}
 		// 创建时间段
 		if (fromDate != null) {

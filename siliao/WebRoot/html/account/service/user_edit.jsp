@@ -139,7 +139,7 @@
 					返回
 				</button>
 				<button class="common_button" onclick="return submitUser();">
-					创建
+					保存
 				</button>
 			</div>
 		</form>

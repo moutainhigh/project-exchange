@@ -91,7 +91,7 @@
 					姓名
 				</th>
 				<td>
-					<input value="${user.loginName}" name="user.loginName" id="loginName"/>
+					<input value="${user.name}" name="user.name" id="userName"/>
 				</td>
 				<th height="28">
 					角色
