@@ -18,11 +18,11 @@ import com.throne212.siliao.domain.Provider;
 public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 
 	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition, Date fromDate, Date toDate, Integer pageIndex, String type, Long factoryId,
-			String accountName) {
+			String accountName,String orderBy,String orderType) {
 		PageBean<FactoryAbs> page = new PageBean<FactoryAbs>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, type, factoryId, accountName);
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, type, factoryId, accountName, orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 
@@ -44,7 +44,7 @@ public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 		return page;
 	}
 
-	private Object[] buildFilterHQL(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName) {
+	private Object[] buildFilterHQL(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName,String orderBy,String orderType) {
 		Object[] rst = new Object[2];
 		// 角色
 		String className = "FactoryAbs";
@@ -90,15 +90,21 @@ public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 			sb.append(" and factory.id=?");
 			paramValueList.add(factoryId);
 		}
-		sb.append(" order by id");
+		
+		//排序
+		if(!Util.isEmpty(orderBy)){
+			sb.append(" order by " + orderBy + " " + orderType);
+		}else{
+			sb.append(" order by id");
+		}		
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
 		return rst;
 	}
 
-	public List<FactoryAbs> getFactoryList(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, type, factoryId, accountName);
+	public List<FactoryAbs> getFactoryList(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName,String orderBy,String orderType) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, type, factoryId, accountName,orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();

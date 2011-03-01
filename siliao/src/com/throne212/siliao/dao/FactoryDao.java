@@ -10,9 +10,9 @@ import com.throne212.siliao.domain.FactoryAbs;
 
 public interface FactoryDao extends BaseDao {
 	
-	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName);
+	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName,String orderBy,String orderType);
 	
-	public List<FactoryAbs> getFactoryList(FactoryAbs condition,Date fromDate,Date toDate,String type,Long factoryId,String accountName);
+	public List<FactoryAbs> getFactoryList(FactoryAbs condition,Date fromDate,Date toDate,String type,Long factoryId,String accountName,String orderBy,String orderType);
 	
 
 }

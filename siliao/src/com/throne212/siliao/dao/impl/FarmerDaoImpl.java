@@ -16,11 +16,11 @@ import com.throne212.siliao.domain.Farmer;
 
 public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 
-	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, int pageIndex) {
+	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, int pageIndex,String orderBy,String orderType) {
 		PageBean<Farmer> page = new PageBean<Farmer>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate);
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 
@@ -42,7 +42,7 @@ public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 		return page;
 	}
 
-	private Object[] buildFilterHQL(Farmer condition, Date fromDate, Date toDate) {
+	private Object[] buildFilterHQL(Farmer condition, Date fromDate, Date toDate,String orderBy,String orderType) {
 		Object[] rst = new Object[2];
 		StringBuffer sb = new StringBuffer("from Farmer where (enable is null or enable=true)");
 		List paramValueList = new ArrayList();
@@ -79,15 +79,20 @@ public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 			sb.append(" and createDate<=?");
 			paramValueList.add(toDate);
 		}
-		sb.append(" order by createDate desc,id asc");
+		//排序
+		if(!Util.isEmpty(orderBy)){
+			sb.append(" order by " + orderBy + " " + orderType);
+		}else{
+			sb.append(" order by id");
+		}		
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
 		return rst;
 	}
 
-	public List<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate);
+	public List<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate,String orderBy,String orderType) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();

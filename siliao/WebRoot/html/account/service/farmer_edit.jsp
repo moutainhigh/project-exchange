@@ -38,7 +38,7 @@
 	</head>
 	<body>
 		<div class="page_title">
-			饲料管理系统 > 数据设定 > 密码修改
+			饲料管理系统 > 数据设定 > 农户编辑
 		</div>
 		<jsp:include page="../../../msg.jsp"></jsp:include>
 		<br />

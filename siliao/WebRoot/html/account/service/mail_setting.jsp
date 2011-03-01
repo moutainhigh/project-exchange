@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="page_title">
-			饲料管理系统 > 数据设定 > 密码修改
+			饲料管理系统 > 数据设定 > 邮件设定
 		</div>
 		<jsp:include page="../../../msg.jsp"></jsp:include>
 		<br />

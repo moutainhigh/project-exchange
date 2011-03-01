@@ -81,7 +81,7 @@
 		<form action="${appPath}data_saveRate.htm" method="get">
 		<input type="hidden" name="rate.id" value="${rate.id}"/>
 		<div class="page_title">
-			饲料管理系统 > 单据管理 > 新建利率
+			饲料管理系统 > 数据设定 > 利率编辑
 		</div>
 		<jsp:include page="../../../msg.jsp"></jsp:include>
 		<br />

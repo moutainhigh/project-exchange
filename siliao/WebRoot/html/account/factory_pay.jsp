@@ -80,7 +80,7 @@
 	</head>
 	<body>
 		<div class="page_title">
-			饲料管理系统 > 财务统计 > 厂商统计
+			饲料管理系统 > 财务统计 > 厂商结算
 		</div>
 		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />

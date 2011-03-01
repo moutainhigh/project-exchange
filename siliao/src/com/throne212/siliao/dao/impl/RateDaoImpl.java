@@ -15,11 +15,11 @@ import com.throne212.siliao.domain.Rate;
 
 public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 
-	public PageBean<Rate> getRateList(Rate condition,Date fromDate,Date toDate,Date fromDate2,Date toDate2,String rateName,int pageIndex) {
+	public PageBean<Rate> getRateList(Rate condition,Date fromDate,Date toDate,Date fromDate2,Date toDate2,String rateName,int pageIndex,String orderBy,String orderType) {
 		PageBean<Rate> page = new PageBean<Rate>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName);
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName, orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 
@@ -41,7 +41,7 @@ public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 		return page;
 	}
 
-	private Object[] buildFilterHQL(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2,String rateName) {
+	private Object[] buildFilterHQL(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2,String rateName,String orderBy,String orderType) {
 		Object[] rst = new Object[2];
 		StringBuffer sb = new StringBuffer("from Rate where (enable is null or enable=true)");
 		List paramValueList = new ArrayList();
@@ -89,15 +89,20 @@ public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 			sb.append(" and endDate<=?");
 			paramValueList.add(toDate2);
 		}
-		sb.append(" order by id asc");
+		//排序
+		if(!Util.isEmpty(orderBy)){
+			sb.append(" order by " + orderBy + " " + orderType);
+		}else{
+			sb.append(" order by id");
+		}		
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
 		return rst;
 	}
 
-	public List<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2,String rateName) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName);
+	public List<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2,String rateName,String orderBy,String orderType) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName, orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();

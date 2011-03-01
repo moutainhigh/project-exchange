@@ -19,12 +19,12 @@ import com.throne212.siliao.domain.ManagerAccount;
 
 public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 
-	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer pageIndex, String farmType, Long farmId, String accountName) {
+	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer pageIndex, String farmType, Long farmId, String accountName,String orderBy,String orderType) {
 
 		PageBean<FarmAbs> page = new PageBean<FarmAbs>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName);
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName, orderBy, orderType);
 
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
@@ -48,7 +48,7 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 
 	}
 
-	private Object[] buildFilterHQL(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName) {
+	private Object[] buildFilterHQL(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName,String orderBy,String orderType) {
 		Object[] rst = new Object[2];
 		// 角色
 		String className = "FarmAbs";
@@ -99,15 +99,20 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 				paramValueList.add(farmId);
 			}
 		}
-		sb.append(" order by id");
+		//排序
+		if(!Util.isEmpty(orderBy)){
+			sb.append(" order by " + orderBy + " " + orderType);
+		}else{
+			sb.append(" order by id");
+		}		
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
 		rst[1] = paramValueList;
 		return rst;
 	}
 
-	public List<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName) {
-		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName);
+	public List<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName,String orderBy,String orderType) {
+		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName, orderBy, orderType);
 		String hql = (String) hqlArr[0];
 		List paramList = (List) hqlArr[1];
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();

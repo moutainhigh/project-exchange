@@ -84,16 +84,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return farmer;
 	}
 
-	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, Integer page) {
+	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, Integer page,String orderBy,String orderType) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return farmerDao.getFarmerList(condition, fromDate, toDate, pageIndex);
+		return farmerDao.getFarmerList(condition, fromDate, toDate, pageIndex, orderBy, orderType);
 	}
 
-	public String getFarmerExcelDownloadFile(Farmer condition, Date fromDate, Date toDate) {
-		List<Farmer> farmerList = farmerDao.getFarmerList(condition, fromDate, toDate);
+	public String getFarmerExcelDownloadFile(Farmer condition, Date fromDate, Date toDate,String orderBy,String orderType) {
+		List<Farmer> farmerList = farmerDao.getFarmerList(condition, fromDate, toDate, orderBy, orderType);
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -261,16 +261,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return rate;
 	}
 
-	public PageBean<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName, Integer page) {
+	public PageBean<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName, Integer page,String orderBy,String orderType) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return rateDao.getRateList(condition, fromDate, toDate, fromDate2, toDate2, rateName, pageIndex);
+		return rateDao.getRateList(condition, fromDate, toDate, fromDate2, toDate2, rateName, pageIndex, orderBy, orderType);
 	}
 
-	public String getRateExcelDownloadFile(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName) {
-		List<Rate> rateList = rateDao.getRateList(condition, fromDate, toDate, fromDate2, toDate2, rateName);
+	public String getRateExcelDownloadFile(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName,String orderBy,String orderType) {
+		List<Rate> rateList = rateDao.getRateList(condition, fromDate, toDate, fromDate2, toDate2, rateName, orderBy, orderType);
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -433,18 +433,18 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	}
 
 	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer page, String farmType, Long farmId,
-			String accountName) {
+			String accountName,String orderBy,String orderType) {
 
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, accountName);
+		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, accountName, orderBy, orderType);
 	}
 
-	public String getFarmAbsExcelDownloadFile(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName) {
+	public String getFarmAbsExcelDownloadFile(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName,String orderBy,String orderType) {
 
-		List<FarmAbs> farmAbsList = farmAbsDao.getFarmAbsList(condition, fromDate, toDate, farmType, farmId, accountName);
+		List<FarmAbs> farmAbsList = farmAbsDao.getFarmAbsList(condition, fromDate, toDate, farmType, farmId, accountName, orderBy, orderType);
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -562,16 +562,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return factoryAbs;
 	}
 
-	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName) {
+	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName,String orderBy,String orderType) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return factoryDao.getFactoryAbsList(condition, fromDate, toDate, pageIndex, type, factoryId, accountName);
+		return factoryDao.getFactoryAbsList(condition, fromDate, toDate, pageIndex, type, factoryId, accountName, orderBy, orderType);
 	}
 
-	public String getFactoryExcelDownloadFile(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName) {
-		List<FactoryAbs> factoryList = factoryDao.getFactoryList(condition, fromDate, toDate, type, factoryId, accountName);
+	public String getFactoryExcelDownloadFile(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName,String orderBy,String orderType) {
+		List<FactoryAbs> factoryList = factoryDao.getFactoryList(condition, fromDate, toDate, type, factoryId, accountName, orderBy, orderType);
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));

@@ -132,7 +132,7 @@ public class DataAction extends BaseAction {
 	private Date toDate;
 
 	public String farmerList() {
-		pageBean = dataBiz.getFarmerList(farmer, fromDate, toDate, page);
+		pageBean = dataBiz.getFarmerList(farmer, fromDate, toDate, page,orderBy,orderType);
 		return "farmer_list";
 	}
 
@@ -147,7 +147,7 @@ public class DataAction extends BaseAction {
 	}
 
 	public String exportFarmerExcel() {
-		String path = dataBiz.getFarmerExcelDownloadFile(farmer, fromDate, toDate);
+		String path = dataBiz.getFarmerExcelDownloadFile(farmer, fromDate, toDate,orderBy,orderType);
 		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
@@ -269,7 +269,7 @@ public class DataAction extends BaseAction {
 	private String rateName;
 
 	public String rateList() {
-		pageBean = dataBiz.getRateList(rate, fromDate, toDate, fromDate2, toDate2, rateName, page);
+		pageBean = dataBiz.getRateList(rate, fromDate, toDate, fromDate2, toDate2, rateName, page,orderBy,orderType);
 		return "rate_list";
 	}
 
@@ -284,7 +284,7 @@ public class DataAction extends BaseAction {
 	}
 
 	public String exportRateExcel() {
-		String path = dataBiz.getRateExcelDownloadFile(rate, fromDate, toDate, fromDate2, toDate2, rateName);
+		String path = dataBiz.getRateExcelDownloadFile(rate, fromDate, toDate, fromDate2, toDate2, rateName,orderBy,orderType);
 		if (path != null) {
 			try {
 				this.setDownloadFile(new FileInputStream(path));
@@ -329,7 +329,7 @@ public class DataAction extends BaseAction {
 					newfarmAbs.setCreateName(farmAbs.getCreateName());
 					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
 					
-					//设置area到account
+					//设置farm到account
 					managerAccount.setFarm(newfarmAbs);
 					baseBiz.saveOrUpdateEntity(managerAccount);
 					
@@ -376,7 +376,7 @@ public class DataAction extends BaseAction {
 	private String accountName;
 
 	public String farmAbsList() {
-		pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType, farmId, accountName);
+		pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType, farmId, accountName,orderBy,orderType);
 		return "farmabs_list";
 	}
 
@@ -391,7 +391,7 @@ public class DataAction extends BaseAction {
 	}
 
 	public String exportFarmAbsExcel() {
-		String path = dataBiz.getFarmAbsExcelDownloadFile(farmAbs, fromDate, toDate, farmType, farmId, accountName);
+		String path = dataBiz.getFarmAbsExcelDownloadFile(farmAbs, fromDate, toDate, farmType, farmId, accountName,orderBy,orderType);
 		if (path != null) {
 			try {
 				this.setMsg("农场或管区列表");
@@ -454,7 +454,7 @@ public class DataAction extends BaseAction {
 					account.setProvider(p);
 					baseBiz.saveOrUpdateEntity(account);
 					
-					this.setMsg("厂商或饲料供应厂保存成功【" + p.getName() + "】");
+					this.setMsg("厂商或饲料供应厂保存成功【" + f.getName() + "】");
 					this.setFactoryAbs(null);
 					this.setFactoryType(null);
 					return factoryList();
@@ -472,10 +472,23 @@ public class DataAction extends BaseAction {
 	}
 
 	public String factoryList() {
-		pageBean = dataBiz.getFactoryAbsList(factoryAbs, fromDate, toDate, page, factoryType, factoryId, accountName);
+		pageBean = dataBiz.getFactoryAbsList(factoryAbs, fromDate, toDate, page, factoryType, factoryId, accountName,orderBy,orderType);
 		return "factory_list";
 	}
-
+	public String exportFactoryExcel() {
+		String path = dataBiz.getFactoryExcelDownloadFile(factoryAbs, fromDate, toDate, factoryType, factoryId, accountName,orderBy,orderType);
+		if (path != null) {
+			try {
+				this.setMsg("厂商或供料厂列表");
+				this.setDownloadFile(new FileInputStream(path));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
 	public String deleteFactory() {
 		if (factoryAbs != null && factoryAbs.getId() != null) {
 			dataBiz.deleteFactory(factoryAbs);
