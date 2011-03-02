@@ -357,7 +357,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Number(3, i, f.getTotalAmount()));
 				sheet.addCell(new Number(4, i, f.getTotalMoney()));
 				sheet.addCell(new Number(5, i, f.getTotalOwn())); 
-				sheet.addCell(new Number(6, i++, f.getTotalPay()));
+				sheet.addCell(new Number(6, i, f.getTotalPay()));
 				sheet.addCell(new Label(7, i++, f.getPayPercentage()));
 				
 			}
@@ -369,8 +369,8 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			sheet.addCell(new Number(3, i, doubles1[0]));
 			sheet.addCell(new Number(4, i, doubles1[1]));
 			sheet.addCell(new Number(5, i,doubles1[2])); 
-			sheet.addCell(new Number(6, i++,doubles1[3] ));
-			sheet.addCell(new Label(7, i++,""));
+			sheet.addCell(new Number(6, i,doubles1[3] ));
+			sheet.addCell(new Label(7, i,""));
 			
 			WritableSheet sheet2 = workbook.createSheet("饲料厂供料情况", 0);
 			// 加表头
@@ -386,22 +386,22 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			// 加内容
 			int i2 = 1;
 			for (ProviderStatDO f2 : list2) {
-				sheet.addCell(new Number(0, i2, f2.getOrderNum()));
-				sheet.addCell(new Label(1, i2, f2.getProviderName()));
-				sheet.addCell(new Number(2, i2, f2.getTotalAmount()));
-				sheet.addCell(new Number(3, i2, f2.getTotalMoney()));
-				sheet.addCell(new Number(4, i2, f2.getTotalRateMoney()));
-				sheet.addCell(new Label(5, i2, f2.getFarmName())); 
+				sheet2.addCell(new Number(0, i2, f2.getOrderNum()));
+				sheet2.addCell(new Label(1, i2, f2.getProviderName()));
+				sheet2.addCell(new Number(2, i2, f2.getTotalAmount()));
+				sheet2.addCell(new Number(3, i2, f2.getTotalMoney()));
+				sheet2.addCell(new Number(4, i2, f2.getTotalRateMoney()));
+				sheet2.addCell(new Label(5, i2++, f2.getFarmName())); 
 				
 			}
 			//合计
 			Double[]doubles2=(Double[])list2.get(0).getTotal();
-			sheet.addCell(new Label(0, i2, "合计"));
-			sheet.addCell(new Label(1, i2, ""));
-			sheet.addCell(new Number(2, i2,doubles2[0] ));
-			sheet.addCell(new Number(3, i2, doubles2[1]));
-			sheet.addCell(new Number(4, i2, doubles2[2]));
-			sheet.addCell(new Number(5, i2, doubles2[3]));
+			sheet2.addCell(new Label(0, i2, "合计"));
+			sheet2.addCell(new Label(1, i2, ""));
+			sheet2.addCell(new Number(2, i2,doubles2[0] ));
+			sheet2.addCell(new Number(3, i2, doubles2[1]));
+			sheet2.addCell(new Number(4, i2, doubles2[2]));
+			sheet2.addCell(new Number(5, i2, doubles2[3]));
 			
 			workbook.write();
 			workbook.close();
@@ -456,14 +456,14 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			
 			// 加内容
 			int i = 1;
-			for (FarmerStatDO f : list1) {
+			for (SysStatDO f : list1) {
 				sheet.addCell(new Number(0, i, f.getOrderNum()));
-				sheet.addCell(new Label(1, i, f.getAreaName()));
-				sheet.addCell(new Label(2, i, f.getAreaAccount()));
+				sheet.addCell(new Label(1, i, f.getFarmName()));
+				sheet.addCell(new Label(2, i, f.getManager()));
 				sheet.addCell(new Number(3, i, f.getTotalAmount()));
 				sheet.addCell(new Number(4, i, f.getTotalMoney()));
 				sheet.addCell(new Number(5, i, f.getTotalOwn())); 
-				sheet.addCell(new Number(6, i++, f.getTotalPay()));
+				sheet.addCell(new Number(6, i, f.getTotalPay()));
 				sheet.addCell(new Label(7, i++, f.getPayPercentage()));
 				
 			}
@@ -475,39 +475,42 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			sheet.addCell(new Number(3, i, doubles1[0]));
 			sheet.addCell(new Number(4, i, doubles1[1]));
 			sheet.addCell(new Number(5, i,doubles1[2])); 
-			sheet.addCell(new Number(6, i++,doubles1[3] ));
-			sheet.addCell(new Label(7, i++,""));
+			sheet.addCell(new Number(6, i,doubles1[3] ));
+			sheet.addCell(new Label(7, i,""));
 			
 			WritableSheet sheet2 = workbook.createSheet("饲料厂供料情况", 0);
 			// 加表头
 
 			sheet2.addCell(new Label(0, 0, "序号", format));
-			sheet2.addCell(new Label(1, 0, "供货饲料厂", format));
+			sheet2.addCell(new Label(1, 0, "饲料厂商", format));
 			sheet2.addCell(new Label(2, 0, "累计供货量(吨)", format));
-			sheet2.addCell(new Label(3, 0, "合计金额", format));
-			sheet2.addCell(new Label(4, 0, "单笔本息合计", format));
-			sheet2.addCell(new Label(5, 0, "农场", format));
+			sheet2.addCell(new Label(3, 0, "料款金额", format));
+			sheet2.addCell(new Label(4, 0, "已付款", format));
+			sheet2.addCell(new Label(5, 0, "欠款余额", format));
+			sheet2.addCell(new Label(6, 0, "付款率", format));
 			
 			
 			// 加内容
 			int i2 = 1;
-			for (ProviderStatDO f2 : list2) {
-				sheet.addCell(new Number(0, i2, f2.getOrderNum()));
-				sheet.addCell(new Label(1, i2, f2.getProviderName()));
-				sheet.addCell(new Number(2, i2, f2.getTotalAmount()));
-				sheet.addCell(new Number(3, i2, f2.getTotalMoney()));
-				sheet.addCell(new Number(4, i2, f2.getTotalRateMoney()));
-				sheet.addCell(new Label(5, i2, f2.getFarmName())); 
+			for (FactoryStatDO f2 : list2) {
+				sheet2.addCell(new Number(0, i2, f2.getOrderNum()));
+				sheet2.addCell(new Label(1, i2, f2.getFactoryName()));
+				sheet2.addCell(new Number(2, i2, f2.getTotalAmount()));
+				sheet2.addCell(new Number(3, i2, f2.getTotalMoney()));
+				sheet2.addCell(new Number(4, i2, f2.getTotalPay()));
+				sheet.addCell(new Number(5, i2, f2.getOwnBalance())); 
+				sheet.addCell(new Label(6, i2++, f2.getPayPercentage())); 
 				
 			}
 			//合计
 			Double[]doubles2=(Double[])list2.get(0).getTotal();
-			sheet.addCell(new Label(0, i2, "合计"));
-			sheet.addCell(new Label(1, i2, ""));
-			sheet.addCell(new Number(2, i2,doubles2[0] ));
-			sheet.addCell(new Number(3, i2, doubles2[1]));
-			sheet.addCell(new Number(4, i2, doubles2[2]));
-			sheet.addCell(new Number(5, i2, doubles2[3]));
+			sheet2.addCell(new Label(0, i2, "合计"));
+			sheet2.addCell(new Label(1, i2, ""));
+			sheet2.addCell(new Number(2, i2,doubles2[0] ));
+			sheet2.addCell(new Number(3, i2, doubles2[1]));
+			sheet2.addCell(new Number(4, i2, doubles2[2]));
+			sheet2.addCell(new Number(5, i2, doubles2[3]));
+			sheet2.addCell(new Label(6, i2, ""));
 			
 			workbook.write();
 			workbook.close();
@@ -524,6 +527,6 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		
 		
 		//excel编辑代码...
-		return "";
+		
 	}
 }
