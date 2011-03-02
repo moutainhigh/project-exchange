@@ -137,6 +137,7 @@
 			<br />
 			
 			操作记录：
+<c:if test="${'供货饲料厂' == factoryAbs.factoryType}">
 <table class="data_list_table">
 	<tr>
 		<th>编号</th>
@@ -164,17 +165,53 @@
 						<td class="list_data_text">
 							${l.msg }
 						</td>
-		<td class="list_data_text">${factoryAbs.name}</td>
+		<td class="list_data_text">${l.name}</td>
 		<td class="list_data_text">
-							<c:if test="${'供货饲料厂' == factoryAbs.factoryType}">供货饲料厂</c:if>
-							<c:if test="${'饲料厂商' == factoryAbs.factoryType}">饲料厂商</c:if>
+							${l.type}
 						</td>
-		<td class="list_data_text"><c:if test="${'供货饲料厂' == factoryAbs.factoryType}">${factoryAbs.factory.name}</c:if>&nbsp;</td>
-		<td class="list_data_text"><c:if test="${'供货饲料厂' == factoryAbs.factoryType}">${factoryAbs.account.name}</c:if>&nbsp;</td>
-		<td class="list_data_text">${factoryAbs.remark}</td>
+		<td class="list_data_text">${l.factoryName} &nbsp;</td>
+		<td class="list_data_text">${l.account} &nbsp;</td>
+		<td class="list_data_text">${l.remark}</td>
 	</tr>
 	</c:forEach>
 </table>
+</c:if>
+<c:if test="${'饲料厂商' == factoryAbs.factoryType}">
+<table class="data_list_table">
+	<tr>
+		<th>编号</th>
+		<th>操作人</th>
+		<th>操作时间</th>
+		<th>操作过程</th>
+		<th>饲料厂或厂商名</th>
+		<th>类别</th>
+		
+		<th>备注</th>
+	</tr>
+	<c:forEach items="${logList}" var="l" varStatus="status">
+	<tr>
+		<tr>
+						<td class="list_data_text">
+							${status.count }
+						</td>
+						<td class="list_data_text">
+							${l.byWho.name }
+						</td>
+						<td class="list_data_text">
+							<fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd" />
+						</td>
+						<td class="list_data_text">
+							${l.msg }
+						</td>
+		<td class="list_data_text">${l.name}</td>
+		<td class="list_data_text">
+							${l.type}
+							</td>
+		<td class="list_data_text">${l.remark}</td>
+	</tr>
+	</c:forEach>
+</table>
+</c:if>
 			<br/>
 			<div class="button_bar">
 				<button class="common_button" onclick="back();">

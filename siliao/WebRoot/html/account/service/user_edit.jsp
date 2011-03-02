@@ -52,7 +52,7 @@
 		</div>
 		<jsp:include page="../../../msg.jsp"></jsp:include>
 		<br />
-		新建用户
+
 		<form action="${appPath}data_saveUser.htm" method="get">
 			<input type="hidden" name="user.id" value="${user.id}"/>
 			<c:if test="${not empty user.id}">
@@ -64,7 +64,7 @@
 			<tr>
 		<th>用户名</th>
 		<td>
-			<input name="user.loginName" id="loginName" value="${user.loginName}" <c:if test="${not empty user.id}">disabled="disabled"</c:if>/><span class="red_star">*(用来登录的用户名)</span>
+			<input name="user.loginName" id="loginName" value="${user.loginName}" <c:if test="${not empty user.id}">disabled="disabled"</c:if>/><span class="red_star">*</span>
 		</td>
 		<th>密码</th>
 		<td>
@@ -75,7 +75,7 @@
 		<th>角色</th>
 		<td>
 				<select id="userRole" name="role" <c:if test="${not empty user.id}">disabled="disabled"</c:if>></select>
-			<span class="red_star">*(人员的权限分配)</span>
+			<span class="red_star">*</span>
 		</td>
 		<th>备注</th>
 		<td>
@@ -129,11 +129,11 @@
 		<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
 		<td class="list_data_text">${l.msg }</td>
 		<td class="list_data_text">${l.user.loginName }</td>
-		<td class="list_data_text">${l.user.name }</td>
+		<td class="list_data_text">${l.name }</td>
 		<td class="list_data_text">${l.user.userRole }</td>
-		<td class="list_data_text">${l.user.remark }</td>
-		<td class="list_data_text">${l.user.email }</td>
-		<td class="list_data_text">${l.user.tel }</td>
+		<td class="list_data_text">${l.remark }</td>
+		<td class="list_data_text">${l.email }</td>
+		<td class="list_data_text">${l.tel }</td>
 	</tr>
 	</c:forEach>
 </table>

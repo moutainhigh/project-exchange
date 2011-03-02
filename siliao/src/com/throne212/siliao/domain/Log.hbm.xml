@@ -23,6 +23,9 @@
 		<joined-subclass name="FactoryLog" table="yh_log_factory">
 			<key column="log_id"></key>
 			<many-to-one name="factory" column="factory_id" lazy="false"></many-to-one>
+			<property name="name"></property>
+			<property name="type"></property>
+			<property name="remark"></property>
 		</joined-subclass>
 		<joined-subclass name="RateLog" table="yh_log_rate">
 			<key column="log_id"></key>
@@ -31,18 +34,36 @@
 		<joined-subclass name="AreaLog" table="yh_log_area">
 			<key column="log_id"></key>
 			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
+			<property name="name"></property>
+			<property name="type"></property>
+			<property name="remark"></property>
+			<property name="name"></property>
+			<property name="farmName"></property>
+			<property name="account"></property>
 		</joined-subclass>
 		<joined-subclass name="FarmLog" table="yh_log_farm">
 			<key column="log_id"></key>
 			<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>
+			<property name="name"></property>
+			<property name="type"></property>
+			<property name="remark"></property>
 		</joined-subclass>
 		<joined-subclass name="ProviderLog" table="yh_log_provider">
 			<key column="log_id"></key>
 			<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
+			<property name="name"></property>
+			<property name="type"></property>
+			<property name="remark"></property>
+			<property name="factoryName"></property>
+			<property name="account"></property>
 		</joined-subclass>
 		<joined-subclass name="UserLog" table="yh_log_user">
 			<key column="log_id"></key>
 			<many-to-one name="user" column="user_id" lazy="false"></many-to-one>
+			<property name="remark"></property>
+			<property name="email"></property>
+			<property name="tel"></property>
+			<property name="name"></property>
 		</joined-subclass>
 		<joined-subclass name="FarmerLog" table="yh_log_farmer">
 			<key column="log_id"></key>

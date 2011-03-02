@@ -97,7 +97,7 @@
 					角色
 				</th>
 				<td>
-					<select id="userRole" name="user.role"></select>
+					<select id="userRole" name="role"></select>
 				</td>
 				<th height="28">
 					手机号码

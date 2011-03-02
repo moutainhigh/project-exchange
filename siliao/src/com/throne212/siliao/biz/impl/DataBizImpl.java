@@ -170,6 +170,10 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			// 保存日志
 			UserLog log = Util.getBaseLog(UserLog.class, WebConstants.OP_CREATE);
 			log.setUser(user);
+			log.setRemark(user.getRemark());
+			log.setEmail(user.getEmail());
+			log.setTel(user.getTel());
+			log.setTel(user.getName());
 			baseDao.saveOrUpdate(log);
 			logger.info("添加用户【" + user.getLoginName() + "】成功");
 		} else {
@@ -181,6 +185,10 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			// 保存日志
 			UserLog log = Util.getBaseLog(UserLog.class, WebConstants.OP_UPDATE);
 			log.setUser(user);
+			log.setRemark(user.getRemark());
+			log.setEmail(user.getEmail());
+			log.setTel(user.getTel());
+			log.setTel(user.getName());
 			baseDao.saveOrUpdate(log);
 			logger.info("更新用户【" + user.getLoginName() + "】成功");
 		}
@@ -393,12 +401,20 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			if (farmAbs instanceof Farm) {
 				FarmLog log = Util.getBaseLog(FarmLog.class, WebConstants.OP_CREATE);
 				log.setFarm((Farm) farmAbs);
+				log.setName(farmAbs.getName());
+				log.setType(farmAbs.getFarmType());
+				log.setRemark(farmAbs.getRemark());
 				baseDao.saveOrUpdate(log);
 				logger.info("添加农场【" + farmAbs.getName() + "】成功");
 			} else if (farmAbs instanceof Area) {
 
 				AreaLog log = Util.getBaseLog(AreaLog.class, WebConstants.OP_CREATE);
 				log.setArea((Area) farmAbs);
+				log.setName(farmAbs.getName());
+				log.setType(farmAbs.getFarmType());
+				log.setRemark(farmAbs.getRemark());
+				log.setAccount(farmAbs.getManagerName());
+				log.setFarmName(farmAbs.getFarmName());
 				baseDao.saveOrUpdate(log);
 				logger.info("添加管区【" + farmAbs.getName() + "】成功");
 
@@ -410,11 +426,19 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			if (farmAbs instanceof Farm) {
 				FarmLog log = Util.getBaseLog(FarmLog.class, WebConstants.OP_UPDATE);
 				log.setFarm((Farm) farmAbs);
+				log.setName(farmAbs.getName());
+				log.setType(farmAbs.getFarmType());
+				log.setRemark(farmAbs.getRemark());
 				baseDao.saveOrUpdate(log);
 				logger.info("更新农场【" + farmAbs.getName() + "】成功");
 			} else if (farmAbs instanceof Area) {
 				AreaLog log = Util.getBaseLog(AreaLog.class, WebConstants.OP_UPDATE);
 				log.setArea((Area) farmAbs);
+				log.setName(farmAbs.getName());
+				log.setType(farmAbs.getFarmType());
+				log.setRemark(farmAbs.getRemark());
+				log.setAccount(farmAbs.getManagerName());
+				log.setFarmName(farmAbs.getFarmName());
 				baseDao.saveOrUpdate(log);
 				logger.info("更新管区【" + farmAbs.getName() + "】成功");
 			}
@@ -526,11 +550,19 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			if (factoryAbs instanceof Factory) {
 				FactoryLog log = Util.getBaseLog(FactoryLog.class, WebConstants.OP_CREATE);
 				log.setFactory((Factory) factoryAbs);
+				log.setName(factoryAbs.getName());
+				log.setType(factoryAbs.getFactoryType());
+				log.setRemark(factoryAbs.getRemark());
 				baseDao.saveOrUpdate(log);
 				logger.info("添加厂商【" + factoryAbs.getName() + "】成功");
 			} else if (factoryAbs instanceof Provider) {
 				ProviderLog log = Util.getBaseLog(ProviderLog.class, WebConstants.OP_CREATE);
 				log.setProvider((Provider) factoryAbs);
+				log.setName(factoryAbs.getName());
+				log.setType(factoryAbs.getFactoryType());
+				log.setRemark(factoryAbs.getRemark());
+				log.setFactoryName(factoryAbs.getFactoryName());
+				log.setAccount(factoryAbs.getManagerName());
 				baseDao.saveOrUpdate(log);
 				logger.info("添加供应厂【" + factoryAbs.getName() + "】成功");
 			}
@@ -541,11 +573,19 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			if (factoryAbs instanceof Factory) {
 				FactoryLog log = Util.getBaseLog(FactoryLog.class, WebConstants.OP_UPDATE);
 				log.setFactory((Factory) factoryAbs);
+				log.setName(factoryAbs.getName());
+				log.setType(factoryAbs.getFactoryType());
+				log.setRemark(factoryAbs.getRemark());
 				baseDao.saveOrUpdate(log);
 				logger.info("更新农场【" + factoryAbs.getName() + "】成功");
 			} else if (factoryAbs instanceof Provider) {
 				ProviderLog log = Util.getBaseLog(ProviderLog.class, WebConstants.OP_UPDATE);
 				log.setProvider((Provider) factoryAbs);
+				log.setName(factoryAbs.getName());
+				log.setType(factoryAbs.getFactoryType());
+				log.setRemark(factoryAbs.getRemark());
+				log.setFactoryName(factoryAbs.getFactoryName());
+				log.setAccount(factoryAbs.getManagerName());
 				baseDao.saveOrUpdate(log);
 				logger.info("更新管区【" + factoryAbs.getName() + "】成功");
 			}

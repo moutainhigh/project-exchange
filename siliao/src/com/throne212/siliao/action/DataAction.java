@@ -170,6 +170,15 @@ public class DataAction extends BaseAction {
 			return "user_edit";
 		}
 		if (user != null && !Util.isEmpty(user.getLoginName())) {// 添加或更新用户信息
+			if(user.getName()!=null&&!"".equals(user.getName())){
+				User userInDB=dataBiz.getEntityByUnique(User.class, "name", user.getName());
+				if (userInDB!=null) {
+					this.setMsg("姓名重复，请重新填入！");
+					return "user_edit";
+				}	
+			}
+			
+			
 			if (user.getId() == null) {
 				User userInDB = dataBiz.getEntityByUnique(User.class, "loginName", user.getLoginName());
 				if (userInDB != null) {

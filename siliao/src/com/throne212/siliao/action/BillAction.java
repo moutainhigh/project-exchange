@@ -11,11 +11,15 @@ import com.throne212.siliao.biz.BillBiz;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.domain.Area;
+import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.BillLog;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.domain.ManagerAccount;
+import com.throne212.siliao.domain.User;
 
 public class BillAction extends BaseAction {
 
@@ -38,6 +42,25 @@ public class BillAction extends BaseAction {
 
 	// 提交单据
 	public String addNewBill() {
+		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (userInsess.getUserRole().endsWith(WebConstants.USER_NAME_AREA)) {
+			userInsess=(AreaAccount) userInsess;
+			List<Area> areaList=billBiz.getEntitiesByColumn(Area.class, "account", userInsess);
+			if (areaList.size()==0) {
+				this.setMsg("账户没关联任何管区,无权进行操作！");
+				return "bill_edit";
+			}
+		}else if (userInsess.getUserRole().endsWith(WebConstants.USER_NAME_MANAGER)) {
+			userInsess=(ManagerAccount) userInsess;
+			List<Farm> farmList=billBiz.getEntitiesByColumn(Farm.class, "manager", userInsess);
+			if (farmList.size()==0) {
+				this.setMsg("账户没关联任何农场,无权进行操作！");
+				return "bill_edit";
+				
+			}
+		}
+		
+		
 		if (bill == null) {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
 			return "bill_edit";
