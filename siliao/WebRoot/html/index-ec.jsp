@@ -915,13 +915,18 @@ function initialise() {
 
 	
 	L02 = theMenu.addChild(l2ID, "Folder", "账务统计", "", "饲料经理可以在此统计数据...");
+	<c:if test="${userObj.userRole=='系统管理员' || userObj.userRole=='饲料经理'}">
 	L0201 = theMenu.addChild(L02, "Document", "厂商统计", "${appPath}stat_queryFactory.htm", "统计本区域内对各个厂商采购情况...");
 	L0202 = theMenu.addChild(L02, "Document", "农户统计", "${appPath}stat_queryFarmer.htm", "查询养殖户的付款情况...");
 	L0203 = theMenu.addChild(L02, "Document", "厂商结算", "${appPath}stat_settleFactory.htm", "厂商账户内的余额和利息结算...");
 	L0204 = theMenu.addChild(L02, "Document", "农户结算", "${appPath}stat_settleFarmer.htm", "结算农户的利息和存款欠款情况...");
-	L0205 = theMenu.addChild(L02, "Document", "农场统计", "${appPath}stat_queryFarmStat.htm", "饲料经理查询各个区域内的发料供料，采购，完成计划百分比等...");	
+	L0205 = theMenu.addChild(L02, "Document", "农场统计", "${appPath}stat_queryFarmStat.htm", "饲料经理查询各个区域内的发料供料，采购，完成计划百分比等...");
+	</c:if>
+	<c:if test="${userObj.userRole=='系统管理员'}">
 	L0205 = theMenu.addChild(L02, "Document", "集团统计", "${appPath}stat_querySysStat.htm", "总公司管理员在此查询各农场饲料销售情况");	
-
+	</c:if>
+	
+	<c:if test="${userObj.userRole=='系统管理员'}">
 	L03 = theMenu.addChild(l2ID, "Folder", "数据设定", "", "设定饲料厂商的数据...");
 	L0301 = theMenu.addChild(L03, "Document", "利率设定", "${appPath}data_rateList.htm", "设定每个饲料厂和每个农场账户的利率...");
 	L0302 = theMenu.addChild(L03, "Document", "农场维护", "${appPath}data_farmAbsList.htm", "添加删除修改农场，设定农场负责人...");
@@ -929,7 +934,8 @@ function initialise() {
 	L0304 = theMenu.addChild(L03, "Document", "厂商维护", "${appPath}data_factoryList.htm", "添加删除修改厂商...");
 	L0305 = theMenu.addChild(L03, "Document", "邮件设定", "${appPath}data_mailSetting.htm", "设定系统自动发送邮件....");
 	L0306 = theMenu.addChild(L03, "Document", "用户管理", "${appPath}data_userList.htm", "系统管理员分配各个人员的角色...");
-
+	</c:if>
+	
 	L04 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
 	L0401 = theMenu.addChild(L04, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
 	L0402 = theMenu.addChild(L04, "Document", "信息补全", "${appPath}html/personal/infoAdd.jsp", "添加维护个人资料信息");
