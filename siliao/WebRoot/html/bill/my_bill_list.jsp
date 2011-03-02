@@ -94,25 +94,25 @@
 						创建日期
 					</th>
 					<td>
-						<input name="fromDate" size="10" class="datetime" value="<fmt:formatDate value="${param.fromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input name="fromDate" size="10" class="datetime" value="${param.fromDate}"/>
 						-
-						<input name="toDate" size="10" class="datetime" value="<fmt:formatDate value="${param.toDate}" pattern="yyyy-MM-dd"/>"/>
+						<input name="toDate" size="10" class="datetime" value="${param.toDate}"/>
 					</td>
 					<th>
 						计划到料时间
 					</th>
 					<td>
-						<input name="planFromDate" size="10" class="datetime" value="<fmt:formatDate value="${param.planFromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input name="planFromDate" size="10" class="datetime" value="${param.planFromDate}"/>
 						-
-						<input name="planToDate" size="10" class="datetime" value="<fmt:formatDate value="${param.planToDate}" pattern="yyyy-MM-dd"/>"/>
+						<input name="planToDate" size="10" class="datetime" value="${param.planToDate}"/>
 					</td>
 					<th>
 						发料日期
 					</th>
 					<td>
-						<input name="sendFromDate" size="10" class="datetime" value="<fmt:formatDate value="${param.sendFromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input name="sendFromDate" size="10" class="datetime" value="${param.sendFromDate}"/>
 						-
-						<input name="sendToDate" size="10" class="datetime" value="<fmt:formatDate value="${param.sendToDate}" pattern="yyyy-MM-dd"/>"/>
+						<input name="sendToDate" size="10" class="datetime" value="${param.sendToDate}"/>
 					</td>
 				</tr>
 				<tr>

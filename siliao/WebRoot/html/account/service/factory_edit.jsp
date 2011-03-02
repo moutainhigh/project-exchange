@@ -50,6 +50,8 @@
 					}else if($('#factoryAccount').val() == null || $('#factoryAccount').val()==''){
 					alert('负责人不能为空');
 					return false;
+					}else{
+					document.forms[0].submit();
 					}
 				}else{
 					document.forms[0].submit();

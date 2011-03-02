@@ -124,9 +124,9 @@
 					创建时间
 				</th>
 				<td>
-					<input size="10" name="fromDate" class="datetime" value="<fmt:formatDate value="${param.fromDate}" pattern="yyyy-MM-dd"/>"/>
+					<input size="10" name="fromDate" class="datetime" value="${param.fromDate}"/>
 					-
-					<input size="10" name="toDate" class="datetime" value="<fmt:formatDate value="${param.toDate}" pattern="yyyy-MM-dd"/>"/>
+					<input size="10" name="toDate" class="datetime" value="${param.toDate}"/>
 				</td>
 			</tr>
 		</table>

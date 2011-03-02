@@ -168,9 +168,9 @@
 		
 			<th height="22">到料日期</th>
 					<td>
-						<input size="10" name="finishFromDate" class="datetime" value="<fmt:formatDate value="${param.finishFromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="finishFromDate" class="datetime" value="${param.finishFromDate}"/>
 						-
-						<input size="10" name="finishToDate" class="datetime" value="<fmt:formatDate value="${param.finishToDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="finishToDate" class="datetime" value="${param.finishToDate}"/>
 					</td>
 		<th>农场名称</th>
 		<td>
