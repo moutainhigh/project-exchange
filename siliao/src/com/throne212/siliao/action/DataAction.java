@@ -177,6 +177,16 @@ public class DataAction extends BaseAction {
 					return "user_edit";
 				}
 			}
+			if(user.getEmail()!=null&&!"".equals(user.getEmail())){
+				User userEmail=dataBiz.getEntityByUnique(User.class, "email", user.getEmail());
+				if (userEmail!=null) {
+					this.setMsg("此邮箱已被占用，请更换可用邮箱！");
+					return "user_edit";
+				}
+			}
+			
+			
+			
 			User newUser = null;
 			if (!Util.isEmpty(role)) {
 				if (WebConstants.USER_NAME_ADMIN.endsWith(role)) {// 添加或更新系统管理员
@@ -252,6 +262,24 @@ public class DataAction extends BaseAction {
 			return "rate_edit";
 		}
 		if (rate != null && rate.getValue() != null) {// 添加或更新利率记录
+			if (rate.getFromDate().getTime()>rate.getEndDate().getTime()) {
+				this.setMsg("起始时间必须小于结束时间！");
+				return "rate_edit";
+			}
+			if (rate.getRateType()!=null&&!"".equals(rate.getRateType())) {
+				List<Rate> rateList=dataBiz.getEntitiesByColumn(Rate.class, "rateType", rate.getRateType());
+				for (Rate rateExs : rateList) {
+					if ((rateExs.getFromDate().getTime()<rate.getFromDate().getTime()&&rate.getFromDate().getTime()<rateExs.getEndDate().getTime())
+							||(rateExs.getFromDate().getTime()<rate.getEndDate().getTime()&&rate.getEndDate().getTime()<rateExs.getEndDate().getTime())) {
+						this.setMsg("时间段重复，请重新设置！");
+						return "rate_edit";
+					}
+				}
+				
+			} else {
+				this.setMsg("请选择利率主体");
+				return "rate_edit";
+			}
 			rate = dataBiz.saveRate(rate);
 			this.setMsg("利率保存成功");
 			rate = null;
@@ -319,7 +347,7 @@ public class DataAction extends BaseAction {
 			}
 			// FarmAbs newfarmAbs = null;
 			if (!Util.isEmpty(farmType)) {
-				if (WebConstants.FARM_TYPE_FARM.endsWith(farmType)) {// 添加或更新系统管理员
+				if (WebConstants.FARM_TYPE_FARM.endsWith(farmType)) {// 添加或更新农场或管区
 					Farm newfarmAbs = new Farm();
 					ManagerAccount managerAccount = baseBiz.getEntityById(ManagerAccount.class, farmManagerId);
 					newfarmAbs.setId(farmAbs.getId());

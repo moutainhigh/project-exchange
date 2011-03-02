@@ -22,5 +22,5 @@ public interface BaseBiz {
 	public Long getEntitySum(Class clazz);
 	
 	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue);
-
+	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value);
 }

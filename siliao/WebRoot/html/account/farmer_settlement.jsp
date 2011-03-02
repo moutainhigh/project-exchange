@@ -144,9 +144,9 @@
 		
 		<th height="22">发料日期</th>
 					<td>
-						<input size="10" name="sendFromDate" class="datetime" value="<fmt:formatDate value="${sendFromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="sendFromDate" class="datetime" value="<fmt:formatDate value="${param.sendFromDate}" pattern="yyyy-MM-dd"/>"/>
 						-
-						<input size="10" name="sendToDate" class="datetime" value="<fmt:formatDate value="${sendToDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="sendToDate" class="datetime" value="<fmt:formatDate value="${param.sendToDate}" pattern="yyyy-MM-dd"/>"/>
 					</td>
 		<th>饲料厂商</th>
 		<td>
@@ -167,9 +167,9 @@
 		
 			<th height="22">到料日期</th>
 					<td>
-						<input size="10" name="finishFromDate" class="datetime" value="<fmt:formatDate value="${finishFromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="finishFromDate" class="datetime" value="<fmt:formatDate value="${param.finishFromDate}" pattern="yyyy-MM-dd"/>"/>
 						-
-						<input size="10" name="finishToDate" class="datetime" value="<fmt:formatDate value="${finishToDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="finishToDate" class="datetime" value="<fmt:formatDate value="${param.finishToDate}" pattern="yyyy-MM-dd"/>"/>
 					</td>
 		<th>农场名称</th>
 		<td>

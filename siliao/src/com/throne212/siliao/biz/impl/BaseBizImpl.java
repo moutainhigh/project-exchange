@@ -63,5 +63,8 @@ public class BaseBizImpl implements BaseBiz {
 	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue){
 		return baseDao.getAllLike(clazz,colName,likeValue);
 	}
-
+	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value){
+		
+		return baseDao.getEntitiesByColumn(clazz, colName, value);
+	}
 }

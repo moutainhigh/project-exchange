@@ -126,9 +126,9 @@
 				<tr>
 					<th height="22">发料日期</th>
 					<td>
-						<input size="10" name="fromDate" class="datetime" value="<fmt:formatDate value="${fromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="fromDate" class="datetime" value="<fmt:formatDate value="${param.fromDate}" pattern="yyyy-MM-dd"/>"/>
 						-
-						<input size="10" name="toDate" class="datetime" value="<fmt:formatDate value="${toDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="toDate" class="datetime" value="<fmt:formatDate value="${param.toDate}" pattern="yyyy-MM-dd"/>"/>
 					</td>
 					<th>农场名称</th>
 					<td>

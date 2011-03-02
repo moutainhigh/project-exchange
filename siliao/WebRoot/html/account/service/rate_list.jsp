@@ -111,17 +111,17 @@
 						开始日期
 					</th>
 					<td>
-						<input size="10" name="fromDate" class="datetime" value="<fmt:formatDate value="${fromDate}" pattern="yyyy-MM-dd"/>" />
+						<input size="10" name="fromDate" class="datetime" value="<fmt:formatDate value="${param.fromDate}" pattern="yyyy-MM-dd"/>" />
 						-
-						<input size="10" name="toDate" class="datetime" value="<fmt:formatDate value="${toDate}" pattern="yyyy-MM-dd"/>" />
+						<input size="10" name="toDate" class="datetime" value="<fmt:formatDate value="${param.toDate}" pattern="yyyy-MM-dd"/>" />
 					</td>
 					<th>
 						结束日期
 					</th>
 					<td>
-						<input size="10" name="fromDate2" class="datetime" value="<fmt:formatDate value="${fromDate2}" pattern="yyyy-MM-dd"/>" />
+						<input size="10" name="fromDate2" class="datetime" value="<fmt:formatDate value="${param.fromDate2}" pattern="yyyy-MM-dd"/>" />
 						-
-						<input size="10" name="toDate2" class="datetime" value="<fmt:formatDate value="${toDate2}" pattern="yyyy-MM-dd"/>" />
+						<input size="10" name="toDate2" class="datetime" value="<fmt:formatDate value="${param.toDate2}" pattern="yyyy-MM-dd"/>" />
 					</td>
 				</tr>
 				<tr>

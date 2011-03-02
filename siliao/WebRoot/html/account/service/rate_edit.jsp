@@ -29,7 +29,7 @@
 					alert('请选择利率主体');
 					return false;
 				}else if($('#rateValue').val() == null || $('#rateValue').val()==''){
-					alert('用户的值不能为空');
+					alert('利率的值不能为空');
 					return false;
 				}else if($('#fromDate').val() == '' || $('#endDate').val()==''){
 					alert('起始日期不能为空');

@@ -47,14 +47,17 @@
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});			
 			function submitFarmAbs(){
-				if($('#"farmAbsName"').val() == null || $('#"farmAbsName"').val()==''){
+				if($('#farmAbsName').val() == null || $('#farmAbsName').val()==''){
 					alert('农场或管区名称不能为空');
 					return false;
-				}else if($('#farmabsFarmType').val() == null || $('#farmabsFarmType').val()==''){
-					alert('所属农场不能为空');
+				}else if($('#farmType').val() == null || $('#farmType').val()==''){
+					alert('类型不能为空');
 					return false;
 				}else if($('#farmManager').val() == null || $('#farmManager').val()==''){
 					alert('负责人不能为空');
+					return false;
+				}else if ($('#farmType').val() =='管区' && ($('#farmName').val() == null || $('#farmName').val()=='')){
+				 	alert('所属农场不能为空');
 					return false;
 				}else{
 					document.forms[0].submit();

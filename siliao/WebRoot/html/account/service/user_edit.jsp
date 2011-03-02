@@ -36,7 +36,11 @@
 				}else if($('#userName').val() == null || $('#userName').val()==''){
 					alert('用户的姓名不能为空');
 					return false;
-				}else{
+				}else if($('#email').val() == null || $('#email').val()==''){
+					alert('用户的邮箱不能为空');
+					return false;
+				}
+				else{
 					document.forms[0].submit();
 				}
 			}
@@ -82,7 +86,7 @@
 		<th>邮箱地址</th>
 		<td>
 			<input name="user.email" id="email" value="${user.email}"  />
-			<span class="red_star"></span>
+			<span class="red_star">*</span>
 		</td>
 		<th>手机号码</th>
 		<td>

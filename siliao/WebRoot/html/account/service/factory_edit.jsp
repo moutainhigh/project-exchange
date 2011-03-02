@@ -36,15 +36,21 @@
 			});				
 			
 			function submitFactoryAbs(){
-				if($('#"factoryAbsName"').val() == null || $('#"factoryAbsName"').val()==''){
+				if($('#factoryAbsName').val() == null || $('#factoryAbsName').val()==''){
 					alert('供货饲料厂或厂商名称不能为空');
 					return false;
-				}else if($('#factory').val() == null || $('#factory').val()==''){
+				}else if($('#factoryType').val() == null || $('#factoryType').val()==''){
+					alert('类型名称不能为空');
+					return false;
+				}
+				if($('#factoryType').val() =='供货饲料厂'){
+					if($('#factory').val() == null || $('#factory').val()==''){
 					alert('所属厂商不能为空');
 					return false;
-				}else if($('#factoryAccount').val() == null || $('#factoryAccount').val()==''){
+					}else if($('#factoryAccount').val() == null || $('#factoryAccount').val()==''){
 					alert('负责人不能为空');
 					return false;
+					}
 				}else{
 					document.forms[0].submit();
 				}
