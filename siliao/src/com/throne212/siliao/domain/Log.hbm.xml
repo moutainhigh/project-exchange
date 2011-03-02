@@ -30,6 +30,11 @@
 		<joined-subclass name="RateLog" table="yh_log_rate">
 			<key column="log_id"></key>
 			<many-to-one name="rate" column="rate_id" lazy="false"></many-to-one>
+				<property name="targetName"></property>
+				<property name="value"></property>
+				<property name="fromDate"></property>
+				<property name="endDate"></property>
+				<property name="remark"></property>
 		</joined-subclass>
 		<joined-subclass name="AreaLog" table="yh_log_area">
 			<key column="log_id"></key>
@@ -47,6 +52,7 @@
 			<property name="name"></property>
 			<property name="type"></property>
 			<property name="remark"></property>
+			<property name="manager"></property>
 		</joined-subclass>
 		<joined-subclass name="ProviderLog" table="yh_log_provider">
 			<key column="log_id"></key>
@@ -68,6 +74,12 @@
 		<joined-subclass name="FarmerLog" table="yh_log_farmer">
 			<key column="log_id"></key>
 			<many-to-one name="farmer" column="farmer_id" lazy="false"></many-to-one>
+			<property name="name"></property>
+			<property name="areaName"></property>
+			<property name="tel"></property>
+			<property name="no"></property>
+			<property name="email"></property>
+			<property name="remark"></property>
 		</joined-subclass>
 		<joined-subclass name="BillLog" table="yh_log_bill">
 			<key column="log_id"></key>

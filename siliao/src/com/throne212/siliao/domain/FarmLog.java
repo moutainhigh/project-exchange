@@ -10,6 +10,7 @@ public class FarmLog extends Log implements Serializable {
 	private String name;
 	private String type;
 	private String remark;
+	private String manager;
 	public Farm getFarm() {
 		return farm;
 	}
@@ -40,6 +41,14 @@ public class FarmLog extends Log implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 
 }

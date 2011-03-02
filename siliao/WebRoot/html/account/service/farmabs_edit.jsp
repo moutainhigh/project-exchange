@@ -153,6 +153,7 @@
 			</table>
 
 			操作记录：
+			<c:if test="${'管区' == farmAbs.farmType}">
 			<table class="data_list_table">
 				<tr>
 					<th>
@@ -168,7 +169,7 @@
 						操作过程
 					</th>
 					<th>
-						农场管区名
+						管区名
 					</th>
 					<th>
 						类别
@@ -199,28 +200,86 @@
 							${l.msg }
 						</td>
 						<td class="list_data_text">
-							<c:if test="${'农场' == farmAbs.farmType}">${l.farm.name}</c:if>
-							<c:if test="${'管区' == farmAbs.farmType}">${l.area.name}</c:if>
+							${l.name }
 						</td>
 						<td class="list_data_text">
-							<c:if test="${'农场' == farmAbs.farmType}">农场</c:if>
-							<c:if test="${'管区' == farmAbs.farmType}">管区</c:if>
+							${l.type }
 						</td>
 						<td class="list_data_text">
-							<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.farm.name}</c:if>
+							${l.farmName }
 							&nbsp;
 						</td>
 						<td class="list_data_text">
-							<c:if test="${'农场' == farmAbs.farmType}">${farmAbs.manager.name}</c:if>
-							<c:if test="${'管区' == farmAbs.farmType}">${farmAbs.account.name}</c:if>
+							${l.account }
 						</td>
 						<td class="list_data_text">
-							${farmAbs.remark}
+							${l.remark}
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
+</c:if>
+<c:if test="${'农场' == farmAbs.farmType}">
+<table class="data_list_table">
+				<tr>
+					<th>
+						编号
+					</th>
+					<th>
+						操作人
+					</th>
+					<th>
+						操作时间
+					</th>
+					<th>
+						操作过程
+					</th>
+					<th>
+						农场名
+					</th>
+					<th>
+						类别
+					</th>
+					
+					<th>
+						负责人
+					</th>
+					<th>
+						备注
+					</th>
+				</tr>
 
+				<c:forEach items="${logList}" var="l" varStatus="status">
+					<tr>
+						<td class="list_data_text">
+							${status.count }
+						</td>
+						<td class="list_data_text">
+							${l.byWho.name }
+						</td>
+						<td class="list_data_text">
+							<fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd" />
+						</td>
+						<td class="list_data_text">
+							${l.msg }
+						</td>
+						<td class="list_data_text">
+							${l.name }
+						</td>
+						<td class="list_data_text">
+								${l.type }
+						</td>
+						
+						<td class="list_data_text">
+							${l.manager }
+						</td>
+						<td class="list_data_text">
+							${l.remark}
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+</c:if>
 
 			<br />
 			<div class="button_bar">

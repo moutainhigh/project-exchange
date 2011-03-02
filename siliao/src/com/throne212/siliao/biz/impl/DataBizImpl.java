@@ -59,6 +59,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			// 保存日志
 			FarmerLog log = Util.getBaseLog(FarmerLog.class, WebConstants.OP_CREATE);
 			log.setFarmer(farmer);
+			log.setName(farmer.getName());
+			log.setAreaName(farmer.getArea().getName());
+			log.setNo(farmer.getNo());
+			log.setTel(farmer.getTel());
+			log.setEmail(farmer.getEmail());
+			log.setRemark(farmer.getRemark());
 			baseDao.saveOrUpdate(log);
 			logger.info("添加农户【" + farmer.getName() + "】成功");
 		} else {
@@ -70,6 +76,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			// 保存日志
 			FarmerLog log = Util.getBaseLog(FarmerLog.class, WebConstants.OP_UPDATE);
 			log.setFarmer(farmer);
+			log.setName(farmer.getName());
+			log.setAreaName(farmer.getArea().getName());
+			log.setNo(farmer.getNo());
+			log.setTel(farmer.getTel());
+			log.setEmail(farmer.getEmail());
+			log.setRemark(farmer.getRemark());
 			baseDao.saveOrUpdate(log);
 			logger.info("更新农户【" + farmer.getName() + "】成功");
 		}
@@ -335,6 +347,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			// 保存日志
 			RateLog log = Util.getBaseLog(RateLog.class, WebConstants.OP_CREATE);
 			log.setRate(rate);
+			log.setValue(rate.getValue());
+			log.setFromDate(rate.getFromDate());
+			log.setEndDate(rate.getEndDate());
+			log.setRemark(rate.getRemark());
+			if ("农场".equals(rate.getRateType())) {
+				log.setTargetName(rate.getFarm().getName());
+				
+			} else if("供应厂".equals(rate.getRateType())) {
+				log.setTargetName(rate.getProvider().getName());
+			}
 			baseDao.saveOrUpdate(log);
 			logger.info("添加农户【" + rate.getId() + "】成功");
 		} else {
@@ -346,6 +368,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			// 保存日志
 			RateLog log = Util.getBaseLog(RateLog.class, WebConstants.OP_UPDATE);
 			log.setRate(rate);
+			log.setValue(rate.getValue());
+			log.setFromDate(rate.getFromDate());
+			log.setEndDate(rate.getEndDate());
+			log.setRemark(rate.getRemark());
+			if ("农场".equals(rate.getRateType())) {
+				log.setTargetName(rate.getFarm().getName());
+				
+			} else if("供应厂".equals(rate.getRateType())) {
+				log.setTargetName(rate.getProvider().getName());
+			}
 			baseDao.saveOrUpdate(log);
 			logger.info("更新利率【" + rate.getId() + "】成功");
 		}
@@ -404,6 +436,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 				log.setName(farmAbs.getName());
 				log.setType(farmAbs.getFarmType());
 				log.setRemark(farmAbs.getRemark());
+				log.setManager(farmAbs.getManagerName());
 				baseDao.saveOrUpdate(log);
 				logger.info("添加农场【" + farmAbs.getName() + "】成功");
 			} else if (farmAbs instanceof Area) {
@@ -429,6 +462,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 				log.setName(farmAbs.getName());
 				log.setType(farmAbs.getFarmType());
 				log.setRemark(farmAbs.getRemark());
+				log.setManager(farmAbs.getManagerName());
 				baseDao.saveOrUpdate(log);
 				logger.info("更新农场【" + farmAbs.getName() + "】成功");
 			} else if (farmAbs instanceof Area) {

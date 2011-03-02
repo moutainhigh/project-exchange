@@ -149,16 +149,15 @@
 					<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
 					<td class="list_data_text">${l.msg }</td>
 					<td class="list_data_text">
-						<c:if test="${'f' == l.rate.rateType}">${l.rate.farm.name}</c:if>
-						<c:if test="${'p' == l.rate.rateType}">${l.rate.provider.name}</c:if>
+						${l.targetName}
 					</td>
 					<td class="list_data_text">${l.rate.value }</td>
 					<td class="list_data_text">
-						<fmt:formatDate value="${l.rate.fromDate}" pattern="yyyy-MM-dd"/>
+						<fmt:formatDate value="${l.fromDate}" pattern="yyyy-MM-dd"/>
 						至 
-						<fmt:formatDate value="${l.rate.endDate}" pattern="yyyy-MM-dd"/>
+						<fmt:formatDate value="${l.endDate}" pattern="yyyy-MM-dd"/>
 					</td>
-					<td class="list_data_text">${l.rate.remark }</td>
+					<td class="list_data_text">${l.remark }</td>
 				</tr>
 				</c:forEach>
 			</table> <br> 

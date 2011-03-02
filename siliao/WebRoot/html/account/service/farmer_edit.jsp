@@ -113,12 +113,12 @@
 					<td class="list_data_text">${l.byWho.name }</td>
 					<td class="list_data_text"><fmt:formatDate value="${l.logTime}" pattern="yyyy-MM-dd"/></td>
 					<td class="list_data_text">${l.msg }</td>
-					<td class="list_data_text">${l.farmer.name }</td>
-					<td class="list_data_text">${l.farmer.area.name }</td>
-					<td class="list_data_text">${l.farmer.tel }</td>
-					<td class="list_data_text">${l.farmer.no }</td>
-					<td class="list_data_text">${l.farmer.tel }</td>
-					<td class="list_data_text">${l.farmer.remark }</td>
+					<td class="list_data_text">${l.name }</td>
+					<td class="list_data_text">${l.areaName }</td>
+					<td class="list_data_text">${l.tel }</td>
+					<td class="list_data_text">${l.no }</td>
+					<td class="list_data_text">${l.email }</td>
+					<td class="list_data_text">${l.remark }</td>
 				</tr>
 				</c:forEach>
 			</table>
