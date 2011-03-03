@@ -66,7 +66,7 @@
 			}
 			function fillTotal(amountDom){
 				var val = amountDom.value;
-				var unitPrice = '${bill.priceOnOrder}';
+				var unitPrice = '${bill.unitPrice}';
 				if(val != null && val != ''){
 					$(amountDom).parent().parent().find('.totalPrice').val(val * unitPrice);
 				}
@@ -92,7 +92,7 @@
 				str += '	<td class="list_data_text">'+areaName+'<input type="hidden" name="billDetail" value="'+detail+'" />'+'</td>';
 				str += '	<td class="list_data_text">'+farmerName+'</td>';
 				str += '	<td class="list_data_text amount_td">'+amount+'</td>';
-				str += '	<td class="list_data_text">${bill.priceOnOrder}</td>';
+				str += '	<td class="list_data_text">${bill.unitPrice}</td>';
 				str += '	<td class="list_data_text">'+totalPrice+'</td>';
 				str += '	<td class="list_data_text"><button class="common_button" onclick="return $(this).parent().parent().remove();">删除</button></td>';
 				str += '</tr>';
@@ -192,7 +192,7 @@
 					</td>						
 					<td class="list_data_text"><select name="farmerList" class="farmerList" ></select><span class="red_star"></span></td>
 					<td class="list_data_text"><input class="amount" value="" onblur="fillTotal(this)"></td>
-					<td class="list_data_text">${bill.priceOnOrder}</td>
+					<td class="list_data_text">${bill.unitPrice}</td>
 					<td class="list_data_text"><input class="totalPrice" value=""></td>
 					<td class="list_data_text">
 						<input class="common_button" type="button" onclick="return addItem(this);" value="添加">
@@ -203,7 +203,7 @@
 			<br />
 			<div class="button_bar">
 				<button class="common_button" onclick="return finishBill();">
-					倒料信息提交
+					到料信息提交
 				</button>
 				<button class="common_button" onclick="back();">
 					返回

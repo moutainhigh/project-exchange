@@ -913,9 +913,8 @@ function initialise() {
 	L0105 = theMenu.addChild(L01, "Document", "自助对账", "${appPath}bill_sentBillList.htm", "供管理员将送达后的饲料记录在案...");
 	</c:if>
 
-	
-	L02 = theMenu.addChild(l2ID, "Folder", "账务统计", "", "饲料经理可以在此统计数据...");
 	<c:if test="${userObj.userRole=='系统管理员' || userObj.userRole=='饲料经理'}">
+	L02 = theMenu.addChild(l2ID, "Folder", "账务统计", "", "饲料经理可以在此统计数据...");
 	L0201 = theMenu.addChild(L02, "Document", "厂商统计", "${appPath}stat_queryFactory.htm", "统计本区域内对各个厂商采购情况...");
 	L0202 = theMenu.addChild(L02, "Document", "农户统计", "${appPath}stat_queryFarmer.htm", "查询养殖户的付款情况...");
 	L0203 = theMenu.addChild(L02, "Document", "厂商结算", "${appPath}stat_settleFactory.htm", "厂商账户内的余额和利息结算...");

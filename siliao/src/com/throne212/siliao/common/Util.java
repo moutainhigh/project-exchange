@@ -51,6 +51,11 @@ public class Util {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
 		return dateFormat.format(date);
 	}
+	
+	public static Date getNextDay(Date date) {
+		long time = date.getTime() + 24*60*60*1000;
+		return new Date(time);
+	}
 
 	public static boolean isEmpty(String str) {
 		if (str == null || "".equals(str.trim()))

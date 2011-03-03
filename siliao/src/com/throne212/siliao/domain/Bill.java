@@ -3,6 +3,7 @@ package com.throne212.siliao.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 
 //单据
@@ -77,6 +78,13 @@ public class Bill extends MyEntity implements Serializable {
 		}else{
 			return "";
 		}
+	}
+	
+	public double getUnitPrice(){
+		if(priceOnOrder!=null && agentUnitPrice!=null){
+			return Util.addMoney(priceOnOrder, agentUnitPrice);
+		}
+		return 0;
 	}
 	
 

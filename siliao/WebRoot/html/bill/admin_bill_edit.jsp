@@ -148,6 +148,52 @@
 				</tr>
 			</table>
 			<br />
+			<br />
+				<div class="biz_div"> 
+				发料配置<span class="red_star"></span>：
+				<table class="query_form_table" id="table2">
+					<tr>
+
+						<th>
+							开票价格
+						</th>
+						<td>
+							${bill.priceOnOrder }
+						</td>
+
+						<th>
+							代理费单价
+						</th>
+						<td>
+							${bill.agentUnitPrice }
+						</td>
+					</tr>
+					<tr>
+
+						<th>
+							运输人
+						</th>
+						<td>
+							${bill.translater }
+						</td>
+						<th>
+							票号
+						</th>
+						<td>
+							${bill.orderNo }
+						</td>
+
+					</tr>
+					<tr>
+						<th>
+							备注
+						</th>
+						<td colspan=3>
+							${bill.remark }
+						</td>
+					</tr>
+				</table> 
+				</div>
 <span class="red_star">状态修复</span>：
 <table class="query_form_table" id="table1">
 	<tr>

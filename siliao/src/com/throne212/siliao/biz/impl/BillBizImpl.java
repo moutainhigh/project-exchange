@@ -123,10 +123,11 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	public Bill saveBillDraft(Bill bill) {
 		if(bill == null)
 			return null;
+		/*
 		if (!Util.isEmpty(bill.getFarmer().getName())) {
 			Farmer farmer = this.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
 			bill.setFarmer(farmer);
-		}
+		}*/
 		Farm farm = billDao.getEntityById(Farm.class, bill.getFarm().getId());
 		Factory factory = billDao.getEntityById(Factory.class, bill.getFactory().getId());
 		// 生成订单号
@@ -530,9 +531,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		pf.setFarmer(bill.getFarmer());
 		//pf.setMoney(bill.getFinishPrice());
 		//获取实付料款
-		double agentMoney = bill.getAmount() * bill.getAgentUnitPrice();
-		double actualMoney = bill.getFinishPrice() - agentMoney;
-		pf.setMoney(Util.roundMoney(actualMoney));
+		pf.setMoney(Util.multiplyMoney(bill.getAmount(),bill.getPriceOnOrder()));
 		
 		pf.setRateFromDate(bill.getFinishDate());
 		pf.setType(0);

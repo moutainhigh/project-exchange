@@ -163,4 +163,8 @@ public class SendMail {
 		}
 		return true;
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }

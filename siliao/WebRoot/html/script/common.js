@@ -67,7 +67,7 @@ $(function(){
 	$('button').each(function(){
 		//alert($(this).text().indexOf('xcel'));
 		if($(this).text().indexOf('xcel') > -1){
-			$(this).css({'padding':'1px 0 0'});
+			$(this).css({'padding':'0'});
 		}
 	});
 });

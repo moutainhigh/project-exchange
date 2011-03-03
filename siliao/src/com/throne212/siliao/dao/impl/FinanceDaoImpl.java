@@ -120,7 +120,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (toDate != null) {
 			sb.append(" and bill.sendDate<=?");
-			paramValueList.add(toDate);
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
@@ -249,7 +249,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and bill.sendDate<=?");
-			paramValueList.add(sendToDate);
+			paramValueList.add(Util.getNextDate(sendToDate));
 		}
 
 		if (finishFromDate != null) {
@@ -258,7 +258,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (finishToDate != null) {
 			sb.append(" and bill.finishDate<=?");
-			paramValueList.add(finishToDate);
+			paramValueList.add(Util.getNextDate(finishToDate));
 		}
 
 		sb.append(" order by id asc");
@@ -383,7 +383,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (toDate != null) {
 			sb.append(" and rateFromDate<=?");
-			paramValueList.add(toDate);
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
@@ -516,7 +516,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and bill.sendDate<=?");
-			paramValueList.add(sendToDate);
+			paramValueList.add(Util.getNextDate(sendToDate));
 		}
 
 		if (finishFromDate != null) {
@@ -525,7 +525,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (finishToDate != null) {
 			sb.append(" and bill.finishDate<=?");
-			paramValueList.add(finishToDate);
+			paramValueList.add(Util.getNextDate(finishToDate));
 		}
 
 		sb.append(" order by id asc");

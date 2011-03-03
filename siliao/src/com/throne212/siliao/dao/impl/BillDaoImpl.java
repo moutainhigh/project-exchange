@@ -99,7 +99,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<=?");
-			paramValueList.add(toDate);
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		// 计划时间段
 		if (planFromDate != null) {
@@ -108,7 +108,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (planToDate != null) {
 			sb.append(" and planDate<=?");
-			paramValueList.add(planToDate);
+			paramValueList.add(Util.getNextDate(planToDate));
 		}
 		// 发料时间段
 		if (sendFromDate != null) {
@@ -117,7 +117,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and sendDate<=?");
-			paramValueList.add(sendToDate);
+			paramValueList.add(Util.getNextDate(sendToDate));
 		}
 
 		//用户

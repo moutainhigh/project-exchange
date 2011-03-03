@@ -52,7 +52,7 @@
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 				//农户名字的autocomplete
-				$("#farmerName").autocomplete('${appPath}ajax/queryFarmerName?time='+new Date().getTime(), {
+				/*$("#farmerName").autocomplete('${appPath}ajax/queryFarmerName?time='+new Date().getTime(), {
 					multiple: false,
 					minChars: 1,
 					parse: function(data) {
@@ -67,20 +67,30 @@
 					formatItem: function(item) {
 						return item;
 					}
-				});
-				//农场下拉菜单
-				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#farmId').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#farmId').append(str);
+				});*/
+				if(userRole == '系统管理员'){
+					//农场下拉菜单
+					$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#farmId').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#farmId').append(str);
+							}
+							if(farmId != ''){
+								$('#farmId').val(farmId);
+							}
 						}
-						if(farmId != ''){
-							$('#farmId').val(farmId);
-						}
-					}
-				});
+					});
+				}else if(userRole == '饲料经理' ){
+					<c:if test="${userObj.userRole == '饲料经理'}">
+					$('#farmId').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+					</c:if>
+				}else if(userRole == '管区负责人'){
+					<c:if test="${userObj.userRole == '管区负责人'}">
+					$('#farmId').html('<option value="${userObj.area.farm.id}">${userObj.area.farm.name}</option>');
+					</c:if>
+				}
 				//饲料厂商下拉菜单
 				$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -143,10 +153,12 @@
 				}
 			}
 			function confirmBill(){
-				if($('#farmerName').val() == null || $('#farmerName').val()==''){
+				/*if($('#farmerName').val() == null || $('#farmerName').val()==''){
 					alert('养殖户的姓名不能为空');
 					return false;
-				}else if($('#farmId').val() == null || $('#farmId').val()==''){
+				}else 
+				*/
+				if($('#farmId').val() == null || $('#farmId').val()==''){
 					alert('农场不能为空');
 					return false;
 				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
@@ -201,17 +213,18 @@
 					</td>
 				</tr>
 				<tr>
+					<!--  
 					<th>
 						养殖户姓名
 					</th>
 					<td>
 						<input id="farmerName" name="bill.farmer.name" value="${bill.farmer.name}" />
 						<span class="red_star">*(务必准确)</span>
-					</td>
+					</td>-->
 					<th>
 						农场
 					</th>
-					<td>
+					<td colspan="3">
 						<select id="farmId" name="bill.farm.id"></select>
 						<span class="red_star">*</span>
 					</td>

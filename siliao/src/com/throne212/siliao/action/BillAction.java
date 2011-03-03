@@ -191,7 +191,7 @@ public class BillAction extends BaseAction {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
 			return "bill_edit";
 		}
-		if (bill.getFarmer().getName() != null && !bill.getFarmer().getName().equals("")) {
+		/*if (bill.getFarmer().getName() != null && !bill.getFarmer().getName().equals("")) {
 			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
 			if (farmer == null) {
 				this.setMsg("保存失败，不存在此农户！");
@@ -200,7 +200,7 @@ public class BillAction extends BaseAction {
 				return "bill_edit";
 			}
 			bill.setFarmer(farmer);
-		}
+		}*/
 		if (bill.getFactory().getId() != null && !"".equals(bill.getFactory().getId())) {
 			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());
 			if (factory == null) {
@@ -342,11 +342,11 @@ public class BillAction extends BaseAction {
 	public String editSentBill() {
 		if (bill == null || bill.getId() == null) {
 			this.setMsg("参数错误");
-			return adminBillList();
+			return sentBillList();
 		}
 		bill = billBiz.getEntityById(Bill.class, bill.getId());
 		if(bill != null){
-			bill.setFinishPrice(Util.multiplyMoney(bill.getAmount(), bill.getPriceOnOrder()));
+			bill.setFinishPrice(Util.multiplyMoney(bill.getAmount(), Util.addMoney(bill.getPriceOnOrder(), bill.getAgentUnitPrice())));
 		}
 		return "sent_bill_edit";
 	}
