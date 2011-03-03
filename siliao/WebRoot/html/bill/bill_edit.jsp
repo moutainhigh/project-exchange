@@ -109,10 +109,11 @@
 				});
 			});	
 			function addNewBill(){
-				if($('#farmerName').val() == null || $('#farmerName').val()==''){
+				/*if($('#farmerName').val() == null || $('#farmerName').val()==''){
 					alert('养殖户的姓名不能为空');
 					return false;
-				}else if($('#farmId').val() == null || $('#farmId').val()==''){
+				}else */
+				if($('#farmId').val() == null || $('#farmId').val()==''){
 					alert('农场不能为空');
 					return false;
 				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){

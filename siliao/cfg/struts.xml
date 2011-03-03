@@ -33,6 +33,7 @@
                 <!-- 下载文件输出流定义 -->  
                 <param name="inputName">downloadFile</param>  
             </result>
+            <result name="error">/html/error.jsp</result>
 		</global-results>
 		<!-- 登入 -->
 		<action name="login" class="com.throne212.siliao.action.LoginAction">

@@ -43,17 +43,17 @@ public class BillAction extends BaseAction {
 	// 提交单据
 	public String addNewBill() {
 		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if (userInsess.getUserRole().endsWith(WebConstants.USER_NAME_AREA)) {
+		if (userInsess instanceof AreaAccount) {
 			userInsess=(AreaAccount) userInsess;
 			List<Area> areaList=billBiz.getEntitiesByColumn(Area.class, "account", userInsess);
-			if (areaList.size()==0) {
+			if (areaList.size()==0 || ((AreaAccount) userInsess).getArea() == null) {
 				this.setMsg("账户没关联任何管区,无权进行操作！");
 				return "bill_edit";
 			}
-		}else if (userInsess.getUserRole().endsWith(WebConstants.USER_NAME_MANAGER)) {
+		}else if (userInsess instanceof ManagerAccount) {
 			userInsess=(ManagerAccount) userInsess;
 			List<Farm> farmList=billBiz.getEntitiesByColumn(Farm.class, "manager", userInsess);
-			if (farmList.size()==0) {
+			if (farmList.size()==0 || ((ManagerAccount) userInsess).getFarm() == null) {
 				this.setMsg("账户没关联任何农场,无权进行操作！");
 				return "bill_edit";
 				
@@ -66,14 +66,9 @@ public class BillAction extends BaseAction {
 			return "bill_edit";
 		}
 		if (bill.getFarmer().getName() != null && !bill.getFarmer().getName().equals("")) {
-			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName());
-			if (farmer == null) {
-				this.setMsg("保存失败，不存在此农户！");
-				if (bill.getId() != null)
-					bill = billBiz.getEntityById(Bill.class, bill.getId());
-				return "bill_edit";
-			}
-			bill.setFarmer(farmer);
+			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName().trim());
+			if (farmer != null)
+				bill.setFarmer(farmer);
 		}
 		if (bill.getFactory().getId() != null && !"".equals(bill.getFactory().getId())) {
 			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());

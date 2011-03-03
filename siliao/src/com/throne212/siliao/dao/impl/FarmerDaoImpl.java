@@ -7,12 +7,17 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
 import com.throne212.siliao.dao.FarmerDao;
 import com.throne212.siliao.domain.Area;
+import com.throne212.siliao.domain.AreaAccount;
+import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.Farmer;
+import com.throne212.siliao.domain.ManagerAccount;
+import com.throne212.siliao.domain.User;
 
 public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 
@@ -78,6 +83,15 @@ public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 		if (toDate != null) {
 			sb.append(" and createDate<=?");
 			paramValueList.add(toDate);
+		}
+		//管区或饲料经理
+		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (userInsess instanceof AreaAccount) {
+			sb.append(" and area.account=?");
+			paramValueList.add(userInsess);
+		}else if (userInsess instanceof ManagerAccount) {
+			sb.append(" and area.farm.manager=?");
+			paramValueList.add(userInsess);
 		}
 		//排序
 		if(!Util.isEmpty(orderBy)){

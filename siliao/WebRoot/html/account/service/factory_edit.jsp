@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -101,6 +102,8 @@
 			<input type="hidden" name="factoryAbs.id" value="${factoryAbs.id}"/>
 			<c:if test="${not empty factoryAbs.id}">
 			<input type="hidden" name="factoryAccountId" value="${factoryAccountId}"/>
+			<input type="hidden" name="factoryAbs.createName" value="${factoryAbs.createName}"/>
+			<input type="hidden" name="factoryAbs.createDate" value="<fmt:formatDate value="${factoryAbs.createDate}" pattern="yyyy-MM-dd" />"/>
 			</c:if>
 			<table class="query_form_table">
 	<tr>

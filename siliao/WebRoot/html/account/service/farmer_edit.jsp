@@ -12,19 +12,30 @@
 		<script type="text/javascript">
 			var currFarmId = '${farmer.id}';
 			var currArea = '${farmer.area.id}';
+			var userRole = '${userObj.userRole}';
 			$(function(){
-				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#area').html('');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#area').append(str);
+				if(userRole != '管区负责人'){
+					var url = "${appPath}ajax/getAllArea?time="+new Date().getTime();
+					if(userRole == '饲料经理')
+						url = "${appPath}ajax/getAreaByManager?time="+new Date().getTime();
+					$.getJSON(url, {}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#area').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#area').append(str);
+							}
+							if(currArea != ''){
+								$('#area').val(currArea);
+							}
 						}
-						if(currArea != ''){
-							$('#area').val(currArea);
-						}
-					}
-				});
+					});
+				}else{
+					//$('#area').attr('disabled',true);
+					<c:if test="${userObj.userRole == '管区负责人'}">
+					$('#area').html('<option value="${userObj.area.id}">${userObj.area.name}</option>');
+					</c:if>
+				}
 			});
 			function submitFarmer(){
 				if($('#farmerName').val() == null || $('#farmerName').val()==''){

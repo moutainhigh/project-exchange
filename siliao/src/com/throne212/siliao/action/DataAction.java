@@ -116,6 +116,16 @@ public class DataAction extends BaseAction {
 			return "farmer_edit";
 		}
 		if (farmer != null && !Util.isEmpty(farmer.getName())) {// 添加或更新农户信息
+			
+			//检查农户姓名是否重复
+			if(farmer.getId() == null){
+				List<Farmer> farmerList = baseBiz.getEntitiesByColumn(Farmer.class, "name", farmer.getName());
+				if(farmerList != null && farmerList.size() > 0){
+					this.setMsg("农户姓名重复【"+farmer.getName()+"】，请重新输入");
+					return "farmer_edit";
+				}
+			}
+			
 			farmer = dataBiz.saveFarmer(farmer);
 			this.setMsg("农户【" + farmer.getName() + "】保存成功");
 			farmer = null;
@@ -132,6 +142,25 @@ public class DataAction extends BaseAction {
 	private Date toDate;
 
 	public String farmerList() {
+		//查看管区负责人和饲料经理是否已经制定管区或农场
+		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (userInsess instanceof AreaAccount) {
+			userInsess=(AreaAccount) userInsess;
+			List<Area> areaList=baseBiz.getEntitiesByColumn(Area.class, "account", userInsess);
+			if (areaList.size()==0 || ((AreaAccount) userInsess).getArea() == null) {
+				this.setMsg("账户没关联任何管区,无权进行操作！");
+				return "error";
+			}
+		}else if (userInsess instanceof ManagerAccount) {
+			userInsess=(ManagerAccount) userInsess;
+			List<Farm> farmList=baseBiz.getEntitiesByColumn(Farm.class, "manager", userInsess);
+			if (farmList.size()==0 || ((ManagerAccount) userInsess).getFarm() == null) {
+				this.setMsg("账户没关联任何农场,无权进行操作！");
+				return "error";
+				
+			}
+		}
+		
 		pageBean = dataBiz.getFarmerList(farmer, fromDate, toDate, page,orderBy,orderType);
 		return "farmer_list";
 	}
@@ -364,6 +393,7 @@ public class DataAction extends BaseAction {
 					newfarmAbs.setManager(managerAccount);
 					newfarmAbs.setRemark(farmAbs.getRemark());
 					newfarmAbs.setCreateName(farmAbs.getCreateName());
+					newfarmAbs.setCreateDate(farmAbs.getCreateDate());
 					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
 					
 					//设置farm到account
@@ -387,6 +417,7 @@ public class DataAction extends BaseAction {
 					newfarmAbs.setFarm(farm);
 					newfarmAbs.setRemark(farmAbs.getRemark());
 					newfarmAbs.setCreateName(farmAbs.getCreateName());
+					newfarmAbs.setCreateDate(farmAbs.getCreateDate());
 					newfarmAbs = dataBiz.saveFarmAbs(newfarmAbs);
 					
 					//设置area到account
@@ -469,6 +500,7 @@ public class DataAction extends BaseAction {
 					f.setName(factoryAbs.getName());
 					f.setRemark(factoryAbs.getRemark());
 					f.setCreateName(factoryAbs.getCreateName());
+					f.setCreateDate(factoryAbs.getCreateDate());
 					f = dataBiz.saveFactoryAbs(f);
 					this.setMsg("厂商或饲料供应厂保存成功【" + f.getName() + "】");
 					this.setFactoryAbs(null);
@@ -486,6 +518,7 @@ public class DataAction extends BaseAction {
 					p.setFactory(f);
 					p.setRemark(factoryAbs.getRemark());
 					p.setCreateName(factoryAbs.getCreateName());
+					p.setCreateDate(factoryAbs.getCreateDate());
 					p = dataBiz.saveFactoryAbs(p);
 					
 					account.setProvider(p);

@@ -936,6 +936,11 @@ function initialise() {
 	L0306 = theMenu.addChild(L03, "Document", "用户管理", "${appPath}data_userList.htm", "系统管理员分配各个人员的角色...");
 	</c:if>
 	
+	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='管区负责人'}">
+	L03 = theMenu.addChild(l2ID, "Folder", "数据设定", "", "设定饲料厂商的数据...");
+	L0303 = theMenu.addChild(L03, "Document", "农户管理", "${appPath}data_farmerList.htm", "添加删除修改农户信息");
+	</c:if>
+	
 	L04 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
 	L0401 = theMenu.addChild(L04, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
 	L0402 = theMenu.addChild(L04, "Document", "信息补全", "${appPath}html/personal/infoAdd.jsp", "添加维护个人资料信息");

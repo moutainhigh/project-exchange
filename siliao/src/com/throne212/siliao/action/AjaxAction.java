@@ -48,6 +48,12 @@ public class AjaxAction extends BaseAction {
 		list = baseBiz.getAll(Area.class, "id", "asc");
 		return "area_list";
 	}
+	
+	public String getAreaByManager() {
+		ManagerAccount man = (ManagerAccount) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		list = baseBiz.getEntitiesByColumn(Area.class, "farm", man.getFarm());
+		return "area_list";
+	}
 
 	public String getRoleList() {
 		list = new ArrayList();

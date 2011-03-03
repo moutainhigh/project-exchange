@@ -63,4 +63,11 @@ function gotoPage(pageIndex,url){
 //让消息框慢慢消退
 $(function(){
 	$('#reqMsg').fadeOut(5000); 
+	//让所有的导出Excel按钮都小一点
+	$('button').each(function(){
+		//alert($(this).text().indexOf('xcel'));
+		if($(this).text().indexOf('xcel') > -1){
+			$(this).css({'padding':'1px 0 0'});
+		}
+	});
 });

@@ -80,6 +80,10 @@
 	<body>
 		<form action="${appPath}data_saveRate.htm" method="get">
 		<input type="hidden" name="rate.id" value="${rate.id}"/>
+		<c:if test="${not empty rate.id}">
+			<input type="hidden" name="rate.createName" value="${rate.createName}"/>
+			<input type="hidden" name="rate.createDate" value="${rate.createDate}"/>
+		</c:if>
 		<div class="page_title">
 			饲料管理系统 > 数据设定 > 利率编辑
 		</div>

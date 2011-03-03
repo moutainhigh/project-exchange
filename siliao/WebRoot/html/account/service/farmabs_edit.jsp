@@ -108,6 +108,8 @@
 			<c:if test="${not empty farmAbs.id}">
 				<input type="hidden" name="farmName" value="${farmName}" />
 				<input type="hidden" name="farmManager" value="${farmManager}" />
+				<input type="hidden" name="farmAbs.createName" value="${farmAbs.createName}"/>
+				<input type="hidden" name="farmAbs.createDate" value="<fmt:formatDate value="${farmAbs.createDate}" pattern="yyyy-MM-dd" />"/>
 			</c:if>
 			<table class="query_form_table">
 				<tr>
