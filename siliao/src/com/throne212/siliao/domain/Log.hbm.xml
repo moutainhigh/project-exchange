@@ -42,7 +42,6 @@
 			<property name="name"></property>
 			<property name="type"></property>
 			<property name="remark"></property>
-			<property name="name"></property>
 			<property name="farmName"></property>
 			<property name="account"></property>
 		</joined-subclass>
