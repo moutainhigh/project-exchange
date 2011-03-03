@@ -74,7 +74,7 @@
 	<tr>
 		<th>角色</th>
 		<td>
-				<select id="userRole" name="role" <c:if test="${not empty user.id}">disabled="disabled"</c:if>></select>
+				<select id="userRole" name="role"  <c:if test="${not empty user.id}">disabled="disabled"</c:if>></select>
 			<span class="red_star">*</span>
 		</td>
 		<th>备注</th>

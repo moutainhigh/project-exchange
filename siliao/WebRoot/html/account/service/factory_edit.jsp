@@ -44,10 +44,10 @@
 					return false;
 				}
 				if($('#factoryType').val() =='供货饲料厂'){
-					if($('#factory').val() == null || $('#factory').val()==''){
+					if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('所属厂商不能为空');
 					return false;
-					}else if($('#factoryAccount').val() == null || $('#factoryAccount').val()==''){
+					}else if($('#accountId').val() == null || $('#accountId').val()==''){
 					alert('负责人不能为空');
 					return false;
 					}else{

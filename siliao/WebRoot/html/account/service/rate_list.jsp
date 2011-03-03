@@ -213,7 +213,7 @@
 						${r.remark}
 					</td>
 					<td class="list_data_text">
-						<a href="javascript:void(0);" onclick="to('${appPath}data_saveRate.htm?rate.id=${r.id}')">修改</a>
+						<a href="${appPath}data_saveRate.htm?rate.id=${r.id}" >修改</a>
 						<a href="javascript:deleteRate(${r.id});">删除</a>
 					</td>
 				</tr>

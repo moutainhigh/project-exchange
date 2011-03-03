@@ -185,7 +185,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			log.setRemark(user.getRemark());
 			log.setEmail(user.getEmail());
 			log.setTel(user.getTel());
-			log.setTel(user.getName());
+			log.setName(user.getName());
 			baseDao.saveOrUpdate(log);
 			logger.info("添加用户【" + user.getLoginName() + "】成功");
 		} else {
@@ -200,7 +200,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			log.setRemark(user.getRemark());
 			log.setEmail(user.getEmail());
 			log.setTel(user.getTel());
-			log.setTel(user.getName());
+			log.setName(user.getName());
 			baseDao.saveOrUpdate(log);
 			logger.info("更新用户【" + user.getLoginName() + "】成功");
 		}

@@ -257,7 +257,7 @@
 					${f.createDate }
 				</td>
 				<td class="list_data_op">
-					<a href="javascript:void(0);" onclick="to('${appPath}data_saveFarmAbs.htm?farmAbs.id=${f.id}')">修改</a>
+					<a href="${appPath}data_saveFarmAbs.htm?farmAbs.id=${f.id}" >修改</a>
 					<a href="javascript:deleteFarmAbs(${f.id});">删除</a>
 				</td>
 			</tr>

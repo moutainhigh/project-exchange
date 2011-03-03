@@ -195,7 +195,7 @@
 					${f.remark }
 				</td>
 				<td class="list_data_op">
-					<a href="javascript:void(0);" onclick="to('${appPath}data_saveUser.htm?user.id=${f.id}')">修改</a>
+					<a href="${appPath}data_saveUser.htm?user.id=${f.id}" >修改</a>
 					<a href="javascript:deleteUser(${f.id});">删除</a>
 				</td>
 			</tr>

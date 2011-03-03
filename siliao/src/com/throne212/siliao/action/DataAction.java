@@ -170,7 +170,7 @@ public class DataAction extends BaseAction {
 			return "user_edit";
 		}
 		if (user != null && !Util.isEmpty(user.getLoginName())) {// 添加或更新用户信息
-			if(user.getName()!=null&&!"".equals(user.getName())){
+			if(user.getName()!=null&&user.getId()==null&&!"".equals(user.getName())){
 				User userInDB=dataBiz.getEntityByUnique(User.class, "name", user.getName());
 				if (userInDB!=null) {
 					this.setMsg("姓名重复，请重新填入！");
@@ -186,7 +186,7 @@ public class DataAction extends BaseAction {
 					return "user_edit";
 				}
 			}
-			if(user.getEmail()!=null&&!"".equals(user.getEmail())){
+			if(user.getEmail()!=null&&user.getId()==null&&!"".equals(user.getEmail())){
 				User userEmail=dataBiz.getEntityByUnique(User.class, "email", user.getEmail());
 				if (userEmail!=null) {
 					this.setMsg("此邮箱已被占用，请更换可用邮箱！");

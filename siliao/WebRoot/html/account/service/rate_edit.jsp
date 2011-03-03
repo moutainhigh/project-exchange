@@ -25,7 +25,7 @@
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
 			function submitRate(){
-				if($('#providerList').val() == '' || $('#farmList').val() == ''){
+				if($('#providerList').val() == '' && $('#farmList').val() == ''){
 					alert('请选择利率主体');
 					return false;
 				}else if($('#rateValue').val() == null || $('#rateValue').val()==''){
