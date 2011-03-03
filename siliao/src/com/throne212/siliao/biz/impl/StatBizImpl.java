@@ -147,11 +147,11 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Label(3, i, f.getFactory().getName()));
 				sheet.addCell(new Label(4, i, f.getBill().getSendDate().toString()));
 				sheet.addCell(new Label(5, i, f.getBill().getFinishDate().toString())); 
-				sheet.addCell(new Label(6, i++, f.getSize()));
-				sheet.addCell(new Label(7, i++, f.getModel()));
-				sheet.addCell(new Number(8, i++, f.getAmount()));
-				sheet.addCell(new Number(9, i++, f.getMoney()));
-				sheet.addCell(new Label(10, i++, f.getSize()));//单笔本息
+				sheet.addCell(new Label(6, i, f.getSize()));
+				sheet.addCell(new Label(7, i, f.getModel()));
+				sheet.addCell(new Number(8, i, f.getAmount()));
+				sheet.addCell(new Number(9, i, f.getMoney()));
+				sheet.addCell(new Label(10, i, f.getSize()));//单笔本息
 				sheet.addCell(new Label(11, i++, f.getArea().getName()));
 			}
 
@@ -210,7 +210,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Label(2, i, f.getProvider().getName()));
 				sheet.addCell(new Number(3, i, f.getAmount()));
 				sheet.addCell(new Number(4, i, f.getMoney()));
-//				sheet.addCell(new Label(5, i, f.getEmail())); //单笔本息合计
+				sheet.addCell(new Number(5, i, f.getTotalMoney())); //单笔本息合计
 				sheet.addCell(new Label(6, i++, f.getFarm().getName()));
 			}
 
@@ -285,11 +285,11 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Label(3, i, f.getFactory().getName()));
 				sheet.addCell(new Label(4, i, f.getBill().getSendDate().toString()));
 				sheet.addCell(new Label(5, i, f.getBill().getFinishDate().toString())); 
-				sheet.addCell(new Label(6, i++, f.getSize()));
-				sheet.addCell(new Label(7, i++, f.getModel()));
-				sheet.addCell(new Number(8, i++, f.getAmount()));
-				sheet.addCell(new Number(9, i++, f.getMoney()));
-				sheet.addCell(new Label(10, i++, f.getSize()));//单笔本息
+				sheet.addCell(new Label(6, i, f.getSize()));
+				sheet.addCell(new Label(7, i, f.getModel()));
+				sheet.addCell(new Number(8, i, f.getAmount()));
+				sheet.addCell(new Number(9, i, f.getMoney()));
+				sheet.addCell(new Number(10, i, f.getTotalMoney()));//单笔本息
 				sheet.addCell(new Label(11, i++, f.getArea().getName()));
 			}
 			workbook.write();
