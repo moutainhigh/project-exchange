@@ -300,6 +300,8 @@ public class DataAction extends BaseAction {
 			return "rate_edit";
 		}
 		if (rate != null && rate.getValue() != null) {// 添加或更新利率记录
+			logger.debug("起始日期为："+rate.getFromDate());
+			logger.debug("结束日期为："+rate.getEndDate());
 			if (rate.getFromDate().getTime()>rate.getEndDate().getTime()) {
 				this.setMsg("起始时间必须小于结束时间！");
 				return "rate_edit";

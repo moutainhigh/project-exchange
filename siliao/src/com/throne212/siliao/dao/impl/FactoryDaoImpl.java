@@ -86,7 +86,7 @@ public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 			sb.append(" and account.name like ?");
 			paramValueList.add("%" + accountName + "%");
 		}
-		if (WebConstants.FACTORY_TYPE_PROVIDER.equals(type) && null != factoryId) {
+		if (WebConstants.FACTORY_TYPE_FACTORY.equals(type) && null != factoryId) {
 			sb.append(" and factory.id=?");
 			paramValueList.add(factoryId);
 		}
