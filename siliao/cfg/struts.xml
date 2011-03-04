@@ -75,6 +75,7 @@
 			<result name="admin_bill_list">/html/bill/admin_bill_list.jsp</result>
 			<result name="sent_bill_list">/html/bill/sent_bill_list.jsp</result>
 			<result name="sent_bill_edit">/html/bill/sent_bill_edit.jsp</result>
+			<result name="bill_view">/html/bill/bill_view.jsp</result>
 		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.siliao.action.StatAction">

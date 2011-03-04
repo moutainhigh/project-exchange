@@ -187,7 +187,6 @@
 				<th>合计金额</th>
 				<th>单据状态</th>
 				<th>当前处理人</th>
-				<th>所属区域</th>
 				<th>操作</th>
 			</tr>
 			<c:forEach items="${pageBean.resultList}" var="b">
@@ -204,9 +203,15 @@
 					<td class="list_data_text">${b.billPrice}</td>
 					<td class="list_data_text">${b.statusTxt}</td>
 					<td class="list_data_text">${b.currUserName}</td>
-					<td class="list_data_text">${b.farmer.area.name}</td>
 					<td class="list_data_op">
-						<img onclick="to('${appPath}bill_editBill.htm?bill.id=${b.id}')" title="查看" src="${appPath}html/images/bt_edit.gif" class="op_button" />
+						<c:choose>
+							<c:when test="${b.status>2}">
+							<img onclick="to('${appPath}bill_viewBill.htm?bill.id=${b.id}')" title="查看" src="${appPath}html/images/bt_edit.gif" class="op_button" />
+							</c:when>
+							<c:otherwise>
+							<img onclick="to('${appPath}bill_editBill.htm?bill.id=${b.id}')" title="查看" src="${appPath}html/images/bt_edit.gif" class="op_button" />
+							</c:otherwise>
+						</c:choose>
 					</td>
 				</tr>
 			</c:forEach>

@@ -17,7 +17,6 @@ import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.BillLog;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
-import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.User;
 
@@ -388,6 +387,17 @@ public class BillAction extends BaseAction {
 		this.setMsg("单据到料成功【" + bill.getStatusTxt() + "】");
 		bill = null;
 		return sentBillList();
+	}
+	
+	//查看已完成单据
+	public String viewBill() {
+		if (bill == null || bill.getId() == null) {
+			this.setMsg("参数错误");
+			return "error";
+		}
+		bill = billBiz.getEntityById(Bill.class, bill.getId());
+		billLog = billBiz.getBillLogList(bill);
+		return "bill_view";
 	}
 
 	public Bill getBill() {

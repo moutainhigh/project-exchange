@@ -540,6 +540,11 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		
 		//保存单据
 		billDao.saveOrUpdate(bill);
+		// 保存日志
+		BillLog log = Util.getBaseLog(BillLog.class, "已发料 -> 已分配");
+		log.setBill(bill);
+		log.setRemark(bill.getFinishRemark());
+		this.saveOrUpdateEntity(log);
 		return bill;
 	}
 }
