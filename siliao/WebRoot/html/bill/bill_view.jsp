@@ -196,6 +196,28 @@
 				</div>
 
 			<br />
+			<c:if test="${bill.status == 5}">
+			<span style="display: 1;"> 分配记录：
+				<table class="data_list_table">
+					<tr>
+						<th>管区</th>
+						<th>用料人</th>
+						<th>数量</th>
+						<th>单价</th>
+						<th>合价</th>
+					</tr>
+					<c:forEach var="f" items="${ffList}" varStatus="status"> 
+					<tr>
+						<td class="list_data_text">${f.farmer.area.name }</td>
+						<td class="list_data_text">${f.farmer.name }</td>
+						<td class="list_data_text">${f.amount }</td>
+						<td class="list_data_text">${bill.unitPrice }</td>
+						<td class="list_data_text">${f.money}</td>
+					</tr>
+					</c:forEach>
+				</table>  <br> </span>
+				<br/>
+				</c:if>
 			<span style="display: 1;"> 审批记录：
 				<table class="data_list_table">
 					<tr>

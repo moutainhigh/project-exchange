@@ -241,6 +241,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				sb.append(" and model like ?");
 				paramValueList.add("%" + condition.getModel() + "%");
 			}
+			//编号
+			if(condition.getBill()!=null && !Util.isEmpty(condition.getBill().getOrderId())){
+				sb.append(" and bill.orderId like ?");
+				paramValueList.add("%" + condition.getBill().getOrderId() + "%");
+			}
 		}
 		// 创建时间段
 		if (sendFromDate != null) {
@@ -507,6 +512,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			if (!Util.isEmpty(condition.getModel())) {
 				sb.append(" and model like ?");
 				paramValueList.add("%" + condition.getModel() + "%");
+			}
+			//编号
+			if(condition.getBill()!=null && !Util.isEmpty(condition.getBill().getOrderId())){
+				sb.append(" and bill.orderId like ?");
+				paramValueList.add("%" + condition.getBill().getOrderId() + "%");
 			}
 		}
 		// 创建时间段

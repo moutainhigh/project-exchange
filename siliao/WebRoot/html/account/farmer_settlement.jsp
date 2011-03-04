@@ -177,6 +177,14 @@
 		</td>
 		
 	</tr>	
+	<tr>
+		
+			<th height="22">单据编号</th>
+					<td colspan="3">
+						<input size="20" name="ff.bill.orderId" value="${ff.bill.orderId}"/>
+					</td>
+		
+	</tr>
 </table>
 		</form>
 			<div class="button_bar">
@@ -196,6 +204,7 @@
 		<table class="data_list_table">
 			<tr>
 				<th>序号</th>
+				<th>单据编号</th>
 				<th>养殖户姓名</th>
 				<th>供货厂商</th>
 				<th>饲料厂商</th>
@@ -212,6 +221,9 @@
 			<tr>
 					<td class="list_data_number">
 						${f.id}
+					</td>
+					<td class="list_data_number">
+						${f.bill.orderId}
 					</td>
 					<td class="list_data_text">
 						<c:if test="${empty f.type || f.type==0}">${f.farmer.name }</c:if>
@@ -253,6 +265,7 @@
 			<tr style="font-weight: 600;">
 				<td class="list_data_number">合计</td>
 				<td class="list_data_text"></td>
+				<td class="list_data_text"></td>
 				<td class="list_data_ltext"></td>
 				<td class="list_data_text"></td>
 				<td class="list_data_ltext"></td>
@@ -268,7 +281,7 @@
 					
 			
 			<tr>
-				<th colspan="12" class="pager">
+				<th colspan="13" class="pager">
 					<div class="pager">
 						共${pageBean.totalRow}条记录 每页<input value="${pageBean.rowPerPage }" size="2" />
 						条 第

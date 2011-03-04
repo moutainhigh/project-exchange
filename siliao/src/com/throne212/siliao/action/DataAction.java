@@ -300,24 +300,36 @@ public class DataAction extends BaseAction {
 			return "rate_edit";
 		}
 		if (rate != null && rate.getValue() != null) {// 添加或更新利率记录
-			logger.debug("起始日期为："+rate.getFromDate());
-			logger.debug("结束日期为："+rate.getEndDate());
 			if (rate.getFromDate().getTime()>rate.getEndDate().getTime()) {
 				this.setMsg("起始时间必须小于结束时间！");
 				return "rate_edit";
 			}
 			if (rate.getRateType()!=null&&!"".equals(rate.getRateType())) {
-				List<Rate> rateList=dataBiz.getEntitiesByColumn(Rate.class, "rateType", rate.getRateType());
-				for (Rate rateExs : rateList) {
-					if ((rateExs.getFromDate().getTime()<rate.getFromDate().getTime()&&rate.getFromDate().getTime()<rateExs.getEndDate().getTime())
-							||(rateExs.getFromDate().getTime()<rate.getEndDate().getTime()&&rate.getEndDate().getTime()<rateExs.getEndDate().getTime())) {
-						this.setMsg("时间段重复，请重新设置！");
-						return "rate_edit";
+				List<Rate> rateList=null;
+				if ("f".equals(rate.getRateType())&&rate.getFarm().getId()!=null) {
+					Farm farm = dataBiz.getEntityById(Farm.class, rate.getFarm().getId());
+					rateList=	dataBiz.getEntitiesByColumn(Rate.class, "farm", farm);
+				}else if ("p".equals(rate.getRateType())&&rate.getProvider().getId()!=null) {
+					Provider provider = dataBiz.getEntityById(Provider.class, rate.getProvider().getId());
+					rateList=	dataBiz.getEntitiesByColumn(Rate.class, "provider", provider);
+				}else {
+					this.setMsg("请选择目标主体");
+					return "rate_edit";
+				}
+				if (rateList!=null) {
+					for (Rate rateExs : rateList) {
+						if ((rateExs.getFromDate().getTime()<rate.getFromDate().getTime()&&rate.getFromDate().getTime()<rateExs.getEndDate().getTime())
+								||(rateExs.getFromDate().getTime()<rate.getEndDate().getTime()&&rate.getEndDate().getTime()<rateExs.getEndDate().getTime())
+								||(rate.getFromDate().getTime()<rateExs.getFromDate().getTime())&&(rate.getEndDate().getTime()>rateExs.getEndDate().getTime())) {
+							this.setMsg("时间段重复，请重新设置！");
+							return "rate_edit";
+						}
 					}
 				}
+			
 				
 			} else {
-				this.setMsg("请选择利率主体");
+				this.setMsg("请选择利率主体类型");
 				return "rate_edit";
 			}
 			rate = dataBiz.saveRate(rate);

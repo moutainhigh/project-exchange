@@ -17,6 +17,7 @@ import com.throne212.siliao.domain.Bill;
 import com.throne212.siliao.domain.BillLog;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
+import com.throne212.siliao.domain.FarmerFinance;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.User;
 
@@ -390,6 +391,7 @@ public class BillAction extends BaseAction {
 	}
 	
 	//查看已完成单据
+	private List<FarmerFinance> ffList;
 	public String viewBill() {
 		if (bill == null || bill.getId() == null) {
 			this.setMsg("参数错误");
@@ -397,6 +399,7 @@ public class BillAction extends BaseAction {
 		}
 		bill = billBiz.getEntityById(Bill.class, bill.getId());
 		billLog = billBiz.getBillLogList(bill);
+		ffList = billBiz.getEntitiesByColumn(FarmerFinance.class, "bill", bill);
 		return "bill_view";
 	}
 
@@ -502,5 +505,21 @@ public class BillAction extends BaseAction {
 
 	public void setBillLog(List<BillLog> billLog) {
 		this.billLog = billLog;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public List<FarmerFinance> getFfList() {
+		return ffList;
+	}
+
+	public void setFfList(List<FarmerFinance> ffList) {
+		this.ffList = ffList;
 	}
 }
