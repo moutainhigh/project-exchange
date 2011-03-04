@@ -101,23 +101,29 @@
 						}
 						if(factoryId != ''){
 							$('#factoryId').val(factoryId);
-						}
-					}
-				});
-				//供应厂商下拉菜单
-				$.getJSON("${appPath}ajax/getProvider?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#providerId').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#providerId').append(str);
-						}
-						if(providerId != ''){
-							$('#providerId').val(providerId);
+							selectProviders(factoryId);
 						}
 					}
 				});
 			});	
+			//供应厂商下拉菜单
+			function selectProviders(val){
+				$('#providerId').html('<option value=""></option>');
+				if(val && val!=''){
+					//供货厂列表
+					$.getJSON("${appPath}ajax/getProviderByFactory?time="+new Date().getTime(), {'factoryId':val}, function(json){
+						if(json && json['list'] && json['list'].length){
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#providerId').append(str);
+							}
+							if(providerId){
+								$('#providerId').val(providerId);
+							}
+						}
+					});
+				}
+			}
 			function addNewBill(){
 				/*if($('#farmerName').val() == null || $('#farmerName').val()==''){
 					alert('养殖户的姓名不能为空');
@@ -234,7 +240,7 @@
 						饲料厂商
 					</th>
 					<td>
-					<select id="factoryId" name="bill.factory.id"></select>
+					<select id="factoryId" name="bill.factory.id" onchange="selectProviders(this.value);"></select>
 						<span class="red_star">*</span>
 					</td>
 					<th>

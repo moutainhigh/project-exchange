@@ -47,7 +47,7 @@
 				});	
 			});	
 			function submitPay(){
-				if($('#"factoryId"').val() == null || $('#"factoryId"').val()==''){
+				if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('厂商不能为空');
 					return false;
 				}else if($('#providerList').val() == null || $('#providerList').val()==''){
@@ -107,7 +107,7 @@
 					</td>
 					<th height="22">付款金额</th>
 					<td>
-						<input name="pf.money" size="10" value="${pf.money }"/><span class="red_star">(元)*</span>
+						<input id="money" name="pf.money" size="10" value="${pf.money }"/><span class="red_star">(元)*</span>
 					</td>
 				</tr>
 				<tr>

@@ -180,7 +180,7 @@
 							票号
 						</th>
 						<td>
-							${bill.orderNo }
+							(不可见)
 						</td>
 
 					</tr>

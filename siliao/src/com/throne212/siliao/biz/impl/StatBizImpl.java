@@ -37,8 +37,8 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 	}
 
 	public String getProviderFinanceExcelDownloadFile(ProviderFinance condition, Date fromDate, Date toDate) {
-
-		List<ProviderFinance> providerFinanceList = financeDao.getProviderFinanceList(condition, fromDate, toDate);
+		PageBean<ProviderFinance> bean = financeDao.getProviderFinanceList(condition, fromDate, toDate,-1);
+		List<ProviderFinance> providerFinanceList = bean.getResultList();
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -71,7 +71,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Label(2, i, f.getProvider().getName()));
 				sheet.addCell(new Number(3, i, f.getAmount()));
 				sheet.addCell(new Number(4, i, f.getMoney()));
-//				sheet.addCell(new Label(5, i, f.getEmail())); //单笔本息合计
+				sheet.addCell(new Number(5, i, f.getTotalMoney())); //单笔本息合计
 				sheet.addCell(new Label(6, i++, f.getFarm().getName()));
 			}
 
@@ -107,8 +107,8 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		
 	}
 	public String getFarmerFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate){
-		
-		List<FarmerFinance> farmerFinanceList = financeDao.getFarmerFinanceList(condition, sendFromDate, sendToDate,finishFromDate,finishToDate);
+		PageBean<FarmerFinance> bean = financeDao.getFarmerFinanceList(condition, sendFromDate, sendToDate,finishFromDate,finishToDate,-1);
+		List<FarmerFinance> farmerFinanceList = bean.getResultList();
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -151,7 +151,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Label(7, i, f.getModel()));
 				sheet.addCell(new Number(8, i, f.getAmount()));
 				sheet.addCell(new Number(9, i, f.getMoney()));
-				sheet.addCell(new Label(10, i, f.getSize()));//单笔本息
+				sheet.addCell(new Number(10, i, f.getTotalMoney()));//单笔本息
 				sheet.addCell(new Label(11, i++, f.getArea().getName()));
 			}
 
@@ -177,7 +177,8 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		return financeDao.getProviderSettleFinanceList(condition,fromDate, toDate, pageIndex);
 	}
 	public String  getProviderSettleFinanceExcelDownloadFile(ProviderFinance condition, Date fromDate, Date toDate){
-		List<ProviderFinance> providerFinanceList = financeDao.getProviderSettleFinanceExcelDownloadFile(condition, fromDate, toDate);
+		PageBean<ProviderFinance> bean = financeDao.getProviderSettleFinanceList(condition,fromDate, toDate, -1);
+		List<ProviderFinance> providerFinanceList = bean.getResultList();
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
@@ -246,7 +247,8 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		return financeDao.getFarmerSettleFinanceList(condition, sendFromDate, sendToDate,finishFromDate,finishToDate, pageIndex);
 	}
 	public String  getFarmerSettleFinanceExcelDownloadFile(FarmerFinance condition, Date sendFromDate, Date sendToDate,Date finishFromDate,Date finishToDate){
-		List<FarmerFinance> farmerFinanceList = financeDao.getFarmerSettleFinanceExcelDownloadFile(condition, sendFromDate, sendToDate,finishFromDate,finishToDate);
+		PageBean<FarmerFinance> bean = financeDao.getFarmerSettleFinanceList(condition, sendFromDate, sendToDate,finishFromDate,finishToDate,-1);
+		List<FarmerFinance> farmerFinanceList = bean.getResultList();
 
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));

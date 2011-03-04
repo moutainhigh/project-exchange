@@ -44,8 +44,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
-		q.setFirstResult(startIndex);
+		if(pageIndex > -1){
+			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setFirstResult(startIndex);
+		}
 		page.setResultList(q.list());// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -100,7 +102,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				sb.append(" and farm=?");
 				paramValueList.add(farm);
 			}
-			if (condition.getProvider().getFactory() != null && condition.getFactory().getId() != null) {
+			if (condition.getFactory() != null && condition.getFactory().getId() != null) {
 				Factory factory = (Factory) this.getHibernateTemplate().get(Provider.class, condition.getFactory().getId());
 				sb.append(" and factory=?");
 				paramValueList.add(factory);
@@ -162,8 +164,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
-		q.setFirstResult(startIndex);
+		if(pageIndex > -1){
+			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setFirstResult(startIndex);
+		}
 		page.setResultList(q.list());// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -305,8 +309,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
-		q.setFirstResult(startIndex);
+		if(pageIndex > -1){
+			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setFirstResult(startIndex);
+		}
 		page.setResultList(q.list());// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -430,8 +436,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
-		q.setFirstResult(startIndex);
+		if(pageIndex > -1){
+			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setFirstResult(startIndex);
+		}
 		page.setResultList(q.list());// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
