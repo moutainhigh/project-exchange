@@ -105,6 +105,15 @@ public class AjaxAction extends BaseAction {
 		list = baseBiz.getAll(Provider.class, "id", "asc");
 		return "farm_provider_list";
 	}
+	
+	private Long factoryId;
+	public String getProviderByFactory() {
+		Factory f = baseBiz.getEntityById(Factory.class, factoryId);
+		if(f!=null){
+			list = baseBiz.getEntitiesByColumn(Provider.class, "factory", f);
+		}
+		return "list";
+	}
 
 	public String queryRateName() {
 		String[] q = (String[]) ActionContext.getContext().getParameters().get("q");
@@ -210,6 +219,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setAreaId(Long areaId) {
 		this.areaId = areaId;
+	}
+
+	public Long getFactoryId() {
+		return factoryId;
+	}
+
+	public void setFactoryId(Long factoryId) {
+		this.factoryId = factoryId;
 	}
 
 }

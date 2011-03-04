@@ -78,10 +78,10 @@
 				</div>
 				<div class="footer">
 					<p>
-						技术支持：饲料经营系统
+						技术支持：海北沈晨
 					</p>
 					<p class="mar_t5" style="font-family: Arial, Helvetica, sans-serif;">
-						Copyright&nbsp;&copy;&nbsp;Fodder Corporation.2011
+						Copyright © 2010 江苏省沿海开发集团有限公司 版权所有 All Rights Reserved.
 					</p>
 				</div>
 			</div>

@@ -32,19 +32,6 @@
 						}
 					}
 				});
-				//供货厂列表
-				$.getJSON("${appPath}ajax/getProvider?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#providerList').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++){
-							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
-							$('#providerList').append(str);
-						}
-						if(providerId){
-							$('#providerList').val(providerId);
-						}
-					}
-				});
 				//农场
 				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -76,6 +63,23 @@
 					document.forms[0].submit();
 				}
 			}
+			function selectProviders(val){
+				$('#providerList').html('<option value=""></option>');
+				if(val && val!=''){
+					//供货厂列表
+					$.getJSON("${appPath}ajax/getProviderByFactory?time="+new Date().getTime(), {'factoryId':val}, function(json){
+						if(json && json['list'] && json['list'].length){
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#providerList').append(str);
+							}
+							if(providerId){
+								$('#providerList').val(providerId);
+							}
+						}
+					});
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -89,7 +93,7 @@
 				<tr>
 					<th>厂商编号</th>
 					<td>	
-						<select id="factoryId" name="pf.factory.id"></select>
+						<select id="factoryId" name="pf.factory.id" onchange="selectProviders(this.value);"></select>
 					</td>
 					<th>供货饲料厂</th>
 					<td>

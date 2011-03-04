@@ -97,7 +97,6 @@
 		</div>
 		<jsp:include page="../../../msg.jsp"></jsp:include>
 		<br />
-		新建供货饲料厂或厂商名称
 		<form action="${appPath}data_saveFactory.htm" method="get">
 			<input type="hidden" name="factoryAbs.id" value="${factoryAbs.id}"/>
 			<c:if test="${not empty factoryAbs.id}">

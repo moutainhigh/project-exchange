@@ -65,11 +65,11 @@ public class BillAction extends BaseAction {
 			this.setMsg("单据保存失败，请检查数据是否录入完整");
 			return "bill_edit";
 		}
-		if (bill.getFarmer().getName() != null && !bill.getFarmer().getName().equals("")) {
+		/*if (bill.getFarmer().getName() != null && !bill.getFarmer().getName().equals("")) {
 			Farmer farmer = billBiz.getEntityByUnique(Farmer.class, "name", bill.getFarmer().getName().trim());
 			if (farmer != null)
 				bill.setFarmer(farmer);
-		}
+		}*/
 		if (bill.getFactory().getId() != null && !"".equals(bill.getFactory().getId())) {
 			Factory factory = billBiz.getEntityById(Factory.class, bill.getFactory().getId());
 			if (factory == null) {
@@ -132,6 +132,15 @@ public class BillAction extends BaseAction {
 			}
 			bill.setFarm(farm);
 		}
+		// 数据处理
+		// 如果provider.id为空，则设置provider为空
+		if (bill.getProvider() != null && bill.getProvider().getId() == null)
+			bill.setProvider(null);
+		// 如果areaAccount.id为空，则设置areaAccount为空
+		if (bill.getAreaAccount() != null && bill.getAreaAccount().getId() == null)
+			bill.setAreaAccount(null);
+		// 设置经理为空
+		bill.setManager(null);
 		bill.setStatus(WebConstants.BILL_STATUS_DRAFT);
 		billBiz.saveBillDraft(bill);
 		this.setMsg("成功保存单据草稿！");

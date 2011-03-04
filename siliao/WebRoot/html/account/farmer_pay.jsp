@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
-			var currFactoryId = '${ff.farmer.id}';
+			var currFarmerId = '${ff.farmer.id}';
 			$(function(){
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
@@ -27,14 +27,14 @@
 							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
 							$('#farmerName').append(str);
 						}
-						if(farmId != ''){
-							$('#farmerName').val(farmId);
+						if(currFarmerId != ''){
+							$('#farmerName').val(currFarmerId);
 						}
 					}
 				});	
 			});	
 			function submitPay(){
-				if($('#"farmerName"').val() == null || $('#"farmerName"').val()==''){
+				if($('#farmerName').val() == null || $('#farmerName').val()==''){
 					alert('农户不能为空');
 					return false;
 				}else if($('#rateFromDate').val() == null || $('#rateFromDate').val()==''){
@@ -74,7 +74,7 @@
 					</td>
 					<th height="22">付款金额</th>
 					<td>
-						<input name="ff.money" size="10" value="${ff.money }"/><span class="red_star">(元)*</span>
+						<input id="money" name="ff.money" size="10" value="${ff.money }"/><span class="red_star">(元)*</span>
 					</td>
 				</tr>
 			</table>
