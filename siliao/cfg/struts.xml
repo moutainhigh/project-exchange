@@ -28,7 +28,7 @@
                 <param name="contentType">application/vnd.ms-excel</param>  
                 <!-- 下载文件处理方法 -->  
                 <param name="contentDisposition">  
-                    attachment;filename="${msg}"  
+                    attachment;filename="${msg}.xls"  
                 </param>  
                 <!-- 下载文件输出流定义 -->  
                 <param name="inputName">downloadFile</param>  

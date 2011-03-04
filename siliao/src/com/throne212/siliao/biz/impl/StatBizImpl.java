@@ -61,6 +61,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			sheet.addCell(new Label(4, 0, "合计金额", format));
 			sheet.addCell(new Label(5, 0, "单笔本息合计", format));
 			sheet.addCell(new Label(6, 0, "农场", format));
+			sheet.addCell(new Label(7, 0, "代理费", format));
 
 		
 			// 加内容
@@ -73,6 +74,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Number(4, i, f.getMoney()));
 				sheet.addCell(new Number(5, i, f.getTotalMoney())); //单笔本息合计
 				sheet.addCell(new Label(6, i++, f.getFarm().getName()));
+				sheet.addCell(new Number(6, i++, f.getAgentMoney()));
 			}
 
 			workbook.write();
@@ -364,7 +366,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				
 			}
 			//合计
-			Double[]doubles1=(Double[])list2.get(0).getTotal();
+			Double[]doubles1=(Double[])list1.get(0).getTotal();
 			sheet.addCell(new Label(0, i, "合计"));
 			sheet.addCell(new Label(1, i, ""));
 			sheet.addCell(new Label(2, i, ""));
@@ -374,7 +376,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			sheet.addCell(new Number(6, i,doubles1[3] ));
 			sheet.addCell(new Label(7, i,""));
 			
-			WritableSheet sheet2 = workbook.createSheet("饲料厂供料情况", 0);
+			WritableSheet sheet2 = workbook.createSheet("饲料厂供料情况", 1);
 			// 加表头
 
 			sheet2.addCell(new Label(0, 0, "序号", format));
@@ -392,7 +394,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet2.addCell(new Label(1, i2, f2.getProviderName()));
 				sheet2.addCell(new Number(2, i2, f2.getTotalAmount()));
 				sheet2.addCell(new Number(3, i2, f2.getTotalMoney()));
-				sheet2.addCell(new Number(4, i2, f2.getTotalRateMoney()));
+				sheet2.addCell(new Number(4, i2, f2.getTotalRateMoney()==null?0:f2.getTotalRateMoney()));
 				sheet2.addCell(new Label(5, i2++, f2.getFarmName())); 
 				
 			}
@@ -403,7 +405,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 			sheet2.addCell(new Number(2, i2,doubles2[0] ));
 			sheet2.addCell(new Number(3, i2, doubles2[1]));
 			sheet2.addCell(new Number(4, i2, doubles2[2]));
-			sheet2.addCell(new Number(5, i2, doubles2[3]));
+			//sheet2.addCell(new Number(5, i2, doubles2[3]));
 			
 			workbook.write();
 			workbook.close();

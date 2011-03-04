@@ -296,8 +296,17 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		billInDB.setShenheResult(bill.getShenheResult());
 		billInDB.setTranslater(bill.getTranslater());
 		billInDB.setAgentUnitPrice(bill.getAgentUnitPrice());
+		billInDB.setOrderNo(bill.getOrderNo());
+		billInDB.setRemark(bill.getRemark());
 		billInDB.setSendDate(new Date());
-		if(bill.getShenheResult() != null && bill.getShenheResult()){//发料
+		if(bill.getShenheResult() == null){//仅仅是保存
+			this.saveOrUpdateEntity(billInDB);
+			// 保存日志
+			BillLog log = Util.getBaseLog(BillLog.class, "已审核 -> 已审核");
+			log.setBill(bill);
+			log.setRemark(bill.getRemark());
+			this.saveOrUpdateEntity(log);
+		}else if(bill.getShenheResult()){//发料
 			billInDB.setStatus(WebConstants.BILL_STATUS_SENT);
 			if(billInDB.getAreaAccount()!=null){
 				billInDB.setCurrUserName(billInDB.getAreaAccount().getName());
@@ -310,7 +319,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 			log.setBill(bill);
 			log.setRemark(bill.getShenheRemark());
 			baseDao.saveOrUpdate(log);
-		}else{
+		}else{//驳回
 			billInDB.setStatus(WebConstants.BILL_STATUS_SUBMIT);
 			this.saveOrUpdateEntity(billInDB);
 			// 保存日志
@@ -392,6 +401,11 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	}
 	public Bill changeBillStatus(Bill bill){
 		Bill billInDB = this.getEntityById(Bill.class, bill.getId());
+		//如果超级管理员将状态从“已送达”变更为其他任何状态的时候，要删除其相应的厂商财务信息和农户财务信息。
+		if(billInDB.getStatus() == WebConstants.BILL_STATUS_FINISH && bill.getStatus() != WebConstants.BILL_STATUS_FINISH){
+			billDao.deleteFinance(billInDB.getId());
+		}
+		
 		String oldStatus = billInDB.getStatusTxt();
 		String newStatus = bill.getStatusTxt();
 		billInDB.setStatus(bill.getStatus());
@@ -529,9 +543,11 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		pf.setAmount(bill.getFinishAmount());
 		pf.setFarm(bill.getFarm());
 		pf.setFarmer(bill.getFarmer());
+		pf.setFactory(bill.getFactory());
 		//pf.setMoney(bill.getFinishPrice());
 		//获取实付料款
 		pf.setMoney(Util.multiplyMoney(bill.getAmount(),bill.getPriceOnOrder()));
+		pf.setAgentMoney(Util.multiplyMoney(bill.getAmount(), bill.getAgentUnitPrice()));
 		
 		pf.setRateFromDate(bill.getFinishDate());
 		pf.setType(0);
@@ -541,7 +557,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		//保存单据
 		billDao.saveOrUpdate(bill);
 		// 保存日志
-		BillLog log = Util.getBaseLog(BillLog.class, "已发料 -> 已分配");
+		BillLog log = Util.getBaseLog(BillLog.class, "已发料 -> 已送达");
 		log.setBill(bill);
 		log.setRemark(bill.getFinishRemark());
 		this.saveOrUpdateEntity(log);

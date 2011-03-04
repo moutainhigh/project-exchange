@@ -54,6 +54,14 @@ public class AjaxAction extends BaseAction {
 		list = baseBiz.getEntitiesByColumn(Area.class, "farm", man.getFarm());
 		return "area_list";
 	}
+	private Long farmId;
+	public String getAreaByFarm() {
+		Farm farm = baseBiz.getEntityById(Farm.class, farmId);
+		if(farm!=null){
+			list = baseBiz.getEntitiesByColumn(Area.class, "farm", farm);
+		}
+		return "area_list";
+	}
 
 	public String getRoleList() {
 		list = new ArrayList();
@@ -227,6 +235,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setFactoryId(Long factoryId) {
 		this.factoryId = factoryId;
+	}
+
+	public Long getFarmId() {
+		return farmId;
+	}
+
+	public void setFarmId(Long farmId) {
+		this.farmId = farmId;
 	}
 
 }

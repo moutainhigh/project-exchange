@@ -179,6 +179,7 @@ public class DataAction extends BaseAction {
 		String path = dataBiz.getFarmerExcelDownloadFile(farmer, fromDate, toDate,orderBy,orderType);
 		if (path != null) {
 			try {
+				this.setMsg("farmer");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -280,7 +281,7 @@ public class DataAction extends BaseAction {
 		String path = dataBiz.getUserExcelDownloadFile(user, fromDate, toDate, role,orderBy,orderType);
 		if (path != null) {
 			try {
-				this.setMsg("用户列表");
+				this.setMsg("user");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -367,6 +368,7 @@ public class DataAction extends BaseAction {
 		String path = dataBiz.getRateExcelDownloadFile(rate, fromDate, toDate, fromDate2, toDate2, rateName,orderBy,orderType);
 		if (path != null) {
 			try {
+				this.setMsg("rate");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -476,7 +478,7 @@ public class DataAction extends BaseAction {
 		String path = dataBiz.getFarmAbsExcelDownloadFile(farmAbs, fromDate, toDate, farmType, farmId, accountName,orderBy,orderType);
 		if (path != null) {
 			try {
-				this.setMsg("农场或管区列表");
+				this.setMsg("farm");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -563,7 +565,7 @@ public class DataAction extends BaseAction {
 		String path = dataBiz.getFactoryExcelDownloadFile(factoryAbs, fromDate, toDate, factoryType, factoryId, accountName,orderBy,orderType);
 		if (path != null) {
 			try {
-				this.setMsg("厂商或供料厂列表");
+				this.setMsg("factory");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

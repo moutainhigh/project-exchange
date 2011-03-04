@@ -19,6 +19,7 @@ public class Bill extends MyEntity implements Serializable {
 	private ProviderAccount providerAccount;// 饲料厂负责人
 	
 	private Farmer farmer;//农户
+	private Area area;//管区
 	private Farm farm;//农场
 	private Factory factory;//饲料厂商
 	private String size;//型号
@@ -332,6 +333,14 @@ public class Bill extends MyEntity implements Serializable {
 
 	public void setFinishAmount(Double finishAmount) {
 		this.finishAmount = finishAmount;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
 	}
 
 }

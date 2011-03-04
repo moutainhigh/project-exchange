@@ -40,6 +40,7 @@
 			<property name="money"></property>
 			<property name="rateFromDate"></property>
 			<property name="rateMoney"></property>
+			<property name="agentMoney"></property>			
 			<many-to-one name="farmer" column="farmer_id" lazy="false"></many-to-one>
 			<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
 			<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>

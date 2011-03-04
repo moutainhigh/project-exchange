@@ -33,6 +33,12 @@
 				}else if($('#finishPrice').val() == null || $('#finishPrice').val()==''){
 					alert('到料合价不能为空');
 					return false;
+				}else if($('#finishAmount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#finishAmount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}else if($('#finishPrice').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#finishPrice').val()) == false){
+					alert('金额只能为数字');
+					return false;
 				}else{
 					var amount = 0;
 					$('.amount_td').each(function(){
@@ -77,6 +83,10 @@
 				var areaName = $(currTr).find('.areaList').find("option:selected").text();
 				var farmerName = $(currTr).find('.farmerList').find("option:selected").text();
 				var amount = $(currTr).find('.amount').val();
+				if(/(^\d+\.\d+$)|(^\d+$)/.test(amount) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				var totalPrice = $(currTr).find('.totalPrice').val();
 				
 				//添加到隐藏变量
@@ -126,14 +136,12 @@
 					
 				</tr>
 				<tr>
-					
 					<th>型号</th>
 					<td>${bill.size }
 					</td>
 					<th>规格</th>
 					<td>${bill.model }
 					</td>
-					
 				</tr>
 				<tr>
 					
@@ -187,7 +195,7 @@
 					<td class="list_data_text">
 						<select class="areaList" onchange="listFarmer(this)">
 							<option value=""></option>
-							<option value="${bill.areaAccount.area.id }">${bill.areaAccount.area.name }</option>
+							<option value="${bill.area.id }">${bill.area.name }</option>
 						</select>
 					</td>						
 					<td class="list_data_text"><select name="farmerList" class="farmerList" ></select><span class="red_star"></span></td>

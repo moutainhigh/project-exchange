@@ -11,6 +11,7 @@ import com.throne212.siliao.biz.BillBiz;
 import com.throne212.siliao.common.PageBean;
 import com.throne212.siliao.common.Util;
 import com.throne212.siliao.common.WebConstants;
+import com.throne212.siliao.domain.Admin;
 import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.AreaAccount;
 import com.throne212.siliao.domain.Bill;
@@ -99,6 +100,18 @@ public class BillAction extends BaseAction {
 			bill.setAreaAccount(null);
 		// 设置经理为空
 		bill.setManager(null);
+		
+		//饲料经理或系统管理员新建单据
+		if (userInsess instanceof ManagerAccount || userInsess instanceof Admin){
+			if(bill.getArea()!=null && bill.getArea().getId()!=null){
+				Area area = billBiz.getEntityById(Area.class, bill.getArea().getId());
+				bill.setArea(area);
+				bill.setFarm(area.getFarm());
+				bill.setAreaAccount(area.getAccount());
+				bill.setManager(area.getFarm().getManager());
+			}
+		}
+		
 		// 添加
 		bill.setStatus(WebConstants.BILL_STATUS_SUBMIT);
 		if (bill.getId() == null)
@@ -141,6 +154,16 @@ public class BillAction extends BaseAction {
 			bill.setAreaAccount(null);
 		// 设置经理为空
 		bill.setManager(null);
+		
+		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (userInsess instanceof ManagerAccount || userInsess instanceof Admin){
+			//设置管区负责人
+			if(bill.getAreaAccount()!=null && bill.getAreaAccount().getArea()!=null && bill.getAreaAccount().getArea().getId()!=null){
+				Area area = billBiz.getEntityById(Area.class, bill.getAreaAccount().getArea().getId());
+				bill.setAreaAccount(area.getAccount());
+			}
+		}
+		
 		bill.setStatus(WebConstants.BILL_STATUS_DRAFT);
 		billBiz.saveBillDraft(bill);
 		this.setMsg("成功保存单据草稿！");
@@ -237,6 +260,18 @@ public class BillAction extends BaseAction {
 		// 如果areaAccount.id为空，则设置areaAccount为空
 		if (bill.getAreaAccount() != null && bill.getAreaAccount().getId() == null)
 			bill.setAreaAccount(null);
+		
+		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (userInsess instanceof ManagerAccount || userInsess instanceof Admin){
+			if(bill.getArea()!=null && bill.getArea().getId()!=null){
+				Area area = billBiz.getEntityById(Area.class, bill.getArea().getId());
+				bill.setArea(area);
+				bill.setFarm(area.getFarm());
+				bill.setAreaAccount(area.getAccount());
+				bill.setManager(area.getFarm().getManager());
+			}
+		}
+		
 		// 状态
 		Boolean pass = bill.getShenpiResult();
 		if (pass != null && pass) {
@@ -291,7 +326,9 @@ public class BillAction extends BaseAction {
 			return waitBillList();
 		}
 		bill = billBiz.sendBill(bill);
-		if (bill.getShenheResult() != null && bill.getShenheResult()) {// 发料
+		if (bill.getShenheResult() == null) {
+			this.setMsg("信息保存成功");
+		}else if (bill.getShenheResult()) {// 发料
 			this.setMsg("发料成功");
 		} else {
 			this.setMsg("发料请求被驳回");

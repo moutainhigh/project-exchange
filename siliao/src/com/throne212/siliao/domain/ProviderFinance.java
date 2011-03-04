@@ -17,6 +17,7 @@ public class ProviderFinance extends Finance implements Serializable {
 	private Double rateMoney;// 累计利息
 	private Double totalMoney;// 本息
 	private Farm farm;// 属于农场
+	private Double agentMoney;//代理收入
 
 	public Farmer getFarmer() {
 		return farmer;
@@ -88,6 +89,14 @@ public class ProviderFinance extends Finance implements Serializable {
 
 	public void setTotalMoney(Double totalMoney) {
 		this.totalMoney = totalMoney;
+	}
+
+	public Double getAgentMoney() {
+		return agentMoney;
+	}
+
+	public void setAgentMoney(Double agentMoney) {
+		this.agentMoney = agentMoney;
 	}
 
 }

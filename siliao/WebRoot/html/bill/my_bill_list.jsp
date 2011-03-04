@@ -32,8 +32,8 @@
 							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
 							$('#providerId').append(str);
 						}
-						if(factoryId != ''){
-							$('#providerId').val(factoryId);
+						if(providerId != ''){
+							$('#providerId').val(providerId);
 						}
 					}
 				});
@@ -52,10 +52,18 @@
 				});
 			});
 			function query(){
+				if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				document.forms[0].action = "${appPath}bill_myBillList.htm";
 				document.forms[0].submit();
 			}
 			function exportExcel(){
+				if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				document.forms[0].action = "${appPath}bill_exportMyBillExcel.xls";
 				document.forms[0].submit();
 			}
@@ -132,7 +140,7 @@
 						数量(吨)
 					</th>
 					<td>
-						<input name="bill.amount" size="20" id="amoutn" value="${bill.amount }"/>
+						<input name="bill.amount" size="20" id="amount" value="${bill.amount }"/>
 					</td>
 				</tr>
 				<tr>

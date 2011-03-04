@@ -24,6 +24,7 @@
 		</script>
 	</head>
 	<body>
+		<form action="${appPath}stat_exportSysStatExcel.xls" method="get">
 		<div class="page_title">
 			饲料管理系统 > 财务统计 > 集团统计
 		</div>
@@ -138,5 +139,6 @@
 				
 			</tr>
 		</table>
+		</form>
 	</body>
 </html>

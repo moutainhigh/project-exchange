@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
+			var userRole = '${userObj.userRole}';
 			var currFactoryId = '${pf.factory.id}';
 			var providerId = '${pf.provider.id}';
 			var farmId = '${pf.farm.id}';
@@ -48,6 +49,11 @@
 					}
 				});
 				//农场
+				<c:choose>
+				<c:when test="${userObj.userRole == '饲料经理'}">
+					$('#farmName').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+				</c:when>
+				<c:otherwise>
 				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#farmName').html('<option value=""></option>');
@@ -60,34 +66,8 @@
 						}
 					}
 				});	
-				var colArr = ['id',null,null,'amount','money','totalMoney',null];
-				$('.data_list_table tr').eq(0).find('th').each(function(index){
-					if(colArr[index]){//空的就没有排序功能
-						$(this).css({'cursor':'pointer'});
-						$(this).attr('title','升序/降序');
-						$(this).click(function(){//click事件
-							if($('#orderBy').val()!=colArr[index]){//第一次点击一个新的col
-								$('#orderType').val('asc');
-							}else{//大于一次点击同一个col排序
-								if($('#orderType').val() == 'asc'){
-									$('#orderType').val('desc');
-								}else{
-									$('#orderType').val('asc');
-								}
-							}							
-							orderByCol(colArr[index]);
-						});
-						//标志col目前的排序方式
-						if($('#orderBy').val()==colArr[index]){
-							if($('#orderType').val() == 'asc'){
-								$(this).append('(↑)');
-							}else if($('#orderType').val() == 'desc'){
-								$(this).append('(↓)');
-							}
-						}						
-					}
-				});
-				
+				</c:otherwise>
+				</c:choose>
 			});	
 			
 			function query(){
@@ -111,8 +91,6 @@
 		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />
 		<form action="${appPath}stat_queryFactory.htm" method="get">
-		<input type="hidden" id="orderBy" name="orderBy" value="${orderBy}"/>
-		<input type="hidden" id="orderType" name="orderType" value="${orderType}"/>
 			<table class="query_form_table">
 				<tr>
 					<th>厂商编号</th>
@@ -158,6 +136,7 @@
 				<th>合计金额</th>
 				<th>单笔本息合计</th>
 				<th>农场</th>
+				<th>代理费合计</th>
 			</tr>
 		<c:forEach items="${pageBean.resultList}" var="f">
 			<tr>
@@ -183,6 +162,9 @@
 					<td class="list_data_text">
 						${f.farm.name}
 					</td>
+					<td class="list_data_text">
+						${f.agentMoney}
+					</td>
 				</tr>
 			</c:forEach>
 		
@@ -194,6 +176,7 @@
 				<td class="list_data_text">${pageBean.total[1]}</td>
 				<td class="list_data_text">${pageBean.total[2]}</td>
 				<td class="list_data_text"></td>
+				<td class="list_data_text">${pageBean.total[3]}</td>
 			</tr>
 					
 			

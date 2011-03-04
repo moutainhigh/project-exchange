@@ -894,7 +894,7 @@ function initialise() {
 	var level5ID = -1;
 	//level表示最高级，level2子级，level3子子级，Document文件，folder文件夹。
 	//Set the initial state of the folder to "open"
-	l2ID = theMenu.addEntry(-1, "Folder", "饲料管理系统", "mywork.htm", "饲料管理系统");
+	l2ID = theMenu.addEntry(-1, "Folder", "饲料管理系统", "${appPath}html/mywork.jsp", "饲料管理系统");
 	
 	L01 = theMenu.addChild(l2ID, "Folder", "单据管理", "", "单据管理...");
 	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='管区负责人'}">

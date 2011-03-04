@@ -343,6 +343,8 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			rate.setEnable(true);
 			rate.setCreateDate(new Date());
 			rate.setCreateName(((User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ)).getName());
+			//处理利率的最后一天
+			rate.setEndDate(new Date(rate.getEndDate().getTime() + (24*60*60*1000-1)));
 			baseDao.saveOrUpdate(rate);
 			// 保存日志
 			RateLog log = Util.getBaseLog(RateLog.class, WebConstants.OP_CREATE);
@@ -364,6 +366,8 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			rate.setEnable(rateInDB.getEnable());
 			rate.setCreateDate(rateInDB.getCreateDate());
 			rate.setCreateName(rateInDB.getCreateName());
+			//处理利率的最后一天
+			rate.setEndDate(new Date(rate.getEndDate().getTime() + (24*60*60*1000-1)));
 			baseDao.saveOrUpdate(rate);
 			// 保存日志
 			RateLog log = Util.getBaseLog(RateLog.class, WebConstants.OP_UPDATE);

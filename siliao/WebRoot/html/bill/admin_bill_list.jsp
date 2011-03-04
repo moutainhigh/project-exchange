@@ -52,10 +52,18 @@
 				});
 			});
 			function query(){
+				if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				document.forms[0].action = "${appPath}bill_adminBillList.htm";
 				document.forms[0].submit();
 			}
 			function exportExcel(){
+				if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				document.forms[0].action = "${appPath}bill_exportAdminBillExcel.xls";
 				document.forms[0].submit();
 			}
@@ -106,7 +114,7 @@
 						数量(吨)
 					</th>
 					<td>
-						<input name="bill.amount" size="20" id="amoutn" value="${bill.amount }"/>
+						<input name="bill.amount" size="20" id="amount" value="${bill.amount }"/>
 					</td>
 				</tr>
 				<tr>
@@ -175,8 +183,8 @@
 					<td class="list_data_text">${b.amount}</td>
 					<td class="list_data_text">${b.billPrice}</td>
 					<td class="list_data_text">${b.statusTxt}</td>
-					<td class="list_data_text">${b.currUserName}</td>
-					<td class="list_data_text">${b.farmer.area.name}</td>
+					<td class="list_data_text"><c:if test="${b.status<5}">${b.currUserName}</c:if></td>
+					<td class="list_data_text">${b.areaAccount.area.name}</td>
 					<td class="list_data_op">
 						<img onclick="to('${appPath}bill_editAdminBill.htm?bill.id=${b.id}')" title="查看" src="${appPath}html/images/bt_edit.gif" class="op_button" />
 					</td>

@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.siliao.common.FactoryStatDO;
 import com.throne212.siliao.common.FarmerStatDO;
 import com.throne212.siliao.common.PageBean;
@@ -19,11 +20,29 @@ import com.throne212.siliao.domain.Area;
 import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.FarmerFinance;
+import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
 import com.throne212.siliao.domain.ProviderFinance;
 import com.throne212.siliao.domain.Rate;
+import com.throne212.siliao.domain.User;
 
 public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
+	
+	//获取当天的利率
+	private double getProviderRate(Object obj,Date date){
+		String target = (obj instanceof Provider)?"provider":"farm";
+		double rate = 0;
+		String hql = "from Rate r where r."+target+"=? and fromDate<=? and ?<=endDate";
+		List list = this.getHibernateTemplate().find(hql, new Object[] { obj, date, date });
+		if (list != null && list.size() > 0) {
+			Rate r = (Rate) list.get(0);
+			rate = r.getValue();
+		} else {
+			logger.info("没有找到相关联的利率，使用默认的0利率");
+		}
+		return rate/30;
+	}
+	
 
 	// 厂商统计
 	public PageBean<ProviderFinance> getProviderFinanceList(ProviderFinance condition, Date fromDate, Date toDate, Integer pageIndex) {
@@ -56,36 +75,28 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		double totalAmount = 0;
 		double totalMoney = 0;
 		double totalMoneyWithRate = 0;
+		double totalAgentMoney = 0;
 		// 设置利率金额
 		for (Object o : page.getResultList()) {
 			ProviderFinance pf = (ProviderFinance) o;
-			// 得到供应厂的利率设置
-			double rate = 0;
-			hql = "from Rate r where r.provider=? and fromDate<=? and endDate>=?";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { pf.getProvider(), new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + pf.getProvider().getName() + "】，使用默认的0利率");
-			}
-			// 统计天数
+			
+			// 计算利率
 			long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 			double rateMoney = 0;
-			double ratePerDay = rate / 30;
-			// 累计计算利息
 			for (long j = 0; j < days; j++) {
-				rateMoney += ratePerDay * pf.getMoney();
+				long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+				rateMoney += pf.getMoney() * getProviderRate(pf.getProvider(),new Date(time));
 			}
 			pf.setRateMoney(rateMoney);
 			pf.setTotalMoney(Util.addMoney(pf.getMoney(), rateMoney));
-
+			
 			// 合计计算
 			totalAmount = Util.addMoney(totalAmount, pf.getAmount());
 			totalMoney = Util.addMoney(totalMoney, pf.getMoney());
 			totalMoneyWithRate = Util.addMoney(totalMoneyWithRate, pf.getTotalMoney());
+			totalAgentMoney = Util.addMoney(totalAgentMoney, pf.getAgentMoney());
 		}
-		page.setTotal(new Double[] { totalAmount, totalMoney, totalMoneyWithRate });
+		page.setTotal(new Double[] { totalAmount, totalMoney, totalMoneyWithRate, totalAgentMoney});
 
 		return page;
 
@@ -103,8 +114,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				paramValueList.add(farm);
 			}
 			if (condition.getFactory() != null && condition.getFactory().getId() != null) {
-				Factory factory = (Factory) this.getHibernateTemplate().get(Provider.class, condition.getFactory().getId());
-				sb.append(" and factory=?");
+				Factory factory = (Factory) this.getHibernateTemplate().get(Factory.class, condition.getFactory().getId());
+				sb.append(" and (factory=? or provider.factory=?)");
+				paramValueList.add(factory);
 				paramValueList.add(factory);
 			}
 
@@ -123,6 +135,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		if (toDate != null) {
 			sb.append(" and bill.sendDate<=?");
 			paramValueList.add(Util.getNextDate(toDate));
+		}
+		//用户限制
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ManagerAccount){
+			sb.append(" and farm=?");
+			paramValueList.add(((ManagerAccount)user).getFarm());
 		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
@@ -180,23 +198,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		// 设置利率金额
 		for (Object o : page.getResultList()) {
 			FarmerFinance ff = (FarmerFinance) o;
-			// 得到农场的利率设置
-			double rate = 0;
-			hql = "from Rate r where r.farm=? and fromDate<=? and endDate>=?";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { ff.getFarmer().getArea().getFarm(), new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + ff.getProvider().getName() + "】，使用默认的0利率");
-			}
-			// 统计天数
+			// 计算利率
 			long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 			double rateMoney = 0;
-			double ratePerDay = rate / 30;
-			// 累计计算利息
 			for (long j = 0; j < days; j++) {
-				rateMoney += ratePerDay * ff.getMoney();
+				long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+				rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
 			}
 			ff.setRateMoney(rateMoney);
 			ff.setTotalMoney(Util.addMoney(ff.getMoney(), rateMoney));
@@ -224,7 +231,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				paramValueList.add(farm);
 			}
 			if (condition.getFactory() != null && condition.getFactory().getId() != null) {
-				Factory factory = (Factory) this.getHibernateTemplate().get(Provider.class, condition.getFactory().getId());
+				Factory factory = (Factory) this.getHibernateTemplate().get(Factory.class, condition.getFactory().getId());
 				sb.append(" and factory=?");
 				paramValueList.add(factory);
 			}
@@ -269,7 +276,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			sb.append(" and bill.finishDate<=?");
 			paramValueList.add(Util.getNextDate(finishToDate));
 		}
-
+		//用户限制
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ManagerAccount){
+			sb.append(" and area.farm=?");
+			paramValueList.add(((ManagerAccount)user).getFarm());
+		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
@@ -326,25 +338,14 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		for (Object o : page.getResultList()) {
 			ProviderFinance pf = (ProviderFinance) o;
 
-			// 得到供应厂的利率设置
-			double rate = 0;
-			hql = "from Rate r where r.provider=? and fromDate<=? and endDate>=?";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { pf.getProvider(), new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + pf.getProvider().getName() + "】，使用默认的0利率");
-			}
-			// 统计天数
+			// 计算利率
 			long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 			double rateMoney = 0;
-			double ratePerDay = rate / 30;
-			// 累计计算利息
 			for (long j = 0; j < days; j++) {
-				rateMoney += ratePerDay * pf.getMoney();
+				long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+				rateMoney += pf.getMoney() * getProviderRate(pf.getProvider(),new Date(time));
 			}
-			pf.setRateMoney(Util.roundMoney(rateMoney));
+			pf.setRateMoney(rateMoney);
 			pf.setTotalMoney(Util.addMoney(pf.getMoney(), rateMoney));
 
 			// 合计计算
@@ -375,7 +376,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				paramValueList.add(farm);
 			}
 			if (condition.getProvider().getFactory() != null && condition.getFactory().getId() != null) {
-				Factory factory = (Factory) this.getHibernateTemplate().get(Provider.class, condition.getFactory().getId());
+				Factory factory = (Factory) this.getHibernateTemplate().get(Factory.class, condition.getFactory().getId());
 				sb.append(" and factory=?");
 				paramValueList.add(factory);
 			}
@@ -395,6 +396,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		if (toDate != null) {
 			sb.append(" and rateFromDate<=?");
 			paramValueList.add(Util.getNextDate(toDate));
+		}
+		//用户限制
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ManagerAccount){
+			sb.append(" and farm=?");
+			paramValueList.add(((ManagerAccount)user).getFarm());
 		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
@@ -453,25 +460,15 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		// 设置利率金额
 		for (Object o : page.getResultList()) {
 			FarmerFinance ff = (FarmerFinance) o;
-			// 得到农场的利率设置
-			double rate = 0;
-			hql = "from Rate r where r.farm=? and fromDate<=? and endDate>=?";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { ff.getFarmer().getArea().getFarm(), new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + ff.getProvider().getName() + "】，使用默认的0利率");
-			}
-			// 统计天数
+			
+			// 计算利率
 			long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 			double rateMoney = 0;
-			double ratePerDay = rate / 30;
-			// 累计计算利息
 			for (long j = 0; j < days; j++) {
-				rateMoney += ratePerDay * ff.getMoney();
+				long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+				rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
 			}
-			ff.setRateMoney(Util.roundMoney(rateMoney));
+			ff.setRateMoney(rateMoney);
 			ff.setTotalMoney(Util.addMoney(ff.getMoney(), rateMoney));
 
 			// 合计计算
@@ -500,7 +497,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				paramValueList.add(farm);
 			}
 			if (condition.getFactory() != null && condition.getFactory().getId() != null) {
-				Factory factory = (Factory) this.getHibernateTemplate().get(Provider.class, condition.getFactory().getId());
+				Factory factory = (Factory) this.getHibernateTemplate().get(Factory.class, condition.getFactory().getId());
 				sb.append(" and factory=?");
 				paramValueList.add(factory);
 			}
@@ -545,7 +542,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			sb.append(" and bill.finishDate<=?");
 			paramValueList.add(Util.getNextDate(finishToDate));
 		}
-
+		//用户限制
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ManagerAccount){
+			sb.append(" and farm=?");
+			paramValueList.add(((ManagerAccount)user).getFarm());
+		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
 		rst[0] = sb.toString();
@@ -600,27 +602,17 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 
 			// 获得单笔本息合计
 			double totalMoneyWithRate = 0;
-			// 得到供应厂的利率设置
-			double rate = 0;
-			String hql = "from Rate r where r.farm=? and fromDate<=? and endDate>=? and (enable is null or enable=true)";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { farm, new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + farm.getName() + "】，使用默认的0利率");
-			}
 			List<FarmerFinance> tmpList = this.getHibernateTemplate().find("from FarmerFinance ff where area=? and type=0", new Object[] { area });
 			for (FarmerFinance ff : tmpList) {
 				// 统计天数
 				long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 				double rateMoney = 0;
-				double ratePerDay = rate / 30;
 				// 累计计算利息
 				for (long j = 0; j < days; j++) {
-					rateMoney += ratePerDay * ff.getMoney();
+					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
 				}
-				totalMoneyWithRate = rateMoney + ff.getMoney();
+				totalMoneyWithRate = rateMoney + ff.getMoney();				
 			}
 			farmerStatDO.setTotalOwn(Util.roundMoney(totalMoneyWithRate));
 
@@ -672,25 +664,15 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 
 			// 获得单笔本息合计
 			double totalMoneyWithRate = 0;
-			// 得到供应厂的利率设置
-			double rate = 0;
-			String hql = "from Rate r where r.provider=? and fromDate<=? and endDate>=? and (enable is null or enable=true)";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { p, new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + p.getName() + "】，使用默认的0利率");
-			}
 			List<ProviderFinance> tmpList = this.getHibernateTemplate().find("from ProviderFinance pf where provider=? and farm=? and type=0", new Object[] { p, farm });
 			for (ProviderFinance pf : tmpList) {
 				// 统计天数
 				long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 				double rateMoney = 0;
-				double ratePerDay = rate / 30;
 				// 累计计算利息
 				for (long j = 0; j < days; j++) {
-					rateMoney += ratePerDay * pf.getMoney();
+					long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += this.getProviderRate(pf.getProvider(), new Date(time)) * pf.getMoney();
 				}
 				totalMoneyWithRate = rateMoney + pf.getMoney();
 			}
@@ -737,25 +719,15 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 
 			// 获得单笔本息合计
 			double totalMoneyWithRate = 0;
-			// 得到供应厂的利率设置
-			double rate = 0;
-			String hql = "from Rate r where r.farm=? and fromDate<=? and endDate>=? and (enable is null or enable=true)";
-			List list = this.getHibernateTemplate().find(hql, new Object[] { farm, new Date(), new Date() });
-			if (list != null && list.size() > 0) {
-				Rate r = (Rate) list.get(0);
-				rate = r.getValue();
-			} else {
-				logger.info("没有找到相关联的利率【" + farm.getName() + "】，使用默认的0利率");
-			}
 			List<FarmerFinance> tmpList = this.getHibernateTemplate().find("from FarmerFinance ff where area.farm=? and type=0", new Object[] { farm });
 			for (FarmerFinance ff : tmpList) {
 				// 统计天数
 				long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
 				double rateMoney = 0;
-				double ratePerDay = rate / 30;
 				// 累计计算利息
 				for (long j = 0; j < days; j++) {
-					rateMoney += ratePerDay * ff.getMoney();
+					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += this.getProviderRate(ff.getArea().getFarm(), new Date(time)) * ff.getMoney();
 				}
 				totalMoneyWithRate = rateMoney + ff.getMoney();
 			}

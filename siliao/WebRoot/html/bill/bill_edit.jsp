@@ -19,6 +19,7 @@
 			var farmId = '${bill.farm.id}';
 			var factoryId = '${bill.factory.id}';
 			var providerId = '${bill.provider.id}';
+			var areaId = '${bill.areaAccount.area.id}';
 			var s = '${bill.status}';
 			$(function(){
 				//订单状态处理
@@ -51,23 +52,6 @@
 				
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
-				//农户名字的autocomplete
-				/*$("#farmerName").autocomplete('${appPath}ajax/queryFarmerName?time='+new Date().getTime(), {
-					multiple: false,
-					minChars: 1,
-					parse: function(data) {
-						return $.map(data['list'], function(row) {
-							return {
-								data: row['name'],
-								value: row['name'],
-								result: row['name']
-							}
-						});
-					},
-					formatItem: function(item) {
-						return item;
-					}
-				});*/
 				if(userRole == '系统管理员'){
 					//农场下拉菜单
 					$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
@@ -79,16 +63,19 @@
 							}
 							if(farmId != ''){
 								$('#farmId').val(farmId);
+								selectArea(farmId);
 							}
 						}
 					});
 				}else if(userRole == '饲料经理' ){
 					<c:if test="${userObj.userRole == '饲料经理'}">
 					$('#farmId').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+					selectArea('${userObj.farm.id}');
 					</c:if>
 				}else if(userRole == '管区负责人'){
 					<c:if test="${userObj.userRole == '管区负责人'}">
 					$('#farmId').html('<option value="${userObj.area.farm.id}">${userObj.area.farm.name}</option>');
+					$('#areaId').html('<option value="${userObj.area.id}">${userObj.area.name}</option>');
 					</c:if>
 				}
 				//饲料厂商下拉菜单
@@ -141,6 +128,15 @@
 				}else if($('#model').val() == null || $('#model').val()==''){
 					alert('规格不能为空');
 					return false;
+				}else if($('#planDate').val() == null || $('#planDate').val()==''){
+					alert('计划到料日期不能为空');
+					return false;
+				}else if(!$('#amount').val()){
+					alert('吨数不能为空');
+					return false;
+				}else if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
 				}else{
 					document.forms[0].action = "${appPath}bill_addNewBill.htm";
 					document.forms[0].submit();
@@ -152,6 +148,9 @@
 					return false;
 				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('饲料厂商不能为空');
+					return false;
+				}else if('#amount'.val()!='' && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
 					return false;
 				}else{
 					document.forms[0].action = "${appPath}bill_saveBillDraft.htm";
@@ -179,9 +178,35 @@
 				}else if($('#providerId').val() == null || $('#providerId').val()==''){
 					alert('请选择一个供应饲料厂');
 					return false;
+				}else if($('#planDate').val() == null || $('#planDate').val()==''){
+					alert('计划到料日期不能为空');
+					return false;
+				}else if(!$('#amount').val()){
+					alert('吨数不能为空');
+					return false;
+				}else if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
 				}else{
 					document.forms[0].action = "${appPath}bill_confirmBill.htm";
 					document.forms[0].submit();
+				}
+			}
+			function selectArea(val){
+				if(val && val != ''){
+					//管区下拉菜单
+					$.getJSON("${appPath}ajax/getAreaByFarm?time="+new Date().getTime(), {'farmId':val}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#areaId').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#areaId').append(str);
+							}
+							if(areaId != ''){
+								$('#areaId').val(areaId);
+							}
+						}
+					});
 				}
 			}
 		</script>
@@ -190,8 +215,10 @@
 		<form action="${appPath}bill_saveBill.htm" method="get">
 			<input type="hidden" name="bill.id" value="${bill.id}" />
 			<input type="hidden" name="bill.areaAccount.id" value="${bill.areaAccount.id}" />
-			<!--  <input type="hidden" name="bill.manager.id" value="${bill.manager.id}" />
-			<input type="hidden" name="bill.providerAccount.id" value="${bill.providerAccount.id}" />-->
+			<c:if test="${not empty bill.id}">
+			<input type="hidden" name="bill.createName" value="${bill.createName}" />
+			<input type="hidden" name="bill.createDate" value="<fmt:formatDate value="${bill.createDate}" pattern="yyyy-MM-dd"/>" />
+			</c:if>
 			<div class="page_title">
 				饲料管理系统 > 单据管理 > 新建单据
 			</div>
@@ -219,19 +246,18 @@
 					</td>
 				</tr>
 				<tr>
-					<!--  
-					<th>
-						养殖户姓名
-					</th>
-					<td>
-						<input id="farmerName" name="bill.farmer.name" value="${bill.farmer.name}" />
-						<span class="red_star">*(务必准确)</span>
-					</td>-->
 					<th>
 						农场
 					</th>
-					<td colspan="3">
-						<select id="farmId" name="bill.farm.id"></select>
+					<td colspan="1">
+						<select id="farmId" name="bill.farm.id" onchange="selectArea(this.value);"></select>
+						<span class="red_star">*</span>
+					</td>
+					<th>
+						管区
+					</th>
+					<td>
+						<select id="areaId" name="bill.area.id"></select>
 						<span class="red_star">*</span>
 					</td>
 				</tr>
@@ -278,7 +304,7 @@
 						计划到料日期
 					</th>
 					<td>
-						<input id="" name="bill.planDate" value="<fmt:formatDate value="${bill.planDate}" pattern="yyyy-MM-dd"/>" style="width: 200px;" class="datetime"/>
+						<input id="planDate" name="bill.planDate" value="<fmt:formatDate value="${bill.planDate}" pattern="yyyy-MM-dd"/>" style="width: 200px;" class="datetime"/>
 					</td>
 				</tr>
 			</table></div>

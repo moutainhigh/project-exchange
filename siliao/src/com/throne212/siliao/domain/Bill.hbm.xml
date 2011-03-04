@@ -19,6 +19,7 @@
 		<many-to-one name="farm" column="farm_id" lazy="false"></many-to-one>
 		<many-to-one name="farmer" column="farmer_id" lazy="false"></many-to-one>
 		<many-to-one name="provider" column="provider_id" lazy="false"></many-to-one>
+		<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
 		<property name="model"></property>
 		<property name="orderNo"></property>
 		<property name="planDate"></property>

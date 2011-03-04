@@ -78,33 +78,6 @@
 					}
 				});	
 				
-				var colArr = ['id','farmer.name',null,null,'bill.sendDate','bill.finishDate','remark','size','model','amount','money','totalMoney',null];
-				$('.data_list_table tr').eq(0).find('th').each(function(index){
-					if(colArr[index]){//空的就没有排序功能
-						$(this).css({'cursor':'pointer'});
-						$(this).attr('title','升序/降序');
-						$(this).click(function(){//click事件
-							if($('#orderBy').val()!=colArr[index]){//第一次点击一个新的col
-								$('#orderType').val('asc');
-							}else{//大于一次点击同一个col排序
-								if($('#orderType').val() == 'asc'){
-									$('#orderType').val('desc');
-								}else{
-									$('#orderType').val('asc');
-								}
-							}							
-							orderByCol(colArr[index]);
-						});
-						//标志col目前的排序方式
-						if($('#orderBy').val()==colArr[index]){
-							if($('#orderType').val() == 'asc'){
-								$(this).append('(↑)');
-							}else if($('#orderType').val() == 'desc'){
-								$(this).append('(↓)');
-							}
-						}						
-					}
-				});
 			});	
 			
 			function query(){
@@ -128,8 +101,6 @@
 		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />
 		<form action="${appPath}stat_queryFarmer.htm" method="get">
-			<input type="hidden" id="orderBy" name="orderBy" value="${orderBy}"/>
-		<input type="hidden" id="orderType" name="orderType" value="${orderType}"/>
 			<table class="query_form_table">
 	<tr>
 		<th>养殖户姓名</th>
@@ -151,7 +122,7 @@
 					</td>
 		<th>饲料厂商</th>
 		<td>
-			<select id="factoryId" name="ff.factoryId"></select>
+			<select id="factoryId" name="ff.factory.id"></select>
 		</td>
 	</tr>
 	<tr>

@@ -30,4 +30,7 @@ public interface BillDao extends BaseDao {
 	public PageBean<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer page);
 
 	public List<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan,String accountName);
+	
+	//删除财务信息
+	public void deleteFinance(Long billId);
 }

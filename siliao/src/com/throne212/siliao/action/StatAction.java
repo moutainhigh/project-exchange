@@ -51,6 +51,7 @@ public class StatAction extends BaseAction {
 		String path = statBiz.getProviderFinanceExcelDownloadFile(pf, fromDate, toDate);
 		if (path != null) {
 			try {
+				this.setMsg("provider_finance");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -86,6 +87,7 @@ public class StatAction extends BaseAction {
 		String path = statBiz.getFarmerFinanceExcelDownloadFile(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate);
 		if (path != null) {
 			try {
+				this.setMsg("farmer_finance");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -106,6 +108,7 @@ public class StatAction extends BaseAction {
 		String path = statBiz.getProviderSettleFinanceExcelDownloadFile(pf, fromDate, toDate);
 		if (path != null) {
 			try {
+				this.setMsg("provider_settlement");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -137,6 +140,7 @@ public class StatAction extends BaseAction {
 		String path = statBiz.getFarmerSettleFinanceExcelDownloadFile(ff, sendFromDate, sendToDate,fnishiFromDate,finishToDate);
 		if (path != null) {
 			try {
+				this.setMsg("farmer_settlement");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -192,6 +196,7 @@ public class StatAction extends BaseAction {
 		}
 		if (path != null) {
 			try {
+				this.setMsg("farm_stat");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -217,6 +222,7 @@ public class StatAction extends BaseAction {
 		String path = statBiz.exportSysStatList();
 		if (path != null) {
 			try {
+				this.setMsg("sys_stat");
 				this.setDownloadFile(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

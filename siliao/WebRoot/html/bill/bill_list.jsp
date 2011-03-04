@@ -48,10 +48,18 @@
 			});
 		
 			function query(){
+				if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				document.forms[0].action = "${appPath}bill_billList.htm";
 				document.forms[0].submit();
 			}
 			function exportExcel(){
+				if($('#amount').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+					alert('吨数只能为数字');
+					return false;
+				}
 				document.forms[0].action = "${appPath}data_exportBillExcel.xls";
 				document.forms[0].submit();
 			}
@@ -86,7 +94,7 @@
 			<input id="" name="bill.model"  value="${bill.model }" size="20" />
 		</td>
 		<th>吨数</th>
-		<td><input id="" name="bill.amount" value="${bill.amount }" /></td>
+		<td><input id="amount" name="bill.amount" value="${bill.amount }" /></td>
 	</tr>
 	<tr>
 		

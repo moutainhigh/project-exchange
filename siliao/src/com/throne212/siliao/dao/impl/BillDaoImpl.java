@@ -87,9 +87,9 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 				sb.append(" and status=?");
 				paramValueList.add(condition.getStatus());
 			}
-			if (!Util.isEmpty(condition.getCurrUserName())) {// 当前处理人
+			if (!Util.isEmpty(currMan)) {// 当前处理人
 				sb.append(" and currUserName like ?");
-				paramValueList.add("%" + condition.getCurrUserName() + "%");
+				paramValueList.add("%" + currMan + "%");
 			}
 		}
 		// 创建时间段
@@ -470,5 +470,16 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		return q.list();
 
+	}
+	
+	public void deleteFinance(Long billId){
+		String hql = "delete from ProviderFinance f where f.bill.id=?";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		int len = s.createQuery(hql).setParameter(0, billId).executeUpdate();
+		System.out.println("删除厂商财务信息条数：" + len);
+		hql = "delete from FarmerFinance f where f.bill.id=?";
+		len = s.createQuery(hql).setParameter(0, billId).executeUpdate();
+		System.out.println("删除农户财务信息条数：" + len);
+		
 	}
 }

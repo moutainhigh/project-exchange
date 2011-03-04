@@ -38,6 +38,12 @@
 				}else if($('#translater').val() == null || $('#translater').val()==''){
 					alert('运输人不能为空');
 					return false;
+				}else if(/(^\d+\.\d+$)|(^\d+$)/.test($('#priceOnOrder').val()) == false){
+					alert('开票价格只能为数字');
+					return false;
+				}else if(/(^\d+\.\d+$)|(^\d+$)/.test($('#agentUnitPrice').val()) == false){
+					alert('代理费单价只能为数字');
+					return false;
 				}else{
 					document.forms[0].action = "${appPath}bill_sendBill.htm";
 					document.forms[0].submit();
