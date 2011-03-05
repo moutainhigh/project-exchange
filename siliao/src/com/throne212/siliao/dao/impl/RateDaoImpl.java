@@ -77,8 +77,8 @@ public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 			paramValueList.add(fromDate);
 		}
 		if (toDate != null) {
-			sb.append(" and fromDate<=?");
-			paramValueList.add(toDate);
+			sb.append(" and fromDate<?");
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		// 有效时间段2
 		if (fromDate2 != null) {
@@ -86,8 +86,8 @@ public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 			paramValueList.add(fromDate2);
 		}
 		if (toDate2 != null) {
-			sb.append(" and endDate<=?");
-			paramValueList.add(toDate2);
+			sb.append(" and endDate<?");
+			paramValueList.add(Util.getNextDate(toDate2));
 		}
 		//排序
 		if(!Util.isEmpty(orderBy)){

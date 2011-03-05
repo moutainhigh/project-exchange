@@ -79,8 +79,8 @@ public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 			paramValueList.add(fromDate);
 		}
 		if (toDate != null) {
-			sb.append(" and createDate<=?");
-			paramValueList.add(toDate);
+			sb.append(" and createDate<?");
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		if (WebConstants.FACTORY_TYPE_PROVIDER.equals(type) && !Util.isEmpty(accountName)) {
 			sb.append(" and account.name like ?");

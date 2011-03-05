@@ -89,8 +89,8 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 			paramValueList.add(fromDate);
 		}
 		if (toDate != null) {
-			sb.append(" and createDate<=?");
-			paramValueList.add(toDate);
+			sb.append(" and createDate<?");
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		
 		//排序
