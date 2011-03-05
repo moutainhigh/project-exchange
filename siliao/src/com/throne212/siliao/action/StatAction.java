@@ -67,7 +67,7 @@ public class StatAction extends BaseAction {
 	private FarmerFinance ff;
 	private Date sendFromDate;
 	private Date sendToDate;
-	private Date fnishiFromDate;
+	private Date finishFromDate;
 	private Date finishToDate;
 
 	public String queryFarmer() {
@@ -80,12 +80,12 @@ public class StatAction extends BaseAction {
 //				ff.setFarmer(farmer);
 //			}
 //		}
-		pageBean = statBiz.getFarmerFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, pageIndex,pageSize);
+		pageBean = statBiz.getFarmerFinanceList(ff, sendFromDate, sendToDate, finishFromDate, finishToDate, pageIndex,pageSize);
 		return "farmer_list";
 	}
 
 	public String exportFarmerFinanceExcel() {
-		String path = statBiz.getFarmerFinanceExcelDownloadFile(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate);
+		String path = statBiz.getFarmerFinanceExcelDownloadFile(ff, sendFromDate, sendToDate, finishFromDate, finishToDate);
 		if (path != null) {
 			try {
 				this.setMsg("farmer_finance");
@@ -133,12 +133,12 @@ public class StatAction extends BaseAction {
 	
 	//农户结算
 	public String settleFarmer() {
-		pageBean = statBiz.getFarmerSettleFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, pageIndex,pageSize);
+		pageBean = statBiz.getFarmerSettleFinanceList(ff, sendFromDate, sendToDate, finishFromDate, finishToDate, pageIndex,pageSize);
 		return "farmer_settlement";
 	}
 
 	public String exportSettleFarmerFinanceExcel() {
-		String path = statBiz.getFarmerSettleFinanceExcelDownloadFile(ff, sendFromDate, sendToDate,fnishiFromDate,finishToDate);
+		String path = statBiz.getFarmerSettleFinanceExcelDownloadFile(ff, sendFromDate, sendToDate,finishFromDate,finishToDate);
 		if (path != null) {
 			try {
 				this.setMsg("farmer_settlement");
@@ -316,12 +316,14 @@ public class StatAction extends BaseAction {
 		this.sendToDate = sendToDate;
 	}
 
-	public Date getFnishiFromDate() {
-		return fnishiFromDate;
+	
+
+	public Date getFinishFromDate() {
+		return finishFromDate;
 	}
 
-	public void setFnishiFromDate(Date fnishiFromDate) {
-		this.fnishiFromDate = fnishiFromDate;
+	public void setFinishFromDate(Date finishFromDate) {
+		this.finishFromDate = finishFromDate;
 	}
 
 	public Date getFinishToDate() {

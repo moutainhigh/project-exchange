@@ -82,7 +82,7 @@ public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<=?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(toDate);
 		}
 		//管区或饲料经理
 		User userInsess =(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);

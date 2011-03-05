@@ -99,7 +99,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<=?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(toDate);
 		}
 		// 计划时间段
 		if (planFromDate != null) {

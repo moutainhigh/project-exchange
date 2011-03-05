@@ -134,7 +134,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (toDate != null) {
 			sb.append(" and bill.sendDate<=?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(toDate);
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -265,7 +265,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and bill.sendDate<=?");
-			paramValueList.add(Util.getNextDate(sendToDate));
+			paramValueList.add(sendToDate);
 		}
 
 		if (finishFromDate != null) {
@@ -274,7 +274,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (finishToDate != null) {
 			sb.append(" and bill.finishDate<=?");
-			paramValueList.add(Util.getNextDate(finishToDate));
+			paramValueList.add(finishToDate);
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -395,7 +395,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (toDate != null) {
 			sb.append(" and rateFromDate<=?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(toDate);
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -533,7 +533,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and bill.sendDate<=?");
-			paramValueList.add(Util.getNextDate(sendToDate));
+			paramValueList.add(sendToDate);
 		}
 
 		if (finishFromDate != null) {
@@ -542,7 +542,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (finishToDate != null) {
 			sb.append(" and bill.finishDate<=?");
-			paramValueList.add(Util.getNextDate(finishToDate));
+			paramValueList.add(finishToDate);
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
