@@ -45,9 +45,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 	
 
 	// 厂商统计
-	public PageBean<ProviderFinance> getProviderFinanceList(ProviderFinance condition, Date fromDate, Date toDate, Integer pageIndex) {
+	public PageBean<ProviderFinance> getProviderFinanceList(ProviderFinance condition, Date fromDate, Date toDate, Integer pageIndex,int pageSize) {
 		PageBean<ProviderFinance> page = new PageBean<ProviderFinance>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate);
 		String hql = (String) hqlArr[0];
@@ -64,11 +64,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			q.setParameter(i++, o);
 		}
 		if(pageIndex > -1){
-			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 			q.setFirstResult(startIndex);
 		}
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 
 		// 设置合计
@@ -163,10 +163,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 	}
 
 	// 农户统计
-	public PageBean<FarmerFinance> getFarmerFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate, Integer pageIndex) {
+	public PageBean<FarmerFinance> getFarmerFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate, Integer pageIndex,int pageSize) {
 
 		PageBean<FarmerFinance> page = new PageBean<FarmerFinance>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQL(condition, sendFromDate, sendToDate, finishFromDate, finishToDate);
 		String hql = (String) hqlArr[0];
@@ -183,11 +183,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			q.setParameter(i++, o);
 		}
 		if(pageIndex > -1){
-			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 			q.setFirstResult(startIndex);
 		}
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 
 		// 设置合计
@@ -303,9 +303,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 	}
 
 	// 厂商结算查询
-	public PageBean<ProviderFinance> getProviderSettleFinanceList(ProviderFinance condition, Date fromDate, Date toDate, Integer pageIndex) {
+	public PageBean<ProviderFinance> getProviderSettleFinanceList(ProviderFinance condition, Date fromDate, Date toDate, Integer pageIndex,int pageSize) {
 		PageBean<ProviderFinance> page = new PageBean<ProviderFinance>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQLForSettle(condition, fromDate, toDate);
 		String hql = (String) hqlArr[0];
@@ -322,11 +322,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			q.setParameter(i++, o);
 		}
 		if(pageIndex > -1){
-			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 			q.setFirstResult(startIndex);
 		}
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 
 		// 设置合计
@@ -424,10 +424,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 	}
 
 	// 农户结算
-	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate, Integer pageIndex) {
+	public PageBean<FarmerFinance> getFarmerSettleFinanceList(FarmerFinance condition, Date sendFromDate, Date sendToDate, Date finishFromDate, Date finishToDate, Integer pageIndex,int pageSize) {
 
 		PageBean<FarmerFinance> page = new PageBean<FarmerFinance>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQLForSettle(condition, sendFromDate, sendToDate, finishFromDate, finishToDate);
 		String hql = (String) hqlArr[0];
@@ -444,11 +444,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			q.setParameter(i++, o);
 		}
 		if(pageIndex > -1){
-			q.setMaxResults(WebConstants.PAGE_SIZE);
+			q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 			q.setFirstResult(startIndex);
 		}
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 
 		// 设置合计
@@ -466,8 +466,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			double rateMoney = 0;
 			for (long j = 0; j < days; j++) {
 				long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-				rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
-			}
+				if (ff.getArea()!=null&&ff.getArea().getFarm()!=null) {
+					rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
+				}
+				}
 			ff.setRateMoney(rateMoney);
 			ff.setTotalMoney(Util.addMoney(ff.getMoney(), rateMoney));
 

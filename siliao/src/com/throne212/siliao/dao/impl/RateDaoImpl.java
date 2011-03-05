@@ -15,9 +15,9 @@ import com.throne212.siliao.domain.Rate;
 
 public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 
-	public PageBean<Rate> getRateList(Rate condition,Date fromDate,Date toDate,Date fromDate2,Date toDate2,String rateName,int pageIndex,String orderBy,String orderType) {
+	public PageBean<Rate> getRateList(Rate condition,Date fromDate,Date toDate,Date fromDate2,Date toDate2,String rateName,int pageIndex,String orderBy,String orderType,int pageSize) {
 		PageBean<Rate> page = new PageBean<Rate>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, fromDate2, toDate2, rateName, orderBy, orderType);
 		String hql = (String) hqlArr[0];
@@ -33,10 +33,10 @@ public class RateDaoImpl extends BaseDaoImpl implements RateDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}

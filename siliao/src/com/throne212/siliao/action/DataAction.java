@@ -36,7 +36,8 @@ public class DataAction extends BaseAction {
 
 	private List list;
 	private PageBean pageBean;
-	private Integer page;
+	private Integer pageIndex;
+	private int pageSize;
 	private InputStream downloadFile;
 	private List<Log> logList;
 	private String orderBy;
@@ -161,7 +162,7 @@ public class DataAction extends BaseAction {
 			}
 		}
 		
-		pageBean = dataBiz.getFarmerList(farmer, fromDate, toDate, page,orderBy,orderType);
+		pageBean = dataBiz.getFarmerList(farmer, fromDate, toDate, pageIndex,orderBy,orderType,pageSize);
 		return "farmer_list";
 	}
 
@@ -263,7 +264,7 @@ public class DataAction extends BaseAction {
 
 	// 条件字段
 	public String userList() {
-		pageBean = dataBiz.getUserList(user, fromDate, toDate, page, role,orderBy,orderType);
+		pageBean = dataBiz.getUserList(user, fromDate, toDate, pageIndex, role,orderBy,orderType,pageSize);
 		return "user_list";
 	}
 
@@ -350,7 +351,7 @@ public class DataAction extends BaseAction {
 	private String rateName;
 
 	public String rateList() {
-		pageBean = dataBiz.getRateList(rate, fromDate, toDate, fromDate2, toDate2, rateName, page,orderBy,orderType);
+		pageBean = dataBiz.getRateList(rate, fromDate, toDate, fromDate2, toDate2, rateName, pageIndex,orderBy,orderType,pageSize);
 		return "rate_list";
 	}
 
@@ -460,7 +461,7 @@ public class DataAction extends BaseAction {
 	private String accountName;
 
 	public String farmAbsList() {
-		pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, page, farmType, farmId, accountName,orderBy,orderType);
+		pageBean = dataBiz.getFarmAbsList(farmAbs, fromDate, toDate, pageIndex, farmType, farmId, accountName,orderBy,orderType,pageSize);
 		return "farmabs_list";
 	}
 
@@ -558,7 +559,7 @@ public class DataAction extends BaseAction {
 	}
 
 	public String factoryList() {
-		pageBean = dataBiz.getFactoryAbsList(factoryAbs, fromDate, toDate, page, factoryType, factoryId, accountName,orderBy,orderType);
+		pageBean = dataBiz.getFactoryAbsList(factoryAbs, fromDate, toDate, pageIndex, factoryType, factoryId, accountName,orderBy,orderType,pageSize);
 		return "factory_list";
 	}
 	public String exportFactoryExcel() {
@@ -673,12 +674,12 @@ public class DataAction extends BaseAction {
 		this.pageBean = pageBean;
 	}
 
-	public Integer getPage() {
-		return page;
+	public Integer getPageIndex() {
+		return pageIndex;
 	}
 
-	public void setPage(Integer page) {
-		this.page = page;
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
 	}
 
 	public InputStream getDownloadFile() {
@@ -831,6 +832,14 @@ public class DataAction extends BaseAction {
 
 	public void setOrderType(String orderType) {
 		this.orderType = orderType;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 
 }

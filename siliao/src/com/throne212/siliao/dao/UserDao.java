@@ -10,7 +10,7 @@ import com.throne212.siliao.domain.User;
 
 public interface UserDao extends BaseDao {
 	
-	public PageBean<User> getUserList(User condition,Date fromDate,Date toDate,int page,String role,String orderBy,String orderType);
+	public PageBean<User> getUserList(User condition,Date fromDate,Date toDate,int page,String role,String orderBy,String orderType,int pageSize);
 	public List<User> getUserList(User condition,Date fromDate,Date toDate,String role,String orderBy,String orderType);
 
 }

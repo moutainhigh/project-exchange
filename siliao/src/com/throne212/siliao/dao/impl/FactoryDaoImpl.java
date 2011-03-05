@@ -18,9 +18,9 @@ import com.throne212.siliao.domain.Provider;
 public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 
 	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition, Date fromDate, Date toDate, Integer pageIndex, String type, Long factoryId,
-			String accountName,String orderBy,String orderType) {
+			String accountName,String orderBy,String orderType,int pageSize) {
 		PageBean<FactoryAbs> page = new PageBean<FactoryAbs>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, type, factoryId, accountName, orderBy, orderType);
 		String hql = (String) hqlArr[0];
@@ -36,10 +36,10 @@ public class FactoryDaoImpl extends BaseDaoImpl implements FactoryDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}

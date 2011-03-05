@@ -227,7 +227,7 @@
 				<th colspan="14" class="pager">
 					<div class="pager">
 						共${pageBean.totalRow}条记录 每页
-						<input value="${pageBean.rowPerPage }" size="2" />
+						<input id="pageSize" name="pageSize" value="${pageBean.rowPerPage }" size="2" />
 						条 第
 						<input value="${pageBean.pageIndex}" size="2" />
 						页/共${pageBean.maxPage}页
@@ -266,7 +266,7 @@
 						转到
 						<input value="" size="2" id="targetPage" />
 						页
-						<button width="20" onclick="gotoPage($('#targetPage').val());return false;">
+						<button width="20" onclick="gotoPage($('#targetPage').val(),$('#pageSize').val());return false;">
 							GO
 						</button>
 					</div>

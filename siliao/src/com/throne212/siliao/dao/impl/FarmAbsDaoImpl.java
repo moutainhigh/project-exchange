@@ -19,10 +19,10 @@ import com.throne212.siliao.domain.ManagerAccount;
 
 public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 
-	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer pageIndex, String farmType, Long farmId, String accountName,String orderBy,String orderType) {
+	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer pageIndex, String farmType, Long farmId, String accountName,String orderBy,String orderType,int pageSize) {
 
 		PageBean<FarmAbs> page = new PageBean<FarmAbs>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, farmType, farmId, accountName, orderBy, orderType);
 
@@ -39,10 +39,10 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 

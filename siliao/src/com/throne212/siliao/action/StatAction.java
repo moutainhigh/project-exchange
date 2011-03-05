@@ -39,11 +39,12 @@ public class StatAction extends BaseAction {
 	private Date fromDate;
 	private Date toDate;
 	private PageBean pageBean;
-	private Integer page;
+	private Integer pageIndex;
+	private int pageSize;
 
 	public String queryFactory() {
 
-		pageBean = statBiz.getProviderFinanceList(pf, fromDate, toDate, page);
+		pageBean = statBiz.getProviderFinanceList(pf, fromDate, toDate, pageIndex,pageSize);
 		return "factory_list";
 	}
 
@@ -79,7 +80,7 @@ public class StatAction extends BaseAction {
 //				ff.setFarmer(farmer);
 //			}
 //		}
-		pageBean = statBiz.getFarmerFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, page);
+		pageBean = statBiz.getFarmerFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, pageIndex,pageSize);
 		return "farmer_list";
 	}
 
@@ -100,7 +101,7 @@ public class StatAction extends BaseAction {
 	
 	//厂商结算
 	public String settleFactory() {
-		pageBean = statBiz.getProviderSettleFinanceList(pf, fromDate, toDate, page);
+		pageBean = statBiz.getProviderSettleFinanceList(pf, fromDate, toDate, pageIndex,pageSize);
 		return "factory_settlement";
 	}
 
@@ -132,7 +133,7 @@ public class StatAction extends BaseAction {
 	
 	//农户结算
 	public String settleFarmer() {
-		pageBean = statBiz.getFarmerSettleFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, page);
+		pageBean = statBiz.getFarmerSettleFinanceList(ff, sendFromDate, sendToDate, fnishiFromDate, finishToDate, pageIndex,pageSize);
 		return "farmer_settlement";
 	}
 
@@ -265,12 +266,22 @@ public class StatAction extends BaseAction {
 		this.pageBean = pageBean;
 	}
 
-	public Integer getPage() {
-		return page;
+
+
+	public Integer getPageIndex() {
+		return pageIndex;
 	}
 
-	public void setPage(Integer page) {
-		this.page = page;
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 
 	public InputStream getDownloadFile() {

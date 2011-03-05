@@ -172,7 +172,8 @@ public class BillAction extends BaseAction {
 	}
 
 	// 查询单据
-	private Integer page;
+	private int pageSize;
+	private Integer pageIndex;
 	private PageBean pageBean;
 	private Date fromDate;// 创建日期
 	private Date toDate;
@@ -185,7 +186,7 @@ public class BillAction extends BaseAction {
 
 	// 我的单据
 	public String myBillList() {
-		pageBean = billBiz.getMyBillList(bill, fromDate, toDate, currMan, planFromDate, planToDate, sendFromDate, sendToDate, page);
+		pageBean = billBiz.getMyBillList(bill, fromDate, toDate, currMan, planFromDate, planToDate, sendFromDate, sendToDate, pageIndex,pageSize);
 		return "my_bill_list";
 	}
 
@@ -291,7 +292,7 @@ public class BillAction extends BaseAction {
 	private String accountName;// 管区负责人
 
 	public String waitBillList() {
-		pageBean = billBiz.getWaitBillList(bill, fromDate, toDate, currMan, accountName, page);
+		pageBean = billBiz.getWaitBillList(bill, fromDate, toDate, currMan, accountName, pageIndex,pageSize);
 		return "wait_bill_list";
 	}
 
@@ -339,7 +340,7 @@ public class BillAction extends BaseAction {
 
 	// 单据查询，系统管理专用
 	public String adminBillList() {
-		pageBean = billBiz.getAdminBillList(bill, fromDate, toDate, currMan, accountName, page);
+		pageBean = billBiz.getAdminBillList(bill, fromDate, toDate, currMan, accountName, pageIndex,pageSize);
 		return "admin_bill_list";
 	}
 
@@ -381,7 +382,7 @@ public class BillAction extends BaseAction {
 
 	// 对账
 	public String sentBillList() {
-		pageBean = billBiz.getSentBillList(bill, fromDate, toDate, currMan, accountName, page);
+		pageBean = billBiz.getSentBillList(bill, fromDate, toDate, currMan, accountName, pageIndex,pageSize);
 		return "sent_bill_list";
 	}
 
@@ -456,12 +457,22 @@ public class BillAction extends BaseAction {
 		this.action = action;
 	}
 
-	public Integer getPage() {
-		return page;
+	
+
+	public int getPageSize() {
+		return pageSize;
 	}
 
-	public void setPage(Integer page) {
-		this.page = page;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public Integer getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
 	}
 
 	public PageBean getPageBean() {

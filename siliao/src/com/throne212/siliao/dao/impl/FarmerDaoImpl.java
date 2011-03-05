@@ -21,9 +21,9 @@ import com.throne212.siliao.domain.User;
 
 public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 
-	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, int pageIndex,String orderBy,String orderType) {
+	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, int pageIndex,String orderBy,String orderType,int pageSize) {
 		PageBean<Farmer> page = new PageBean<Farmer>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildFilterHQL(condition, fromDate, toDate, orderBy, orderType);
 		String hql = (String) hqlArr[0];
@@ -39,10 +39,10 @@ public class FarmerDaoImpl extends BaseDaoImpl implements FarmerDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}

@@ -96,12 +96,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return farmer;
 	}
 
-	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, Integer page,String orderBy,String orderType) {
+	public PageBean<Farmer> getFarmerList(Farmer condition, Date fromDate, Date toDate, Integer page,String orderBy,String orderType,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return farmerDao.getFarmerList(condition, fromDate, toDate, pageIndex, orderBy, orderType);
+		return farmerDao.getFarmerList(condition, fromDate, toDate, pageIndex, orderBy, orderType,pageSize);
 	}
 
 	public String getFarmerExcelDownloadFile(Farmer condition, Date fromDate, Date toDate,String orderBy,String orderType) {
@@ -215,12 +215,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return user;
 	}
 
-	public PageBean<User> getUserList(User condition, Date fromDate, Date toDate, Integer page, String role,String orderBy,String orderType) {
+	public PageBean<User> getUserList(User condition, Date fromDate, Date toDate, Integer page, String role,String orderBy,String orderType,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return userDao.getUserList(condition, fromDate, toDate, pageIndex, role, orderBy,orderType);
+		return userDao.getUserList(condition, fromDate, toDate, pageIndex, role, orderBy,orderType,pageSize);
 	}
 
 	public String getUserExcelDownloadFile(User condition, Date fromDate, Date toDate, String role,String orderBy,String orderType) {
@@ -281,12 +281,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return rate;
 	}
 
-	public PageBean<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName, Integer page,String orderBy,String orderType) {
+	public PageBean<Rate> getRateList(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName, Integer page,String orderBy,String orderType,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return rateDao.getRateList(condition, fromDate, toDate, fromDate2, toDate2, rateName, pageIndex, orderBy, orderType);
+		return rateDao.getRateList(condition, fromDate, toDate, fromDate2, toDate2, rateName, pageIndex, orderBy, orderType,pageSize);
 	}
 
 	public String getRateExcelDownloadFile(Rate condition, Date fromDate, Date toDate, Date fromDate2, Date toDate2, String rateName,String orderBy,String orderType) {
@@ -495,13 +495,13 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	}
 
 	public PageBean<FarmAbs> getFarmAbsList(FarmAbs condition, Date fromDate, Date toDate, Integer page, String farmType, Long farmId,
-			String accountName,String orderBy,String orderType) {
+			String accountName,String orderBy,String orderType,int pageSize) {
 
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, accountName, orderBy, orderType);
+		return farmAbsDao.getFarmAbsList(condition, fromDate, toDate, pageIndex, farmType, farmId, accountName, orderBy, orderType,pageSize);
 	}
 
 	public String getFarmAbsExcelDownloadFile(FarmAbs condition, Date fromDate, Date toDate, String farmType, Long farmId, String accountName,String orderBy,String orderType) {
@@ -640,12 +640,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return factoryAbs;
 	}
 
-	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName,String orderBy,String orderType) {
+	public PageBean<FactoryAbs> getFactoryAbsList(FactoryAbs condition,Date fromDate,Date toDate,Integer page,String type,Long factoryId,String accountName,String orderBy,String orderType,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return factoryDao.getFactoryAbsList(condition, fromDate, toDate, pageIndex, type, factoryId, accountName, orderBy, orderType);
+		return factoryDao.getFactoryAbsList(condition, fromDate, toDate, pageIndex, type, factoryId, accountName, orderBy, orderType,pageSize);
 	}
 
 	public String getFactoryExcelDownloadFile(FactoryAbs condition, Date fromDate, Date toDate, String type, Long factoryId, String accountName,String orderBy,String orderType) {

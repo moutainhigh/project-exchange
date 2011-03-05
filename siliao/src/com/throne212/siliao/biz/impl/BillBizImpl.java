@@ -154,12 +154,12 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	}
 	
 	// 查询我的单据
-	public PageBean<Bill> getMyBillList(Bill condition,Date fromDate,Date toDate,String currMan,Date planFromDate,Date planToDate, Date sendFromDate, Date sendToDate,Integer page) {
+	public PageBean<Bill> getMyBillList(Bill condition,Date fromDate,Date toDate,String currMan,Date planFromDate,Date planToDate, Date sendFromDate, Date sendToDate,Integer page,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return billDao.getMyBillList(condition,fromDate,toDate,currMan,planFromDate,planToDate, sendFromDate, sendToDate,(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ),pageIndex);
+		return billDao.getMyBillList(condition,fromDate,toDate,currMan,planFromDate,planToDate, sendFromDate, sendToDate,(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ),pageIndex,pageSize);
 	}
 
 	public String getMyBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,Date planFromDate,Date planToDate, Date sendFromDate, Date sendToDate) {
@@ -223,12 +223,12 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	
 	
 	// 查询待我的单据
-	public PageBean<Bill> getWaitBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page) {
+	public PageBean<Bill> getWaitBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return billDao.getWaitBillList(condition,fromDate,toDate,currMan,(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ),accountName,pageIndex);
+		return billDao.getWaitBillList(condition,fromDate,toDate,currMan,(User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ),accountName,pageIndex,pageSize);
 	}
 
 	public String getWaitBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName) {
@@ -333,12 +333,12 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	
 	
 	// 系统管理员用的单据查询
-	public PageBean<Bill> getAdminBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page) {
+	public PageBean<Bill> getAdminBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return billDao.getAdminBillList(condition,fromDate,toDate,currMan,accountName,pageIndex);
+		return billDao.getAdminBillList(condition,fromDate,toDate,currMan,accountName,pageIndex,pageSize);
 	}
 
 	public String getAdminBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName) {
@@ -421,12 +421,12 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	
 	
 	//对账
-	public PageBean<Bill> getSentBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page) {
+	public PageBean<Bill> getSentBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page,int pageSize) {
 		int pageIndex = 1;
 		if (page != null) {
 			pageIndex = page.intValue();
 		}
-		return billDao.getSentBillList(condition,fromDate,toDate,currMan,accountName,pageIndex);
+		return billDao.getSentBillList(condition,fromDate,toDate,currMan,accountName,pageIndex,pageSize);
 	}
 
 	public String getSentBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName) {

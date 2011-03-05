@@ -11,23 +11,23 @@ public interface BillDao extends BaseDao {
 
 	// 我的单据
 	public PageBean<Bill> getMyBillList(Bill condition, Date fromDate, Date toDate, String currMan, Date planFromDate, Date planToDate,
-			Date sendFromDate, Date sendToDate, User user, Integer page);
+			Date sendFromDate, Date sendToDate, User user, Integer page,int pageSize);
 
 	public List<Bill> getMyBillList(Bill condition, Date fromDate, Date toDate, String currMan, Date planFromDate, Date planToDate,
 			Date sendFromDate, Date sendToDate, User user);
 
 	// 待我的单据
-	public PageBean<Bill> getWaitBillList(Bill condition, Date fromDate, Date toDate, String currMan, User user,String accountName, Integer page);
+	public PageBean<Bill> getWaitBillList(Bill condition, Date fromDate, Date toDate, String currMan, User user,String accountName, Integer page,int pageSize);
 
 	public List<Bill> getWaitBillList(Bill condition, Date fromDate, Date toDate, String currMan, User user,String accountName);
 	
 	// 待我的单据
-	public PageBean<Bill> getAdminBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer page);
+	public PageBean<Bill> getAdminBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer page,int pageSize);
 
 	public List<Bill> getAdminBillList(Bill condition, Date fromDate, Date toDate, String currMan,String accountName);
 	
 	// 对账
-	public PageBean<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer page);
+	public PageBean<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer page,int pageSize);
 
 	public List<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan,String accountName);
 	

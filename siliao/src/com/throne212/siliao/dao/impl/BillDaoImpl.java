@@ -23,10 +23,10 @@ import com.throne212.siliao.domain.User;
 public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 
 	public PageBean<Bill> getMyBillList(Bill condition, Date fromDate, Date toDate, String currMan, Date planFromDate, Date planToDate,
-			Date sendFromDate, Date sendToDate, User user, Integer pageIndex) {
+			Date sendFromDate, Date sendToDate, User user, Integer pageIndex,int pageSize) {
 
 		PageBean<Bill> page = new PageBean<Bill>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildMyBillFilterHQL(condition, fromDate, toDate, currMan, planFromDate, planToDate, sendFromDate, sendToDate, user);
 		String hql = (String) hqlArr[0];
@@ -42,10 +42,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 
@@ -154,10 +154,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 	
 	
 	//待我处理
-	public PageBean<Bill> getWaitBillList(Bill condition, Date fromDate, Date toDate, String currMan, User user,String accountName, Integer pageIndex) {
+	public PageBean<Bill> getWaitBillList(Bill condition, Date fromDate, Date toDate, String currMan, User user,String accountName, Integer pageIndex,int pageSize) {
 
 		PageBean<Bill> page = new PageBean<Bill>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildWaitBillFilterHQL(condition, fromDate, toDate, currMan, user,accountName);
 		String hql = (String) hqlArr[0];
@@ -173,10 +173,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 
@@ -265,10 +265,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 	
 	
 	//系统管理员的单据查询
-	public PageBean<Bill> getAdminBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer pageIndex) {
+	public PageBean<Bill> getAdminBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer pageIndex,int pageSize) {
 
 		PageBean<Bill> page = new PageBean<Bill>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildAdminBillFilterHQL(condition, fromDate, toDate, currMan, accountName);
 		String hql = (String) hqlArr[0];
@@ -284,10 +284,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 
@@ -366,10 +366,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 	
 	
 	//对账
-	public PageBean<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer pageIndex) {
+	public PageBean<Bill> getSentBillList(Bill condition, Date fromDate, Date toDate, String currMan, String accountName, Integer pageIndex,int pageSize) {
 
 		PageBean<Bill> page = new PageBean<Bill>();
-		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		int startIndex = (pageIndex - 1) * (pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 
 		Object[] hqlArr = buildSentBillFilterHQL(condition, fromDate, toDate, currMan, accountName);
 		String hql = (String) hqlArr[0];
@@ -385,10 +385,10 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		for (Object o : paramList) {
 			q.setParameter(i++, o);
 		}
-		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setMaxResults(pageSize==0?WebConstants.PAGE_SIZE:pageSize);
 		q.setFirstResult(startIndex);
 		page.setResultList(q.list());// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(pageSize==0?WebConstants.PAGE_SIZE:pageSize);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 

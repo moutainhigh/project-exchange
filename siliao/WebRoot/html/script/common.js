@@ -37,9 +37,9 @@ function setCurTime(oid){
 }
 
 
-function gotoPage(pageIndex,url){
+function gotoPage(pageIndex,pageSize,url){
 	if(!pageIndex || pageIndex==''){
-		alert('请填入页码');
+		alert('');
 		return false;
 	}
 	if(!url){
@@ -56,6 +56,23 @@ function gotoPage(pageIndex,url){
 		url += '?';
 	}
 	url += "pageIndex=" + pageIndex;
+	
+	
+	
+	if(url.indexOf("?") > 0){
+		if(url.indexOf("pageSize=") > 0){
+			url = url.replace(/pageSize=\d*/g,'');
+			//alert(url);
+			url = url.replace(/&{2,}/g,'&');
+		}
+		url += '&';
+	}else{
+		url += '?';
+	}
+	url += "pageSize=" + pageSize;
+	
+	
+	alert(url);
 	self.location.href = url;
 }
 

@@ -215,10 +215,10 @@
 			<tr>
 				<th colspan="8" class="pager">
 					<div class="pager">
-						共${pageBean.totalRow}条记录 每页<input value="${pageBean.rowPerPage }" size="2" />
+						共${pageBean.totalRow}条记录 每页<input id="pageSize" name="pageSize" value="${pageBean.rowPerPage }" size="2" />
 						条 第
 						<input value="${pageBean.pageIndex}" size="2" />
-						页/共5页
+						页/共${pageBean.maxPage}页
 						<c:choose>
 							<c:when test="${!pageBean.isFirstPage}">
 								<a href="javascript:gotoPage(1);">[首页]</a>
@@ -254,7 +254,7 @@
 						转到
 						<input value="" size="2" id="targetPage"/>
 						页
-						<button width="20" onclick="gotoPage($('#targetPage').val());return false;">
+						<button width="20" onclick="gotoPage($('#targetPage').val(),$('#pageSize').val());return false;">
 							GO
 						</button>
 					</div>

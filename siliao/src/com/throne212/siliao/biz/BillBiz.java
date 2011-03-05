@@ -15,19 +15,19 @@ public interface BillBiz extends BaseBiz{
 	public Bill saveBillDraft(Bill bill);
 	public Bill confirmBill(Bill bill);
 	//我的单据
-	public PageBean<Bill> getMyBillList(Bill condition,Date fromDate,Date toDate,String currMan,Date planFromDate,Date planToDate, Date sendFromDate, Date sendToDate,Integer page);
+	public PageBean<Bill> getMyBillList(Bill condition,Date fromDate,Date toDate,String currMan,Date planFromDate,Date planToDate, Date sendFromDate, Date sendToDate,Integer page,int pageSize);
 	public String getMyBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,Date planFromDate,Date planToDate, Date sendFromDate, Date sendToDate);
 	public List<BillLog> getBillLogList(Bill bill); 
 	//待我处理
-	public PageBean<Bill> getWaitBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page);
+	public PageBean<Bill> getWaitBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page,int pageSize);
 	public String getWaitBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName);
 	public Bill sendBill(Bill bill);
 	//admin处理
-	public PageBean<Bill> getAdminBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page);
+	public PageBean<Bill> getAdminBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page,int pageSize);
 	public String getAdminBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName);
 	public Bill changeBillStatus(Bill bill);
 	//对账处理
-	public PageBean<Bill> getSentBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page);
+	public PageBean<Bill> getSentBillList(Bill condition,Date fromDate,Date toDate,String currMan,String accountName,Integer page,int pageSize);
 	public String getSentBillExcelDownloadFile(Bill condition,Date fromDate,Date toDate,String currMan,String accountName);
 	public Bill finishBill(Bill bill,String[] billDetail);
 }
