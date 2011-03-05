@@ -72,7 +72,7 @@ function gotoPage(pageIndex,pageSize,url){
 	url += "pageSize=" + pageSize;
 	
 	
-	alert(url);
+	//alert(url);
 	self.location.href = url;
 }
 

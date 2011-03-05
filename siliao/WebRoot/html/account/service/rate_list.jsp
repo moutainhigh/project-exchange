@@ -228,7 +228,7 @@
 						页/共${pageBean.maxPage}页
 						<c:choose>
 							<c:when test="${!pageBean.isFirstPage}">
-								<a href="javascript:gotoPage(1);">[首页]</a>
+								<a href="javascript:gotoPage(1,$('#pageSize').val());">[首页]</a>
 							</c:when>
 							<c:otherwise>
 								[首页]
@@ -236,7 +236,7 @@
 						</c:choose>
 						<c:choose>
 							<c:when test="${!pageBean.isFirstPage}">
-								<a href="javascript:gotoPage(${pageBean.prePageIndex });">[前一页]</a>
+								<a href="javascript:gotoPage(${pageBean.prePageIndex },$('#pageSize').val());">[前一页]</a>
 							</c:when>
 							<c:otherwise>
 								[前一页]
@@ -244,7 +244,7 @@
 						</c:choose>
 						<c:choose>
 							<c:when test="${!pageBean.isLastPage}">
-								<a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a>
+								<a href="javascript:gotoPage(${pageBean.nextPageIndex },$('#pageSize').val());">[后一页]</a>
 							</c:when>
 							<c:otherwise>
 								[后一页]
@@ -252,7 +252,7 @@
 						</c:choose>
 						<c:choose>
 							<c:when test="${!pageBean.isLastPage}">
-								<a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a>
+								<a href="javascript:gotoPage(${pageBean.maxPage },$('#pageSize').val());">[尾页]</a>
 							</c:when>
 							<c:otherwise>
 								[尾页]
