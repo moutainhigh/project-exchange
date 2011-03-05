@@ -47,6 +47,7 @@ public class DataAction extends BaseAction {
 	private String username;
 	private String password;
 	private String smtp;
+	private String from;
 
 	private MailSetting mailSetting;
 
@@ -90,6 +91,7 @@ public class DataAction extends BaseAction {
 		mailSetting.setPassword(password);
 		mailSetting.setSmtp(smtp);
 		mailSetting.setEnable(on);
+		mailSetting.setFrom(from);
 		mailSetting.setCreateName(user.getLoginName());
 		mailSetting.setCreateDate(new Date());
 		baseBiz.saveOrUpdateEntity(mailSetting);
@@ -840,6 +842,14 @@ public class DataAction extends BaseAction {
 
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
 	}
 
 }

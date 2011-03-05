@@ -37,7 +37,7 @@
 						邮箱用户名
 					</th>
 					<td colspan=3>
-						<input name="username" id="username" value="${mailSetting.username} " />
+						<input name="username" id="username" value="${mailSetting.username}" />
 					</td>
 				</tr>
 				<tr>
