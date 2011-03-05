@@ -56,8 +56,8 @@
 		</div>
 		<jsp:include page="../../msg.jsp"></jsp:include>
 		<br />
-		<c:if test="${userObj.userRole == '系统管理员'}">
 		<form action="${appPath}stat_queryFarmer.htm" method="get">
+			<c:if test="${userObj.userRole == '系统管理员'}">
 			<table class="query_form_table">	
 				<tr>
 					<th >农场</th>
@@ -68,8 +68,8 @@
 					
 				</tr>
 			</table>
+			</c:if>
 		</form>
-		</c:if>
 
 			<div class="button_bar">
 				<button class="common_button" onclick="help('');">

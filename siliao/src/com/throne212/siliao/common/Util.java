@@ -53,7 +53,7 @@ public class Util {
 	}
 	
 	public static Date getNextDay(Date date) {
-		long time = date.getTime() + 24*60*60*1000;
+		long time = date.getTime() + 24*60*60*1000 - 1;
 		return new Date(time);
 	}
 
