@@ -14,8 +14,17 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 
@@ -253,11 +262,56 @@ public class Util {
 		return addMoney(money, rateMoney);
 	}
 	
+	public static void sendEmail(String smtpHost,String user,String pwd,String from,String to,String subject,String body){
+		Properties prop = new Properties(); // 获取系统环境
+		Authenticator auth = new MailAuthenticator(user,pwd); // 邮件服务器认证
+		prop.put("mail.smtp.host", smtpHost);
+		prop.put("mail.smtp.auth", "true");
+		Session session = Session.getDefaultInstance(prop, auth);// 设置对话和邮件服务器进行通讯
+
+		Message message = new MimeMessage(session);
+		/*
+		 * 设置邮件对象
+		 */
+		try {
+			message.setSubject(subject); // 设置邮件主题
+			message.setContent(body, "text/html charset=utf-8"); // 设置邮件格式
+			message.setText(body); // 设置邮件体
+			message.setHeader("Header:", subject); // 设置邮件标题
+			message.setSentDate(new Date()); // 设置发送时间
+			Address address = new InternetAddress(from, "沿海集团饲料经营系统"); // 设置发信人地址
+			message.setFrom(address);
+
+			/*
+			 * 设置多个发件人地址
+			 * 
+			 * Address address[]={new InternetAddress("","") new
+			 * InternetAddress("","")}; message.addFrom(address);
+			 */
+
+			Address toAddress = new InternetAddress(to); // 设置接收人地址
+			message.setRecipient(Message.RecipientType.TO, toAddress);
+
+			// 设置多个收件人地址
+			// message.addRecipient(Message.RecipientType.TO,new
+			// InternetAddress("zhf_0630@126.com"));
+
+			message.saveChanges();
+			System.out.println("sendNormalEmail() 开始发送邮件……");
+			Transport.send(message); // 发送邮件
+			System.out.println("发送成功！");
+
+		} catch (Exception e) {
+			System.out.println("发送失败！");
+			e.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 //		Date now = new Date();
 //		System.out.println(getDate(getDateOnly(now)));
 //		System.out.println(generateOrderNo());
 //		System.out.println(genOrderId("北海农场","天邦",1));
-		System.out.println(roundMoney(23.2983242));
+//		System.out.println(roundMoney(23.2983242));
+		sendEmail("smtp.163.com","yanglei123qwe","1357913579","yanglei123qwe@163.com","yanglei123qwe@163.com","test2","tesx22....");
 	}
 }

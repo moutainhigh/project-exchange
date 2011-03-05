@@ -172,6 +172,12 @@ public class SendEmail {
 			// 发送普通邮件
 			new SendEmail().doSendNormalMail();
 
+			// 发送带html的邮件
+			new SendEmail().sendEmailWithHtml();
+
+			// 发送带附件的邮件
+			//new SendEmail().sendEmailWithAttachment();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

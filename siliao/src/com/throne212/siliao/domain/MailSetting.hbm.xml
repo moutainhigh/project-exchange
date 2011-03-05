@@ -9,6 +9,7 @@
 		<property name="password"></property>
 		<property name="username"></property>
 		<property name="smtp"></property>
+		<property name="from" column="from_email"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>

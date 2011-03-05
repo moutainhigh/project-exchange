@@ -9,6 +9,7 @@ public class MailSetting extends MyEntity implements Serializable {
 	private String username;//登录名
 	private String password;//密码
 	private String smtp;//smtp服务器地址
+	private String from;
 
 	public String getUsername() {
 		return username;
@@ -32,6 +33,14 @@ public class MailSetting extends MyEntity implements Serializable {
 
 	public void setSmtp(String smtp) {
 		this.smtp = smtp;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
 	}
 
 }

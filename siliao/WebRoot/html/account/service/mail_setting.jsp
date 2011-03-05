@@ -56,6 +56,14 @@
 						<input name="smtp" id="smtp" value="${mailSetting.smtp }" />
 					</td>
 				</tr>
+				<tr>
+					<th height="22">
+						发送地址(From)
+					</th>
+					<td colspan=3>
+						<input name="from" id="from" value="${mailSetting.from }" />
+					</td>
+				</tr>
 			</table>
 			<br />
 			<div class="button_bar">

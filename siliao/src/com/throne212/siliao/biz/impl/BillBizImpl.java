@@ -28,6 +28,7 @@ import com.throne212.siliao.domain.Factory;
 import com.throne212.siliao.domain.Farm;
 import com.throne212.siliao.domain.Farmer;
 import com.throne212.siliao.domain.FarmerFinance;
+import com.throne212.siliao.domain.MailSetting;
 import com.throne212.siliao.domain.ManagerAccount;
 import com.throne212.siliao.domain.Provider;
 import com.throne212.siliao.domain.ProviderFinance;
@@ -63,6 +64,9 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		log.setRemark(bill.getShenpiRemark());
 		baseDao.saveOrUpdate(log);
 		
+		//发邮件
+		sendEmail(bill,"单据通过审核");
+		
 		logger.info("提交单据【" + bill.getOrderId() + "】成功");
 		return bill;
 	}
@@ -93,8 +97,52 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		log.setRemark(bill.getApplyRemark());
 		baseDao.saveOrUpdate(log);
 		
+		//发邮件
+		sendEmail(bill,"单据提交成功");
+		
 		logger.info("提交单据【" + bill.getOrderId() + "】成功");
 		return bill;
+	}
+	
+	private void sendEmail(Bill bill,String title){
+		try {
+			List<MailSetting> mailList = billDao.getAll(MailSetting.class);
+			if(mailList != null && mailList.size() > 0 && mailList.get(0).getEnable()!=false){
+				MailSetting mail = mailList.get(0);
+				User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+				Util.sendEmail(mail.getSmtp(), mail.getUsername(), mail.getPassword(), mail.getFrom(), user.getEmail(),title, this.buildEmailBody(bill));
+				logger.info("邮件发送成功："+user.getEmail());
+			}
+		} catch (Exception e) {
+			logger.error("邮件发送失败", e);
+		}
+	}
+	
+	private String buildEmailBody(Bill bill){
+		StringBuffer sb = new StringBuffer();
+		sb.append("农场管区: ");
+		sb.append(bill.getFarm()==null?"":bill.getFarm().getName());
+		sb.append("-"+bill.getArea()==null?"":bill.getArea().getName());
+		sb.append("\n");
+		sb.append("饲料经理签名："+(bill.getManager()==null?"":bill.getManager().getName()));
+		sb.append("\n");
+		sb.append("单据编号："+bill.getOrderId());
+		sb.append("\n");
+		sb.append("管区："+(bill.getArea()==null?"":bill.getArea().getName()));
+		sb.append("\n");
+		sb.append("单据："+(bill.getOrderNo()==null?"":bill.getOrderNo()));
+		sb.append("\n");
+		sb.append("负责人："+bill.getCurrUserName());
+		sb.append("\n");
+		sb.append("饲料规格："+bill.getModel());
+		sb.append("\n");
+		sb.append("饲料型号："+bill.getSize());
+		sb.append("\n");
+		sb.append("饲料吨数："+bill.getAmount());
+		sb.append("\n");
+		sb.append("预计达到时间："+Util.getDate(bill.getPlanDate()));
+		sb.append("\n");
+		return sb.toString();
 	}
 	
 	//对已经有的草稿进行提交
@@ -114,6 +162,9 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		log.setBill(bill);
 		log.setRemark(bill.getApplyRemark());
 		baseDao.saveOrUpdate(log);
+		
+		//发邮件
+		sendEmail(bill,"单据提交成功");
 		
 		logger.info("提交单据【" + bill.getOrderId() + "】成功");
 		return bill;
@@ -318,6 +369,10 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 			BillLog log = Util.getBaseLog(BillLog.class, "已审核 -> 已发料");
 			log.setBill(bill);
 			log.setRemark(bill.getShenheRemark());
+			
+			//发邮件
+			sendEmail(billInDB,"单据发料成功");
+			
 			baseDao.saveOrUpdate(log);
 		}else{//驳回
 			billInDB.setStatus(WebConstants.BILL_STATUS_SUBMIT);
@@ -326,6 +381,10 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 			BillLog log = Util.getBaseLog(BillLog.class, "已审核 -> 审核中");
 			log.setBill(bill);
 			log.setRemark(bill.getShenheRemark());
+			
+			//发邮件
+			sendEmail(billInDB,"单据驳回");
+			
 			this.saveOrUpdateEntity(log);
 		}
 		return billInDB;
@@ -415,6 +474,10 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		BillLog log = Util.getBaseLog(BillLog.class, oldStatus+" -> "+newStatus);
 		log.setBill(bill);
 		log.setRemark(bill.getReason());
+		
+		//发邮件
+		sendEmail(billInDB,"单据状态改变("+oldStatus+" -> "+newStatus+")");
+		
 		this.saveOrUpdateEntity(log);
 		return billInDB;
 	}
@@ -560,6 +623,10 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		BillLog log = Util.getBaseLog(BillLog.class, "已发料 -> 已送达");
 		log.setBill(bill);
 		log.setRemark(bill.getFinishRemark());
+		
+		//发邮件
+		sendEmail(bill,"单据发料成功");
+		
 		this.saveOrUpdateEntity(log);
 		return bill;
 	}
