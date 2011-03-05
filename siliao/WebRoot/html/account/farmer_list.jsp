@@ -116,9 +116,9 @@
 		
 		<th height="22">发料日期</th>
 					<td>
-						<input size="10" name="sendFromDate" class="datetime" value="<fmt:formatDate value="${param.sendFromDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="sendFromDate" class="datetime" value="${param.sendFromDate}"/>
 						-
-						<input size="10" name="sendToDate" class="datetime" value="<fmt:formatDate value="${param.sendToDate}" pattern="yyyy-MM-dd"/>"/>
+						<input size="10" name="sendToDate" class="datetime" value="${param.sendToDate}"/>
 					</td>
 		<th>饲料厂商</th>
 		<td>

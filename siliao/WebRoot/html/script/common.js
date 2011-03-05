@@ -39,7 +39,7 @@ function setCurTime(oid){
 
 function gotoPage(pageIndex,pageSize,url){
 	if(!pageIndex || pageIndex==''){
-		alert('');
+		alert('Please enter page index!');
 		return false;
 	}
 	if(!url){
