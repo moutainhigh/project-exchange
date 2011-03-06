@@ -547,7 +547,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof ManagerAccount){
-			sb.append(" and farm=?");
+			sb.append(" and area.farm=?");
 			paramValueList.add(((ManagerAccount)user).getFarm());
 		}
 		sb.append(" order by id asc");

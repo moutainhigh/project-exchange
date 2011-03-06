@@ -107,7 +107,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	private void sendEmail(Bill bill,String title){
 		try {
 			List<MailSetting> mailList = billDao.getAll(MailSetting.class);
-			if(mailList != null && mailList.size() > 0 && mailList.get(0).getEnable()!=false){
+			if(mailList != null && mailList.size() > 0 && mailList.get(0).getEnable()!=null && mailList.get(0).getEnable()){
 				MailSetting mail = mailList.get(0);
 				User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 				Util.sendEmail(mail.getSmtp(), mail.getUsername(), mail.getPassword(), mail.getFrom(), user.getEmail(),title, this.buildEmailBody(bill));

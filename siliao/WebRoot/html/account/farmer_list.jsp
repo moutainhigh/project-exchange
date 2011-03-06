@@ -65,6 +65,10 @@
 					}
 				});
 				//农场
+				<c:if test="${userObj.userRole=='饲料经理'}">
+				$('#farmName').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+				</c:if>
+				<c:if test="${userObj.userRole=='系统管理员'}">
 				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#farmName').html('<option value=""></option>');
@@ -77,6 +81,7 @@
 						}
 					}
 				});	
+				</c:if>
 				
 			});	
 			

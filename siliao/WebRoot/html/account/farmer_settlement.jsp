@@ -65,6 +65,10 @@
 					}
 				});
 				//农场
+				<c:if test="${userObj.userRole=='饲料经理'}">
+				$('#farmName').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+				</c:if>
+				<c:if test="${userObj.userRole=='系统管理员'}">
 				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#farmName').html('<option value=""></option>');
@@ -77,33 +81,7 @@
 						}
 					}
 				});	
-					var colArr = ['id','farmer.name',null,null,'size','model','amount','money','rateFromDate',null,null,null];
-				$('.data_list_table tr').eq(0).find('th').each(function(index){
-					if(colArr[index]){//空的就没有排序功能
-						$(this).css({'cursor':'pointer'});
-						$(this).attr('title','升序/降序');
-						$(this).click(function(){//click事件
-							if($('#orderBy').val()!=colArr[index]){//第一次点击一个新的col
-								$('#orderType').val('asc');
-							}else{//大于一次点击同一个col排序
-								if($('#orderType').val() == 'asc'){
-									$('#orderType').val('desc');
-								}else{
-									$('#orderType').val('asc');
-								}
-							}							
-							orderByCol(colArr[index]);
-						});
-						//标志col目前的排序方式
-						if($('#orderBy').val()==colArr[index]){
-							if($('#orderType').val() == 'asc'){
-								$(this).append('(↑)');
-							}else if($('#orderType').val() == 'desc'){
-								$(this).append('(↓)');
-							}
-						}						
-					}
-				});
+				</c:if>
 			});	
 			
 			function query(){
