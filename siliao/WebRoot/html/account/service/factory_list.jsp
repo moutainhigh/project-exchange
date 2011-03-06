@@ -15,8 +15,8 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
-			var currFactoryType= '${factoryType}';
 			var currFactoryId = '${factoryId}';
+			var currFactoryType = '${param.factoryType}';
 			$(function(){
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
@@ -45,10 +45,11 @@
 						}
 						if(currFactoryType != ''){
 							$('#factoryType').val(currFactoryType);
+							selectType(currFactoryType);
 						}
 					}
 				});
-				$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
+				/*$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#factoryId').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++){
@@ -59,7 +60,7 @@
 							$('#factoryId').val(currFactoryId);
 						}
 					}
-				});
+				});*/
 				
 				var colArr = ['id','name',null,null,null,'remark','createName','createDate'];
 				$('.data_list_table tr').eq(0).find('th').each(function(index){
@@ -108,6 +109,27 @@
 				$('#orderBy').val(colName);
 				query();
 			}
+			
+			function selectType(type){
+				if('供货饲料厂' == type){
+					$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#factoryId').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
+								$('#factoryId').append(str);
+							}
+							if(currFactoryId != ''){
+								$('#factoryId').val(currFactoryId);
+							}
+						}
+					});
+					$('#factory_tr').show();
+				}else{
+					$('#factory_tr').hide();
+					$('#accountName').val('');
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -131,10 +153,10 @@
 						类别
 					</th>
 					<td>
-						<select id="factoryType" name="factoryType"></select>
+						<select id="factoryType" name="factoryType" onchange="selectType(this.value);"></select>
 					</td>
 				</tr>
-				<tr id="factory_tr" style="">
+				<tr id="factory_tr" style="display: none;">
 					<th>
 						负责人
 					</th>
@@ -183,7 +205,7 @@
 				</tr>
 
 			</table>
-		</form>
+		
 			<div class="button_bar">
 				<button class="common_button" onclick="help('');">
 					帮助
@@ -309,5 +331,6 @@
 				</th>
 			</tr>
 		</table>
+		</form>
 	</body>
 </html>

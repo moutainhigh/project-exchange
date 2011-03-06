@@ -149,7 +149,7 @@
 				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('饲料厂商不能为空');
 					return false;
-				}else if('#amount'.val()!='' && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
+				}else if($('#amount').val()!='' && /(^\d+\.\d+$)|(^\d+$)/.test($('#amount').val()) == false){
 					alert('吨数只能为数字');
 					return false;
 				}else{

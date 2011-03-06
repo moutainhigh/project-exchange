@@ -73,8 +73,8 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 				sheet.addCell(new Number(3, i, f.getAmount()));
 				sheet.addCell(new Number(4, i, f.getMoney()));
 				sheet.addCell(new Number(5, i, f.getTotalMoney())); //单笔本息合计
-				sheet.addCell(new Label(6, i++, f.getFarm().getName()));
-				sheet.addCell(new Number(6, i++, f.getAgentMoney()));
+				sheet.addCell(new Label(6, i, f.getFarm().getName()));
+				sheet.addCell(new Number(7, i++, f.getAgentMoney()));
 			}
 
 			workbook.write();
@@ -261,7 +261,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		Workbook rw = null;
 		try {
 			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
-			WritableSheet sheet = workbook.createSheet("厂商统计列表", 0);
+			WritableSheet sheet = workbook.createSheet("农户结算列表", 0);
 
 			// 加表头
 			

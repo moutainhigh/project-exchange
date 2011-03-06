@@ -210,7 +210,7 @@
 					<td class="list_data_text">${b.amount}</td>
 					<td class="list_data_text">${b.billPrice}</td>
 					<td class="list_data_text">${b.statusTxt}</td>
-					<td class="list_data_text">${b.currUserName}</td>
+					<td class="list_data_text"><c:if test="${b.status<5}">${b.currUserName}</c:if></td>
 					<td class="list_data_op">
 						<c:choose>
 							<c:when test="${b.status>2}">

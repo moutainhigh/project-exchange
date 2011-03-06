@@ -282,6 +282,8 @@ public class BillAction extends BaseAction {
 		} else {
 			bill.setStatus(WebConstants.BILL_STATUS_DRAFT);
 			billBiz.saveBillDraft(bill);// 驳回
+			bill.setCurrUserName(bill.getAreaAccount().getName());
+			billBiz.saveOrUpdateEntity(bill);
 			this.setMsg("已驳回单据！");
 		}
 		bill = null;

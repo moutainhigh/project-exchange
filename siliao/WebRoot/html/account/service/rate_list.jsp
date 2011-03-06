@@ -139,7 +139,6 @@
 					</td>
 				</tr>
 			</table>
-		</form>
 		<br />
 		<div class="button_bar">
 			<button class="common_button" onclick="help('');">
@@ -268,5 +267,6 @@
 				</th>
 			</tr>
 		</table>
+		</form>
 	</body>
 </html>
