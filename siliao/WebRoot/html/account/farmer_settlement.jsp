@@ -204,7 +204,7 @@
 						${f.bill.orderId}
 					</td>
 					<td class="list_data_text">
-						<c:if test="${empty f.type || f.type==0}">${f.farmer.name }</c:if>
+						${f.farmer.name }
 					</td>
 					<td class="list_data_text">
 						<c:if test="${empty f.type || f.type==0}">${f.provider.name}</c:if>
