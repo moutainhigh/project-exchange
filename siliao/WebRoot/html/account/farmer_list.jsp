@@ -209,10 +209,10 @@
 						${f.factory.name}
 					</td>
 					<td class="list_data_text">
-						${f.bill.sendDate}
+						<fmt:formatDate value="${f.bill.sendDate}" pattern="yyyy-MM-dd"/>
 					</td>
 					<td class="list_data_text">
-						${f.bill.finishDate}
+						<fmt:formatDate value="${f.bill.finishDate}" pattern="yyyy-MM-dd"/>
 					</td>
 					<td class="list_data_text">
 						${f.size}

@@ -99,7 +99,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 		// 计划时间段
 		if (planFromDate != null) {
@@ -108,7 +108,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (planToDate != null) {
 			sb.append(" and planDate<=?");
-			paramValueList.add(Util.getNextDate(planToDate));
+			paramValueList.add(Util.getNextDay(planToDate));
 		}
 		// 发料时间段
 		if (sendFromDate != null) {
@@ -117,7 +117,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and sendDate<=?");
-			paramValueList.add(Util.getNextDate(sendToDate));
+			paramValueList.add(Util.getNextDay(sendToDate));
 		}
 
 		//用户
@@ -225,7 +225,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 		if (!Util.isEmpty(accountName)) {// 管区负责人
 			sb.append(" and areaAccount.name like ?");
@@ -336,7 +336,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 		if (!Util.isEmpty(accountName)) {// 农场负责人
 			sb.append(" and manager.name like ?");
@@ -437,7 +437,7 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 		if (!Util.isEmpty(accountName)) {// 农场负责人
 			sb.append(" and manager.name like ?");

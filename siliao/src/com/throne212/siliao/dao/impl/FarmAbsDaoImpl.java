@@ -85,7 +85,7 @@ public class FarmAbsDaoImpl extends BaseDaoImpl implements FarmAbsDao {
 		}
 		if (toDate != null) {
 			sb.append(" and createDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 
 		if (WebConstants.FARM_TYPE_AREA.equals(farmType)) {

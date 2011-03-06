@@ -59,6 +59,9 @@
 				}else if($('#money').val() == null || $('#money').val()==''){
 					alert('付款金额不能为空');
 					return false;
+				}else if($('#money').val() && /(^\d+\.\d+$)|(^\d+$)/.test($('#money').val()) == false){
+					alert('金额只能为数字');
+					return false;
 				}else{
 					document.forms[0].submit();
 				}

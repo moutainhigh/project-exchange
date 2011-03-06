@@ -29,7 +29,7 @@ import com.throne212.siliao.domain.User;
 public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 	
 	//获取当天的利率
-	private double getProviderRate(Object obj,Date date){
+	private double getRelateRate(Object obj,Date date){
 		String target = (obj instanceof Provider)?"provider":"farm";
 		double rate = 0;
 		String hql = "from Rate r where r."+target+"=? and fromDate<=? and ?<=endDate";
@@ -85,7 +85,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			double rateMoney = 0;
 			for (long j = 0; j < days; j++) {
 				long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-				rateMoney += pf.getMoney() * getProviderRate(pf.getProvider(),new Date(time));
+				rateMoney += pf.getMoney() * getRelateRate(pf.getProvider(),new Date(time));
 			}
 			pf.setRateMoney(rateMoney);
 			pf.setTotalMoney(Util.addMoney(pf.getMoney(), rateMoney));
@@ -134,7 +134,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (toDate != null) {
 			sb.append(" and bill.sendDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -203,7 +203,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			double rateMoney = 0;
 			for (long j = 0; j < days; j++) {
 				long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-				rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
+				rateMoney += ff.getMoney() * getRelateRate(ff.getArea().getFarm(),new Date(time));
 			}
 			ff.setRateMoney(rateMoney);
 			ff.setTotalMoney(Util.addMoney(ff.getMoney(), rateMoney));
@@ -265,7 +265,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and bill.sendDate<?");
-			paramValueList.add(Util.getNextDate(sendToDate));
+			paramValueList.add(Util.getNextDay(sendToDate));
 		}
 
 		if (finishFromDate != null) {
@@ -274,12 +274,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (finishToDate != null) {
 			sb.append(" and bill.finishDate<?");
-			paramValueList.add(Util.getNextDate(finishToDate));
+			paramValueList.add(Util.getNextDay(finishToDate));
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof ManagerAccount){
-			sb.append(" and area.farm=?");
+			sb.append(" and farmer.area.farm=?");
 			paramValueList.add(((ManagerAccount)user).getFarm());
 		}
 		sb.append(" order by id asc");
@@ -343,9 +343,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			double rateMoney = 0;
 			for (long j = 0; j < days; j++) {
 				long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-				rateMoney += pf.getMoney() * getProviderRate(pf.getProvider(),new Date(time));
+				rateMoney += pf.getMoney() * getRelateRate(pf.getProvider(),new Date(time));
 			}
-			pf.setRateMoney(rateMoney);
+			pf.setRateMoney(Util.roundMoney(rateMoney));
 			pf.setTotalMoney(Util.addMoney(pf.getMoney(), rateMoney));
 
 			// 合计计算
@@ -395,7 +395,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (toDate != null) {
 			sb.append(" and rateFromDate<?");
-			paramValueList.add(Util.getNextDate(toDate));
+			paramValueList.add(Util.getNextDay(toDate));
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -466,11 +466,13 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			double rateMoney = 0;
 			for (long j = 0; j < days; j++) {
 				long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-				if (ff.getArea()!=null&&ff.getArea().getFarm()!=null) {
-					rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
+				if (ff.getArea()!=null&&ff.getArea().getFarm()!=null) {//单据的账务
+					rateMoney += ff.getMoney() * getRelateRate(ff.getArea().getFarm(),new Date(time));
+				}else if (ff.getFarmer()!=null && ff.getFarmer().getArea()!=null && ff.getFarmer().getArea().getFarm()!=null) {//收款的账务
+					rateMoney += ff.getMoney() * getRelateRate(ff.getFarmer().getArea().getFarm(),new Date(time));
 				}
-				}
-			ff.setRateMoney(rateMoney);
+			}
+			ff.setRateMoney(Util.roundMoney(rateMoney));
 			ff.setTotalMoney(Util.addMoney(ff.getMoney(), rateMoney));
 
 			// 合计计算
@@ -533,7 +535,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (sendToDate != null) {
 			sb.append(" and bill.sendDate<?");
-			paramValueList.add(Util.getNextDate(sendToDate));
+			paramValueList.add(Util.getNextDay(sendToDate));
 		}
 
 		if (finishFromDate != null) {
@@ -542,12 +544,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		}
 		if (finishToDate != null) {
 			sb.append(" and bill.finishDate<?");
-			paramValueList.add(Util.getNextDate(finishToDate));
+			paramValueList.add(Util.getNextDay(finishToDate));
 		}
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof ManagerAccount){
-			sb.append(" and area.farm=?");
+			sb.append(" and farmer.area.farm=?");
 			paramValueList.add(((ManagerAccount)user).getFarm());
 		}
 		sb.append(" order by id asc");
@@ -612,7 +614,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				// 累计计算利息
 				for (long j = 0; j < days; j++) {
 					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-					rateMoney += ff.getMoney() * getProviderRate(ff.getArea().getFarm(),new Date(time));
+					rateMoney += ff.getMoney() * getRelateRate(ff.getArea().getFarm(),new Date(time));
 				}
 				totalMoneyWithRate = rateMoney + ff.getMoney();				
 			}
@@ -674,7 +676,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				// 累计计算利息
 				for (long j = 0; j < days; j++) {
 					long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-					rateMoney += this.getProviderRate(pf.getProvider(), new Date(time)) * pf.getMoney();
+					rateMoney += this.getRelateRate(pf.getProvider(), new Date(time)) * pf.getMoney();
 				}
 				totalMoneyWithRate = rateMoney + pf.getMoney();
 			}
@@ -729,7 +731,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				// 累计计算利息
 				for (long j = 0; j < days; j++) {
 					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
-					rateMoney += this.getProviderRate(ff.getArea().getFarm(), new Date(time)) * ff.getMoney();
+					rateMoney += this.getRelateRate(ff.getArea().getFarm(), new Date(time)) * ff.getMoney();
 				}
 				totalMoneyWithRate = rateMoney + ff.getMoney();
 			}

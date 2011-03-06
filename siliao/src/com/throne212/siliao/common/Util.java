@@ -110,19 +110,20 @@ public class Util {
 		}
 	}
 	
-	public static Date getNextDate(Date d){
-		return getAfterDaysDate(d,1);
-	}
-	
-	public static Date getAfterDaysDate(Date d, int days){
-		long addTime = 1;
-		addTime *= days; 
-		addTime *= 24; 
-		addTime *= 60; 
-		addTime *= 60; 
-		addTime *= 1000;
-		return new Date(d.getTime() + addTime);
-	}
+//	public static Date getNextDate(Date d){
+//		return getAfterDaysDate(d,1);
+//	}
+//	
+//	public static Date getAfterDaysDate(Date d, int days){
+//		long addTime = 1;
+//		addTime *= days; 
+//		addTime *= 24; 
+//		addTime *= 60; 
+//		addTime *= 60; 
+//		addTime *= 1000;
+//		addTime -= 1;
+//		return new Date(d.getTime() + addTime);
+//	}
 	public static void writeImage(InputStream in, OutputStream out) throws Exception {
 		Image src = ImageIO.read(in); // ����Image����
 		int h = src.getHeight(null);
