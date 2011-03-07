@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="User" table="fp_user">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<discriminator column="user_type" type="string" force="false" insert="true" />
+		<property name="loginName" column="loginName" length="20" not-null="true" unique="true"></property>
+		<property name="password" column="password" length="50" not-null="true"></property>
+		
+		
+		
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+		
+		
+		
+		<subclass discriminator-value="admin" extends="User" name="Admin">
+		</subclass>
+		<subclass discriminator-value="shiworkorg" extends="User" name="ShiWorkOrg">
+			<many-to-one name="shi" column="shi_id" lazy="false"></many-to-one>
+			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="areaworkorg" extends="User" name="AreaWorkOrg">
+			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
+			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="zhenworkorg" extends="User" name="ZhenWorkOrg">
+			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+		</subclass>
+		
+	</class>
+</hibernate-mapping>

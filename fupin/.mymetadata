@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="fupin"
+  id="myeclipse.1299485675906"
+  context-root="/fupin"
+  j2ee-spec="5.0"
+  archive="fupin.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,117 @@
+package com.throne212.fupin.domain;
+
+public class Org extends MyEntity {
+	
+	private static final long serialVersionUID = 1L;
+	private Cun cun;//所帮扶的村
+	private String orgName;//单位名
+	
+	//帮扶责任人信息
+	private String orgTel;//单位电话
+	private String chargePersonName;//责任人姓名 	
+	private String chargePersonTel;//责任人电话
+	private String orgAddr;//单位地址
+	private String chargeDuty;//职务 	
+	
+	//单位联络员信息
+	private String contactName;//联络员姓名
+	private String contactDuty;//职务
+	private String contactTel;//办公电话
+	private String contactMobile;//手机号码
+	private String contactFax;//传真号码
+	private String contactAddr;//通讯地址
+	private String contactPost;//邮政编码
+	private String contactEmail;//电子邮箱 	
+	
+	public Cun getCun() {
+		return cun;
+	}
+	public void setCun(Cun cun) {
+		this.cun = cun;
+	}
+	public String getOrgName() {
+		return orgName;
+	}
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+	public String getOrgTel() {
+		return orgTel;
+	}
+	public void setOrgTel(String orgTel) {
+		this.orgTel = orgTel;
+	}
+	public String getChargePersonName() {
+		return chargePersonName;
+	}
+	public void setChargePersonName(String chargePersonName) {
+		this.chargePersonName = chargePersonName;
+	}
+	public String getChargePersonTel() {
+		return chargePersonTel;
+	}
+	public void setChargePersonTel(String chargePersonTel) {
+		this.chargePersonTel = chargePersonTel;
+	}
+	public String getOrgAddr() {
+		return orgAddr;
+	}
+	public void setOrgAddr(String orgAddr) {
+		this.orgAddr = orgAddr;
+	}
+	public String getChargeDuty() {
+		return chargeDuty;
+	}
+	public void setChargeDuty(String chargeDuty) {
+		this.chargeDuty = chargeDuty;
+	}
+	public String getContactName() {
+		return contactName;
+	}
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+	public String getContactDuty() {
+		return contactDuty;
+	}
+	public void setContactDuty(String contactDuty) {
+		this.contactDuty = contactDuty;
+	}
+	public String getContactTel() {
+		return contactTel;
+	}
+	public void setContactTel(String contactTel) {
+		this.contactTel = contactTel;
+	}
+	public String getContactMobile() {
+		return contactMobile;
+	}
+	public void setContactMobile(String contactMobile) {
+		this.contactMobile = contactMobile;
+	}
+	public String getContactFax() {
+		return contactFax;
+	}
+	public void setContactFax(String contactFax) {
+		this.contactFax = contactFax;
+	}
+	public String getContactAddr() {
+		return contactAddr;
+	}
+	public void setContactAddr(String contactAddr) {
+		this.contactAddr = contactAddr;
+	}
+	public String getContactPost() {
+		return contactPost;
+	}
+	public void setContactPost(String contactPost) {
+		this.contactPost = contactPost;
+	}
+	public String getContactEmail() {
+		return contactEmail;
+	}
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
+}
