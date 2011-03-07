@@ -141,6 +141,7 @@
 			<th>累计供货量(吨)</th>
 			<th>合计金额</th>
 			<th>单笔本息合计</th>
+			<th>代理费合计</th>
 			<th>农场</th>
 			</tr>
 			<c:forEach items="${providerStatList}" var="f">
@@ -161,6 +162,9 @@
 						${f.totalRateMoney}
 					</td>
 					<td class="list_data_text">
+						${f.totalAgentMoney}
+					</td>
+					<td class="list_data_text">
 						${f.farmName}
 					</td>
 				</tr>
@@ -171,6 +175,7 @@
 				<td class="list_data_text">${providerStatList[0].total[0] }</td>
 				<td class="list_data_text">${providerStatList[0].total[1] }</td>
 				<td class="list_data_text">${providerStatList[0].total[2] }</td>
+				<td class="list_data_text">${providerStatList[0].total[3] }</td>
 				<td class="list_data_text"></td>
 			</tr>
 		</table>

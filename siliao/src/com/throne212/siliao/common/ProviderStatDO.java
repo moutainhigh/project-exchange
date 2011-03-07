@@ -5,6 +5,7 @@ public class ProviderStatDO {
 	private String providerName;
 	private Double totalAmount;
 	private Double totalMoney;
+	private Double totalAgentMoney;
 	private Double totalRateMoney;
 	private String farmName;
 	private Object total;
@@ -49,6 +50,12 @@ public class ProviderStatDO {
 	}
 	public void setTotal(Object total) {
 		this.total = total;
+	}
+	public Double getTotalAgentMoney() {
+		return totalAgentMoney;
+	}
+	public void setTotalAgentMoney(Double totalAgentMoney) {
+		this.totalAgentMoney = totalAgentMoney;
 	}
 
 }

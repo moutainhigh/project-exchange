@@ -899,8 +899,6 @@ function initialise() {
 	L01 = theMenu.addChild(l2ID, "Folder", "单据管理", "", "单据管理...");
 	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='管区负责人'}">
 	L0101 = theMenu.addChild(L01, "Document", "我的单据", "${appPath}bill_myBillList.htm", "查询提交我的单据...");
-	</c:if>
-	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='管区负责人' || userObj.userRole=='系统管理员'}">
 	L0102 = theMenu.addChild(L01, "Document", "新建单据", "${appPath}html/bill/bill_edit.jsp", "养殖户或者饲料经理建立草稿单据...");
 	</c:if>
 	<c:if test="${userObj.userRole=='饲料经理' || userObj.userRole=='供应饲料厂负责人'}">

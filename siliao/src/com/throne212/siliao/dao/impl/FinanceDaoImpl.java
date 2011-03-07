@@ -652,6 +652,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		double sumAmount = 0;
 		double sumMoney = 0;
 		double sumMoneyWithRate = 0;
+		double sumAgentMoney = 0;
 		for (Provider p : List) {
 			ProviderStatDO pDO = new ProviderStatDO();
 			pDO.setOrderNum(p.getId());
@@ -665,6 +666,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			// 获得总料款合计
 			Double totalMoney = (Double) this.getHibernateTemplate().find("select sum(money) from ProviderFinance where provider=? and farm=? and type=0", new Object[] { p, farm }).get(0);
 			pDO.setTotalMoney(totalMoney==null?0:totalMoney);
+			
+			// 获得代理合计
+			Double totalAgenyMoney = (Double) this.getHibernateTemplate().find("select sum(agentMoney) from ProviderFinance where provider=? and farm=? and type=0", new Object[] { p, farm }).get(0);
+			pDO.setTotalAgentMoney(totalAgenyMoney==null?0:totalAgenyMoney);
 
 			// 获得单笔本息合计
 			double totalMoneyWithRate = 0;
@@ -680,8 +685,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				}
 				totalMoneyWithRate = rateMoney + pf.getMoney();
 			}
-			if (totalMoneyWithRate != 0)
-				pDO.setTotalRateMoney(Util.roundMoney(totalMoneyWithRate));
+			pDO.setTotalRateMoney(Util.roundMoney(totalMoneyWithRate));
 
 			pfList.add(pDO);
 			
@@ -689,11 +693,12 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			//进行合计
 			sumAmount = Util.addMoney(sumAmount, pDO.getTotalAmount());
 			sumMoney = Util.addMoney(sumMoney, pDO.getTotalMoney());
+			sumAgentMoney = Util.addMoney(sumAgentMoney, pDO.getTotalAgentMoney());
 			sumMoneyWithRate = Util.addMoney(sumMoneyWithRate, pDO.getTotalRateMoney()==null?0:pDO.getTotalRateMoney());
 		}
 		//添加合计到DO
 		if(pfList != null && pfList.size() > 0){
-			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate});
+			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate,sumAgentMoney});
 		}
 		return pfList;
 	}
