@@ -10,6 +10,7 @@ import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Shi;
+import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.Zhen;
 
 
@@ -23,6 +24,9 @@ public class Init {
 		admin.setLoginName("sa");
 		admin.setPassword("123");
 		baseBiz.saveOrUpdateEntity(admin);
+		
+		
+		
 		
 		Shi shi = new Shi();
 		shi.setShiName("四会市");
@@ -52,6 +56,14 @@ public class Init {
 		
 		cun.setOrg(org);
 		baseBiz.saveOrUpdateEntity(cun);
+		
+		
+		ShiWorkOrg shiWorkOrg = new ShiWorkOrg();
+		shiWorkOrg.setLoginName("shiworkorg");
+		shiWorkOrg.setPassword("123");
+		shiWorkOrg.setShi(shi);
+		shiWorkOrg.setRemark("市级管理员账号");
+		baseBiz.saveOrUpdateEntity(shiWorkOrg);
 		
 	}
 }

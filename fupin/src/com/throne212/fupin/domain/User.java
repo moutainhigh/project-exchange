@@ -9,6 +9,8 @@ public class User extends MyEntity implements Serializable {
 	private String loginName;// 登录名
 	private String password;// 密码
 
+	private String remark;
+	
 //	// 帮扶责任人信息
 //	private String name;// 名称
 //	private String tel;// 电话
@@ -43,6 +45,14 @@ public class User extends MyEntity implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	

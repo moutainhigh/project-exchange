@@ -44,6 +44,18 @@
 		<action name="logout" class="com.throne212.fupin.action.LogoutAction">
 			<result name="success" type="redirect">/login.jsp</result>
 		</action>
+			<!-- 密码修改 -->
+		<action name="user_*" method="{1}" class="com.throne212.siliao.action.UserAction">
+		  	<result name="fail">/login.jsp</result>
+			<result name="password">/main/password/password_edit.jsp</result>
+	
+		</action>
+		<!-- 超级管理员模块 -->
+			<action name="admin_*" method="{1}" class="com.throne212.fupin.action.AdminAction">
+			<result name="shiWorkOrg_list">/main/admin/shi_account_list.jsp</result>
+			<result name="shiWorkOrg_edit">/main/admin/shi_account_edit.jsp</result>
+		</action>
+
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

@@ -28,6 +28,7 @@
 		<property name="beanNames">
 			<list>
 				<value>baseBiz</value>
+				<value>adminBiz</value>
 				<value>userBiz</value>
 				<value>orgBiz</value>
 			</list>

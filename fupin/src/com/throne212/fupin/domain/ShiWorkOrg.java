@@ -6,6 +6,7 @@ public class ShiWorkOrg extends User {
 
 	private Shi shi;
 	private Zhen zhen;//对口的镇
+	
 
 	public Shi getShi() {
 		return shi;
@@ -22,6 +23,8 @@ public class ShiWorkOrg extends User {
 	public void setZhen(Zhen zhen) {
 		this.zhen = zhen;
 	}
+
+
 	
 	
 }

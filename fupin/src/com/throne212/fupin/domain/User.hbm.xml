@@ -9,7 +9,7 @@
 		<discriminator column="user_type" type="string" force="false" insert="true" />
 		<property name="loginName" column="loginName" length="20" not-null="true" unique="true"></property>
 		<property name="password" column="password" length="50" not-null="true"></property>
-		
+		<property name="remark" length="100"></property>
 		
 		
 		<!-- 公用字段 -->
