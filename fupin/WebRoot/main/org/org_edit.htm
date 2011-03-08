@@ -1,0 +1,157 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+
+
+
+
+
+
+<!-- by Arde -->
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link href="../main_data/manage.css" rel="stylesheet">
+<script src="../../js/jquery.js" language="javascript"></script>
+<script src="../../js/sel_style.js" language="javascript"></script>
+<script src="../../js/validateForm.js" language="javascript"></script>
+
+<style>
+	.tables_leftcell {
+		border-top: 1px solid #FFFFFF;
+		border-left: 1px solid #FFFFFF;
+		border-right: 1px solid #4D9EE3;
+		border-bottom: 1px solid #4D9EE3;
+		BACKGROUND-COLOR: #EFF6FF;
+		padding: 0px;
+		font-size: 12px;
+		font-weight: bold;
+		color: #000000;
+	}
+	.tables_search {
+		margin: 0px 0px 2px 0px;
+		height: 40px;
+		background-color: #418FD0;
+	}
+</style>
+</head><body>
+
+
+
+
+
+
+
+
+
+
+	<form onsubmit="return Validator.Validate(this)" method="post" action="bangfudanwei.jsp?action=save" name="searchForm">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_search">
+		<tbody><tr>
+		<td>您当前所处页面：单位与干部维护&gt;&gt;单位信息维护</td>
+		</tr>
+	</tbody></table>
+	
+	帮扶贫困村：五华县华阳镇红洞村
+	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
+		<tbody><tr>
+    	<td align="center" class="tables_contentcell" colspan="4">┏━━━帮扶责任人信息━━━┓</td>
+		</tr>
+		<tr>
+		<td height="30" align="right" width="10%" class="tables_leftcell">单位名称</td>
+    	<td height="70" width="35%" class="tables_contentcell">
+		<textarea msg="单位名称不能为空" datatype="Require" style="width: 95%; height: 98%;" type="text" value="广州市农业局" id="dwmc" name="dwmc">广州市农业局</textarea>
+		<font size="4" color="#cc0033">*</font>
+    	</td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">单位电话</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" style="width: 95%; height: 98%;" size="20" value="020-86362948" id="dwdh" name="dwdh"><font size="4" color="#cc0033"> *</font>
+    	</td>
+		</tr>
+		<tr>
+		<td height="30" align="right" width="15%" class="tables_leftcell">责任人姓名</td>
+		<td width="35%" class="tables_contentcell">
+		<input type="text" msg="联系人不能为空" datatype="Require" style="width: 95%; height: 98%;" size="20" value="汤锦华" id="lxr" name="lxr">
+		<font size="4" color="#cc0033"> *</font>
+		<!-- <input type="button" onclick="change();" value="信息切换"  class="button" /> -->
+	    </td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">责任人电话</td>
+		<td width="35%" class="tables_contentcell">
+		<input type="text" style="width: 95%; height: 98%;" size="20" value="020-86362948" id="lxrsj" name="lxrsj">
+		<font size="4" color="#cc0033"> *</font>
+		</td>
+		</tr>  
+        <tr> 
+    	<td height="30" align="right" width="10%" class="tables_leftcell">单位地址</td>
+    	<td height="45" width="35%" class="tables_contentcell">
+		<textarea msg="单位地址不能为空" datatype="Require" size="20" type="text" style="width: 95%; height: 98%;" value="广州市麓景路388号" id="dwdz" name="dwdz">广州市麓景路388号</textarea>
+		<font size="4" color="#cc0033"> *</font>
+    	</td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">职务</td>
+		<td width="35%" class="tables_contentcell">
+		<input type="text" msg="职务不能为空" datatype="Require" style="width: 95%; height: 98%;" size="20" value="书记、局长" id="lxrzw" name="lxrzw">
+		<font size="4" color="#cc0033"> *</font>
+    	</td>
+		</tr> 
+		<tr>
+    	<td align="center" class="tables_contentcell" colspan="4">┏━━━单位联络员信息━━━┓</td>
+		</tr>
+		
+		<tr> 
+    	<td height="30" align="right" width="15%" class="tables_leftcell">联络员姓名</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" msg="联络员姓名不能为空" datatype="Require" size="20" value="邓小明" id="llymc" name="llymc">
+		<font size="4" color="#cc0033"> *</font>
+    	</td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">职务</td>
+		<td width="35%" class="tables_contentcell">
+		<input type="text" msg="职务不能为空" datatype="Require" size="20" value="副处长" id="zw" name="zw">
+		<font size="4" color="#cc0033"> *</font>
+    	</td>
+		</tr>
+
+		<tr> 
+    	<td height="30" align="right" width="15%" class="tables_leftcell">办公电话</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" msg="办公电话不能为空" datatype="Require" size="20" value="020-86394910" id="bgdh" name="bgdh">
+		<font size="4" color="#cc0033"> *</font>
+    	</td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">手机号码</td>
+		<td width="35%" class="tables_contentcell">
+		<input type="text" msg="手机号码不能为空" datatype="Require" size="20" value="13711316423" id="sjhm" name="sjhm">
+		<font size="4" color="#cc0033"> *</font>
+    	</td>
+		</tr>
+
+		<tr> 
+    	<td height="30" align="right" width="15%" class="tables_leftcell">传真号码</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" size="20" value="020-8692360" id="czhm" name="czhm">
+    	</td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">通讯地址</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" size="20" value="广州市麓景路388号" id="txdz" name="txdz">
+    	</td>
+		</tr>
+
+		<tr> 
+    	<td height="30" align="right" width="15%" class="tables_leftcell">邮政编码</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" size="20" value="510405" id="yzbm" name="yzbm">
+    	</td>
+		<td height="30" align="right" width="15%" class="tables_leftcell">电子邮箱</td>
+    	<td width="35%" class="tables_contentcell">
+		<input type="text" msg="邮箱格式不正确" require="false" datatype="Email" size="20" value="dxm1234@tom.com" id="email" name="email">
+    	</td>
+		</tr>
+		
+		<tr>
+    	<td align="center" class="tables_contentcell" colspan="4">
+		<input type="submit" value="确认" class="button" name="确认">
+		<input type="button" class="button" value="取消" name="取消">
+		</td>
+		</tr>
+	</tbody></table>
+	
+	</form>
+</body></html>

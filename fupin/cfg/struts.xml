@@ -37,7 +37,7 @@
 		</global-results>
 		<!-- 登入 -->
 		<action name="login" class="com.throne212.fupin.action.LoginAction">
-			<result name="success">/html/index.jsp</result>
+			<result name="success">/index.jsp</result>
 			<result name="fail">/login.jsp</result>
 		</action>
 		<!-- 登出 -->

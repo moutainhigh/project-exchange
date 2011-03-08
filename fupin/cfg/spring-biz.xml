@@ -5,6 +5,8 @@
 	<bean id="baseBiz" class="com.throne212.fupin.biz.impl.BaseBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
-	
+	<bean id="userBiz" class="com.throne212.fupin.biz.impl.UserBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
 	
 </beans>
