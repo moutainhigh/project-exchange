@@ -172,8 +172,8 @@ function images_update(){
 		menuArray[menuArray.length]="1,表二,cxpgttwo.jsp";
 		
 		menuArray[menuArray.length]="0,重审申请,reauditApply.jsp";
-        menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
-        menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
+        //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
+        //menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
         ////HELP:
 	    menuArray[menuArray.length]="0,使用帮助,";
 	    menuArray[menuArray.length]="1,培训PPT下载,./help/main.html"; 	
