@@ -134,10 +134,10 @@
 		
 		<th height="22">饲料规格</th>
 		<td>
-			<input name="ff.size" value="${ff.size }" size="10" />
+			<input name="ff.model" value="${ff.size  }"  size="10" />
 		<th>饲料型号</th>
 		<td>
-			<input name="ff.model" value="${ff.size  }"  size="10" />
+			<input name="ff.size" value="${ff.size }" size="10" />
 		</td>
 	</tr>
 	<tr>

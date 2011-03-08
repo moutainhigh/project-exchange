@@ -124,6 +124,7 @@ public class StatAction extends BaseAction {
 		pf = statBiz.payProvider(pf);
 		if(pf.getId() == null){
 			this.setMsg("付款失败，请联系管理员");
+			pf = null;
 		}else{
 			this.setMsg("付款成功，金额为：" + pf.getMoney());
 		}

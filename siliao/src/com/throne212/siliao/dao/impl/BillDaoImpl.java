@@ -324,9 +324,9 @@ public class BillDaoImpl extends BaseDaoImpl implements BillDao {
 				sb.append(" and amount=?");
 				paramValueList.add(condition.getAmount());
 			}
-			if (!Util.isEmpty(condition.getCurrUserName())) {// 当前处理人
+			if (!Util.isEmpty(currMan)) {// 当前处理人
 				sb.append(" and currUserName like ?");
-				paramValueList.add("%" + condition.getCurrUserName() + "%");
+				paramValueList.add("%" + currMan + "%");
 			}
 		}
 		// 创建时间段

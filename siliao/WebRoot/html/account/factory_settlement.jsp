@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
+			var userRole = '${userObj.userRole}';
 			var currFactoryId = '${pf.factory.id}';
 			var providerId = '${pf.provider.id}';
 			var farmId = '${pf.farm.id}';
@@ -48,6 +49,11 @@
 					}
 				});
 				//农场
+				<c:choose>
+				<c:when test="${userObj.userRole == '饲料经理'}">
+					$('#farmName').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+				</c:when>
+				<c:otherwise>
 				$.getJSON("${appPath}ajax/getAllFarm?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#farmName').html('<option value=""></option>');
@@ -60,6 +66,8 @@
 						}
 					}
 				});	
+				</c:otherwise>
+				</c:choose>
 			});	
 			
 			function query(){

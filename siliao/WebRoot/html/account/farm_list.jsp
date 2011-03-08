@@ -114,7 +114,7 @@
 						${f.totalPay}
 					</td>
 					<td class="list_data_text">
-						${f.payPercentage}
+						${f.percentage}
 					</td>
 	
 				</tr>
@@ -142,6 +142,8 @@
 			<th>合计金额</th>
 			<th>单笔本息合计</th>
 			<th>代理费合计</th>
+			<th>已付款</th>
+			<th>付款率</th>
 			<th>农场</th>
 			</tr>
 			<c:forEach items="${providerStatList}" var="f">
@@ -165,6 +167,12 @@
 						${f.totalAgentMoney}
 					</td>
 					<td class="list_data_text">
+						${f.totalPay}
+					</td>
+					<td class="list_data_text">
+						${f.percentage}
+					</td>
+					<td class="list_data_text">
 						${f.farmName}
 					</td>
 				</tr>
@@ -176,6 +184,8 @@
 				<td class="list_data_text">${providerStatList[0].total[1] }</td>
 				<td class="list_data_text">${providerStatList[0].total[2] }</td>
 				<td class="list_data_text">${providerStatList[0].total[3] }</td>
+				<td class="list_data_text">${providerStatList[0].total[4] }</td>
+				<td class="list_data_text"></td>
 				<td class="list_data_text"></td>
 			</tr>
 		</table>

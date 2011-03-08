@@ -495,9 +495,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		List paramValueList = new ArrayList();
 		if (condition != null) {
 			// 构建下拉项的条件
-			if (condition.getArea() != null && condition.getArea() != null && condition.getArea().getFarm().getId() != null) {
+			if (condition.getArea() != null && condition.getArea().getFarm() != null && condition.getArea().getFarm().getId() != null) {
 				Farm farm = (Farm) this.getHibernateTemplate().get(Farm.class, condition.getArea().getFarm().getId());
-				sb.append(" and area.farm=?");
+				sb.append(" and farmer.area.farm=?");
 				paramValueList.add(farm);
 			}
 			if (condition.getFactory() != null && condition.getFactory().getId() != null) {
@@ -549,8 +549,10 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		//用户限制
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof ManagerAccount){
-			sb.append(" and farmer.area.farm=?");
-			paramValueList.add(((ManagerAccount)user).getFarm());
+			if(sb.indexOf("farmer.area.farm=?") < 0){//如果没有设置过农场，则进行限制
+				sb.append(" and farmer.area.farm=?");
+				paramValueList.add(((ManagerAccount)user).getFarm());
+			}
 		}
 		sb.append(" order by id asc");
 		logger.debug("hql=[" + sb.toString() + "]");
@@ -616,13 +618,31 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
 					rateMoney += ff.getMoney() * getRelateRate(ff.getArea().getFarm(),new Date(time));
 				}
-				totalMoneyWithRate = rateMoney + ff.getMoney();				
+				totalMoneyWithRate += (rateMoney + ff.getMoney());			
+				
 			}
 			farmerStatDO.setTotalOwn(Util.roundMoney(totalMoneyWithRate));
 
 			// 获得已付款
 			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance where (area=? or farmer.area=?) and type=" + WebConstants.FINANCE_STATUS_GET, new Object[]{area,area}).get(0);
 			farmerStatDO.setTotalPay(totalPay==null?0:totalPay);
+			
+			//计算付款率
+			double totalPayMoneyWithRate = 0;
+			tmpList = this.getHibernateTemplate().find("from FarmerFinance ff where (area=? or farmer.area=?) and type="+WebConstants.FINANCE_STATUS_GET, new Object[] { area,area });
+			for (FarmerFinance ff : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += ff.getMoney() * getRelateRate(ff.getFarmer().getArea().getFarm(),new Date(time));
+				}
+				totalPayMoneyWithRate += (rateMoney + ff.getMoney());			
+			}
+			farmerStatDO.setPercentage(Util.getPercentage(totalPayMoneyWithRate, farmerStatDO.getTotalOwn()));
+			
 
 			farmerStatList.add(farmerStatDO);
 			
@@ -653,6 +673,7 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 		double sumMoney = 0;
 		double sumMoneyWithRate = 0;
 		double sumAgentMoney = 0;
+		double sumPay = 0;
 		for (Provider p : List) {
 			ProviderStatDO pDO = new ProviderStatDO();
 			pDO.setOrderNum(p.getId());
@@ -683,11 +704,31 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 					long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
 					rateMoney += this.getRelateRate(pf.getProvider(), new Date(time)) * pf.getMoney();
 				}
-				totalMoneyWithRate = rateMoney + pf.getMoney();
+				totalMoneyWithRate += (rateMoney + pf.getMoney());
 			}
 			pDO.setTotalRateMoney(Util.roundMoney(totalMoneyWithRate));
 
 			pfList.add(pDO);
+			
+			// 获得已付款
+			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from ProviderFinance where provider=? and farm=? and type=" + WebConstants.FINANCE_STATUS_PAY, new Object[]{p, farm}).get(0);
+			pDO.setTotalPay(totalPay==null?0:totalPay);
+			
+			//计算付款率
+			double totalPayMoneyWithRate = 0;
+			tmpList = this.getHibernateTemplate().find("from ProviderFinance pf where provider=? and farm=? and type="+WebConstants.FINANCE_STATUS_PAY, new Object[] { p, farm});
+			for (ProviderFinance pf : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += this.getRelateRate(pf.getProvider(), new Date(time)) * pf.getMoney();
+				}
+				totalPayMoneyWithRate += (rateMoney + pf.getMoney());
+			}
+			pDO.setPercentage(Util.getPercentage(totalPayMoneyWithRate, pDO.getTotalRateMoney()));
 			
 			
 			//进行合计
@@ -695,10 +736,11 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			sumMoney = Util.addMoney(sumMoney, pDO.getTotalMoney());
 			sumAgentMoney = Util.addMoney(sumAgentMoney, pDO.getTotalAgentMoney());
 			sumMoneyWithRate = Util.addMoney(sumMoneyWithRate, pDO.getTotalRateMoney()==null?0:pDO.getTotalRateMoney());
+			sumPay = Util.addMoney(sumPay, pDO.getTotalPay());
 		}
 		//添加合计到DO
 		if(pfList != null && pfList.size() > 0){
-			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate,sumAgentMoney});
+			pfList.get(0).setTotal(new Double[]{sumAmount,sumMoney,sumMoneyWithRate,sumAgentMoney,sumPay});
 		}
 		return pfList;
 	}
@@ -738,13 +780,28 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
 					rateMoney += this.getRelateRate(ff.getArea().getFarm(), new Date(time)) * ff.getMoney();
 				}
-				totalMoneyWithRate = rateMoney + ff.getMoney();
+				totalMoneyWithRate += (rateMoney + ff.getMoney());
 			}
 			statDO.setTotalOwn(Util.roundMoney(totalMoneyWithRate));
 
 			// 获得已付款
-			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance where (area.farm=? or farmer.area.farm=?) and type=" + WebConstants.FINANCE_STATUS_GET, new Object[]{farm,farm}).get(0);
+			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from FarmerFinance ff where farmer.area.farm=? and type=" + WebConstants.FINANCE_STATUS_GET, new Object[]{farm}).get(0);
 			statDO.setTotalPay(totalPay==null?0:totalPay);
+			
+			double totalPayMoneyWithRate = 0;
+			tmpList = this.getHibernateTemplate().find("from FarmerFinance ff where farmer.area.farm=? and type="+WebConstants.FINANCE_STATUS_GET, new Object[] { farm });
+			for (FarmerFinance ff : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - ff.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					long time = ff.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += ff.getMoney() * getRelateRate(ff.getFarmer().getArea().getFarm(),new Date(time));
+				}
+				totalPayMoneyWithRate += (rateMoney + ff.getMoney());			
+			}
+			statDO.setPercentage(Util.getPercentage(totalPayMoneyWithRate, statDO.getTotalOwn()));
 
 			statList.add(statDO);
 			
@@ -787,13 +844,43 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			//欠款余额
 			pDO.setOwnBalance(Util.subMoney(pDO.getTotalMoney(),pDO.getTotalPay()));
 			
+			
+			//计算付款率
+			double totalPayMoneyWithRate = 0;
+			List<ProviderFinance> tmpList = this.getHibernateTemplate().find("from ProviderFinance where (factory=? or provider.factory=?) and type="+WebConstants.FINANCE_STATUS_PAY, new Object[] { f, f});
+			for (ProviderFinance pf : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += this.getRelateRate(pf.getProvider(), new Date(time)) * pf.getMoney();
+				}
+				totalPayMoneyWithRate += (rateMoney + pf.getMoney());
+			}
+			double totalMoneyWithRate = 0;
+			tmpList = this.getHibernateTemplate().find("from ProviderFinance where (factory=? or provider.factory=?) and type=0", new Object[] { f, f});
+			for (ProviderFinance pf : tmpList) {
+				// 统计天数
+				long days = (System.currentTimeMillis() - pf.getRateFromDate().getTime()) / 1000 / 60 / 60 / 24;
+				double rateMoney = 0;
+				// 累计计算利息
+				for (long j = 0; j < days; j++) {
+					long time = pf.getRateFromDate().getTime() + 1000 * 60 * 60 * 24 * (j+1);
+					rateMoney += this.getRelateRate(pf.getProvider(), new Date(time)) * pf.getMoney();
+				}
+				totalMoneyWithRate += (rateMoney + pf.getMoney());
+			}
+			pDO.setPercentage(Util.getPercentage(totalPayMoneyWithRate, totalMoneyWithRate));
+			
 			pfList.add(pDO);
 			
 			
 			//进行合计
 			sumAmount = Util.addMoney(sumAmount, pDO.getTotalAmount());
 			sumMoney = Util.addMoney(sumMoney, pDO.getTotalMoney());
-			sumPay = Util.addMoney(sumMoney, pDO.getTotalPay());
+			sumPay = Util.addMoney(sumPay, pDO.getTotalPay());
 			sumBalance = Util.addMoney(sumBalance, pDO.getOwnBalance());
 		}
 		//添加合计到DO

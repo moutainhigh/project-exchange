@@ -90,6 +90,12 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		}else if(userObj instanceof Admin){
 			bill.setCurrUserName(userObj.getName());
 		}
+		//保存创建人和创建日期
+		if(bill.getCreateDate()==null)
+			bill.setCreateDate(new Date());
+		if(bill.getCreateName()==null)
+			bill.setCreateName(userObj.getName());
+		
 		baseDao.saveOrUpdate(bill);
 		// 保存日志
 		BillLog log = Util.getBaseLog(BillLog.class, "草稿 -> 审核中");

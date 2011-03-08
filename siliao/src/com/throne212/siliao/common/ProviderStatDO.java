@@ -1,5 +1,7 @@
 package com.throne212.siliao.common;
 
+import java.math.BigDecimal;
+
 public class ProviderStatDO {
 	private Long orderNum;
 	private String providerName;
@@ -7,8 +9,23 @@ public class ProviderStatDO {
 	private Double totalMoney;
 	private Double totalAgentMoney;
 	private Double totalRateMoney;
+	private Double totalPay;
 	private String farmName;
 	private Object total;
+	private String percentage;
+	
+	public String getPayPercentage() {
+		if(totalPay == null || totalMoney==null || totalMoney==0)
+			return "";
+		Double percentage = (float) 100 * (Math.abs(totalPay) / totalMoney);
+		int scale = 1;// 设置位数
+		int roundingMode = 4;// 表示四舍五入
+		BigDecimal bd = new BigDecimal((double) percentage);
+		bd = bd.setScale(scale, roundingMode);
+		percentage = bd.doubleValue();
+		return percentage + "%";
+	}
+	
 	public Long getOrderNum() {
 		return orderNum;
 	}
@@ -56,6 +73,20 @@ public class ProviderStatDO {
 	}
 	public void setTotalAgentMoney(Double totalAgentMoney) {
 		this.totalAgentMoney = totalAgentMoney;
+	}
+	public Double getTotalPay() {
+		return totalPay;
+	}
+	public void setTotalPay(Double totalPay) {
+		this.totalPay = totalPay;
+	}
+
+	public String getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(String percentage) {
+		this.percentage = percentage;
 	}
 
 }

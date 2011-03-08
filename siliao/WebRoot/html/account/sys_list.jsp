@@ -73,7 +73,7 @@
 						${f.totalPay}
 					</td>
 					<td class="list_data_text">
-						${f.payPercentage}
+						${f.percentage}
 					</td>
 	
 				</tr>
@@ -118,24 +118,24 @@
 						${f.totalMoney}
 					</td>
 					<td class="list_data_text">
-						${f.ownBalance}
-					</td>
-					<td class="list_data_text">
 						${f.totalPay}
 					</td>
 					<td class="list_data_text">
-						${f.payPercentage}
+						${f.ownBalance}
+					</td>
+					<td class="list_data_text">
+						${f.percentage}
 					</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td class="list_data_number">合计</td>
 				<td class="list_data_text"></td>
-				<td class="list_data_text"></td>
 				<td class="list_data_text">${factoryStatList[0].total[0] }</td>
 				<td class="list_data_text">${factoryStatList[0].total[1] }</td>
 				<td class="list_data_text">${factoryStatList[0].total[2] }</td>
 				<td class="list_data_text">${factoryStatList[0].total[3] }</td>
+				<td class="list_data_text"></td>
 				
 			</tr>
 		</table>

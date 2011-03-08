@@ -240,6 +240,18 @@ public class Util {
 		return (double)b / 100.00; //还原小数点后两位
 	}
 	
+	public static String getPercentage(Double totalPay,Double totalMoney){
+		if(totalPay == null || totalMoney==null || totalMoney==0)
+			return "";
+		Double percentage = (float) 100 * (Math.abs(totalPay) / totalMoney);
+		int scale = 1;// 设置位数
+		int roundingMode = 4;// 表示四舍五入
+		BigDecimal bd = new BigDecimal((double) percentage);
+		bd = bd.setScale(scale, roundingMode);
+		percentage = bd.doubleValue();
+		return percentage + "%";
+	}
+	
 	public static double calRateMoney(double money,double rate,Date fromDate){
 		// 统计天数
 		long days = (System.currentTimeMillis() - fromDate.getTime()) / 1000 / 60 / 60 / 24;

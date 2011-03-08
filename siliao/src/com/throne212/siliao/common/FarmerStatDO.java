@@ -11,6 +11,7 @@ public class FarmerStatDO {
 	private Double totalOwn;
 	private Double totalPay;
 	private Object total;
+	private String percentage;;
 
 	public String getPayPercentage() {
 		if(totalPay == null || totalMoney==null || totalMoney==0)
@@ -86,6 +87,14 @@ public class FarmerStatDO {
 
 	public void setTotal(Object total) {
 		this.total = total;
+	}
+
+	public String getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(String percentage) {
+		this.percentage = percentage;
 	}
 
 }

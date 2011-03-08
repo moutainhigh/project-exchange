@@ -32,8 +32,8 @@
 							var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>';
 							$('#providerId').append(str);
 						}
-						if(factoryId != ''){
-							$('#providerId').val(factoryId);
+						if(providerId != ''){
+							$('#providerId').val(providerId);
 						}
 					}
 				});

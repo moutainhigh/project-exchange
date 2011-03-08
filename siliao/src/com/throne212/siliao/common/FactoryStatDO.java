@@ -11,6 +11,7 @@ public class FactoryStatDO {
 	// for集团统计的字段
 	private Double totalPay;// 已付款
 	private Double ownBalance;// 欠款余额
+	private String percentage;
 
 	public String getPayPercentage() {
 		if (totalPay == null || totalMoney == null || totalMoney == 0)
@@ -78,6 +79,14 @@ public class FactoryStatDO {
 
 	public void setOwnBalance(Double ownBalance) {
 		this.ownBalance = ownBalance;
+	}
+
+	public String getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(String percentage) {
+		this.percentage = percentage;
 	}
 
 }

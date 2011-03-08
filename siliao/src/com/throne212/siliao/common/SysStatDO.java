@@ -11,10 +11,11 @@ public class SysStatDO {
 	private Double totalOwn;
 	private Double totalPay;
 	private Object total;
+	private String percentage;
 
 	public String getPayPercentage() {
 		if (totalPay == null || totalMoney == null || totalMoney == 0)
-			return "N/A";
+			return "";
 		Double percentage = (float) 100 * (Math.abs(totalPay) / totalMoney);
 		int scale = 1;// 设置位数
 		int roundingMode = 4;// 表示四舍五入
@@ -86,6 +87,14 @@ public class SysStatDO {
 
 	public void setTotal(Object total) {
 		this.total = total;
+	}
+
+	public String getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(String percentage) {
+		this.percentage = percentage;
 	}
 
 }

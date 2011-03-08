@@ -233,7 +233,7 @@ public class StatBizImpl extends BaseBizImpl implements StatBiz {
 		if(pf.getMoney() > 0){
 			pf.setMoney(pf.getMoney() * -1);
 		}
-		pf.setRateFromDate(Util.getDateOnly(new Date()));
+		//pf.setRateFromDate(Util.getDateOnly(new Date()));
 		pf.setType(WebConstants.FINANCE_STATUS_PAY);
 		financeDao.saveOrUpdate(pf);
 		return pf;

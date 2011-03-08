@@ -19,6 +19,7 @@
 			var providerId = '${pf.provider.id}';
 			var farmId = '${pf.farm.id}';
 			$(function(){
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 				//厂商列表
 				$.getJSON("${appPath}ajax/getFactoryList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -49,6 +50,9 @@
 			function submitPay(){
 				if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('厂商不能为空');
+					return false;
+				}else if($('#rateFromDate').val() == null || $('#rateFromDate').val()==''){
+					alert('起息日不能为空');
 					return false;
 				}else if($('#providerList').val() == null || $('#providerList').val()==''){
 					alert('供应厂不能为空');
@@ -115,9 +119,13 @@
 				</tr>
 				<tr>
 					<th>备注</th>
-					<td colspan="3">
+					<td colspan="1">
 						<input name="pf.remark" size="100" value="${pf.remark}" />
 					</td>
+					<th>起息日</th>
+					<td>
+						<input size="10" name="pf.rateFromDate" id="rateFromDate" class="datetime" value="<fmt:formatDate value="${pf.rateFromDate}" pattern="yyyy-MM-dd"/>"/>
+					</td>	
 				</tr>
 			</table>
 		

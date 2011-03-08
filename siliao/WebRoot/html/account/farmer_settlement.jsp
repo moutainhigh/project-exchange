@@ -128,17 +128,17 @@
 					</td>
 		<th>饲料厂商</th>
 		<td>
-			<select id="factoryId" name="ff.factoryId"></select>
+			<select id="factoryId" name="ff.factory.id"></select>
 		</td>
 	</tr>
 	<tr>
 		
 		<th height="22">饲料规格</th>
 		<td>
-			<input name="ff.size" value="${ff.size }" size="10" />
+			<input name="ff.size" value="${ff.size}" size="10" />
 		<th>饲料型号</th>
 		<td>
-			<input name="ff.model" value="${ff.size  }"  size="10" />
+			<input name="ff.model" value="${ff.model}"  size="10" />
 		</td>
 	</tr>
 	<tr>
