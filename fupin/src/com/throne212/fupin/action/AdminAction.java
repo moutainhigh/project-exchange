@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 
 
@@ -25,6 +26,12 @@ public class AdminAction extends BaseAction {
 			return "shiWorkOrg_edit";
 		}
 		if (shiWorkOrg != null && !Util.isEmpty(shiWorkOrg.getLoginName())) {// 添加或更新市扶贫单位信息
+			if (shiWorkOrg.getShi().getId()==null) {
+				this.setMsg("请选择所属市！");
+				return "shiWorkOrg_edit";
+			}
+			Shi shi= adminBiz.getEntityById(Shi.class, shiWorkOrg.getShi().getId());
+			shiWorkOrg.setShi(shi);
 			shiWorkOrg = adminBiz.saveOrUpdateShiWorkOrg(shiWorkOrg);
 			this.setMsg("保存成功");
 			shiWorkOrg = null;
