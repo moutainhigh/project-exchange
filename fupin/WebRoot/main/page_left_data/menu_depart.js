@@ -28,8 +28,8 @@ function DepartTree(treename)
 	this.TreeType  = 0           //树类型 默认0 / 单选1 /多选2
 	this.InitID    = 0           //初始化父节点
 	this.InitString= '';         //初始值
-	this.IsExtend  = false;      //是否伸展 
-	this.IsScroll  = false;      //是否出现滚动条
+	this.IsExtend  = true;      //是否伸展 
+	this.IsScroll  = true;      //是否出现滚动条
 	this.SelectId  = -1;		 //上次选中节点
 	this.PageHeight= 0;
 	this.OpenFlag  = 'display';

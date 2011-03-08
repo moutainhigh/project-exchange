@@ -23,25 +23,27 @@ if(typeof displaySelectLayer != 'object'){
 //// 浏览器版本 检测 temp为你需要判断的版本.目前只为IE,以后补充 Netscape
 function checkExplorer(temp)
 {
-	var BrowserInfo = new Object() ;
-	BrowserInfo.MajorVer = navigator.appVersion.match(/MSIE (.)/)[1] ;
-	BrowserInfo.MinorVer = navigator.appVersion.match(/MSIE .\.(.)/)[1] ;
-	BrowserInfo.IsIEgoon = false;
-	switch (temp)
-	{
-		case "6":
-			BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= 6;break;
-		case "5.5":
-			BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= 6 || ( BrowserInfo.MajorVer >= 5 && BrowserInfo.MinorVer >= 5 ) ;break;
-		case "4":
-			BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= 4;break;
-		default:
-			BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= temp;break;
-	}
-	if (BrowserInfo.IsIEgoon)
-		return true;
-	else
-		return false;
+	try{
+		var BrowserInfo = new Object() ;
+		BrowserInfo.MajorVer = navigator.appVersion.match(/MSIE (.)/)[1] ;
+		BrowserInfo.MinorVer = navigator.appVersion.match(/MSIE .\.(.)/)[1] ;
+		BrowserInfo.IsIEgoon = false;
+		switch (temp)
+		{
+			case "6":
+				BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= 6;break;
+			case "5.5":
+				BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= 6 || ( BrowserInfo.MajorVer >= 5 && BrowserInfo.MinorVer >= 5 ) ;break;
+			case "4":
+				BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= 4;break;
+			default:
+				BrowserInfo.IsIEgoon = BrowserInfo.MajorVer >= temp;break;
+		}
+		if (BrowserInfo.IsIEgoon)
+			return true;
+		else
+			return false;
+	}catch(e){}
 }
 //打开window居中
 function    winOpen(Url,width,height,id)   

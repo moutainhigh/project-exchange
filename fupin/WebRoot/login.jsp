@@ -4,22 +4,22 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>:::::管理员登陆:::::</title>
+<title>:::::管理员登录:::::</title>
 <script language="javascript" src="login_files/validateForm.js"></script>
 <script language="javascript" src="login_files/weihu.js"></script>  
 <script language="javascript" src="login_files/poptip.js"></script>
 <script language="javascript" src="js/jquery.js"></script>
 <script language="javascript">
 	function login(){
-				var pwd = $('#password').attr('value');
-				var user = $('#username').attr('value');
-				if(user=='' || pwd==''){
-					alert('请填入用户名和密码，然后再登录');
-					return false;
-				}else{
-					document.forms[0].submit();
-				}
-			}
+		var pwd = $('#password').attr('value');
+		var user = $('#username').attr('value');
+		if(user=='' || pwd==''){
+			alert('请填入用户名和密码，然后再登录');
+			return false;
+		}else{
+			document.forms[0].submit();
+		}
+	}
 </script>
 <style type="text/css">
 body {
@@ -90,7 +90,7 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
 </style>
 
 <link href="login_files/skin.css" rel="stylesheet" type="text/css">
-</head><body onload="getResult();javascript:CheckBrowser();document.form1.username.focus();(cc6_readCookie('usernamecookie'))">
+</head><body onload="">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" height="100%">  <!--1个大表格 -->
   <tbody><tr>  <!-- 1个大行 -->
     <td valign="top"><!-- 1个大单元格 -->
@@ -132,8 +132,8 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
 										
                     <tr>
                       <td>&nbsp;</td>
-                      <td width="30%" height="40"><img src="login_files/igoto.gif" width="16" height="10"><a href="http://www.gdfp.gov.cn/" target="_blank" class="left_txt3">&nbsp;广东省扶贫信息网</a></td>
-                      <td width="35%"><img src="login_files/igoto.gif" width="16" height="10"><a href="http://210.76.65.67:6792/fpxm" target="_blank" class="left_txt3">&nbsp;建档立卡</a></td>
+                      <td width="30%" height="40"><img src="login_files/igoto.gif" width="16" height="10"><a href="#" target="_blank" class="left_txt3">&nbsp;扶贫信息网</a></td>
+                      <td width="35%"><img src="login_files/igoto.gif" width="16" height="10"><a href="#" target="_blank" class="left_txt3">&nbsp;建档立卡</a></td>
                     </tr>
                   </tbody></table></td>
                 </tr>
@@ -155,7 +155,7 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
               <td height="21"><table id="table211" width="100%" border="0" cellpadding="0" cellspacing="0" height="328">
                   <tbody><tr>
                     <td colspan="2" align="middle" height="164">
-                   	<form action="${appPath}login.htm" method="post">
+                   	<form action="${appPath}login" method="post">
                         <table id="table212" width="100%" border="0" cellpadding="0" cellspacing="0" height="143">
                           <tbody><tr>
                             <td class="top_hui_text" width="13%" height="38"><span class="login_txt">管理员：&nbsp;&nbsp; </span></td>
@@ -168,10 +168,11 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
                             <td width="13%" height="35"><span class="login_txt"> 密&nbsp;&nbsp;&nbsp;&nbsp;码： &nbsp;&nbsp; </span></td>
                             <td colspan="2" class="top_hui_text" height="35">
                             <input id="password" value="${password}" size="20" maxlength="20" value="${password }"   class="input_out" name="password"    type="password">
-                              &nbsp;&nbsp;<a href="#" target="_blank" style="text-decoration: underline;"><font color="#a0b4c5">忘记密码了</font></a> 
+                              &nbsp;&nbsp;<a href="#" style="text-decoration: underline;"><font color="#a0b4c5">忘记密码了</font></a> 
                             </td>
                             
                           </tr>
+                          <!-- 
                           <tr>
                             <td valign="middle" width="13%" height="35"><span class="login_txt">验证码：</span></td>
                             <td colspan="2" valign="middle" height="35">
@@ -184,9 +185,10 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
                              <input checked="checked" value="remembed" name="remusername" type="checkbox"><font style="font-size: 12px;">记住管理员帐号</font> 
                             </td>
                           </tr>
+                          -->
                           <tr>
                             <td height="35">&nbsp;</td>
-                            <td width="20%" height="35"><input onClick="login();" name="Submit" class="button" id="Submit" value="登 陆" type="submit"> </td>
+                            <td width="20%" height="35"><input onClick="login();" name="Submit" class="button" id="Submit" value="登 录" type="button"> </td>
                             <td class="top_hui_text" width="67%"><input name="cs" class="button" id="cs" value="关 闭" onclick="self.close()" type="button"></td>
                           </tr>
                           <tr>
