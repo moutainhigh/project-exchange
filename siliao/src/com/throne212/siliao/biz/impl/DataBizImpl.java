@@ -190,13 +190,16 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 			logger.info("添加用户【" + user.getLoginName() + "】成功");
 		} else {
 			User userInDB = baseDao.getEntityById(User.class, user.getId());
-			user.setEnable(userInDB.getEnable());
-			user.setCreateDate(userInDB.getCreateDate());
-			user.setCreateName(userInDB.getCreateName());
-			baseDao.saveOrUpdate(user);
+			userInDB.setLoginName(user.getLoginName());
+			userInDB.setPassword(user.getPassword());
+			userInDB.setRemark(user.getRemark());
+			userInDB.setEmail(user.getEmail());
+			userInDB.setTel(user.getTel());
+			userInDB.setName(user.getName());
+			baseDao.saveOrUpdate(userInDB);
 			// 保存日志
 			UserLog log = Util.getBaseLog(UserLog.class, WebConstants.OP_UPDATE);
-			log.setUser(user);
+			log.setUser(userInDB);
 			log.setRemark(user.getRemark());
 			log.setEmail(user.getEmail());
 			log.setTel(user.getTel());

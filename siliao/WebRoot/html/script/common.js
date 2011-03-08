@@ -2,7 +2,7 @@ function reload(){
 	window.location.reload();
 }
 function help(msg){
-	alert('欢迎使用'+msg);
+	//alert('欢迎使用'+msg);
 }
 
 function to(url){
@@ -76,6 +76,7 @@ function gotoPage(pageIndex,pageSize,url){
 	self.location.href = url;
 }
 
+var queryBtn = null;
 
 //让消息框慢慢消退
 $(function(){
@@ -86,5 +87,16 @@ $(function(){
 		if($(this).text().indexOf('xcel') > -1){
 			$(this).css({'padding':'0'});
 		}
+		//做enter查询功能
+		if($(this).text().indexOf('查询') > -1){
+			queryBtn = this;
+			$('*').keypress(function(e){
+				if (e.keyCode == 13) {
+					//alert('xxxxx'+$(queryBtn).html());
+					$(queryBtn).click();
+				}			
+			});
+		} 
 	});
+	
 });
