@@ -18,8 +18,6 @@
 					document.forms[0].submit();
 				}
 			}
-		</script>
-		<script type="text/javascript">
 			function breakout_of_frame()
 			{
 			  // see http://www.thesitewizard.com/archive/framebreak.shtml
@@ -28,6 +26,13 @@
 			  if (top.location != location) {
 			    top.location.href = document.location.href ;
 			  }
+			}
+			function formKeyPress(event) {
+				if (event.keyCode == 13) {
+					login();
+				} else {
+					return false;
+				}
 			}
 		</script>
 	</head>
@@ -51,7 +56,7 @@
 									</p>
 									<p class="mar_b10">
 										<span>密&nbsp;&nbsp;码：</span>
-										<input name="password" id="password" tabindex="2" class="logininput4" type="password" />
+										<input name="password" id="password" tabindex="2" class="logininput4" type="password" onkeypress="formKeyPress(event);"/>
 									</p>
 									<!--  <p class="mar_b5">
 									<span>验证码：</span>
