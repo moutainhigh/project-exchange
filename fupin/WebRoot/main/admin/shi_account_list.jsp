@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,10 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- by tang  -->
 
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<link href="../main_data/manage.css" rel="stylesheet">
-<script src="../js/jquery.js" language="javascript"></script>
-<script src="../js/sel_style.js" language="javascript"></script>
-<script src="../js/common.js" language="javascript"></script>
+<link href="${appPath}main_data/manage.css" rel="stylesheet">
+<script src="${appPath}js/jquery.js" language="javascript"></script>
+<script src="${appPath}js/sel_style.js" language="javascript"></script>
+<script src="${appPath}js/common.js" language="javascript"></script>
 <script language="javascript">
 var msg = '${msg}';
 		if(msg != ''){
@@ -42,14 +43,14 @@ var msg = '${msg}';
 	}
 </style>
 </head><body>
-<jsp:include page="../../msg.jsp"></jsp:include>
+<jsp:include page="${appPath}msg.jsp"></jsp:include>
 <form method="post" action="${appPath}admin_shiWorkOrgList.action" name="searchForm">
 <input type="hidden" name="del" id="del" value="">
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
 		<td>您当前所处页面：市级帐号管理</td>
         <td align="right">            
-           <input type="button" onclick="winOpen('shi_account_edit.jsp',450,220);" class="button" value="新增">
+           <input type="button" onclick="winOpen('${appPath}main/admin/shi_account_edit.jsp',450,220);" class="button" value="新增">
            
            <input type="button" onclick="deleteInfo();" class="button" value="删除">
 	    </td>

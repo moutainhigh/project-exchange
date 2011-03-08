@@ -1,20 +1,22 @@
 package com.throne212.fupin.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.domain.ShiWorkOrg;
 
+
 public class AdminAction extends BaseAction {
 	private AdminBiz adminBiz;
-	
+	//市级账号列表
 	private Integer pageIndex;
 	private PageBean<ShiWorkOrg> pageBean;
 	public String shiWorkOrgList(){
 		pageBean=adminBiz.getShiWorkOrgBean(pageIndex);
 		return "shiWorkOrg_list";
 	}
-
+	//添加或修改市级账号
 	private ShiWorkOrg shiWorkOrg;
 	public String saveOrUpdateShiWorkOrg(){
 		
@@ -34,6 +36,21 @@ public class AdminAction extends BaseAction {
 		return "shiWorkOrg_edit";
 
 	}
+	//删除市级账号
+	public String deleteShiWorkOrg(){
+		String[] shiWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("shiWorkOrg_ids");
+		if(shiWrokOrgIds != null && shiWrokOrgIds.length > 0){
+			for(String idStr : shiWrokOrgIds){
+				Long id = Long.parseLong(idStr);
+				adminBiz.deleteEntity(ShiWorkOrg.class, id);
+			}
+			this.setMsg("删除市级账号成功");
+		}
+		return shiWorkOrgList();
+	}
+	
+	 
+	
 	
 	public AdminBiz getAdminBiz() {
 		return adminBiz;

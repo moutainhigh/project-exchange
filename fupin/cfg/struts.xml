@@ -59,13 +59,13 @@
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">
-        	<result name="role_list" type="json">
+        	<result name="shi_list" type="json">
 				<param name="includeProperties">list\[\d+\]</param>
 			</result>
 			<result name="list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
-					list\[\d+\]\.name
+					list\[\d+\]\.shiName
 				</param>
 			</result>
 		</action>		

@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		帐号登录名
 		</td>
 		<td class="tables_contentcell">
-		<input type="text"  style="height: 22px;"   size="20" value="${ shiWorkOrg.loginName}" id="username" name="shiWorkOrg.loginName" disabled="disabled">
+		<input type="text"  style="height: 22px;"   size="20" value="${userObj.loginName }" id="username" name="shiWorkOrg.loginName" disabled="disabled">
 		<font size="4" color="#cc0033">*</font>
 		</td>
 	</tr>
