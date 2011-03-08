@@ -29,6 +29,7 @@ var currShi = '${shiWorkOrg.shi.shiName}';
 						}
 					}
 				});
+				});
 </script>
 
 </head><body>
