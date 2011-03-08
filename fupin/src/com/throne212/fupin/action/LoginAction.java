@@ -6,6 +6,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.ZhenWorkOrg;
@@ -50,6 +51,8 @@ public class LoginAction extends BaseAction {
 			logger.info("区县管理员登录成功：" + user.getLoginName());
 		} else if (user instanceof ZhenWorkOrg) {
 			logger.info("镇管理员登录成功：" + user.getLoginName());
+		} else if (user instanceof Org) {
+			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
 		}
 		return "success";
 	}

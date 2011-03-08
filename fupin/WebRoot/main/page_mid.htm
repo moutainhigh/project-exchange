@@ -38,11 +38,13 @@ var y = '';
 var menuWidth = 160
 function getFrameWidth()
 {
-	if(event.button ==1)
-	{	var iWidth = event.x-x;
-		menuWidth = menuWidth + iWidth;
-		window.parent.left_right.cols = menuWidth + ',5,*'
-	}
+	try{
+		if(event.button ==1)
+		{	var iWidth = event.x-x;
+			menuWidth = menuWidth + iWidth;
+			window.parent.left_right.cols = menuWidth + ',5,*'
+		}
+	}catch(e){}
 }
 function Win_left()
 {

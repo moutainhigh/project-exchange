@@ -1,6 +1,6 @@
 package com.throne212.fupin.domain;
 
-public class Org extends MyEntity {
+public class Org extends User {
 	
 	private static final long serialVersionUID = 1L;
 	private Cun cun;//所帮扶的村

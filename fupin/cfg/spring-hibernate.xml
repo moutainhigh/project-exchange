@@ -29,6 +29,7 @@
 			<list>
 				<value>baseBiz</value>
 				<value>userBiz</value>
+				<value>orgBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

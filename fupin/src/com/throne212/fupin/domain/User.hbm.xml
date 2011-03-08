@@ -37,6 +37,22 @@
 		<subclass discriminator-value="zhenworkorg" extends="User" name="ZhenWorkOrg">
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
 		</subclass>
-		
+		<subclass discriminator-value="org" extends="User" name="Org">
+		<many-to-one name="cun" lazy="false"></many-to-one>
+		<property name="orgName" length="100"></property>
+		<property name="orgTel"></property>
+		<property name="chargePersonName" length="512"></property>
+		<property name="chargePersonTel"></property>
+		<property name="orgAddr"></property>
+		<property name="chargeDuty"></property>
+		<property name="contactName" length="1024"></property>
+		<property name="contactDuty"></property>
+		<property name="contactTel" length="100"></property>
+		<property name="contactMobile" length="100"></property>
+		<property name="contactFax" length="100"></property>
+		<property name="contactAddr" length="100"></property>
+		<property name="contactPost" length="100"></property>
+		<property name="contactEmail" length="100"></property>
+		</subclass>
 	</class>
 </hibernate-mapping>

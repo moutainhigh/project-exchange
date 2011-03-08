@@ -25,7 +25,6 @@
 	<mapping resource="com/throne212/fupin/domain/Cun.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Family.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Leader.hbm.xml" />
-	<mapping resource="com/throne212/fupin/domain/Org.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Person.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Shi.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Zhen.hbm.xml" />

@@ -62,23 +62,23 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 //		}
 		StringBuffer sb = new StringBuffer("from " + className + " where ");
 		List paramValueList = new ArrayList();
-		if (condition != null) {
-			// 构建下拉项的条件
-			if (!Util.isEmpty(condition.getName())) {
-				sb.append(" name like ?");
-				paramValueList.add("%" + condition.getName() + "%");
-			}
-			if (!Util.isEmpty(condition.getTel())) {
-				sb.append(" and tel like ?");
-				paramValueList.add("%" + condition.getTel() + "%");
-			}
-		
-			if (!Util.isEmpty(condition.getEmail())) {
-				sb.append(" and email like ?");
-				paramValueList.add("%" + condition.getEmail() + "%");
-			}
-			
-		}
+//		if (condition != null) {
+//			// 构建下拉项的条件
+//			if (!Util.isEmpty(condition.getName())) {
+//				sb.append(" name like ?");
+//				paramValueList.add("%" + condition.getName() + "%");
+//			}
+//			if (!Util.isEmpty(condition.getTel())) {
+//				sb.append(" and tel like ?");
+//				paramValueList.add("%" + condition.getTel() + "%");
+//			}
+//		 
+//			if (!Util.isEmpty(condition.getEmail())) {
+//				sb.append(" and email like ?");
+//				paramValueList.add("%" + condition.getEmail() + "%");
+//			}
+//			
+//		}
 		// 创建时间段
 		if (fromDate != null) {
 			sb.append(" and createDate>=?");

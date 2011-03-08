@@ -8,5 +8,7 @@
 	<bean id="userBiz" class="com.throne212.fupin.biz.impl.UserBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
-	
+	<bean id="orgBiz" class="com.throne212.fupin.biz.impl.OrgBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
 </beans>

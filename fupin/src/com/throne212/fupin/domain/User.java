@@ -9,10 +9,25 @@ public class User extends MyEntity implements Serializable {
 	private String loginName;// 登录名
 	private String password;// 密码
 
-	// 帮扶责任人信息
-	private String name;// 名称
-	private String tel;// 电话
-	private String email;// 邮箱
+//	// 帮扶责任人信息
+//	private String name;// 名称
+//	private String tel;// 电话
+//	private String email;// 邮箱
+	
+	public String getRoleName(){
+		if(this instanceof Admin){
+			return "超级管理员";
+		}else if(this instanceof Org){
+			return ((Org)this).getOrgName()+"•单位管理员";
+		}else if(this instanceof ShiWorkOrg){
+			return ((ShiWorkOrg)this).getShi().getShiName()+"扶贫办•市级管理员";
+		}else if(this instanceof AreaWorkOrg){
+			return ((AreaWorkOrg)this).getArea().getAreaName()+"扶贫工作队•区县级管理员";
+		}else if(this instanceof ZhenWorkOrg){
+			return ((ZhenWorkOrg)this).getZhen().getZhenName()+"扶贫工作组•镇级管理员";
+		}
+		return null;
+	}
 
 	public String getLoginName() {
 		return loginName;
@@ -30,28 +45,6 @@ public class User extends MyEntity implements Serializable {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 
 }

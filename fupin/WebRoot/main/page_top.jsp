@@ -88,7 +88,7 @@ function getExplorInfo(){
 					&nbsp;
 	          &nbsp;<img src="page_top_data/user.gif" width="15" align="absmiddle" height="15"/> 
               
-${userObj.loginName }（<span title="广州市农业局">广州市农业局</span>•市级单位管理员）
+${userObj.loginName }（<span title="${userObj.roleName }">${userObj.roleName }</span>）
             </td><td width="50%" align="right">
 			  <table border="0" cellpadding="0" cellspacing="0">
                 <tbody><tr>

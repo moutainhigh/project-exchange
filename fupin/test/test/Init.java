@@ -5,6 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.throne212.fupin.biz.BaseBiz;
 import com.throne212.fupin.domain.Admin;
+import com.throne212.fupin.domain.Org;
 
 
 
@@ -18,7 +19,10 @@ public class Init {
 		admin.setPassword("123");
 		baseBiz.saveOrUpdateEntity(admin);
 		
-
+		Org org =new Org();
+		org.setLoginName("org");
+		org.setPassword("123");
+		baseBiz.saveOrUpdateEntity(org);
 		
 	}
 }
