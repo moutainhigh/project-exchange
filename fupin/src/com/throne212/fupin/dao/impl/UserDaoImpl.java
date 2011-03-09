@@ -9,6 +9,7 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.UserDao;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ShiWorkOrg;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 
 public class UserDaoImpl extends BaseDaoImpl implements UserDao {
@@ -49,9 +50,67 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
+	}
+
+	public PageBean<AreaWorkOrg> getAreaWorkOrgList(int pageIndex){
 		
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<AreaWorkOrg> page = new PageBean<AreaWorkOrg>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from AreaWorkOrg t order by id desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<AreaWorkOrg> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
 		
 		
 	}
+	
+public PageBean<ZhenWorkOrg> getZhenWorkOrgList(int pageIndex,Long areaWorkOrgId){
+		
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<ZhenWorkOrg> page = new PageBean<ZhenWorkOrg>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from AreaWorkOrg  where areaWorkOrgId.id=?  order by id desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,areaWorkOrgId).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<ZhenWorkOrg> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
 
+public PageBean<ZhenWorkOrg> getZhenWorkOrgList(int pageIndex){
+	
+	if (pageIndex == 0) {
+		pageIndex = 1;
+	}
+	PageBean<ZhenWorkOrg> page = new PageBean<ZhenWorkOrg>();
+	int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+	String hql = "from ZhenWorkOrg t order by id desc";
+	Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+	logger.debug("查询总数为：" + count);
+	page.setTotalRow(count.intValue());// 总记录数目
+	Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+	List<ZhenWorkOrg> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+	page.setResultList(list);// 数据列表
+	page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+	page.setPageIndex(pageIndex);// 当前页码
+	return page;
+	
+	
+}
+	
 }

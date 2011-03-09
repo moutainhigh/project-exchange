@@ -33,9 +33,12 @@
 		<subclass discriminator-value="areaworkorg" extends="User" name="AreaWorkOrg">
 			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+			<many-to-one name="shiWorkOrg" column="shiWorkOrg_id" lazy="false"></many-to-one>
 		</subclass>
 		<subclass discriminator-value="zhenworkorg" extends="User" name="ZhenWorkOrg">
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+			<many-to-one name="areaWorkOrg" column="areaWorkOrg_id" lazy="false"></many-to-one>
+		
 		</subclass>
 		<subclass discriminator-value="org" extends="User" name="Org">
 		<many-to-one name="cun" lazy="false"></many-to-one>

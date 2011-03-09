@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.throne212.fupin.biz.BaseBiz;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
@@ -64,6 +65,14 @@ public class Init {
 		shiWorkOrg.setShi(shi);
 		shiWorkOrg.setRemark("市级管理员账号");
 		baseBiz.saveOrUpdateEntity(shiWorkOrg);
+		
+		AreaWorkOrg areaWorkOrg = new AreaWorkOrg();
+		areaWorkOrg.setLoginName("areaWorkOrg");
+		areaWorkOrg.setPassword("123");
+		areaWorkOrg.setArea(area);
+		areaWorkOrg.setShiWorkOrg(shiWorkOrg);
+		areaWorkOrg.setRemark("remark");
+		baseBiz.saveOrUpdateEntity(areaWorkOrg);
 		
 	}
 }

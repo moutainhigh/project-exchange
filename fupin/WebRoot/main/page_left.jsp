@@ -207,8 +207,8 @@ function images_update(){
 	    menuArray[menuArray.length]="0,基础数据维护,";
 	    menuArray[menuArray.length]="1,地区信息维护,${appPath}diqu_diquList.action";
 	    menuArray[menuArray.length]="1,市级账号管理,${appPath}admin_shiWorkOrgList.action";
-	    menuArray[menuArray.length]="1,区县级账号管理,${appPath}admin_shiWorkOrgList.action";
-	    menuArray[menuArray.length]="1,镇级账号管理,${appPath}admin_shiWorkOrgList.action";
+	    menuArray[menuArray.length]="1,区县级账号管理,${appPath}admin_areaWorkOrgList.action";
+	    menuArray[menuArray.length]="1,镇级账号管理,${appPath}admin_zhenWorkOrgList.action";
 	    menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenList.action";
 	    menuArray[menuArray.length]="0,扶贫单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,xxx";
