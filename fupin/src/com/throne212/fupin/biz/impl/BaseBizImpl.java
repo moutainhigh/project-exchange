@@ -78,8 +78,7 @@ public class BaseBizImpl implements BaseBiz {
 	}
 
 	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue) {
-		// TODO Auto-generated method stub
-		return null;
+		return baseDao.getAllLike(clazz,colName,likeValue);
 	}
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value) {
