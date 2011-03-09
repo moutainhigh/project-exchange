@@ -23,7 +23,7 @@
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}admin_deleteShiWorkOrg.action';
+				document.forms[0].action = '${appPath}diqu_deleteDiqu.action';
 				document.forms[0].submit();
 			}
 		}
@@ -37,8 +37,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}admin_shiWorkOrgList.action" name="searchForm">
-			<input type="hidden" name="del" id="del" value="">
+		<form method="get" action="${appPath}diqu_diquList.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
@@ -46,7 +45,20 @@
 							您当前所处页面：基础数据维护 >> 市级帐号管理
 						</td>
 						<td align="right">
-							<input type="button" onclick="winOpen('${appPath}main/admin/shi_account_edit.jsp',450,220);" class="button" value="新增">
+							<label>地区类型: </label>
+							<select name="type" size="1">
+								<option value=""></option>
+								<option value="Shi" <c:if test="${param.type=='Shi'}">selected="selected"</c:if>>市</option>
+								<option value="Area" <c:if test="${param.type=='Area'}">selected="selected"</c:if>>区县</option>
+								<option value="Zhen" <c:if test="${param.type=='Zhen'}">selected="selected"</c:if>>镇</option>
+								<option value="Cun" <c:if test="${param.type=='Cun'}">selected="selected"</c:if>>村</option>
+							</select>
+						
+							<label>地区名称（模糊查询）: </label>
+							<input name="queryKey" value="${param.queryKey}" type="text"/>
+						
+							<input type="submit" class="button" value="查询"> 
+							<input type="button" onclick="winOpen('${appPath}main/area_data/diqu_edit.jsp',450,180);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>
 						<td width="5px"></td>
@@ -56,42 +68,60 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="6%" class="tables_headercell">
+						<td height="28" width="" class="tables_headercell">
 							<input type="checkbox" onclick="checkAll(this);">
-						<td width="40%" class="tables_headercell">
-							帐号名
+						<td width="" class="tables_headercell">
+							名称
 						</td>
-						<td width="20%" class="tables_headercell">
-							说明
+						<td width="" class="tables_headercell">
+							类型
 						</td>
-						<td width="20%" class="tables_headercell">
-							角色
+						<td width="" class="tables_headercell">
+							所属市
 						</td>
-						<td width="14%" class="tables_headercell">
+						<td width="" class="tables_headercell">
+							所属区县
+						</td>
+						<td width="" class="tables_headercell">
+							所属镇
+						</td>
+						<td width="" class="tables_headercell">
 							操作
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								<input type="checkbox" value="${f.id}" name="shiWorkOrg_ids" class="shiWorkOrg_ids">
+								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.loginName}
+								&nbsp; ${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.remark}
+								&nbsp; ${f.type}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.roleName}
+								&nbsp; 
+								<c:if test="${f.type=='村'}">${f.zhen.area.shi.name}</c:if>
+								<c:if test="${f.type=='镇'}">${f.area.shi.name}</c:if>
+								<c:if test="${f.type=='区县'}">${f.shi.name}</c:if>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateShiWorkOrg.action?shiWorkOrg.id=${f.id}',450,220);">修改</a>
+								&nbsp; 
+								<c:if test="${f.type=='村'}">${f.zhen.area.name}</c:if>
+								<c:if test="${f.type=='镇'}">${f.area.name}</c:if>
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 
+								<c:if test="${f.type=='村'}">${f.zhen.name}</c:if>
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								<a href="#" onclick="winOpen('${appPath}diqu_saveDiqu.action?diqu.id=${f.id}',450,220);">修改</a>
 							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="5">
+						<td height="25" align="right" class="tables_contentcell" colspan="7">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

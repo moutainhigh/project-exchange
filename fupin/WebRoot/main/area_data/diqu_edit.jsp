@@ -12,61 +12,113 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
-			var currShi = '${shiWorkOrg.shi.id}';
+			<c:if test="${empty diqu.id}">
 			$(function(){
 				$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
-						$('#shi').html('<option value=""></option>');
+						$('#shiId').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
-							$('#shi').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['shiName']+'</option>');
-						if(currShi != '')
-							$('#shi').val(currShi);
+							$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 					}
 				});
 			});
+			function selectShi(val){
+				if(val){
+					$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#areaId').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++)
+								$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						}
+					});
+				}
+			}
+			function selectArea(val){
+				if(val){
+					$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+						if(json && json['list'] && json['list'].length){
+							$('#zhenId').html('<option value=""></option>');
+							for(var i=0;i<json['list'].length;i++)
+								$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						}
+					});
+				}
+			}
+			</c:if>
+			
+			function selectType(val){
+				if('Shi' == val){
+					$('#shiId').hide();
+					$('#areaId').hide();
+					$('#zhenId').hide();
+				}else if('Area' == val){
+					$('#shiId').show();
+					$('#areaId').hide();
+					$('#zhenId').hide();
+				}else if('Zhen' == val){
+					$('#shiId').show();
+					$('#areaId').show();
+					$('#zhenId').hide();
+				}else if('Cun' == val){
+					$('#shiId').show();
+					$('#areaId').show();
+					$('#zhenId').show();
+				}
+			}
 		</script>
 	</head>
 	<body>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}admin_saveOrUpdateShiWorkOrg.action" name="">
-			<input type="hidden" value="${shiWorkOrg.id}" name="shiWorkOrg.id" id="">
-			<c:if test="${not empty shiWorkOrg.id}">
-			<input type="hidden" value="${shiWorkOrg.loginName}" name="shiWorkOrg.loginName" id="">
-			</c:if>
+		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}diqu_saveDiqu.action" name="">
+			<input type="hidden" value="${diqu.id}" name="diqu.id" id="">
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
+					<c:if test="${empty diqu.id}">
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						所属市
+						地区类型
 						</td>
 						<td class="tables_contentcell">
-							<select id="shi" name="shiWorkOrg.shi.id" size="1" msg="必须选择一个市！" datatype="Require"></select>
+							<select id="type" name="type" size="1" msg="请选择地区类型！" datatype="Require" onchange="selectType(this.value);">
+								<option value=""></option>
+								<option value="Shi">市</option>
+								<option value="Area">区县</option>
+								<option value="Zhen">镇</option>
+								<option value="Cun">村</option>
+							</select>
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-							帐号登录名
+						所属地区
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" msg="用户名不能为空！" datatype="Require" size="20" value="${ shiWorkOrg.loginName}" id="username" name="shiWorkOrg.loginName" <c:if test="${not empty shiWorkOrg.id}"> disabled="disabled"</c:if>>
+							<select id="shiId" name="shiId" onchange="selectShi(this.value);"></select>
+							&nbsp;&nbsp;
+							<select id="areaId" name="areaId" style="display: none;" onchange="selectArea(this.value);"></select>
+							&nbsp;&nbsp;
+							<select id="zhenId" name="zhenId" style="display: none;"></select>
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>
+					</c:if>
+					<c:if test="${not empty diqu.id}">
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-							密码
+							地区类型
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" msg="密码不能为空！" datatype="Require" size="20" value="${shiWorkOrg.password}" id="password" name="shiWorkOrg.password">
-							<font size="4" color="#cc0033">*</font>
+							${diqu.type }
 						</td>
 					</tr>
+					</c:if>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-							说明：
+							名称
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${shiWorkOrg.remark }" id="bz" name="shiWorkOrg.remark">
+							<input type="text" style="height: 22px;" msg="名称不能为空！" datatype="Require" size="20" value="${ diqu.name}" id="username" name="diqu.name">
+							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>
 					<tr>

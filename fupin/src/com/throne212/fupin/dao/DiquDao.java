@@ -9,5 +9,7 @@ public interface DiquDao extends BaseDao {
 	public PageBean getAllDiqu(String type, Integer pageIndex);
 
 	public PageBean getAllDiquByName(String name, Integer pageIndex);
+	
+	public PageBean getAllDiquByTypeAndName(String type,String name,Integer pageIndex);
 
 }

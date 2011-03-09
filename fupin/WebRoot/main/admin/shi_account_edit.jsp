@@ -18,7 +18,7 @@
 					if(json && json['list'] && json['list'].length){
 						$('#shi').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
-							$('#shi').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['shiName']+'</option>');
+							$('#shi').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						if(currShi != '')
 							$('#shi').val(currShi);
 					}

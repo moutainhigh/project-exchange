@@ -20,7 +20,7 @@
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
 	</property>
-	<property name="hbm2ddl.auto">create</property>
+	<property name="hbm2ddl.auto">none</property>
 	<mapping resource="com/throne212/fupin/domain/Diqu.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Family.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Leader.hbm.xml" />

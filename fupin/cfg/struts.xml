@@ -53,7 +53,11 @@
 			<result name="shiWorkOrg_list">/main/admin/shi_account_list.jsp</result>
 			<result name="shiWorkOrg_edit">/main/admin/shi_account_edit.jsp</result>
 		</action>
-
+		<!-- 地区管理模块 -->
+			<action name="diqu_*" method="{1}" class="com.throne212.fupin.action.DiquAction">
+			<result name="diqu_list">/main/area_data/diqu_list.jsp</result>
+			<result name="diqu_edit">/main/area_data/diqu_edit.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">
