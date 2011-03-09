@@ -7,47 +7,57 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 
-
 public class AdminAction extends BaseAction {
 	private AdminBiz adminBiz;
-	//市级账号列表
+	// 市级账号列表
 	private Integer pageIndex;
 	private PageBean<ShiWorkOrg> pageBean;
-	public String shiWorkOrgList(){
-		pageBean=adminBiz.getShiWorkOrgBean(pageIndex);
+
+	public String shiWorkOrgList() {
+		pageBean = adminBiz.getShiWorkOrgBean(pageIndex);
 		return "shiWorkOrg_list";
 	}
-	//添加或修改市级账号
+
+	// 添加或修改市级账号
 	private ShiWorkOrg shiWorkOrg;
-	public String saveOrUpdateShiWorkOrg(){
-		
+
+	public String saveOrUpdateShiWorkOrg() {
+
 		if (shiWorkOrg == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
 			return "shiWorkOrg_edit";
 		}
-		if (shiWorkOrg != null && !Util.isEmpty(shiWorkOrg.getLoginName())) {// 添加或更新市扶贫单位信息
-			if (shiWorkOrg.getShi().getId()==null) {
+		if (shiWorkOrg != null && !Util.isEmpty(shiWorkOrg.getLoginName())) {// 添加或更新市扶贫账号信息
+			if (shiWorkOrg.getShi().getId() == null) {
 				this.setMsg("请选择所属市！");
 				return "shiWorkOrg_edit";
 			}
-			Shi shi= adminBiz.getEntityById(Shi.class, shiWorkOrg.getShi().getId());
+			if(shiWorkOrg.getId() == null){
+				ShiWorkOrg shiOrg = adminBiz.getEntityByUnique(ShiWorkOrg.class, "loginName", shiWorkOrg.getLoginName());
+				if(shiOrg != null){
+					this.setMsg("用户名已经被使用，请更名");
+					return "shiWorkOrg_edit";
+				}
+			}
+			
+			Shi shi = adminBiz.getEntityById(Shi.class, shiWorkOrg.getShi().getId());
 			shiWorkOrg.setShi(shi);
 			shiWorkOrg = adminBiz.saveOrUpdateShiWorkOrg(shiWorkOrg);
 			this.setMsg("保存成功");
+			this.setSucc("Y");
 			shiWorkOrg = null;
-			return shiWorkOrgList();
-		} else if (shiWorkOrg != null && shiWorkOrg.getId() != null) {// 查看扶贫单位详情
+		} else if (shiWorkOrg != null && shiWorkOrg.getId() != null) {// 查看市扶贫账号详情
 			shiWorkOrg = adminBiz.getEntityById(ShiWorkOrg.class, shiWorkOrg.getId());
-			return "shiWorkOrg_edit";
 		}
 		return "shiWorkOrg_edit";
 
 	}
-	//删除市级账号
-	public String deleteShiWorkOrg(){
+
+	// 删除市级账号
+	public String deleteShiWorkOrg() {
 		String[] shiWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("shiWorkOrg_ids");
-		if(shiWrokOrgIds != null && shiWrokOrgIds.length > 0){
-			for(String idStr : shiWrokOrgIds){
+		if (shiWrokOrgIds != null && shiWrokOrgIds.length > 0) {
+			for (String idStr : shiWrokOrgIds) {
 				Long id = Long.parseLong(idStr);
 				adminBiz.deleteEntity(ShiWorkOrg.class, id);
 			}
@@ -55,10 +65,7 @@ public class AdminAction extends BaseAction {
 		}
 		return shiWorkOrgList();
 	}
-	
-	 
-	
-	
+
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}
@@ -66,8 +73,6 @@ public class AdminAction extends BaseAction {
 	public void setAdminBiz(AdminBiz adminBiz) {
 		this.adminBiz = adminBiz;
 	}
-
-	
 
 	public Integer getPageIndex() {
 		return pageIndex;
@@ -92,6 +97,5 @@ public class AdminAction extends BaseAction {
 	public void setPageBean(PageBean<ShiWorkOrg> pageBean) {
 		this.pageBean = pageBean;
 	}
-	
 
 }

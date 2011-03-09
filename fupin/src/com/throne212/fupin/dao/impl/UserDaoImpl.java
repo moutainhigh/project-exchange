@@ -1,6 +1,5 @@
 package com.throne212.fupin.dao.impl;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -31,16 +30,6 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 		
-	}
-
-
-	
-	
-	
-
-	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

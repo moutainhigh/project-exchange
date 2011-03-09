@@ -200,9 +200,11 @@ function images_update(){
 	    menuArray[menuArray.length]="2,8.2.年度报表,./help/help2.8.2.html";
 	    //menuArray[24]="2,2.帐号激活,./help/help2.2.html";	
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
-	    menuArray[menuArray.length]="0,地区信息维护,./area_manage.jsp";
-	    menuArray[menuArray.length]="0,开通市级账号,${appPath}admin_shiWorkOrgList.action";
-	    menuArray[menuArray.length]="0,指定镇扶贫,./zhen_mapping.jsp";
+	    menuArray[menuArray.length]="0,基础数据维护,";
+	    menuArray[menuArray.length]="1,地区信息维护,./area_manage.jsp";
+	    menuArray[menuArray.length]="1,开通市级账号,${appPath}admin_shiWorkOrgList.action";
+	    menuArray[menuArray.length]="1,指定镇扶贫,./zhen_mapping.jsp";
+	    
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
 	var mytree = new DepartTree('mytree')

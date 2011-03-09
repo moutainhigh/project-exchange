@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.Action;
 public class BaseAction implements Action{
 	protected Logger logger = Logger.getLogger(this.getClass());
 	protected String msg;// 错误提示信息
+	protected String succ;//成功与否
 
 	public String getMsg() {
 		return msg;
@@ -27,6 +28,14 @@ public class BaseAction implements Action{
 
 	public String execute() {
 		return "success";
+	}
+
+	public String getSucc() {
+		return succ;
+	}
+
+	public void setSucc(String succ) {
+		this.succ = succ;
 	}
 
 }

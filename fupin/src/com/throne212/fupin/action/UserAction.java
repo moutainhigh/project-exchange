@@ -24,8 +24,8 @@ public class UserAction extends BaseAction {
 	public String changePwd() {
 		if (Util.isEmpty(oldpassword) || Util.isEmpty(newpassword) || Util.isEmpty(renewpassword)) {
 			this.setMsg("请完整输入所有密码输入框");
-		} else if (newpassword.length() < 6 || renewpassword.length() < 6) {
-			this.setMsg("密码长度不小于6");
+		} else if (newpassword.length() < 1 || renewpassword.length() < 1) {
+			this.setMsg("密码长度不小于1");
 		} else if (!newpassword.equals(renewpassword)) {
 			this.setMsg("两次新密码输入不一致");
 		} else {
