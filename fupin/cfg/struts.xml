@@ -54,9 +54,14 @@
 			<result name="shiWorkOrg_edit">/main/admin/shi_account_edit.jsp</result>
 		</action>
 		<!-- 地区管理模块 -->
-			<action name="diqu_*" method="{1}" class="com.throne212.fupin.action.DiquAction">
+		<action name="diqu_*" method="{1}" class="com.throne212.fupin.action.DiquAction">
 			<result name="diqu_list">/main/area_data/diqu_list.jsp</result>
 			<result name="diqu_edit">/main/area_data/diqu_edit.jsp</result>
+		</action>
+		<!-- 镇帮扶模块 -->
+		<action name="zhen_bf_*" method="{1}" class="com.throne212.fupin.action.ZhenBFAction">
+			<result name="zhen_bf_list">/main/zhen_bf/zhen_list.jsp</result>
+			<result name="zhen_org_mapping">/main/zhen_bf/zhen_org_mapping.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
