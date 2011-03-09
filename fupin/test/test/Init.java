@@ -29,22 +29,22 @@ public class Init {
 		
 		
 		Shi shi = new Shi();
-		shi.setShiName("四会市");
+		shi.setName("四会市");
 		baseBiz.saveOrUpdateEntity(shi);
 		
 		Area area = new Area();
-		area.setAreaName("金水区");
+		area.setName("金水区");
 		area.setShi(shi);
 		baseBiz.saveOrUpdateEntity(area);
 		
 		Zhen zhen = new Zhen();
-		zhen.setZhenName("华阳镇");
+		zhen.setName("华阳镇");
 		zhen.setArea(area);
 		baseBiz.saveOrUpdateEntity(zhen);
 		
 		Cun cun = new Cun();
 		cun.setZhen(zhen);
-		cun.setCunName("红光村");
+		cun.setName("红光村");
 		baseBiz.saveOrUpdateEntity(cun);
 		
 		

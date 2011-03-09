@@ -20,14 +20,11 @@
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
 	</property>
-	<property name="hbm2ddl.auto">none</property>
-	<mapping resource="com/throne212/fupin/domain/Area.hbm.xml" />
-	<mapping resource="com/throne212/fupin/domain/Cun.hbm.xml" />
+	<property name="hbm2ddl.auto">create</property>
+	<mapping resource="com/throne212/fupin/domain/Diqu.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Family.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Leader.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Person.hbm.xml" />
-	<mapping resource="com/throne212/fupin/domain/Shi.hbm.xml" />
-	<mapping resource="com/throne212/fupin/domain/Zhen.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/User.hbm.xml" />
 </session-factory>
 </hibernate-configuration>

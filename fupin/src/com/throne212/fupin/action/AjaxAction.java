@@ -18,8 +18,7 @@ public class AjaxAction extends BaseAction {
 	// 获取所有市
 	public String getAllShi() {
 		list = adminBiz.getAll(Shi.class, "id", "asc");
-		return "shi_list";
-
+		return "list";
 	}
 
 	public AdminBiz getAdminBiz() {

@@ -22,11 +22,11 @@ public class User extends MyEntity implements Serializable {
 		}else if(this instanceof Org){
 			return ((Org)this).getOrgName()+"•单位管理员";
 		}else if(this instanceof ShiWorkOrg){
-			return ((ShiWorkOrg)this).getShi().getShiName()+"扶贫办•市级管理员";
+			return ((ShiWorkOrg)this).getShi().getName()+"扶贫办•市级管理员";
 		}else if(this instanceof AreaWorkOrg){
-			return ((AreaWorkOrg)this).getArea().getAreaName()+"扶贫工作队•区县级管理员";
+			return ((AreaWorkOrg)this).getArea().getName()+"扶贫工作队•区县级管理员";
 		}else if(this instanceof ZhenWorkOrg){
-			return ((ZhenWorkOrg)this).getZhen().getZhenName()+"扶贫工作组•镇级管理员";
+			return ((ZhenWorkOrg)this).getZhen().getName()+"扶贫工作组•镇级管理员";
 		}
 		return null;
 	}

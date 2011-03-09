@@ -15,4 +15,8 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	<bean id="diquBiz" class="com.throne212.fupin.biz.impl.DiquBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="diquDao" ref="diquDao"></property>
+	</bean>
 </beans>

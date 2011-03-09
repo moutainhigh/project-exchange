@@ -31,6 +31,7 @@
 				<value>adminBiz</value>
 				<value>userBiz</value>
 				<value>orgBiz</value>
+				<value>diquBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

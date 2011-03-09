@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="Diqu" table="fp_diqu">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<discriminator column="diqu_type" type="string" force="false" insert="true" />
+		<property name="name" length="100"></property>
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+		<subclass discriminator-value="shi" extends="Diqu" name="Shi">
+		</subclass>
+		<subclass discriminator-value="area" extends="Diqu" name="Area">
+			<many-to-one name="shi" column="shi_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="zhen" extends="Diqu" name="Zhen">
+			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
+			<many-to-one name="shiWorkOrg" column="shiWorkOrg_id" lazy="false"></many-to-one>
+			<many-to-one name="areaWorkOrg" column="areaWorkOrg_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="cun" extends="Diqu" name="Cun">
+			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+			<many-to-one name="org"  lazy="false"></many-to-one>
+		</subclass>
+	</class>
+</hibernate-mapping>
