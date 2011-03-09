@@ -119,6 +119,9 @@
 				if($('#farmId').val() == null || $('#farmId').val()==''){
 					alert('农场不能为空');
 					return false;
+				}else if($('#areaId').val() == null || $('#areaId').val()==''){
+					alert('管区不能为空');
+					return false;
 				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('饲料厂商不能为空');
 					return false;
@@ -165,6 +168,9 @@
 				*/
 				if($('#farmId').val() == null || $('#farmId').val()==''){
 					alert('农场不能为空');
+					return false;
+				}else if($('#areaId').val() == null || $('#areaId').val()==''){
+					alert('管区不能为空');
 					return false;
 				}else if($('#factoryId').val() == null || $('#factoryId').val()==''){
 					alert('饲料厂商不能为空');
