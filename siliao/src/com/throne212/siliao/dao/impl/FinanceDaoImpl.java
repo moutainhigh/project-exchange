@@ -841,10 +841,6 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 			Double totalPay = (Double) this.getHibernateTemplate().find("select sum(money) from ProviderFinance where (factory=? or provider.factory=?) and type="+WebConstants.FINANCE_STATUS_PAY, new Object[] { f,f }).get(0);
 			pDO.setTotalPay(totalPay==null?0:Math.abs(totalPay));
 			
-			//欠款余额
-			pDO.setOwnBalance(Util.subMoney(pDO.getTotalMoney(),pDO.getTotalPay()));
-			
-			
 			//计算付款率
 			double totalPayMoneyWithRate = 0;
 			List<ProviderFinance> tmpList = this.getHibernateTemplate().find("from ProviderFinance where (factory=? or provider.factory=?) and type="+WebConstants.FINANCE_STATUS_PAY, new Object[] { f, f});
@@ -873,6 +869,9 @@ public class FinanceDaoImpl extends BaseDaoImpl implements FinanceDao {
 				totalMoneyWithRate += (rateMoney + pf.getMoney());
 			}
 			pDO.setPercentage(Util.getPercentage(totalPayMoneyWithRate, totalMoneyWithRate));
+			
+			//欠款余额
+			pDO.setOwnBalance(Util.addMoney(totalPayMoneyWithRate,totalMoneyWithRate));
 			
 			pfList.add(pDO);
 			
