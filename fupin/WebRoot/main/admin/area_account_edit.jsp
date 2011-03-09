@@ -15,19 +15,42 @@
 			var currShiWorkOrg = '${areaWorkOrg.shiWorkOrg.id}';
 			$(function(){
 			
-				<c:if test="${userObj.roleName=='超级管理员'}">
-				$('#farmName').html('<option value="${userObj.farm.id}">${userObj.farm.name}</option>');
+				<c:if test="${userObj.roleType=='市级管理员'}">
+				$('#shiworkorg').html('<option value="${userObj.id}">${userObj.loginName}</option>');
 				</c:if>
+				<c:if test="${userObj.roleType=='超级管理员'}">
 				$.getJSON("${appPath}ajax/getAllShiWorkOrg?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#shiworkorg').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
-							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['shiName']+'</option>');
+							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['loginName']+'</option>');
 						if(currShiWorkOrg != '')
 							$('#shiworkorg').val(currShiWorkOrg);
 					}
 				});
+				</c:if>
 			});
+			
+				var currAreaId='${areaWorkOrg.area.id}';
+				function selectAreas(val){
+				$('#area').html('<option value=""></option>');
+				if(val && val!=''){
+					//供货厂列表
+					$.getJSON("${appPath}ajax/getAreaByShiWorkOrg?time="+new Date().getTime(), {'shiWorkOrgId':val}, function(json){
+						if(json && json['list'] && json['list'].length){
+							for(var i=0;i<json['list'].length;i++){
+								var str = '<option value="'+json['list'][i]['id']+'">'+json['list'][i]['areaName']+'</option>';
+								$('#area').append(str);
+							}
+							if(currAreaId){
+								$('#area').val(currAreaId);
+							}
+						}
+					});
+				}
+			}
+			
+			
 		</script>
 	</head>
 	<body>
@@ -52,7 +75,7 @@
 						所属区县
 						</td>
 						<td class="tables_contentcell">
-							<select id="shi" name="areaWorkOrg.area.id" size="1" msg="必须选择一个区县！" datatype="Require"></select>
+							<select id="area" name="areaWorkOrg.area.id" size="1" msg="必须选择一个区县！" datatype="Require"></select>
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>

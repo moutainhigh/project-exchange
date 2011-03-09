@@ -23,7 +23,7 @@
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}admin_deleteShiWorkOrg.action';
+				document.forms[0].action = '${appPath}shi_deleteShiWorkOrg.action';
 				document.forms[0].submit();
 			}
 		}
@@ -37,7 +37,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}admin_shiWorkOrgList.action" name="searchForm">
+		<form method="get" action="${appPath}shi_areaWorkOrgList.action" name="searchForm">
 			<input type="hidden" name="del" id="del" value="">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
@@ -46,7 +46,7 @@
 							您当前所处页面：基础数据维护 >> 市级帐号管理
 						</td>
 						<td align="right">
-							<input type="button" onclick="winOpen('${appPath}main/admin/shi_account_edit.jsp',450,220);" class="button" value="新增">
+							<input type="button" onclick="winOpen('${appPath}main/shiworkorg/area_account_edit.jsp',450,220);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>
 						<td width="5px"></td>
@@ -74,7 +74,7 @@
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								<input type="checkbox" value="${f.id}" name="shiWorkOrg_ids" class="shiWorkOrg_ids">
+								<input type="checkbox" value="${f.id}" name="areaWorkOrg_ids" class="areaWorkOrg_ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.loginName}
@@ -86,7 +86,7 @@
 								&nbsp; ${f.roleName}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateShiWorkOrg.action?shiWorkOrg.id=${f.id}',450,220);">修改</a>
+								<a href="#" onclick="winOpen('${appPath}shi_saveOrUpdateAreaWorkOrg.action?areaWorkOrg.id=${f.id}',450,220);">修改</a>
 							</td>
 						</tr>
 					</c:forEach>
