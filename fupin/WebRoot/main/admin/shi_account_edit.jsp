@@ -33,7 +33,7 @@ var currShi = '${shiWorkOrg.shi.shiName}';
 </script>
 
 </head><body>
-<jsp:include page="${appPath}msg.jsp"></jsp:include>
+<jsp:include page="../../msg.jsp"></jsp:include>
 <form  method="post" action="${appPath}admin_saveOrUpdateShiWorkOrg.action" name="">
 
 	<input type="hidden" value="${shiWorkOrg.id}" name="shiWorkOrg.id" id="">

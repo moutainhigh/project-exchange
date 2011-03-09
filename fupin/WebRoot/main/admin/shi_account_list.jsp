@@ -43,7 +43,7 @@ var msg = '${msg}';
 	}
 </style>
 </head><body>
-<jsp:include page="${appPath}msg.jsp"></jsp:include>
+<jsp:include page="../../msg.jsp"></jsp:include>
 <form method="post" action="${appPath}admin_shiWorkOrgList.action" name="searchForm">
 <input type="hidden" name="del" id="del" value="">
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
