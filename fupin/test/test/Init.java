@@ -8,11 +8,11 @@ import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
-import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 
 
@@ -73,6 +73,14 @@ public class Init {
 		areaWorkOrg.setShiWorkOrg(shiWorkOrg);
 		areaWorkOrg.setRemark("remark");
 		baseBiz.saveOrUpdateEntity(areaWorkOrg);
+		
+		ZhenWorkOrg zhenWorkOrg = new ZhenWorkOrg();
+		zhenWorkOrg.setLoginName("zhenWorkOrg");
+		zhenWorkOrg.setPassword("123");
+		zhenWorkOrg.setZhen(zhen);
+		zhenWorkOrg.setAreaWorkOrg(areaWorkOrg);
+		zhenWorkOrg.setRemark("remark");
+		baseBiz.saveOrUpdateEntity(zhenWorkOrg);
 		
 	}
 }

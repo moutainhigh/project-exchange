@@ -14,4 +14,8 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="zhenDao" class="com.throne212.fupin.dao.impl.ZhenDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 </beans>

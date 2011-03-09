@@ -19,4 +19,8 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="diquDao" ref="diquDao"></property>
 	</bean>
+	<bean id="zhenBFBiz" class="com.throne212.fupin.biz.impl.ZhenBFBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="zhenDao" ref="zhenDao"></property>
+	</bean>
 </beans>
