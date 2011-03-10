@@ -67,6 +67,13 @@
 			<result name="zhen_bf_list">/main/zhen_bf/zhen_list.jsp</result>
 			<result name="zhen_org_mapping">/main/zhen_bf/zhen_org_mapping.jsp</result>
 		</action>
+		<!-- 管理员账号和村帮扶指定模块 -->
+		<action name="manager_*" method="{1}" class="com.throne212.fupin.action.ManagerAction">
+			<result name="manager_list">/main/manager/manager_list.jsp</result>
+			<result name="manager_edit">/main/manager/manager_edit.jsp</result>
+			<result name="manager_mapping">/main/manager/manager_mapping_list.jsp</result>
+			<result name="manager_cun_mapping">/main/manager/manager_cun_mapping.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

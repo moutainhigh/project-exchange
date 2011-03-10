@@ -10,6 +10,7 @@
 	</bean>
 	<bean id="orgBiz" class="com.throne212.fupin.biz.impl.OrgBizImpl">
 		<property name="baseDao" ref="baseDao"></property>
+		<property name="managerDao" ref="managerDao"></property>
 	</bean>
 	<bean id="adminBiz" class="com.throne212.fupin.biz.impl.AdminBizImpl">
 		<property name="baseDao" ref="baseDao"></property>

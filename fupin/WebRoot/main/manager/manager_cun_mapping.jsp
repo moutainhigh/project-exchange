@@ -15,27 +15,27 @@
 		</script>
 	</head>
 	<body>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}zhen_bf_saveZhenOrgMapping.action" name="">
-			<input type="hidden" value="${zhen.id}" name="zhen.id" id="">
+		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}manager_saveManagerMapping.action" name="">
+			<input type="hidden" value="${cun.id}" name="cun.id" id="">
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						镇名称
+						村名称
 						</td>
 						<td class="tables_contentcell">
-							${zhen.area.shi.name}${zhen.area.name}${zhen.name}
+							${cun.zhen.area.shi.name}${cun.zhen.area.name}${cun.zhen.name}${cun.name}
 						</td>
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						市或区县扶贫组织
+						单位
 						</td>
 						<td class="tables_contentcell">
-							<select id="orgId" name="orgId" size="1" msg="请选择市或区县扶贫组织！" datatype="Require">
+							<select id="orgId" name="orgId" size="1" msg="请选择对应扶贫单位！" datatype="Require">
 								<option value=""></option>
-								<c:forEach items="${zhenBFBiz.shiAndAreaAccounts}" var="f">
-								<option value="${f.id}">${f.orgName}(${f.loginName})</option>
+								<c:forEach items="${orgBiz.allOrg}" var="f">
+								<option value="${f.id}">${f.orgName}</option>
 								</c:forEach>
 							</select>
 							<font size="4" color="#cc0033">*</font>

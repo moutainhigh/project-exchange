@@ -12,33 +12,51 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			$(function(){
+			});
 		</script>
 	</head>
 	<body>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}zhen_bf_saveZhenOrgMapping.action" name="">
-			<input type="hidden" value="${zhen.id}" name="zhen.id" id="">
+		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}manager_saveManager.action" name="">
+			<input type="hidden" value="${org.id}" name="org.id" id="">
+			<c:if test="${not empty org.id}">
+			<input type="hidden" value="${org.loginName}" name="org.loginName" id="">
+			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						镇名称
+							帐号登录名
 						</td>
 						<td class="tables_contentcell">
-							${zhen.area.shi.name}${zhen.area.name}${zhen.name}
+							<input type="text" style="height: 22px;" msg="用户名不能为空！" datatype="Require" size="20" value="${ org.loginName}" id="username" name="org.loginName" <c:if test="${not empty org.id}"> disabled="disabled"</c:if>>
+							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						市或区县扶贫组织
+							单位名称
 						</td>
 						<td class="tables_contentcell">
-							<select id="orgId" name="orgId" size="1" msg="请选择市或区县扶贫组织！" datatype="Require">
-								<option value=""></option>
-								<c:forEach items="${zhenBFBiz.shiAndAreaAccounts}" var="f">
-								<option value="${f.id}">${f.orgName}(${f.loginName})</option>
-								</c:forEach>
-							</select>
+							<input type="text" style="height: 22px;" msg="单位名称不能为空！" datatype="Require" size="20" value="${ org.orgName}" id="orgName" name="org.orgName">
 							<font size="4" color="#cc0033">*</font>
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							密码
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" msg="密码不能为空！" datatype="Require" size="20" value="${org.password}" id="password" name="org.password">
+							<font size="4" color="#cc0033">*</font>
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							说明：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.remark }" id="bz" name="org.remark">
 						</td>
 					</tr>
 					<tr>
