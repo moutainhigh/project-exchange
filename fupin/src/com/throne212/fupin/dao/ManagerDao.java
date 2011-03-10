@@ -16,4 +16,9 @@ public interface ManagerDao extends BaseDao {
 	public PageBean getAllFamily(Integer pageIndex);
 	
 	public PageBean getAllFamily(String name,Integer pageIndex);
+	
+	//干部
+	public PageBean getAllLeader(Long orgId,Integer pageIndex);
+	
+	public PageBean getAllLeader(Long orgId,String name,Integer pageIndex);
 }

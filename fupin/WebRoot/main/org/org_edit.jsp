@@ -18,10 +18,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- by Arde -->
 
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<link href="../main_data/manage.css" rel="stylesheet">
-<script src="../../js/jquery.js" language="javascript"></script>
-<script src="../../js/sel_style.js" language="javascript"></script>
-<script src="../../js/validateForm.js" language="javascript"></script>
+<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
+<script src="${appPath}js/jquery.js" language="javascript"></script>
+<script src="${appPath}js/sel_style.js" language="javascript"></script>
+<script src="${appPath}js/validateForm.js" language="javascript"></script>
+<script language="javascript">
+	var msg = '${msg}';
+	if(msg != '')
+		alert(msg);
+</script>
 
 <style>
 	.tables_leftcell {
@@ -43,14 +48,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head><body>
 
-	<form  method="get" action="bangfudanwei.jsp?action=save" name="searchForm">
+	<form  method="get" action="${appPath}org_saveOrg.action" name="searchForm">
+	<input type="hidden" name="org.id" value="${org.id}">
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_search">
 		<tbody><tr>
 		<td>您当前所处页面：单位与干部维护&gt;&gt;单位信息维护</td>
 		</tr>
 	</tbody></table>
 	
-	帮扶贫困村：五华县华阳镇红洞村
+	帮扶贫困村：${org.cun.name }
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 		<tbody><tr>
     	<td align="center" class="tables_contentcell" colspan="4">┏━━━帮扶责任人信息━━━┓</td>
@@ -58,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr>
 		<td height="30" align="right" width="10%" class="tables_leftcell">单位名称</td>
     	<td height="70" width="35%" class="tables_contentcell">
-		<textarea msg="单位名称不能为空" datatype="Require" style="width: 95%; height: 98%;" type="text" value="${org.orgName}" id="dwmc" name="org.orgName"></textarea>
+		<textarea msg="单位名称不能为空" datatype="Require" style="width: 95%; height: 98%;" type="text" id="dwmc" name="org.orgName">${org.orgName}</textarea>
 		<font size="4" color="#cc0033">*</font>
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">单位电话</td>
@@ -82,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr> 
     	<td height="30" align="right" width="10%" class="tables_leftcell">单位地址</td>
     	<td height="45" width="35%" class="tables_contentcell">
-		<textarea msg="单位地址不能为空" datatype="Require" size="20" type="text" style="width: 95%; height: 98%;" value="${org.orgAddr }" id="dwdz" name="org.orgAddr">广州市麓景路388号</textarea>
+		<textarea msg="单位地址不能为空" datatype="Require" size="20" type="text" style="width: 95%; height: 98%;" id="dwdz" name="org.orgAddr">${org.orgAddr }</textarea>
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">职务</td>
@@ -116,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">手机号码</td>
 		<td width="35%" class="tables_contentcell">
-		<input type="text" msg="手机号码不能为空" datatype="Require" size="20" value="13711316423" id="sjhm" name="sjhm">
+		<input type="text" msg="手机号码不能为空" datatype="Require" size="20" value="${org.contactMobile }" id="contactMobile" name="org.contactMobile">
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		</tr>
@@ -124,22 +130,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr> 
     	<td height="30" align="right" width="15%" class="tables_leftcell">传真号码</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" size="20" value="020-8692360" id="czhm" name="czhm">
+		<input type="text" size="20" value="${org.contactFax }" id="czhm" name="org.contactFax">
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">通讯地址</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" size="20" value="广州市麓景路388号" id="txdz" name="txdz">
+		<input type="text" size="20" value="${org.contactAddr }" id="txdz" name="org.contactAddr">
     	</td>
 		</tr>
 
 		<tr> 
     	<td height="30" align="right" width="15%" class="tables_leftcell">邮政编码</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" size="20" value="510405" id="yzbm" name="yzbm">
+		<input type="text" size="20" value="${org.contactPost }" id="yzbm" name="org.contactPost">
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">电子邮箱</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" msg="邮箱格式不正确" require="false" datatype="Email" size="20" value="dxm1234@tom.com" id="email" name="email">
+		<input type="text" msg="邮箱格式不正确" require="false" datatype="Email" size="20" value="${org.contactEmail }" id="email" name="org.contactEmail">
     	</td>
 		</tr>
 		

@@ -18,5 +18,8 @@ public interface OrgBiz extends BaseBiz {
 	
 	//贫困户
 	public PageBean getAllFamily(String name,Integer pageIndex);
+	
+	//干部
+	public PageBean getAllLeader(Org org,String name,Integer pageIndex);
 
 }

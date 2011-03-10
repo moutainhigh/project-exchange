@@ -5,6 +5,12 @@ public class Leader extends MyEntity {
 	private Org org;
 	private Family family;
 	private String leaderName;
+	private String gender;
+	private Integer age;
+	private String position;
+	private String email;
+	private String tel;
+	
 	public Org getOrg() {
 		return org;
 	}
@@ -22,6 +28,36 @@ public class Leader extends MyEntity {
 	}
 	public void setLeaderName(String leaderName) {
 		this.leaderName = leaderName;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	
 	

@@ -150,8 +150,8 @@ function images_update(){
 	if(window.quanxian=='5')
 	{
 		menuArray[menuArray.length]="0,单位与干部维护,";
-		menuArray[menuArray.length]="1,单位信息维护,org/org_edit.htm";
-		menuArray[menuArray.length]="1,帮扶干部,test.htm";
+		menuArray[menuArray.length]="1,单位信息维护,${appPath}org_editOrg.action";
+		menuArray[menuArray.length]="1,帮扶干部,${appPath}org_leaderList.action";
 		menuArray[menuArray.length]="0,镇帮扶维护";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}zhen_bf_cuoshiZhenList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";

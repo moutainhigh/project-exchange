@@ -71,5 +71,14 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		else
 			return managerDao.getAllFamily(name, pageIndex);
 	}
+	
+	public PageBean getAllLeader(Org org,String name,Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		if(Util.isEmpty(name))
+			return managerDao.getAllLeader(org.getId(),pageIndex);
+		else
+			return managerDao.getAllLeader(org.getId(), name, pageIndex);
+	}
 
 }

@@ -84,6 +84,12 @@
 			<result name="family_edit">/main/family/family_edit.jsp</result>
 			<result name="family_view">/main/family/family_view.jsp</result>
 		</action>
+		<!-- 单位与干部模块 -->
+		<action name="org_*" method="{1}" class="com.throne212.fupin.action.OrgAction">
+			<result name="org_edit">/main/org/org_edit.jsp</result>
+			<result name="leader_edit">/main/org/leader_edit.jsp</result>
+			<result name="leader_list">/main/org/leader_list.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">
