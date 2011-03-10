@@ -210,6 +210,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,区县级账号管理,${appPath}admin_areaWorkOrgList.action";
 	    menuArray[menuArray.length]="1,镇级账号管理,${appPath}admin_zhenWorkOrgList.action";
 	    menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenBFList.action";
+	    menuArray[menuArray.length]="1,贫困户资料维护,${appPath}family_familyList.action";
 	    menuArray[menuArray.length]="0,扶贫单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,${appPath}manager_managerList.action";
 	    menuArray[menuArray.length]="1,单位的村帮扶指定,${appPath}manager_managerMappingList.action";
