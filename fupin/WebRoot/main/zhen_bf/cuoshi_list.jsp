@@ -57,7 +57,7 @@ var msg = '${msg}';
 	</select>
 
 		<input type="submit" class="button" value="查询"> 
-		<input type="button" onclick="winOpen('${appPath}main/zhen_bf/cuoshi_edit.jsp',450,220);" class="button" value="新增">
+		<input type="button" onclick="winOpen('${appPath}zhen_bf_editZhenCuoshi.action',600,390);" class="button" value="新增">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 	</td>
 	<td width="5px" align="right"></td>
@@ -97,7 +97,7 @@ var msg = '${msg}';
 			${f.status }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
-		<a onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',450,220);" href="#">查看</a>
+		<a onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',600,390);" href="#">查看</a>
 		</td><td height="25" align="center" class="tables_contentcell">
 		<c:if test="${f.status=='未提交'}">
 		<a href="#" onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',450,220);">修改</a>

@@ -70,6 +70,8 @@
 			<result name="cuoshizhen_edit">/main/zhen_bf/cuoshi_edit.jsp</result>
 			<result name="chengxiaozhen_list">/main/zhen_bf/chengxiao_list.jsp</result>
 			<result name="chengxiaozhen_edit">/main/zhen_bf/chengxiao_edit.jsp</result>
+			<result name="pic_list">/main/zhen_bf/pic_list.jsp</result>
+			<result name="pic_edit">/main/zhen_bf/pic_edit.jsp</result>
 		</action>
 		<!-- 管理员账号和村帮扶指定模块 -->
 		<action name="manager_*" method="{1}" class="com.throne212.fupin.action.ManagerAction">

@@ -66,16 +66,16 @@ var msg = '${msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	
 	<tbody><tr align="center">
-		<td height="28" width="6%" class="tables_headercell">
+		<td height="28" width="" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
-		<td width="20%" class="tables_headercell">编号</td>
-		<td width="20%" class="tables_headercell">年度</td>
+		<td width="" class="tables_headercell">编号</td>
+		<td width="" class="tables_headercell">年度</td>
 		<td class="tables_headercell">贫困镇名</td>
-		<td width="10%" class="tables_headercell">上传时间</td>
-		<td width="10%" class="tables_headercell">大小</td>
-		<td width="20%" class="tables_headercell">类型</td>
-		<td width="20%" class="tables_headercell">审核状态</td>
-		<td width="5%" class="tables_headercell">查看</td>
+		<td width="" class="tables_headercell">上传时间</td>
+		<td width="" class="tables_headercell">大小</td>
+		<td width="" class="tables_headercell">类型</td>
+		<td width="" class="tables_headercell">审核状态</td>
+		<td width="" class="tables_headercell">查看</td>
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
@@ -115,7 +115,7 @@ var msg = '${msg}';
 		</tr>
 			</c:forEach>
 	<tr>
-		<td height="25" align="right" class="tables_contentcell" colspan="8">
+		<td height="25" align="right" class="tables_contentcell" colspan="9">
 		<jsp:include page="../../pager.jsp"></jsp:include>
 		</td>
 	</tr>

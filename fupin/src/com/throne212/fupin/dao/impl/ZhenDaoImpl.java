@@ -42,10 +42,10 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from CuoshiZhen t";
 		if(zhenId != null)
 			hql += " where zhen.id="+zhenId;
-		if (condition.getType()!="") {
+		if (condition!=null && condition.getType()!="") {
 			hql+=" and type="+condition.getType();
 		}
-		if (condition.getStatus()!="") {
+		if (condition!=null && condition.getStatus()!="") {
 			hql+=" and status="+condition.getStatus();
 		}
 		hql+=" order by id desc";
@@ -97,7 +97,7 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from ChengxiaoZhen t";
 		if(zhenId != null)
 			hql += " where zhen.id="+zhenId;
-		if (condition.getStatus()!="") {
+		if (condition!= null && condition.getStatus()!="") {
 			hql+=" and status="+condition.getStatus();
 		}
 		hql+=" order by id desc";
@@ -144,10 +144,10 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from PicZhen t";
 		if(zhenId != null)
 			hql += " where zhen.id="+zhenId;
-		if (condition.getStatus()!="") {
+		if (condition!= null && condition.getStatus()!="") {
 			hql+=" and status="+condition.getStatus();
 		}
-		if (condition.getType()!="") {
+		if (condition!= null && condition.getType()!="") {
 			hql+=" and type="+condition.getType();
 		}
 		hql+=" order by id desc";
