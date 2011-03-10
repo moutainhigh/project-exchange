@@ -82,5 +82,9 @@ public class Init {
 		zhenWorkOrg.setRemark("remark");
 		baseBiz.saveOrUpdateEntity(zhenWorkOrg);
 		
+		//镇帮扶指定
+		zhen.setAreaWorkOrg(areaWorkOrg);
+		baseBiz.saveOrUpdateEntity(zhen);
+		
 	}
 }
