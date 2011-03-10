@@ -2,12 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.throne212.fupin.domain">
-	<class name="Person" table="fp_person">
+	<class name="Cuoshi" table="fp_cuoshi">
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-		<property name="personName" length="100"></property>
-		<many-to-one name="family" column="family_id" lazy="false"></many-to-one>
+		<discriminator column="cuoshi_type" type="string" force="false" insert="true" />
+	<property name="year" length="100"></property>
+	<property name="season" length="100"></property>
+	<property name="content" length="1024"></property>
+	<property name="type" length="100"></property>
+	<property name="status" length="100"></property>
+	<property name="reason" length="100"></property>
+
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -17,5 +23,12 @@
 		<property name="segment4"></property>
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
+		
+		<subclass discriminator-value="zhen" extends="Cuoshi" name="CuoshiZhen">
+			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="cun" extends="Cuoshi" name="CuoshiCun">
+			<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

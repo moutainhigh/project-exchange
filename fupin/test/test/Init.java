@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Date;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -8,7 +10,9 @@ import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.Person;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.Zhen;
@@ -25,9 +29,6 @@ public class Init {
 		admin.setLoginName("sa");
 		admin.setPassword("123");
 		baseBiz.saveOrUpdateEntity(admin);
-		
-		
-		
 		
 		Shi shi = new Shi();
 		shi.setName("四会市");
@@ -86,6 +87,23 @@ public class Init {
 		//镇帮扶指定
 		zhen.setAreaWorkOrg(areaWorkOrg);
 		baseBiz.saveOrUpdateEntity(zhen);
+		
+		//贫困户
+		Family family = new Family();
+		family.setName("张三");
+		family.setType(1);
+		family.setCun(cun);
+		
+		
+		Person p = new Person();
+		p.setName("张三");
+		p.setRelate("户主");
+		p.setGender("男");
+		p.setWenhua("初中");
+		p.setBirthday(new Date());
+		p.setJob("无");
+		family.setPerson1(p);
+		baseBiz.saveOrUpdateEntity(family);
 		
 	}
 }

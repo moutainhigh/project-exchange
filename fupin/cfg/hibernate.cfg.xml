@@ -24,8 +24,10 @@
 	<mapping resource="com/throne212/fupin/domain/Diqu.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Family.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Leader.hbm.xml" />
-	<mapping resource="com/throne212/fupin/domain/Person.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/User.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Cuoshi.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Chengxiao.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Pic.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

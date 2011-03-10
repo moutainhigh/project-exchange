@@ -49,7 +49,7 @@
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 						
 							<input type="submit" class="button" value="查询"> 
-							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',450,180);" class="button" value="新增">
+							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',900,700);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>
 						<td width="5px"></td>
@@ -90,25 +90,23 @@
 								&nbsp; ${f.id}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.family.name}
+								&nbsp; ${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
-								<c:if test="${f.type=='村'}">${f.zhen.area.shi.name}</c:if>
-								<c:if test="${f.type=='镇'}">${f.area.shi.name}</c:if>
-								<c:if test="${f.type=='区县'}">${f.shi.name}</c:if>
+								${f.type }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
-								<c:if test="${f.type=='村'}">${f.zhen.area.name}</c:if>
-								<c:if test="${f.type=='镇'}">${f.area.name}</c:if>
+								${f.gender }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
-								<c:if test="${f.type=='村'}">${f.zhen.name}</c:if>
+								${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}diqu_saveDiqu.action?diqu.id=${f.id}',450,220);">修改</a>
+								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',900,700);">修改</a>
+								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',900,700);">查看</a>
 							</td>
 						</tr>
 					</c:forEach>

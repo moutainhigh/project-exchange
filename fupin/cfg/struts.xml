@@ -66,6 +66,10 @@
 		<action name="zhen_bf_*" method="{1}" class="com.throne212.fupin.action.ZhenBFAction">
 			<result name="zhen_bf_list">/main/zhen_bf/zhen_list.jsp</result>
 			<result name="zhen_org_mapping">/main/zhen_bf/zhen_org_mapping.jsp</result>
+			<result name="cuoshizhen_list">/main/zhen_bf/cuoshi_list.jsp</result>
+			<result name="cuoshizhen_edit">/main/zhen_bf/cuoshi_edit.jsp</result>
+			<result name="chengxiaozhen_list">/main/zhen_bf/chengxiao_list.jsp</result>
+			<result name="chengxiaozhen_edit">/main/zhen_bf/chengxiao_edit.jsp</result>
 		</action>
 		<!-- 管理员账号和村帮扶指定模块 -->
 		<action name="manager_*" method="{1}" class="com.throne212.fupin.action.ManagerAction">
@@ -74,9 +78,21 @@
 			<result name="manager_mapping">/main/manager/manager_mapping_list.jsp</result>
 			<result name="manager_cun_mapping">/main/manager/manager_cun_mapping.jsp</result>
 		</action>
+		<!-- 贫困户模块 -->
+		<action name="family_*" method="{1}" class="com.throne212.fupin.action.FamilyAction">
+			<result name="family_list">/main/family/family_list.jsp</result>
+			<result name="family_edit">/main/family/family_edit.jsp</result>
+			<result name="family_view">/main/family/family_view.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">
+        	<result name="list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
 			<result name="shi_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,

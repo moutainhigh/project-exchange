@@ -6,6 +6,7 @@ import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.biz.BaseBiz;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.Zhen;
@@ -27,11 +28,24 @@ public class AjaxAction extends BaseAction {
 	}
 	private Long parentId;
 	public String getAllArea() {
-		list = adminBiz.getEntitiesByColumn(Area.class, "shi", adminBiz.getEntityById(Shi.class, parentId));
+		if(parentId!=null)
+			list = adminBiz.getEntitiesByColumn(Area.class, "shi", adminBiz.getEntityById(Shi.class, parentId));
+		else
+			list = adminBiz.getAll(Area.class);
 		return "list";
 	}
 	public String getAllZhen() {
-		list = adminBiz.getEntitiesByColumn(Zhen.class, "area", adminBiz.getEntityById(Area.class, parentId));
+		if(parentId!=null)
+			list = adminBiz.getEntitiesByColumn(Zhen.class, "area", adminBiz.getEntityById(Area.class, parentId));
+		else
+			list = adminBiz.getAll(Zhen.class);
+		return "list";
+	}
+	public String getAllCun() {
+		if(parentId!=null)
+			list = adminBiz.getEntitiesByColumn(Cun.class, "zhen", adminBiz.getEntityById(Zhen.class, parentId));
+		else
+			list = adminBiz.getAll(Cun.class);
 		return "list";
 	}
 

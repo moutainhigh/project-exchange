@@ -14,5 +14,9 @@ public interface OrgBiz extends BaseBiz {
 	public PageBean getAllCun(String name,Integer pageIndex);
 	
 	public List getAllOrg();
+	
+	
+	//贫困户
+	public PageBean getAllFamily(String name,Integer pageIndex);
 
 }

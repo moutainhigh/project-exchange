@@ -6,7 +6,7 @@
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-	<property name="familyName" length="100"></property>
+		<property name="name" length="100"></property>
 		<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
@@ -17,5 +17,106 @@
 		<property name="segment4"></property>
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
+		<property name="birthday"></property>
+		<property name="canji"></property>
+		<property name="date"></property>
+		<property name="dibao"></property>
+		<property name="gender"></property>
+		<property name="gongkai"></property>
+		<property name="handi"></property>
+		<property name="idNo"></property>
+		<property name="income"></property>
+		<property name="jiegou"></property>
+		<property name="linguodi"></property>
+		<property name="mianji"></property>
+		<property name="other"></property>
+		<property name="shuitian"></property>
+		<property name="tuopin"></property>
+		<property name="type"></property>
+		<property name="wenhua"></property>
+		<property name="zu"></property>
+		
+		<component name="person1" class="Person">
+			<property name="birthday" column="birthday1"></property>
+			<property name="gender" column="gender1"></property>
+			<property name="job" column="job1"></property>
+			<property name="relate" column="relate1"></property>
+			<property name="wenhua" column="wenhua1"></property>
+			<property name="name" column="name1"></property>
+		</component>
+		<component name="person2" class="Person">
+			<property name="birthday" column="birthday2"></property>
+			<property name="gender" column="gender2"></property>
+			<property name="job" column="job2"></property>
+			<property name="relate" column="relate2"></property>
+			<property name="wenhua" column="wenhua2"></property>
+			<property name="name" column="name2"></property>
+		</component>
+		<component name="person3" class="Person">
+			<property name="birthday" column="birthday3"></property>
+			<property name="gender" column="gender3"></property>
+			<property name="job" column="job3"></property>
+			<property name="relate" column="relate3"></property>
+			<property name="wenhua" column="wenhua3"></property>
+			<property name="name" column="name3"></property>
+		</component>
+		<component name="person4" class="Person">
+			<property name="birthday" column="birthday4"></property>
+			<property name="gender" column="gender4"></property>
+			<property name="job" column="job4"></property>
+			<property name="relate" column="relate4"></property>
+			<property name="wenhua" column="wenhua4"></property>
+			<property name="name" column="name4"></property>
+		</component>
+		<component name="person5" class="Person">
+			<property name="birthday" column="birthday5"></property>
+			<property name="gender" column="gender5"></property>
+			<property name="job" column="job5"></property>
+			<property name="relate" column="relate5"></property>
+			<property name="wenhua" column="wenhua5"></property>
+			<property name="name" column="name5"></property>
+		</component>
+		<component name="person6" class="Person">
+			<property name="birthday" column="birthday6"></property>
+			<property name="gender" column="gender6"></property>
+			<property name="job" column="job6"></property>
+			<property name="relate" column="relate6"></property>
+			<property name="wenhua" column="wenhua6"></property>
+			<property name="name" column="name6"></property>
+		</component>
+		<component name="person7" class="Person">
+			<property name="birthday" column="birthday7"></property>
+			<property name="gender" column="gender7"></property>
+			<property name="job" column="job7"></property>
+			<property name="relate" column="relate7"></property>
+			<property name="wenhua" column="wenhua7"></property>
+			<property name="name" column="name7"></property>
+		</component>
+		<component name="person8" class="Person">
+			<property name="birthday" column="birthday8"></property>
+			<property name="gender" column="gender8"></property>
+			<property name="job" column="job8"></property>
+			<property name="relate" column="relate8"></property>
+			<property name="wenhua" column="wenhua8"></property>
+			<property name="name" column="name8"></property>
+		</component>
+		<component name="person9" class="Person">
+			<property name="birthday" column="birthday9"></property>
+			<property name="gender" column="gender9"></property>
+			<property name="job" column="job9"></property>
+			<property name="relate" column="relate9"></property>
+			<property name="wenhua" column="wenhua9"></property>
+			<property name="name" column="name9"></property>
+		</component>
+		<component name="person10" class="Person">
+			<property name="birthday" column="birthday10"></property>
+			<property name="gender" column="gender10"></property>
+			<property name="job" column="job10"></property>
+			<property name="relate" column="relate10"></property>
+			<property name="wenhua" column="wenhua10"></property>
+			<property name="name" column="name10"></property>
+		</component>
+		
+		
 	</class>
 </hibernate-mapping>

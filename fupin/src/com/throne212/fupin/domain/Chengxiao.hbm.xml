@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="Chengxiao" table="fp_chengxiao">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<discriminator column="chengxiao_type" type="string" force="false" insert="true" />
+		<property name="year" length="100"></property>
+		<property name="content" length="1024"></property>
+		<property name="status" length="100"></property>
+		<!--<property name="reason" length="100"></property>-->
+
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+
+		<subclass discriminator-value="zhen" extends="Chengxiao" name="ChengxiaoZhen">
+			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="cun" extends="Chengxiao" name="ChengxiaoCun">
+			<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
+		</subclass>
+	</class>
+</hibernate-mapping>

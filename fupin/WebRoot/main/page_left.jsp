@@ -153,9 +153,9 @@ function images_update(){
 		menuArray[menuArray.length]="1,单位信息维护,org/org_edit.htm";
 		menuArray[menuArray.length]="1,帮扶干部,test.htm";
 		menuArray[menuArray.length]="0,镇帮扶维护";
-        menuArray[menuArray.length]="1,帮扶措施,cbangfucuoshi.jsp?cs=year";
-		menuArray[menuArray.length]="1,帮扶成效,cbangfuchengxiao.jsp";
-		menuArray[menuArray.length]="1,镇图片管理,pinkuncundangan.jsp";
+        menuArray[menuArray.length]="1,帮扶措施,${appPath}zhen_bf_cuoshiZhenList.action";
+		menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";
+		menuArray[menuArray.length]="1,镇图片管理,${appPath}zhen_bf_picZhenList.action";
 		menuArray[menuArray.length]="0,村帮扶维护";
         menuArray[menuArray.length]="1,帮扶措施,cbangfucuoshi.jsp?cs=year";
 		menuArray[menuArray.length]="1,帮扶成效,cbangfuchengxiao.jsp";

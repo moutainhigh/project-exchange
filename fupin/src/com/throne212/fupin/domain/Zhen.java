@@ -4,6 +4,8 @@ public class Zhen extends Diqu {
 	private ShiWorkOrg shiWorkOrg;// 扶持它的市扶贫办
 	private AreaWorkOrg areaWorkOrg;// 扶持它的县扶贫办
 	private Area area;// 所属区县
+	
+
 
 	public ShiWorkOrg getShiWorkOrg() {
 		return shiWorkOrg;
