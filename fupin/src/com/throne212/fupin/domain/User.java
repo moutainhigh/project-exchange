@@ -31,6 +31,17 @@ public class User extends MyEntity implements Serializable {
 		return null;
 	}
 	
+	public String getOrgName(){
+		if(this instanceof ShiWorkOrg){
+			return ((ShiWorkOrg)this).getShi().getName()+"扶贫办";
+		}else if(this instanceof AreaWorkOrg){
+			return ((AreaWorkOrg)this).getArea().getName()+"扶贫工作队";
+		}else if(this instanceof ZhenWorkOrg){
+			return ((ZhenWorkOrg)this).getZhen().getName()+"扶贫工作组";
+		}
+		return null;
+	}
+	
 	public String getRoleType(){
 		if(this instanceof Admin){
 			return "超级管理员";

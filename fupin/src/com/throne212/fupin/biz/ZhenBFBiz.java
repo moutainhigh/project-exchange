@@ -11,6 +11,8 @@ import com.throne212.fupin.domain.Zhen;
 public interface ZhenBFBiz extends BaseBiz {
 	
 	public List getShiAndAreaAccounts();
+	public List getShiAndArea();
+	public List getAllArea();
 	
 	public PageBean<Zhen> getAllZhen(Long areaId,Integer pageIndex);
 	

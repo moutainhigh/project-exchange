@@ -8,7 +8,6 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ZhenDao;
 import com.throne212.fupin.domain.Area;
-import com.throne212.fupin.domain.Diqu;
 import com.throne212.fupin.domain.Zhen;
 
 
@@ -20,6 +19,7 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from Zhen t";
 		if(area != null)
 			hql += " where area.id="+area.getId();
+		logger.debug("hql="+hql);
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
