@@ -38,16 +38,10 @@ var msg = '${msg}';
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
-	<td>您当前所处页面：镇帮扶维护&gt;&gt;帮扶措施 </td>
+	<td>您当前所处页面：镇帮扶维护&gt;&gt;镇图片管理 </td>
 	<td align="right">
 
-	<label>措施类型: </label>
-	<select onchange="searchForm.submit()" name="cs" size="1" name="pic.type">
-		<option value="年度措施">年度措施</option>
-		<option value="季度措施">季度措施</option>
-	</select>
-
-	<label>措施状态: </label>
+	<label>审核状态: </label>
 	<select name="pic.status" size="1">
 		<option value="">--------------</option>
 		<option value="未提交">未提交</option>
@@ -57,7 +51,7 @@ var msg = '${msg}';
 	</select>
 
 		<input type="submit" class="button" value="查询"> 
-		<input type="button" onclick="winOpen('${appPath}main/zhen_bf/pic_edit.jsp',450,220);" class="button" value="上传">
+		<input type="button" onclick="winOpen('${appPath}main/zhen_bf/pic_edit.jsp',450,600);" class="button" value="上传">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 	</td>
 	<td width="5px" align="right"></td>
@@ -103,7 +97,7 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			<c:if test="${f.status=='未提交'}">
-			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmPic.action?pic.id=${f.id}',450,220);">确认后提交</a>
+			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmPic.action?pic.id=${f.id}',450,600);">确认后提交</a>
 			</c:if>
 			${f.status }
 		</td>

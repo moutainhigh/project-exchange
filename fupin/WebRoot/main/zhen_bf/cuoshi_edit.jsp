@@ -68,8 +68,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td class="tables_contentcell">
 		<select style="width: 135px;" name="cuoshi.season" >
 		
-			<c:if test="${not empty cuoshi.season}">
-		<option value="${cuoshi.season} " selected="selected">${cuoshi.season}</option>
+		<c:if test="${not empty cuoshi.season}">
+			<option value="${cuoshi.season} " selected="selected">${cuoshi.season}</option>
 		</c:if>
 			<option value="">---------</option>
 			<option value="第一季度">第一季度</option>
@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <td height="30" align="right" class="tables_leftcell">帮扶措施</td>
     <td class="tables_contentcell">
       <font color="#cc0033">请填写帮扶措施内容：</font>
-	<textarea name="cuoshi.content" value="${cuoshi.content }" msg="帮扶措施不能为空" datatype="Require" rows="10" cols="50"></textarea>
+	<textarea name="cuoshi.content" value="${cuoshi.content }" msg="帮扶措施不能为空" datatype="Require" rows="10" cols="50">${cuoshi.content }</textarea>
 	<font size="4" color="#cc0033">*</font>
     </td>
 	</tr>    

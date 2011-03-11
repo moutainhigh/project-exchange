@@ -11,6 +11,7 @@ import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.ChengxiaoZhen;
 import com.throne212.fupin.domain.CuoshiZhen;
 import com.throne212.fupin.domain.PicZhen;
+import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.Zhen;
 
 
@@ -41,10 +42,10 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from CuoshiZhen t";
 		if(zhenId != null)
 			hql += " where zhen.id="+zhenId;
-		if (condition!=null && condition.getType()!="") {
-			hql+=" and type="+condition.getType();
+		if (condition!=null && condition.getType()!=null&&!"".equals(condition.getType())) {
+			hql+=" and type='"+condition.getType()+"'";
 		}
-		if (condition!=null && condition.getStatus()!="") {
+		if (condition!=null && condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
 			hql+=" and status="+condition.getStatus();
 		}
 		hql+=" order by id desc";
@@ -68,10 +69,10 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		PageBean<CuoshiZhen> page = new PageBean<CuoshiZhen>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from CuoshiZhen t ";
-		if (condition!= null && condition.getType()!="") {
-			hql+=" where type="+condition.getType();
+		if (condition!=null &&condition.getType()!=null&&!"".equals(condition.getType())) {
+			hql+=" where type='"+condition.getType()+"'";
 		}
-		if (condition!= null && condition.getStatus()!="") {
+		if (condition!=null &&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
 			hql+=" and status="+condition.getStatus();
 		}
 		hql+=" order by id desc";
@@ -96,7 +97,7 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from ChengxiaoZhen t";
 		if(zhenId != null)
 			hql += " where zhen.id="+zhenId;
-		if (condition!= null && condition.getStatus()!="") {
+		if (condition!= null && condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
 			hql+=" and status="+condition.getStatus();
 		}
 		hql+=" order by id desc";
@@ -121,7 +122,7 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		PageBean<ChengxiaoZhen> page = new PageBean<ChengxiaoZhen>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from ChengxiaoZhen t ";
-		if (condition!= null && condition.getStatus()!="") {
+		if (condition!=null&&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
 			hql+=" where status="+condition.getStatus();
 		}
 		hql+=" order by id desc";
@@ -143,11 +144,11 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		String hql = "from PicZhen t";
 		if(zhenId != null)
 			hql += " where zhen.id="+zhenId;
-		if (condition!= null && condition.getStatus()!="") {
+		if (condition!= null &&condition.getStatus()!=null&& !"".equals(condition.getStatus())) {
 			hql+=" and status="+condition.getStatus();
 		}
-		if (condition!= null && condition.getType()!="") {
-			hql+=" and type="+condition.getType();
+		if (condition!= null &&condition.getType()!=null&& !"".equals(condition.getType())) {
+			hql+=" and type='"+condition.getType()+"'";
 		}
 		hql+=" order by id desc";
 		logger.debug("hql="+hql);
@@ -169,10 +170,10 @@ public class ZhenDaoImpl extends BaseDaoImpl implements ZhenDao {
 		PageBean<PicZhen> page = new PageBean<PicZhen>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from PicZhen t ";
-		if (condition!= null && condition.getStatus()!="") {
+		if (condition!=null&&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
 			hql+=" where status="+condition.getStatus();
 		}
-		if (condition!= null && condition.getType()!="") {
+		if (condition!=null&&condition.getType()!=null&&!"".equals(condition.getType())) {
 			hql+=" and type="+condition.getType();
 		}
 		hql+=" order by id desc";

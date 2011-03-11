@@ -53,7 +53,7 @@ var msg = '${msg}';
 	</select>
 
 		<input type="submit" class="button" value="查询"> 
-		<input type="button" onclick="winOpen('${appPath}main/zhen_bf/chengxiao_edit.jsp',450,220);" class="button" value="新增">
+		<input type="button" onclick="winOpen('${appPath}zhen_bf_editZhenChengxiao.action',600,390);" class="button" value="新增">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 	</td>
 	<td width="5px" align="right"></td>
@@ -88,17 +88,19 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			<c:if test="${f.status=='未提交'}">
-			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmChengxiao.action?chengxiao.id=${f.id}',450,220);">确认后提交</a>
+			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmChengxiao.action?chengxiao.id=${f.id}',600,390);">确认后提交</a>
 			</c:if>
 			${f.status }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
-		<a onclick="winOpen('${appPath}zhen_bf_saveOrUpdateChengxiaoZhen.action?chengxiao.id=${f.id}',450,220);" href="#">查看</a>
+		<a onclick="winOpen('${appPath}zhen_bf_viewChengxiaoZhen.action?chengxiao.id=${f.id}',600,390);" href="#">查看</a>
 		</td><td height="25" align="center" class="tables_contentcell">
 		<c:if test="${f.status=='未提交'}">
-		<a href="#" onclick="winOpen('${appPath}zhen_bf_saveOrUpdateChengxiaoZhen.action?chengxiao.id=${f.id}',450,220);">修改</a>
+		<a href="#" onclick="winOpen('${appPath}zhen_bf_editZhenChengxiao?chengxiao.id=${f.id}',600,390);">修改</a>
 		 </c:if>
+		 <c:if test="${f.status!='未提交'}">
 		不能修改
+		</c:if>
 		</td>
 		</tr>
 			</c:forEach>

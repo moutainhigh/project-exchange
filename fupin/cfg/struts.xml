@@ -92,6 +92,12 @@
 			<result name="leader_edit">/main/org/leader_edit.jsp</result>
 			<result name="leader_list">/main/org/leader_list.jsp</result>
 		</action>
+		<!-- 上传图片 -->
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.fupin.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/upload/success.jsp</result>
+			<result name="error">/upload/fail.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

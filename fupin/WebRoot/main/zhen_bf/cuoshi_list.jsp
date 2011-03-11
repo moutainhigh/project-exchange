@@ -42,9 +42,10 @@ var msg = '${msg}';
 	<td align="right">
 
 	<label>措施类型: </label>
-	<select onchange="searchForm.submit()"  size="1" name="cuoshi.type">
-		<option value="年度措施">年度措施</option>
-		<option value="季度措施">季度措施</option>
+	<select   size="1" name="cuoshi.type">
+		<option value=""></option>
+		<option value="年度措施" <c:if test="${cuoshi.type=='年度措施'}">selected="selected"</c:if>>年度措施</option>
+		<option value="季度措施" <c:if test="${cuoshi.type=='季度措施'}">selected="selected"</c:if>>季度措施</option>
 	</select>
 
 	<label>措施状态: </label>
@@ -68,12 +69,13 @@ var msg = '${msg}';
 	<tbody><tr align="center">
 		<td height="28" width="6%" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
-		<td width="20%" class="tables_headercell">编号</td>
-		<td width="20%" class="tables_headercell">时间</td>
+		<td width="" class="tables_headercell">编号</td>
+		<td width="" class="tables_headercell">类型</td>
+		<td width="" class="tables_headercell">时间</td>
 		<td class="tables_headercell">贫困镇名</td>
-		<td width="20%" class="tables_headercell">审核状态</td>
-		<td width="5%" class="tables_headercell">查看</td>
-		<td width="10%" class="tables_headercell">修改</td>
+		<td width="" class="tables_headercell">审核状态</td>
+		<td width="" class="tables_headercell">查看</td>
+		<td width="" class="tables_headercell">修改</td>
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
@@ -84,6 +86,9 @@ var msg = '${msg}';
 		<td height="25" align="center" class="tables_contentcell">
 			${f.id }
 		</td>
+		<td height="25" align="center" class="tables_contentcell">
+			${f.type }
+		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.year }
 		</td>
@@ -92,17 +97,21 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			<c:if test="${f.status=='未提交'}">
-			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmCuoshi.action?cuoshi.id=${f.id}',450,220);">确认后提交</a>
+			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmCuoshi.action?cuoshi.id=${f.id}',600,390);">确认后提交</a>
 			</c:if>
+			<c:if test="${f.status!='未提交'}">
 			${f.status }
+			</c:if>
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
 		<a onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',600,390);" href="#">查看</a>
 		</td><td height="25" align="center" class="tables_contentcell">
 		<c:if test="${f.status=='未提交'}">
-		<a href="#" onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',450,220);">修改</a>
+		<a href="#" onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',600,390);">修改</a>
 		 </c:if>
+		 <c:if test="${f.status!='未提交'}">
 		不能修改
+		</c:if>
 		</td>
 		</tr>
 			</c:forEach>

@@ -79,13 +79,13 @@ public class ZhenBFAction extends BaseAction {
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-			if (list != null) {
+			if (list != null && list.size() > 0) {
 				zhen = list.get(0);
 			}
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg areOrg = (AreaWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-			if (list != null) {
+			if (list != null && list.size() > 0) {
 				zhen = list.get(0);
 			}
 		}
@@ -169,6 +169,7 @@ public class ZhenBFAction extends BaseAction {
 			this.setSucc("Y");
 			cuoshi = null;
 		} else if (cuoshi != null && cuoshi.getId() != null) {// 查看详情
+			
 			cuoshi = zhenBFBiz.getEntityById(CuoshiZhen.class, cuoshi.getId());
 			editZhenCuoshi();
 		}
@@ -195,11 +196,10 @@ public class ZhenBFAction extends BaseAction {
 				Long id = Long.parseLong(idStr);
 				zhenBFBiz.deleteEntity(CuoshiZhen.class, id);
 			}
-			this.setMsg("删除市级账号成功");
+			this.setMsg("删除措施成功");
 		}
 		return cuoshiZhenList();
 	}
-
 	private ChengxiaoZhen chengxiao;
 
 	// 成效列表
@@ -229,10 +229,62 @@ public class ZhenBFAction extends BaseAction {
 		pageBean = zhenBFBiz.getAllChengxiaoZhenByZhenId(chengxiao, zhen.getId(), pageIndex);
 		return "chengxiaozhen_list";
 	}
-
+	public String editZhenChengxiao(){
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof Admin) {
+			this.setMsg("超级管理员无权进行此操作！");
+			return "chengxiaozhen_edit";
+		} else if (user instanceof ShiWorkOrg) {
+			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
+			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
+			if (list != null) {
+				zhen = list.get(0);
+			}
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg areOrg = (AreaWorkOrg) user;
+			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
+			if (list != null) {
+				zhen = list.get(0);
+			}
+		}
+		if (zhen == null) {
+			this.setMsg("尚未指定帮扶镇，不能进行操作!");
+			return "chengxiaozhen_edit";
+		}
+		if (chengxiao!=null&&chengxiao.getId()!=null) {
+			chengxiao=zhenBFBiz.getEntityById(ChengxiaoZhen.class, chengxiao.getId());
+		}
+		return "chengxiaozhen_edit";
+	}
+	
+	public String viewChengxiaoZhen(){
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof Admin) {
+			this.setMsg("超级管理员无权进行此操作！");
+			return "chengxiaozhen_edit";
+		} else if (user instanceof ShiWorkOrg) {
+			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
+			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
+			if (list != null) {
+				zhen = list.get(0);
+			}
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg areOrg = (AreaWorkOrg) user;
+			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
+			if (list != null) {
+				zhen = list.get(0);
+			}
+		}
+		if (zhen == null) {
+			this.setMsg("尚未指定帮扶镇，不能进行操作!");
+			return "chengxiaozhen_edit";
+		}
+		chengxiao=zhenBFBiz.getEntityById(ChengxiaoZhen.class, chengxiao.getId());
+		return "chengxiaozhen_edit";
+		
+	}
 	// 增加或修改镇帮扶成效
 	public String saveOrUpdateChengxiaoZhen() {
-
 		if (chengxiao == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
 			return "chengxiaozhen_edit";
@@ -295,7 +347,7 @@ public class ZhenBFAction extends BaseAction {
 				Long id = Long.parseLong(idStr);
 				zhenBFBiz.deleteEntity(ChengxiaoZhen.class, id);
 			}
-			this.setMsg("删除市级账号成功");
+			this.setMsg("删除成效成功");
 		}
 		return chengxiaoZhenList();
 	}

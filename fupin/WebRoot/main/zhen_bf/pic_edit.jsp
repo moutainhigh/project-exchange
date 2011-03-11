@@ -70,7 +70,7 @@ function preview(isCheck)
 			<option value="2009">2009</option>
 		
 		</select><br><br>
-		<iframe src="${base}/upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
+		<iframe src="${appPath}upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 		<font color="#cc0033" style="font-weight: normal;">*请选择格式为JPG且大小不超过1.5MB的图片</font>
 	</td>
 </tr>
