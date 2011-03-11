@@ -149,71 +149,92 @@ function images_update(){
 	
 	if(window.quanxian=='5')
 	{
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,单位与干部维护,";
 		menuArray[menuArray.length]="1,单位信息维护,${appPath}org_editOrg.action";
 		menuArray[menuArray.length]="1,帮扶干部,${appPath}org_leaderList.action";
+		</c:if>
+		<c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">
 		menuArray[menuArray.length]="0,镇帮扶维护";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}zhen_bf_cuoshiZhenList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";
 		menuArray[menuArray.length]="1,镇图片管理,${appPath}zhen_bf_picZhenList.action";
+		</c:if>
+		<c:if test="${userObj.roleType=='帮扶单位管理员' || userObj.roleType=='超级管理员'}">
 		menuArray[menuArray.length]="0,村帮扶维护";
-        menuArray[menuArray.length]="1,帮扶措施,cbangfucuoshi.jsp?cs=year";
-		menuArray[menuArray.length]="1,帮扶成效,cbangfuchengxiao.jsp";
-		menuArray[menuArray.length]="1,村图片管理,pinkuncundangan.jsp";
+        menuArray[menuArray.length]="1,帮扶措施,./test.htm";
+		menuArray[menuArray.length]="1,帮扶成效,./test.htm";
+		menuArray[menuArray.length]="1,村图片管理,./test.htm";
         menuArray[menuArray.length]="0,户帮扶维护";
-        menuArray[menuArray.length]="1,规划到户,guihuadaohu.jsp";
-        menuArray[menuArray.length]="1,贫困原因,tuopinzhipin.jsp";
-        menuArray[menuArray.length]="1,帮扶措施,manageHuBfcs.jsp";
-        menuArray[menuArray.length]="1,到户记录（即扶持内容）,daohujilu.jsp";
-		menuArray[menuArray.length]="1,帮扶成效,manageHuBfcx.jsp";
-		menuArray[menuArray.length]="1,户图片管理,pinkunhudangan.jsp";
+        menuArray[menuArray.length]="1,规划到户,./test.htm";
+        menuArray[menuArray.length]="1,贫困原因,./test.htm";
+        menuArray[menuArray.length]="1,帮扶措施,./test.htm";
+        menuArray[menuArray.length]="1,到户记录（即扶持内容）,./test.htm";
+		menuArray[menuArray.length]="1,帮扶成效,./test.htm";
+		menuArray[menuArray.length]="1,户图片管理,./test.htm";
 		menuArray[menuArray.length]="0,报表管理,";
-        menuArray[menuArray.length]="1,季度报表,dwjdbb.jsp";
-		menuArray[menuArray.length]="1,年度报表,dwndbb.jsp";
+        menuArray[menuArray.length]="1,季度报表,./test.htm";
+		menuArray[menuArray.length]="1,年度报表,./test.htm";
 		
 		menuArray[menuArray.length]="0,成效评估,";
         menuArray[menuArray.length]="1,表一,cxpgtone.jsp";
 		menuArray[menuArray.length]="1,表二,cxpgttwo.jsp";
 		
-		menuArray[menuArray.length]="0,重审申请,reauditApply.jsp";
+		//menuArray[menuArray.length]="0,重审申请,reauditApply.jsp";
         //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
         //menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
+        </c:if>
+        
         ////HELP:
 	    menuArray[menuArray.length]="0,使用帮助,";
-	    menuArray[menuArray.length]="1,培训PPT下载,./help/main.html"; 	
-	    menuArray[menuArray.length]="1,1.定义,./help/help2.1.html";
-	    menuArray[menuArray.length]="1,2.帐号激活,./help/help2.2.html";
-	    menuArray[menuArray.length]="1,3.系统主菜单,./help/help2.3.html";
-	    menuArray[menuArray.length]="1,4.帐号维护,./help/help2.4.html";
+	    menuArray[menuArray.length]="1,培训PPT下载,http://210.76.65.67:6792/fpxmadmin/5/help/main.html"; 	
+	    menuArray[menuArray.length]="1,1.定义,http://210.76.65.67:6792/fpxmadmin/5/help/help2.1.html";
+	    menuArray[menuArray.length]="1,2.帐号激活,http://210.76.65.67:6792/fpxmadmin/5/help/help2.2.html";
+	    menuArray[menuArray.length]="1,3.系统主菜单,http://210.76.65.67:6792/fpxmadmin/5/help/help2.3.html";
+	    menuArray[menuArray.length]="1,4.帐号维护,http://210.76.65.67:6792/fpxmadmin/5/help/help2.4.html";
 	    menuArray[menuArray.length]="1,5.单位与干部维护,";
-	    menuArray[menuArray.length]="2,5.1.单位信息维护,./help/help2.5.1.html";
-	    menuArray[menuArray.length]="2,5.2.帮扶干部,./help/help2.5.2.html";
+	    menuArray[menuArray.length]="2,5.1.单位信息维护,http://210.76.65.67:6792/fpxmadmin/5/help/help2.5.1.html";
+	    menuArray[menuArray.length]="2,5.2.帮扶干部,http://210.76.65.67:6792/fpxmadmin/5/help/help2.5.2.html";
 	    menuArray[menuArray.length]="1,6.村帮扶维护,";
-	    menuArray[menuArray.length]="2,6.1.贫困村档案,./help/help2.6.1.html";
-	    menuArray[menuArray.length]="2,6.2.帮扶措施,./help/help2.6.2.html";
-	    menuArray[menuArray.length]="2,6.3.帮扶成效,./help/help2.6.3.html";
+	    menuArray[menuArray.length]="2,6.1.贫困村档案,http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.1.html";
+	    menuArray[menuArray.length]="2,6.2.帮扶措施,http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.2.html";
+	    menuArray[menuArray.length]="2,6.3.帮扶成效,http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.3.html";
 	    menuArray[menuArray.length]="1,7.户帮扶维护,";
-	    menuArray[menuArray.length]="2,7.1.规划到户,./help/help2.7.1.html";
-	    menuArray[menuArray.length]="2,7.2.贫困原因,./help/help2.7.2.html";
-	    menuArray[menuArray.length]="2,7.3.帮扶措施,./help/help2.7.3.html";
-	    menuArray[menuArray.length]="2,7.4.扶持内容,./help/help2.7.4.html";
-	    menuArray[menuArray.length]="2,7.5.帮扶成效,./help/help2.7.5.html";
-	    menuArray[menuArray.length]="2,7.6.贫困户档案,./help/help2.7.6.html";
+	    menuArray[menuArray.length]="2,7.1.规划到户,http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.1.html";
+	    menuArray[menuArray.length]="2,7.2.贫困原因,http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.2.html";
+	    menuArray[menuArray.length]="2,7.3.帮扶措施,http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.3.html";
+	    menuArray[menuArray.length]="2,7.4.扶持内容,http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.4.html";
+	    menuArray[menuArray.length]="2,7.5.帮扶成效,http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.5.html";
+	    menuArray[menuArray.length]="2,7.6.贫困户档案,http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.6.html";
 	    menuArray[menuArray.length]="1,8.报表管理,";
-	    menuArray[menuArray.length]="2,8.1.季度报表,./help/help2.8.1.html";
-	    menuArray[menuArray.length]="2,8.2.年度报表,./help/help2.8.2.html";
+	    menuArray[menuArray.length]="2,8.1.季度报表,http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.1.html";
+	    menuArray[menuArray.length]="2,8.2.年度报表,http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.2.html";
 	    //menuArray[24]="2,2.帐号激活,./help/help2.2.html";	
+	    
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="0,基础数据维护,";
+	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,地区信息维护,${appPath}diqu_diquList.action";
 	    menuArray[menuArray.length]="1,市级账号管理,${appPath}admin_shiWorkOrgList.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 	    menuArray[menuArray.length]="1,区县级账号管理,${appPath}admin_areaWorkOrgList.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="1,镇级账号管理,${appPath}admin_zhenWorkOrgList.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenBFList.action";
-	    menuArray[menuArray.length]="1,贫困户资料维护,${appPath}family_familyList.action";
-	    menuArray[menuArray.length]="0,扶贫单位管理,";
+	    </c:if>
+	    menuArray[menuArray.length]="0,帮扶单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,${appPath}manager_managerList.action";
 	    menuArray[menuArray.length]="1,单位的村帮扶指定,${appPath}manager_managerMappingList.action";
+	    </c:if>
+	    
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='镇级管理员'}">
+	    menuArray[menuArray.length]="0,贫困户资料维护,${appPath}family_familyList.action";
+	    </c:if>
 	    menuArray[menuArray.length]="0,报表审核,";
 	    
 	}

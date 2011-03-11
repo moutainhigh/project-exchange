@@ -40,7 +40,9 @@ public class DiquAction extends BaseAction {
 		if (diqu != null && !Util.isEmpty(diqu.getName())) {// 添加或更新
 			if (diqu.getId() == null) {
 				if (Shi.class.getSimpleName().equals(type)) {
-
+					Shi a = new Shi();
+					a.setName(diqu.getName());
+					diqu = a;
 				} else if (Area.class.getSimpleName().equals(type)) {
 					Area a = new Area();
 					a.setName(diqu.getName());

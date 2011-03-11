@@ -8,6 +8,7 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.MyEntity;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
@@ -39,14 +40,14 @@ public class AdminAction extends BaseAction {
 				this.setMsg("请选择所属市！");
 				return "shiWorkOrg_edit";
 			}
-			if(shiWorkOrg.getId() == null){
+			if (shiWorkOrg.getId() == null) {
 				ShiWorkOrg shiOrg = adminBiz.getEntityByUnique(ShiWorkOrg.class, "loginName", shiWorkOrg.getLoginName());
-				if(shiOrg != null){
+				if (shiOrg != null) {
 					this.setMsg("用户名已经被使用，请更名");
 					return "shiWorkOrg_edit";
 				}
 			}
-			
+
 			Shi shi = adminBiz.getEntityById(Shi.class, shiWorkOrg.getShi().getId());
 			shiWorkOrg.setShi(shi);
 			shiWorkOrg = adminBiz.saveOrUpdateShiWorkOrg(shiWorkOrg);
@@ -73,42 +74,41 @@ public class AdminAction extends BaseAction {
 		return shiWorkOrgList();
 	}
 
-	
-
 	private AreaWorkOrg areaWorkOrg;
-	 //区县级账号列表
-	public String areaWorkOrgList(){
-		User user=(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+
+	// 区县级账号列表
+	public String areaWorkOrgList() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
-			pageBean= adminBiz.getAreaWorkOrgBean(pageIndex);
-			
-		}else if (user instanceof ShiWorkOrg){
-			pageBean=adminBiz.getAreaWorkOrgBean(pageIndex,areaWorkOrg.getShiWorkOrg().getId());
+			pageBean = adminBiz.getAreaWorkOrgBean(pageIndex);
+
+		} else if (user instanceof ShiWorkOrg) {
+			pageBean = adminBiz.getAreaWorkOrgBean(pageIndex, user.getId());
 		}
 		return "areaWorkOrg_list";
 	}
-	
-	 //区县级账号管理
-	public String saveOrUpdateAreaWorkOrg(){
-		
+
+	// 区县级账号管理
+	public String saveOrUpdateAreaWorkOrg() {
+
 		if (areaWorkOrg == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
 			return "areaWorkOrg_edit";
 		}
 		if (areaWorkOrg != null && !Util.isEmpty(areaWorkOrg.getLoginName())) {// 添加或更新
-			if (areaWorkOrg.getArea().getId()==null) {
+			if (areaWorkOrg.getArea().getId() == null) {
 				this.setMsg("请选择所属区县！");
 				return "areaWorkOrg_edit";
 			}
-			if(areaWorkOrg.getId() == null){
+			if (areaWorkOrg.getId() == null) {
 				AreaWorkOrg areaOrg = adminBiz.getEntityByUnique(AreaWorkOrg.class, "loginName", areaWorkOrg.getLoginName());
-				if(areaOrg != null){
+				if (areaOrg != null) {
 					this.setMsg("用户名已经被使用，请更名");
 					return "areaWorkOrg_edit";
 				}
 			}
-			
-			Area area= adminBiz.getEntityById(Area.class, areaWorkOrg.getArea().getId());
+
+			Area area = adminBiz.getEntityById(Area.class, areaWorkOrg.getArea().getId());
 			ShiWorkOrg shiWorkOrg = adminBiz.getEntityById(ShiWorkOrg.class, areaWorkOrg.getShiWorkOrg().getId());
 			areaWorkOrg.setShiWorkOrg(shiWorkOrg);
 			areaWorkOrg.setArea(area);
@@ -123,11 +123,12 @@ public class AdminAction extends BaseAction {
 		return "areaWorkOrg_edit";
 
 	}
-	//删除区县级账号
-	public String deleteAreaWorkOrg(){
+
+	// 删除区县级账号
+	public String deleteAreaWorkOrg() {
 		String[] areaWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("areaWorkOrg_ids");
-		if(areaWrokOrgIds != null && areaWrokOrgIds.length > 0){
-			for(String idStr : areaWrokOrgIds){
+		if (areaWrokOrgIds != null && areaWrokOrgIds.length > 0) {
+			for (String idStr : areaWrokOrgIds) {
 				Long id = Long.parseLong(idStr);
 				adminBiz.deleteEntity(AreaWorkOrg.class, id);
 			}
@@ -135,40 +136,42 @@ public class AdminAction extends BaseAction {
 		}
 		return areaWorkOrgList();
 	}
-	//镇级账号管理
+
+	// 镇级账号管理
 	private ZhenWorkOrg zhenWorkOrg;
-	//镇级账号列表
-	public String zhenWorkOrgList(){
-		User user=(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+
+	// 镇级账号列表
+	public String zhenWorkOrgList() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
-			pageBean= adminBiz.getZhenWorkOrgBean(pageIndex);
-			
-		}else if (user instanceof AreaWorkOrg){
-			pageBean=adminBiz.getZhenWorkOrgBean(pageIndex,areaWorkOrg.getShiWorkOrg().getId());
+			pageBean = adminBiz.getZhenWorkOrgBean(pageIndex);
+
+		} else if (user instanceof AreaWorkOrg) {
+			pageBean = adminBiz.getZhenWorkOrgBean(pageIndex, user.getId());
 		}
 		return "zhenWorkOrg_list";
 	}
-	
-	//保存或修改镇级账号
-public String saveOrUpdateZhenWorkOrg(){
-		
+
+	// 保存或修改镇级账号
+	public String saveOrUpdateZhenWorkOrg() {
+
 		if (zhenWorkOrg == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
 			return "zhenWorkOrg_edit";
 		}
 		if (zhenWorkOrg != null && !Util.isEmpty(zhenWorkOrg.getLoginName())) {// 添加或更新
-			if (zhenWorkOrg.getZhen().getId()==null) {
+			if (zhenWorkOrg.getZhen().getId() == null) {
 				this.setMsg("请选择所属镇！");
 				return "zhenWorkOrg_edit";
 			}
-			if(zhenWorkOrg.getId() == null){
+			if (zhenWorkOrg.getId() == null) {
 				ZhenWorkOrg zhenOrg = adminBiz.getEntityByUnique(ZhenWorkOrg.class, "loginName", zhenWorkOrg.getLoginName());
-				if(zhenOrg != null){
+				if (zhenOrg != null) {
 					this.setMsg("用户名已经被使用，请更名");
 					return "zhenWorkOrg_edit";
 				}
 			}
-			Zhen zhen= adminBiz.getEntityById(Zhen.class, zhenWorkOrg.getZhen().getId());
+			Zhen zhen = adminBiz.getEntityById(Zhen.class, zhenWorkOrg.getZhen().getId());
 			AreaWorkOrg areaOrg = adminBiz.getEntityById(AreaWorkOrg.class, zhenWorkOrg.getAreaWorkOrg().getId());
 			zhenWorkOrg.setAreaWorkOrg(areaOrg);
 			zhenWorkOrg.setZhen(zhen);
@@ -183,19 +186,20 @@ public String saveOrUpdateZhenWorkOrg(){
 		return "zhenWorkOrg_edit";
 
 	}
-	//删除镇级账号
-public String deleteZhenWorkOrg(){
-	String[] zhenWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("zhenWorkOrg_ids");
-	if(zhenWrokOrgIds != null && zhenWrokOrgIds.length > 0){
-		for(String idStr : zhenWrokOrgIds){
-			Long id = Long.parseLong(idStr);
-			adminBiz.deleteEntity(ZhenWorkOrg.class, id);
+
+	// 删除镇级账号
+	public String deleteZhenWorkOrg() {
+		String[] zhenWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("zhenWorkOrg_ids");
+		if (zhenWrokOrgIds != null && zhenWrokOrgIds.length > 0) {
+			for (String idStr : zhenWrokOrgIds) {
+				Long id = Long.parseLong(idStr);
+				adminBiz.deleteEntity(ZhenWorkOrg.class, id);
+			}
+			this.setMsg("删除镇级账号成功");
 		}
-		this.setMsg("删除镇级账号成功");
+		return zhenWorkOrgList();
 	}
-	return areaWorkOrgList();
-}
-	
+
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}

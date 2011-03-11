@@ -23,7 +23,7 @@
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}admin_deleteShiWorkOrg.action';
+				document.forms[0].action = '${appPath}admin_deleteAreaWorkOrg.action';
 				document.forms[0].submit();
 			}
 		}

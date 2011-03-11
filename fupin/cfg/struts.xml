@@ -116,7 +116,7 @@
 			<result name="shiworkorg_list" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
-					list\[\d+\]\.loginName
+					list\[\d+\]\.orgName
 				</param>
 			</result>
 			<result name="area_zhens" type="json">
@@ -128,7 +128,7 @@
 			<result name="shiorg_areaorgs" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
-					list\[\d+\]\.loginName
+					list\[\d+\]\.orgName
 				</param>
 			</result>
 		</action>		

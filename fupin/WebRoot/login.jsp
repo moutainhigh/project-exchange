@@ -115,19 +115,19 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
 					 <tbody><tr>
                       <td width="35%">&nbsp;</td>
 					  
-                      <td colspan="2" class="left_txt" height="25"><p>1- 向社会展示我省扶贫成效.</p></td>
+                      <td colspan="2" class="left_txt" height="25"><p>1- 政府主导、社会参与、自力更生、开发扶贫.</p></td>
                     </tr>
 					<tr>
                       <td width="35%">&nbsp;</td>					  
-                      <td colspan="2" class="left_txt" height="25"><p>2- 为精准扶贫、共同富裕提供支持.</p></td>
+                      <td colspan="2" class="left_txt" height="25"><p>2- 推动扶贫工作、展示扶贫成果.</p></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
-                      <td colspan="2" class="left_txt" height="25"><p>3- 系统目前覆盖全省3409个重点贫困村.</p></td>
+                      <td colspan="2" class="left_txt" height="25"><p></p></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
-                      <td colspan="2" class="left_txt" height="25"><p>4- 系统目前覆盖全省约371999多贫困帮扶对象. </p></td>
+                      <td colspan="2" class="left_txt" height="25"><p></p></td>
                     </tr>
 										
                     <tr>
@@ -139,7 +139,6 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
                 </tr>
               </tbody></table></td>
             </tr>
-            <tr><td class="left_txt">版本：<script>document.write(weihuflag);</script>100617.1072</td></tr>
         </tbody></table>
 		</td>
         <!-- 左E：系统信息单元格 -->
@@ -189,7 +188,7 @@ INPUT1 .input_out, .input_move,.input_on,.input_off{
                           <tr>
                             <td height="35">&nbsp;</td>
                             <td width="20%" height="35"><input onClick="login();" name="Submit" class="button" id="Submit" value="登 录" type="button"> </td>
-                            <td class="top_hui_text" width="67%"><input name="cs" class="button" id="cs" value="关 闭" onclick="self.close()" type="button"></td>
+                            <td class="top_hui_text" width="67%"><input name="cs" class="button" id="cs" value="重 置" onclick="" type="reset"></td>
                           </tr>
                           <tr>
                            <td></td>

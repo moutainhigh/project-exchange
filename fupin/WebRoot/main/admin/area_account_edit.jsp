@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>增加市级扶贫办帐号</title>
+		<title>编辑县级扶贫办帐号</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
@@ -16,14 +16,15 @@
 			$(function(){
 			
 				<c:if test="${userObj.roleType=='市级管理员'}">
-				$('#shiworkorg').html('<option value="${userObj.id}">${userObj.loginName}</option>');
+				$('#shiworkorg').html('<option value="${userObj.id}">${userObj.orgName}</option>');
+				selectAreas(${userObj.id});
 				</c:if>
 				<c:if test="${userObj.roleType=='超级管理员'}">
 				$.getJSON("${appPath}ajax/getAllShiWorkOrg?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#shiworkorg').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
-							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['loginName']+'</option>');
+							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['orgName']+'</option>');
 						if(currShiWorkOrg != '')
 							$('#shiworkorg').val(currShiWorkOrg);
 					}
