@@ -105,13 +105,13 @@ public class ZhenBFAction extends BaseAction {
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg areOrg = (AreaWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		}
@@ -142,13 +142,13 @@ public class ZhenBFAction extends BaseAction {
 			} else if (user instanceof ShiWorkOrg) {
 				ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 				List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-				if (list != null) {
+				if (list != null&&list.size()>0) {
 					zhen = list.get(0);
 				}
 			} else if (user instanceof AreaWorkOrg) {
 				AreaWorkOrg areOrg = (AreaWorkOrg) user;
 				List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-				if (list != null) {
+				if (list != null&&list.size()>0) {
 					zhen = list.get(0);
 				}
 			}
@@ -212,13 +212,13 @@ public class ZhenBFAction extends BaseAction {
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg areOrg = (AreaWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		}
@@ -237,13 +237,13 @@ public class ZhenBFAction extends BaseAction {
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg areOrg = (AreaWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		}
@@ -265,13 +265,13 @@ public class ZhenBFAction extends BaseAction {
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg areOrg = (AreaWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		}
@@ -302,13 +302,13 @@ public class ZhenBFAction extends BaseAction {
 			} else if (user instanceof ShiWorkOrg) {
 				ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 				List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-				if (list != null) {
+				if (list != null&&list.size()>0) {
 					zhen = list.get(0);
 				}
 			} else if (user instanceof AreaWorkOrg) {
 				AreaWorkOrg areOrg = (AreaWorkOrg) user;
 				List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-				if (list != null) {
+				if (list != null&&list.size()>0) {
 					zhen = list.get(0);
 				}
 			}
@@ -364,13 +364,13 @@ public class ZhenBFAction extends BaseAction {
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				zhen = list.get(0);
 			}
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg areOrg = (AreaWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-			if (list != null) {
+			if (list != null&& list.size()>0) {
 				zhen = list.get(0);
 			}
 		}

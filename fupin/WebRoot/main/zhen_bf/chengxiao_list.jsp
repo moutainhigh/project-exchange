@@ -90,7 +90,9 @@ var msg = '${msg}';
 			<c:if test="${f.status=='未提交'}">
 			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmChengxiao.action?chengxiao.id=${f.id}',600,390);">确认后提交</a>
 			</c:if>
+			<c:if test="${f.status!='未提交'}">
 			${f.status }
+			</c:if>
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
 		<a onclick="winOpen('${appPath}zhen_bf_viewChengxiaoZhen.action?chengxiao.id=${f.id}',600,390);" href="#">查看</a>

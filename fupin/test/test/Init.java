@@ -66,6 +66,7 @@ public class Init {
 		shiWorkOrg.setLoginName("shiworkorg");
 		shiWorkOrg.setPassword("123");
 		shiWorkOrg.setShi(shi);
+		
 		shiWorkOrg.setRemark("市级管理员账号");
 		baseBiz.saveOrUpdateEntity(shiWorkOrg);
 		

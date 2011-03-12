@@ -58,7 +58,7 @@ public class CunBFAction extends BaseAction {
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
 			List<Cun> list = cunBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				cun = list.get(0);
 			}
 		}
@@ -89,7 +89,7 @@ public class CunBFAction extends BaseAction {
 			} else if (user instanceof Org) {
 				Org org = (Org) user;
 				List<Cun> list = cunBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-				if (list != null) {
+				if (list != null&&list.size()>0) {
 					cun = list.get(0);
 				}
 			} 
@@ -151,7 +151,7 @@ public class CunBFAction extends BaseAction {
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
 			List<Cun> list = cunBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				cun = list.get(0);
 			}
 		} 
@@ -171,7 +171,7 @@ public class CunBFAction extends BaseAction {
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
 			List<Cun> list = cunBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				cun = list.get(0);
 			}
 		} 
@@ -193,7 +193,7 @@ public class CunBFAction extends BaseAction {
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
 			List<Cun> list = cunBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-			if (list != null) {
+			if (list != null&&list.size()>0) {
 				cun = list.get(0);
 			}
 		}
@@ -224,7 +224,7 @@ public class CunBFAction extends BaseAction {
 			} else if (user instanceof Org) {
 				Org org = (Org) user;
 				List<Cun> list = cunBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-				if (list != null) {
+				if (list != null&&list.size()>0) {
 					cun = list.get(0);
 				}
 			} 

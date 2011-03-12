@@ -25,8 +25,10 @@
 						$('#shiworkorg').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['orgName']+'</option>');
-						if(currShiWorkOrg != '')
+						if(currShiWorkOrg != ''){
 							$('#shiworkorg').val(currShiWorkOrg);
+							selectAreas(currShiWorkOrg);
+						}
 					}
 				});
 				</c:if>
@@ -34,6 +36,7 @@
 			
 				var currAreaId='${areaWorkOrg.area.id}';
 				function selectAreas(val){
+				alert(val);
 				$('#area').html('<option value=""></option>');
 				if(val && val!=''){
 					//供货厂列表

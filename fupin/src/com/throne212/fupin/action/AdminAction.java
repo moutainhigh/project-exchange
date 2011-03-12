@@ -81,7 +81,7 @@ public class AdminAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
 			pageBean = adminBiz.getAreaWorkOrgBean(pageIndex);
-
+			return "areaWorkOrg_list";
 		} else if (user instanceof ShiWorkOrg) {
 			pageBean = adminBiz.getAreaWorkOrgBean(pageIndex, user.getId());
 		}
@@ -145,7 +145,7 @@ public class AdminAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
 			pageBean = adminBiz.getZhenWorkOrgBean(pageIndex);
-
+			return "zhenWorkOrg_list";
 		} else if (user instanceof AreaWorkOrg) {
 			pageBean = adminBiz.getZhenWorkOrgBean(pageIndex, user.getId());
 		}

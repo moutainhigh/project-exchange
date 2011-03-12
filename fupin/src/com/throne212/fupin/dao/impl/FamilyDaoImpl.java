@@ -1,8 +1,10 @@
 package com.throne212.fupin.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.throne212.fupin.common.PageBean;
@@ -330,22 +332,33 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if (condition!=null &&condition.getFamily()!=null&&condition.getFamily().getName()!=null&&!"".equals(condition.getFamily().getName())) {
 			hql+=" and family.name like '%"+condition.getFamily().getName()+"%'";
 		}
+		List paramValueList = new ArrayList();
 		if (fromDate!=null) {
-			hql+=" and recordDate >= "+fromDate;
+			hql+=" and recordDate>=?";
+			paramValueList.add(fromDate);
 		}
 		if (toDate!=null) {
-			hql+=" and recordDate < "+Util.getNextDate(toDate);
+			hql+=" and recordDate<? ";
+			paramValueList.add(Util.getNextDate(toDate));
 		}
 		hql+=" order by id desc";
 		logger.debug("hql="+hql);
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,paramValueList.toArray()).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Record> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		Query q = s.createQuery(hql);
+		int i = 0;
+		for (Object o : paramValueList) {
+			q.setParameter(i++, o);
+		}
+		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setFirstResult(startIndex);
+		List<Record> list = q.list();
 		for (Record record : list) {
 			String hqlForLeaders = "from Leader l where l.family=? ";
-			List<Leader> listLeader=this.getHibernateTemplate().find(hqlForLeaders, record.getFamily());
+			List<Leader> listLeader = this.getHibernateTemplate().find(
+					hqlForLeaders, record.getFamily());
 			record.getFamily().setLeaderList(listLeader);
 		}
 		page.setResultList(list);// 数据列表

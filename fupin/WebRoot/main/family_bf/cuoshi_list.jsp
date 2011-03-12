@@ -64,7 +64,7 @@ var msg = '${msg}';
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}cun_bf_deleteCuoshiFamily.action';
+				document.forms[0].action = '${appPath}family_bf_deleteCuoshiFamily.action';
 				document.forms[0].submit();
 			}
 		}
