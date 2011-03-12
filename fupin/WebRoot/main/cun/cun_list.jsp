@@ -45,8 +45,9 @@
 							您当前所处页面：贫困村资料维护
 						</td>
 						<td align="right">
-							<input type="button" onclick="winOpen('${appPath}main/cun/cun_edit.jsp',900,700);" class="button" value="新增">
-							<input type="button" onclick="deleteInfo();" class="button" value="删除">
+							<label>村名字（模糊查询）: </label>
+							<input name="queryKey" value="${param.queryKey}" type="text"/>
+							<input type="submit" class="button" value="查询"> 
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -87,8 +88,8 @@
 								${f.zhen.area.name}${f.zhen.name}${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}cun_editCun.action?cun.id=${f.id}',900,700);">修改</a>
-								<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${f.id}',900,700);">查看</a>
+								<a href="#" onclick="winOpen('${appPath}cun_editCun.action?cun.id=${f.id}',750,650);">资料完善</a>
+								<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${f.id}',750,650);">查看</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -8,6 +8,7 @@
 		</id>
 		<discriminator column="diqu_type" type="string" force="false" insert="true" />
 		<property name="name" length="100"></property>
+		<property name="remark" length="2048"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>
@@ -30,6 +31,29 @@
 		<subclass discriminator-value="cun" extends="Diqu" name="Cun">
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
 			<many-to-one name="org"  lazy="false"></many-to-one>
+			<property name="dian"></property>
+			<property name="dibaoFamily"></property>
+			<property name="dibaoPerson"></property>
+			<property name="familyNum"></property>
+			<property name="house"></property>
+			<property name="income"></property>
+			<property name="labor"></property>
+			<property name="mianji"></property>
+			<property name="needBanFamily"></property>
+			<property name="needBanPerson"></property>
+			<property name="office"></property>
+			<property name="outLabor"></property>
+			<property name="personNum"></property>
+			<property name="poorFamilyNum"></property>
+			<property name="poorPersonNum"></property>
+			<property name="trainingNum"></property>
+			<property name="transNum"></property>
+			<property name="tv"></property>
+			<property name="water"></property>
+			<property name="weiHouse"></property>
+			<property name="ying"></property>
+			<property name="you"></property>
+			<property name="item" length="2048"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

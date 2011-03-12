@@ -35,11 +35,6 @@ public class CunAction extends BaseAction {
 	}
 	
 	public String saveCun() {
-		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof ZhenWorkOrg){
-			Zhen zhen = ((ZhenWorkOrg)user).getZhen();
-			cun.setZhen(zhen);
-		}
 		orgBiz.saveOrUpdateEntity(cun);
 		this.setSucc("Y");
 		this.setMsg("贫困村资料保存成功");

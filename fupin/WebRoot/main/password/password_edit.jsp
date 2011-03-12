@@ -10,6 +10,7 @@
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
+			<jsp:include page="../../msg.jsp"></jsp:include>
 			function submitForm(){
 				var oldpassword = $('#oldpassword').val();
 				var newpassword = $('#newpassword').val();
@@ -25,7 +26,6 @@
 		</script>
 	</head>
 	<body>
-		<jsp:include page="../../msg.jsp"></jsp:include>
 		<form method="post" action="${appPath}user_changePwd.action" name="">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>

@@ -18,6 +18,7 @@
 			
 				<c:if test="${userObj.roleType=='县级管理员'}">
 				$('#shiworkorg').html('<option value="${userObj.shiWorkOrg.id}">${userObj.shiWorkOrg.orgName}</option>');
+				selectAreaWorkOrgs(${userObj.shiWorkOrg.id});
 				</c:if>
 				<c:if test="${userObj.roleType=='超级管理员'}">
 				$.getJSON("${appPath}ajax/getAllShiWorkOrg?time="+new Date().getTime(), {}, function(json){
@@ -34,7 +35,7 @@
 			
 			//根据区扶贫单位列出镇
 			var currZhenId='${zhenWorkOrg.zhen.id}';
-				function selectAreas(val){
+			function selectAreas(val){
 				$('#zhen').html('<option value=""></option>');
 				if(val && val!=''){
 					//供货厂列表
@@ -65,6 +66,7 @@
 							}
 							if(currAreaWorkOrgId){
 								$('#areaworkorg').val(currAreaWorkOrgId);
+								selectAreas($('#areaworkorg').val());
 							}
 						}
 					});

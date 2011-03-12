@@ -82,7 +82,8 @@
 								&nbsp; ${f.id}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.name}
+								&nbsp; 
+								<a href="#" style="color:red" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',800,700);">${f.name}</a>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
@@ -97,7 +98,7 @@
 								${f.leaderNames }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}family_bf_editFamilyMapping.action?family.id=${f.id}',900,700);">修改帮扶方式</a>
+								<a href="#" onclick="winOpen('${appPath}family_bf_editFamilyMapping.action?family.id=${f.id}',550,600);">修改帮扶方式</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -18,15 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script language="javascript">
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			$(function(){
+				var year = '${cuoshi.year}';
+				if(year != ''){
+					$('#year').val(year);
+				}
 			});
 		</script>
 </head><body>
 
 <form onsubmit="return Validator.Validate(this)" method="get" action="${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action" name="dataForm">
 			<input type="hidden" value="${cuoshi.id}" name="cuoshi.id" id="">
-			<c:if test="${not empty cuoshi.id}">
-			<input type="hidden" value="${cuoshi.year}" name="cuoshi.year" id="">
-			</c:if>
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr>
 	<td height="30" width="40%" align="right" class="tables_leftcell">贫困镇名称</td>
@@ -49,15 +50,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td height="30" align="right" class="tables_leftcell">帮扶年度</td>
 		<td class="tables_contentcell">
 		<select style="width: 135px;" name="cuoshi.year">
-		<c:if test="${not empty cuoshi.year}">
-		<option value="${cuoshi.year} " selected="selected">${cuoshi.year}</option>
-		</c:if>
-			<option value="2011">2011</option>
-		
-			<option value="2010">2010</option>
-		
-			<option value="2009">2009</option>
-		
+			<%
+			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
+			for(int i=year;i>year-3;i--){
+			%>
+			<option value="<%=i%>"><%=i%></option>
+			<%	
+			}
+			%>
 		<option value="3">3年</option>
 		</select>
 		<font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>

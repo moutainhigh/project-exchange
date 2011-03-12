@@ -3,6 +3,7 @@ package com.throne212.fupin.domain;
 public class Diqu extends MyEntity {
 	
 	protected String name;
+	protected String remark;
 	
 	public String getType(){
 		if(this instanceof Shi)
@@ -22,6 +23,14 @@ public class Diqu extends MyEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }
