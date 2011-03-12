@@ -1,9 +1,11 @@
 package com.throne212.fupin.action;
 
+import java.util.Date;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.FamilyBFBiz;
+import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
@@ -18,6 +20,7 @@ import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
+import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.User;
 
 public class FamilyBFAction extends BaseAction {
@@ -27,6 +30,7 @@ public class FamilyBFAction extends BaseAction {
 	private CuoshiFamily cuoshi;
 	private ChengxiaoFamily chengxiao;
 	private Reason reason;
+	private Record record;
 	private Cun cun;
 	// 户帮扶措施列表
 	public String cuoshiFamilyList() {
@@ -340,6 +344,132 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return picFamilyList();
 	}
+	// 贫困户帮扶记录列表
+	private Date fromDate;
+	private Date toDate;
+	public String recordList() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (fromDate!=null&&toDate!=null) {
+			if (fromDate.getTime()>toDate.getTime()) {
+				this.setMsg("起始时间必须小于结束时间！");
+				return "record_list";
+			}
+		}
+		
+		if (user instanceof Admin) {
+			pageBean = familyBFBiz.getAllRecord(record, pageIndex,fromDate,toDate);
+			return "record_list";
+		} 
+		Org org = (Org) user;
+		pageBean = familyBFBiz.getAllRecordByCunId(record,org.getCun().getId(), pageIndex,fromDate,toDate);
+		return "record_list";
+	}
+	//增加或修改帮扶记录
+	public String saveOrUpdateRecord() {
+		if (record == null) {
+			this.setMsg("保存失败，请检查数据是否录入完整");
+			return "record_edit";
+		}
+		if (record != null && record.getContent()!=null) {// 添加或更新信息
+			if (record.getRecordDate() == null) {
+				this.setMsg("请填入记录时间！");
+				return "record_edit";
+			}
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			if (user instanceof Admin) {
+				this.setMsg("超级管理员无权进行此操作！");
+				return "record_edit";
+			} 
+			Family family=null;
+			if (record.getFamily()!=null&&record.getFamily().getId()!=null) {
+				family=familyBFBiz.getEntityById(Family.class, record.getFamily().getId());
+				record.setFamily(family);
+			}
+			if (family!=null&&leaderId!=null) {
+				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
+				leader.setFamily(family);
+			}
+			record.setFamily(family);
+			record.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
+			record = familyBFBiz.saveOrUpdateRecord(record);
+			this.setMsg("保存成功");
+			this.setSucc("Y");
+			record = null;
+		} else if (record != null && record.getId() != null) {// 查看详情
+			record = familyBFBiz.getEntityById(Record.class, record.getId());
+		}
+		return "record_edit";
+	}
+	// 确定提交
+	public String confirmRecord() {
+		if (record.getId() != null) {
+			record = familyBFBiz.getEntityById(Record.class, record.getId());
+			record.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			familyBFBiz.saveOrUpdateEntity(record);
+		}
+		return recordList();
+	}
+	// 删除记录
+	public String deleteRecord() {
+		String[] recordIds = (String[]) ActionContext.getContext().getParameters().get("record_ids");
+		if (recordIds != null && recordIds.length > 0) {
+			for (String idStr : recordIds) {
+				Long id = Long.parseLong(idStr);
+				familyBFBiz.deleteEntity(Record.class, id);
+			}
+			this.setMsg("删除扶持记录成功");
+		}
+		return recordList();
+	}
+	
+	
+	
+	//规划到户
+	private OrgBiz orgBiz;
+	private Family family;
+	private String queryKey;
+	public String familyMappingList(){
+		pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+		if(pageBean.getResultList() != null && pageBean.getResultList().size()>0){
+			for(Object o : pageBean.getResultList()){
+				Family f = (Family) o;
+				List list = orgBiz.getEntitiesByColumn(Leader.class, "family", f);
+				f.setLeaderList(list);
+			}
+		}
+		return "family_mapping_list";
+	}
+	
+	private List leaderList;
+	public String editFamilyMapping(){
+		family = familyBFBiz.getEntityById(Family.class, family.getId());
+		List list = orgBiz.getEntitiesByColumn(Leader.class, "family", family);
+		family.setLeaderList(list);
+		
+		//获取领导列表
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof Org) {
+			leaderList = orgBiz.getEntitiesByColumn(Leader.class, "org", user);
+		} 
+		
+		return "family_mapping_edit";
+	}
+	
+	public String saveFamilyMapping(){
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("leaderIds");
+		if(ids != null && ids.length > 0){
+			family = orgBiz.getEntityById(Family.class, family.getId());
+			for(String id : ids){
+				Leader leader = orgBiz.getEntityById(Leader.class, Long.parseLong(id));
+				leader.setFamily(family);
+				orgBiz.saveOrUpdateEntity(leader);
+			}
+			this.setSucc("Y");
+			this.setMsg("帮扶方式保存成功");
+		}
+		return "family_mapping_edit";
+	}
+	
 	
 	public PageBean getPageBean() {
 		return pageBean;
@@ -409,6 +539,62 @@ public class FamilyBFAction extends BaseAction {
 
 	public void setPic(PicFamily pic) {
 		this.pic = pic;
+	}
+
+	public Record getRecord() {
+		return record;
+	}
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}
+
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Date getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+	public OrgBiz getOrgBiz() {
+		return orgBiz;
+	}
+
+	public void setOrgBiz(OrgBiz orgBiz) {
+		this.orgBiz = orgBiz;
+	}
+
+	public Family getFamily() {
+		return family;
+	}
+
+	public void setFamily(Family family) {
+		this.family = family;
+	}
+
+	public String getQueryKey() {
+		return queryKey;
+	}
+
+	public void setQueryKey(String queryKey) {
+		this.queryKey = queryKey;
+	}
+
+	public List getLeaderList() {
+		return leaderList;
+	}
+
+	public void setLeaderList(List leaderList) {
+		this.leaderList = leaderList;
 	}
 	
 	

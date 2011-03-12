@@ -166,10 +166,10 @@ function images_update(){
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}cun_bf_chengxiaoCunList.action";
 		menuArray[menuArray.length]="1,村图片管理,${appPath}cun_bf_picCunList.action";
         menuArray[menuArray.length]="0,户帮扶维护";
-        menuArray[menuArray.length]="1,规划到户,./test.htm";
+        menuArray[menuArray.length]="1,规划到户,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}family_bf_cuoshiFamilyList.action";
-        menuArray[menuArray.length]="1,到户记录（即扶持内容）,./test.htm";
+        menuArray[menuArray.length]="1,到户记录（即扶持内容）,${appPath}family_bf_recordList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}family_bf_chengxiaoFamilyList.action";
 		menuArray[menuArray.length]="1,户图片管理,${appPath}family_bf_picFamilyList.action";
 		menuArray[menuArray.length]="0,报表管理,";
@@ -177,8 +177,8 @@ function images_update(){
 		menuArray[menuArray.length]="1,年度报表,./test.htm";
 		
 		menuArray[menuArray.length]="0,成效评估,";
-        menuArray[menuArray.length]="1,表一,cxpgtone.jsp";
-		menuArray[menuArray.length]="1,表二,cxpgttwo.jsp";
+        menuArray[menuArray.length]="1,表一,./test.htm";
+		menuArray[menuArray.length]="1,表二,./test.htm";
 		
 		//menuArray[menuArray.length]="0,重审申请,reauditApply.jsp";
         //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";

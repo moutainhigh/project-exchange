@@ -11,6 +11,7 @@ import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Person;
 import com.throne212.fupin.domain.Shi;
@@ -91,6 +92,7 @@ public class Init {
 		//贫困户
 		Family family = new Family();
 		family.setName("张三");
+		family.setGender("男");
 		family.setType(1);
 		family.setCun(cun);
 		
@@ -104,6 +106,12 @@ public class Init {
 		p.setJob("无");
 		family.setPerson1(p);
 		baseBiz.saveOrUpdateEntity(family);
+		
+		Leader leader = new Leader();
+		leader.setLeaderName("王五");
+		leader.setPosition("副局长");
+		leader.setOrg(org);
+		baseBiz.saveOrUpdateEntity(leader);
 		
 	}
 }

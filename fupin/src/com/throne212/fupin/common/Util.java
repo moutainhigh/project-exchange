@@ -54,7 +54,18 @@ public class Util {
 		long time = date.getTime() + 24*60*60*1000 - 1;
 		return new Date(time);
 	}
-
+	public static Date getNextDate(Date d){
+		return getAfterDaysDate(d,1);
+	}
+	public static Date getAfterDaysDate(Date d, int days){
+		long addTime = 1;
+		addTime *= days; 
+		addTime *= 24; 
+		addTime *= 60; 
+		addTime *= 60; 
+		addTime *= 1000;
+		return new Date(d.getTime() + addTime);
+	}
 	public static boolean isEmpty(String str) {
 		if (str == null || "".equals(str.trim()))
 			return true;
@@ -118,7 +129,7 @@ public class Util {
 		int h = src.getHeight(null);
 		int w = src.getWidth(null);
 		BufferedImage tag = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-		tag.getGraphics().drawImage(src, 0, 0, w, h, null); // ������С����?
+		tag.getGraphics().drawImage(src, 0, 0, w, h, null); // ������С����?
 		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
 		encoder.encode(tag); // ��JPEG����
 	}
@@ -152,7 +163,7 @@ public class Util {
 				}
 			}
 			BufferedImage tag = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-			tag.getGraphics().drawImage(src, 0, 0, w, h, null); // ������С����?
+			tag.getGraphics().drawImage(src, 0, 0, w, h, null); // ������С����?
 			JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
 			encoder.encode(tag); // ��JPEG����
 		} catch (ImageFormatException e) {

@@ -94,6 +94,10 @@
 			<result name="reason_edit">/main/family_bf/reason_edit.jsp</result>
 			<result name="pic_list">/main/family_bf/pic_list.jsp</result>
 			<result name="pic_edit">/main/family_bf/pic_edit.jsp</result>
+			<result name="record_list">/main/family_bf/record_list.jsp</result>
+			<result name="record_edit">/main/family_bf/record_edit.jsp</result>
+			<result name="family_mapping_list">/main/family_bf/family_mapping_list.jsp</result>
+			<result name="family_mapping_edit">/main/family_bf/family_mapping_edit.jsp</result>
 		</action>
 		
 		<!-- 管理员账号和村帮扶指定模块 -->

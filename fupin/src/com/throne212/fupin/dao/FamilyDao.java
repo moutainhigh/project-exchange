@@ -1,10 +1,13 @@
 package com.throne212.fupin.dao;
 
+import java.util.Date;
+
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
+import com.throne212.fupin.domain.Record;
 
 public interface FamilyDao extends BaseDao {
 	
@@ -22,5 +25,10 @@ public interface FamilyDao extends BaseDao {
 	//村图片管理
 	public PageBean<PicFamily> getAllPicFamilyByCunId(PicFamily condition,Long CunId,Integer pageIndex);
 	public PageBean<PicFamily> getAllPicFamily(PicFamily condition,Integer pageIndex);
+	
+	//帮扶记录
+	public PageBean<Record> getAllRecordByCunId(Record condition,Long cunId,Integer pageIndex,Date fromDate,Date toDate);
+	public PageBean<Record> getAllRecord(Record condition,Integer pageIndex,Date fromDate,Date toDate);
+	
 
 }

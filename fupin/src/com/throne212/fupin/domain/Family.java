@@ -8,7 +8,7 @@ import java.util.Set;
 import com.throne212.fupin.common.WebConstants;
 
 public class Family extends MyEntity {
-	
+
 	private String name;
 	private Cun cun;
 	private String zu;
@@ -16,22 +16,22 @@ public class Family extends MyEntity {
 	private Date birthday;
 	private String idNo;
 	private String wenhua;
-	private Double income;//年收入
-	private Date date;//登记日期
-	private String dibao;//是否为低保
-	private String tuopin;//脱贫状况
-	private String gongkai;//公开状态
-	private Integer type;//贫困类型
-	private String canji;//是否残疾
-	
-	private Double shuitian;//水田
-	private Double handi;//旱地
-	private Double linguodi;//林果地
-	private Double other;//其他
-	
-	private String jiegou;//房屋结构
-	private Double mianji;//mianji
-	
+	private Double income;// 年收入
+	private Date date;// 登记日期
+	private String dibao;// 是否为低保
+	private String tuopin;// 脱贫状况
+	private String gongkai;// 公开状态
+	private Integer type;// 贫困类型
+	private String canji;// 是否残疾
+
+	private Double shuitian;// 水田
+	private Double handi;// 旱地
+	private Double linguodi;// 林果地
+	private Double other;// 其他
+
+	private String jiegou;// 房屋结构
+	private Double mianji;// mianji
+
 	private Person person1;
 	private Person person2;
 	private Person person3;
@@ -42,20 +42,31 @@ public class Family extends MyEntity {
 	private Person person8;
 	private Person person9;
 	private Person person10;
-	
+
 	private List<Leader> leaderList;
-	
-	public String getLeaderNames(){
+
+	public String getLeaderNames() {
+		if(leaderList == null || leaderList.size() == 0){
+			return "暂时没有帮扶干部";
+		}
 		StringBuffer sb = new StringBuffer();
-		for(Leader l : leaderList){
+		for (Leader l : leaderList) {
 			sb.append(l.getLeaderName());
 			sb.append(" ");
 		}
 		return sb.toString();
 	}
-	
-	public String getTypeTxt(){
-		if(type == null)
+
+	public int getLeaderSize(){
+		if(leaderList == null){
+			return 0;
+		}else{
+			return leaderList.size();
+		}
+	}
+
+	public String getTypeTxt() {
+		if (type == null)
 			return null;
 		switch (type) {
 		case 1:
@@ -68,14 +79,14 @@ public class Family extends MyEntity {
 			return "";
 		}
 	}
-	
-	public Person getPerson(int i){
+
+	public Person getPerson(int i) {
 		try {
-			Method m = this.getClass().getDeclaredMethod("getPerson"+i);
+			Method m = this.getClass().getDeclaredMethod("getPerson" + i);
 			Person p = (Person) m.invoke(this);
-			if(p == null || p.getName() == null || "".equals(p.getName())){
+			if (p == null || p.getName() == null || "".equals(p.getName())) {
 				return null;
-			}else{
+			} else {
 				return p;
 			}
 		} catch (Exception e) {
@@ -331,7 +342,5 @@ public class Family extends MyEntity {
 	public void setLeaderList(List<Leader> leaderList) {
 		this.leaderList = leaderList;
 	}
-
-
 
 }

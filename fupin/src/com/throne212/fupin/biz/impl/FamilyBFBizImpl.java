@@ -9,9 +9,9 @@ import com.throne212.fupin.domain.ChengxiaoCun;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.CuoshiFamily;
-import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
+import com.throne212.fupin.domain.Record;
 
 public class FamilyBFBizImpl extends BaseBizImpl implements FamilyBFBiz {
 private FamilyDao familyDao;
@@ -152,4 +152,33 @@ private FamilyDao familyDao;
 		return pic;
 	}
 
+	public PageBean<Record> getAllRecord(Record condition, Integer pageIndex,
+			Date fromDate, Date toDate) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllRecord(condition,pageIndex, fromDate, toDate);
+	}
+
+	public PageBean<Record> getAllRecordByCunId(Record condition, Long cunId,
+			Integer pageIndex, Date fromDate, Date toDate) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllRecordByCunId(condition,cunId, pageIndex,fromDate,toDate);
+	}
+
+	public Record saveOrUpdateRecord(Record record) {
+		if (record.getId() == null) {
+			record.setCreateDate(new Date());
+			familyDao.saveOrUpdate(record);
+			logger.info("添加成功");
+		} else {
+			familyDao.saveOrUpdate(record);
+			logger.info("更新成功");
+		}
+		return record;
+	}
+
+	
+	
+	
 }
