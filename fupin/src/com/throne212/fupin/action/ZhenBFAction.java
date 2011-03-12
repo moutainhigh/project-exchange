@@ -387,40 +387,39 @@ public class ZhenBFAction extends BaseAction {
 
 		if (pic == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
-			return "piczhen_edit";
+			return "pic_edit";
 		}
-		if (pic != null && !Util.isEmpty(pic.getYear())) {// 添加或更新市扶贫账号信息
-			if (pic.getYear() == null) {
-				this.setMsg("请选择帮扶年度！");
-				return "piczhen_edit";
-			}
+		if (pic != null && !Util.isEmpty(pic.getYear()) && !Util.isEmpty(pic.getType())) {// 添加或更新市扶贫账号信息
 			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 			Zhen zhen = null;
 			if (user instanceof Admin) {
 				this.setMsg("超级管理员无权进行此操作！");
-				return "piczhen_edit";
+				return "pic_edit";
 			} else if (user instanceof ShiWorkOrg) {
 				ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 				List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
-				if (list != null) {
+				if (list != null && list.size()>0) {
 					zhen = list.get(0);
 				}
 			} else if (user instanceof AreaWorkOrg) {
 				AreaWorkOrg areOrg = (AreaWorkOrg) user;
 				List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "areaWorkOrg", areOrg);
-				if (list != null) {
+				if (list != null && list.size()>0) {
 					zhen = list.get(0);
 				}
 			}
 			if (zhen == null) {
 				this.setMsg("尚未指定帮扶镇，不能进行操作!");
-				return "piczhen_edit";
+				return "pic_edit";
 			}
 			pic.setZhen(zhen);
 			String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
 			if (image != null) {
 				pic.setPath(image);
 				ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+			}else{
+				this.setMsg("图片未能上传，请先上传图片，再确认操作");
+				return "pic_edit";
 			}
 			pic.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
 			pic = zhenBFBiz.saveOrUpdatePicZhen(pic);
@@ -432,6 +431,10 @@ public class ZhenBFAction extends BaseAction {
 		}
 		return "pic_edit";
 
+	}
+	public String viewPic(){
+		pic = zhenBFBiz.getEntityById(PicZhen.class, pic.getId());
+		return "show_pic";
 	}
 
 	// 确定提交

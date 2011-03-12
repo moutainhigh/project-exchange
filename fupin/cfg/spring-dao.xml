@@ -17,6 +17,12 @@
 	<bean id="zhenDao" class="com.throne212.fupin.dao.impl.ZhenDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="cunDao" class="com.throne212.fupin.dao.impl.CunDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="familyDao" class="com.throne212.fupin.dao.impl.FamilyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 	<bean id="managerDao" class="com.throne212.fupin.dao.impl.ManagerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>

@@ -24,4 +24,12 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="zhenDao" ref="zhenDao"></property>
 	</bean>
+	<bean id="cunBFBiz" class="com.throne212.fupin.biz.impl.CunBFBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="cunDao" ref="cunDao"></property>
+	</bean>
+	<bean id="familyBFBiz" class="com.throne212.fupin.biz.impl.FamilyBFBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="familyDao" ref="familyDao"></property>
+	</bean>
 </beans>

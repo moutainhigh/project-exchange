@@ -33,6 +33,8 @@
 				<value>orgBiz</value>
 				<value>diquBiz</value>
 				<value>zhenBFBiz</value>
+				<value>cunBFBiz</value>
+				<value>familyBFBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

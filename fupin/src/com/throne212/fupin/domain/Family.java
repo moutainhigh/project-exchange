@@ -43,6 +43,17 @@ public class Family extends MyEntity {
 	private Person person9;
 	private Person person10;
 	
+	private List<Leader> leaderList;
+	
+	public String getLeaderNames(){
+		StringBuffer sb = new StringBuffer();
+		for(Leader l : leaderList){
+			sb.append(l.getLeaderName());
+			sb.append(" ");
+		}
+		return sb.toString();
+	}
+	
 	public String getTypeTxt(){
 		if(type == null)
 			return null;
@@ -311,6 +322,14 @@ public class Family extends MyEntity {
 
 	public void setPerson10(Person person10) {
 		this.person10 = person10;
+	}
+
+	public List<Leader> getLeaderList() {
+		return leaderList;
+	}
+
+	public void setLeaderList(List<Leader> leaderList) {
+		this.leaderList = leaderList;
 	}
 
 

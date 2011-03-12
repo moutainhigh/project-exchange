@@ -28,5 +28,8 @@
 		<subclass discriminator-value="cun" extends="Chengxiao" name="ChengxiaoCun">
 			<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
 		</subclass>
+		<subclass discriminator-value="family" extends="Chengxiao" name="ChengxiaoFamily">
+			<many-to-one name="family" column="family_id" lazy="false"></many-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

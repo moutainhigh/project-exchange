@@ -160,17 +160,17 @@ function images_update(){
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";
 		menuArray[menuArray.length]="1,镇图片管理,${appPath}zhen_bf_picZhenList.action";
 		</c:if>
-		<c:if test="${userObj.roleType=='帮扶单位管理员' || userObj.roleType=='超级管理员'}">
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,村帮扶维护";
-        menuArray[menuArray.length]="1,帮扶措施,./test.htm";
-		menuArray[menuArray.length]="1,帮扶成效,./test.htm";
-		menuArray[menuArray.length]="1,村图片管理,./test.htm";
+        menuArray[menuArray.length]="1,帮扶措施,${appPath}cun_bf_cuoshiCunList.action";
+		menuArray[menuArray.length]="1,帮扶成效,${appPath}cun_bf_chengxiaoCunList.action";
+		menuArray[menuArray.length]="1,村图片管理,${appPath}cun_bf_picCunList.action";
         menuArray[menuArray.length]="0,户帮扶维护";
         menuArray[menuArray.length]="1,规划到户,./test.htm";
-        menuArray[menuArray.length]="1,贫困原因,./test.htm";
-        menuArray[menuArray.length]="1,帮扶措施,./test.htm";
+        menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
+        menuArray[menuArray.length]="1,帮扶措施,${appPath}family_bf_cuoshiFamilyList.action";
         menuArray[menuArray.length]="1,到户记录（即扶持内容）,./test.htm";
-		menuArray[menuArray.length]="1,帮扶成效,./test.htm";
+		menuArray[menuArray.length]="1,帮扶成效,${appPath}family_bf_chengxiaoFamilyList.action";
 		menuArray[menuArray.length]="1,户图片管理,./test.htm";
 		menuArray[menuArray.length]="0,报表管理,";
         menuArray[menuArray.length]="1,季度报表,./test.htm";
@@ -183,7 +183,6 @@ function images_update(){
 		//menuArray[menuArray.length]="0,重审申请,reauditApply.jsp";
         //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
         //menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
-        </c:if>
         
         ////HELP:
 	    menuArray[menuArray.length]="0,使用帮助,";
@@ -210,6 +209,7 @@ function images_update(){
 	    menuArray[menuArray.length]="2,8.1.季度报表,http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.1.html";
 	    menuArray[menuArray.length]="2,8.2.年度报表,http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.2.html";
 	    //menuArray[24]="2,2.帐号激活,./help/help2.2.html";	
+	    </c:if>
 	    
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">

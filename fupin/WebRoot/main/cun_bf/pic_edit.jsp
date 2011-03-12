@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head><body class="tables_leftcell">
 
-<form onsubmit="return Validator.Validate(this)" method="post" enctype="multipart/form-data" action="${appPath}zhen_bf_saveOrUpdatePicZhen.action" name="upload">
+<form onsubmit="return Validator.Validate(this)" method="post" enctype="multipart/form-data" action="${appPath}cun_bf_saveOrUpdatePicCun.action" name="upload">
 <input type="hidden" value="16483" name="village_id">
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 <tbody><tr><td height="30" align="right" class="tables_headercell">

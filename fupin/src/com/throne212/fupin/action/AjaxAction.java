@@ -2,13 +2,19 @@ package com.throne212.fupin.action;
 
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.biz.BaseBiz;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Leader;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
+import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
 
 public class AjaxAction extends BaseAction {
@@ -84,6 +90,23 @@ public class AjaxAction extends BaseAction {
 		System.out.print("_+_+_+_+_+_+"+list);
 		return "shiorg_areaorgs";
 	}
+	//根据单位对应的村查找所有贫困户
+	public String getAllFamilyByCun(){
+		User user =(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		Org org =(Org)user;
+		list=baseBiz.getEntitiesByColumn(Family.class, "cun", org.getCun());
+		return "cun_family";
+	}
+	
+	//根据单位查找所有干部
+	public String getAllLeaderByOrg(){
+		User user =(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		Org org =(Org)user;
+		list=baseBiz.getEntitiesByColumn(Leader.class, "org", org);
+		return "org_leader";
+	}
+	
+	
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}

@@ -1,0 +1,84 @@
+/* CSS Document */
+
+*{
+    padding:0;
+    margin:0;
+}
+
+body{
+    font-size:12px;
+    font-family:"Verdana", Arial, Helvetica, sans-serif;
+    color:#434343;
+}
+
+h1,h2,h3,h4,h5,h6,h7{
+    font-family:"Arial", Verdana, Helvetica, sans-serif
+}
+
+img{
+    border:0;
+}
+
+/*login*/
+
+#login{
+    width:687px;
+    height:260px;
+    margin:200px auto 0;
+    background:url(./images/login.gif) no-repeat;
+    padding-top:15px;
+    padding-right:18px;
+}
+#login_warp{
+    float:right;
+    background:url(./images/warp_login.gif) no-repeat;
+    width:286px;
+    height:245px;
+}
+#login_warp form{
+    padding:5px 18px;
+}
+#login_warp h3{
+    height:26px;
+    line-height:26px;
+    text-indent:0.5em;
+    font-size:12px;
+    color:#fff;
+}
+.login_btn{
+    padding-top:5px;
+    clear:both;
+	cursor: hand;
+}
+.type_words{
+
+}
+.type_words label{
+    display:block;
+    font-size:12px;
+    color:#434343;
+    font-weight:bold;
+    margin:5px 0 5px;
+}
+.username,
+.password{
+    width:250px;
+    height:28px;
+    background:url(./images/login_input.gif) no-repeat;
+}
+.username input,
+.password input{
+    padding:6px 4px 0;
+    width:242px;
+    background:transparent;
+    border:0px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.login_pic{
+    float:left;
+    width:73px;
+    height:26px;
+    padding-top:1px;
+    margin-right:5px;
+}

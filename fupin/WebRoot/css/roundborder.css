@@ -1,0 +1,42 @@
+	div.tl {
+		background:url(../images/ulcorner.gif) no-repeat;
+		float:left;
+		height:12px;
+		width:12px;
+	}
+	div.tr {
+		background:url(../images/urcorner.gif) no-repeat;
+		float:right;
+		height:12px;
+		width:12px;
+	}
+	div.bl {
+		background:url(../images/llcorner.gif) no-repeat;
+		float:left;
+		height:12px;
+		width:12px;
+		margin-top:-12px;
+	}
+	div.br {
+		background:url(../images/lrcorner.gif) no-repeat;
+		float:right;
+		height:12px;
+		width:12px;
+		margin-top:-12px;
+	}
+	div.content {
+		border-style:solid; 
+		border-width:1px; 
+		padding:12px; 
+		background:#cce2fe; 
+		color:#cce2fe;
+	}
+	div.content .p {
+	   color:#000;
+	   background:#cce2fe; 
+	   padding:0px 0px 0px 0px;
+	   width: 100%;	   
+	}
+	div.content .p ul {padding:0;margin:0;text-align:left;}
+	div.content .p ul li{margin-left:15px; }
+	div.content .p ul li span{padding-left:-100px;}

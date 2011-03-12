@@ -35,18 +35,18 @@ var msg = '${msg}';
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}zhen_bf_deletePicZhen.action';
+				document.forms[0].action = '${appPath}cun_bf_deletePicCun.action';
 				document.forms[0].submit();
 			}
 		}
 </script>
 </head><body>
 
-<form method="get" action="${appPath}zhen_bf_picZhenList.action" name="searchForm">
+<form method="get" action="${appPath}cun_bf_picCunList.action" name="searchForm">
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
-	<td>您当前所处页面：镇帮扶维护&gt;&gt;镇图片管理 </td>
+	<td>您当前所处页面：村帮扶维护&gt;&gt;村图片管理 </td>
 	<td align="right">
 
 	<label>审核状态: </label>
@@ -59,7 +59,7 @@ var msg = '${msg}';
 	</select>
 
 		<input type="submit" class="button" value="查询"> 
-		<input type="button" onclick="winOpen('${appPath}main/zhen_bf/pic_edit.jsp',450,600);" class="button" value="上传">
+		<input type="button" onclick="winOpen('${appPath}main/cun_bf/pic_edit.jsp',450,600);" class="button" value="上传">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 	</td>
 	<td width="5px" align="right"></td>
@@ -82,7 +82,7 @@ var msg = '${msg}';
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
 		<td height="25" align="center" class="tables_contentcell">
-		<input type="checkbox" value="${f.id}" name="picZhen_ids" class="picZhen_ids">
+		<input type="checkbox" value="${f.id}" name="picCun_ids" class="picCun_ids">
 		<input type="hidden" value="2" name="sftj3981" id="sftj3981">
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
@@ -92,7 +92,7 @@ var msg = '${msg}';
 			${f.year }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			${f.zhen.name }
+			${f.cun.name }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.createDate }
@@ -105,12 +105,12 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			<%--<c:if test="${f.status=='未提交'}">
-			<a href="#" onclick="winOpen('${appPath}zhen_bf_confirmPic.action?pic.id=${f.id}',450,600);">确认后提交</a>
+			<a href="#" onclick="winOpen('${appPath}cun_bf_confirmPic.action?pic.id=${f.id}',450,600);">确认后提交</a>
 			</c:if>--%>
 			${f.status }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
-		<a rel="facebox" href="${appPath}zhen_bf_viewPic.action?pic.id=${f.id}">查看</a>
+		<a rel="facebox" href="${appPath}cun_bf_viewPic.action?pic.id=${f.id}">查看</a>
 		</td>
 		
 

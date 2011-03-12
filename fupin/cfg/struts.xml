@@ -34,10 +34,11 @@
                 <param name="inputName">downloadFile</param>  
             </result>
             <result name="error">/html/error.jsp</result>
+            <result name="show_pic">/upload/show.jsp</result>
 		</global-results>
 		<!-- 登入 -->
 		<action name="login" class="com.throne212.fupin.action.LoginAction">
-			<result name="success">/main.html</result>
+			<result name="success" type="redirect">/main.html</result>
 			<result name="fail">/login.jsp</result>
 		</action>
 		<!-- 登出 -->
@@ -72,7 +73,27 @@
 			<result name="chengxiaozhen_edit">/main/zhen_bf/chengxiao_edit.jsp</result>
 			<result name="pic_list">/main/zhen_bf/pic_list.jsp</result>
 			<result name="pic_edit">/main/zhen_bf/pic_edit.jsp</result>
+			
 		</action>
+		<!-- 村帮扶模块 -->
+		<action name="cun_bf_*" method="{1}" class="com.throne212.fupin.action.CunBFAction">
+			<result name="cuoshicun_list">/main/cun_bf/cuoshi_list.jsp</result>
+			<result name="cuoshicun_edit">/main/cun_bf/cuoshi_edit.jsp</result>
+			<result name="chengxiaocun_list">/main/cun_bf/chengxiao_list.jsp</result>
+			<result name="chengxiaocun_edit">/main/cun_bf/chengxiao_edit.jsp</result>
+			<result name="pic_list">/main/cun_bf/pic_list.jsp</result>
+			<result name="pic_edit">/main/cun_bf/pic_edit.jsp</result>
+		</action>
+		<!-- 户帮扶模块 -->
+		<action name="family_bf_*" method="{1}" class="com.throne212.fupin.action.FamilyBFAction">
+			<result name="cuoshifamily_list">/main/family_bf/cuoshi_list.jsp</result>
+			<result name="cuoshifamily_edit">/main/family_bf/cuoshi_edit.jsp</result>
+			<result name="chengxiaofamily_list">/main/family_bf/chengxiao_list.jsp</result>
+			<result name="chengxiaofamily_edit">/main/family_bf/chengxiao_edit.jsp</result>
+			<result name="reason_list">/main/family_bf/reason_list.jsp</result>
+			<result name="reason_edit">/main/family_bf/reason_edit.jsp</result>
+		</action>
+		
 		<!-- 管理员账号和村帮扶指定模块 -->
 		<action name="manager_*" method="{1}" class="com.throne212.fupin.action.ManagerAction">
 			<result name="manager_list">/main/manager/manager_list.jsp</result>
@@ -135,6 +156,18 @@
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
 					list\[\d+\]\.orgName
+				</param>
+			</result>
+			<result name="cun_family" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="org_leader" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.leaderName
 				</param>
 			</result>
 		</action>		
