@@ -30,5 +30,8 @@
 		<subclass discriminator-value="cun" extends="Pic" name="PicCun">
 			<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
 		</subclass>
+		<subclass discriminator-value="family" extends="Pic" name="PicFamily">
+			<many-to-one name="family" column="family_id" lazy="false"></many-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

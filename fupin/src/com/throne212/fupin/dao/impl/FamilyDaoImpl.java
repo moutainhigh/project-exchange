@@ -10,6 +10,7 @@ import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.Leader;
+import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
 
 public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
@@ -218,6 +219,58 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 			List<Leader> listLeader=this.getHibernateTemplate().find(hqlForLeaders, reason.getFamily());
 			reason.getFamily().setLeaderList(listLeader);
 		}
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	public PageBean<PicFamily> getAllPicFamily(PicFamily condition, Integer pageIndex) {
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<PicFamily> page = new PageBean<PicFamily>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from PicFamily t where 1=1";
+		if (condition!=null&&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
+			hql+=" and status='"+condition.getStatus()+"'";
+		}
+		if (condition!=null&&condition.getType()!=null&&!"".equals(condition.getType())) {
+			hql+=" and type='"+condition.getType()+"'";
+		}
+		hql+=" order by id desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<PicFamily> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+		
+		
+	}
+
+	public PageBean<PicFamily> getAllPicFamilyByCunId(PicFamily condition, Long cunId, Integer pageIndex) {
+		PageBean<PicFamily> page = new PageBean<PicFamily>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from PicFamily t where 1=1";
+		if(cunId != null)
+			hql += " and family.cun.id="+cunId;
+		if (condition!= null &&condition.getStatus()!=null&& !"".equals(condition.getStatus())) {
+			hql+=" and status='"+condition.getStatus()+"'";
+		}
+		if (condition!= null &&condition.getType()!=null&& !"".equals(condition.getType())) {
+			hql+=" and type='"+condition.getType()+"'";
+		}
+		hql+=" order by id desc";
+		logger.debug("hql="+hql);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<PicFamily> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码

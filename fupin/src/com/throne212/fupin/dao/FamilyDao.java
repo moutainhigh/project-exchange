@@ -3,6 +3,7 @@ package com.throne212.fupin.dao;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.CuoshiFamily;
+import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
 
 public interface FamilyDao extends BaseDao {
@@ -17,5 +18,9 @@ public interface FamilyDao extends BaseDao {
 	//贫困原因
 	public PageBean<Reason> getAllReasonByCunId(Reason condition,Long cunId,Integer pageIndex);
 	public PageBean<Reason> getAllReason(Reason condition,Integer pageIndex);
+	
+	//村图片管理
+	public PageBean<PicFamily> getAllPicFamilyByCunId(PicFamily condition,Long CunId,Integer pageIndex);
+	public PageBean<PicFamily> getAllPicFamily(PicFamily condition,Integer pageIndex);
 
 }

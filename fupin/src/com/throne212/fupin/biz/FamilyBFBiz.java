@@ -3,6 +3,7 @@ package com.throne212.fupin.biz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.CuoshiFamily;
+import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
 
 public interface FamilyBFBiz extends BaseBiz {
@@ -21,4 +22,9 @@ public interface FamilyBFBiz extends BaseBiz {
 	public PageBean<Reason> getAllReasonByCunId(Reason condition,Long cunId,Integer pageIndex);
 	public PageBean<Reason> getAllReason(Reason condition,Integer pageIndex);
 	public Reason saveOrUpdateReason(Reason reason);
+	
+	//图片
+	public PageBean<PicFamily> getAllPicFamilyByCunId(PicFamily condition,Long cunId,Integer pageIndex);
+	public PageBean<PicFamily> getAllPicFamily(PicFamily condition,Integer pageIndex);
+	public PicFamily saveOrUpdatePicFamily(PicFamily pic);
 }

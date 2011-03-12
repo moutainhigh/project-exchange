@@ -92,6 +92,8 @@
 			<result name="chengxiaofamily_edit">/main/family_bf/chengxiao_edit.jsp</result>
 			<result name="reason_list">/main/family_bf/reason_list.jsp</result>
 			<result name="reason_edit">/main/family_bf/reason_edit.jsp</result>
+			<result name="pic_list">/main/family_bf/pic_list.jsp</result>
+			<result name="pic_edit">/main/family_bf/pic_edit.jsp</result>
 		</action>
 		
 		<!-- 管理员账号和村帮扶指定模块 -->
@@ -106,6 +108,12 @@
 			<result name="family_list">/main/family/family_list.jsp</result>
 			<result name="family_edit">/main/family/family_edit.jsp</result>
 			<result name="family_view">/main/family/family_view.jsp</result>
+		</action>
+		<!-- 贫困村模块 -->
+		<action name="cun_*" method="{1}" class="com.throne212.fupin.action.CunAction">
+			<result name="cun_list">/main/cun/cun_list.jsp</result>
+			<result name="cun_edit">/main/cun/cun_edit.jsp</result>
+			<result name="cun_view">/main/cun/cun_view.jsp</result>
 		</action>
 		<!-- 单位与干部模块 -->
 		<action name="org_*" method="{1}" class="com.throne212.fupin.action.OrgAction">

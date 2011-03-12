@@ -165,9 +165,4 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		return page;
 	}
 
-	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -15,6 +15,8 @@ import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.PicCun;
+import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
 import com.throne212.fupin.domain.User;
 
@@ -242,6 +244,103 @@ public class FamilyBFAction extends BaseAction {
 		return reasonList();
 	}
 	
+	
+	
+	
+	// 帮扶图片信息列表
+	public String picFamilyList() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		Cun cun = null;
+		if (user instanceof Admin) {
+			this.setMsg("超级管理员无权进行此操作！");
+			return "pic_list";
+		} else if (user instanceof Org) {
+			Org org = (Org) user;
+			List<Cun> list = familyBFBiz.getEntitiesByColumn(Cun.class, "org", org);
+			if (list != null && list.size()>0) {
+				cun = list.get(0);
+			}
+		} 
+		if (cun == null) {
+			this.setMsg("尚未指定帮扶村，不能进行操作!");
+			return "pic_list";
+		}
+		pageBean = familyBFBiz.getAllPicFamilyByCunId(pic, cun.getId(), pageIndex);
+
+		return "pic_list";
+	}
+
+	private PicFamily pic;
+	public String saveOrUpdatePicFamily() {
+		if (pic == null) {
+			this.setMsg("保存失败，请检查数据是否录入完整");
+			return "pic_edit";
+		}
+		if (pic != null && !Util.isEmpty(pic.getYear()) && !Util.isEmpty(pic.getType())) {// 添加或更新市扶贫账号信息
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			Family family = null;
+			if (user instanceof Admin) {
+				this.setMsg("超级管理员无权进行此操作！");
+				return "pic_edit";
+			} else if (user instanceof Org) {
+				Org org = (Org) user;
+				List<Family> list = familyBFBiz.getEntitiesByColumn(Family.class, "cun.org", org);
+				if (list != null && list.size()>0) {
+					family = list.get(0);
+				}
+			} 
+			if (family == null) {
+				this.setMsg("尚未指定帮扶村，不能进行操作!");
+				return "pic_edit";
+			}
+			pic.setFamily(family);
+			String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+			if (image != null) {
+				pic.setPath(image);
+				ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
+			}else{
+				this.setMsg("图片未能上传，请先上传图片，再确认操作");
+				return "pic_edit";
+			}
+			pic.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
+			pic = familyBFBiz.saveOrUpdatePicFamily(pic);
+			this.setMsg("保存成功");
+			this.setSucc("Y");
+			pic = null;
+		} else if (pic != null && pic.getId() != null) {// 查看详情
+			pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
+		}
+		return "pic_edit";
+
+	}
+	public String viewPic(){
+		pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
+		return "show_pic";
+	}
+
+	// 确定提交
+	public String confirmPic() {
+		if (pic.getId() != null) {
+			pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
+			pic.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			familyBFBiz.saveOrUpdateEntity(pic);
+		}
+		return picFamilyList();
+	}
+
+	// 删除图片
+	public String deletePicFamily() {
+		String[] picFamilyIds = (String[]) ActionContext.getContext().getParameters().get("picFamily_ids");
+		if (picFamilyIds != null && picFamilyIds.length > 0) {
+			for (String idStr : picFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				familyBFBiz.deleteEntity(PicFamily.class, id);
+			}
+			this.setMsg("删除图片成功！");
+		}
+		return picFamilyList();
+	}
+	
 	public PageBean getPageBean() {
 		return pageBean;
 	}
@@ -302,6 +401,14 @@ public class FamilyBFAction extends BaseAction {
 
 	public void setLeaderId(Long leaderId) {
 		this.leaderId = leaderId;
+	}
+
+	public PicFamily getPic() {
+		return pic;
+	}
+
+	public void setPic(PicFamily pic) {
+		this.pic = pic;
 	}
 	
 	

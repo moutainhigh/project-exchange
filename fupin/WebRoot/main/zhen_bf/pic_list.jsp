@@ -74,7 +74,6 @@ var msg = '${msg}';
 		<td width="" class="tables_headercell">年度</td>
 		<td class="tables_headercell">贫困镇名</td>
 		<td width="" class="tables_headercell">上传时间</td>
-		<td width="" class="tables_headercell">大小</td>
 		<td width="" class="tables_headercell">类型</td>
 		<td width="" class="tables_headercell">审核状态</td>
 		<td width="" class="tables_headercell">查看</td>
@@ -96,9 +95,6 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.createDate }
-		</td>
-		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			${f.size }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.type }

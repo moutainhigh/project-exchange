@@ -9,6 +9,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.dao.ManagerDao;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.Zhen;
 
 
 public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
@@ -57,6 +58,12 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			return managerDao.getAllCun(pageIndex);
 		else
 			return managerDao.getAllCun(name, pageIndex);
+	}
+	
+	public PageBean getAllCun(Zhen zhen,String name,Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return managerDao.getAllCun(zhen,pageIndex);
 	}
 	
 	public List getAllOrg(){

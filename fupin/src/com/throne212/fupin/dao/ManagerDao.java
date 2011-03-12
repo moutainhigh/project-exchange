@@ -1,6 +1,7 @@
 package com.throne212.fupin.dao;
 
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.domain.Zhen;
 
 public interface ManagerDao extends BaseDao {
 
@@ -9,6 +10,8 @@ public interface ManagerDao extends BaseDao {
 	public PageBean getAllManager(String name,Integer pageIndex);
 	
 	public PageBean getAllCun(Integer pageIndex);
+	
+	public PageBean getAllCun(Zhen zhen,Integer pageIndex);
 	
 	public PageBean getAllCun(String name,Integer pageIndex);
 	
