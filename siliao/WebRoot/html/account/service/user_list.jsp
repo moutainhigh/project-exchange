@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick.js"></script>
 		<script type="text/javascript" src="${appPath}html/script/jquery.datepick-zh-CN.js"></script>
 		<script type="text/javascript">
-			var currRole = '${user.userRole}';
+			var currRole = '${role}';
 			$(function(){
 				$.getJSON("${appPath}ajax/getRoleList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){

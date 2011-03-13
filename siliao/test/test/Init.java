@@ -31,11 +31,16 @@ public class Init {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring*.xml");
 		BaseBiz baseBiz = (BaseBiz) ac.getBean("baseBiz");
 		
+		BillOrderNum num = new BillOrderNum();
+		num.setNum(0L);
+		baseBiz.saveOrUpdateEntity(num);
+		
 		Admin admin = new Admin();
 		admin.setLoginName("sa");
 		admin.setPassword("123");
 		admin.setName("超级管理员");
 		admin.setRemark("系统最高管理员，拥有一切权限");
+		admin.setCreateDate(new Date());
 		baseBiz.saveOrUpdateEntity(admin);
 		
 		UserLog log = new UserLog();
@@ -48,7 +53,7 @@ public class Init {
 		log.setUser(admin);
 		baseBiz.saveOrUpdateEntity(log);
 		
-		Farm farm = new Farm();
+		/*Farm farm = new Farm();
 		farm.setName("海北农场");
 		farm.setCreateDate(new Date());
 		farm.setCreateName(admin.getName());
@@ -179,10 +184,6 @@ public class Init {
 		log4.setUser(pa);		
 		baseBiz.saveOrUpdateEntity(log4);
 		
-		BillOrderNum num = new BillOrderNum();
-		num.setNum(0L);
-		baseBiz.saveOrUpdateEntity(num);
-		
 		Bill bill=new Bill();
 		long currNum = num.getNum()+1;
 		bill.setOrderId(Util.genOrderId(farm.getName(),provider.getName(),currNum));
@@ -207,7 +208,7 @@ public class Init {
 		farmerLog.setFarmer(farmer);
 		farmerLog.setLogTime(new Date());
 		farmerLog.setMsg(WebConstants.OP_CREATE);
-		baseBiz.saveOrUpdateEntity(farmerLog);
+		baseBiz.saveOrUpdateEntity(farmerLog);*/
 		
 	}
 }

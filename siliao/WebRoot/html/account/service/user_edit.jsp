@@ -12,6 +12,9 @@
 		<script type="text/javascript">
 			var currUserId = '${user.id}';
 			var currRole = '${user.userRole}';
+			if(currRole == ''){
+				currRole = '${param.role}';
+			}
 			$(function(){
 				$.getJSON("${appPath}ajax/getRoleList?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){

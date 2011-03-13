@@ -39,11 +39,20 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 	private BillDao billDao;
 
 	private synchronized long getCurrNum() {
-		BillOrderNum num = baseDao.getAll(BillOrderNum.class).get(0);
-		long currNum = num.getNum() + 1;
-		num.setNum(currNum);
-		baseDao.saveOrUpdate(num);
-		return currNum;
+		List<BillOrderNum> list = baseDao.getAll(BillOrderNum.class);
+		if(list == null || list.size() == 0){
+			long currNum = 1;
+			BillOrderNum num = new BillOrderNum();
+			num.setNum(currNum);
+			baseDao.saveOrUpdate(num);
+			return currNum;
+		}else{
+			BillOrderNum num = list.get(0);
+			long currNum = num.getNum() + 1;
+			num.setNum(currNum);
+			baseDao.saveOrUpdate(num);
+			return currNum;
+		}
 	}
 	//确认单据
 	public Bill confirmBill(Bill bill){
@@ -355,7 +364,6 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 		billInDB.setAgentUnitPrice(bill.getAgentUnitPrice());
 		billInDB.setOrderNo(bill.getOrderNo());
 		billInDB.setRemark(bill.getRemark());
-		billInDB.setSendDate(new Date());
 		if(bill.getShenheResult() == null){//仅仅是保存
 			this.saveOrUpdateEntity(billInDB);
 			// 保存日志
@@ -364,6 +372,7 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 			log.setRemark(bill.getRemark());
 			this.saveOrUpdateEntity(log);
 		}else if(bill.getShenheResult()){//发料
+			billInDB.setSendDate(new Date());
 			billInDB.setStatus(WebConstants.BILL_STATUS_SENT);
 			if(billInDB.getAreaAccount()!=null){
 				billInDB.setCurrUserName(billInDB.getAreaAccount().getName());

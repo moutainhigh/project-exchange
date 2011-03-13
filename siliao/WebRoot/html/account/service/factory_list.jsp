@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="${appPath}html/script/jquery.autocomplete.js"></script>
 		<script type="text/javascript">
 			var currFactoryId = '${factoryId}';
-			var currFactoryType = '${param.factoryType}';
+			var currFactoryType = '${factoryType}';
 			$(function(){
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
