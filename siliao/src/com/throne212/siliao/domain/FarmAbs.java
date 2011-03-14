@@ -35,9 +35,10 @@ public class FarmAbs extends MyEntity implements Serializable {
 	public String getFarmType(){
 		if(this instanceof Area){
 			return WebConstants.FARM_TYPE_AREA;
-		}else{
+		}else if(this instanceof Farm){
 			return WebConstants.FARM_TYPE_FARM;
 		}
+		return "";
 	}
 	
 	public String getFarmName(){

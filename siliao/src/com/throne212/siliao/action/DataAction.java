@@ -399,6 +399,7 @@ public class DataAction extends BaseAction {
 				FarmAbs farmInDB = dataBiz.getEntityByUnique(FarmAbs.class, "name", farmAbs.getName());
 				if (farmInDB != null) {
 					this.setMsg("已存在此农场或管区,请重新输入!");
+					logger.info("已存在此农场或管区,请重新输入!");
 					return "farmabs_edit";
 				}
 			}
