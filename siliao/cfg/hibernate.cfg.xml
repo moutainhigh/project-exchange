@@ -7,7 +7,7 @@
 <hibernate-configuration>
 <session-factory>
 	<property name="proxool.pool_alias">pool</property>
-	<property name="proxool.xml">proxool_mysql.xml</property>
+	<property name="proxool.xml">proxool.xml</property>
 	<property name="connection.provider_class">
 		org.hibernate.connection.ProxoolConnectionProvider
 	</property>
@@ -15,12 +15,12 @@
 		com.mysql.jdbc.Driver
 	</property>
 	<property name="hibernate.dialect">
-		org.hibernate.dialect.MySQLDialect
+		org.hibernate.dialect.Oracle10gDialect
 	</property>
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
 	</property>
-	<property name="hbm2ddl.auto">none</property>
+	<property name="hbm2ddl.auto">create</property>
 	<mapping resource="com/throne212/siliao/domain/User.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/FactoryAbs.hbm.xml" />
 	<mapping resource="com/throne212/siliao/domain/Log.hbm.xml" />

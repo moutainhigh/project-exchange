@@ -5,7 +5,7 @@
 
 		<driver-url>jdbc:oracle:thin:@127.0.0.1:1521:</driver-url>
 		<driver-properties>
-			<property name="user" value="siliao" />
+			<property name="user" value="yh" />
 			<property name="password" value="123" />
 		</driver-properties>
 
@@ -17,6 +17,6 @@
 		-->
 		<driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
 		<maximum-connection-count>100</maximum-connection-count>
-		<minimum-connection-count>1</minimum-connection-count>
+		<minimum-connection-count>5</minimum-connection-count>
 	</proxool>
 </something-else-entirely>
