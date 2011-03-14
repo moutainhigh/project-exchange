@@ -23,30 +23,48 @@
 			$(function(){
 			});	
 			function sendBill(){
-				if($('#orderNo').val() == null || $('#orderNo').val()==''){
-					alert('票号不能为空');
-					return false;
-				}else if($('#shenheRemark').val() == null || $('#shenheRemark').val()==''){
-					alert('审核意见不能为空');
-					return false;
-				}else if($('#priceOnOrder').val() == null || $('#priceOnOrder').val()==''){
-					alert('开票价格不能为空');
-					return false;
-				}else if($('#agentUnitPrice').val() == null || $('#agentUnitPrice').val()==''){
-					alert('代理费单价不能为空');
-					return false;
-				}else if($('#translater').val() == null || $('#translater').val()==''){
-					alert('运输人不能为空');
-					return false;
-				}else if(/(^\d+\.\d+$)|(^\d+$)/.test($('#priceOnOrder').val()) == false){
-					alert('开票价格只能为数字');
-					return false;
-				}else if(/(^\d+\.\d+$)|(^\d+$)/.test($('#agentUnitPrice').val()) == false){
-					alert('代理费单价只能为数字');
-					return false;
+				//判断是否通过了
+				var pass1 = document.forms[0]['bill.shenheResult'][0].checked;
+				var pass2 = document.forms[0]['bill.shenheResult'][1].checked;
+				//alert(pass1);
+				//alert(pass2);
+				if(pass2){//被驳回
+					if($('#remark').val() == null || $('#remark').val()==''){
+						alert('备注不能为空');
+						return false;
+					}else{
+						document.forms[0].action = "${appPath}bill_sendBill.htm";
+						document.forms[0].submit();
+					}
 				}else{
-					document.forms[0].action = "${appPath}bill_sendBill.htm";
-					document.forms[0].submit();
+					if(pass1==false){
+						alert('请选择是否通过审核');
+						return false;
+					}else if($('#orderNo').val() == null || $('#orderNo').val()==''){
+						alert('票号不能为空');
+						return false;
+					}else if($('#shenheRemark').val() == null || $('#shenheRemark').val()==''){
+						alert('审核意见不能为空');
+						return false;
+					}else if($('#priceOnOrder').val() == null || $('#priceOnOrder').val()==''){
+						alert('开票价格不能为空');
+						return false;
+					}else if($('#agentUnitPrice').val() == null || $('#agentUnitPrice').val()==''){
+						alert('代理费单价不能为空');
+						return false;
+					}else if($('#translater').val() == null || $('#translater').val()==''){
+						alert('运输人不能为空');
+						return false;
+					}else if(/(^\d+\.\d+$)|(^\d+$)/.test($('#priceOnOrder').val()) == false){
+						alert('开票价格只能为数字');
+						return false;
+					}else if(/(^\d+\.\d+$)|(^\d+$)/.test($('#agentUnitPrice').val()) == false){
+						alert('代理费单价只能为数字');
+						return false;
+					}else{
+						document.forms[0].action = "${appPath}bill_sendBill.htm";
+						document.forms[0].submit();
+					}
 				}
 			}
 		</script>
@@ -78,16 +96,16 @@
 				</tr>
 				<tr>
 					<th>
-						养殖户姓名
-					</th>
-					<td>
-						${bill.farmer.name }
-					</td>
-					<th>
 						农场
 					</th>
 					<td>
 						${bill.farm.name }
+					</td>
+					<th>
+						管区
+					</th>
+					<td>
+						${bill.area.name }
 					</td>
 				</tr>
 				<tr>
@@ -226,7 +244,7 @@
 						备注
 					</th>
 					<td colspan=3>
-						<input value="${bill.remark}" name="bill.remark" size="100" />
+						<input value="${bill.remark}" name="bill.remark" id="remark" size="100" />
 					</td>
 
 				</tr>

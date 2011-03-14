@@ -63,16 +63,16 @@
 				</tr>
 				<tr>
 					<th>
-						养殖户姓名
-					</th>
-					<td>
-						${bill.farmer.name }
-					</td>
-					<th>
 						农场
 					</th>
 					<td>
 						${bill.farm.name }
+					</td>
+					<th>
+						管区
+					</th>
+					<td>
+						${bill.area.name }
 					</td>
 				</tr>
 				<tr>
