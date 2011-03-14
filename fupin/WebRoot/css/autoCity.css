@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+.sug {
+	position:absolute;
+	width:160px;
+	height:200px;
+	background:#FFFFFF;
+	border:solid 1px #7F9DB9;
+	overflow:auto;
+	z-index:999;
+	text-align:left;
+	font-size: 12px;
+	font-family:"Arial";
+}
+.sug ul, .sug li {
+	list-style:none;
+	padding:0;
+	margin:0;
+	color:#444444;
+	cursor:default;
+	text-indent:4px;
+}
+.sug li.hover {
+	background-color: #66CC00;
+	color:#fff;
+}
+.sug li {
+	height:20px;
+	line-height: 20px;
+}
