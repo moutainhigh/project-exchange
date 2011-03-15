@@ -21,4 +21,6 @@ public interface BaseBiz {
 
 	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue);
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value);
+	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue);
+
 }

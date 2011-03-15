@@ -85,4 +85,8 @@ public class BaseBizImpl implements BaseBiz {
 		// TODO Auto-generated method stub
 		return baseDao.getEntitiesByColumn(clazz, colName, value);
 	}
+	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue){
+		return baseDao.getEntitiesByTwoColumn(clazz, colOneName, oneValue, colTwoName, twoValue);
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.throne212.fupin.action;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.Diqu;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
@@ -111,27 +113,73 @@ public class AjaxAction extends BaseAction {
 	
 	
 	//地区树形
-	public String tree(){
-		getDiqu
-		instanof 
+	private String root;
+	public String treeView(){
+		if("source".equals(root)){
+			String str = "[{'text':'test','id':'440500000000','hasChildren': true,'classes':'folder','href':'session.jsp?id=440500000000','target':'detailFrame'}]";
+			PrintWriter out;
+			try {
+				out = ServletActionContext.getResponse().getWriter();
+				ServletActionContext.getResponse().setContentType("text/json; charset=utf8");
+				ServletActionContext.getResponse().setCharacterEncoding("UTF8");
+				out.print(str);
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		Diqu diqu =baseBiz.getEntityById(Diqu.class, Long.parseLong(root));
 		StringBuffer sb = new StringBuffer();
 		sb.append("[");		
-		for(){
-			sb.append("{");
-			sb.append("'text':'"+cun.getName+"',");
-			sb.append("'id':'"+cun.getName+"',");
-			sb.append("'href':'"+cun.getName+"',");
-			sb.append("'target':'"+cun.getName+"'");
-			sb.append("}");
-			sb.append(",");
+		if (diqu!=null&&diqu instanceof Area) {
+			Area area =(Area) diqu;
+			List<Zhen> zhenList =baseBiz.getEntitiesByColumn(Zhen.class, "area", area);
+			for(Zhen zhen: zhenList){
+				sb.append("{");
+				sb.append("'text':'"+zhen.getName()+"',");
+				sb.append("'id':'"+zhen.getId()+"',");
+				sb.append("'hasChildren':"+true+",");
+				sb.append("'classes':'folder',");
+				sb.append("'href':'session.jsp?id='"+zhen.getId()+",");
+				sb.append("'target':'detailFarame',");
+				sb.append("}");
+				sb.append(",");
+			}
+			if(sb.charAt(sb.length()-1) == ','){
+				sb.deleteCharAt(sb.length()-1);
+			}
+			sb.append("]");	
+		}else if (diqu!=null&&diqu instanceof Zhen) {
+			Zhen zhen =(Zhen) diqu;
+			List<Cun> cunList=baseBiz.getEntitiesByColumn(Cun.class, "zhen", zhen);
+			for(Cun cun: cunList){
+				sb.append("{");
+				sb.append("'text':'"+cun.getName()+"',");
+				sb.append("'id':'"+cun.getId()+"',");
+				sb.append("'hasChildren':"+false+",");
+				sb.append("'classes':'file',");
+				sb.append("'href':'session.jsp?id='"+cun.getId()+",");
+				sb.append("'target':'detailFarame',");
+				sb.append("}");
+				sb.append(",");
+			}
+			if(sb.charAt(sb.length()-1) == ','){
+				sb.deleteCharAt(sb.length()-1);
+			}
+			sb.append("]");	
 		}
-		if(sb.charAt(sb.length()-1) == ','){
-			sb.deleteCharAt(sb.length()-1);
+		PrintWriter out;
+		try {
+			out = ServletActionContext.getResponse().getWriter();
+			out.print(sb.toString());
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		sb.append("]");	
-		PrintWriter out = ServletActionContext.getResponse().getWriter();
-		out.print(sb.toString());
-		out.flush();
+	
 		return null;
 	}
 	
@@ -174,5 +222,12 @@ public class AjaxAction extends BaseAction {
 	public void setAreaWorkOrgId(Long areaWorkOrgId) {
 		this.areaWorkOrgId = areaWorkOrgId;
 	}
+	public String getRoot() {
+		return root;
+	}
+	public void setRoot(String root) {
+		this.root = root;
+	}
+	
 
 }

@@ -32,4 +32,8 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="familyDao" ref="familyDao"></property>
 	</bean>
+	<bean id="frontBiz" class="com.throne212.fupin.biz.impl.FrontBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="frontDao" ref="frontDao"></property>
+	</bean>
 </beans>

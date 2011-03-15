@@ -9,7 +9,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
- * Revision: $Id: jquery.treeview.async.js,v 1.1 2010/06/07 01:14:18 cvs1 Exp $
+ * Revision: $Id$
  *
  */
 
@@ -18,24 +18,8 @@
 function load(settings, root, child, container) {
 	$.getJSON(settings.url, {root: root}, function(response) {
 		function createNode(parent) {
-			var linkText;
-			if(this.href){
-					linkText="<a href='"+this.href+"' ";
-					if(this.target)
-						linkText+="target='"+this.target+"' ";
-					linkText+=" >"+"<span>" + this.text + "</span>"+"</a>";
-				}
-				else{
-					linkText="<span ";
-					if(this.click)
-						linkText+=this.click;
-					linkText+=" >" + this.text + "</span>";
-				}
-			var current = $("<li/>").attr("id", this.id || "").html(linkText).appendTo(parent);
+			var current = $("<li/>").attr("id", this.id || "").html("<span>" + this.text + "</span>").appendTo(parent);
 			if (this.classes) {
-				if(this.href)
-				current.children("a").children("span").addClass(this.classes);
-				else					
 				current.children("span").addClass(this.classes);
 			}
 			if (this.expanded) {
@@ -56,7 +40,6 @@ function load(settings, root, child, container) {
 				}
 			}
 		}
-		
 		$.each(response, createNode, [child]);
         $(container).treeview({add: child});
     });

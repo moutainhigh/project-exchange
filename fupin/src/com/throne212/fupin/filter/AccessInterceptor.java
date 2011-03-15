@@ -6,6 +6,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.throne212.fupin.action.FrontAction;
 import com.throne212.fupin.action.LoginAction;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.User;
@@ -19,7 +20,7 @@ public class AccessInterceptor extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
 		//登录不进行拦截
-		if(actionInvocation.getAction() instanceof LoginAction){
+		if(actionInvocation.getAction() instanceof LoginAction || actionInvocation.getAction() instanceof FrontAction){
 			return actionInvocation.invoke();
 		}
 		logger.debug("into intercepter ...");

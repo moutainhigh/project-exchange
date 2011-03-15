@@ -27,5 +27,8 @@
 	<bean id="managerDao" class="com.throne212.fupin.dao.impl.ManagerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="frontDao" class="com.throne212.fupin.dao.impl.FrontDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 </beans>

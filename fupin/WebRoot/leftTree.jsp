@@ -1,82 +1,78 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>行政级别树</title>
-		<link type="text/css" href="css/3col_leftNav.css" rel="stylesheet">
-		<link href="css/jquery.treeview.css" rel="stylesheet">
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="js/jquery.treeview.js"></script>
-		<script type="text/javascript" src="js/jquery.treeview.async.js"></script>
-		<script type="text/javascript">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>行政级别树</title>
+
+<link rel="stylesheet" href="${appPath}css/3col_leftNav.css" type="text/css" />
+<link rel="stylesheet" href="${appPath}css/jquery.treeview.css" />
+<script src="${appPath}js/jquery.js" type="text/javascript"></script>
+<script src="${appPath}js/jquery.cookie.js" type="text/javascript"></script>
+<script src="${appPath}js/jquery.treeview.js" type="text/javascript"></script>
+
+<script src="${appPath}js/jquery.treeview.async.js" type="text/javascript"></script>
+<script type="text/javascript">
 $(document).ready(function()
 {
-	$(".treeDetail").treeview({
-		url: "servlet/AjaxPKC?type=cun"
-	})
+	$("#navigation").treeview({
+		persist: "location",
+		collapsed: true,
+		unique: true
+	});
 });
 </script>
-		<style type="text/css">
-&
-lt ;!--
+<style type="text/css">
+<!--
 .STYLE1 {
 	color: #D6EAFF;
 	font-weight: bold;
 }
---&
-gt
-;
+-->
+#navigation{font-weight:600;}
 </style>
-	</head>
-	<body bgcolor="#d6eaff">
-		<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%">
-			<tbody>
-				<tr height="100%" valign="top">
-					<td>
-						<br/>
-						<div align="center">
-							<a target="detailFrame" style="font-weight: bold;" href="session.jsp">规划到户情况</a>
-						</div>
-						<hr>
-						<div>
-							<ul bgcolor="#D6EAFF" class="treeDetail filetree treeview" style="font-size: 11pt; font-weight: bold;">
-								<li id="441600000000" class="hasChildren expandable">
-									<div class="hitarea hasChildren-hitarea expandable-hitarea "></div>
-									<a target="detailFrame" href="session.jsp?id=441600000000" class=""><span class="folder">河源市</span>
-									</a>
-									<ul style="display: none;">
-										<li id="placeholder" class="last">
-											<span>placeholder</span>
-										</li>
-									</ul>
-								</li>
-								<li id="441400000000" class="hasChildren expandable">
-									<div class="hitarea hasChildren-hitarea expandable-hitarea "></div>
-									<a target="detailFrame" href="session.jsp?id=441400000000" class=""><span class="folder">梅州市</span>
-									</a>
-									<ul style="display: none;">
-										<li id="placeholder" class="last">
-											<span>placeholder</span>
-										</li>
-									</ul>
-								</li>
-								<li id="445300000000" class="hasChildren expandable lastExpandable">
-									<div class="hitarea hasChildren-hitarea expandable-hitarea lastExpandable-hitarea "></div>
-									<a target="detailFrame" href="session.jsp?id=445300000000" class=""><span class="folder">云浮市</span>
-									</a>
-									<ul style="display: none;">
-										<li id="placeholder" class="last">
-											<span>placeholder</span>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</td>
-				</tr>
-			</tbody>
+</head>
 
-		</table>
-	</body>
+<body bgcolor="#D6EAFF">
+<table border="0" cellpadding="0" cellspacing="0" height="100%"  width="100%">
+	<tbody><tr height="100%" valign="top">
+		<td>
+		<div align='center'>
+		<a href="session.jsp" style="font-weight: bold" target="detailFrame">规划到户情况</a>
+		</div>
+		<hr>
+		<div >			
+			<ul id="navigation">
+		<c:forEach items="${areaList}" var="a">
+		<li><a target="detailFrame" href="${appPath}session.jsp">${a.name}</a>
+			<c:if test="${not empty a.zhenList}">
+			<ul>
+				<c:forEach var="z" items="${a.zhenList}">
+				<li><a target="detailFrame" href="session.jsp">${z.name}</a>
+					<c:if test="${not empty z.cunList}">
+					<ul>
+						<c:forEach var="c" items="${z.cunList}">
+						<li><a target="detailFrame" href="session.jsp">${c.name }</a></li>
+						</c:forEach>
+					</ul>
+					</c:if>
+				</li>
+				</c:forEach>
+			</ul>
+			</c:if>
+		</li>
+		</c:forEach>
+	</ul>
+
+		</div>
+		</td>
+		</tr>
+	</tbody>
+
+</table>
+</body>
 </html>
+

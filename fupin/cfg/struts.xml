@@ -45,6 +45,11 @@
 		<action name="logout" class="com.throne212.fupin.action.LogoutAction">
 			<result name="success" type="redirect">/login.jsp</result>
 		</action>
+		<!-- 前台展示模块 -->
+		<action name="front_*" method="{1}" class="com.throne212.fupin.action.FrontAction">
+			<result name="cun_info">/main/password/password_edit.jsp</result>
+			<result name="tree_shi_info">/leftTree.jsp</result>
+		</action>
 		<!-- 账号维护 -->
 		<action name="user_*" method="{1}" class="com.throne212.fupin.action.UserAction">
 			<result name="password">/main/password/password_edit.jsp</result>

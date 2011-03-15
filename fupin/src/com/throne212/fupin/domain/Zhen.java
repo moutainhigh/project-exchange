@@ -1,11 +1,13 @@
 package com.throne212.fupin.domain;
 
+import java.util.List;
+
 public class Zhen extends Diqu {
 	private ShiWorkOrg shiWorkOrg;// 扶持它的市扶贫办
 	private AreaWorkOrg areaWorkOrg;// 扶持它的县扶贫办
 	private Area area;// 所属区县
 	
-
+	private List<Cun> cunList;
 
 	public ShiWorkOrg getShiWorkOrg() {
 		return shiWorkOrg;
@@ -29,6 +31,14 @@ public class Zhen extends Diqu {
 
 	public void setAreaWorkOrg(AreaWorkOrg areaWorkOrg) {
 		this.areaWorkOrg = areaWorkOrg;
+	}
+
+	public List<Cun> getCunList() {
+		return cunList;
+	}
+
+	public void setCunList(List<Cun> cunList) {
+		this.cunList = cunList;
 	}
 
 }

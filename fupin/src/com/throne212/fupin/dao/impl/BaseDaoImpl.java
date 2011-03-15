@@ -37,6 +37,13 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		String hql = "from " + clazz.getSimpleName() + " e where e." + colName + "=?";
 		return this.getHibernateTemplate().find(hql, value);
 	}
+	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue){
+		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e."+colTwoName+"=?";
+		List paramValueList = new ArrayList();
+		paramValueList.add(oneValue);
+		paramValueList.add(twoValue);
+		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
+	}
 
 	public <T> T getEntityById(Class<T> clazz, Long id) {
 		if (id == null)
@@ -166,7 +173,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue) {
-		String hql = "from " + clazz.getName() + " where " + colName + " like ? and (enable is null or enable=true)";
+		String hql = "from " + clazz.getName() + " where " + colName + " like ? ";
 		return this.getHibernateTemplate().find(hql, "%" + likeValue + "%");
 	}
 
