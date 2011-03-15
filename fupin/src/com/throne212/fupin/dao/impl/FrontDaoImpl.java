@@ -8,8 +8,10 @@ import org.hibernate.Session;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FrontDao;
+import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Zhen;
 
 public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 
@@ -92,9 +94,47 @@ public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 		return page;
 	}
 
-	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long getMappingCunSum(Area area){
+		String hql = "select count(*) from Cun where zhen.area=? and org is not null";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);		
+	}
+	public Long getNotMappingCunSum(Area area){
+		String hql = "select count(*) from Cun where zhen.area=? and org is null";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);
+	}
+	public Long getMappingFamilySum(Area area){
+		String hql = "select count(*) from Family f where f.cun.zhen.area=? and (select count(*) from Leader where family=f)>0";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);		
+	}
+	public Long getNotMappingFamilySum(Area area){
+		String hql = "select count(*) from Family f where f.cun.zhen.area=? and (select count(*) from Leader where family=f)=0";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);
+	}
+	public Long getOrgSumInZhen(Zhen z){
+		String hql = "select count(*) from Org o where o.cun.zhen=?";
+		return (Long) this.getHibernateTemplate().find(hql,z).get(0);
+	}
+	
+	
+	public Long getMappingCunSum(Zhen area){
+		String hql = "select count(*) from Cun where zhen=? and org is not null";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);		
+	}
+	public Long getNotMappingCunSum(Zhen area){
+		String hql = "select count(*) from Cun where zhen=? and org is null";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);
+	}
+	public Long getMappingFamilySum(Zhen area){
+		String hql = "select count(*) from Family f where f.cun.zhen=? and (select count(*) from Leader where family=f)>0";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);		
+	}
+	public Long getNotMappingFamilySum(Zhen area){
+		String hql = "select count(*) from Family f where f.cun.zhen=? and (select count(*) from Leader where family=f)=0";
+		return (Long) this.getHibernateTemplate().find(hql,area).get(0);
+	}
+	public Long getOrgSumInCun(Cun c){
+		String hql = "select count(*) from Org o where o.cun=?";
+		return (Long) this.getHibernateTemplate().find(hql,c).get(0);
 	}
 
 }

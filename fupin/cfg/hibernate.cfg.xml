@@ -30,6 +30,7 @@
 	<mapping resource="com/throne212/fupin/domain/Pic.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Reason.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Record.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Permission.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

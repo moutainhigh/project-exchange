@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <font>宋体</font>
+  <background>
+    <alpha>100</alpha>
+    <border_alpha>15</border_alpha>
+  </background>
+  <plot_area>
+    <margins>
+      <left>70</left>
+      <right>50</right>
+    </margins>
+  </plot_area>
+  <grid>
+    <category>
+      <alpha>5</alpha>
+
+    </category>
+    <value>
+      <alpha>5</alpha>
+    </value>
+  </grid>
+  <axes>
+    <category>
+      <width>1</width>
+
+    </category>
+    <value>
+      <width>1</width>
+    </value>
+  </axes>
+  <values>
+    <category>
+      <rotate>0</rotate>
+    </category>
+    <value>
+      <min>0</min>
+    </value>
+    <text-size>12</text-size>
+  </values>
+  <legend>
+    <enabled>0</enabled>
+  </legend>
+
+  <column>
+    <width>85</width>
+    <spacing>0</spacing>
+    <alpha>80</alpha>
+    <corner_radius_top>8</corner_radius_top>
+    <balloon_text>Anomaly in {series}: {value}C</balloon_text>
+
+    <grow_time>3</grow_time>
+    <sequenced_grow>1</sequenced_grow>
+  </column>
+  <line>
+    <balloon_text>Anomaly in {series}: {value}C (Smoothed)</balloon_text>
+  </line>
+  <graphs>
+
+    <graph gid="1">
+      <title>Visits</title>
+      <color>B92F2F</color>
+      <balloon_text>{series}: {value}</balloon_text>
+    </graph>
+    <graph gid="2">
+      <title>Smoothed</title>
+
+      <type>line</type>
+    </graph>
+  </graphs>
+  <labels>
+    <label lid="0">
+      <text><![CDATA[<b>驻村帮扶单位数分布图</b>]]></text>
+      <text_size>14</text_size> 
+      <y>25</y>
+      <align>center</align>
+
+    </label>
+  </labels>
+  <guides>
+    <guide gid="1"/>
+  </guides>
+</settings>

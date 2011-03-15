@@ -56,6 +56,7 @@ public class Init {
 		org.setPassword("123");
 		org.setCun(cun);
 		org.setOrgName("四会市农业局");
+		org.setChargePersonName("李四");
 		baseBiz.saveOrUpdateEntity(org);
 		
 		cun.setOrg(org);

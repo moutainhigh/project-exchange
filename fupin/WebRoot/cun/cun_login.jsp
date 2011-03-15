@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html><head>
 
 <link href="css/tagstyle.css" rel="stylesheet">
@@ -182,7 +183,7 @@ function mysubmit()//网页内按下回车触发
 
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="bg16">
 	<tbody><tr>
-	<td class="cn12">【濠江区礐石街道松山村】
+	<td class="cn12">【${cun.name }】
 	</td>
 	</tr>
 	</tbody></table>
@@ -338,6 +339,11 @@ shead = he + sstyle + "</head>";
      return false;
 }
 
+var msg = '${msg}';
+if(msg != ''){
+	alert(msg);
+}
+
 </script>
 
 
@@ -348,108 +354,30 @@ shead = he + sstyle + "</head>";
 <!-- S:村详细信息tag -->
 <table cellspacing="0" cellpadding="0" border="0" align="left">
 	<tbody><tr>
+	<td class="titlefonttitle2">
+	<a href="${appPath }front_showCunInfo.action?cun.id=${cun.id }">贫困村简介</a></td>
+
+	<td class="titlefonttitle2">
+	<a href="${appPath }front_showOrgInfo.action?cun.id=${cun.id }">帮扶单位</a></td>
+
+	<td class="titlefonttitle2">
+	<a href="${appPath }front_showCuoshiInfo.action?cun.id=${cun.id }">帮扶规划</a></td>
+
+	<td class="titlefonttitle2">
+	<a href="${appPath }front_showChengxiaoInfo.action?cun.id=${cun.id }">帮扶成效</a></td>
+
 	<td class="titlefonttitle1">
-	<a href="cun.jsp?pkcid=440512003006&amp;detail=cun&amp;tag=1&amp;vid=14523">贫困村简介</a></td>
-
-	<td class="titlefonttitle2">
-	<a href="cun.jsp?pkcid=440512003006&amp;detail=cun&amp;tag=2&amp;vid=14523">帮扶单位</a></td>
-
-	<td class="titlefonttitle2">
-	<a href="cun.jsp?pkcid=440512003006&amp;detail=cun&amp;tag=3&amp;vid=14523">帮扶规划</a></td>
-
-	<td class="titlefonttitle2">
-	<a href="cun.jsp?pkcid=440512003006&amp;detail=cun&amp;tag=4&amp;vid=14523">帮扶成效</a></td>
-
-	<td class="titlefonttitle2">
-	<a href="cun.jsp?pkcid=440512003006&amp;viewList=hu&amp;vid=14523">贫困户列表</a></td>
+	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
 	</tr>
 </tbody></table><br><br>
 <!-- E:村详细信息tag -->
 <div class="content">
-<!-- S:图片浏览器 -->
-	
-	<div id="slide_preview">
-		<div id="indemo">
-			<div id="demo1">
-  		
-  			  
-				<a title="帮扶后：市检察院发动爱心民营企业家，将一批爱心物资送到贫困户手中。" target="_blank" href="./upload/1300121652562.JPG" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
-					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="./upload/1300121652562.JPG"/>帮扶后：市检察院发动爱心...
-				</a>
-				<a title="帮扶后：市检察院发动爱心民营企业家，将一批爱心物资送到贫困户手中。" target="_blank" href="./upload/1300121652562.JPG" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
-					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="./upload/1300121652562.JPG"/>帮扶后：市检察院发动爱心...
-				</a>
-				<a title="帮扶后：市检察院发动爱心民营企业家，将一批爱心物资送到贫困户手中。" target="_blank" href="./upload/1300121652562.JPG" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
-					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="./upload/1300121652562.JPG"/>帮扶后：市检察院发动爱心...
-				</a>
-			 			 
-		
-			</div>
-			<div id="demo2">
-  		
-  			  
-				<a title="帮扶后：市检察院发动爱心民营企业家，将一批爱心物资送到贫困户手中。" target="_blank" href="./upload/1300121652562.JPG" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
-					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="./upload/1300121652562.JPG"/>帮扶后：市检察院发动爱心...
-				</a>
-				<a title="帮扶后：市检察院发动爱心民营企业家，将一批爱心物资送到贫困户手中。" target="_blank" href="./upload/1300121652562.JPG" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
-					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="./upload/1300121652562.JPG"/>帮扶后：市检察院发动爱心...
-				</a>
-				<a title="帮扶后：市检察院发动爱心民营企业家，将一批爱心物资送到贫困户手中。" target="_blank" href="./upload/1300121652562.JPG" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
-					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="./upload/1300121652562.JPG"/>帮扶后：市检察院发动爱心...
-				</a>
-			 			 
-		
-  			  
-			 			 
-		
-			</div>
-		</div>
-	</div>
-	
-<!-- E:图片浏览器 -->
-	<h2 style="font-family: 黑体; font-style: normal;" class="3dfont">松山村简介
-<br>&nbsp;&nbsp;&nbsp;&nbsp;一、基本情况
-<br>&nbsp;&nbsp;&nbsp;&nbsp;该村现有耕地64亩，人均耕地面积0.063亩，非农用地45亩，总人口1182人计303户，其中贫困户122户计461人。村内无自有企业，村民中小部分外出务工，人均收入不足3千元。集体年经济收入均低于3万元。列入低保有17户。参加农村合作医疗有170多户计826人。
-<br>&nbsp;&nbsp;&nbsp;&nbsp;二、脱贫工作存在的主要问题和急需解决的困难
-<br>&nbsp;&nbsp;&nbsp;&nbsp;濠江区联系人：林庆旭    联系电话：0754-87372930
-<br>&nbsp;&nbsp;&nbsp;&nbsp;礐石街道联系人：吴绍亮  联系电话：0754-87390371
-<br>&nbsp;&nbsp;&nbsp;&nbsp;松山村负责人：黄光汉    联系电话：0754-87492848
-</h2>
-
-  <hr>
-     急需建设项目：
-   <h2 style="font-family: 黑体; font-style: normal;" class="3dfont">
-    急需解决的项目：
-<br>&nbsp;&nbsp;&nbsp;&nbsp;一是教学条件及环境较差，村民中普通的综合素质总体水平不高。二是辖区内无一家生产企业，集体经济收入多年来一直处于落后状态，各项事业及社区管理难以开展。三是土地资源稀少，基础设施落后，投资环境差且征地投资成本大，无法吸引企业来村投资，极大程度上限制了集体经济发展。现吸引企业来村落户和解决社区劳动出路已成为本村一项重中之重的艰巨任务。</h2>
-
+<form method="get" action="${appPath }front_login.action" name="listForm">
+<input type="hidden" name="family.id" value="${param['family.id'] }"/>
+账号：<input type="text" name="per.loginName"/><br/>
+密码：<input type="password" name="per.password"/>
+<br/>
+<input type="submit" value="登录"/>
+</form>
 </div>
-<!-----------------------------图片相册起始----------------------------------------->
-<script>
-
-	var speed = 10;
-	var tab = document.getElementById("slide_preview");
-	
-	if(tab!=null)
-	{
-	var tab1 = document.getElementById("demo1");
-	var tab2 = document.getElementById("demo2");
-	
-	tab2.innerHTML = tab1.innerHTML;
-	
-	function Marquee()
-	{
-		if(tab2.offsetWidth - tab.scrollLeft <= 0)
-			tab.scrollLeft -= tab1.offsetWidth
-		else
-		{
-			tab.scrollLeft++;
-		}
-	}
-	var MyMar=setInterval(Marquee,speed);
-	tab.onmouseover=function() {clearInterval(MyMar)};
-	tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
-	}
-
-</script>
-<!-----------------------------图片相册结束----------------------------------------->
 <div style="display: none; z-index: 999;" class="sug"></div></body></html>

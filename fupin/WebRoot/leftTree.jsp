@@ -47,15 +47,15 @@ $(document).ready(function()
 		<div >			
 			<ul id="navigation">
 		<c:forEach items="${areaList}" var="a">
-		<li><a target="detailFrame" href="${appPath}session.jsp">${a.name}</a>
+		<li><a target="detailFrame" href="${appPath}front_areaStat.action?areaId=${a.id}">${a.name}</a>
 			<c:if test="${not empty a.zhenList}">
 			<ul>
 				<c:forEach var="z" items="${a.zhenList}">
-				<li><a target="detailFrame" href="session.jsp">${z.name}</a>
+				<li><a target="detailFrame" href="${appPath}front_zhenStat.action?zhenId=${z.id}">${z.name}</a>
 					<c:if test="${not empty z.cunList}">
 					<ul>
 						<c:forEach var="c" items="${z.cunList}">
-						<li><a target="detailFrame" href="session.jsp">${c.name }</a></li>
+						<li><a target="detailFrame" href="${appPath }front_showCunInfo.action?cun.id=${c.id }">${c.name }</a></li>
 						</c:forEach>
 					</ul>
 					</c:if>

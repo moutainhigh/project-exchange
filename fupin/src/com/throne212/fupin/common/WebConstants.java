@@ -19,6 +19,7 @@ public class WebConstants {
 	
 	//session
 	public static final String SESS_USER_OBJ = "userObj";
+	public static final String SESS_USER_PERMISSION = "userPer";
 	public static final String SESS_CITY = "currCity";
 	public static final String SESS_IMAGE = "sess_image";
 	

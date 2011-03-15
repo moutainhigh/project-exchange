@@ -1,5 +1,7 @@
 package com.throne212.fupin.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.common.PageBean;
@@ -9,6 +11,7 @@ import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.MyEntity;
+import com.throne212.fupin.domain.Permission;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
@@ -199,6 +202,43 @@ public class AdminAction extends BaseAction {
 		}
 		return zhenWorkOrgList();
 	}
+	
+	
+	//权限
+	List list = null;
+	public String perList(){
+		list = adminBiz.getAll(Permission.class);
+		return "per_list";
+	}
+	private Permission per;
+	public String editPer(){
+		per = adminBiz.getEntityById(Permission.class, per.getId());
+		return "per_edit";
+	}
+	public String savePer(){
+		list = adminBiz.getEntitiesByColumn(Permission.class, "loginName", per.getLoginName());
+		if(list != null && list.size()>0){
+			this.setMsg("登录名重复了，请换一个");
+		}else{
+			adminBiz.saveOrUpdateEntity(per);
+			this.setSucc("Y");
+			this.setMsg("保存权限登录口令成功");
+		}
+		return "per_edit";
+	}
+	
+	public String deletePer() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String idStr : ids) {
+				Long id = Long.parseLong(idStr);
+				adminBiz.deleteEntity(Permission.class, id);
+			}
+			this.setMsg("删除账号成功");
+		}
+		return perList();
+	}
+	
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
@@ -246,6 +286,22 @@ public class AdminAction extends BaseAction {
 
 	public void setZhenWorkOrg(ZhenWorkOrg zhenWorkOrg) {
 		this.zhenWorkOrg = zhenWorkOrg;
+	}
+
+	public List getList() {
+		return list;
+	}
+
+	public void setList(List list) {
+		this.list = list;
+	}
+
+	public Permission getPer() {
+		return per;
+	}
+
+	public void setPer(Permission per) {
+		this.per = per;
 	}
 
 }

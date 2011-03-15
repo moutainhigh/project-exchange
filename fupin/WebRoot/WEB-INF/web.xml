@@ -29,6 +29,15 @@
     	<url-pattern>/*</url-pattern>
     </filter-mapping>
     
+    <servlet>
+    	<servlet-name>chart</servlet-name>
+    	<servlet-class>com.throne212.fupin.servlet.ChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>chart</servlet-name>
+    	<url-pattern>/chart.servlet</url-pattern>
+    </servlet-mapping>
+    
 	<!-- welcome page -->
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>

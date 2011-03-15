@@ -237,6 +237,9 @@ function images_update(){
 	    menuArray[menuArray.length]="1,贫困村资料维护,${appPath}cun_cunList.action";
 	    menuArray[menuArray.length]="1,贫困户资料维护,${appPath}family_familyList.action";
 	    </c:if>
+	    <c:if test="${userObj.roleType=='超级管理员'}">
+	    menuArray[menuArray.length]="0,设置前台贫困户查看权限,${appPath}admin_perList.action";
+	    </c:if>
 	    menuArray[menuArray.length]="0,报表审核,";
 	    
 	}

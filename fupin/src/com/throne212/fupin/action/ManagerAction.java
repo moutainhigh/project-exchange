@@ -79,8 +79,11 @@ public class ManagerAction extends BaseAction {
 	private Long orgId;
 	public String saveManagerMapping(){
 		cun = orgBiz.getEntityById(Cun.class, cun.getId());
-		cun.setOrg(orgBiz.getEntityById(Org.class, orgId));
+		Org org = orgBiz.getEntityById(Org.class, orgId);
+		cun.setOrg(org);
 		orgBiz.saveOrUpdateEntity(cun);
+		org.setCun(cun);
+		orgBiz.saveOrUpdateEntity(org);
 		this.setSucc("Y");
 		this.setMsg("指定扶贫单位成功");
 		return "manager_cun_mapping"; 

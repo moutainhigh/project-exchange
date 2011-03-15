@@ -8,7 +8,7 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,,"></constant>
+	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,"></constant>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
@@ -47,8 +47,18 @@
 		</action>
 		<!-- 前台展示模块 -->
 		<action name="front_*" method="{1}" class="com.throne212.fupin.action.FrontAction">
-			<result name="cun_info">/main/password/password_edit.jsp</result>
+			<result name="cun_info">/cun/cun_info.jsp</result>
+			<result name="cun_org">/cun/cun_org.jsp</result>
+			<result name="cun_cuoshi">/cun/cun_cuoshi.jsp</result>
+			<result name="cun_chengxiao">/cun/cun_chengxiao.jsp</result>
+			<result name="cun_family">/cun/cun_family.jsp</result>
 			<result name="tree_shi_info">/leftTree.jsp</result>
+			<result name="area_stat">/area/area_stat.jsp</result>
+			<result name="area_cun_list">/area/area_cun_list.jsp</result>
+			<result name="zhen_stat">/area/zhen_stat.jsp</result>
+			<result name="zhen_cun_list">/area/zhen_cun_list.jsp</result>
+			<result name="login">/cun/cun_login.jsp</result>
+			<result name="view_family">/cun/view_family.jsp</result>
 		</action>
 		<!-- 账号维护 -->
 		<action name="user_*" method="{1}" class="com.throne212.fupin.action.UserAction">
@@ -62,6 +72,8 @@
 			<result name="areaWorkOrg_edit">/main/admin/area_account_edit.jsp</result>
 			<result name="zhenWorkOrg_list">/main/admin/zhen_account_list.jsp</result>
 			<result name="zhenWorkOrg_edit">/main/admin/zhen_account_edit.jsp</result>
+			<result name="per_list">/main/admin/per_list.jsp</result>
+			<result name="per_edit">/main/admin/per_edit.jsp</result>
 		</action>
 		<!-- 地区管理模块 -->
 		<action name="diqu_*" method="{1}" class="com.throne212.fupin.action.DiquAction">
