@@ -124,19 +124,19 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 		$(function(){
 			var so = new SWFObject("${appPath}chart/ampie.swf", "demo_chart", "360", "320", "8", "#FFFFFF");
 			so.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-donut-chart.xml'));               
-			so.addVariable('data_file', escape('${appPath}/chart.servlet?type=area_cun&areaId='+${area.id}));
+			so.addVariable('data_file', escape('${appPath}chart.servlet?type=area_cun&areaId='+${area.id}));
 			so.addVariable("path", "");
 			so.write("demo");
 			
 			var so2 = new SWFObject("${appPath}chart/ampie.swf", "demo_chart", "360", "320", "8", "#FFFFFF");
 			so2.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-donut-chart2.xml'));               
-			so2.addVariable('data_file', escape('${appPath}/chart.servlet?type=area_family&areaId='+${area.id}));
+			so2.addVariable('data_file', escape('${appPath}chart.servlet?type=area_family&areaId='+${area.id}));
 			so2.addVariable("path", "");
 			so2.write("demo2");		
 			
 			var so3 = new SWFObject("${appPath}chart/amcolumn.swf", "demo_chart", "700","350", "8", "#FFFFFF");
 			so3.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-stacked-column-chart.xml'));               
-			so3.addVariable('data_file', escape('${appPath}/chart.servlet?type=area_column&areaId='+${area.id}));
+			so3.addVariable('data_file', escape('${appPath}chart.servlet?type=area_column&areaId='+${area.id}));
 			so3.addVariable("path", "");
 			so3.write("demo3");
 		});
