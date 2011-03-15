@@ -183,8 +183,7 @@ function mysubmit()//网页内按下回车触发
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="bg16">
 	<tbody><tr>
 	<td class="cn12">【濠江区礐石街道松山村】
-	<a class="cn12" href="cun.jsp">情况汇总</a>　|　
-	<a class="cn12" href="cun.jsp?viewList=cun">贫困村列表</a>
+	
 	</td>
 	</tr>
 	</tbody></table>

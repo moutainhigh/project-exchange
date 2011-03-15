@@ -1,6 +1,9 @@
 package com.throne212.fupin.action;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
@@ -106,6 +109,31 @@ public class AjaxAction extends BaseAction {
 		return "org_leader";
 	}
 	
+	
+	//地区树形
+	public String tree(){
+		getDiqu
+		instanof 
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");		
+		for(){
+			sb.append("{");
+			sb.append("'text':'"+cun.getName+"',");
+			sb.append("'id':'"+cun.getName+"',");
+			sb.append("'href':'"+cun.getName+"',");
+			sb.append("'target':'"+cun.getName+"'");
+			sb.append("}");
+			sb.append(",");
+		}
+		if(sb.charAt(sb.length()-1) == ','){
+			sb.deleteCharAt(sb.length()-1);
+		}
+		sb.append("]");	
+		PrintWriter out = ServletActionContext.getResponse().getWriter();
+		out.print(sb.toString());
+		out.flush();
+		return null;
+	}
 	
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
