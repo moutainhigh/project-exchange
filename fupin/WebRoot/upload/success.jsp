@@ -28,7 +28,7 @@
       <c:if test="${empty myfileFileName}">
       	<c:set var="myfileFileName" value="${param.myfileFileName}"></c:set>
       </c:if>
-      <img src="${appPath}/upload/${sess_image}" width="400" height="300"/>
+      <img src="${appPath}upload/${sess_image}" width="400" height="300"/>
       </td>
     </tr>
 	</table>

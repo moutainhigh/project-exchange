@@ -18,7 +18,7 @@
         </script>
     </head>
 <body bgcolor="#FFFFFF" text="#000000">
-<form name="form1" method="post" action="${appPath}/FileUploadAction.action" enctype="multipart/form-data" >
+<form name="form1" method="post" action="${appPath}FileUploadAction.action" enctype="multipart/form-data" >
   <table width="360" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
 	<tr bgcolor="#CCCCCC"> 
       <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">Í¼Æ¬ÉÏ´«</th>

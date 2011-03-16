@@ -11,7 +11,7 @@
 		<frame scrolling="yes" title="leftFrame" id="leftFrame" noresize="noresize" name="leftFrame" frameborder="0" src="${appPath}front_showTreeAndShiInfo.action"></frame>
 		<frame scrolling="no" title="midFrame" id="leftFrame" noresize="noresize" name="midFrame" frameborder="0" src="mid.html"></frame>
 
-		<frame title="detailFrame" id="detailFrame" name="detailFrame" src="session.jsp?t=hs&amp;id=&amp;detail="></frame>
+		<frame title="detailFrame" id="detailFrame" name="detailFrame" src="${appPath}front_areaStat.action?areaId=2"></frame>
 	</frameset>
 	<noframes>
 		<body>

@@ -24,7 +24,7 @@
     </tr>
     <tr align="center" valign="middle"> 
       <td height="33" align="left" id="upid">
-      点<a href="${appPath}/upload/upload.jsp">这里</a>重新上传
+      点<a href="${appPath}upload/upload.jsp">这里</a>重新上传
       </td>
     </tr>
 	</table>

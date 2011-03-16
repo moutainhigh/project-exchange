@@ -185,7 +185,7 @@ function mysubmit()//网页内按下回车触发
 
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="bg16">
 	<tbody><tr>
-	<td class="cn12">【${cun.name }】
+	<td class="cn12">【${family.cun.name }】
 	</td>
 	</tr>
 	</tbody></table>
@@ -352,19 +352,19 @@ shead = he + sstyle + "</head>";
 <table cellspacing="0" cellpadding="0" border="0" align="left">
 	<tbody><tr>
 	<td class="titlefonttitle2">
-	<a href="${appPath }front_showCunInfo.action?cun.id=${cun.id }">贫困村简介</a></td>
+	<a href="${appPath }front_showCunInfo.action?cun.id=${family.cun.id }">贫困村简介</a></td>
 
 	<td class="titlefonttitle2">
-	<a href="${appPath }front_showOrgInfo.action?cun.id=${cun.id }">帮扶单位</a></td>
+	<a href="${appPath }front_showOrgInfo.action?cun.id=${family.cun.id }">帮扶单位</a></td>
 
 	<td class="titlefonttitle2">
-	<a href="${appPath }front_showCuoshiInfo.action?cun.id=${cun.id }">帮扶规划</a></td>
+	<a href="${appPath }front_showCuoshiInfo.action?cun.id=${family.cun.id }">帮扶规划</a></td>
 
 	<td class="titlefonttitle2">
-	<a href="${appPath }front_showChengxiaoInfo.action?cun.id=${cun.id }">帮扶成效</a></td>
+	<a href="${appPath }front_showChengxiaoInfo.action?cun.id=${family.cun.id }">帮扶成效</a></td>
 
 	<td class="titlefonttitle1">
-	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
+	<a href="${appPath }front_showFamilyInfo.action?cun.id=${family.cun.id }">贫困户列表</a></td>
 	</tr>
 </tbody></table><br><br>
 <!-- E:村详细信息tag -->
