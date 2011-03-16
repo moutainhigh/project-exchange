@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -122,23 +123,6 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 		<script type="text/javascript" src="${appPath}chart/swfobject.js"></script>
 		<script type="text/javascript">
 		$(function(){
-			var so = new SWFObject("${appPath}chart/ampie.swf", "demo_chart", "360", "320", "8", "#FFFFFF");
-			so.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-donut-chart.xml'));               
-			so.addVariable('data_file', escape('${appPath}chart.servlet?type=area_cun&areaId='+${area.id})+'&time=<%=new Date().getTime()%>');
-			so.addVariable("path", "");
-			so.write("demo");
-			
-			var so2 = new SWFObject("${appPath}chart/ampie.swf", "demo_chart", "360", "320", "8", "#FFFFFF");
-			so2.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-donut-chart2.xml'));               
-			so2.addVariable('data_file', escape('${appPath}chart.servlet?type=area_family&areaId='+${area.id})+'&time=<%=new Date().getTime()%>');
-			so2.addVariable("path", "");
-			so2.write("demo2");		
-			
-			var so3 = new SWFObject("${appPath}chart/amcolumn.swf", "demo_chart", "700","350", "8", "#FFFFFF");
-			so3.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-stacked-column-chart.xml'));               
-			so3.addVariable('data_file', escape('${appPath}chart.servlet?type=area_column&areaId='+${area.id})+'&time=<%=new Date().getTime()%>');
-			so3.addVariable("path", "");
-			so3.write("demo3");
 		});
 	</script>
 		<style type="text/css">
@@ -153,33 +137,43 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 			<TBODY>
 				<TR>
 					<TD class="cn12">
-						【${area.name}】
-						<A href="${appPath}front_areaStat.action?areaId=${area.id}" class="cn12">情况汇总</A> |
-						<a href="${appPath}front_areaCunList.action?areaId=${area.id}" class="cn12">贫困村列表</a>
+						【${shi.name}】
+						<A href="${appPath}front_shiStat.action?shiId=${shi.id}" class="cn12">情况汇总</A> |
+						<a href="${appPath}front_shiCunList.action?shiId=${shi.id}" class="cn12">贫困村列表</a>
 					</TD>
 				</TR>
 
 			</TBODY>
 		</TABLE>
-		<CENTER>
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td align="center">
-						<div style="float: left; z-index: -1" style="border:none">
-							<div id="demo"></div>
-					</td>
-					<td align="center">
-						<div style="float: left; z-index: -1" style="border:none">
-							<div id="demo2"></div>
-					</td>
-				</tr>
-				<tr>
-					<td align="center" colspan="2">
-						<div style="float: left; z-index: -1" style="border:none">
-							<div id="demo3"></div>
-					</td>
-				</tr>
-			</table>
-		</CENTER>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
+	<tbody><tr align="center">
+		<td class="tables_headercell">贫困村名称</td>
+		<td width="30%" class="tables_headercell">帮扶单位</td>
+		<td class="tables_headercell">总人口数</td>
+		<td class="tables_headercell">总户数</td>
+	  	<td class="tables_headercell">贫困人口数</td>
+		<td class="tables_headercell">贫困户数</td>
+	</tr>
+<c:forEach items="${cunList}" var="c">
+	<tr style="cursor: pointer;" onclick="location='${appPath}front_showCunInfo.action?cun.id=${c.id}';" class="odd">
+		<td height="25" align="center" class="tables_contentcell">
+		&nbsp;${c.name }</td>
+		<td height="25" align="center" class="tables_contentcell">
+		&nbsp;${c.org.orgName }</td>
+		<td height="25" align="center" class="tables_contentcell">
+		&nbsp;${c.personNum }</td>
+		<td height="25" align="center" class="tables_contentcell">
+		&nbsp;${c.familyNum }</td>
+		<td height="25" align="center" class="tables_contentcell">
+		&nbsp;${c.poorPersonNum}</td>
+		<td height="25" align="center" class="tables_contentcell">
+		&nbsp;${c.poorFamilyNum }</td>
+	</tr>
+</c:forEach>
+
+	<tr>
+		<td height="25" align="right" class="tables_contentcell" colspan="8"><jsp:include page="../pager.jsp"></jsp:include>
+		</td></tr>
+</tbody></table>
 	</body>
 </html>

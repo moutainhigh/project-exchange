@@ -60,13 +60,7 @@
 
     <graph gid="1">
       <title>Visits</title>
-      <color>B92F2F</color>
       <balloon_text>{series}: {value}</balloon_text>
-    </graph>
-    <graph gid="2">
-      <title>Smoothed</title>
-
-      <type>line</type>
     </graph>
   </graphs>
   <labels>

@@ -45,8 +45,8 @@ var msg = '${msg}';
 	<label>申请类型: </label>
 	<select name="moduleType">
 		<option value="0" >请选择</option>
-		<option value="村措施" <c:if test="${param.moduleType=='村措施'}">selected</c:if>>村年度措施</option>
-		<option value="村成效" <c:if test="${param.moduleType=='村年度成效'}">selected</c:if>>村年度成效</option>
+		<option value="村措施" <c:if test="${param.moduleType=='村措施'}">selected</c:if>>村措施</option>
+		<option value="村成效" <c:if test="${param.moduleType=='村年度成效'}">selected</c:if>>村成效</option>
 		<option value="村图片" <c:if test="${param.moduleType=='村图片'}">selected</c:if>>村图片</option>
 		<option value="0">－－－－－－</option>
 		<option value="户贫困原因" <c:if test="${param.moduleType=='户贫困原因'}">selected</c:if>>户贫困原因</option>

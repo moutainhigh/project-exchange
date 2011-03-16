@@ -1,11 +1,14 @@
 package com.throne212.fupin.biz.impl;
 
+import java.util.List;
+
 import com.throne212.fupin.biz.FrontBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.dao.FrontDao;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
 public class FrontBizImpl extends BaseBizImpl implements FrontBiz {
@@ -44,6 +47,23 @@ public class FrontBizImpl extends BaseBizImpl implements FrontBiz {
 	public void setFrontDao(FrontDao frontDao) {
 		this.frontDao = frontDao;
 	}
+
+	public Long getMappingCunSum(Shi shi){
+		return frontDao.getMappingCunSum(shi);
+	}
+	public Long getNotMappingCunSum(Shi shi){
+		return frontDao.getNotMappingCunSum(shi);
+	}
+	public Long getMappingFamilySum(Shi shi){
+		return frontDao.getMappingFamilySum(shi);
+	}
+	public Long getNotMappingFamilySum(Shi shi){
+		return frontDao.getNotMappingFamilySum(shi);
+	}
+	public Long getOrgSumInArea(Area z){
+		return frontDao.getOrgSumInArea(z);
+	}
+	
 	
 	public Long getMappingCunSum(Area area){
 		return frontDao.getMappingCunSum(area);

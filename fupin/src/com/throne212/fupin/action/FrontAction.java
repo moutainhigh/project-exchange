@@ -123,6 +123,18 @@ public class FrontAction extends BaseAction {
 		
 	}
 	
+	//市的统计
+	private Long shiId;
+	public String shiStat(){
+		shi = baseBiz.getEntityById(Shi.class, shiId);
+		return "shi_stat";
+	}
+	public String shiCunList(){
+		shi = baseBiz.getEntityById(Shi.class, shiId);
+		cunList = baseBiz.getEntitiesByColumn(Cun.class, "zhen.area.shi", shi);
+		return "shi_cun_list";
+	}
+	
 	//区县的统计
 	private Long areaId;
 	public String areaStat(){
@@ -340,6 +352,16 @@ public class FrontAction extends BaseAction {
 
 	public void setFamily(Family family) {
 		this.family = family;
+	}
+
+
+	public Long getShiId() {
+		return shiId;
+	}
+
+
+	public void setShiId(Long shiId) {
+		this.shiId = shiId;
 	}
 	
 	

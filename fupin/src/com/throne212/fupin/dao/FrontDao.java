@@ -4,6 +4,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
 public interface FrontDao extends BaseDao {
@@ -15,6 +16,11 @@ public interface FrontDao extends BaseDao {
 	public PageBean<Cun> getAllCunUnderArea(Long areaId,Integer pageIndex);
 	public PageBean<Cun> getAllCunUnderZhen(Long zhenId,Integer pageIndex);
 	
+	public Long getMappingCunSum(Shi shi);
+	public Long getNotMappingCunSum(Shi shi);
+	public Long getMappingFamilySum(Shi shi);
+	public Long getNotMappingFamilySum(Shi shi);
+	public Long getOrgSumInArea(Area z);
 
 	public Long getMappingCunSum(Area area);
 	public Long getNotMappingCunSum(Area area);

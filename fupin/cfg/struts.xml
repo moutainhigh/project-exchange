@@ -77,6 +77,8 @@
 			<result name="area_cun_list">/area/area_cun_list.jsp</result>
 			<result name="zhen_stat">/area/zhen_stat.jsp</result>
 			<result name="zhen_cun_list">/area/zhen_cun_list.jsp</result>
+			<result name="shi_stat">/area/shi_stat.jsp</result>
+			<result name="shi_cun_list">/area/shi_cun_list.jsp</result>
 			<result name="login">/cun/cun_login.jsp</result>
 			<result name="view_family">/cun/view_family.jsp</result>
 		</action>

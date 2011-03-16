@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings> 
-  <font>Tahoma</font>                  
+  <font>Tahoma</font>        
   <pie>
     <inner_radius>40</inner_radius>    
     <height>20</height>                
     <angle>10</angle>
     <gradient>radial</gradient>                  
     <gradient_ratio>-50,0,0,-50</gradient_ratio>    
+    <colors>#CAE1F3,#ACC65D,#F3D36E,#F3B38A</colors>        
   </pie>
   
   <animation>
@@ -19,7 +20,7 @@
   
   <data_labels>
     <show>
-       <![CDATA[{title}: {percents}%]]>        
+       <![CDATA[{title}: {value} 户]]>        
     </show>
     <line_color>#000000</line_color>           
     <line_alpha>15</line_alpha>                
