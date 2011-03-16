@@ -179,8 +179,10 @@ function images_update(){
 		menuArray[menuArray.length]="0,成效评估,";
         menuArray[menuArray.length]="1,表一,./test.htm";
 		menuArray[menuArray.length]="1,表二,./test.htm";
+
 		
-		//menuArray[menuArray.length]="0,重审申请,reauditApply.jsp";
+		menuArray[menuArray.length]="0,重审申请,${appPath}recheck_list.action";
+		
         //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
         //menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
         
@@ -211,6 +213,29 @@ function images_update(){
 	    //menuArray[24]="2,2.帐号激活,./help/help2.2.html";	
 	    </c:if>
 	    
+	    
+	    <c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='超级管理员'}">
+	    menuArray[menuArray.length]="0,信息审核,";
+	  	menuArray[menuArray.length]="1,镇帮扶审核,";
+        menuArray[menuArray.length]="2,镇措施审核,${appPath}shenhe_showAllCuoshiZhenInPro.action";
+		menuArray[menuArray.length]="2,镇成效审核,${appPath}shenhe_showAllChengxiaoZhenInPro.action";
+		menuArray[menuArray.length]="2,镇图片审核,${appPath}shenhe_showAllPicZhenInPro.action";
+		
+		menuArray[menuArray.length]="1,村帮扶审核,";
+        menuArray[menuArray.length]="2,村措施审核,${appPath}shenhe_showAllCuoshiCunInPro.action";
+		menuArray[menuArray.length]="2,村成效审核,${appPath}shenhe_showAllChengxiaoCunInPro.action";
+		menuArray[menuArray.length]="2,村图片审核,${appPath}shenhe_showAllPicCunInPro.action";
+		
+		menuArray[menuArray.length]="1,户帮扶审核,";
+        menuArray[menuArray.length]="2,户措施审核,${appPath}shenhe_showAllCuoshiFamilyInPro.action";
+		menuArray[menuArray.length]="2,户成效审核,${appPath}shenhe_showAllChengxiaoFamilyInPro.action";
+		menuArray[menuArray.length]="2,户图片审核,${appPath}shenhe_showAllPicFamilyInPro.action";
+		menuArray[menuArray.length]="2,贫困原因审核,${appPath}shenhe_showAllReasonInPro.action";
+		menuArray[menuArray.length]="2,帮扶记录审核,${appPath}shenhe_showAllRecordInPro.action";
+		
+		menuArray[menuArray.length]="0,重审申请,${appPath}recheck_listRecheck.action";
+		</c:if>
+	
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="0,基础数据维护,";
@@ -236,6 +261,7 @@ function images_update(){
 	    menuArray[menuArray.length]="0,贫困村户资料维护,";
 	    menuArray[menuArray.length]="1,贫困村资料维护,${appPath}cun_cunList.action";
 	    menuArray[menuArray.length]="1,贫困户资料维护,${appPath}family_familyList.action";
+
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="0,设置前台贫困户查看权限,${appPath}admin_perList.action";

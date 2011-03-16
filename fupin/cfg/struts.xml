@@ -45,6 +45,26 @@
 		<action name="logout" class="com.throne212.fupin.action.LogoutAction">
 			<result name="success" type="redirect">/login.jsp</result>
 		</action>
+		<!-- 审核模块 -->
+		<action name="shenhe_*" method="{1}" class="com.throne212.fupin.action.ShenHeAction">
+			<result name="cuoshizhen_inpro">/main/shenhe/cuoshizhen_list.jsp</result>
+			<result name="chengxiaozhen_inpro">/main/shenhe/chengxiaozhen_list.jsp</result>
+			<result name="piczhen_inpro">/main/shenhe/piczhen_list.jsp</result>
+			<result name="cuoshicun_inpro">/main/shenhe/cuoshicun_list.jsp</result>
+			<result name="chengxiaocun_inpro">/main/shenhe/chengxiaocun_list.jsp</result>
+			<result name="piccun_inpro">/main/shenhe/piccun_list.jsp</result>
+			<result name="cuoshifamily_inpro">/main/shenhe/cuoshifamily_list.jsp</result>
+			<result name="chengxiaofamily_inpro">/main/shenhe/chengxiaofamily_list.jsp</result>
+			<result name="picfamily_inpro">/main/shenhe/picfamily_list.jsp</result>
+			<result name="reason_inpro">/main/shenhe/reason_list.jsp</result>
+			<result name="record_inpro">/main/shenhe/record_list.jsp</result>
+		</action>
+		<!-- 重审申请 -->
+		<action name="recheck_*" method="{1}" class="com.throne212.fupin.action.RecheckAction">
+			<result name="list">/main/recheck/list.jsp</result>
+			<result name="edit">/main/recheck/edit.jsp</result>
+			<result name="recheck_list">/main/recheck/recheck_list.jsp</result>
+		</action>
 		<!-- 前台展示模块 -->
 		<action name="front_*" method="{1}" class="com.throne212.fupin.action.FrontAction">
 			<result name="cun_info">/cun/cun_info.jsp</result>

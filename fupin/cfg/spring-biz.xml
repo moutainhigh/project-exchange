@@ -36,4 +36,8 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="frontDao" ref="frontDao"></property>
 	</bean>
+	<bean id="shenHeBiz" class="com.throne212.fupin.biz.impl.ShenHeBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="shenHeDao" ref="shenHeDao"></property>
+	</bean>
 </beans>

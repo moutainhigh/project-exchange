@@ -98,7 +98,7 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			<c:if test="${f.status=='未提交'}">
-			<a href="#" onclick="winOpen('${appPath}cun_bf_confirmCuoshi.action?cuoshi.id=${f.id}',600,390);">确认后提交</a>
+			<a href="${appPath}cun_bf_confirmCuoshi.action?cuoshi.id=${f.id}" >确认后提交</a>
 			</c:if>
 			<c:if test="${f.status!='未提交'}">
 			${f.status }

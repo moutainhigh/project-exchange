@@ -86,33 +86,16 @@ function displayAction(sid) {
 	}
 </style>
 </head><body>
-<form method="get" action="${appPath}family_bf_reasonList.action" name="searchForm">
+<form method="get" action="${appPath}shenhe_showAllReasonInPro.action" name="searchForm">
 	
 
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_search">
 	<tbody><tr>
 		<td>
-			您当前所处页面：户帮扶维护&gt;&gt;贫困原因
+			您当前所处页面：审核&gt;&gt;贫困原因审核
 		</td>
 		<td align="right">
-			
-	
-			<label>审核状态: </label>
-	<select name="reason.status" size="1">
-		<option value="">--------------</option>
-		<option value="未提交">未提交</option>
-		<option value="审核中">审核中</option>
-		<option value="审核通过">审核通过</option>
-		<option value="审核不通过">审核不通过</option>
-	</select>
-	
-	<label>贫困户姓名: </label>
-	<input type="text" style="width: 90px;" value="" name="reason.family.name" id="textfield"> 
 
-		<input type="submit" class="button" value="查询" name="查询">
-		<input type="button" onclick="winOpen('${appPath}main/family_bf/reason_edit.jsp',600,390);" class="button" value="新增">
-		<input type="button" onclick="deleteInfo();" class="button" value="删除">
-		
 		</td>
 		<td align="right" width="5px"></td>
 		</tr>
@@ -120,9 +103,7 @@ function displayAction(sid) {
 
 			<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 				<tbody><tr align="center">
-					<td height="28" width="3%" class="tables_headercell">
-						<input type="checkbox" onclick="checkAll(this);">
-					</td>
+					
 				<td height="28" width="4%" class="tables_headercell">编号</td>
 <td width="6%" class="tables_headercell">
 						年度
@@ -136,21 +117,17 @@ function displayAction(sid) {
 					<td width="15%" class="tables_headercell">
 						贫困原因
 					</td>
+					
 					<td width="10%" class="tables_headercell">
-						状态
-					</td>
-					<!--<td width="10%" class="tables_headercell">
 						审核状态
 					</td>
-					--><td width="4%" class="tables_headercell">
-						修改
+					<td width="10%" class="tables_headercell">
+						审核
 					</td>
 				</tr>
 				<c:forEach items="${pageBean.resultList}" var="f">
 				<tr>
-					<td height="25" align="center" class="tables_contentcell">
-					<input type="checkbox" value="${f.id}" name="reason_ids" class="reason_ids">
-					</td>
+					
 				<td height="25" align="center" class="tables_contentcell">	${f.id }</td>
 					<td height="25" align="center" class="tables_contentcell">
 						&nbsp;${f.year }</td>
@@ -165,21 +142,12 @@ function displayAction(sid) {
                                  
 					</td>
 					<td height="25" align="center" class="tables_contentcell">
-				    <c:if test="${f.status=='未提交'}">
-						<a href="${appPath}family_bf_confirmReason.action?reason.id=${f.id}" >确认后提交</a>
-					</c:if>
-					<c:if test="${f.status!='未提交'}">
 						${f.status }
-					</c:if>
                     </td>
 					<td height="25" align="center" class="tables_contentcell">
-					<c:if test="${f.status=='未提交'}">
-						<a href="#" onclick="winOpen('${appPath}family_bf_saveOrUpdateReason.action?reason.id=${f.id}',600,390);">修改</a>
-					 </c:if>
-					 <c:if test="${f.status!='未提交'}">
-						不能修改
-					 </c:if>
-		</td>
+					<a href="${appPath}shenhe_passReason?reason.id=${f.id}" >通过</a>
+					<a href="${appPath}shenhe_notpassReason.action?reason.id=${f.id}" >不通过</a>
+					</td>
 				</tr>
 					</c:forEach>
 				<tr>

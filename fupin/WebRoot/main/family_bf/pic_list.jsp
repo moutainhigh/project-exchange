@@ -100,10 +100,12 @@ var msg = '${msg}';
 			${f.type }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			<%--<c:if test="${f.status=='未提交'}">
-			<a href="#" onclick="winOpen('${appPath}family_bf_confirmPic.action?pic.id=${f.id}',450,600);">确认后提交</a>
-			</c:if>--%>
-			${f.status }
+			<c:if test="${f.status=='未提交'}">
+			<a href="${appPath}family_bf_confirmPic.action?pic.id=${f.id}" >确认后提交</a>
+			</c:if>
+			<c:if test="${f.status!='未提交'}">
+						${f.status }
+			</c:if>
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
 		<a rel="facebox" href="${appPath}family_bf_viewPic.action?pic.id=${f.id}">查看</a>

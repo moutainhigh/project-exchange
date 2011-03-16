@@ -183,6 +183,7 @@ public class ZhenBFAction extends BaseAction {
 			cuoshi = zhenBFBiz.getEntityById(CuoshiZhen.class, cuoshi.getId());
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			zhenBFBiz.saveOrUpdateEntity(cuoshi);
+			this.setMsg("提交成功！");
 		}
 		return cuoshiZhenList();
 
@@ -335,6 +336,7 @@ public class ZhenBFAction extends BaseAction {
 			chengxiao = zhenBFBiz.getEntityById(ChengxiaoZhen.class, chengxiao.getId());
 			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			zhenBFBiz.saveOrUpdateEntity(chengxiao);
+			this.setMsg("提交成功！");
 		}
 		return chengxiaoZhenList();
 	}
@@ -443,6 +445,7 @@ public class ZhenBFAction extends BaseAction {
 			pic = zhenBFBiz.getEntityById(PicZhen.class, pic.getId());
 			pic.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			zhenBFBiz.saveOrUpdateEntity(pic);
+			this.setMsg("提交成功！");
 		}
 		return picZhenList();
 	}

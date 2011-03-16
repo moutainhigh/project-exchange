@@ -35,32 +35,19 @@ var msg = '${msg}';
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}zhen_bf_deletePicZhen.action';
+				document.forms[0].action = '${appPath}cun_bf_deletePicCun.action';
 				document.forms[0].submit();
 			}
 		}
 </script>
 </head><body>
 
-<form method="get" action="${appPath}zhen_bf_picZhenList.action" name="searchForm">
+<form method="get" action="${appPath}shenhe_showAllPicCunInPro.action" name="searchForm">
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
-	<td>您当前所处页面：镇帮扶维护&gt;&gt;镇图片管理 </td>
+	<td>您当前所处页面：审核&gt;&gt;村图片审核 </td>
 	<td align="right">
-
-	<label>审核状态: </label>
-	<select name="pic.status" size="1">
-		<option value="">--------------</option>
-		<option value="未提交">未提交</option>
-		<option value="审核中">审核中</option>
-		<option value="审核通过">审核通过</option>
-		<option value="审核不通过">审核不通过</option>
-	</select>
-
-		<input type="submit" class="button" value="查询"> 
-		<input type="button" onclick="winOpen('${appPath}main/zhen_bf/pic_edit.jsp',450,600);" class="button" value="上传">
-		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 	</td>
 	<td width="5px" align="right"></td>
 	</tr>
@@ -68,22 +55,20 @@ var msg = '${msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	
 	<tbody><tr align="center">
-		<td height="28" width="" class="tables_headercell">
-		<input type="checkbox" onclick="checkAll(this);">
+		
 		<td width="" class="tables_headercell">编号</td>
 		<td width="" class="tables_headercell">年度</td>
-		<td class="tables_headercell">贫困镇名</td>
+		<td class="tables_headercell">户主姓名</td>
 		<td width="" class="tables_headercell">上传时间</td>
 		<td width="" class="tables_headercell">类型</td>
 		<td width="" class="tables_headercell">审核状态</td>
 		<td width="" class="tables_headercell">查看</td>
+		<td width="" class="tables_headercell">审核</td>
+		
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
-		<td height="25" align="center" class="tables_contentcell">
-		<input type="checkbox" value="${f.id}" name="picZhen_ids" class="picZhen_ids">
-		<input type="hidden" value="2" name="sftj3981" id="sftj3981">
-		</td>
+		
 		<td height="25" align="center" class="tables_contentcell">
 			${f.id }
 		</td>
@@ -91,7 +76,7 @@ var msg = '${msg}';
 			${f.year }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			${f.zhen.name }
+			${f.cun.name }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.createDate }
@@ -100,17 +85,15 @@ var msg = '${msg}';
 			${f.type }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			<c:if test="${f.status=='未提交'}">
-			<a href="${appPath}zhen_bf_confirmPic.action?pic.id=${f.id}" >确认后提交</a>
-			</c:if>
-			<c:if test="${f.status!='未提交'}">
 			${f.status }
-			</c:if>
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
-		<a rel="facebox" href="${appPath}zhen_bf_viewPic.action?pic.id=${f.id}">查看</a>
+		<a rel="facebox" href="${appPath}cun_bf_viewPic.action?pic.id=${f.id}">查看</a>
 		</td>
-		
+		<td height="25" align="center" class="tables_contentcell">
+		<a href="${appPath}shenhe_passPicCun?picCun.id=${f.id}" >通过</a>
+		<a href="${appPath}shenhe_notpassPicCun.action?picCun.id=${f.id}" >不通过</a>
+		</td>
 
 		</tr>
 			</c:forEach>

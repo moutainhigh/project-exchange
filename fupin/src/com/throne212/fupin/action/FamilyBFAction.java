@@ -91,6 +91,7 @@ public class FamilyBFAction extends BaseAction {
 			cuoshi = familyBFBiz.getEntityById(CuoshiFamily.class, cuoshi.getId());
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			familyBFBiz.saveOrUpdateEntity(cuoshi);
+			this.setMsg("提交成功！");
 		}
 		return cuoshiFamilyList();
 
@@ -162,6 +163,7 @@ public class FamilyBFAction extends BaseAction {
 			chengxiao = familyBFBiz.getEntityById(ChengxiaoFamily.class, chengxiao.getId());
 			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			familyBFBiz.saveOrUpdateEntity(chengxiao);
+			this.setMsg("提交成功！");
 		}
 		return chengxiaoFamilyList();
 	}
@@ -232,6 +234,7 @@ public class FamilyBFAction extends BaseAction {
 			reason = familyBFBiz.getEntityById(Reason.class, reason.getId());
 			reason.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			familyBFBiz.saveOrUpdateEntity(reason);
+			this.setMsg("提交成功！");
 		}
 		return reasonList();
 	}
@@ -328,6 +331,7 @@ public class FamilyBFAction extends BaseAction {
 			pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
 			pic.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			familyBFBiz.saveOrUpdateEntity(pic);
+			this.setMsg("提交成功！");
 		}
 		return picFamilyList();
 	}
@@ -406,6 +410,7 @@ public class FamilyBFAction extends BaseAction {
 			record = familyBFBiz.getEntityById(Record.class, record.getId());
 			record.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 			familyBFBiz.saveOrUpdateEntity(record);
+			this.setMsg("提交成功！");
 		}
 		return recordList();
 	}
