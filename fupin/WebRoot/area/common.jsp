@@ -83,9 +83,9 @@
 			if(val){
 				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
 					if(json && json['list'] && json['list'].length){
-						$('#cunId').html('<option value=""></option>');
+						$('#cunId2').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
-							$('#cunId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 					}
 				});
 			}
@@ -127,7 +127,7 @@
  			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镇：</span><select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
 						<option value="">----------</option>
 					 </select>
-			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span><select id="cunId" name="cunId">
+			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span><select id="cunId2" name="cunId">
 						<option value="">-----------</option>
 						</select>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="q2" type="submit" value="查询" />

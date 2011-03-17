@@ -134,7 +134,7 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 			so2.addVariable("path", "");
 			so2.write("demo2");		
 			
-			var so3 = new SWFObject("${appPath}chart/amcolumn.swf", "demo_chart", "700","350", "8", "#FFFFFF");
+			var so3 = new SWFObject("${appPath}chart/amcolumn.swf", "demo_chart", "750","350", "8", "#FFFFFF");
 			so3.addVariable("settings_file", encodeURIComponent('${appPath}chart/3d-stacked-column-chart.xml'));               
 			so3.addVariable('data_file', escape('${appPath}chart.servlet?type=area_column&areaId='+${area.id})+'&time=<%=new Date().getTime()%>');
 			so3.addVariable("path", "");

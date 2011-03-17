@@ -41,7 +41,7 @@ $(document).ready(function()
 	<tbody><tr height="100%" valign="top">
 		<td>
 		<div align='center'>
-		<a href="session.jsp" style="font-weight: bold" target="detailFrame">规划到户情况</a>
+		<a href="${appPath}front_shiStat.action?shiId=1" style="font-weight: bold" target="detailFrame">规划到户情况</a>
 		</div>
 		<hr>
 		<div >			

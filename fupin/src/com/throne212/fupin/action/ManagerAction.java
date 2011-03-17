@@ -5,6 +5,8 @@ import java.util.Date;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.common.PinyinToolkit;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 
@@ -31,6 +33,9 @@ public class ManagerAction extends BaseAction {
 	public String saveManager() {
 		if (org.getId() == null) {
 			org.setCreateDate(new Date());
+			if(!Util.isEmpty(org.getOrgName())){
+				org.setPinyin(PinyinToolkit.cn2Pinyin(org.getOrgName()));
+			}
 			orgBiz.saveOrUpdateEntity(org);
 			this.setSucc("Y");
 			this.setMsg("管理员账号创建成功");
@@ -39,6 +44,9 @@ public class ManagerAction extends BaseAction {
 			orgInDB.setPassword(org.getPassword());
 			orgInDB.setRemark(org.getRemark());
 			orgInDB.setOrgName(org.getOrgName());
+			if(!Util.isEmpty(org.getOrgName())){
+				orgInDB.setPinyin(PinyinToolkit.cn2Pinyin(org.getOrgName()));
+			}
 			orgBiz.saveOrUpdateEntity(orgInDB);
 			this.setSucc("Y");
 			this.setMsg("管理员账号修改成功");

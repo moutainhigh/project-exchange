@@ -7,8 +7,8 @@
   </background>
   <plot_area>
     <margins>
-      <left>70</left>
-      <right>50</right>
+      <left>15</left>
+      <right>10</right>
     </margins>
   </plot_area>
   <grid>
@@ -29,6 +29,18 @@
       <width>1</width>
     </value>
   </axes>
+  <balloon>                                                   <!-- BALLOON -->
+    <enabled>true</enabled>                                       <!-- [true] (true / false) -->
+    <color></color>                                           <!-- [] (hex color code) balloon background color. If empty, slightly darker then current column color will be used -->
+    <alpha>85</alpha>                                         <!-- [100] (0 - 100) -->
+    <text_color></text_color>                                 <!-- [#FFFFFF] (hex color code) -->
+    <text_size>16</text_size>                                   <!-- [text_size] (Number) -->
+    <max_width></max_width>                                   <!-- [220] (Number) The maximum width of a balloon -->
+    <corner_radius></corner_radius>                           <!-- [0] (Number) Corner radius of a balloon. If you set it > 0, the balloon will not display arrow -->
+    <border_width></border_width>                             <!-- [0] (Number) -->
+    <border_alpha></border_alpha>                             <!-- [balloon.alpha] (Number) -->
+    <border_color></border_color>                             <!-- [balloon.color] (hex color code) -->
+  </balloon>
   <values>
     <category>
       <rotate>0</rotate>
@@ -37,19 +49,19 @@
       <min>0</min>
       <integers_only>true</integers_only> 
     </value>
-    <text-size>12</text-size>
+    <text-size>16</text-size>
   </values>
   <legend>
     <enabled>0</enabled>
   </legend>
 
   <column>
-    <width>85</width>
+    <width>60</width>
     <spacing>0</spacing>
     <alpha>80</alpha>
     <corner_radius_top>8</corner_radius_top>
     <balloon_text>Anomaly in {series}: {value}C</balloon_text>
-
+	<spacing>10</spacing>
     <grow_time>3</grow_time>
     <sequenced_grow>1</sequenced_grow>
   </column>

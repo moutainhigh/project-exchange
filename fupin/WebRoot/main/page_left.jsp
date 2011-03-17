@@ -172,13 +172,13 @@ function images_update(){
         menuArray[menuArray.length]="1,到户记录（即扶持内容）,${appPath}family_bf_recordList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}family_bf_chengxiaoFamilyList.action";
 		menuArray[menuArray.length]="1,户图片管理,${appPath}family_bf_picFamilyList.action";
-		menuArray[menuArray.length]="0,报表管理,";
-        menuArray[menuArray.length]="1,季度报表,./test.htm";
-		menuArray[menuArray.length]="1,年度报表,./test.htm";
+		//menuArray[menuArray.length]="0,报表管理,";
+        //menuArray[menuArray.length]="1,季度报表,./test.htm";
+		//menuArray[menuArray.length]="1,年度报表,./test.htm";
 		
-		menuArray[menuArray.length]="0,成效评估,";
-        menuArray[menuArray.length]="1,表一,./test.htm";
-		menuArray[menuArray.length]="1,表二,./test.htm";
+		//menuArray[menuArray.length]="0,成效评估,";
+        //menuArray[menuArray.length]="1,表一,./test.htm";
+		//menuArray[menuArray.length]="1,表二,./test.htm";
 
 		
 		menuArray[menuArray.length]="0,重审申请,${appPath}recheck_list.action";
