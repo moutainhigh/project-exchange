@@ -53,6 +53,7 @@
 			<property name="contactAddr" length="100"></property>
 			<property name="contactPost" length="100"></property>
 			<property name="contactEmail" length="100"></property>
+			<property name="pinyin"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

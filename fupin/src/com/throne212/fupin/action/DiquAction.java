@@ -3,6 +3,7 @@ package com.throne212.fupin.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.DiquBiz;
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.common.PinyinToolkit;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
@@ -57,6 +58,7 @@ public class DiquAction extends BaseAction {
 					Cun a = new Cun();
 					a.setName(diqu.getName());
 					a.setZhen(diquBiz.getEntityById(Zhen.class, zhenId));
+					a.setPinyin(PinyinToolkit.cn2Pinyin(a.getName()));
 					diqu = a;
 				}
 			}

@@ -23,6 +23,8 @@ public class Org extends User {
 	private String contactPost;//邮政编码
 	private String contactEmail;//电子邮箱 	
 	
+	private String pinyin;
+	
 	public Cun getCun() {
 		return cun;
 	}
@@ -112,6 +114,12 @@ public class Org extends User {
 	}
 	public void setContactEmail(String contactEmail) {
 		this.contactEmail = contactEmail;
+	}
+	public String getPinyin() {
+		return pinyin;
+	}
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
 	}
 
 }

@@ -27,6 +27,22 @@ public class Cun extends Diqu {
 	private String ying;
 	private String office;
 	private String item;
+	
+	private String pinyin;
+	
+	//完整名
+	private String absName;
+	
+	public void setAbsName(String absName) {
+		this.absName = absName;
+	}
+
+	public String getAbsName(){
+		if(zhen!=null && zhen.getArea()!=null){
+			return zhen.getArea().getName()+zhen.getName()+name;
+		}
+		return "";
+	}
 
 	public Zhen getZhen() {
 		return zhen;
@@ -226,6 +242,14 @@ public class Cun extends Diqu {
 
 	public void setItem(String item) {
 		this.item = item;
+	}
+
+	public String getPinyin() {
+		return pinyin;
+	}
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
 	}
 
 }

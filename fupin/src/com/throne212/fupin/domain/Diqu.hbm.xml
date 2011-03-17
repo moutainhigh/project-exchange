@@ -54,6 +54,7 @@
 			<property name="ying"></property>
 			<property name="you"></property>
 			<property name="item" length="2048"></property>
+			<property name="pinyin"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

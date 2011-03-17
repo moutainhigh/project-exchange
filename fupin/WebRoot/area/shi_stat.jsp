@@ -139,6 +139,7 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 			so3.addVariable('data_file', escape('${appPath}chart.servlet?type=shi_column&shiId='+${shi.id})+'&time=<%=new Date().getTime()%>');
 			so3.addVariable("path", "");
 			so3.write("demo3");
+			
 		});
 	</script>
 	
@@ -151,62 +152,8 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 }
 -->
 </style>
-<table border="0" cellpadding="0" cellspacing="0" height=""	width="100%">
-	<tbody>
-	 <tr height="" valign="top">
-	  <td>
-		<div style="margin: 0px; width: 100%;">
- 		 <div class="right_img03" style="margin-left: 0px;">
-			<ul class="float_left" style="margin: 0px; padding: 0px;">
-				<li class="tc_bg02 text_center float_left button02 "
-					onmousedown="setTab7('detail',1,3,this);" id="detail1"><a class="cn15 STYLE1" style="cursor:hand">简码查询</a>				</li>
-				<li class="tc_bg03 text_center float_left button01"
-				    onmousedown="setTab7('detail',2,3,this)" id="detail2"><a class="cn15 STYLE1" style="cursor:hand">地区查询</a>				</li>
-				<li class="tc_bg03 text_center float_left button01"
-					onmousedown="setTab7('detail',3,3,this)" id="detail3"><a class="cn15 STYLE1" style="cursor:hand">单位查询</a>				</li>
-			</ul>
-		 </div>
- 		 <form method="post" action="searchTab.jsp?form=1" name="form1">
-			<div id="con_detail_1" class="dorpmenu" style="display: block; height: 28px;">
-				<span class="STYLE1">贫困村名称</span>:
-				<input name="targetCity" type="text" id="targetCity"
-					title="如：文东村或WD" size="40" autocomplete="off" value="" />
-				<input name="1" id="submit1" type="submit" value="查询"	onclick="return checkPkcmc();" />
-			    <a target="_blank" href="help/jmhelp.htm"><span class="STYLE1" >使用帮助</span></a>
-			</div>
-		</form>
-		<form method="post"	action="searchTab.jsp?form=2&id=" name="form2">
-		    <div id="con_detail_2" class="dorpmenu"	style="display: none; height: 28px;">
-                 <span class="STYLE1">市：</span>
-                   <select id="shi" name="shi" onchange="changeBegin3('xian',this.value);">
-					<option value="">-----------</option>
-				 </select>
-			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;县：</span><select id="xian" name="xian" onchange="changeBegin3('zhen',this.value);">
-						<option value="">----------</option>
-					  </select>
- 			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镇：</span><select id="zhen" name="zhen" onchange="changeBegin3('cun',this.value);">
-						<option value="">----------</option>
-					 </select>
-			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span><select id="cun" name="cun">
-						<option value="">-----------</option>
-						</select>
-			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="2" type="submit" value="查询" />
-           </div>
-	 	</form>
-		
-        <form method="post" action="searchTab.jsp?form=3" name="form3">
-			 <div id="con_detail_3" class="dorpmenu"  style="display: none; height: 28px;">													
-	         <span class="STYLE1">单位编码/名称:</span>
-			 <input id="dwname" name="dwname" type="text" value="" size="50"/>
-	         <input name="3" id="submit3" type="submit" value="查询"  onClick="return checkDwcx();" />
-	   	     <a target="_blank" href="help/dwhelp.htm"><span class="STYLE1" >使用帮助</span></a>
-	   	     </div>
-	   </form>
-	 </div>
-   </td>
-  </tr>
-</tbody>
-</table>
+
+<jsp:include page="common.jsp"></jsp:include>
 
 		<TABLE width="100%" border="0" cellpadding="0" cellspacing="0" class="bg16">
 			<TBODY>

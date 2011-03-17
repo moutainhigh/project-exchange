@@ -148,7 +148,7 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 }
 -->
 </style>
-
+<jsp:include page="common.jsp"></jsp:include>
 		<TABLE width="100%" border="0" cellpadding="0" cellspacing="0" class="bg16">
 			<TBODY>
 				<TR>

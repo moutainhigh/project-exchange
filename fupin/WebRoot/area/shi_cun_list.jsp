@@ -119,10 +119,15 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 		<link type="text/css" rel="stylesheet" href="${appPath}images/commom.css" />
 		<link rel="stylesheet" href="${appPath}css/autoCity.css" type="text/css" media="all" />
 		<link rel="stylesheet" href="${appPath}css/tagstyle.css" />
+		<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.autocomplete.css" />
 		<script src="${appPath}js/jquery.js"></script>
+		
+		<script type="text/javascript" src="${appPath}js/jquery.autocomplete.js"></script>
+		
 		<script type="text/javascript" src="${appPath}chart/swfobject.js"></script>
 		<script type="text/javascript">
 		$(function(){
+			
 		});
 	</script>
 		<style type="text/css">
@@ -132,7 +137,7 @@ a:hover .aa { /*border-bottom:1px dotted #317082;*/
 }
 -->
 </style>
-
+<jsp:include page="common.jsp"></jsp:include>
 		<TABLE width="100%" border="0" cellpadding="0" cellspacing="0" class="bg16">
 			<TBODY>
 				<TR>

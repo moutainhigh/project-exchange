@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.biz.BaseBiz;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
@@ -183,6 +184,20 @@ public class AjaxAction extends BaseAction {
 		return null;
 	}
 	
+	private String q;
+	public String queryCunByPinyin(){
+		if(!Util.isEmpty(q)){
+			list = adminBiz.getCunListByLike(q.toLowerCase());
+		}
+		return "pinyin";
+	}
+	public String queryOrgByPinyin(){
+		if(!Util.isEmpty(q)){
+			list = adminBiz.getAllLike(Org.class, "pinyin", q.toLowerCase());
+		}
+		return "pinyin2";
+	}
+	
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}
@@ -227,6 +242,12 @@ public class AjaxAction extends BaseAction {
 	}
 	public void setRoot(String root) {
 		this.root = root;
+	}
+	public String getQ() {
+		return q;
+	}
+	public void setQ(String q) {
+		this.q = q;
 	}
 	
 

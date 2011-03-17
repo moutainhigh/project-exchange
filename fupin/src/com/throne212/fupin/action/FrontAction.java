@@ -13,6 +13,7 @@ import com.throne212.fupin.domain.ChengxiaoCun;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Permission;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.Shi;
@@ -191,6 +192,69 @@ public class FrontAction extends BaseAction {
 		return "view_family";
 	}
 	
+	//查询
+	private String pinyin;
+	public String queryCunByPinyin(){
+		if(cunId!=null){
+			cun = new Cun();
+			cun.setId(cunId);
+			return showCunInfo();
+		}
+			
+		if(!Util.isEmpty(pinyin)){
+			List list = frontBiz.getAllLike(Cun.class, "pinyin", pinyin);
+			if(list==null || list.size()==0){
+				this.setMsg("没有找到相关记录");
+				return "query";
+			}else{
+				cun = (Cun) list.get(0);
+				return showCunInfo();
+			}
+		}
+		return "query";
+	}
+	private Long orgId;
+	public String queryCunByOrgPinyin(){
+		if(orgId!=null){
+			Org org = frontBiz.getEntityById(Org.class, orgId);
+			if(org.getCun() == null){
+				this.setMsg("该单位没有对应的帮扶村");
+				return "query";
+			}
+			cun = org.getCun();
+			return showCunInfo();
+		}
+		
+		if(!Util.isEmpty(pinyin)){
+			List list = frontBiz.getAllLike(Org.class, "pinyin", pinyin);
+			if(list==null || list.size()==0){
+				this.setMsg("没有找到相关记录");
+				return "query";
+			}else{
+				Org org = (Org) list.get(0);
+				if(org.getCun() == null){
+					this.setMsg("该单位没有对应的帮扶村");
+					return "query";
+				}
+				cun = org.getCun();
+				return showCunInfo();
+			}
+		}
+		return "query";
+	}
+	private Long cunId;
+	public String queryDiqu(){
+		if(cunId!=null){
+			cun = new Cun();
+			cun.setId(cunId);
+			return showCunInfo();
+		}else if(zhenId!=null){
+			return zhenStat();
+		}else if(areaId!=null){
+			return areaStat();
+		}
+		return shiStat();
+	}
 	
 	public List<Cun> getCunList() {
 		return cunList;
@@ -362,6 +426,36 @@ public class FrontAction extends BaseAction {
 
 	public void setShiId(Long shiId) {
 		this.shiId = shiId;
+	}
+
+
+	public String getPinyin() {
+		return pinyin;
+	}
+
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
+
+
+	public Long getCunId() {
+		return cunId;
+	}
+
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
+	}
+
+
+	public Long getOrgId() {
+		return orgId;
+	}
+
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
 	}
 	
 	

@@ -178,7 +178,7 @@ function mysubmit()//网页内按下回车触发
 .STYLE1 {color: #FFFFFF}
 -->
 </style>
-
+<jsp:include page="../area/common.jsp"></jsp:include>
 
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="bg16">
 	<tbody><tr>
