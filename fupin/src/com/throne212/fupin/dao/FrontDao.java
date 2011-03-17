@@ -4,12 +4,15 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
 public interface FrontDao extends BaseDao {
 	//根据cunId获取所有贫困户
 	public PageBean<Family> getAllFamilyByCunId(Long cunId,Integer pageIndex);
+	//根据familyId获取所有帮扶记录
+	public PageBean<Record> getAllRecordByFamilyId(Long familyId,Integer pageIndex);
 	
 	//获取所有村列表
 	public PageBean<Cun> getAllCunUnderShi(Long shiId,Integer pageIndex);

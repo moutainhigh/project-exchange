@@ -81,6 +81,11 @@
 			<result name="shi_cun_list">/area/shi_cun_list.jsp</result>
 			<result name="login">/cun/cun_login.jsp</result>
 			<result name="view_family">/cun/view_family.jsp</result>
+			<result name="view_family_chengxiao">/cun/view_family_chengxiao.jsp</result>
+			<result name="view_family_cuoshi">/cun/view_family_cuoshi.jsp</result>
+			<result name="view_family_reason">/cun/view_family_reason.jsp</result>
+			<result name="family_record">/cun/view_family_record.jsp</result>
+			
 			<result name="query">/area/query.jsp</result>
 		</action>
 		<!-- 账号维护 -->

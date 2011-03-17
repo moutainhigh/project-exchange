@@ -10,6 +10,7 @@ import com.throne212.fupin.dao.FrontDao;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
@@ -34,7 +35,26 @@ public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
+	public PageBean<Record> getAllRecordByFamilyId(Long familyId,Integer pageIndex){
+		PageBean<Record> page = new PageBean<Record>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from Record t";
+		if (familyId != null)
+			hql += " where family.id=" + familyId;
 
+		hql += " order by id desc";
+		logger.debug("hql=" + hql);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Record> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+		
+	}
 	public PageBean<Cun> getAllCunUnderShi(Long shiId, Integer pageIndex) {
 		PageBean<Cun> page = new PageBean<Cun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;

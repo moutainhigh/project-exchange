@@ -38,7 +38,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		return this.getHibernateTemplate().find(hql, value);
 	}
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue){
-		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e."+colTwoName+"=?";
+		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e."+colTwoName+"=? order by e.id desc";
 		List paramValueList = new ArrayList();
 		paramValueList.add(oneValue);
 		paramValueList.add(twoValue);

@@ -4,11 +4,13 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
 public interface FrontBiz extends BaseBiz {
 	public PageBean<Family> getAllFamilyByCunId(Long cunId, Integer pageIndex);
+	public PageBean<Record> getAllRecordByFamilyId(Long familyId,Integer pageIndex);
 
 	public PageBean<Cun> getAllCunUnderShi(Long shiId, Integer pageIndex);
 

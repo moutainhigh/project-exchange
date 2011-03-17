@@ -10,12 +10,15 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.ChengxiaoCun;
+import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiCun;
+import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Permission;
 import com.throne212.fupin.domain.PicCun;
+import com.throne212.fupin.domain.Reason;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
@@ -28,6 +31,9 @@ public class FrontAction extends BaseAction {
 	private List<PicCun> picList;
 	private CuoshiCun cuoshiCun;
 	private ChengxiaoCun chengxiaoCun;
+	private ChengxiaoFamily chengxiaoFamily;
+	private CuoshiFamily cuoshiFamily;
+	private Reason reason;
 	private Shi shi;
 	private Area area;
 	private Zhen zhen;
@@ -191,6 +197,54 @@ public class FrontAction extends BaseAction {
 		family = baseBiz.getEntityById(Family.class, family.getId());
 		return "view_family";
 	}
+
+	public String  showFamilyChengxiao() {
+		Object obj = ActionContext.getContext().getSession().get(WebConstants.SESS_USER_PERMISSION);
+		if(obj == null){
+			return "login"; 
+		}
+		family = baseBiz.getEntityById(Family.class, family.getId());
+		List<ChengxiaoFamily> chengxiaoList=baseBiz.getEntitiesByTwoColumn(ChengxiaoFamily.class, "family", family,"status", WebConstants.SHENHE_STATUS_PASS);
+		if (chengxiaoList!=null&&chengxiaoList.size()>0) {
+			chengxiaoFamily=chengxiaoList.get(0);
+		}
+		return "view_family_chengxiao";
+	}
+	public String  showFamilyCuoshi() {
+		Object obj = ActionContext.getContext().getSession().get(WebConstants.SESS_USER_PERMISSION);
+		if(obj == null){
+			return "login"; 
+		}
+		family = baseBiz.getEntityById(Family.class, family.getId());
+		List<CuoshiFamily> cuoshiList=baseBiz.getEntitiesByTwoColumn(CuoshiFamily.class, "family", family,"status", WebConstants.SHENHE_STATUS_PASS);
+		if (cuoshiList!=null&&cuoshiList.size()>0) {
+			cuoshiFamily=cuoshiList.get(0);
+		}
+		return "view_family_cuoshi";
+	}
+	public String  showFamilyReason() {
+		Object obj = ActionContext.getContext().getSession().get(WebConstants.SESS_USER_PERMISSION);
+		if(obj == null){
+			return "login"; 
+		}
+		family = baseBiz.getEntityById(Family.class, family.getId());
+		List<Reason> reasonList=baseBiz.getEntitiesByTwoColumn(Reason.class, "family", family,"status", WebConstants.SHENHE_STATUS_PASS);
+		if (reasonList!=null&&reasonList.size()>0) {
+			reason=reasonList.get(0);
+		}
+		return "view_family_reason";
+	}
+	public String  showFamilyContent() {
+		Object obj = ActionContext.getContext().getSession().get(WebConstants.SESS_USER_PERMISSION);
+		if(obj == null){
+			return "login"; 
+		}
+		family = baseBiz.getEntityById(Family.class, family.getId());
+		pageBean=frontBiz.getAllRecordByFamilyId(family.getId(), pageIndex);
+		return "family_record";
+		
+	}
+	
 	
 	//查询
 	private String pinyin;
@@ -456,6 +510,36 @@ public class FrontAction extends BaseAction {
 
 	public void setOrgId(Long orgId) {
 		this.orgId = orgId;
+	}
+
+
+	public ChengxiaoFamily getChengxiaoFamily() {
+		return chengxiaoFamily;
+	}
+
+
+	public void setChengxiaoFamily(ChengxiaoFamily chengxiaoFamily) {
+		this.chengxiaoFamily = chengxiaoFamily;
+	}
+
+
+	public CuoshiFamily getCuoshiFamily() {
+		return cuoshiFamily;
+	}
+
+
+	public void setCuoshiFamily(CuoshiFamily cuoshiFamily) {
+		this.cuoshiFamily = cuoshiFamily;
+	}
+
+
+	public Reason getReason() {
+		return reason;
+	}
+
+
+	public void setReason(Reason reason) {
+		this.reason = reason;
 	}
 	
 	

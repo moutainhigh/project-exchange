@@ -8,6 +8,7 @@ import com.throne212.fupin.dao.FrontDao;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.Zhen;
 
@@ -20,6 +21,12 @@ public class FrontBizImpl extends BaseBizImpl implements FrontBiz {
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
 		return frontDao.getAllFamilyByCunId(cunId,pageIndex);
+	}
+	public PageBean<Record> getAllRecordByFamilyId(Long familyId,Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return frontDao.getAllRecordByFamilyId(familyId,pageIndex);
+		
 	}
 	
 	public PageBean<Cun> getAllCunUnderArea(Long areaId, Integer pageIndex) {
