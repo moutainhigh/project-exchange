@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ManagerDao;
+import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
@@ -148,6 +149,15 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
+	}
+	
+	public Cun getCunByAreaAndName(Area area,String name){
+		String hql = "from Cun c where c.zhen.area=? and c.name=?";
+		List<Cun> list = this.getHibernateTemplate().find(hql,new Object[]{area,name});
+		if(list!=null && list.size() > 0)
+			return list.get(0);
+		else
+			return null;
 	}
 
 }

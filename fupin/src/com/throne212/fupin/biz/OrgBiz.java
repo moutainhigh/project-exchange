@@ -24,5 +24,8 @@ public interface OrgBiz extends BaseBiz {
 	
 	//干部
 	public PageBean getAllLeader(Org org,String name,Integer pageIndex);
+	
+	public String uploadFamilyData(String fileName) throws Exception;
+	public String getFamilyExcelDownloadFile(String name) throws Exception;
 
 }

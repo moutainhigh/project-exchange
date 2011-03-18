@@ -1,16 +1,28 @@
 package com.throne212.fupin.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import jxl.Sheet;
+import jxl.Workbook;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.common.Util;
+import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Family;
-import com.throne212.fupin.domain.Person;
 
 public class FamilyAction extends BaseAction {
 
 	private PageBean pageBean;
 	private Integer pageIndex;
 	private String queryKey;
+	
+	private InputStream downloadFile;
 
 	private OrgBiz orgBiz;
 
@@ -51,6 +63,39 @@ public class FamilyAction extends BaseAction {
 		return familyList();
 	}
 	
+	//数据导入
+	public String uploadExcel(){
+		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if(fileName!=null){
+			String msg = null;
+			try {
+				msg = orgBiz.uploadFamilyData(fileName);
+				this.setSucc("Y");
+				this.setMsg("数据导入成功\\n"+msg);
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("数据导入失败\\n"+e.getMessage());
+			}
+		}
+		return "upload";
+	}
+	//数据导出
+	public String downloadExcel(){
+		try {
+			String path = orgBiz.getFamilyExcelDownloadFile(queryKey);
+			if (path != null){
+				this.setDownloadFile(new FileInputStream(path));
+				this.setMsg("family");//文件名
+			}
+			else
+				this.setMsg("文件生成失败，请联系管理员");
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.setMsg("文件下载失败");
+		}
+		return "excel";
+	}
+	
 	public PageBean getPageBean() {
 		return pageBean;
 	}
@@ -89,6 +134,14 @@ public class FamilyAction extends BaseAction {
 
 	public void setFamily(Family family) {
 		this.family = family;
+	}
+
+	public InputStream getDownloadFile() {
+		return downloadFile;
+	}
+
+	public void setDownloadFile(InputStream downloadFile) {
+		this.downloadFile = downloadFile;
 	}
 
 

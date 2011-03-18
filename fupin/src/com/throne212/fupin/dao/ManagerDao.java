@@ -1,6 +1,8 @@
 package com.throne212.fupin.dao;
 
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.domain.Area;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Zhen;
 
 public interface ManagerDao extends BaseDao {
@@ -24,4 +26,6 @@ public interface ManagerDao extends BaseDao {
 	public PageBean getAllLeader(Long orgId,Integer pageIndex);
 	
 	public PageBean getAllLeader(Long orgId,String name,Integer pageIndex);
+	
+	public Cun getCunByAreaAndName(Area area,String name);
 }
