@@ -31,6 +31,18 @@ var msg = '${msg}';
 				document.forms[0].submit();
 			}
 		}
+			function pass(){
+			if(confirm('您确定通过审核吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}shenhe_passAllCuoshiCun.action';
+				document.forms[0].submit();
+			}
+		}
+			function notpass(){
+			if(confirm('您确定不通过审核吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}shenhe_notpassAllCuoshiCun.action';
+				document.forms[0].submit();
+			}
+		}
 </script>
 </head><body>
 
@@ -40,6 +52,8 @@ var msg = '${msg}';
 	<tbody><tr>
 	<td>您当前所处页面：审核&gt;&gt;村帮扶措施审核 </td>
 	<td align="right">
+	<input type="button" onclick="pass();" class="button" value="通过">
+	<input type="button" onclick="notpass();" class="button" value="不通过">
 </td>
 	<td width="5px" align="right"></td>
 	</tr>
@@ -47,6 +61,8 @@ var msg = '${msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	
 	<tbody><tr align="center">
+	<td height="28" width="6%" class="tables_headercell">
+		<input type="checkbox" onclick="checkAll(this);"></td>
 		<td width="" class="tables_headercell">编号</td>
 		<td width="" class="tables_headercell">类型</td>
 		<td width="" class="tables_headercell">时间</td>
@@ -56,7 +72,9 @@ var msg = '${msg}';
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
-		
+		<td height="25" align="center" class="tables_contentcell">
+		<input type="checkbox" value="${f.id}" name="cuoshiCun_ids" class="cuoshiCun_ids">
+		</td>
 		<td height="25" align="center" class="tables_contentcell">
 			${f.id }
 		</td>

@@ -83,7 +83,18 @@ function displayAction(sid) {
 				$('#year').val(year);
 			}
 		});
-
+function pass(){
+			if(confirm('您确定通过审核吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}shenhe_passAllCuoshiFamily.action';
+				document.forms[0].submit();
+			}
+		}
+			function notpass(){
+			if(confirm('您确定不通过审核吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}shenhe_notpassAllCuoshiFamily.action';
+				document.forms[0].submit();
+			}
+		}
 </script>
 <style>
 	.tables_search {
@@ -102,6 +113,8 @@ function displayAction(sid) {
 			您当前所处页面：审核&gt;&gt;户帮扶措施审核
 		</td>
 		<td align="right">
+		<input type="button" onclick="pass();" class="button" value="通过">
+		<input type="button" onclick="notpass();" class="button" value="不通过">
 			
 		</td>
 		<td align="right" width="5px"></td>
@@ -110,7 +123,9 @@ function displayAction(sid) {
 
 			<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 				<tbody><tr align="center">
-					
+					<td height="28" width="3%" class="tables_headercell">
+						<input type="checkbox" onclick="checkAll(this);">
+					</td>
 				<td height="28" width="4%" class="tables_headercell">编号</td>
 <td width="6%" class="tables_headercell">
 						年度
@@ -134,7 +149,9 @@ function displayAction(sid) {
 				</tr>
 				<c:forEach items="${pageBean.resultList}" var="f">
 				<tr>
-					
+					<td height="25" align="center" class="tables_contentcell">
+					<input type="checkbox" value="${f.id}" name="cuoshiFamily_ids" class="cuoshiFamily_ids">
+					</td>
 				<td height="25" align="center" class="tables_contentcell">	${f.id }</td>
 					<td height="25" align="center" class="tables_contentcell">
 						&nbsp;${f.year }</td>

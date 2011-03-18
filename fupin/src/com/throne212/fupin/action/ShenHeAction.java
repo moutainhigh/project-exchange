@@ -1,5 +1,6 @@
 package com.throne212.fupin.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ShenHeBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
@@ -59,6 +60,38 @@ public class ShenHeAction extends BaseAction {
 		
 		
 	}
+	//批量审核 通过
+	public String passAllCuoshiZhen() {
+		String[] cuoshiZhenIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiZhen_ids");
+		if (cuoshiZhenIds != null && cuoshiZhenIds.length > 0) {
+			for (String idStr : cuoshiZhenIds) {
+				Long id = Long.parseLong(idStr);
+				CuoshiZhen cuoshiZhen=shenHeBiz.getEntityById(CuoshiZhen.class, id);
+				cuoshiZhen.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(cuoshiZhen);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllCuoshiZhenInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllCuoshiZhen() {
+		String[] cuoshiZhenIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiZhen_ids");
+		if (cuoshiZhenIds != null && cuoshiZhenIds.length > 0) {
+			for (String idStr : cuoshiZhenIds) {
+				Long id = Long.parseLong(idStr);
+				CuoshiZhen cuoshiZhen=shenHeBiz.getEntityById(CuoshiZhen.class, id);
+				cuoshiZhen.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(cuoshiZhen);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllCuoshiZhenInPro();
+	}
+	
+	
+	
+	
 	
 	//镇 未审核成效列表
 	public String  showAllChengxiaoZhenInPro() {
@@ -87,6 +120,38 @@ public class ShenHeAction extends BaseAction {
 		}
 		return "chengxiaozhen_inpro";
 	}
+
+	//批量审核 通过
+	public String passAllChengxiaoZhen() {
+		String[] chengxiaoZhenIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoZhen_ids");
+		if (chengxiaoZhenIds != null && chengxiaoZhenIds.length > 0) {
+			for (String idStr : chengxiaoZhenIds) {
+				Long id = Long.parseLong(idStr);
+				ChengxiaoZhen chengxiaoZhen=shenHeBiz.getEntityById(ChengxiaoZhen.class, id);
+				chengxiaoZhen.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(chengxiaoZhen);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllChengxiaoZhenInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllChengxiaoZhen() {
+		String[] chengxiaoZhenIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoZhen_ids");
+		if (chengxiaoZhenIds != null && chengxiaoZhenIds.length > 0) {
+			for (String idStr : chengxiaoZhenIds) {
+				Long id = Long.parseLong(idStr);
+				ChengxiaoZhen chengxiaoZhen=shenHeBiz.getEntityById(ChengxiaoZhen.class, id);
+				chengxiaoZhen.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(chengxiaoZhen);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllChengxiaoZhenInPro();
+	}
+	
+	
+	
 	//镇 未审核图片列表
 	public String  showAllPicZhenInPro() {
 		pageBean=shenHeBiz.getAllPicZhenByStatus(WebConstants.SHENHE_STATUS_PROCECING,pageIndex);
@@ -115,7 +180,34 @@ public class ShenHeAction extends BaseAction {
 		return "piczhen_inpro";
 		
 	}
-	
+	//批量审核 通过
+	public String passAllPicZhen() {
+		String[] picZhenIds = (String[]) ActionContext.getContext().getParameters().get("picZhen_ids");
+		if (picZhenIds != null && picZhenIds.length > 0) {
+			for (String idStr : picZhenIds) {
+				Long id = Long.parseLong(idStr);
+				PicZhen picZhen=shenHeBiz.getEntityById(PicZhen.class, id);
+				picZhen.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(picZhen);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllPicZhenInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllPicZhen() {
+		String[] picZhenIds = (String[]) ActionContext.getContext().getParameters().get("picZhen_ids");
+		if (picZhenIds != null && picZhenIds.length > 0) {
+			for (String idStr : picZhenIds) {
+				Long id = Long.parseLong(idStr);
+				PicZhen picZhen=shenHeBiz.getEntityById(PicZhen.class, id);
+				picZhen.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(picZhen);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllPicZhenInPro();
+	}
 	
 	//村 未审核措施列表
 	public String showAllCuoshiCunInPro() {
@@ -145,6 +237,35 @@ public class ShenHeAction extends BaseAction {
 		return "cuoshicun_inpro";
 
 	}
+	//批量审核 通过
+	public String passAllCuoshiCun() {
+		String[] cuoshiCunIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiCun_ids");
+		if (cuoshiCunIds != null && cuoshiCunIds.length > 0) {
+			for (String idStr : cuoshiCunIds) {
+				Long id = Long.parseLong(idStr);
+				CuoshiCun cuoshiCun=shenHeBiz.getEntityById(CuoshiCun.class, id);
+				cuoshiCun.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(cuoshiCun);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllCuoshiCunInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllCuoshiCun() {
+		String[] cuoshiCunIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiCun_ids");
+		if (cuoshiCunIds != null && cuoshiCunIds.length > 0) {
+			for (String idStr : cuoshiCunIds) {
+				Long id = Long.parseLong(idStr);
+				CuoshiCun cuoshiCun=shenHeBiz.getEntityById(CuoshiCun.class, id);
+				cuoshiCun.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(cuoshiCun);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllCuoshiCunInPro();
+	}
+	
 	//村 未审核成效列表
 	public String showAllChengxiaoCunInPro() {
 		pageBean=shenHeBiz.getAllChengxiaoCunByStatus(WebConstants.SHENHE_STATUS_PROCECING,pageIndex);
@@ -172,6 +293,38 @@ public class ShenHeAction extends BaseAction {
 		}
 		return "chengxiaocun_inpro";
 	}
+	//批量审核 通过
+	public String passAllChengxiaoCun() {
+		String[] chengxiaoCunIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoCun_ids");
+		if (chengxiaoCunIds != null && chengxiaoCunIds.length > 0) {
+			for (String idStr : chengxiaoCunIds) {
+				Long id = Long.parseLong(idStr);
+				ChengxiaoCun chengxiaoCun=shenHeBiz.getEntityById(ChengxiaoCun.class, id);
+				chengxiaoCun.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(chengxiaoCun);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllChengxiaoCunInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllChengxiaoCun() {
+		String[] chengxiaoCunIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoCun_ids");
+		if (chengxiaoCunIds != null && chengxiaoCunIds.length > 0) {
+			for (String idStr : chengxiaoCunIds) {
+				Long id = Long.parseLong(idStr);
+				ChengxiaoCun chengxiaoCun=shenHeBiz.getEntityById(ChengxiaoCun.class, id);
+				chengxiaoCun.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(chengxiaoCun);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllChengxiaoCunInPro();
+	}
+	
+	
+	
+	
 	//村 未审核图片列表
 	public String  showAllPicCunInPro() {
 		pageBean=shenHeBiz.getAllPicCunByStatus(WebConstants.SHENHE_STATUS_PROCECING,pageIndex);
@@ -199,6 +352,35 @@ public class ShenHeAction extends BaseAction {
 		}
 		return "piccun_inpro";
 		
+	}
+	
+	//批量审核 通过
+	public String passAllPicCun() {
+		String[] picCunIds = (String[]) ActionContext.getContext().getParameters().get("picCun_ids");
+		if (picCunIds != null && picCunIds.length > 0) {
+			for (String idStr : picCunIds) {
+				Long id = Long.parseLong(idStr);
+				PicCun picCun=shenHeBiz.getEntityById(PicCun.class, id);
+				picCun.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(picCun);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllPicCunInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllPicCun() {
+		String[] picCunIds = (String[]) ActionContext.getContext().getParameters().get("picCun_ids");
+		if (picCunIds != null && picCunIds.length > 0) {
+			for (String idStr : picCunIds) {
+				Long id = Long.parseLong(idStr);
+				PicCun picCun=shenHeBiz.getEntityById(PicCun.class, id);
+				picCun.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(picCun);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllPicCunInPro();
 	}
 	
 	//huhu
@@ -230,6 +412,35 @@ public class ShenHeAction extends BaseAction {
 		return "cuoshifamily_inpro";
 
 	}
+	//批量审核 通过
+	public String passAllCuoshiFamily() {
+		String[] cuoshiFamilyIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiFamily_ids");
+		if (cuoshiFamilyIds != null && cuoshiFamilyIds.length > 0) {
+			for (String idStr : cuoshiFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				CuoshiFamily cuoshiFamily=shenHeBiz.getEntityById(CuoshiFamily.class, id);
+				cuoshiFamily.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(cuoshiFamily);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllCuoshiFamilyInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllCuoshiFamily() {
+		String[] cuoshiFamilyIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiFamily_ids");
+		if (cuoshiFamilyIds != null && cuoshiFamilyIds.length > 0) {
+			for (String idStr : cuoshiFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				CuoshiFamily cuoshiFamily=shenHeBiz.getEntityById(CuoshiFamily.class, id);
+				cuoshiFamily.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(cuoshiFamily);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllCuoshiFamilyInPro();
+	}
+	
 	//户 未审核成效列表
 	public String showAllChengxiaoFamilyInPro() {
 		pageBean=shenHeBiz.getAllChengxiaoFamilyByStatus(WebConstants.SHENHE_STATUS_PROCECING,pageIndex);
@@ -256,6 +467,34 @@ public class ShenHeAction extends BaseAction {
 			return showAllChengxiaoFamilyInPro();
 		}
 		return "chengxiaofamily_inpro";
+	}
+	//批量审核 通过
+	public String passAllChengxiaoFamily() {
+		String[] chengxiaoFamilyIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoFamily_ids");
+		if (chengxiaoFamilyIds != null && chengxiaoFamilyIds.length > 0) {
+			for (String idStr : chengxiaoFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				ChengxiaoFamily chengxiaoFamily=shenHeBiz.getEntityById(ChengxiaoFamily.class, id);
+				chengxiaoFamily.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(chengxiaoFamily);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllChengxiaoFamilyInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllChengxiaoFamily() {
+		String[] chengxiaoFamilyIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoFamily_ids");
+		if (chengxiaoFamilyIds != null && chengxiaoFamilyIds.length > 0) {
+			for (String idStr : chengxiaoFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				ChengxiaoFamily chengxiaoFamily=shenHeBiz.getEntityById(ChengxiaoFamily.class, id);
+				chengxiaoFamily.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(chengxiaoFamily);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllChengxiaoFamilyInPro();
 	}
 	//户 未审核图片列表
 	public String  showAllPicFamilyInPro() {
@@ -285,6 +524,34 @@ public class ShenHeAction extends BaseAction {
 		return "picfamily_inpro";
 		
 	}
+	//批量审核 通过
+	public String passAllPicFamily() {
+		String[] picFamilyIds = (String[]) ActionContext.getContext().getParameters().get("picFamily_ids");
+		if (picFamilyIds != null && picFamilyIds.length > 0) {
+			for (String idStr : picFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				PicFamily picFamily=shenHeBiz.getEntityById(PicFamily.class, id);
+				picFamily.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(picFamily);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllPicFamilyInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllPicFamily() {
+		String[] picFamilyIds = (String[]) ActionContext.getContext().getParameters().get("picFamily_ids");
+		if (picFamilyIds != null && picFamilyIds.length > 0) {
+			for (String idStr : picFamilyIds) {
+				Long id = Long.parseLong(idStr);
+				PicFamily picFamily=shenHeBiz.getEntityById(PicFamily.class, id);
+				picFamily.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(picFamily);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllPicFamilyInPro();
+	}
 	//reason
 	//户 未审核贫困原因列表
 	public String  showAllReasonInPro() {
@@ -313,6 +580,34 @@ public class ShenHeAction extends BaseAction {
 		}
 		return "reason_inpro";
 		
+	}
+	//批量审核 通过
+	public String passAllReason() {
+		String[] reasonIds = (String[]) ActionContext.getContext().getParameters().get("reason_ids");
+		if (reasonIds != null && reasonIds.length > 0) {
+			for (String idStr : reasonIds) {
+				Long id = Long.parseLong(idStr);
+				Reason reason=shenHeBiz.getEntityById(Reason.class, id);
+				reason.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(reason);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllReasonInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllReason() {
+		String[] reasonIds = (String[]) ActionContext.getContext().getParameters().get("reason_ids");
+		if (reasonIds != null && reasonIds.length > 0) {
+			for (String idStr : reasonIds) {
+				Long id = Long.parseLong(idStr);
+				Reason reason=shenHeBiz.getEntityById(Reason.class, id);
+				reason.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(reason);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllReasonInPro();
 	}
 	
 	//record
@@ -344,6 +639,35 @@ public class ShenHeAction extends BaseAction {
 		return "record_inpro";
 		
 	}
+	//批量审核 通过
+	public String passAllRecord() {
+		String[] recordIds = (String[]) ActionContext.getContext().getParameters().get("record_ids");
+		if (recordIds != null && recordIds.length > 0) {
+			for (String idStr : recordIds) {
+				Long id = Long.parseLong(idStr);
+				Record record=shenHeBiz.getEntityById(Record.class, id);
+				record.setStatus(WebConstants.SHENHE_STATUS_PASS);
+				shenHeBiz.saveOrUpdateEntity(record);
+			}
+			this.setMsg("通过审核———操作成功！");
+		}
+		return showAllRecordInPro();
+	}
+	//批量审核 不通过
+	public String notpassAllRecord() {
+		String[] recordIds = (String[]) ActionContext.getContext().getParameters().get("record_ids");
+		if (recordIds != null && recordIds.length > 0) {
+			for (String idStr : recordIds) {
+				Long id = Long.parseLong(idStr);
+				Record record=shenHeBiz.getEntityById(Record.class, id);
+				record.setStatus(WebConstants.SHENHE_STATUS_UNPASS);
+				shenHeBiz.saveOrUpdateEntity(record);
+			}
+			this.setMsg("不通过审核———操作成功！");
+		}
+		return showAllRecordInPro();
+	}
+	
 	
 	public Integer getPageIndex() {
 		return pageIndex;

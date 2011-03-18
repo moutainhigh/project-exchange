@@ -115,7 +115,7 @@ public class FamilyBFAction extends BaseAction {
 		
 		if (user instanceof Admin) {
 			pageBean = familyBFBiz.getAllChengxiaoFamily(chengxiao, pageIndex);
-			return "chengxiaocun_list";
+			return "chengxiaofamily_list";
 		} 
 		Org org = (Org) user;
 		pageBean = familyBFBiz.getAllChengxiaoFamilyByCunId(chengxiao,org.getCun().getId(), pageIndex);

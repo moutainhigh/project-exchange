@@ -57,7 +57,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<ChengxiaoCun> page = new PageBean<ChengxiaoCun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from ChengxiaoCun t where "+getUserLimit("cun");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -77,7 +77,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<ChengxiaoZhen> page = new PageBean<ChengxiaoZhen>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from ChengxiaoZhen t where "+getUserLimit("zhen");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -97,7 +97,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<CuoshiCun> page = new PageBean<CuoshiCun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from CuoshiCun t where "+getUserLimit("cun");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -117,7 +117,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<CuoshiZhen> page = new PageBean<CuoshiZhen>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from CuoshiZhen t where "+getUserLimit("zhen");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -137,7 +137,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<PicCun> page = new PageBean<PicCun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from PicCun t where "+getUserLimit("cun");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -157,7 +157,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<PicZhen> page = new PageBean<PicZhen>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from PicZhen t where "+getUserLimit("zhen");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -177,7 +177,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<ChengxiaoFamily> page = new PageBean<ChengxiaoFamily>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from ChengxiaoFamily t where "+getUserLimit("family");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -197,7 +197,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<CuoshiFamily> page = new PageBean<CuoshiFamily>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from CuoshiFamily t where "+getUserLimit("family");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -217,7 +217,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<PicFamily> page = new PageBean<PicFamily>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from PicFamily t where "+getUserLimit("family");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -237,7 +237,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<Reason> page = new PageBean<Reason>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from Reason t where "+getUserLimit("family");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
@@ -257,7 +257,7 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		PageBean<Record> page = new PageBean<Record>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from Record t where "+getUserLimit("family");
-		if (status!=null) {
+		if (status!=null&&!"".equals(status)) {
 			hql+=" and status='"+status+"'";
 		}
 		hql+=" order by id desc";
