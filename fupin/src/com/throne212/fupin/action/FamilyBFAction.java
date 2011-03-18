@@ -41,6 +41,10 @@ public class FamilyBFAction extends BaseAction {
 			return "cuoshifamily_list";
 		} 
 		Org org = (Org) user;
+		if (org.getCun()==null) {
+			this.setMsg("尚未指定帮扶村，不能进行操作");
+			return "cuoshifamily_list";
+		}
 		pageBean = familyBFBiz.getAllCuoshiFamilyByCunId(cuoshi,org.getCun().getId(), pageIndex);
 		return "cuoshifamily_list";
 	}
@@ -118,6 +122,10 @@ public class FamilyBFAction extends BaseAction {
 			return "chengxiaofamily_list";
 		} 
 		Org org = (Org) user;
+		if (org.getCun()==null) {
+			this.setMsg("尚未指定帮扶村，不能进行操作");
+			return "reason_list";
+		}
 		pageBean = familyBFBiz.getAllChengxiaoFamilyByCunId(chengxiao,org.getCun().getId(), pageIndex);
 		return "chengxiaofamily_list";
 	}
@@ -189,6 +197,10 @@ public class FamilyBFAction extends BaseAction {
 			return "reason_list";
 		} 
 		Org org = (Org) user;
+		if (org.getCun()==null) {
+			this.setMsg("尚未指定帮扶村，不能进行操作");
+			return "reason_list";
+		}
 		pageBean = familyBFBiz.getAllReasonByCunId(reason,org.getCun().getId(), pageIndex);
 		return "reason_list";
 	}
@@ -365,6 +377,10 @@ public class FamilyBFAction extends BaseAction {
 			return "record_list";
 		} 
 		Org org = (Org) user;
+		if (org.getCun()==null) {
+			this.setMsg("尚未指定帮扶村，不能进行操作");
+			return "reason_list";
+		}
 		pageBean = familyBFBiz.getAllRecordByCunId(record,org.getCun().getId(), pageIndex,fromDate,toDate);
 		return "record_list";
 	}

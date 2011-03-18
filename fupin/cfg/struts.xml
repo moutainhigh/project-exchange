@@ -157,6 +157,8 @@
 			<result name="family_list">/main/family/family_list.jsp</result>
 			<result name="family_edit">/main/family/family_edit.jsp</result>
 			<result name="family_view">/main/family/family_view.jsp</result>
+			<result name="upload">/main/family/upload.jsp</result>
+			<result name="upload_fail">/main/family/upload_fail.jsp</result>
 		</action>
 		<!-- 贫困村模块 -->
 		<action name="cun_*" method="{1}" class="com.throne212.fupin.action.CunAction">
@@ -175,6 +177,14 @@
 			<interceptor-ref name="fileUploadStack"></interceptor-ref>
 			<result name="success">/upload/success.jsp</result>
 			<result name="error">/upload/fail.jsp</result>
+		</action>
+		<!-- 上传Excel -->
+		<action name="ExcelUploadAction_*" method="{1}" class="com.throne212.fupin.action.ExcelUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success" type="chain">
+				<param name="actionName">family_uploadExcel</param>
+         		<param name="namespace">/</param> 
+			</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

@@ -213,14 +213,17 @@ function images_update(){
 	    //menuArray[24]="2,2.帐号激活,./help/help2.2.html";	
 	    </c:if>
 	    
-	    
 	    <c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="0,信息审核,";
+	    </c:if>
+	    
+	    <c:if test="${userObj.roleType=='超级管理员'}">
 	  	menuArray[menuArray.length]="1,镇帮扶审核,";
         menuArray[menuArray.length]="2,镇措施审核,${appPath}shenhe_showAllCuoshiZhenInPro.action";
 		menuArray[menuArray.length]="2,镇成效审核,${appPath}shenhe_showAllChengxiaoZhenInPro.action";
 		menuArray[menuArray.length]="2,镇图片审核,${appPath}shenhe_showAllPicZhenInPro.action";
-		
+		</c:if>
+		<c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='超级管理员'}">
 		menuArray[menuArray.length]="1,村帮扶审核,";
         menuArray[menuArray.length]="2,村措施审核,${appPath}shenhe_showAllCuoshiCunInPro.action";
 		menuArray[menuArray.length]="2,村成效审核,${appPath}shenhe_showAllChengxiaoCunInPro.action";

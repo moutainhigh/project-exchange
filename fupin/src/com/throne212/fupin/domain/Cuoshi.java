@@ -8,6 +8,16 @@ public class Cuoshi extends MyEntity {
 	private String status;//审核状态
 	private String type;//措施类型
 	private String reason;//原因
+	
+	public String getShortContent(){
+		String shortContent;
+		if (this.getContent().length()>16) {
+			shortContent=this.getContent().substring(0, 16);
+		}else {
+			shortContent=this.getContent();
+		}
+		return shortContent;
+	}
 	public String getYear() {
 		return year;
 	}

@@ -9,6 +9,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<style type="text/css">
+
+.tip{
+    position:relative;
+    color:#00c;
+    text-decoration:none;    
+    padding:5px;
+    z-index:0;
+}
+.tip:hover{
+    background:none;
+    text-decoration:none;
+    color:#000;
+    z-index:1;
+}
+.tip span {
+    display: none;
+    text-decoration:none;
+}
+.tip:hover span{
+    display:block;
+    position:absolute;top:20px;left:10px;
+    border-bottom:0px solid #eee;
+    text-decoration:none;
+    border-right:0px solid #eee;
+    width:300px;
+}
+.tip:hover span p {
+    
+    text-align:left;
+    text-decoration:none;
+    padding:5px;   
+    border:1px solid #ccc;
+    background:#cff;
+}
+</style>
 <link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
@@ -68,6 +104,7 @@ var msg = '${msg}';
 		<td width="20%" class="tables_headercell">编号</td>
 		<td width="20%" class="tables_headercell">时间</td>
 		<td class="tables_headercell">贫困镇名</td>
+		<td class="tables_headercell">帮扶成效</td>
 		<td width="20%" class="tables_headercell">审核状态</td>
 		<td width="20%" class="tables_headercell">审核</td>
 	
@@ -88,6 +125,11 @@ var msg = '${msg}';
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.zhen.name }
 		</td>
+		<td height="25" align="center" class="tables_contentcell">
+						&nbsp;
+                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>
+                                 
+					</td>
 	<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.status }
 		</td>

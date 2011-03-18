@@ -200,7 +200,7 @@ function displayAction(sid) {
 						</td>
 					<td height="25" align="center" class="tables_contentcell">
 						&nbsp;
-                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p></p></span></a><b>...</b>
+                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>
                                  
 					</td>
 					<td height="25" align="center" class="tables_contentcell">
@@ -215,13 +215,13 @@ function displayAction(sid) {
                     <a href="#" onclick="winOpen('${appPath}family_bf_saveOrUpdateRecord.action?record.id=${f.id}',600,390);">查看</a>
 					</td>
 					<td height="25" align="center" class="tables_contentcell">
-					<c:if test="${f.status=='未提交'}">
+					<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
 						<a href="#" onclick="winOpen('${appPath}family_bf_saveOrUpdateRecord.action?record.id=${f.id}',600,390);">修改</a>
 					 </c:if>
-					 <c:if test="${f.status!='未提交'}">
+					 <c:if test="${f.status=='审核中'||f.status=='审核通过'}">
 						不能修改
 					 </c:if>
-		</td>
+					</td>
 				</tr>
 					</c:forEach>
 				<tr>

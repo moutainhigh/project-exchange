@@ -10,6 +10,6 @@ public class ChengxiaoCun extends Chengxiao {
 	public void setCun(Cun cun) {
 		this.cun = cun;
 	}
-	
+
 
 }

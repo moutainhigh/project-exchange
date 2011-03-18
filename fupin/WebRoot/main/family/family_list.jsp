@@ -27,6 +27,10 @@
 				document.forms[0].submit();
 			}
 		}
+		function download(){
+			document.forms[0].action = '${appPath}family_downloadExcel.action';
+			document.forms[0].submit();
+		} 
 		</script>
 		<style>
 .tables_search {
@@ -49,6 +53,8 @@
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 						
 							<input type="submit" class="button" value="查询"> 
+							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="导入Excel">
+							<input type="button" onclick="download();" value="导出Excel" class="button">
 							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',900,700);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>

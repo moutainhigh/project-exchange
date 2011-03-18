@@ -171,6 +171,13 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		try {
 			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile));
 			WritableSheet sheet = workbook.createSheet("贫困户列表", 0);
+			
+			sheet.setColumnView(0, 15);
+			sheet.setColumnView(1, 15);
+			sheet.setColumnView(2, 15);
+			sheet.setColumnView(3, 30);
+			sheet.setColumnView(4, 40);
+			sheet.setColumnView(5, 15);
 
 			// 加表头
 			WritableFont font = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD);

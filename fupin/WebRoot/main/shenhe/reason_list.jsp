@@ -154,7 +154,7 @@ function pass(){
 						</td>
 					<td height="25" align="center" class="tables_contentcell">
 						&nbsp;
-                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p></p></span></a><b>...</b>
+                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>
                                  
 					</td>
 					<td height="25" align="center" class="tables_contentcell">

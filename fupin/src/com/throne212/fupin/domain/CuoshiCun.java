@@ -10,5 +10,5 @@ public class CuoshiCun extends Cuoshi {
 	public void setCun(Cun cun) {
 		this.cun = cun;
 	}
-	
+
 }

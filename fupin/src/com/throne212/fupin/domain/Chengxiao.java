@@ -4,6 +4,16 @@ public class Chengxiao extends MyEntity {
 	private String year;
 	private String content;
 	private String status;
+	
+	public String getShortContent(){
+		String shortContent;
+		if (this.getContent().length()>16) {
+			shortContent=this.getContent().substring(0, 16);
+		}else {
+			shortContent=this.getContent();
+		}
+		return shortContent;
+	}
 	public String getYear() {
 		return year;
 	}
