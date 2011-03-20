@@ -1,3 +1,9 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	if(session.getAttribute("userObj") == null){
+		request.getRequestDispatcher("/login.jsp").forward(request,response);
+	}
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <!-- Design by 4wenzi Date:2004-07-04 -->
@@ -13,8 +19,9 @@ body,td,th {
 }
 -->
 </style>
-<link href="../css.css" rel="stylesheet" type="text/css" />
+<link href="${appPath}css2.css" rel="stylesheet" type="text/css" />
 </head><body>
+<jsp:include page="head.jsp"></jsp:include>
 <br/>
 <br/>
 <br/>

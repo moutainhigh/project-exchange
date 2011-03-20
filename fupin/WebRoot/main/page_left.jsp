@@ -269,7 +269,7 @@ function images_update(){
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="0,设置前台贫困户查看权限,${appPath}admin_perList.action";
 	    </c:if>
-	    menuArray[menuArray.length]="0,报表审核,";
+	    //menuArray[menuArray.length]="0,报表审核,";
 	    
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
