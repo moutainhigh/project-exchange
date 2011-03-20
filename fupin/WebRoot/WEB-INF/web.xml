@@ -38,6 +38,17 @@
     	<url-pattern>/chart.servlet</url-pattern>
     </servlet-mapping>
     
+    
+    <!-- rand -->
+	<servlet>
+		<servlet-name>RandServlet</servlet-name>
+		<servlet-class>com.throne212.fupin.servlet.RandServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RandServlet</servlet-name>
+		<url-pattern>/rand.servlet</url-pattern>
+	</servlet-mapping>
+    
 	<!-- welcome page -->
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
