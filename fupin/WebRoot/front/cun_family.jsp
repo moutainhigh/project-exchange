@@ -263,12 +263,12 @@ shead = he + sstyle + "</head>";
 <input type="hidden" value="${cun.id}" name="cun.id" id=""/>
 <table width="99%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr align="center">
-		<td width="15%" class="tables_headercell">所在村</td>
-		<td width="5%" class="tables_headercell">组</td>
-		<td width="10%" class="tables_headercell">姓名</td>
-		<td width="6%" class="tables_headercell">性别</td>
-		<td width="10%" class="tables_headercell">贫困对象类型</td>
-		<td width="10%" class="tables_headercell">脱贫状态</td>
+		<td width="" class="tables_headercell">所在村</td>
+		<td width="" class="tables_headercell">组</td>
+		<td width="" class="tables_headercell">姓名</td>
+		<td width="" class="tables_headercell">性别</td>
+		<td width="" class="tables_headercell">贫困对象类型</td>
+		<td width="" class="tables_headercell">脱贫状态</td>
 	</tr>
 <c:forEach items="${pageBean.resultList}" var="f">
 		<tr style="cursor: pointer;" onclick="location='${appPath}front_viewFamily.action?family.id=${f.id}';">

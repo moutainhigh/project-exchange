@@ -241,11 +241,26 @@ shead = he + sstyle + "</head>";
 </tbody></table><br/>
 <div class="content">
 <form method="get" action="${appPath }front_login.action" name="listForm">
-<input type="hidden" name="family.id" value="${param['family.id'] }"/>
-账号：<input type="text" name="per.loginName"/><br/>
-密码：<input type="password" name="per.password"/>
-<br/>
-<input type="submit" value="登录"/>
+<input type="hidden" name="family.id" value="${family.id}"/>
+<table width="99%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+				<tr>
+				<td height="25" align="right" class="tables_leftcell">账号：</td>
+				<td height="30" align="left" style="background-color: rgb(239, 246, 255);" class="tables_contentcell">
+				<input type="text" name="per.loginName"/></td>
+				</tr>
+				<tr>
+				<td height="25" align="right" class="tables_leftcell">密码：</td>
+				<td height="30" align="left" style="background-color: rgb(239, 246, 255);" class="tables_contentcell">
+				<input type="password" name="per.password"/></td>
+				</tr>
+				<tr>
+				<td colspan="2" height="30" align="center" style="background-color: rgb(239, 246, 255);" class="tables_contentcell">
+				<input type="submit" value="登录"/>
+				<input type="button" value="返回" onclick="history.go(-1)"/>
+				</td>
+				</tr>
+</table>
+
 </form>
 </div>
 	</body>
