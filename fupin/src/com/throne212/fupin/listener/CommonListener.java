@@ -27,7 +27,7 @@ public class CommonListener implements ServletContextListener {
 		}
 		e.getServletContext().setAttribute(WebConstants.APP_PATH, appPath);
 		//设置系统名称
-		e.getServletContext().setAttribute(WebConstants.APP_TITLE, "扶贫信息管理系统");
+		e.getServletContext().setAttribute(WebConstants.APP_TITLE, "广州市扶贫信息管理系统");
 	}
 
 }

@@ -11,7 +11,6 @@ import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
-
 public class LoginAction extends BaseAction {
 
 	private String username;// 用户名
@@ -26,13 +25,13 @@ public class LoginAction extends BaseAction {
 
 	public String execute() {
 		// 验证码略去
-		/*
-		 * HttpSession session = ServletActionContext.getRequest().getSession();
-		 * boolean isResponseCorrect =
-		 * RandAction.capService.validateResponseForID(session.getId(),rand); if
-		 * (Util.isEmpty(rand) || !isResponseCorrect) { this.setMsg("验证码错误");
-		 * return "fail"; }
-		 */
+
+		String randInSess = (String) ActionContext.getContext().getSession().get("rand");
+		if (Util.isEmpty(rand) || !rand.equals(randInSess)) {
+			this.setMsg("验证码错误");
+			return "fail";
+		}
+
 		if (Util.isEmpty(username) || Util.isEmpty(password)) {
 			this.setMsg("请完整填入用户名和密码");
 			return "fail";

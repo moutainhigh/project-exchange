@@ -193,7 +193,7 @@ public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 		List<Area> list = this.getHibernateTemplate().find("from Area");
 		List<Area> list2 = new ArrayList<Area>();
 		for(Area a : list){
-			String hql = "select count(*) from Family f where f.cun.zhen.area=?";
+			String hql = "select count(*) from Cun c where c.zhen.area=?";
 			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
 			if(count>0)
 				list2.add(a);
@@ -204,7 +204,7 @@ public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 		List<Zhen> list = this.getHibernateTemplate().find("from Zhen where area=?",area);
 		List<Zhen> list2 = new ArrayList<Zhen>();
 		for(Zhen a : list){
-			String hql = "select count(*) from Family f where f.cun.zhen=?";
+			String hql = "select count(*) from Cun c where c.zhen=?";
 			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
 			if(count>0)
 				list2.add(a);
@@ -215,9 +215,9 @@ public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 		List<Cun> list = this.getHibernateTemplate().find("from Cun where zhen=?",zhen);
 		List<Cun> list2 = new ArrayList<Cun>();
 		for(Cun a : list){
-			String hql = "select count(*) from Family f where f.cun=?";
-			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
-			if(count>0)
+//			String hql = "select count(*) from Family f where f.cun=?";
+//			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
+//			if(count>0)
 				list2.add(a);
 		}
 		return list2;
