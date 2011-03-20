@@ -106,7 +106,8 @@ function typetip(ptype){
 	<td class="titlefonttitle2">
 	<a href="${appPath }front_showFamilyChengxiao.action?family.id=${family.id }">帮扶成效</a></td>
 	</tr>
-</tbody></table><br/>
+</tbody></table><br/><br/>
+<br/>
 <div class="content">
 <form method="get" action="${appPath }front_showFamilyContent.action?family.id=${family.id }" name="listForm">
 <input type="hidden" value="${family.id}" name="family.id" id=""/>

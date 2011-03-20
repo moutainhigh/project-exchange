@@ -261,7 +261,8 @@ shead = he + sstyle + "</head>";
 	<td class="titlefonttitle2">
 	<a href="${appPath }front_showFamilyChengxiao.action?family.id=${family.id }">帮扶成效</a></td>
 	</tr>
-</tbody></table><br/>
+</tbody></table><br/><br/>
+<br/>
 <div class="content">
 <c:set var="f" value="${family}" scope="page"></c:set>
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
