@@ -28,13 +28,6 @@
 			}
 		}
 		</script>
-		<style>
-.tables_search {
-	margin: 0px 0px 2px 0px;
-	height: 40px;
-	background-color: #418FD0;
-}
-</style>
 	</head>
 	<body>
 		<form method="get" action="${appPath}admin_shiWorkOrgList.action" name="searchForm">
