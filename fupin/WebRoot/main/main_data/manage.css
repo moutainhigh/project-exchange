@@ -5,7 +5,7 @@ BODY {
 	margin-top: 5px;
 	margin-right: 5px;
 	margin-bottom: 5px;
-	background-color: #ffffff;
+	background-color: #68B6ED;
 	border: none;
 }
 
@@ -27,14 +27,19 @@ BODY {
 }
 
 .button {
-	height: 24px;
+	height: 21px;
+	width: 50px;
+	background:url("../../images/btn_bg.gif") repeat scroll 0 0 transparent;
+	border:0;
 }
 
 /* START - Table styles - bordercolorlight/bordercolordark equivalent */
 .tables_search {
-	margin: 0px 0px 20px 0px;
+	margin: 0px 0px 5px 0px;
 	height: 40px;
 	background-color: #418FD0;
+	color:white;
+	border:1px solid #0A64A6;
 }
 
 .tables_table {
@@ -56,7 +61,7 @@ BODY {
 	border-right: 1px solid #4D9EE3;
 	border-bottom: 1px solid #4D9EE3;
 	BACKGROUND-COLOR: #418FD0;
-	background-image: url(../images/bbs_title_bg.gif);
+	/*background-image: url(../images/bbs_title_bg.gif);*/
 	background-position: bottom;
 	FONT-WEIGHT: bold;
 	COLOR: #FFFFFF;
