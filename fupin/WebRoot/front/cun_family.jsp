@@ -1,43 +1,41 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html><head>
-
-<link href="css/tagstyle.css" rel="stylesheet">
-
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<meta content="0" http-equiv="Expires">
-<meta content="no-cache" http-equiv="Cache-Control">
-<meta content="no-cache" http-equiv="Pragma">
-<title>广东扶贫信息网</title>
-<script src="js/validateForm.js" language="javascript"></script>
-<link media="screen" href="css/bubble-tooltip.css" rel="stylesheet">
-	<script src="js/bubble-tooltip.js" type="text/javascript"></script>
-	
-<script language="javascript">
-
-function CheckBrowser() 
-{
-  var app=navigator.appName;
-  var verStr=navigator.appVersion;
-  if (app.indexOf('Netscape') != -1) {
-    alert("友情提示：\n    你使用的是Netscape/Firefox浏览器，可能会导致无法使用后台的部分功能。建议您使用 IE6.0 或以上版本。");
-  } 
-  else if (app.indexOf('Microsoft') != -1) {
-    if (verStr.indexOf("MSIE 3.0")!=-1 || verStr.indexOf("MSIE 4.0") != -1 || verStr.indexOf("MSIE 5.0") != -1 || verStr.indexOf("MSIE 5.1") != -1)
-      alert("友情提示：\n    您的浏览器版本太低，可能会导致无法使用后台的部分功能。建议您使用 IE6.0 或以上版本。");
-  }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>无标题文档</title>
+		<link media="screen" href="css/bubble-tooltip.css" rel="stylesheet"/>
+		<script src="js/bubble-tooltip.js" type="text/javascript"></script>
+		<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
 }
-
-function changeValidateCode(Obj)
-{
-	var dt = new Date();
-	Obj.src="image.jsp?t="+dt.getMilliseconds();
+-->
+</style>
+		<link href="${appPath}css.css" rel="stylesheet" type="text/css" />
+		<link href="${appPath}css/tagstyle.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+<!--
+.cx {
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
 }
-function grad(obj) 
-{ 
-	document.formlogin.submit(); 
-	obj.disabled=true; 
-}
+-->
+</style>
+		<script type="text/javascript" src="${appPath}js/jquery.js"></script>
+		<script type="text/javascript" src="${appPath}js/common.js"></script>
+		<script type="text/javascript" src="${appPath}chart/swfobject.js"></script>
+		<script type="text/javascript">
+		$(function(){
+			
+		});
 function typetip(ptype){
   var stype="";
   switch(ptype){
@@ -47,143 +45,41 @@ function typetip(ptype){
   }
   return stype;
 }
-</script>
+	</script>
+<script src="js/channelChange.js"></script>
+<script src="js/autoCity.js"></script>
+<script src="js/cun.js"></script>
+	</head>
 
-<style>
-td,th {color:#000000; font-size:12px; font-family: MS Shell Dlg, Tahoma, 宋体;}
-textarea,select,input{font-size:12px;font-family: MS Shell Dlg, Tahoma, 宋体;}
-a:link {
-	color: #003399;
-	text-decoration: none;
-	}
-
-a:visited {
-	color: #003399;
-	text-decoration: none;
-	}
-
-a:hover {
-	color: #FF0000;
-	text-decoration:underline;
-	}
-.redfont {
-	color: #FF0000;
-	}
-.title {
-	font-size: 18px;
-	color: #990000;
-}
-a:hover .aa{
-		/*border-bottom:1px dotted #317082;*/
-		color: #FF0000;
-	}
-</style>
-
-</head><body>
+	<body>
 <div id="bubble_tooltip">
 	<div class="bubble_top"><span></span></div>
 	<div class="bubble_middle"><span id="bubble_tooltip_content">Content is comming here as you probably can see.Content is comming here as you probably can see.</span></div>
 	<div class="bubble_bottom"></div>
 </div>
-
-
-	
-
-
-
-<link href="images/commom.css" rel="stylesheet" type="text/css">
-<link media="all" type="text/css" href="css/autoCity.css" rel="stylesheet">
-<link href="css/tagstyle.css" rel="stylesheet">
-<script src="js/jquery.js"></script>
-<script src="js/channelChange.js"></script>
-<script src="js/autoCity.js"></script>
-<script src="js/cun.js"></script>
-
-
-<script>
-// 加载提示List
-function loadAuotItemList() {			
-}
-function log(event, data, formatted) {
-		$("<li>").html( !data ? "No match!" : "Selected: " + formatted).appendTo("#result");
-	}
-	
-	function formatItem(row) {
-		return row[0] + "（<strong>台帐：" + row[1] + "</strong>）";
-	}
-	/*
-	function formatItem(row, i, max) { 
-       return i + "/" + max + ": \"" + row.n + "\" [" + row.t + "]";
-    }*/
-
-
-	function formatResult(row) {
-		return row[0].replace(/(<.+?>)/gi, '');
-	}
-/*
-	function formatResult(row) {
-		return row.n;
-	}
-*/	
-function formatMatch(row, i, max) {
-			return row.n + " " + row.t;
-		}
-function getAjax()
-{
-	$.ajax({
-  			type: "POST",
-  			dataType:'json',
-  			url: "servlet/AjaxData?type=shi&amp;code=source",
-  			success: function(msg){
-  			  	var json= eval(msg); 
-  				GenerationPK3('shi',json);
-		}
-		});
-}
-$(document).ready(function() {
-});
-
-function checkPkcmc(){
-   if(form1.targetCity.value==""){
-     alert("贫困村名称不能为空");
-     return false;
-   }
-}
-
-function checkDwcx()
-{
-  if(form3.dwname.value==""){
-     alert("请输入单位名称或者单位编码");
-     return false;
-   }
-}
-
-function mysubmit()//网页内按下回车触发
-{
-	if(event.keyCode!=13)
-		alert(event.keyCode);
-	else        
-	{
-		alert(event.keyCode);
-		document.getElementById("3").focus();
-		document.getElementById("3").click();   
-		return false;                               
-	}
-}
-</script>
-<style type="text/css">
-<!--
-.STYLE1 {color: #FFFFFF}
--->
-</style>
-<jsp:include page="../area/common.jsp"></jsp:include>
-
-	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="bg16">
-	<tbody><tr>
-	<td class="cn12">【${cun.name }】
-	</td>
-	</tr>
-	</tbody></table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="5">
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<jsp:include page="head.jsp"></jsp:include>
+						<tr>
+							<td>
+								<table width="100%" height="27" border="0" cellpadding="0" cellspacing="0" background="images/fp_xmtbg.gif">
+									<tr>
+										<td width="24">
+											<img src="images/fp_xmt01.gif" width="24" height="27" />
+										</td>
+										<td>
+											【${cun.name }】
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
 
 <style type="text/css">
 a { text-decoration:none;}
@@ -361,11 +257,10 @@ shead = he + sstyle + "</head>";
 	<td class="titlefonttitle1">
 	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
 	</tr>
-</tbody></table><br><br>
-<!-- E:村详细信息tag -->
+</tbody></table><br/>
 <div class="content">
 <form method="get" action="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }" name="listForm">
-<input type="hidden" value="${cun.id}" name="cun.id" id="">
+<input type="hidden" value="${cun.id}" name="cun.id" id=""/>
 <table width="99%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr align="center">
 		<td width="15%" class="tables_headercell">所在村</td>
@@ -398,33 +293,5 @@ shead = he + sstyle + "</head>";
 </tbody></table>
 </form>
 </div>
-<!-----------------------------图片相册起始----------------------------------------->
-<script>
-
-	var speed = 10;
-	var tab = document.getElementById("slide_preview");
-	
-	if(tab!=null)
-	{
-	var tab1 = document.getElementById("demo1");
-	var tab2 = document.getElementById("demo2");
-	
-	tab2.innerHTML = tab1.innerHTML;
-	
-	function Marquee()
-	{
-		if(tab2.offsetWidth - tab.scrollLeft <= 0)
-			tab.scrollLeft -= tab1.offsetWidth
-		else
-		{
-			tab.scrollLeft++;
-		}
-	}
-	var MyMar=setInterval(Marquee,speed);
-	tab.onmouseover=function() {clearInterval(MyMar)};
-	tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
-	}
-
-</script>
-<!-----------------------------图片相册结束----------------------------------------->
-<div style="display: none; z-index: 999;" class="sug"></div></body></html>
+	</body>
+</html>

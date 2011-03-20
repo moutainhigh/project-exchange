@@ -67,24 +67,24 @@
 		</action>
 		<!-- 前台展示模块 -->
 		<action name="front_*" method="{1}" class="com.throne212.fupin.action.FrontAction">
-			<result name="cun_info">/cun/cun_info.jsp</result>
-			<result name="cun_org">/cun/cun_org.jsp</result>
-			<result name="cun_cuoshi">/cun/cun_cuoshi.jsp</result>
-			<result name="cun_chengxiao">/cun/cun_chengxiao.jsp</result>
-			<result name="cun_family">/cun/cun_family.jsp</result>
+			<result name="cun_info">/front/cun_info.jsp</result>
+			<result name="cun_org">/front/cun_org.jsp</result>
+			<result name="cun_cuoshi">/front/cun_cuoshi.jsp</result>
+			<result name="cun_chengxiao">/front/cun_chengxiao.jsp</result>
+			<result name="cun_family">/front/cun_family.jsp</result>
 			<result name="tree_shi_info">/leftTree.jsp</result>
-			<result name="area_stat">/area/area_stat.jsp</result>
-			<result name="area_cun_list">/area/area_cun_list.jsp</result>
-			<result name="zhen_stat">/area/zhen_stat.jsp</result>
-			<result name="zhen_cun_list">/area/zhen_cun_list.jsp</result>
-			<result name="shi_stat">/area/shi_stat.jsp</result>
-			<result name="shi_cun_list">/area/shi_cun_list.jsp</result>
-			<result name="login">/cun/cun_login.jsp</result>
-			<result name="view_family">/cun/view_family.jsp</result>
-			<result name="view_family_chengxiao">/cun/view_family_chengxiao.jsp</result>
-			<result name="view_family_cuoshi">/cun/view_family_cuoshi.jsp</result>
-			<result name="view_family_reason">/cun/view_family_reason.jsp</result>
-			<result name="family_record">/cun/view_family_record.jsp</result>
+			<result name="area_stat">/front/area_stat.jsp</result>
+			<result name="area_cun_list">/front/area_cun_list.jsp</result>
+			<result name="zhen_stat">/front/zhen_stat.jsp</result>
+			<result name="zhen_cun_list">/front/zhen_cun_list.jsp</result>
+			<result name="shi_stat">/front/shi_stat.jsp</result>
+			<result name="shi_cun_list">/front/shi_cun_list.jsp</result>
+			<result name="login">/front/cun_login.jsp</result>
+			<result name="view_family">/front/view_family.jsp</result>
+			<result name="view_family_chengxiao">/front/view_family_chengxiao.jsp</result>
+			<result name="view_family_cuoshi">/front/view_family_cuoshi.jsp</result>
+			<result name="view_family_reason">/front/view_family_reason.jsp</result>
+			<result name="family_record">/front/view_family_record.jsp</result>
 			
 			<result name="query">/area/query.jsp</result>
 		</action>

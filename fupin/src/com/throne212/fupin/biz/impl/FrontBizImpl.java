@@ -104,5 +104,19 @@ public class FrontBizImpl extends BaseBizImpl implements FrontBiz {
 	public Long getOrgSumInCun(Cun c){
 		return frontDao.getOrgSumInCun(c);
 	}
+	
+	public List<Area> getAreaWithPoor(){
+		return frontDao.getAreaWithPoor();
+	}
+	public List<Zhen> getZhenWithPoor(Area area){
+		return frontDao.getZhenWithPoor(area);
+	}
+	public List<Cun> getCunWithPoor(Zhen zhen){
+		return frontDao.getCunWithPoor(zhen);
+	}
+	
+	public List<Cun> getCunWithPoor(){
+		return frontDao.getCunWithPoor();
+	}
 
 }

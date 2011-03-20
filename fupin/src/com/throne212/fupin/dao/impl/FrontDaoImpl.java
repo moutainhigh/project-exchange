@@ -1,5 +1,6 @@
 package com.throne212.fupin.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -185,6 +186,52 @@ public class FrontDaoImpl extends BaseDaoImpl implements FrontDao {
 	public Long getOrgSumInCun(Cun c) {
 		String hql = "select count(*) from Org o where o.cun=?";
 		return (Long) this.getHibernateTemplate().find(hql, c).get(0);
+	}
+	
+	//获取只有贫困村的区县
+	public List<Area> getAreaWithPoor(){
+		List<Area> list = this.getHibernateTemplate().find("from Area");
+		List<Area> list2 = new ArrayList<Area>();
+		for(Area a : list){
+			String hql = "select count(*) from Family f where f.cun.zhen.area=?";
+			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
+			if(count>0)
+				list2.add(a);
+		}
+		return list2;
+	}
+	public List<Zhen> getZhenWithPoor(Area area){
+		List<Zhen> list = this.getHibernateTemplate().find("from Zhen where area=?",area);
+		List<Zhen> list2 = new ArrayList<Zhen>();
+		for(Zhen a : list){
+			String hql = "select count(*) from Family f where f.cun.zhen=?";
+			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
+			if(count>0)
+				list2.add(a);
+		}
+		return list2;
+	}
+	public List<Cun> getCunWithPoor(Zhen zhen){
+		List<Cun> list = this.getHibernateTemplate().find("from Cun where zhen=?",zhen);
+		List<Cun> list2 = new ArrayList<Cun>();
+		for(Cun a : list){
+			String hql = "select count(*) from Family f where f.cun=?";
+			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
+			if(count>0)
+				list2.add(a);
+		}
+		return list2;
+	}
+	public List<Cun> getCunWithPoor(){
+		List<Cun> list = this.getHibernateTemplate().find("from Cun");
+		List<Cun> list2 = new ArrayList<Cun>();
+		for(Cun a : list){
+			String hql = "select count(*) from Family f where f.cun=?";
+			Long count = (Long) this.getHibernateTemplate().find(hql, a).get(0);
+			if(count>0)
+				list2.add(a);
+		}
+		return list2;
 	}
 
 }

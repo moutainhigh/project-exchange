@@ -36,7 +36,7 @@
 			
 				var currAreaId='${areaWorkOrg.area.id}';
 				function selectAreas(val){
-				alert(val);
+				//alert(val);
 				$('#area').html('<option value=""></option>');
 				if(val && val!=''){
 					//供货厂列表

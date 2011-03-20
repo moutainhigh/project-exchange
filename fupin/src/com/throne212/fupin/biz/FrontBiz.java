@@ -1,5 +1,7 @@
 package com.throne212.fupin.biz;
 
+import java.util.List;
+
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
@@ -38,4 +40,10 @@ public interface FrontBiz extends BaseBiz {
 	public Long getNotMappingFamilySum(Zhen area);
 	
 	public Long getOrgSumInCun(Cun c);
+	
+	//获取只有贫困村的区县
+	public List<Area> getAreaWithPoor();
+	public List<Zhen> getZhenWithPoor(Area area);
+	public List<Cun> getCunWithPoor(Zhen zhen);
+	public List<Cun> getCunWithPoor();
 }

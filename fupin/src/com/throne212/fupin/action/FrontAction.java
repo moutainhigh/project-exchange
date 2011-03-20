@@ -45,11 +45,11 @@ public class FrontAction extends BaseAction {
 			shi=shiInDBList.get(0);
 		}
 		areaList=baseBiz.getEntitiesByColumn(Area.class, "shi", shi);*/
-		areaList=baseBiz.getAll(Area.class);
+		areaList=frontBiz.getAreaWithPoor();
 		for(Area area : areaList){
-			area.setZhenList(baseBiz.getEntitiesByColumn(Zhen.class, "area", area));
+			area.setZhenList(frontBiz.getZhenWithPoor(area));
 			for(Zhen z : area.getZhenList()){
-				z.setCunList(baseBiz.getEntitiesByColumn(Cun.class, "zhen", z));
+				z.setCunList(frontBiz.getCunWithPoor(z));
 			}
 		}
 		return "tree_shi_info";
@@ -138,7 +138,8 @@ public class FrontAction extends BaseAction {
 	}
 	public String shiCunList(){
 		shi = baseBiz.getEntityById(Shi.class, shiId);
-		cunList = baseBiz.getEntitiesByColumn(Cun.class, "zhen.area.shi", shi);
+		//cunList = baseBiz.getEntitiesByColumn(Cun.class, "zhen.area.shi", shi);
+		cunList = frontBiz.getCunWithPoor();
 		return "shi_cun_list";
 	}
 	

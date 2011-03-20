@@ -362,7 +362,7 @@ public class ZhenBFAction extends BaseAction {
 		Zhen zhen = null;
 		if (user instanceof Admin) {
 			pageBean = zhenBFBiz.getAllPicZhen(pic, pageIndex);
-			return "piczhen_list";
+			return "pic_list";
 		} else if (user instanceof ShiWorkOrg) {
 			ShiWorkOrg shiOrg = (ShiWorkOrg) user;
 			List<Zhen> list = zhenBFBiz.getEntitiesByColumn(Zhen.class, "shiWorkOrg", shiOrg);
@@ -378,7 +378,7 @@ public class ZhenBFAction extends BaseAction {
 		}
 		if (zhen == null) {
 			this.setMsg("尚未指定帮扶镇，不能进行操作!");
-			return "piczhen_list";
+			return "pic_list";
 		}
 		pageBean = zhenBFBiz.getAllPicZhenByZhenId(pic, zhen.getId(), pageIndex);
 

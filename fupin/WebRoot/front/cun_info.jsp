@@ -1,189 +1,66 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html><head>
-
-<link href="css/tagstyle.css" rel="stylesheet">
-
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<meta content="0" http-equiv="Expires">
-<meta content="no-cache" http-equiv="Cache-Control">
-<meta content="no-cache" http-equiv="Pragma">
-<title>广东扶贫信息网</title>
-<script src="js/validateForm.js" language="javascript"></script>
-<link media="screen" href="css/bubble-tooltip.css" rel="stylesheet">
-	<script src="js/bubble-tooltip.js" type="text/javascript"></script>
-	
-<script language="javascript">
-
-function CheckBrowser() 
-{
-  var app=navigator.appName;
-  var verStr=navigator.appVersion;
-  if (app.indexOf('Netscape') != -1) {
-    alert("友情提示：\n    你使用的是Netscape/Firefox浏览器，可能会导致无法使用后台的部分功能。建议您使用 IE6.0 或以上版本。");
-  } 
-  else if (app.indexOf('Microsoft') != -1) {
-    if (verStr.indexOf("MSIE 3.0")!=-1 || verStr.indexOf("MSIE 4.0") != -1 || verStr.indexOf("MSIE 5.0") != -1 || verStr.indexOf("MSIE 5.1") != -1)
-      alert("友情提示：\n    您的浏览器版本太低，可能会导致无法使用后台的部分功能。建议您使用 IE6.0 或以上版本。");
-  }
-}
-
-function changeValidateCode(Obj)
-{
-	var dt = new Date();
-	Obj.src="image.jsp?t="+dt.getMilliseconds();
-}
-function grad(obj) 
-{ 
-	document.formlogin.submit(); 
-	obj.disabled=true; 
-}
-function typetip(ptype){
-  var stype="";
-  switch(ptype){
-   case 1:stype="有劳动能力的低保对象";break;
-   case 2:stype="无劳动能力低保对象";break;
-   case 3:stype="低收入困难家庭";break;
-  }
-  return stype;
-}
-</script>
-
-<style>
-td,th {color:#000000; font-size:12px; font-family: MS Shell Dlg, Tahoma, 宋体;}
-textarea,select,input{font-size:12px;font-family: MS Shell Dlg, Tahoma, 宋体;}
-a:link {
-	color: #003399;
-	text-decoration: none;
-	}
-
-a:visited {
-	color: #003399;
-	text-decoration: none;
-	}
-
-a:hover {
-	color: #FF0000;
-	text-decoration:underline;
-	}
-.redfont {
-	color: #FF0000;
-	}
-.title {
-	font-size: 18px;
-	color: #990000;
-}
-a:hover .aa{
-		/*border-bottom:1px dotted #317082;*/
-		color: #FF0000;
-	}
-</style>
-
-</head><body>
-<div id="bubble_tooltip">
-	<div class="bubble_top"><span></span></div>
-	<div class="bubble_middle"><span id="bubble_tooltip_content">Content is comming here as you probably can see.Content is comming here as you probably can see.</span></div>
-	<div class="bubble_bottom"></div>
-</div>
-
-
-	
-
-
-
-<link href="images/commom.css" rel="stylesheet" type="text/css">
-<link media="all" type="text/css" href="css/autoCity.css" rel="stylesheet">
-<link href="css/tagstyle.css" rel="stylesheet">
-<script src="js/jquery.js"></script>
-<script src="js/channelChange.js"></script>
-<script src="js/autoCity.js"></script>
-<script src="js/cun.js"></script>
-
-
-<script>
-// 加载提示List
-function loadAuotItemList() {			
-}
-function log(event, data, formatted) {
-		$("<li>").html( !data ? "No match!" : "Selected: " + formatted).appendTo("#result");
-	}
-	
-	function formatItem(row) {
-		return row[0] + "（<strong>台帐：" + row[1] + "</strong>）";
-	}
-	/*
-	function formatItem(row, i, max) { 
-       return i + "/" + max + ": \"" + row.n + "\" [" + row.t + "]";
-    }*/
-
-
-	function formatResult(row) {
-		return row[0].replace(/(<.+?>)/gi, '');
-	}
-/*
-	function formatResult(row) {
-		return row.n;
-	}
-*/	
-function formatMatch(row, i, max) {
-			return row.n + " " + row.t;
-		}
-function getAjax()
-{
-	$.ajax({
-  			type: "POST",
-  			dataType:'json',
-  			url: "servlet/AjaxData?type=shi&amp;code=source",
-  			success: function(msg){
-  			  	var json= eval(msg); 
-  				GenerationPK3('shi',json);
-		}
-		});
-}
-$(document).ready(function() {
-});
-
-function checkPkcmc(){
-   if(form1.targetCity.value==""){
-     alert("贫困村名称不能为空");
-     return false;
-   }
-}
-
-function checkDwcx()
-{
-  if(form3.dwname.value==""){
-     alert("请输入单位名称或者单位编码");
-     return false;
-   }
-}
-
-function mysubmit()//网页内按下回车触发
-{
-	if(event.keyCode!=13)
-		alert(event.keyCode);
-	else        
-	{
-		alert(event.keyCode);
-		document.getElementById("3").focus();
-		document.getElementById("3").click();   
-		return false;                               
-	}
-}
-</script>
-<style type="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>无标题文档</title>
+		<style type="text/css">
 <!--
-.STYLE1 {color: #FFFFFF}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
 -->
 </style>
-<jsp:include page="../area/common.jsp"></jsp:include>
+		<link href="${appPath}css.css" rel="stylesheet" type="text/css" />
+		<link href="${appPath}css/tagstyle.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+<!--
+.cx {
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+}
+-->
+</style>
+		<script type="text/javascript" src="${appPath}js/jquery.js"></script>
+		<script type="text/javascript" src="${appPath}js/common.js"></script>
+		<script type="text/javascript" src="${appPath}chart/swfobject.js"></script>
+		<script type="text/javascript">
+		$(function(){
+			
+		});
+	</script>
+	</head>
 
-	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="bg16">
-	<tbody><tr>
-	<td class="cn12">【${cun.name }】
-	</td>
-	</tr>
-	</tbody></table>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="5">
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<jsp:include page="head.jsp"></jsp:include>
+						<tr>
+							<td>
+								<table width="100%" height="27" border="0" cellpadding="0" cellspacing="0" background="images/fp_xmtbg.gif">
+									<tr>
+										<td width="24">
+											<img src="images/fp_xmt01.gif" width="24" height="27" />
+										</td>
+										<td>
+											【${cun.name }】
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
 
 <style type="text/css">
 a { text-decoration:none;}
@@ -346,7 +223,7 @@ shead = he + sstyle + "</head>";
 <!-- S:村详细信息tag -->
 <table cellspacing="0" cellpadding="0" border="0" align="left">
 	<tbody><tr>
-	<td class="titlefonttitle2">
+	<td class="titlefonttitle1">
 	<a href="${appPath }front_showCunInfo.action?cun.id=${cun.id }">贫困村简介</a></td>
 
 	<td class="titlefonttitle2">
@@ -358,45 +235,51 @@ shead = he + sstyle + "</head>";
 	<td class="titlefonttitle2">
 	<a href="${appPath }front_showChengxiaoInfo.action?cun.id=${cun.id }">帮扶成效</a></td>
 
-	<td class="titlefonttitle1">
+	<td class="titlefonttitle2">
 	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
 	</tr>
-</tbody></table><br><br>
-<!-- E:村详细信息tag -->
+</tbody></table><br/>
 <div class="content">
-<form method="get" action="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }" name="listForm">
-<input type="hidden" value="${cun.id}" name="cun.id" id="">
-<table width="99%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
-	<tbody><tr align="center">
-		<td width="15%" class="tables_headercell">所在村</td>
-		<td width="5%" class="tables_headercell">组</td>
-		<td width="10%" class="tables_headercell">姓名</td>
-		<td width="6%" class="tables_headercell">性别</td>
-		<td width="10%" class="tables_headercell">贫困对象类型</td>
-		<td width="10%" class="tables_headercell">脱贫状态</td>
-	</tr>
-<c:forEach items="${pageBean.resultList}" var="f">
-		<tr style="cursor: pointer;" onclick="location='${appPath}front_viewFamily.action?family.id=${f.id}';">
-			
-		<td height="25" align="center" class="tables_contentcell">&nbsp;${f.cun.name }</td>
-		<td height="25" align="center" class="tables_contentcell">&nbsp;${f.zu }</td>
-		<td height="25" align="center" class="tables_contentcell">&nbsp;${f.name }</td>
-		<td height="25" align="center" class="tables_contentcell">&nbsp;${f.gender }</td>
-		<td height="25" align="center" class="tables_contentcell">
-		&nbsp;
-		 <a onmouseout="hideToolTip()" onmouseover="showToolTip(event,typetip(${f.type }));return false" style="border-bottom: 1px dotted rgb(49, 112, 130); color: rgb(48, 112, 130);" href="#">${f.type }</a>
-		</td>
-		<td height="25" align="center" class="tables_contentcell">
-		&nbsp;${f.tuopin }
-		</td>
-	</tr>
-	</c:forEach>
-	<tr>
-		<td height="25" align="right" class="tables_contentcell" colspan="8">
-		<jsp:include page="../pager.jsp"></jsp:include>
-		</td></tr>
-</tbody></table>
-</form>
+<!-- S:图片浏览器 -->
+	
+	<div id="slide_preview">
+		<div id="indemo">
+			<div id="demo1">
+			<c:forEach items="${picList}" var="f">
+
+				<a title="${f.type }：${f.remark }" target="_blank" href="${appPath}upload/${f.path}" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
+					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="${appPath}upload/${f.path}"/>${f.type }：${f.remark }...
+				</a>
+			</c:forEach>
+			</div>
+			<div id="demo2">
+
+			<c:forEach items="${picList}" var="f">
+
+				<a title="${f.type }：${f.remark }" target="_blank" href="${appPath}upload/${f.path}" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
+					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="${appPath}upload/${f.path}"/>${f.type }：${f.remark }...
+				</a>
+			</c:forEach>
+
+		
+			</div>
+		</div>
+	</div>
+	
+<!-- E:图片浏览器 -->
+	<h2 style="font-family: 黑体; font-style: normal;" class="3dfont">${cun.name }简介
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;一、基本情况
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;${cun.remark }
+
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;${cun.name }负责人：${cun.org.chargePersonName }    联系电话：${cun.org.chargePersonTel }
+</h2>
+
+  <hr/>
+     急需建设项目：
+   <h2 style="font-family: 黑体; font-style: normal;" class="3dfont">
+    急需解决的项目：
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;${cun.item }</h2>
+
 </div>
 <!-----------------------------图片相册起始----------------------------------------->
 <script>
@@ -427,4 +310,6 @@ shead = he + sstyle + "</head>";
 
 </script>
 <!-----------------------------图片相册结束----------------------------------------->
-<div style="display: none; z-index: 999;" class="sug"></div></body></html>
+<div style="display: none; z-index: 999;" class="sug"></div>
+	</body>
+</html>
