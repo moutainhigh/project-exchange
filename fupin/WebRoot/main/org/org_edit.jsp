@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head><body>
 
-	<form  method="get" action="${appPath}org_saveOrg.action" name="searchForm">
+	<form  method="get" action="${appPath}org_saveOrg.action" name="searchForm" onsubmit="return Validator.Validate(this);">
 	<input type="hidden" name="org.id" value="${org.id}">
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_search">
 		<tbody><tr>
@@ -69,19 +69,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">单位电话</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" style="width: 95%; height: 98%;" size="20" value="${org.orgTel}" id="dwdh" name="org.orgTel"><font size="4" color="#cc0033"> *</font>
+		<input msg="单位电话不能为空,且需符合号码规则" datatype="Phone2" type="text" style="width: 95%; height: 98%;" size="20" value="${org.orgTel}" id="dwdh" name="org.orgTel"><font size="4" color="#cc0033"> *</font>
     	</td>
 		</tr>
 		<tr>
 		<td height="30" align="right" width="15%" class="tables_leftcell">责任人姓名</td>
 		<td width="35%" class="tables_contentcell">
-		<input type="text" msg="联系人不能为空" datatype="Require" style="width: 95%; height: 98%;" size="20" value="${org.chargePersonName }" id="lxr" name="org.chargePersonName">
+		<input type="text" msg="责任人姓名不能为空,且必须为汉字" datatype="Chinese" style="width: 95%; height: 98%;" size="20" value="${org.chargePersonName }" id="lxr" name="org.chargePersonName">
 		<font size="4" color="#cc0033"> *</font>
 		<!-- <input type="button" onclick="change();" value="信息切换"  class="button" /> -->
 	    </td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">责任人电话</td>
 		<td width="35%" class="tables_contentcell">
-		<input type="text" style="width: 95%; height: 98%;" size="20" value="${org.chargePersonTel }" id="lxrsj" name="org.chargePersonTel">
+		<input msg="责任人电话不能为空,且需符合号码规则" datatype="Phone2" type="text" style="width: 95%; height: 98%;" size="20" value="${org.chargePersonTel }" id="lxrsj" name="org.chargePersonTel">
 		<font size="4" color="#cc0033"> *</font>
 		</td>
 		</tr>  
@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">职务</td>
 		<td width="35%" class="tables_contentcell">
-		<input type="text" msg="职务不能为空" datatype="Require" style="width: 95%; height: 98%;" size="20" value="${org.chargeDuty }" id="lxrzw" name="org.chargeDuty">
+		<input type="text" msg="责任人职务不能为空" datatype="Require" style="width: 95%; height: 98%;" size="20" value="${org.chargeDuty }" id="lxrzw" name="org.chargeDuty">
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		</tr> 
@@ -104,12 +104,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr> 
     	<td height="30" align="right" width="15%" class="tables_leftcell">联络员姓名</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" msg="联络员姓名不能为空" datatype="Require" size="20" value="${org.contactName }" id="llymc" name="org.contactName">
+		<input type="text" msg="联络员姓名不能为空,且必须为汉字" datatype="Chinese" size="20" value="${org.contactName }" id="llymc" name="org.contactName">
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">职务</td>
 		<td width="35%" class="tables_contentcell">
-		<input type="text" msg="职务不能为空" datatype="Require" size="20" value="${org.contactDuty }" id="zw" name="org.contactDuty">
+		<input type="text" msg="联络员职务不能为空" datatype="Require" size="20" value="${org.contactDuty }" id="zw" name="org.contactDuty">
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		</tr>
@@ -117,12 +117,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr> 
     	<td height="30" align="right" width="15%" class="tables_leftcell">办公电话</td>
     	<td width="35%" class="tables_contentcell">
-		<input type="text" msg="办公电话不能为空" datatype="Require" size="20" value="${org.contactTel }" id="bgdh" name="org.contactTel">
+		<input type="text" msg="办公电话不能为空且须符合号码规则" datatype="Phone2" size="20" value="${org.contactTel }" id="bgdh" name="org.contactTel">
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		<td height="30" align="right" width="15%" class="tables_leftcell">手机号码</td>
 		<td width="35%" class="tables_contentcell">
-		<input type="text" msg="手机号码不能为空" datatype="Require" size="20" value="${org.contactMobile }" id="contactMobile" name="org.contactMobile">
+		<input type="text" msg="手机号码不能为空,且需符合号码规则" datatype="Mobile" size="20" value="${org.contactMobile }" id="contactMobile" name="org.contactMobile">
 		<font size="4" color="#cc0033"> *</font>
     	</td>
 		</tr>

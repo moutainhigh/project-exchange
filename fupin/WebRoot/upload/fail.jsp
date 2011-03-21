@@ -22,6 +22,9 @@
 	<tr bgcolor="#CCCCCC"> 
       <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">图片上传失败</th>
     </tr>
+    <tr bgcolor="#CCCCCC"> 
+      <th height="20" align="left" valign="middle" bgcolor="#FF4040" class="trYello">失败原因：图片太大，请上传不超过2M图片</th>
+    </tr>
     <tr align="center" valign="middle"> 
       <td height="33" align="left" id="upid">
       点<a href="${appPath}upload/upload.jsp">这里</a>重新上传

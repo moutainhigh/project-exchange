@@ -15,6 +15,12 @@ public class FileUploadAction extends BaseAction {
 	private String myfileFileName;
 	public String execute(){
 		if (myfile != null) {
+			if (myfile.length()>1024*1024*2) {
+				logger.debug(myfile.length());
+				this.setMsg("图片太大,请上传小于2M的图片！");
+				return "error";
+			}
+			
 			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 			logger.debug(">>>>>>>>>>>>>>>>>>>"+path);
 			logger.debug("+++++++++"+Thread.currentThread().getContextClassLoader().getResource("/"));

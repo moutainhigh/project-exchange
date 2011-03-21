@@ -22,6 +22,7 @@ public class WebConstants {
 	public static final String SESS_USER_PERMISSION = "userPer";
 	public static final String SESS_CITY = "currCity";
 	public static final String SESS_IMAGE = "sess_image";
+	public static final String SESS_FORWARD_URL="url";
 	
 
 	//措施类型

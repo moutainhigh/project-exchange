@@ -4,6 +4,12 @@
 		request.getRequestDispatcher("/login.jsp").forward(request,response);
 	}
 %>
+
+<%
+	if(session.getAttribute("url") != null&&!"".equals(session.getAttribute("url"))){
+		request.getRequestDispatcher((String)session.getAttribute("url")).forward(request,response);
+	}
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <!-- Design by 4wenzi Date:2004-07-04 -->
