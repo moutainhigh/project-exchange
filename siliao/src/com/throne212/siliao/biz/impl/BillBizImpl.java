@@ -124,17 +124,32 @@ public class BillBizImpl extends BaseBizImpl implements BillBiz {
 			List<MailSetting> mailList = billDao.getAll(MailSetting.class);
 			if(mailList != null && mailList.size() > 0 && mailList.get(0).getEnable()!=null && mailList.get(0).getEnable()){
 				MailSetting mail = mailList.get(0);
-				User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-				Util.sendEmail(mail.getSmtp(), mail.getUsername(), mail.getPassword(), mail.getFrom(), user.getEmail(),title, this.buildEmailBody(bill));
-				logger.info("邮件发送成功："+user.getEmail());
+				//User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+				String email = this.getEmailAddr(bill);
+				logger.info("发送邮件的目标邮箱地址：" + email);
+				Util.sendEmail(mail.getSmtp(), mail.getUsername(), mail.getPassword(), mail.getFrom(), email,title, this.buildEmailBody(bill));
+				logger.info("邮件发送成功："+email);
 			}
 		} catch (Exception e) {
 			logger.error("邮件发送失败", e);
 		}
 	}
 	
+	private String getEmailAddr(Bill bill){
+		if(bill == null)
+			return null;
+		String currName = bill.getCurrUserName();
+		if(!Util.isEmpty(currName)){
+			List<User> list = billDao.getEntitiesByColumn(User.class, "name", currName);
+			if(list!=null && list.size()>0)
+				return list.get(0).getEmail();
+		}
+		return null;
+	}
+	
 	private String buildEmailBody(Bill bill){
 		StringBuffer sb = new StringBuffer();
+		sb.append("您有一条新任务，请进入<a href=\""+WebConstants.URL+"\" target=\"_blank\">"+WebConstants.URL+"</a>来处理");
 		sb.append("农场管区: ");
 		sb.append(bill.getFarm()==null?"":bill.getFarm().getName());
 		sb.append("-"+bill.getArea()==null?"":bill.getArea().getName());

@@ -62,6 +62,8 @@ public class WebConstants {
 	
 	public static final int PAGE_SIZE = 20;
 	
+	public static final String URL = "http://dearie.vicp.net:8008/";
+	
 	
 	
 }
