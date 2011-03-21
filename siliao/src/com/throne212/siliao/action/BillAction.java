@@ -284,6 +284,7 @@ public class BillAction extends BaseAction {
 			billBiz.saveBillDraft(bill);// 驳回
 			bill.setCurrUserName(bill.getAreaAccount().getName());
 			billBiz.saveOrUpdateEntity(bill);
+			billBiz.sendBill(bill);
 			this.setMsg("已驳回单据！");
 		}
 		bill = null;
