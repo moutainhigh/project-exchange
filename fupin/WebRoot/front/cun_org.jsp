@@ -238,7 +238,8 @@ shead = he + sstyle + "</head>";
 	<td class="titlefonttitle2">
 	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
 	</tr>
-</tbody></table><br/>
+</tbody></table><br/><br/>
+<br/>
 <div class="content">
 <!-- S:图片浏览器 -->
 	

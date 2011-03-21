@@ -45,9 +45,9 @@
 		});
 		function showForm(i){
 			//alert(i);
-			$('.head_form').hide();
+			$('.head_form table').hide();
 			//alert($('.dorpmenu').eq(i).html());
-			$('.head_form').eq(i).show();
+			$('.head_form table').eq(i).show();
 			//alert($('form').eq(i).html(););
 		}
 		$(function(){
@@ -118,7 +118,7 @@
 								<table border="0" cellspacing="0" cellpadding="5" class="dorpmenu">
 									<tr>
 										<td width="80" align="right" height="">
-											<font color="#FFFFFF">贫困户姓名</font>
+											<font color="#FFFFFF">贫困村名</font>
 										</td>
 										<td width="100">
 											<input name="pinyin" type="text" id="pinyin"
@@ -134,8 +134,8 @@
 									</tr>
 								</table>
 								</form>
-								<form method="post"	action="${appPath}front_queryDiqu.action" name="form2" class="head_form">
-								<table border="0" cellspacing="0" cellpadding="5" class="dorpmenu" width="100%">
+								<form method="post"	action="${appPath}front_queryDiqu.action" name="form2" class="head_form" >
+								<table border="0" cellspacing="0" cellpadding="5" class="dorpmenu" width="100%" style="display: none;">
 									<tr>
 										<td width="550px;" align="left" style="height: 28px;color:white;">
                  <span class="STYLE1">市：</span>
@@ -160,7 +160,7 @@
 								</table>
 								</form>
 								<form method="post" action="${appPath}front_queryCunByOrgPinyin.action" name="form3" class="head_form">
-								<table border="0" cellspacing="0" cellpadding="5" class="dorpmenu">
+								<table border="0" cellspacing="0" cellpadding="5" class="dorpmenu" style="display: none;">
 									<tr>
 										<td align="left" style="height: 28px;color:white;">
 	         <span class="STYLE1">单位编码/名称:</span>

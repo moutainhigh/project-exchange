@@ -238,12 +238,13 @@ shead = he + sstyle + "</head>";
 	<td class="titlefonttitle2">
 	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
 	</tr>
-</tbody></table><br/>
+</tbody></table><br/><br/>
+<br/>
 <div class="content">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tbody><tr>
 <td>
-<div style="border: 1px solid rgb(77, 158, 227); height: 600px; width: 99%;">
+<div style=" height: 600px; width: 99%;">
 		<div style="display: block;" id="detail_3">
 		</div>
 		<div style="display: block;" id="detail_2011">

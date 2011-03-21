@@ -257,7 +257,8 @@ shead = he + sstyle + "</head>";
 	<td class="titlefonttitle1">
 	<a href="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }">贫困户列表</a></td>
 	</tr>
-</tbody></table><br/>
+</tbody></table><br/><br/>
+<br/>
 <div class="content">
 <form method="get" action="${appPath }front_showFamilyInfo.action?cun.id=${cun.id }" name="listForm">
 <input type="hidden" value="${cun.id}" name="cun.id" id=""/>

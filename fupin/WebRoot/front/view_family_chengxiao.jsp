@@ -106,7 +106,8 @@ function typetip(ptype){
 	<td class="titlefonttitle1">
 	<a href="${appPath }front_showFamilyChengxiao.action?family.id=${family.id }">帮扶成效</a></td>
 	</tr>
-</tbody></table><br/>
+</tbody></table><br/><br/>
+<br/>
 <div class="content">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tbody><tr>
