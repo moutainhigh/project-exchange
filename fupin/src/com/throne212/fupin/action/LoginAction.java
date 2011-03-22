@@ -48,16 +48,16 @@ public class LoginAction extends BaseAction {
 			
 		} else if (user instanceof ShiWorkOrg) {
 			logger.info("市管理员登录成功：" + user.getLoginName());
-			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "/shenhe_showAllCuoshiCunInPro.action");
+			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../shenhe_showAllCuoshiCunInPro.action");
 		} else if (user instanceof AreaWorkOrg) {
 			logger.info("区县管理员登录成功：" + user.getLoginName());
-			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL,"/shenhe_showAllCuoshiCunInPro.action");
+			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../shenhe_showAllCuoshiCunInPro.action");
 		} else if (user instanceof ZhenWorkOrg) {
 			logger.info("镇管理员登录成功：" + user.getLoginName());
-			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "/cun_cunList.action");
+			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../cun_cunList.action");
 		} else if (user instanceof Org) {
 			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
-			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "/org_editOrg.action");
+			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../org_editOrg.action");
 		}
 		return "success";
 	}

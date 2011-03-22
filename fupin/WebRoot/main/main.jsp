@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="com.throne212.fupin.domain.User"%>
 <%
 	if(session.getAttribute("userObj") == null){
 		request.getRequestDispatcher("/login.jsp").forward(request,response);
@@ -7,7 +8,9 @@
 
 <%
 	if(session.getAttribute("url") != null&&!"".equals(session.getAttribute("url"))){
-		request.getRequestDispatcher((String)session.getAttribute("url")).forward(request,response);
+		//request.getRequestDispatcher((String)session.getAttribute("url")).forward(request,response);
+		response.sendRedirect((String)session.getAttribute("url"));
+		return;
 	}
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

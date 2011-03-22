@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>无标题文档</title>
+		<title>广州市扶贫信息网 - 后台登录</title>
 		<link href="${appPath}css.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript">
 	function breakout_of_frame()
