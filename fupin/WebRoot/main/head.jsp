@@ -1,5 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!-- Design by 4wenzi Date:2004-07-04 -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>管理首页</title>
+<link rel="stylesheet" href="main_data/manage.css"/>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+	margin:0;
+	padding:0;
+}
+-->
+</style>
+<link href="${appPath}css2.css" rel="stylesheet" type="text/css" />
+</head><body>
 <script language="JavaScript">                 
 function getTheTime(tmpDate)
 { 
@@ -59,3 +76,7 @@ ${userObj.loginName }（<span title="${userObj.roleName }">${userObj.roleName }<
     <td width="80"><!--<img src="${appPath}images/a1_qp.gif" width="12" height="11" /> 全屏-->&nbsp;</td>
   </tr>
 </table>
+</body></html>
+
+
+

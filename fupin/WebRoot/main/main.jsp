@@ -30,7 +30,6 @@ body,td,th {
 </style>
 <link href="${appPath}css2.css" rel="stylesheet" type="text/css" />
 </head><body>
-<jsp:include page="head.jsp"></jsp:include>
 <br/>
 <br/>
 <br/>

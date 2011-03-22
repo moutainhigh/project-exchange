@@ -11,9 +11,12 @@
   <frameset cols="179,*" frameborder="no" border="0" framespacing="0">
 		<frame src="main/page_left.jsp" name="leftFrame" scrolling="no" noresize="noresize" id="leftFrame" title="leftFrame" />
 		<frameset cols="5,*" frameborder="no" border="0" framespacing="0">
-		  <frame src="l1.html" name="leftFrame1" scrolling="no" noresize="noresize" id="leftFrame1" title="leftFrame1" />
-		<frame src="main/main.jsp" name="mainFrame" id="mainFrame" title="mainFrame" />
-	</frameset>
+		  	<frame src="l1.html" name="leftFrame1" scrolling="no" noresize="noresize" id="leftFrame1" title="leftFrame1" />
+			<frameset rows="30,*" frameborder="no" border="0" framespacing="0">
+				<frame src="main/head.jsp" name="prmptFrame" id="prmptFrame" title="prmptFrame" />
+				<frame src="main/main.jsp" name="mainFrame" id="mainFrame" title="mainFrame" />
+			</frameset>
+		</frameset>
   </frameset>
   <frame src="bottom.html" name="bottomFrame" scrolling="no" noresize="noresize" id="bottomFrame" title="bottomFrame" />
 </frameset>
