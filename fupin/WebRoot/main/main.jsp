@@ -10,6 +10,7 @@
 	if(session.getAttribute("url") != null&&!"".equals(session.getAttribute("url"))){
 		//request.getRequestDispatcher((String)session.getAttribute("url")).forward(request,response);
 		response.sendRedirect((String)session.getAttribute("url"));
+		session.setAttribute("url",null);
 		return;
 	}
 %>
