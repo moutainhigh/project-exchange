@@ -77,7 +77,7 @@ body {
 <table width="980" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td valign="top">
-<iframe height="800" frameborder="0" width="100%" src="MainFrame.jsp" name="mainFrame"></iframe></td>
+<iframe height="800" frameborder="0" width="100%" src="MainFrame.jsp?shiId=${param.shiId}&areaId=${param.areaId}&zhenId=${param.zhenId}&cunId=${param.cunId}" name="mainFrame"></iframe></td>
   </tr>
 </table>
 <table width="990" height="5" border="0" align="center" cellpadding="0" cellspacing="0">

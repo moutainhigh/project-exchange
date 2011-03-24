@@ -75,7 +75,7 @@
 		联系手机
 		</td>
 		<td class="tables_contentcell">
-		<input type="text" style="height: 22px;" msg="手机不符合规则" size="20" value="${leader.tel }" id="sjhm" name="leader.tel">
+		<input type="text" style="height: 22px;" msg="手机不符合规则" require="true" datatype="Number" size="20" value="${leader.tel }" id="sjhm" name="leader.tel">
 		<font size="4" color="#cc0033">*</font>
 		</td>
 	</tr>

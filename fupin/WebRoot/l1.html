@@ -10,19 +10,27 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+	background: url('images/a1_ttbg.gif');
+	text-align: center;
+	vertical-align: middle;
 }
+img{margin-top:250px;}
 -->
-</style></head>
+</style>
+<script>
+function Win_left()
+{
+	if(window.parent.left_right.cols == '179,*')
+		{window.parent.left_right.cols = '0,*';
+    }else
+       {window.parent.left_right.cols = '179,*';
+    }
+}
+
+</script>
+</head>
 
 <body>
-<table width="5" height="550" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td background="images/a1_ttbg.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td><img src="images/a1_tt.gif" width="5" height="45" /></td>
-      </tr>
-    </table></td>
-  </tr>
-</table>
+<img src="images/a1_tt.gif" width="5" height="45" onclick="Win_left();" />
 </body>
 </html>

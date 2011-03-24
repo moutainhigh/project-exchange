@@ -169,7 +169,7 @@ var msg = '${msg}';
 		</tr>
 			</c:forEach>
 	<tr>
-		<td height="25" align="right" class="tables_contentcell" colspan="8">
+		<td height="25" align="right" class="tables_contentcell" colspan="9">
 		<jsp:include page="../../pager.jsp"></jsp:include>
 		</td>
 	</tr>

@@ -8,7 +8,7 @@
 
 <frameset rows="96,*,30" cols="*" framespacing="0" frameborder="no" border="0">
   <frame src="top.jsp" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" title="topFrame" />
-  <frameset cols="179,*" frameborder="no" border="0" framespacing="0">
+  <frameset cols="179,*" frameborder="no" border="0" framespacing="0" id="left_right">>
 		<frame src="main/page_left.jsp" name="leftFrame" scrolling="no" noresize="noresize" id="leftFrame" title="leftFrame" />
 		<frameset cols="5,*" frameborder="no" border="0" framespacing="0">
 		  	<frame src="l1.html" name="leftFrame1" scrolling="no" noresize="noresize" id="leftFrame1" title="leftFrame1" />

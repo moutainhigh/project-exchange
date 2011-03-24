@@ -1,11 +1,14 @@
 package com.throne212.fupin.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.UserBiz;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
@@ -58,8 +61,21 @@ public class LoginAction extends BaseAction {
 		} else if (user instanceof Org) {
 			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../org_editOrg.action");
+			checkOrgCun((Org) user);
 		}
 		return "success";
+	}
+	
+	//修复单位没有保存
+	private void checkOrgCun(Org org){
+		if(org.getCun()==null){
+			List<Cun> list = userBiz.getEntitiesByColumn(Cun.class, "org", org);
+			if(list != null && list.size()>0 ){
+				logger.info("数据bug修复，村与单位的映射缺失");
+				org.setCun(list.get(0));
+				userBiz.saveOrUpdateEntity(org);
+			}
+		}
 	}
 
 	public String getUsername() {
