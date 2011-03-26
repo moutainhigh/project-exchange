@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="baseBiz" class="com.throne212.saishi.biz.impl.BaseBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="userBiz" class="com.throne212.saishi.biz.impl.UserBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	<bean id="dataBiz" class="com.throne212.saishi.biz.impl.DataBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="gameDao" ref="gameDao"></property>
+		<property name="newsDao" ref="newsDao"></property>
+		<property name="musicDao" ref="musicDao"></property>
+	</bean>
+</beans>

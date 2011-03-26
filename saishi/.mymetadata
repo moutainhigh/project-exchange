@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="saishi"
+  id="myeclipse.1300758283093"
+  context-root="/saishi"
+  j2ee-spec="5.0"
+  archive="saishi.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

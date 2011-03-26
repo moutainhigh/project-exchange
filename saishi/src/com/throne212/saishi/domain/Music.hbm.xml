@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.saishi.domain">
+	<class name="Music" table="ss_music">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+	<property name="singer" length="128"></property>
+	<property name="songName" length="128"></property>
+	<property name="url" length="256"></property>
+	<property name="format" length="100"></property>
+	<property name="size" length="100"></property>
+	
+
+		<!-- 公用字段 -->
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		<!-- 公用字段 end -->
+		
+		
+	</class>
+</hibernate-mapping>

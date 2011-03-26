@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,,"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
+	<constant name="struts.multipart.maxSize" value="10485760"/>
+	
+    <package name="struts2" extends="struts-default" namespace="/">    
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.saishi.filter.AccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <global-results>
+			<result name="login">/login.jsp</result>
+			<result name="excel" type="stream">  
+                <!-- 下载文件类型定义 -->  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <!-- 下载文件处理方法 -->  
+                <param name="contentDisposition">  
+                    attachment;filename="${msg}.xls"  
+                </param>  
+                <!-- 下载文件输出流定义 -->  
+                <param name="inputName">downloadFile</param>  
+            </result>
+            <result name="error">/html/error.jsp</result>
+		</global-results>
+		<!-- 登入 -->
+		<action name="login" class="com.throne212.saishi.action.LoginAction">
+			<result name="success">/html/index.jsp</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+		<!-- 登出 -->
+		<action name="logout" class="com.throne212.saishi.action.LogoutAction">
+			<result name="success" type="redirect">/login.jsp</result>
+		</action>
+		<!-- 账号维护 -->
+		<action name="user_*" method="{1}" class="com.throne212.saishi.action.UserAction">
+			<result name="password">/html/personal/password.jsp</result>
+		</action>
+		<!-- 数据设定 -->
+		<action name="data_*" method="{1}" class="com.throne212.saishi.action.DataAction">
+			<result name="user_edit">/html/account/service/user_edit.jsp</result>
+			<result name="user_list">/html/account/service/user_list.jsp</result>
+			<result name="game_edit">/html/account/service/game_edit.jsp</result>
+			<result name="game_list">/html/account/service/game_list.jsp</result>
+			<result name="news_edit">/html/account/service/news_edit.jsp</result>
+			<result name="news_list">/html/account/service/news_list.jsp</result>
+			<result name="music_edit">/html/account/service/music_edit.jsp</result>
+			<result name="music_list">/html/account/service/music_list.jsp</result>
+		</action>
+		<!-- 上传音乐 -->
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.saishi.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/upload/success.jsp</result>
+			<result name="error">/upload/fail.jsp</result>
+		</action>
+    </package>
+	<package name="json" extends="json-default" namespace="/ajax">
+        <action name="*" method="{1}" class="com.throne212.saishi.action.AjaxAction">
+        	<result name="area_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="role_list" type="json">
+				<param name="includeProperties">
+				list\[\d+\]
+				</param>
+			</result>
+		</action>		
+	</package>
+</struts>
