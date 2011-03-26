@@ -11,8 +11,10 @@ import org.hibernate.Session;
 import com.throne212.saishi.common.PageBean;
 import com.throne212.saishi.common.Util;
 import com.throne212.saishi.common.WebConstants;
+import com.throne212.saishi.comunicate.MultiThreadServer;
 import com.throne212.saishi.dao.GameDao;
 import com.throne212.saishi.domain.Game;
+import com.throne212.saishi.domain.Queue;
 
 public class GameDaoImpl extends BaseDaoImpl implements GameDao {
 
@@ -104,9 +106,15 @@ public class GameDaoImpl extends BaseDaoImpl implements GameDao {
 	}
 
 
-	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
+	public void tixing(Game game){
+		List<String> clientList = MultiThreadServer.list;
+		logger.debug("客户数量：" + clientList.size());
+		for(String c : clientList){
+			Queue q = new Queue();
+			q.setClient(c);
+			q.setGame(game);
+			this.saveOrUpdate(q);
+		}
 	}
 
 }

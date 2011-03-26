@@ -145,6 +145,12 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		logger.info("删除音乐【" + music.getSongName() + "】成功");
 		return music;
 	}
+	
+	//提醒
+	public void tixing(Long gameId){
+		Game game = userDao.getEntityById(Game.class, gameId);
+		gameDao.tixing(game);
+	}
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -177,8 +183,6 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	public void setMusicDao(MusicDao musicDao) {
 		this.musicDao = musicDao;
 	}
-
-
 
 
 }

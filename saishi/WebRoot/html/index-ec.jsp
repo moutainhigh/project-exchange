@@ -903,9 +903,11 @@ function initialise() {
 	<c:if test="${userObj.userRole=='超级管理员'}">
 	L0306 = theMenu.addChild(L03, "Document", "用户管理", "${appPath}data_userList.action", "用户管理...");
 	</c:if>
-	L04 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
-	L0401 = theMenu.addChild(L04, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
+	L04 = theMenu.addChild(l2ID, "Folder", "数据统计", "", "设定个人数据...");
+	L0401 = theMenu.addChild(L04, "Document", "在线统计", "${appPath}stat_online.action", "数据统计...");
 	
+	L05 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
+	L0501 = theMenu.addChild(L05, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");
         
 	theMenu.entry[l2ID].isopen = true;
 }

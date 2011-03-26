@@ -125,6 +125,17 @@ public class DataAction extends BaseAction {
 		pageBean = dataBiz.getGameList(game, startDate, endDate, fromDate, toDate, pageIndex, orderBy, orderType, pageSize);
 		return "game_list";
 	}
+	// 手动提醒赛事
+	public String tixing() {
+		if (game != null && game.getId() != null) {
+			dataBiz.tixing(game.getId());
+			this.setMsg("赛事提醒请求成功");
+		} else {
+			this.setMsg("赛事提醒请求失败，参数不完整");
+		}
+		return gameList();
+
+	}
 
 	// 删除赛事
 	public String deleteGame() {

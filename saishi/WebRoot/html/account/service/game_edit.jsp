@@ -52,7 +52,7 @@
 			<input type="hidden" name="game.id" value="${game.id}"/>
 			<table class="query_form_table">
 				<tr>
-					<th>
+					<th >
 						开始时间
 					</th>
 					<td>
@@ -63,6 +63,8 @@
 						<input size="4" id="minute" name="game.minute"  value="${game.minute}"/>分
 						<span class="red_star">*</span>
 					</td>
+				</tr>
+				<tr>
 					<th>
 						选手
 					</th>
@@ -79,6 +81,8 @@
 						<input value="${game.type }" name="game.type" id="type"/>
 						<span class="red_star">*(赛事类型)</span>
 					</td>
+				</tr>
+				<tr>
 					<th>
 					时长
 					</th>
@@ -96,6 +100,15 @@
 						<span class="red_star">*(赛事的网页链接地址，请填入完整的绝对地址)</span>
 					</td>
 					
+				</tr>
+				<tr>
+					<th>
+						标题
+					</th>
+					<td>
+						<input value="${game.title }" name="game.title" id="title"/>
+						<span class="red_star">*</span>
+					</td>
 				</tr>
 				<tr>
 					<th>

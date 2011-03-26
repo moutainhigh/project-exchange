@@ -25,6 +25,7 @@
 	<mapping resource="com/throne212/saishi/domain/Game.hbm.xml" />
 	<mapping resource="com/throne212/saishi/domain/News.hbm.xml" />
 	<mapping resource="com/throne212/saishi/domain/Music.hbm.xml" />
+	<mapping resource="com/throne212/saishi/domain/Queue.hbm.xml" />
 
 </session-factory>
 </hibernate-configuration>

@@ -88,9 +88,5 @@ public class MusicDaoImpl extends BaseDaoImpl implements MusicDao {
 		return rst;
 	}
 
-	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

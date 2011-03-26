@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.saishi.domain">
+	<class name="Queue" table="ss_queue">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="client"></property>
+		<many-to-one name="game" column="game_id" lazy="false"></many-to-one>
+		
+	</class>
+</hibernate-mapping>

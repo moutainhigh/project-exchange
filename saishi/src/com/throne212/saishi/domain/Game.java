@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Game extends MyEntity {
 	private Date startDate;
+	private String title;
 	private String hour;
 	private String minute;
 	private String intro;
@@ -70,6 +71,12 @@ public class Game extends MyEntity {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

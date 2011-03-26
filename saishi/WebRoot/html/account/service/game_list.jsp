@@ -55,6 +55,11 @@
 				document.forms[0].action = "${appPath}data_gameList.action";
 				document.forms[0].submit();
 			}
+			function tixing(id){
+				//document.forms[0].action = "${appPath}data_tixing.action?game.id="+id;
+				var url = "${appPath}data_tixing.action?game.id="+id;
+				self.location.href = url;
+			}
 			
 			function orderByCol(colName){
 				$('#orderBy').val(colName);
@@ -149,7 +154,7 @@
 					类型
 				</th>
 				<th>
-					简介
+					标题
 				</th>
 			
 				<th>
@@ -174,12 +179,13 @@
 					${f.type }
 				</td>
 				<td class="list_data_text">
-					${f.shortIntro }
+					${f.title }
 				</td>
 			
 				<td class="list_data_op">
 					<a href="${appPath}data_saveGame.action?game.id=${f.id}" >修改</a>
 					<a href="javascript:deleteGame(${f.id});">删除</a>
+					<a href="javascript:tixing(${f.id});">手动提醒</a>
 				</td>
 			</tr>
 			</c:forEach>

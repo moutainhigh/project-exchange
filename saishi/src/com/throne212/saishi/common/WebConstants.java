@@ -10,9 +10,7 @@ public class WebConstants {
 		WEB_PATH = path;
 	}
 	//app
-
-	
-
+	public static final String CLIENT_LIST = "clients";
 	public static final String KEY_WORD_LIST = "sys_keywords";
 	public static final String APP_PATH = "appPath";
 	public static final String APP_TITLE = "appTitle";
