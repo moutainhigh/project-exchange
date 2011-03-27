@@ -1,6 +1,7 @@
 package com.throne212.saishi.listener;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -9,10 +10,12 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.throne212.saishi.biz.BaseBiz;
 import com.throne212.saishi.biz.DataBiz;
 import com.throne212.saishi.common.WebConstants;
 import com.throne212.saishi.comunicate.Handler;
 import com.throne212.saishi.comunicate.MultiThreadServer;
+import com.throne212.saishi.domain.Admin;
 
 
 
@@ -44,6 +47,19 @@ public class CommonListener implements ServletContextListener {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			logger.warn("服务端服务启动失败", e1);
+		}
+		
+		// 插入系统管理员sa
+		//ApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(e.getServletContext());
+		BaseBiz baseBiz = (BaseBiz) ac.getBean("baseBiz");
+		if (baseBiz.getAll(Admin.class) == null || baseBiz.getAll(Admin.class).size() == 0) {
+			Admin admin = new Admin();
+			admin.setLoginName("sa");
+			admin.setPassword("123");
+			admin.setName("超级管理员");
+			admin.setRemark("系统最高管理员，拥有一切权限");
+			baseBiz.saveOrUpdateEntity(admin);
+
 		}
 	}
 

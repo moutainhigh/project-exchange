@@ -77,16 +77,17 @@ public class Handler implements Runnable {
 			while ((msg = br.readLine()) != null) {
 				System.out.println("收到的信息：["+msg+"]");
 				if (msg.equals("0001")) {
-					pw.println(echo(msg) + "1" + "ping");
+					pw.print(echo(msg) + "1" + "ping");
 				} else if (msg.equals("0002")) {//获取及时赛事
-					pw.println(echo(msg) + "1" + getSaishiMsg());
+					pw.print(echo(msg) + "1" + getSaishiMsg());
 				} else if (msg.equals("0003")) {//获取今日赛事
-					pw.println(echo(msg) + "1" + getSaishiMsg());
+					pw.print(echo(msg) + "1" + getSaishiMsg());
 				} else if (msg.equals("bye")){
 					break;
 				} else {
-					pw.println("Wrong Command Format " + echo(msg));
+					pw.print("Wrong Command Format " + echo(msg));
 				}
+				pw.print("\n\r");
 				pw.flush();
 			}
 			MultiThreadServer.list.remove(client);

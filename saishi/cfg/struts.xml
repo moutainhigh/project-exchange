@@ -70,9 +70,7 @@
 			<result name="success">/upload/success.jsp</result>
 			<result name="error">/upload/fail.jsp</result>
 		</action>
-    </package>
-    <package name="struts2" extends="struts-default" namespace="/html"> 
-		<action name="*" method="{1}" class="com.throne212.siliao.action.FrontAction">
+		<action name="*" method="{1}" class="com.throne212.saishi.action.FrontAction">
 			<result name="news">/html/news/news.jsp</result>
 		</action>
 	</package>

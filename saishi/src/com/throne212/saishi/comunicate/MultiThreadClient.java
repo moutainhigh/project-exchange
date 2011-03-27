@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class MultiThreadClient {
     
     public static void main(String[] args) {
-        int numTasks = 3;
+        int numTasks = 1;
         
         ExecutorService exec = Executors.newCachedThreadPool();
 
@@ -25,22 +25,28 @@ public class MultiThreadClient {
     private static Runnable createTask(final int taskID) {
         return new Runnable() {
             private Socket socket = null;
-            private int port=8821;
+            private int port=2086;
 
             public void run() {
                 System.out.println("Task " + taskID + ":start");
                 try {                    
-                    socket = new Socket("localhost", port);
-                    // 发送关闭命令
+                    socket = new Socket("host1983.com", port);
                     OutputStream socketOut = socket.getOutputStream();
-                    socketOut.write("0002\r\n".getBytes());
-                    // 接收服务器的反馈
                     BufferedReader br = new BufferedReader(
                             new InputStreamReader(socket.getInputStream()));
-                    String msg = null;
-                    while ((msg = br.readLine()) != null)
-                        System.out.println(msg);
-                } catch (IOException e) {                    
+                    while(true){
+                    	System.out.println("writing...");
+                    	 // 发送关闭命令                       
+                        socketOut.write("0002\r\n".getBytes());
+                        // 接收服务器的反馈                        
+                        String msg = null;
+                        System.out.println("reading...");
+                        if ((msg = br.readLine()) != null)
+                            System.out.println(msg);
+                        Thread.sleep(3000);
+                    }
+                   
+                } catch (Exception e) {                    
                     e.printStackTrace();
                 }
             }
