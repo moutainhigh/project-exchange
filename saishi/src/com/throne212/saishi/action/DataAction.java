@@ -136,6 +136,20 @@ public class DataAction extends BaseAction {
 		return gameList();
 
 	}
+	// 推荐赛事
+	public String recommend() {
+		if (game != null && game.getId() != null) {
+			game = dataBiz.getEntityById(Game.class, game.getId());
+			if(game != null){
+				game.setRecommend(true);
+				dataBiz.saveOrUpdateEntity(game);
+				this.setMsg("赛事推荐成功");
+			}
+		} else {
+			this.setMsg("赛事推荐失败，参数不完整");
+		}
+		return gameList();
+	}
 
 	// 删除赛事
 	public String deleteGame() {

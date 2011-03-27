@@ -7,6 +7,7 @@
 			<generator class="increment" />
 		</id>
 		<property name="client"></property>
+		<property name="createDate"></property>
 		<many-to-one name="game" column="game_id" lazy="false"></many-to-one>
 		
 	</class>

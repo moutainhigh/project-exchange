@@ -14,6 +14,8 @@ public class Game extends MyEntity {
 	private String type;
 	private String duration;
 	private String url;
+	private String image;//图片的地址
+	private Boolean recommend;//是否推荐
 	
 	public String getShortIntro(){
 		String shortIntro;
@@ -77,6 +79,18 @@ public class Game extends MyEntity {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public Boolean getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(Boolean recommend) {
+		this.recommend = recommend;
 	}
 
 }

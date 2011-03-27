@@ -109,12 +109,50 @@ public class GameDaoImpl extends BaseDaoImpl implements GameDao {
 	public void tixing(Game game){
 		List<String> clientList = MultiThreadServer.list;
 		logger.debug("客户数量：" + clientList.size());
-		for(String c : clientList){
+		if(clientList.size() > 0){
+			for(String c : clientList){
+				Queue q = new Queue();
+				q.setClient(c);
+				q.setGame(game);
+				this.saveOrUpdate(q);
+			}
+			//加入一条系统保存
 			Queue q = new Queue();
-			q.setClient(c);
 			q.setGame(game);
+			q.setClient(clientList.size()+"");//提醒的人次
 			this.saveOrUpdate(q);
 		}
+	}
+	
+	//最近的赛事
+	public List<Game> getTopGames(){
+		String hql = "from Game g order by startDate desc";
+		Session s = this.getSession();
+		Query q = s.createQuery(hql);
+		q.setMaxResults(10);
+		return q.list();
+	}
+	
+	//最新的5条提醒
+	public List<Queue> getTopTixing(){
+		String hql = "from Queue q order by createDate desc";
+		Session s = this.getSession();
+		Query q = s.createQuery(hql);
+		q.setMaxResults(5);
+		return q.list();
+	}
+	
+	//推荐视频
+	public Game getGame(){
+		String hql = "from Game where recommend=true order by startDate desc";
+		Session s = this.getSession();
+		Query q = s.createQuery(hql);
+		q.setMaxResults(1);
+		List<Game> list = q.list();
+		if(list != null && list.size() > 0){
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

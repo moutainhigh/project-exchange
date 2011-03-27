@@ -60,6 +60,10 @@
 				var url = "${appPath}data_tixing.action?game.id="+id;
 				self.location.href = url;
 			}
+			function recommend(id){
+				var url = "${appPath}data_recommend.action?game.id="+id;
+				self.location.href = url;
+			}
 			
 			function orderByCol(colName){
 				$('#orderBy').val(colName);
@@ -156,7 +160,9 @@
 				<th>
 					标题
 				</th>
-			
+				<th>
+					推荐与否
+				</th>
 				<th>
 					操作
 				</th>
@@ -181,11 +187,14 @@
 				<td class="list_data_text">
 					${f.title }
 				</td>
-			
+				<td class="list_data_text">
+					<c:if test="${not empty f.recommend && f.recommend==true}">推荐</c:if>&nbsp;
+				</td>
 				<td class="list_data_op">
 					<a href="${appPath}data_saveGame.action?game.id=${f.id}" >修改</a>
 					<a href="javascript:deleteGame(${f.id});">删除</a>
 					<a href="javascript:tixing(${f.id});">手动提醒</a>
+					<a href="javascript:recommend(${f.id});">推荐赛事</a>
 				</td>
 			</tr>
 			</c:forEach>

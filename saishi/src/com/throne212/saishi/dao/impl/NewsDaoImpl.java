@@ -82,5 +82,13 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 		rst[1] = paramValueList;
 		return rst;
 	}
+	
+	public List<News> getTopNews(){
+		String hql = "from News n order by createDate desc";
+		Session s = this.getSession();
+		Query q = s.createQuery(hql);
+		q.setMaxResults(10);
+		return q.list();
+	}
 
 }

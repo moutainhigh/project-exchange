@@ -1,0 +1,29 @@
+﻿/******** 广告位 ********/
+.news{
+	padding: 0;
+	text-align: center;
+	border: 1px solid #d3d2d2;
+	background-color: #f3f3f3;
+}
+
+.video{
+	margin-top:5px;
+	padding: 0;
+	text-align: center;
+	border: 1px solid #181818;
+	background-color: #4F4F4F;
+}
+
+.button01,.button02,.button03,.button04{
+	width:80px;
+	height:25px;
+	line-height:25px;
+	cursor:pointer;
+	border: 0;
+	margin: 0;
+	font-size:12px;
+}
+.button01{background:url(Images/button-bg01.gif) no-repeat 0 0;}
+.button02{background:url(Images/button-bg02.gif) no-repeat 0 0;}
+.button03{background:url(Images/button-bg03.gif) no-repeat 0 0;}
+.button04{background:url(Images/button-bg04.gif) no-repeat 0 0;}
