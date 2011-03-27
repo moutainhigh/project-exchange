@@ -32,17 +32,25 @@ public class MultiThreadClient {
                 try {                    
                     socket = new Socket("host1983.com", port);
                     OutputStream socketOut = socket.getOutputStream();
-                    BufferedReader br = new BufferedReader(
-                            new InputStreamReader(socket.getInputStream()));
+                    //BufferedReader br = new BufferedReader(
+                    //        new InputStreamReader(socket.getInputStream()));
                     while(true){
+                    	
                     	System.out.println("writing...");
                     	 // 发送关闭命令                       
                         socketOut.write("0002\r\n".getBytes());
                         // 接收服务器的反馈                        
                         String msg = null;
                         System.out.println("reading...");
-                        if ((msg = br.readLine()) != null)
-                            System.out.println(msg);
+//                        if ((msg = br.readLine()) != null)
+//                            System.out.println(msg);
+                        byte[] buff = new byte[1024];
+                        int len = -1;
+                        if((len=socket.getInputStream().read(buff))>0){
+                        	String str = new String(buff,0,len,"utf-8");
+                        	System.out.println(str);
+                        }
+                        System.out.println("sleeping...");
                         Thread.sleep(3000);
                     }
                    
