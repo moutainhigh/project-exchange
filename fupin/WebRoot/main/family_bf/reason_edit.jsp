@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>帮扶成效</title>
+<title>贫困原因</title>
 <link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
@@ -18,12 +18,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${appPath}js/common.js" language="javascript"></script>
 <script language="javascript">
 <jsp:include page="../../msg.jsp"></jsp:include>
-//获取干部
- var currLeader = '${leaderId}';
- //获取贫困户
- var currFamily = '${cuoshi.family.id}';
+			//获取干部
+ 			var currLeader = '${leaderId}';
+ 			//获取贫困户
+ 			var currFamily = '${reason.family.id}';
 			$(function(){
-				var year = '${chengxiao.year}';
+				var year = '${reason.year}';
 				if(year != ''){
 					$('#year').val(year);
 				}
@@ -32,25 +32,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('#family').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#family').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
-						if(currFamily != '')
+						if(currFamily != ''){
 							$('#family').val(currFamily);
+							selectFamily(currFamily);
+						}
 					}
 				});
 				
-				$.getJSON("${appPath}ajax/getAllLeaderByOrg?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#leader').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++)
-							$('#leader').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['leaderName']+'</option>');
-						if(currLeader != '')
-							$('#leader').val(currLeader);
-					}
-				});
+				
 			});
-			
-
- 
- 
+			function selectFamily(fId){
+				if(fId){
+					$.getJSON("${appPath}ajax/getLeaderByFamily?time="+new Date().getTime(), {'familyId':fId}, function(json){
+						if(json && json['list'] && json['list'].length>0){
+							$('#leaderId').val(json['list'][0]['leaderName']);
+						}
+					});
+				}
+			}
 </script>
 
 </head><body onload="">
@@ -67,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tbody><tr>
     <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
     <td class="tables_contentcell">
-    <select id="family" name="reason.family.id" size="1" msg="贫困户不能为空!" datatype="Require"></select><font color="#cc0033">在下拉菜单中选择户</font>
+    <select id="family" name="reason.family.id" size="1" msg="贫困户不能为空!" datatype="Require" onchange="selectFamily(this.value);"></select><font color="#cc0033">在下拉菜单中选择户</font>
     </td>
   </tr>
   <tr>
@@ -78,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td height="30" align="right" class="tables_leftcell">干部名称</td>
     <td class="tables_contentcell">
-    <select id="leader" name="leaderId" size="1" msg="干部名称不能为空!" datatype="Require"></select><font color="#cc0033">在下拉菜单中选择干部</font>
+    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
     </td>
   </tr>  
 	<tr>
@@ -103,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td height="30" align="right" class="tables_leftcell">贫困原因</td>
     <td class="tables_contentcell">
-      <font color="#cc0033">请填写帮扶成效：</font>
+      <font color="#cc0033">请填写贫困原因：</font>
 	  <textarea name="reason.content" msg="贫困原因不能为空" datatype="Require" rows="9" cols="50">${reason.content }</textarea>
 	<font size="6" color="#cc0033">*</font>
     </td>

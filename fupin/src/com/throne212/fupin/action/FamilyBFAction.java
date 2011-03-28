@@ -225,10 +225,10 @@ public class FamilyBFAction extends BaseAction {
 				family=familyBFBiz.getEntityById(Family.class, reason.getFamily().getId());
 				reason.setFamily(family);
 			}
-			if (family!=null&&leaderId!=null) {
-				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
-				leader.setFamily(family);
-			}
+//			if (family!=null&&leaderId!=null) {
+//				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
+//				leader.setFamily(family);
+//			}
 			reason.setFamily(family);
 			reason.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
 			reason = familyBFBiz.saveOrUpdateReason(reason);
@@ -450,7 +450,14 @@ public class FamilyBFAction extends BaseAction {
 	private Family family;
 	private String queryKey;
 	public String familyMappingList(){
-		pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof Admin) {
+			pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+		} else if (user instanceof Org) {
+			pageBean = orgBiz.getAllFamily((Org) user,queryKey, pageIndex);
+		} 
+		//添加干部数据
 		if(pageBean.getResultList() != null && pageBean.getResultList().size()>0){
 			for(Object o : pageBean.getResultList()){
 				Family f = (Family) o;

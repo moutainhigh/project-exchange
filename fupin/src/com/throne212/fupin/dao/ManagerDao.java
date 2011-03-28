@@ -3,6 +3,7 @@ package com.throne212.fupin.dao;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Zhen;
 
 public interface ManagerDao extends BaseDao {
@@ -21,6 +22,9 @@ public interface ManagerDao extends BaseDao {
 	public PageBean getAllFamily(Integer pageIndex);
 	
 	public PageBean getAllFamily(String name,Integer pageIndex);
+	
+	public PageBean getAllFamily(Org org, Integer pageIndex);
+	public PageBean getAllFamily(Org org,String name,Integer pageIndex);
 	
 	//干部
 	public PageBean getAllLeader(Long orgId,Integer pageIndex);

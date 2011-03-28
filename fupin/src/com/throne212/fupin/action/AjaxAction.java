@@ -198,6 +198,16 @@ public class AjaxAction extends BaseAction {
 		return "pinyin2";
 	}
 	
+	//通过
+	private Long familyId;
+	public String getLeaderByFamily(){
+		if(familyId != null){
+			Family family = baseBiz.getEntityById(Family.class, familyId);
+			list = baseBiz.getEntitiesByColumn(Leader.class, "family", family);
+		}
+		return "org_leader";
+	}
+	
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}
@@ -248,6 +258,12 @@ public class AjaxAction extends BaseAction {
 	}
 	public void setQ(String q) {
 		this.q = q;
+	}
+	public Long getFamilyId() {
+		return familyId;
+	}
+	public void setFamilyId(Long familyId) {
+		this.familyId = familyId;
 	}
 	
 
