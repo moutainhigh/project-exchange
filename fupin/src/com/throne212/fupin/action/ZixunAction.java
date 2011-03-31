@@ -31,7 +31,7 @@ public class ZixunAction extends BaseAction{
 	}
 	
 	public String viewZixun(){
-		
+		zixun = zixunBiz.getEntityById(Zixun.class, zixun.getId());
 		return "edit";
 	}
 	

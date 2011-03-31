@@ -3,7 +3,7 @@ package com.throne212.fupin.biz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Zixun;
 
-public interface ZixunBiz {
+public interface ZixunBiz extends BaseBiz{
 	
 	public Zixun publicZixun(Zixun zixun);
 	

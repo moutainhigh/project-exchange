@@ -33,4 +33,8 @@
 	<bean id="shenHeDao" class="com.throne212.fupin.dao.impl.ShenHeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<bean id="zixunDao" class="com.throne212.fupin.dao.impl.ZixunDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

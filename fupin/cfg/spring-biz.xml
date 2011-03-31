@@ -40,4 +40,9 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="shenHeDao" ref="shenHeDao"></property>
 	</bean>
+	
+	<bean id="zixunBiz" class="com.throne212.fupin.biz.impl.ZixunBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="zixunDao" ref="zixunDao"></property>
+	</bean>
 </beans>

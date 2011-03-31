@@ -37,6 +37,7 @@
 				<value>familyBFBiz</value>
 				<value>frontBiz</value>
 				<value>shenHeBiz</value>
+				<value>zixunBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

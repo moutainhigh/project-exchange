@@ -270,7 +270,9 @@ function images_update(){
 	    menuArray[menuArray.length]="0,设置前台贫困户查看权限,${appPath}admin_perList.action";
 	    </c:if>
 	    //menuArray[menuArray.length]="0,报表审核,";
-	    
+	    <c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='超级管理员'}">
+	    menuArray[menuArray.length]="0,咨询信息审核,${appPath}zixun_zixunList.action";
+	    </c:if>
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
 	var mytree = new DepartTree('mytree')
