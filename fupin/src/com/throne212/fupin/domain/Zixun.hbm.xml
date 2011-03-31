@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="Zixun" table="fp_zixun">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="content" length="10000"></property>
+		<property name="title" length="200"></property>
+		<property name="email"></property>
+		<property name="pass"></property>
+		<property name="ip"></property>
+		<property name="name" length="100"></property>
+		<property name="reply" length="1000"></property>
+		<property name="replyDate"></property>
+		<property name="createDate"></property>
+		<property name="tel" length="50"></property>
+	</class>
+</hibernate-mapping>

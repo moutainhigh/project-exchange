@@ -47,6 +47,7 @@ public class WebConstants {
 	
 	//每页条数
 	public static final int PAGE_SIZE = 20;
+	public static final int PAGE_SIZE_FRONT = 10;
 	
 	
 }

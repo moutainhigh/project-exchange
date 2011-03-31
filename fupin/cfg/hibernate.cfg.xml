@@ -32,6 +32,7 @@
 	<mapping resource="com/throne212/fupin/domain/Record.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Permission.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Recheck.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Zixun.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

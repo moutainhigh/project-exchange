@@ -8,7 +8,7 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,"></constant>
+	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,dhtml,"></constant>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	
@@ -185,6 +185,11 @@
 				<param name="actionName">family_uploadExcel</param>
          		<param name="namespace">/</param> 
 			</result>
+		</action>
+		<!-- 业务咨询 -->
+		<action name="zixun_*" method="{1}" class="com.throne212.fupin.action.ZixunAction">
+			<result name="list">/main/zixun/list.jsp</result>
+			<result name="edit">/main/zixun/edit.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
