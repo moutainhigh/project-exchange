@@ -13,6 +13,7 @@ public class ExcelUploadAction extends BaseAction {
 	private File myfile;
 	private String myfileContentType;
 	private String myfileFileName;
+	private String type;
 	public String execute(){
 		if (myfile != null) {
 			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
@@ -29,6 +30,12 @@ public class ExcelUploadAction extends BaseAction {
 			try {
 				FileUtils.copyFile(myfile, new File(path+File.separator+targetFileName));
 				ActionContext.getContext().getSession().put(WebConstants.SESS_IMAGE, targetFileName);
+				//根据类型来转发
+				if("cun".equals(type)){
+					return "cun";
+				}else if("family2".equals(type)){
+					return "family2";
+				}
 				return "success";
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -60,6 +67,14 @@ public class ExcelUploadAction extends BaseAction {
 
 	public void setMyfileFileName(String myfileFileName) {
 		this.myfileFileName = myfileFileName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

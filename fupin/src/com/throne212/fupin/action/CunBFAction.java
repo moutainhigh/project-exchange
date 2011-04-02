@@ -123,6 +123,8 @@ public class CunBFAction extends BaseAction {
 		if (cuoshi.getId() != null) {
 			cuoshi = cunBFBiz.getEntityById(CuoshiCun.class, cuoshi.getId());
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			cunBFBiz.saveOrUpdateEntity(cuoshi);
 			this.setMsg("提交成功！");
 			cuoshi = null;
@@ -251,6 +253,8 @@ public class CunBFAction extends BaseAction {
 		if (chengxiao.getId() != null) {
 			chengxiao = cunBFBiz.getEntityById(ChengxiaoCun.class, chengxiao.getId());
 			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			cunBFBiz.saveOrUpdateEntity(chengxiao);
 			this.setMsg("提交成功！");
 		}
@@ -346,6 +350,8 @@ public class CunBFAction extends BaseAction {
 		if (pic.getId() != null) {
 			pic = cunBFBiz.getEntityById(PicCun.class, pic.getId());
 			pic.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			pic.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			cunBFBiz.saveOrUpdateEntity(pic);
 			this.setMsg("提交成功！");
 		}

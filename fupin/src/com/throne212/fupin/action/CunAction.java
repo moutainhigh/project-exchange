@@ -41,6 +41,23 @@ public class CunAction extends BaseAction {
 		return "cun_edit";
 	}
 	
+	//数据导入
+	public String uploadExcel(){
+		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if(fileName!=null){
+			String msg = null;
+			try {
+				msg = orgBiz.uploadCunData(fileName);
+				this.setSucc("Y");
+				this.setMsg("数据导入成功\\n"+msg);
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("数据导入失败\\n"+e.getMessage());
+			}
+		}
+		return "upload";
+	}
+	
 	public PageBean getPageBean() {
 		return pageBean;
 	}

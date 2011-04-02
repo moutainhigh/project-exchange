@@ -14,14 +14,19 @@ import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
+import com.lowagie.text.Cell;
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ManagerDao;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.Person;
+import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
 
 public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
@@ -105,6 +110,70 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		else
 			return managerDao.getAllLeader(org.getId(), name, pageIndex);
 	}
+	
+	public String uploadCunData(String fileName) throws Exception{
+		StringBuffer sb = new StringBuffer();
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "upload";
+		FileInputStream fin = new FileInputStream(path + File.separator + fileName);
+
+		Workbook workbook = Workbook.getWorkbook(fin);
+		Sheet sheet = workbook.getSheet(0);
+		try {
+			String cunName = sheet.getCell(1,2).getContents();
+			String peopleNum = sheet.getCell(3,2).getContents();
+			String familyNum = sheet.getCell(5,2).getContents();
+			String gengMianji = sheet.getCell(7,2).getContents();
+			String shanMianji = sheet.getCell(10,2).getContents();
+			String cunIncome = sheet.getCell(2,3).getContents();
+			String incomeFromUp = sheet.getCell(5,3).getContents();
+			String jitiTudi = sheet.getCell(8,3).getContents();
+			String project = sheet.getCell(2,4).getContents();
+			String resource = sheet.getCell(2,5).getContents();
+			String plan = sheet.getCell(2,6).getContents();
+			String situation = sheet.getCell(2,7).getContents();
+			
+			Cun cun = null;
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			if(user instanceof Org){
+				cun = ((Org) user).getCun();
+				if(cun == null)
+					throw new RuntimeException("该单位还没有指定帮扶的村，不可以进行这项操作。");
+			}else{
+				List<Cun> cunInDB = this.getAllLike(Cun.class, "name", cunName);
+				if(cunInDB!=null && cunInDB.size()>0){
+					cun = cunInDB.get(0);
+				}else{
+					cun = new Cun();
+				}
+			}
+			
+			cun.setPersonNum(Integer.parseInt(peopleNum));
+			cun.setFamilyNum(Integer.parseInt(familyNum));
+			cun.setMianji(Integer.parseInt(gengMianji));
+			//山地面积缺失
+		
+			cun.setIncome(Double.parseDouble(cunIncome));
+			//上级收入缺失
+			//集体土地面积缺失
+			
+			cun.setItem(project);
+			
+			//资源缺失
+			//计划缺失
+			//干部缺失
+			
+			this.saveOrUpdateEntity(cun);
+			sb.append("导入成功，村的完整名称为：" + cun.getAbsName());
+			
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			sb.append("导入错误，请检查是否数据格式错误");
+			throw new RuntimeException(sb.toString());
+		}
+		return sb.toString();
+	}
 
 	public String uploadFamilyData(String fileName) throws Exception{
 		StringBuffer sb = new StringBuffer();
@@ -159,6 +228,107 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			return "成功：共计" + sum + "条";
 		}
 		return sb.toString();
+	}
+	//调查表导入
+	public String uploadFamilyData2(String fileName) throws Exception{
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(!(user instanceof Org)){
+			throw new RuntimeException("只有单位管理员可以导入贫困户资料"); 
+		}else if(((Org)user).getCun()==null){
+			throw new RuntimeException("该单位还没有映射村的帮扶，不能进行这项操作"); 
+		}
+		
+		Org org = ((Org)user);
+		
+		StringBuffer sb = new StringBuffer();
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "upload";
+		FileInputStream fin = new FileInputStream(path + File.separator + fileName);
+
+		Workbook workbook = Workbook.getWorkbook(fin);
+		Sheet sheet = workbook.getSheet(0);
+		String name = sheet.getCell(1, 3).getContents();
+		String gender = sheet.getCell(3,3).getContents();
+		String zu = sheet.getCell(5,3).getContents();
+		String reason = sheet.getCell(11,3).getContents();
+		String willing = sheet.getCell(15,3).getContents();
+		String birthday = sheet.getCell(1,4).getContents();
+		String wenhua = sheet.getCell(3,4).getContents();
+		String idNo = sheet.getCell(1,5).getContents();
+		String income = sheet.getCell(1,6).getContents();
+		String type = sheet.getCell(1, 7).getContents();
+		String shuitian = sheet.getCell(4,7).getContents();
+		String handi = sheet.getCell(5,7).getContents();
+		String linguodi = sheet.getCell(6,7).getContents();
+		String other = sheet.getCell(7,7).getContents();
+		String structure = sheet.getCell(8,7).getContents();
+		String weifang = sheet.getCell(9,7).getContents();
+		String mianji = sheet.getCell(10,7).getContents();
+		
+		Family f = new Family();
+		try {
+			f.setCun(org.getCun());
+			f.setName(name);
+			f.setGender(gender);
+			f.setZu(zu);
+			//原因，脱贫意愿缺失
+			
+			f.setBirthday(Util.getDateByTxt(birthday));
+			f.setWenhua(wenhua);
+			f.setIdNo(idNo);
+			f.setIncome(Double.parseDouble(income));
+			f.setType(Integer.parseInt(type));
+			f.setShuitian(Double.parseDouble(shuitian));
+			f.setHandi(Double.parseDouble(handi));
+			f.setLinguodi(Double.parseDouble(linguodi));
+			f.setOther(Double.parseDouble(other));
+			f.setJiegou(structure);
+			//危房字段缺失
+			
+			f.setMianji(Double.parseDouble(mianji));
+			
+			
+			int sum = 0;
+			for(int i=10;i<100;i++){
+				String c1 = sheet.getCell(0, i).getContents();
+				String c2 = sheet.getCell(1, i).getContents();
+				if(Util.isEmpty(c1) || Util.isEmpty(c2))
+					break;
+				String c3 = sheet.getCell(2, i).getContents();
+				String c4 = sheet.getCell(3, i).getContents();
+				String c5 = sheet.getCell(4, i).getContents();
+				String c6 = sheet.getCell(5, i).getContents();
+				String c7 = sheet.getCell(6, i).getContents();
+				String c8 = sheet.getCell(7, i).getContents();
+				String c9 = sheet.getCell(8, i).getContents();
+				String c10 = sheet.getCell(9, i).getContents();
+				String c11 = sheet.getCell(10, i).getContents();
+				String c12 = sheet.getCell(11, i).getContents();
+				String c13 = sheet.getCell(12, i).getContents();
+				String c14 = sheet.getCell(13, i).getContents();
+				
+				Person p = new Person();
+				p.setName(c1);
+				p.setGender(c2);
+				p.setBirthday(Util.getDateByTxt(c3));
+				p.setRelate(c4);
+				p.setWenhua(c5);
+				p.setJob(c6);
+				
+				//缺失字段
+				f.setPerson(p,++sum);
+			}
+			
+			this.saveOrUpdateEntity(f);
+			sb.append("贫困户资料导入成功，户主姓名为:"+name);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			throw new RuntimeException("导入失败，请检查数据是否完整和准确"); 
+		}
+		
+		return sb.toString();
+
 	}
 	
 	public String getFamilyExcelDownloadFile(String name) throws Exception{

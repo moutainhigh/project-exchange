@@ -94,6 +94,8 @@ public class FamilyBFAction extends BaseAction {
 		if (cuoshi.getId() != null) {
 			cuoshi = familyBFBiz.getEntityById(CuoshiFamily.class, cuoshi.getId());
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(cuoshi);
 			this.setMsg("提交成功！");
 		}
@@ -170,6 +172,8 @@ public class FamilyBFAction extends BaseAction {
 		if (chengxiao.getId() != null) {
 			chengxiao = familyBFBiz.getEntityById(ChengxiaoFamily.class, chengxiao.getId());
 			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(chengxiao);
 			this.setMsg("提交成功！");
 		}
@@ -245,6 +249,8 @@ public class FamilyBFAction extends BaseAction {
 		if (reason.getId() != null) {
 			reason = familyBFBiz.getEntityById(Reason.class, reason.getId());
 			reason.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			reason.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(reason);
 			this.setMsg("提交成功！");
 		}
@@ -342,6 +348,8 @@ public class FamilyBFAction extends BaseAction {
 		if (pic.getId() != null) {
 			pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
 			pic.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			pic.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(pic);
 			this.setMsg("提交成功！");
 		}
@@ -425,6 +433,8 @@ public class FamilyBFAction extends BaseAction {
 		if (record.getId() != null) {
 			record = familyBFBiz.getEntityById(Record.class, record.getId());
 			record.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+			//自动为审核通过
+			record.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(record);
 			this.setMsg("提交成功！");
 		}

@@ -94,6 +94,14 @@ public class Family extends MyEntity {
 		}
 		return null;
 	}
+	public void setPerson(Person p,int i) {
+		try {
+			Method m = this.getClass().getDeclaredMethod("setPerson" + i);
+			m.invoke(this, p);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Cun getCun() {
 		return cun;

@@ -40,8 +40,14 @@ public class Util {
 		return dateFormat.format(date);
 	}
 	public static Date getDateByTxt(String dateTxt) throws ParseException {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		return dateFormat.parse(dateTxt);
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormat.parse(dateTxt);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static String getCurrentDateTime() {
