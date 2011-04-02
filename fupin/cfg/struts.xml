@@ -11,6 +11,7 @@
 	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,dhtml,"></constant>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
+	<constant name="struts.multipart.maxSize" value="5242880" /><!-- 附件大小最大为5M -->
 	
     <package name="struts2" extends="struts-default" namespace="/">    
     	<interceptors>
@@ -158,13 +159,17 @@
 			<result name="family_edit">/main/family/family_edit.jsp</result>
 			<result name="family_view">/main/family/family_view.jsp</result>
 			<result name="upload">/main/family/upload.jsp</result>
-			<result name="upload_fail">/main/family/upload_fail.jsp</result>
+			<result name="upload_fail">/main/family/fail.jsp</result>
+			<result name="upload2">/main/family/upload2.jsp</result>
+			<result name="upload_fail2">/main/family/fail2.jsp</result>
 		</action>
 		<!-- 贫困村模块 -->
 		<action name="cun_*" method="{1}" class="com.throne212.fupin.action.CunAction">
 			<result name="cun_list">/main/cun/cun_list.jsp</result>
 			<result name="cun_edit">/main/cun/cun_edit.jsp</result>
 			<result name="cun_view">/main/cun/cun_view.jsp</result>
+			<result name="upload">/main/cun/upload.jsp</result>
+			<result name="upload_fail">/main/cun/fail.jsp</result>
 		</action>
 		<!-- 单位与干部模块 -->
 		<action name="org_*" method="{1}" class="com.throne212.fupin.action.OrgAction">
@@ -183,6 +188,14 @@
 			<interceptor-ref name="fileUploadStack"></interceptor-ref>
 			<result name="success" type="chain">
 				<param name="actionName">family_uploadExcel</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="cun" type="chain">
+				<param name="actionName">cun_uploadExcel</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="family2" type="chain">
+				<param name="actionName">family_uploadExcel2</param>
          		<param name="namespace">/</param> 
 			</result>
 		</action>
