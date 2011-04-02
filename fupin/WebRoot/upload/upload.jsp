@@ -22,13 +22,14 @@
   <table width="360" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
 	<tr bgcolor="#CCCCCC"> 
       <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">图片上传</th>
+      <th height="20" align="right" valign="middle" bgcolor="#CCCCCC" class="trYello"><span style="color: gray;font-size: 12px;">(图片大小不能超过5Mb)</span></th>
     </tr>
     <tr align="center" valign="middle"> 
-      <td height="33" align="left" id="upid">请选择图片文件: 
+      <td height="33" align="left" id="upid" colspan="2">请选择图片文件: 
         <input type="file" name="myfile" size="30" class="tx1" msg="请选择图片" datatype="Require" class="fileButton" value="" /></td>
     </tr>
     <tr align="center" valign="middle"> 
-      <td height="20">
+      <td height="20" colspan="2">
       
       <input type="submit" value="上传"/>
            </td>

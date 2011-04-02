@@ -23,7 +23,10 @@
       <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">图片上传失败</th>
     </tr>
     <tr bgcolor="#CCCCCC"> 
-      <th height="20" align="left" valign="middle" bgcolor="#FF4040" class="trYello">失败原因：图片太大，请上传不超过2M图片</th>
+      <th height="20" align="left" valign="middle" bgcolor="#FF4040" class="trYello">失败原因：
+     <c:if test="${empty msg}">图片太大，请上传不超过5M图片</c:if>
+     <c:if test="${not empty msg}">${msg}</c:if>  
+      </th>
     </tr>
     <tr align="center" valign="middle"> 
       <td height="33" align="left" id="upid">
