@@ -55,19 +55,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:if> --%>
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i>year-3;i--){
+			for(int i=year;i<year+2;i++){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	
 			}
 			%>
 		
-		<option value="3">3年</option>
+		<option value="2">2年</option>
 		</select>
 		<font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
 	</tr>
 
-		<tr>
+		<tr style="display:none;">
 		<td height="30" align="right" class="tables_leftcell">帮扶季度</td>
 		<td class="tables_contentcell">
 		<select style="width: 135px;" name="cuoshi.season" >

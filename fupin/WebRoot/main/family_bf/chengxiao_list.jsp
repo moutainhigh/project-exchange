@@ -129,7 +129,7 @@ function displayAction(sid) {
                贫困户姓名：<input type="text" style="width: 90px;" value="" name="chengxiao.family.name" id="textfield"> 
 <input type="submit" id="a11" value="查询" name="a11" class="button">
 &nbsp;&nbsp;|&nbsp;&nbsp;
-<input type="button" onclick="${appPath}family_bf_chengxiaoFamilyList.action" id="b11" title="清除条件并重新查询" value="清除条件，返回全部" name="b11" class="button">
+<input type="button" onclick="self.location.href='${appPath}family_bf_chengxiaoFamilyList.action'" id="b11" title="清除条件并重新查询" value="清除条件，返回全部" name="b11" class="button">
 	 </span>
 			 </li>	 
 			 <li>
@@ -156,7 +156,7 @@ function displayAction(sid) {
                 
 <input type="submit" id="a11" value="查询" name="a11" class="button">
 &nbsp;&nbsp;|&nbsp;&nbsp;
-<input type="button" onclick="${appPath}family_bf_chengxiaoFamilyList.action" id="b11" title="清除条件并重新查询" value="清除条件，返回全部" name="b11" class="button">
+<input type="button" onclick="self.location.href='${appPath}family_bf_chengxiaoFamilyList.action'" id="b11" title="清除条件并重新查询" value="清除条件，返回全部" name="b11" class="button">
 	 </span>
 			 </li>			 
 			</ul>			
@@ -173,27 +173,24 @@ function displayAction(sid) {
 					<td height="28" width="3%" class="tables_headercell">
 						<input type="checkbox" onclick="checkAll(this);">
 					</td>
-				<td height="28" width="4%" class="tables_headercell">编号</td>
-<td width="6%" class="tables_headercell">
+					<td height="28" width="4%" class="tables_headercell">编号</td>
+					<td width="6%" class="tables_headercell">
 						年度
 					</td>
-					<td width="8%" class="tables_headercell">
+					<td class="tables_headercell">
 						贫困户名称
 					</td>
-					<td width="19%" class="tables_headercell">
+					<td class="tables_headercell">
 						干部名称
 					</td>
-					<td width="15%" class="tables_headercell">
+					<td  class="tables_headercell">
 						帮扶成效
 					</td>
-					<td width="10%" class="tables_headercell">
+					<td class="tables_headercell">
 						状态
 					</td>
-					<!--<td width="10%" class="tables_headercell">
-						审核状态
-					</td>
-					--><td width="4%" class="tables_headercell">
-						修改
+					<td class="tables_headercell">
+						操作
 					</td>
 				</tr>
 				<c:forEach items="${pageBean.resultList}" var="f">
@@ -215,12 +212,7 @@ function displayAction(sid) {
                                  
 					</td>
 					<td height="25" align="center" class="tables_contentcell">
-				    <c:if test="${f.status=='未提交'}">
-						<a href="${appPath}family_bf_confirmChengxiao.action?chengxiao.id=${f.id}" >确认后提交</a>
-					</c:if>
-					<c:if test="${f.status!='未提交'}">
 						${f.status }
-					</c:if>
                     </td>
 					<td height="25" align="center" class="tables_contentcell">
 					<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
@@ -229,6 +221,9 @@ function displayAction(sid) {
 					 <c:if test="${f.status=='审核中'||f.status=='审核通过'}">
 						不能修改
 					 </c:if>
+					 <c:if test="${f.status=='未提交'}">
+					<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}family_bf_confirmChengxiao.action?chengxiao.id=${f.id}';}" >确认后提交</a>
+					</c:if>
 		</td>
 				</tr>
 					</c:forEach>

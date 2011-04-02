@@ -98,15 +98,14 @@ var msg = '${msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	
 	<tbody><tr align="center">
-		<td height="28" width="6%" class="tables_headercell">
+		<td height="28" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
-		<td width="20%" class="tables_headercell">编号</td>
-		<td width="20%" class="tables_headercell">时间</td>
+		<td class="tables_headercell">编号</td>
+		<td class="tables_headercell">时间</td>
 		<td class="tables_headercell">贫困镇名</td>
 		<td class="tables_headercell">帮扶成效</td>
-		<td width="20%" class="tables_headercell">审核状态</td>
-		<td width="5%" class="tables_headercell">查看</td>
-		<td width="10%" class="tables_headercell">修改</td>
+		<td class="tables_headercell">状态</td>
+		<td class="tables_headercell">操作</td>
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
@@ -128,21 +127,17 @@ var msg = '${msg}';
                    <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			<c:if test="${f.status=='未提交'}">
-			<a href="${appPath}zhen_bf_confirmChengxiao.action?chengxiao.id=${f.id}" >确认后提交</a>
-			</c:if>
-			<c:if test="${f.status!='未提交'}">
 			${f.status }
-			</c:if>
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
-		<a onclick="winOpen('${appPath}zhen_bf_viewChengxiaoZhen.action?chengxiao.id=${f.id}',600,390);" href="#">查看</a>
-		</td><td height="25" align="center" class="tables_contentcell">
 		<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
 		<a href="#" onclick="winOpen('${appPath}zhen_bf_editZhenChengxiao?chengxiao.id=${f.id}',600,390);">修改</a>
 		 </c:if>
 		<c:if test="${f.status=='审核中'||f.status=='审核通过'}">
 		不能修改
+		</c:if>
+		<c:if test="${f.status=='未提交'}">
+		<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}zhen_bf_confirmChengxiao.action?chengxiao.id=${f.id}';}" >确认后提交</a>
 		</c:if>
 		</td>
 		</tr>

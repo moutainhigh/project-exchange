@@ -75,8 +75,8 @@ var msg = '${msg}';
 		<td class="tables_headercell">贫困户名</td>
 		<td width="" class="tables_headercell">上传时间</td>
 		<td width="" class="tables_headercell">类型</td>
-		<td width="" class="tables_headercell">审核状态</td>
-		<td width="" class="tables_headercell">查看</td>
+		<td width="" class="tables_headercell">状态</td>
+		<td width="" class="tables_headercell">操作</td>
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>
@@ -100,15 +100,13 @@ var msg = '${msg}';
 			${f.type }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			<c:if test="${f.status=='未提交'}">
-			<a href="${appPath}family_bf_confirmPic.action?pic.id=${f.id}" >确认后提交</a>
-			</c:if>
-			<c:if test="${f.status!='未提交'}">
-						${f.status }
-			</c:if>
+			${f.status }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
 		<a rel="facebox" href="${appPath}family_bf_viewPic.action?pic.id=${f.id}">查看</a>
+		<c:if test="${f.status=='未提交'}">
+		<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}family_bf_confirmPic.action?pic.id=${f.id}';}" >确认后提交</a>
+		</c:if>
 		</td>
 		
 

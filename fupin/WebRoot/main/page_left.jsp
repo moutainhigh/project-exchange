@@ -181,7 +181,7 @@ function images_update(){
 		//menuArray[menuArray.length]="1,表二,./test.htm";
 
 		
-		menuArray[menuArray.length]="0,重审申请,${appPath}recheck_list.action";
+		menuArray[menuArray.length]="0,修改申请,${appPath}recheck_list.action";
 		
         //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
         //menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
@@ -236,7 +236,7 @@ function images_update(){
 		menuArray[menuArray.length]="2,贫困原因审核,${appPath}shenhe_showAllReasonInPro.action";
 		menuArray[menuArray.length]="2,帮扶记录审核,${appPath}shenhe_showAllRecordInPro.action";
 		
-		menuArray[menuArray.length]="1,重审申请,${appPath}recheck_listRecheck.action";
+		menuArray[menuArray.length]="1,修改申请,${appPath}recheck_listRecheck.action";
 		</c:if>
 	
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
@@ -260,7 +260,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,单位的村帮扶指定,${appPath}manager_managerMappingList.action";
 	    </c:if>
 	    
-	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='镇级管理员'}">
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员'}">
 	    menuArray[menuArray.length]="0,贫困村户资料维护,";
 	    menuArray[menuArray.length]="1,贫困村资料维护,${appPath}cun_cunList.action";
 	    menuArray[menuArray.length]="1,贫困户资料维护,${appPath}family_familyList.action";

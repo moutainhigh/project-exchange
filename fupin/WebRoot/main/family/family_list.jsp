@@ -54,7 +54,12 @@
 						
 							<input type="submit" class="button" value="查询"> 
 							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="导入Excel">
-							<input type="button" onclick="download();" value="导出Excel" class="button">
+							
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
+							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="调查表导入">
+							</c:if>
+							
+							<!--<input type="button" onclick="download();" value="导出Excel" class="button">-->
 							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',900,700);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>

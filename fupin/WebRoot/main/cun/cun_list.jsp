@@ -47,7 +47,10 @@
 						<td align="right">
 							<label>村名字（模糊查询）: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
-							<input type="submit" class="button" value="查询"> 
+							<input type="submit" class="button" value="查询">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
+							<input type="button" onclick="winOpen('${appPath}main/cun/upload.jsp',300,300);" class="button" value="调查表导入">
+							</c:if>  
 						</td>
 						<td width="5px"></td>
 					</tr>

@@ -39,12 +39,12 @@ var msg = '${msg}';
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
-	<td>您当前所处页面：重审申请 </td>
+	<td>您当前所处页面：修改申请 </td>
 	<td>&nbsp;</td>
 	<td align="right">
 
 	<label>记录编号: </label>
-	<input type="text" name="recordId" value="${param.recordId}" dataType="Number" msg="重审记录编号必须为数字"/>
+	<input type="text" name="recordId" value="${param.recordId}" dataType="Number" msg="修改记录编号必须为数字"/>
 
 
 		<input type="submit" class="button" value="查询"> 
@@ -59,7 +59,7 @@ var msg = '${msg}';
 		<td height="28" width="6%" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
 		<td width="10%" class="tables_headercell">编号</td>
-			<td class="tables_headercell">重审模块</td>
+			<td class="tables_headercell">修改模块</td>
 			<td class="tables_headercell">记录编号</td>
             <td class="tables_headercell">申请原因</td>
 			<td class="tables_headercell">状态</td>
