@@ -39,6 +39,7 @@
 				<value>shenHeBiz</value>
 				<value>zixunBiz</value>
 				<value>messageBiz</value>
+				<value>discussBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

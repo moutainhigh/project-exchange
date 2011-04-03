@@ -276,6 +276,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,咨询信息回复,${appPath}zixun_zixunListPass.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
+	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
 	var mytree = new DepartTree('mytree')

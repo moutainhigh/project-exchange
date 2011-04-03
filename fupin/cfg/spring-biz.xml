@@ -49,4 +49,8 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="messageDao" ref="messageDao"></property>
 	</bean>
+	<bean id="discussBiz" class="com.throne212.fupin.biz.impl.DiscussBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="discussDao" ref="discussDao"></property>
+	</bean>
 </beans>

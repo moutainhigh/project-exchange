@@ -12,6 +12,7 @@
 		<property name="title" length="200"></property>
 		<property name="content" length="10000"></property>
 		<property name="isLeaf"></property>
+		<property name="lastReplyDate"></property>
 		<property name="createDate"></property>
 		
 	</class>

@@ -31,14 +31,33 @@ public class DiscussDaoImpl extends BaseDaoImpl implements DiscussDao {
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Discuss> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE_FRONT).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
-		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setRowPerPage(WebConstants.PAGE_SIZE_FRONT);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+
+
+	//获取某主题帖所有回复帖
+	public PageBean<Discuss> getAllReplyOfDiscuss(Integer pageIndex,
+			Long id) {
+		PageBean<Discuss> page = new PageBean<Discuss>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE_FRONT;
+		String hql = "from Discuss t where 1=1" ;
+			if (id!=null) {
+				hql+=" and t.rootId="+id;
+			}
+			hql+=" order by createDate desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Discuss> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE_FRONT).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE_FRONT);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
 	
-	
-	
-	
-	
+
 
 }

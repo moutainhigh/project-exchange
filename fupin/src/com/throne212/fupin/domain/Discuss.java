@@ -1,5 +1,7 @@
 package com.throne212.fupin.domain;
 
+import java.util.Date;
+
 public class Discuss extends MyEntity {
 	private Long pid;//父节点id 为0则为主题帖
 	private Long rootId;//根节点id
@@ -7,6 +9,18 @@ public class Discuss extends MyEntity {
 	private String title;
 	private String content;
 	private int isLeaf;//是否为叶子节点  1为有叶子节点  0为无叶子节点
+	private Date lastReplyDate;
+	
+	public String getShortContent(){
+		String shortContent;
+		if (this.getContent().length()>16) {
+			shortContent=this.getContent().substring(0, 16);
+		}else {
+			shortContent=this.getContent();
+		}
+		return shortContent;
+	}
+	
 	public Long getPid() {
 		return pid;
 	}
@@ -43,6 +57,14 @@ public class Discuss extends MyEntity {
 	}
 	public void setPublisher(User publisher) {
 		this.publisher = publisher;
+	}
+
+	public Date getLastReplyDate() {
+		return lastReplyDate;
+	}
+
+	public void setLastReplyDate(Date lastReplyDate) {
+		this.lastReplyDate = lastReplyDate;
 	}
 	
 	
