@@ -20,6 +20,7 @@ import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
+import com.throne212.fupin.domain.Recheck;
 import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.User;
 
@@ -509,6 +510,87 @@ public class FamilyBFAction extends BaseAction {
 	}
 	
 	
+	//修改申请
+	private String updateReason;
+	private Long currId;
+	public String updateApplyChengxiao(){
+		Recheck r = new Recheck();
+		r.setCreateDate(new Date());
+		r.setModule("户帮扶成效");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			r.setOrg((Org) user);
+		}
+		r.setReason(updateReason);
+		r.setRecordId(currId);
+		r.setState("待审核");
+		familyBFBiz.saveOrUpdateEntity(r);
+		this.setMsg("提交修改申请成功");
+		return chengxiaoFamilyList();
+	}
+	public String updateApplyCuoshi(){
+		Recheck r = new Recheck();
+		r.setCreateDate(new Date());
+		r.setModule("户帮扶措施");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			r.setOrg((Org) user);
+		}
+		r.setReason(updateReason);
+		r.setRecordId(currId);
+		r.setState("待审核");
+		familyBFBiz.saveOrUpdateEntity(r);
+		this.setMsg("提交修改申请成功");
+		return cuoshiFamilyList();
+	}
+	public String updateApplyReason(){
+		Recheck r = new Recheck();
+		r.setCreateDate(new Date());
+		r.setModule("户帮扶原因");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			r.setOrg((Org) user);
+		}
+		r.setReason(updateReason);
+		r.setRecordId(currId);
+		r.setState("待审核");
+		familyBFBiz.saveOrUpdateEntity(r);
+		this.setMsg("提交修改申请成功");
+		return reasonList();
+	}
+	public String updateApplyRecord(){
+		Recheck r = new Recheck();
+		r.setCreateDate(new Date());
+		r.setModule("户帮扶内容");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			r.setOrg((Org) user);
+		}
+		r.setReason(updateReason);
+		r.setRecordId(currId);
+		r.setState("待审核");
+		familyBFBiz.saveOrUpdateEntity(r);
+		this.setMsg("提交修改申请成功");
+		return recordList();
+	}
+	
+	
+	public String getUpdateReason() {
+		return updateReason;
+	}
+
+	public void setUpdateReason(String updateReason) {
+		this.updateReason = updateReason;
+	}
+
+	public Long getCurrId() {
+		return currId;
+	}
+
+	public void setCurrId(Long currId) {
+		this.currId = currId;
+	}
+
 	public PageBean getPageBean() {
 		return pageBean;
 	}

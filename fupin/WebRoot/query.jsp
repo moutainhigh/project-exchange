@@ -14,9 +14,12 @@ body {
 			$(function(){
 				$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
-						$('#shiId').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++)
-							$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						//$('#shiId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++){
+							//$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+							selectShi(json['list'][i]['id']);	//直接选择广州市				
+							$('#shiId').val(json['list'][i]['id']);	
+						}						
 					}
 				});
 			});
@@ -63,12 +66,14 @@ body {
 					<td height="110">
 						<p></p>
 						<form method="get"	action="${appPath}front.jsp" name="form2" class="head_form" target="_top">
-							市:
+							<!--  市:
 							<select id="shiId" name="shiId" onchange="selectShi(this.value);" style="width: 200px;">
 								<option value="">
 									-----------
 								</option>
 							</select>
+							-->
+							<input type="hidden" name="shiId" id="shiId" value=""/>
 							<br>
 							县:
 							<select id="areaId" name="areaId" onchange="selectArea(this.value);" style="width: 200px;">
@@ -76,7 +81,7 @@ body {
 									----------
 								</option>
 							</select>
-							<br>
+							<br><br>
 							镇:
 
 							<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);" style="width: 200px;">
@@ -84,7 +89,7 @@ body {
 									----------
 								</option>
 							</select>
-							<br>
+							<br><br>
 							村:
 							<select id="cunId2" name="cunId" style="width: 200px;">
 								<option value="">

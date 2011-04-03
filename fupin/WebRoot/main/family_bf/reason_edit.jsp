@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(year != ''){
 					$('#year').val(year);
 				}
-				$.getJSON("${appPath}ajax/getAllFamilyByCun?time="+new Date().getTime(), {}, function(json){
+				$.getJSON("${appPath}ajax/getAllFamilyByCunWithLeader?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#family').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
@@ -89,14 +89,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:if> --%>
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i>year-3;i--){
+			for(int i=year;i<year+2;i++){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	
 			}
 			%>
-			
-
 		</select> <font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
   </tr>
   <tr>

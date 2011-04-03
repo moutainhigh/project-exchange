@@ -81,8 +81,8 @@ var msg = '${msg}';
 			<td height="25" align="center" class="tables_contentcell">
 				&nbsp;
 				<c:if test="${f.state=='待审核'}">
-				<a href="${appPath}recheck_passRecheck.action?recheck.id=${f.id}">批准重审</a>
-				<a href="${appPath}recheck_unpassRecheck.action?recheck.id=${f.id}">不批准重审</a>
+				<a href="${appPath}recheck_passRecheck.action?recheck.id=${f.id}">批准修改</a>
+				<a href="${appPath}recheck_unpassRecheck.action?recheck.id=${f.id}">不批准修改</a>
 				</c:if>
 				
 			</td>

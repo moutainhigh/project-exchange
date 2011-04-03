@@ -189,5 +189,14 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		else
 			return null;
 	}
+	
+	public Cun getCunByAreaZhenAndName(Area area, Zhen zhen,String name){
+		String hql = "from Cun c where c.zhen.area=? and c.zhen=? and c.name=?";
+		List<Cun> list = this.getHibernateTemplate().find(hql,new Object[]{area,zhen,name});
+		if(list!=null && list.size() > 0)
+			return list.get(0);
+		else
+			return null;
+	}
 
 }

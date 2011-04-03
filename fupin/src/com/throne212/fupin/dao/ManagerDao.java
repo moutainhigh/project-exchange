@@ -32,4 +32,5 @@ public interface ManagerDao extends BaseDao {
 	public PageBean getAllLeader(Long orgId,String name,Integer pageIndex);
 	
 	public Cun getCunByAreaAndName(Area area,String name);
+	public Cun getCunByAreaZhenAndName(Area area, Zhen zhen,String name);
 }

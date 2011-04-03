@@ -54,12 +54,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<select class="ewButton" name="pic.year" id="year">
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i>year-3;i--){
+			for(int i=year;i<year+2;i++){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	
 			}
 			%>
+		
+		<option value="2">2年</option>
 		</select><br><br>
 		<iframe src="${appPath}upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 		<font color="#cc0033" style="font-weight: normal;">*请选择格式为JPG且大小不超过1.5MB的图片</font>

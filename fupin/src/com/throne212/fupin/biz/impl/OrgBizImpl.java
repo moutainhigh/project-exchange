@@ -185,23 +185,38 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 
 		Workbook workbook = Workbook.getWorkbook(fin);
 		Sheet sheet = workbook.getSheet(0);
-		for (int i = 1; !Util.isEmpty(sheet.getCell(0, i).getContents()); i++) {
+		int row = sheet.getRows();
+		int cols = sheet.getColumns();
+		for (int i = 1; i<row && !Util.isEmpty(sheet.getCell(0, i).getContents()); i++) {
 			String area = sheet.getCell(0, i).getContents();
 			String cun = sheet.getCell(1, i).getContents();
 			String name = sheet.getCell(2, i).getContents();
 			String idNo = sheet.getCell(3, i).getContents();
 			String income = sheet.getCell(4, i).getContents();
 			String type = sheet.getCell(5, i).getContents();
+			String zhen = null;
+			if(cols>6)
+				zhen = sheet.getCell(6, i).getContents();
 
-			Family f = new Family();
+			Family f = this.getEntityByUnique(Family.class, "idNo", area);
+			if(f == null)
+				f = new Family();
 
 			Area a = (Area) this.getEntityByUnique(Area.class, "name", area);
 			if (a == null) {
 				sb.append("第" + (i + 1) + "行，数据错误,没有找到区县名:" + area);
 				throw new RuntimeException(sb.toString());
 			}
+			
+			Cun c = null;
+			
+			//如果有镇的名字，就加入镇的判断
+			if(!Util.isEmpty(zhen)){
+				Zhen z = (Zhen) this.getEntityByUnique(Zhen.class, "name", area);
+				c = managerDao.getCunByAreaZhenAndName(a, z, cun);
+			}
 
-			Cun c = managerDao.getCunByAreaAndName(a, cun);
+			c = managerDao.getCunByAreaAndName(a, cun);
 			if (c == null) {
 				sb.append("第" + (i + 1) + "行，数据错误,没有找到村名:" + cun);
 				throw new RuntimeException(sb.toString());

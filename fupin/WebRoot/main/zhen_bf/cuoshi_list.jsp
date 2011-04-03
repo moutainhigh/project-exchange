@@ -71,6 +71,22 @@ var msg = '${msg}';
 		
 </script>
 </head><body>
+		<div id="coverLayer" style="display: none; background: #000000; position: absolute;"></div>
+		<div id="lightBox"
+			style="display: none; width: 300px; height:auto; position: absolute; z-index: 1002; background: #ffffff; left: 35%; top: 50%; margin-left: -150px; margin-top: -100px; border: #00FFFF double 4px;">
+			<a id="discover" href="#" onclick="discover('lightBox');" style="float:right;">X</a>
+				<div>
+					<h2>修改原因：</h2>
+					<form id="update_form" name="update_form" action="${appPath}zhen_bf_updateApplyCuoshi.action">
+					<input name="currId" id="currId" value="" type="hidden"/>
+					<textarea name="updateReason" id="updateReason" style="width: 100%;height: 200px;"></textarea>
+					</form>
+				</div>
+				<p style="text-align: center; margin: 10px auto;">
+					<input type="button" value=" 提交 " onclick="updateReason();" />
+					<input type="button" value=" 取消 " onclick="discover('lightBox');" />
+				</p>
+		</div>
 
 <form method="get" action="${appPath}zhen_bf_cuoshiZhenList.action" name="searchForm">
 
@@ -145,7 +161,7 @@ var msg = '${msg}';
 		<a href="#" onclick="winOpen('${appPath}zhen_bf_saveOrUpdateCuoshiZhen.action?cuoshi.id=${f.id}',600,390);">修改</a>
 		 </c:if>
 		  <c:if test="${f.status=='审核中'||f.status=='审核通过'}">
-		不能修改
+		<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
 		</c:if>
 		<c:if test="${f.status=='未提交'}">
 		<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}zhen_bf_confirmCuoshi.action?cuoshi.id=${f.id}';}" >确认后提交</a>

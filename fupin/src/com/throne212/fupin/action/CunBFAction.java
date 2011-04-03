@@ -1,5 +1,6 @@
 package com.throne212.fupin.action;
 
+import java.util.Date;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -15,6 +16,7 @@ import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicZhen;
+import com.throne212.fupin.domain.Recheck;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
@@ -370,6 +372,40 @@ public class CunBFAction extends BaseAction {
 		}
 		return picCunList();
 	}
+	
+	//修改申请
+	private String updateReason;
+	private Long currId;
+	public String updateApplyChengxiao(){
+		Recheck r = new Recheck();
+		r.setCreateDate(new Date());
+		r.setModule("村成效");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			r.setOrg((Org) user);
+		}
+		r.setReason(updateReason);
+		r.setRecordId(currId);
+		r.setState("待审核");
+		cunBFBiz.saveOrUpdateEntity(r);
+		this.setMsg("提交修改申请成功");
+		return chengxiaoCunList();
+	}
+	public String updateApplyCuoshi(){
+		Recheck r = new Recheck();
+		r.setCreateDate(new Date());
+		r.setModule("村措施");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			r.setOrg((Org) user);
+		}
+		r.setReason(updateReason);
+		r.setRecordId(currId);
+		r.setState("待审核");
+		cunBFBiz.saveOrUpdateEntity(r);
+		this.setMsg("提交修改申请成功");
+		return cuoshiCunList();
+	}
 
 	public CunBFBiz getCunBFBiz() {
 		return cunBFBiz;
@@ -406,6 +442,30 @@ public class CunBFAction extends BaseAction {
 	}
 	public void setPic(PicCun pic) {
 		this.pic = pic;
+	}
+
+	public Cun getCun() {
+		return cun;
+	}
+
+	public void setCun(Cun cun) {
+		this.cun = cun;
+	}
+
+	public String getUpdateReason() {
+		return updateReason;
+	}
+
+	public void setUpdateReason(String updateReason) {
+		this.updateReason = updateReason;
+	}
+
+	public Long getCurrId() {
+		return currId;
+	}
+
+	public void setCurrId(Long currId) {
+		this.currId = currId;
 	}
 	
 	

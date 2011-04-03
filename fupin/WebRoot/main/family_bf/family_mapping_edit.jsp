@@ -62,7 +62,7 @@ z-index:2;
     <td colspan="2" class="tables_contentcell">
     <input type="radio" onclick="jilian();" value="1" name="bffs" id="bffs">单位和个人共同帮扶 
     <input type="radio" onclick="jilian();" value="2" name="bffs" id="bffs">单位帮扶
-    <input type="radio" onclick="jilian();" value="3" name="bffs" id="bffs">个人帮扶
+    <input type="radio" onclick="jilian();" value="3" name="bffs" id="bffs" checked="checked">个人帮扶
 	<input type="radio" onclick="jilian();" value="4" name="bffs" id="bffs">暂无帮扶干部
     </td>
   </tr>

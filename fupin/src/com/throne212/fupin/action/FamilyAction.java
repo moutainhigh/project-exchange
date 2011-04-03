@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -15,6 +16,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Leader;
 
 public class FamilyAction extends BaseAction {
 
@@ -56,6 +58,14 @@ public class FamilyAction extends BaseAction {
 		if (shiWrokOrgIds != null && shiWrokOrgIds.length > 0) {
 			for (String idStr : shiWrokOrgIds) {
 				Long id = Long.parseLong(idStr);
+				//删除帮扶关系 
+				List<Leader> leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family.id", id);
+				if(leaderList!=null && leaderList.size()>0){
+					for(Leader l : leaderList){
+						l.setFamily(null);
+						orgBiz.saveOrUpdateEntity(l);
+					}
+				}
 				orgBiz.deleteEntity(Family.class, id);
 			}
 			this.setMsg("删除贫困户成功");

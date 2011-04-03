@@ -2,6 +2,7 @@ package com.throne212.fupin.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
@@ -103,6 +104,23 @@ public class AjaxAction extends BaseAction {
 		list=baseBiz.getEntitiesByColumn(Family.class, "cun", org.getCun());
 		return "cun_family";
 	}
+	//根据单位对应的村查找所有指定了帮扶干部的贫困户
+	public String getAllFamilyByCunWithLeader(){
+		User user =(User)ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		Org org =(Org)user;
+		list=baseBiz.getEntitiesByColumn(Family.class, "cun", org.getCun());
+		List<Family> list2 = new ArrayList<Family>();
+		for(Object o : list){
+			Family f = (Family) o;
+			List<Leader> leaderList = baseBiz.getEntitiesByColumn(Leader.class, "family", f);
+			if(leaderList!=null && leaderList.size()>0){
+				list2.add(f);
+			}
+		}
+		list = list2;
+		return "cun_family";
+	}
+	
 	
 	//根据单位查找所有干部
 	public String getAllLeaderByOrg(){

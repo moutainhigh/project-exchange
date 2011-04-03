@@ -274,3 +274,37 @@ function doFileExport(inName, inStr) {
     xlsWin.document.execCommand('Saveas', true, inName); 
     xlsWin.close(); 
 } 
+
+
+//cover
+function cover(id)
+{
+     //$("select").each(function(){this.style.visibility="hidden";})
+     //选择所有的select并设置为隐藏
+      $("#coverLayer").fadeTo("fast",0.5,function(){$("#coverLayer").css("display","block");})
+                     .width(Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth))
+                     .height(Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight));
+     //显示覆盖层 并设置其高和宽
+    $("#"+id).show();
+    //显示LightBox层
+    $('select').hide();
+}
+function discover(id)
+{
+     //$("select").each(function(){this.style.visibility="visible";})
+     $("#coverLayer").fadeOut("normal",function(){$("#coverLayer").css("display","none");})
+     $("#"+id).fadeOut("normal",function(){$("#lightBox").css("display","none");})
+     $('select').show();
+}
+function showInstr(id){
+	$('#currId').val(id);
+	cover('lightBox');
+}
+function updateReason(){
+	var r = $('#updateReason').val();
+	if(r==null || r==''){
+		alert('修改申请原因不能为空');
+	}else{
+		$('#update_form').submit();
+	}
+}
