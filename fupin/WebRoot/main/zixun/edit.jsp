@@ -25,7 +25,7 @@
 			<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 	<tbody><tr>
 		<td height="30" align="right" class="tables_leftcell">
-		干部姓名
+		标题
 		</td>
 		<td class="tables_contentcell">
 		<input type="text" style="height: 22px;" msg="干部姓名区不能为空且必须为汉字" datatype="Chinese" size="20" value="${leader.leaderName }" id="xm" name="leader.leaderName">
@@ -34,12 +34,12 @@
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">
-		干部性别
+		审核
 		</td>
 		<td class="tables_contentcell">
-		<select style="width: 135px; height: 22px;" name="leader.gender">
-		<option value="男" <c:if test="${leader.gender=='男'}">selected="selected"</c:if>>男</option>
-		<option value="女" <c:if test="${leader.gender=='女'}">selected="selected"</c:if>>女</option>
+		<select style="width: 135px; height: 22px;" name="zixun.pass">
+		<option value='ture' <c:if test="${zixun.pass==true}">selected="selected"</c:if>>通过</option>
+		<option value='false' <c:if test="${leader.gender==false}">selected="selected"</c:if>>不通过</option>
 		</select>
 		<font size="4" color="#cc0033">*</font>
 		</td>

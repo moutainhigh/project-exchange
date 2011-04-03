@@ -34,7 +34,7 @@ body {
         <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
         <td width="90" align="center" class="dev">政务之窗</td>
         <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">扶贫资讯</td>
+        <td width="90" align="center" class="dev"><a href="${appPath}zixun_zixunListFront.action">扶贫资讯</a></td>
         <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
         <td width="90" align="center" class="dev">扶贫政策</td>
         <td><img src="images/fp_devl.gif" width="8" height="34" /></td>

@@ -23,6 +23,8 @@ public class WebConstants {
 	public static final String SESS_CITY = "currCity";
 	public static final String SESS_IMAGE = "sess_image";
 	public static final String SESS_FORWARD_URL="url";
+	public static final String SESS_ATTACH = "sess_attach";
+	public static final String SESS_ATTACH_SIZE = "sess_attach_size";
 	
 
 	//措施类型

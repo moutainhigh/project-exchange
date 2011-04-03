@@ -54,5 +54,10 @@ public class ZixunBizImpl extends BaseBizImpl implements ZixunBiz {
 			pageIndex = 1;
 		return zixunDao.getAllZixun(pageIndex);
 	}
+	public PageBean<Zixun> getAllZixunPass(Integer pageIndex) {
+		if(pageIndex==null || pageIndex<1)
+			pageIndex = 1;
+		return zixunDao.getAllZixunByPass(pageIndex,true);
+	}
 
 }

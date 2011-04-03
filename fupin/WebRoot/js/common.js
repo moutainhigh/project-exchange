@@ -90,6 +90,7 @@ function myMethod(tableid){
      var oXL = new ActiveXObject("Excel.Application");
     }catch(e){
     	alert('你本机的安全设置不允许使用Excel导出\n请设置安全策略\n修改"本地Intranet"内"对没有标记为安全的ActiveX控件进行初始化和脚本运行"这一项');
+    	return false;
     } 
      //创建AX对象excel 
      var oWB = oXL.Workbooks.Add(); 

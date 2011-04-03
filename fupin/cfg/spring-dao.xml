@@ -37,4 +37,7 @@
 	<bean id="zixunDao" class="com.throne212.fupin.dao.impl.ZixunDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="messageDao" class="com.throne212.fupin.dao.impl.MessageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

@@ -23,7 +23,7 @@
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}zixun_deleteZixun.action';
+				document.forms[0].action = '${appPath}mes_deleteMessage.action';
 				document.forms[0].submit();
 			}
 		}
@@ -90,11 +90,10 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：业务咨询信息维护
+							您当前所处页面：通知公告
 						</td>
 						<td align="right">
-							<input type="button" onclick="passInfo();" class="button" value="通过">
-							<input type="button" onclick="notpassInfo();" class="button" value="不通过">
+						<input type="button" onclick="winOpen('${appPath}mes_showSendMessage.action',600,600);" class="button" value="发送通知">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>
 						<td width="5px"></td>
@@ -105,30 +104,23 @@
 				<tbody>
 					<tr align="center">
 						<td height="28" width="" class="tables_headercell">
-							<input type="checkbox" onclick="checkAll(this);">
+						<input type="checkbox" onclick="checkAll(this);">
+								<td width="" class="tables_headercell">
+							发送者
+						</td>
 						<td width="" class="tables_headercell">
 							标题
 						</td>
 						<td width="" class="tables_headercell">
-							姓名
+							内容
 						</td>
 						<td width="" class="tables_headercell">
-							Email
+							发送时间
 						</td>
 						<td width="" class="tables_headercell">
-							电话
+							附件
 						</td>
-						<td width="" class="tables_headercell">
-							咨询内容
-						</td>
-						<td width="" class="tables_headercell">
-							审核状态
-						</td>
-						<!--  
-						<td width="" class="tables_headercell">
-							操作
-						</td>
-						-->
+						
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
@@ -136,39 +128,35 @@
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.sender.loginName}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.title}
 							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.name}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.email}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.tel}
-							</td>
+						
+							
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${f.pass==true}">
-								通过审核
-								</c:if>
-								<c:if test="${f.pass==false}">
-								未通过审核
-								</c:if>
+							<fmt:formatDate value="${f.createDate}" pattern="yyyy-MM-dd hh:mm"/> 
 							</td>
-							<!--  
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}zixun_viewZixun.action?zixun.id=${f.id}',450,250);">修改</a>
+								<c:if test="${f.attatch!=null&&f.attatch!=''}">
+								<a href="${appPath}mes_getAttachDownload.action?message.id=${f.id }"> 下载附件
+								</a>
+								</c:if>
+								<c:if test="${f.attatch==null||f.attatch==''}">
+								无附件
+								</c:if>
+								
 							</td>
-							-->
+							
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="8">
-							<jsp:include page="../../pager.jsp"></jsp:include>
-						</td>
+						<td height="25" align="right" class="tables_contentcell" colspan="8"><jsp:include page="../../pager.jsp"></jsp:include>
+						<br></td>
 					</tr>
 				</tbody>
 			</table>

@@ -38,6 +38,7 @@
 				<value>frontBiz</value>
 				<value>shenHeBiz</value>
 				<value>zixunBiz</value>
+				<value>messageBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

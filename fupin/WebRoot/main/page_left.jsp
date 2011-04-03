@@ -271,8 +271,11 @@ function images_update(){
 	    </c:if>
 	    //menuArray[menuArray.length]="0,报表审核,";
 	    <c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='超级管理员'}">
-	    menuArray[menuArray.length]="0,咨询信息审核,${appPath}zixun_zixunList.action";
+	    menuArray[menuArray.length]="0,咨询信息,";
+	    menuArray[menuArray.length]="1,咨询信息审核,${appPath}zixun_zixunList.action";
+	    menuArray[menuArray.length]="1,咨询信息回复,${appPath}zixun_zixunListPass.action";
 	    </c:if>
+	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
 	var mytree = new DepartTree('mytree')

@@ -1,10 +1,14 @@
 package com.throne212.fupin.action;
 
+import java.util.Date;
+import java.util.Iterator;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.throne212.fupin.biz.ZixunBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.domain.ChengxiaoZhen;
 import com.throne212.fupin.domain.Zixun;
 
 public class ZixunAction extends BaseAction{
@@ -18,6 +22,16 @@ public class ZixunAction extends BaseAction{
 		pageBean = zixunBiz.getAllZixun(pageIndex);
 		return "list";
 	}
+	public String  zixunListPass() {
+		pageBean=zixunBiz.getAllZixunPass(pageIndex);
+		return "reply_list";
+	}
+	
+	public String zixunListFront() {
+		pageBean=zixunBiz.getAllZixunPass(pageIndex);
+		return "zixun_front_list";
+	}
+	
 	
 	private Long[] ids;
 	public String deleteZixun(){
@@ -29,6 +43,33 @@ public class ZixunAction extends BaseAction{
 		}
 		return zixunList();
 	}
+	public String passZixun() {
+		if (ids == null || ids.length < 1) {
+			this.setMsg("请选择咨询信息！");
+			return zixunList();
+		} else {
+			for (Long id : ids) {
+				zixunBiz.passZixun(id, true);
+			}
+		}
+		this.setMsg("通过审核-----成功！");
+		return zixunList();
+	}
+	
+	public String notPassZixun() {
+
+		if (ids == null || ids.length < 1) {
+			this.setMsg("请选择咨询信息！");
+			return zixunList();
+		} else {
+			for (Long id : ids) {
+				zixunBiz.passZixun(id, false);
+			}
+		}
+		this.setMsg("不通过审核-----成功！");
+		return zixunList();
+	
+	}
 	
 	public String viewZixun(){
 		zixun = zixunBiz.getEntityById(Zixun.class, zixun.getId());
@@ -36,10 +77,30 @@ public class ZixunAction extends BaseAction{
 	}
 	
 	public String reply(){
-		
+		if (zixun==null) {
+			this.setMsg("回复失败，参数不完整！");
+			return "reply";
+			
+		}
+		if (zixun.getId()!=null&&!Util.isEmpty(zixun.getTitle())) { //回复咨询信息
+//			zixun=zixunBiz.replyZixun(zixun.getId(), zixun.getReply());
+			Zixun zixunInDB=zixunBiz.getEntityById(Zixun.class, zixun.getId());
+			zixunInDB.setReply(zixun.getReply());
+			zixunInDB.setReplyDate(new Date());
+			zixunBiz.saveOrUpdateEntity(zixunInDB);
+			this.setMsg("回复成功！");
+			this.setSucc("Y");
+			zixun=null;
+			return "reply";
+		}else if (zixun != null && zixun.getId() != null) {// 查看详情
+			zixun = zixunBiz.getEntityById(Zixun.class, zixun.getId());
+		}
 		return "reply";
 	}
-	
+	public String viewForReply() {
+		zixun = zixunBiz.getEntityById(Zixun.class, zixun.getId());
+		return "view";
+	}
 	//前台
 	private Zixun zixun;
 	public String index(){
@@ -50,18 +111,27 @@ public class ZixunAction extends BaseAction{
 		//数据校验
 		if(Util.isEmpty(zixun.getContent())){
 			this.setMsg("咨询内容不能为空");
+			return "zixun_publish";
 		}else if(Util.isEmpty(zixun.getTitle())){
 			this.setMsg("咨询标题不能为空");
+			return "zixun_publish";
 		}else if(Util.isEmpty(zixun.getEmail())){
 			this.setMsg("Email地址不能为空");
+			return "zixun_publish";
 		}else if(!zixun.getEmail().matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
 			this.setMsg("Email格式不正确");
+			return "zixun_publish";
 		}
 		//设置IP
 		String ip = ServletActionContext.getRequest().getRemoteHost();
 		zixun.setIp(ip);
+		zixun.setPass(false);
+		zixun.setCreateDate(new Date());
 		zixunBiz.publicZixun(zixun);
-		return index();
+		this.setMsg("成功提交咨询！");
+		return zixunListFront();
+		//return "zixun_publish";
+		//return index();
 	}
 
 	public PageBean getPageBean() {

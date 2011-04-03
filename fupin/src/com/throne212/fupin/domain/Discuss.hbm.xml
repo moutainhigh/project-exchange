@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="Discuss" table="fp_discuss">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="pid" length="20"></property>
+		<property name="rootId" length="20"></property>
+		<many-to-one name="publisher" column="user_id" lazy="false"></many-to-one>
+		<property name="title" length="200"></property>
+		<property name="content" length="10000"></property>
+		<property name="isLeaf"></property>
+		<property name="createDate"></property>
+		
+	</class>
+</hibernate-mapping>

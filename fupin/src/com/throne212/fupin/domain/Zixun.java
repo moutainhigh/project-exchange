@@ -14,6 +14,17 @@ public class Zixun extends MyEntity {
 	private Boolean pass;// 是否通过审核
 	private String reply;// 回复内容
 	private Date replyDate;// 回复时间
+	
+	
+	public String getShortContent(){
+		String shortContent;
+		if (this.getContent().length()>16) {
+			shortContent=this.getContent().substring(0, 16);
+		}else {
+			shortContent=this.getContent();
+		}
+		return shortContent;
+	}
 
 	public String getTitle() {
 		return title;

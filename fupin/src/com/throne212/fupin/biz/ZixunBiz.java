@@ -14,5 +14,6 @@ public interface ZixunBiz extends BaseBiz{
 	public Zixun replyZixun(Long id, String reply);
 	
 	public PageBean<Zixun> getAllZixun(Integer pageIndex);
+	public PageBean<Zixun> getAllZixunPass(Integer pageIndex);
 
 }

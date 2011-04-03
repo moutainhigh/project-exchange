@@ -33,12 +33,6 @@
 				document.forms[0].submit();
 			}
 		}
-		function notpassInfo(){
-			if(confirm('您确定不通过审核吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}zixun_notPassZixun.action';
-				document.forms[0].submit();
-			}
-		}
 		</script>
 		<style>
 .tables_search {
@@ -92,11 +86,7 @@
 						<td>
 							您当前所处页面：业务咨询信息维护
 						</td>
-						<td align="right">
-							<input type="button" onclick="passInfo();" class="button" value="通过">
-							<input type="button" onclick="notpassInfo();" class="button" value="不通过">
-							<input type="button" onclick="deleteInfo();" class="button" value="删除">
-						</td>
+					
 						<td width="5px"></td>
 					</tr>
 				</tbody>
@@ -124,11 +114,9 @@
 						<td width="" class="tables_headercell">
 							审核状态
 						</td>
-						<!--  
 						<td width="" class="tables_headercell">
 							操作
 						</td>
-						-->
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
@@ -158,11 +146,9 @@
 								未通过审核
 								</c:if>
 							</td>
-							<!--  
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}zixun_viewZixun.action?zixun.id=${f.id}',450,250);">修改</a>
+								<a href="#" onclick="winOpen('${appPath}zixun_reply.action?zixun.id=${f.id}',900,600);">回复</a>
 							</td>
-							-->
 						</tr>
 					</c:forEach>
 					<tr>

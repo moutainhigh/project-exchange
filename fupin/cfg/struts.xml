@@ -183,6 +183,12 @@
 			<result name="success">/upload/success.jsp</result>
 			<result name="error">/upload/fail.jsp</result>
 		</action>
+		<!-- 上传附件 -->
+		<action name="AttachUploadAction_*" method="{1}" class="com.throne212.fupin.action.AttachUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/uploadAttach/success.jsp</result>
+			<result name="error">/uploadAttach/fail.jsp</result>
+		</action>
 		<!-- 上传Excel -->
 		<action name="ExcelUploadAction_*" method="{1}" class="com.throne212.fupin.action.ExcelUploadAction">
 			<interceptor-ref name="fileUploadStack"></interceptor-ref>
@@ -203,6 +209,22 @@
 		<action name="zixun_*" method="{1}" class="com.throne212.fupin.action.ZixunAction">
 			<result name="list">/main/zixun/list.jsp</result>
 			<result name="edit">/main/zixun/edit.jsp</result>
+			<result name="reply">/main/zixun/reply.jsp</result>
+			<result name="view">/main/zixun/reply.jsp</result>
+			<result name="reply_list">/main/zixun/list_reply.jsp</result>
+			<result name="zixun_publish">/front/zixun/zixun_edit.jsp</result>
+			<result name="zixun_front_list">/front/zixun/zixun_list.jsp</result>
+		</action>
+		<!-- 通知公告 -->
+		<action name="mes_*" method="{1}" class="com.throne212.fupin.action.MessageAction">
+			<result name="mes_send">/main/message/edit.jsp</result>
+			<result name="mes_list">/main/message/list.jsp</result>
+			<result name="download" type="stream">
+                <param name="inputName">inputStream</param>
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">attachment;filename="${attachDownload}"</param>
+                <param name="bufferSize">4096</param>
+            </result> 
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
