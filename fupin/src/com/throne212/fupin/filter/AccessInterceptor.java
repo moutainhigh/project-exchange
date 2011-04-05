@@ -3,9 +3,11 @@ package com.throne212.fupin.filter;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.throne212.fupin.action.BaseAction;
 import com.throne212.fupin.action.FrontAction;
 import com.throne212.fupin.action.LoginAction;
 import com.throne212.fupin.common.WebConstants;
@@ -30,7 +32,18 @@ public class AccessInterceptor extends AbstractInterceptor {
 		}
 		ServletActionContext.getRequest().setCharacterEncoding("UTF-8");
 		logger.debug("end intercepter ...");
-		return actionInvocation.invoke();
+		String rst = actionInvocation.invoke();
+		
+		//检查是否为回调，如果是去掉msg
+		String[] callback = (String[]) ActionContext.getContext().getParameters().get("callback");
+		if(callback!=null && callback.length>0 && callback[0].equalsIgnoreCase("Y")){
+			Object action = actionInvocation.getAction();
+			if(action instanceof BaseAction){
+				((BaseAction)action).setMsg(null);
+			}
+		}
+		
+		return rst;
 	}
 
 }

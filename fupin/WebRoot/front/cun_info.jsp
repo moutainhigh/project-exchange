@@ -249,7 +249,7 @@ shead = he + sstyle + "</head>";
 			<div id="demo1">
 			<c:forEach items="${picList}" var="f">
 
-				<a title="${f.type }：${f.remark }" target="_blank" href="${appPath}upload/${f.path}" onclick="return show_popup('./upload/1300121652562.JPG',title)" rel="nozoom" class="pp1">
+				<a title="${f.type }：${f.remark }" target="_blank" href="${appPath}upload/${f.path}" rel="nozoom" class="pp1">
 					<img class="iradius8 ishade75 ishadow33" style="height: 130px; width: 170px; visibility: visible;" height="140" width="180" id="img98" onclick="" src="${appPath}upload/${f.path}"/>${f.type }：${f.remark }...
 				</a>
 			</c:forEach>

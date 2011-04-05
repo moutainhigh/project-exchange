@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script type="text/javascript" src="${appPath}main/facebox/facebox.js"></script>
 <script language="javascript">
-var msg = '${msg}';
+var msg = '${requestScope.msg}';
 		if(msg != ''){
 			alert(msg);
 		}

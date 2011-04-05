@@ -8,7 +8,15 @@
 				var succ = '${succ}';
 				if(succ == 'Y'){
 					if(window.opener){
-						window.opener.location.reload(true);
+						var loc = window.opener.location.href;
+						if(loc.indexOf('?')>-1){
+							loc=loc+'&callback=y';
+						}else{
+							loc=loc+'?callback=y'
+						}
+						//alert(loc);
+						window.opener.location.href = loc;
+						//window.opener.location.reload(true);
 						window.close();
 					}
 				}

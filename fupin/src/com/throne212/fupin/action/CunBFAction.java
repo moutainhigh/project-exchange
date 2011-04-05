@@ -366,9 +366,11 @@ public class CunBFAction extends BaseAction {
 		if (picCunIds != null && picCunIds.length > 0) {
 			for (String idStr : picCunIds) {
 				Long id = Long.parseLong(idStr);
+				if(cunBFBiz.getEntityById(PicCun.class, id)==null)
+					continue;
 				cunBFBiz.deleteEntity(PicCun.class, id);
+				this.setMsg("删除图片成功！");
 			}
-			this.setMsg("删除图片成功！");
 		}
 		return picCunList();
 	}
