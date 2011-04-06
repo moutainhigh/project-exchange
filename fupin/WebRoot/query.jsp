@@ -4,6 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>无标题文档</title>
+		<link href="./css.css" rel="stylesheet" type="text/css">
 		<style>
 body {
 	font-size: 12px;
@@ -27,7 +28,7 @@ body {
 				if(val){
 					$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
 						if(json && json['list'] && json['list'].length){
-							$('#areaId').html('<option value=""></option>');
+							$('#areaId').html('<option value="0">::::::::请选择区县::::::::</option>');
 							for(var i=0;i<json['list'].length;i++)
 								$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						}
@@ -38,7 +39,7 @@ body {
 				if(val){
 					$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
 						if(json && json['list'] && json['list'].length){
-							$('#zhenId').html('<option value=""></option>');
+							$('#zhenId').html('<option value="0">::::::::请选择乡镇::::::::</option>');
 							for(var i=0;i<json['list'].length;i++)
 								$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						}
@@ -49,7 +50,7 @@ body {
 				if(val){
 					$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
 						if(json && json['list'] && json['list'].length){
-							$('#cunId2').html('<option value=""></option>');
+							$('#cunId2').html('<option value="0">::::::::请选择贫困村::::::::</option>');
 							for(var i=0;i<json['list'].length;i++)
 								$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						}
@@ -75,25 +76,24 @@ body {
 							-->
 							<input type="hidden" name="shiId" id="shiId" value=""/>
 							<br>
-							县:
-							<select id="areaId" name="areaId" onchange="selectArea(this.value);" style="width: 200px;">
+							县：&nbsp;
+							<select id="areaId" name="areaId" onchange="selectArea(this.value);" style="width: 180px;">
 								<option value="">
-									----------
+									::::::::请选择区县::::::::
 								</option>
 							</select>
 							<br><br>
-							镇:
-
-							<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);" style="width: 200px;">
+							镇：&nbsp;
+							<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);" style="width: 180px;">
 								<option value="">
-									----------
+									::::::::请选择乡镇::::::::
 								</option>
 							</select>
 							<br><br>
-							村:
-							<select id="cunId2" name="cunId" style="width: 200px;">
+							村：&nbsp;
+							<select id="cunId2" name="cunId" style="width: 180px;">
 								<option value="">
-									-----------
+									::::::::请选择贫困村::::::::
 								</option>
 							</select>
 						</form>

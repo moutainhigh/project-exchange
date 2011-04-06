@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>无标题文档</title>
+<title>欢迎光临广州市扶贫信息网！</title>
 <style type="text/css">
 <!--
 body {
@@ -23,50 +23,10 @@ body {
 </head>
 
 <body>
+
 <table width="990" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td colspan="2"><img src="images/fp_top.gif" width="990" height="252" /></td>
-  </tr>
-  <tr>
-    <td width="830" height="34" background="images/fp_devbg.gif"><table border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="70" align="center" class="dev">首页</td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">政务之窗</td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev"><a href="${appPath}zixun_zixunListFront.action">扶贫资讯</a></td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">扶贫政策</td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">扶贫开发</td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">建档立卡</td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">老区建设</td>
-        <td><img src="images/fp_devl.gif" width="8" height="34" /></td>
-        <td width="90" align="center" class="dev">社会扶贫</td>
-      </tr>
-    </table></td>
-    <td width="160" align="center" background="images/fp_devbg.gif"><font color="#FFFFFF">·设为首页  ·加入收藏</font></td>
-  </tr>
-</table>
-<table width="990" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="22"><img src="images/fp_s01.gif" width="21" height="32" /></td>
-    <td width="947" background="images/fp_sbg.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>欢迎光临广东省扶贫信息网！</td>
-        <td><table width="300" border="0" align="right" cellpadding="0" cellspacing="0">
-          <tr>
-            <td>站内搜索：</td>
-            <td><input type="text" name="textfield" /></td>
-            <td><img src="images/fp_search.gif" width="49" height="17" /></td>
-          </tr>
-        </table></td>
-        <td width="30">&nbsp;</td>
-      </tr>
-    </table></td>
-    <td width="22"><img src="images/fp_s02.gif" width="22" height="32" /></td>
+    <td><iframe src="http://192.168.2.236/head_372.html" frameborder=“0” scrolling="no" width=990 height=226></iframe></td>
   </tr>
 </table>
 <table width="990" height="5" border="0" align="center" cellpadding="0" cellspacing="0">

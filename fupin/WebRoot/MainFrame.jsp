@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 
@@ -21,7 +21,7 @@
 		<%
 			}else{
 		%>
-		<frame title="detailFrame" id="detailFrame" name="detailFrame" src="default.jsp"></frame>
+		<frame title="detailFrame" id="detailFrame" name="detailFrame" src="/admin/front_shiStat.action?shiId=6"></frame>
 		<%
 			}
 		%>
