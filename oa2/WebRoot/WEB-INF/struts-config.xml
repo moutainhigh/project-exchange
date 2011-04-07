@@ -43,6 +43,7 @@
     	<forward name="season" path="/report/season.jsp"></forward>
     	<forward name="org" path="/report/org.jsp"></forward>
     	<forward name="compare" path="/report/compare.jsp"></forward>
+    	<forward name="summary" path="/report/summary.jsp"></forward>
     	<forward name="test" path="/report/test.jsp"></forward>
     </action>
 	<!-- 母婴（人员） -->
