@@ -25,6 +25,7 @@ import jxl.Cell;
 import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.write.DateFormat;
 import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WritableSheet;
@@ -304,12 +305,12 @@ public class ReportAction extends DispatchAction {
 		Sheet sheet1 = workbook.getSheet(0);
 		Sheet sheet2 = workbook.getSheet(1);
 
-		fill(reports[0][0], sheet1, 7, 30);
+		fill(reports[0][0], sheet1, 7, 34);
 		fill(reports[0][1], sheet1, 17, 20);
 		fill(reports[0][2], sheet1, 34, 10);
 		fill(reports[0][3], sheet1, 44, 18);
 
-		fill(reports[1][0], sheet2, 11, 26);
+		fill(reports[1][0], sheet2, 11, 30);
 		fill(reports[1][1], sheet2, 26, 23);
 		fill(reports[1][2], sheet2, 42, 22);
 		fill(reports[1][3], sheet2, 60, 25);
@@ -763,6 +764,167 @@ public class ReportAction extends DispatchAction {
 		sheet.addCell(new Number(19,currCompare2Row,thisReport[0][3].getC1().doubleValue()));
 		
 		currCompare2Row++;
+	}
+	
+	//业务总表
+	public ActionForward listSummary(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//获取参数
+		String dateType = request.getParameter("dateType");
+		Year y = null;
+		if (!Util.isEmpty(request.getParameter("year"))) {
+			y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
+		}
+		Integer season = null;
+		if (!Util.isEmpty(request.getParameter("season"))) {
+			season = Integer.valueOf(request.getParameter("season"));
+		}
+		Integer month = null;
+		if (!Util.isEmpty(request.getParameter("month"))) {
+			month = Integer.valueOf(request.getParameter("month"));
+		}
+		
+		List list = reportDao.getReportFiles(y.getValue(), dateType, season, month);
+		if(list == null || list.size()==0)
+			request.setAttribute("msg", "对不起，该日期段没有报表上传，不能提供汇总报表的生成");
+		return mapping.findForward("summary");
+	}
+	//生成总表
+	public ActionForward genSummary(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//获取参数
+		String dateType = request.getParameter("dateType");
+		Year y = null;
+		if (!Util.isEmpty(request.getParameter("year"))) {
+			y = reportDao.getYear(Integer.valueOf(request.getParameter("year")).intValue());
+		}
+		Integer season = null;
+		if (!Util.isEmpty(request.getParameter("season"))) {
+			season = Integer.valueOf(request.getParameter("season"));
+		}
+		Integer month = null;
+		if (!Util.isEmpty(request.getParameter("month"))) {
+			month = Integer.valueOf(request.getParameter("month"));
+		}
+		
+		try {
+			// 文件拷贝
+			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			path = path.substring(0, path.indexOf("WEB-INF"));
+			path += "report" + File.separator + "excel";
+			System.out.println("excel saved path : " + path);
+			String sourceFile = path + File.separator + "template3.xls";// 模板文件3
+			String excelName = "summary" + y.getValue() + (season == null ? "" : season.toString()) + (month == null ? "" : month.toString()) + ".xls";
+			String targetFile = path + File.separator + excelName;
+
+			// Excel模板文件建模
+			Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+
+			List orgList = dicDao.getDropdownList(Hospital.class.getName());
+			int currRow = 5;
+			for (int i = 0; i < orgList.size(); i++) {
+
+				Hospital hos = (Hospital) orgList.get(i);
+				// 更新文件
+				// 今年的报表
+				ReportFile file = reportDao.getExistReportFileNoCreate(hos,y.getValue(),dateType,season,month);
+				if (file == null || file.getDate()==null || file.getFileName()==null) {
+					System.out.println(hos.getName()+" 报表没有上传");
+					continue;
+				}
+				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, file);
+				if (reportA1 == null || reportA1.getId()==null) {
+					System.out.println("报表数据不完整(" + hos.getName() + ")");
+					continue;
+				}
+				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, file);
+				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, file);
+				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, file);
+
+				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, file);
+				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, file);
+				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, file);
+				WorkReport reportB4 = reportDao.getExistReport(WorkReportB4.class, file);
+				WorkReport reportB5 = reportDao.getExistReport(WorkReportB5.class, file);
+				WorkReport reportB6 = reportDao.getExistReport(WorkReportB6.class, file);
+				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, file);
+				WorkReport[][] reports = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
+
+				boolean isSucc = buildOneSummary(workbook.getSheet(0),reports,hos,currRow,Util.getDate(file.getDate()),i);
+				if(isSucc){
+					currRow++;
+				}			
+				
+			}
+			workbook.write();
+			workbook.close();
+			rw.close();
+
+			System.out.println("同期报表生成成功");
+			
+			downFile(request, response, "application/vnd.ms-excel", excelName, path + File.separator+excelName);
+
+			
+			return null;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("msg", "报表生成失败，请检查报表格式是否正确");
+		}
+		
+		return mapping.findForward("summary");
+	}
+	private boolean buildOneSummary(WritableSheet sheet,WorkReport[][] reports,Hospital hos,int row,String date,int index){
+		try {
+			WorkReportA1 a1 = (WorkReportA1) reports[0][0];
+			WorkReportA2 a2 = (WorkReportA2) reports[0][1];
+			WorkReportA3 a3 = (WorkReportA3) reports[0][2];
+			WorkReportA4 a4 = (WorkReportA4) reports[0][3];
+			
+			//序号和时间
+			sheet.addCell(new Number(0,row,index+1));
+			sheet.addCell(new Label(1,row,date));
+			sheet.addCell(new Label(2,row,hos.getName()));
+			
+			//诊疗人次数
+			sheet.addCell(new Number(3,row,a1.getC2().doubleValue()));
+			sheet.addCell(new Number(4,row,a1.getC4().doubleValue()));
+			sheet.addCell(new Number(5,row,a1.getC5().doubleValue()));
+			sheet.addCell(new Number(6,row,a1.getC31().doubleValue()));
+			
+			sheet.addCell(new Number(7,row,a1.getC11().doubleValue()));
+			sheet.addCell(new Number(8,row,a1.getC19().doubleValue()));
+			sheet.addCell(new Number(9,row,a1.getC20().doubleValue()));
+			sheet.addCell(new Number(10,row,a1.getC22().doubleValue()));
+			sheet.addCell(new Number(11,row,a1.getC23().doubleValue()));
+			sheet.addCell(new Number(12,row,a1.getC27().doubleValue()));
+			sheet.addCell(new Number(13,row,a1.getC29().doubleValue()));
+			sheet.addCell(new Number(14,row,a1.getC30().doubleValue()));
+			sheet.addCell(new Number(15,row,a1.getC12().doubleValue()));
+			//sheet.addCell(new Number(16,row,a1.getC().doubleValue()));
+			//sheet.addCell(new Number(17,row,a1.getC().doubleValue()));
+			sheet.addCell(new Number(18,row,a2.getC16().doubleValue()));
+			sheet.addCell(new Number(19,row,a2.getC17().doubleValue()));
+			sheet.addCell(new Number(20,row,a2.getC11().doubleValue()));
+			sheet.addCell(new Number(21,row,a2.getC11().doubleValue()));
+			sheet.addCell(new Number(22,row,a2.getC12().doubleValue()));
+			sheet.addCell(new Number(23,row,a2.getC13().doubleValue()));
+			sheet.addCell(new Number(24,row,a2.getC14().doubleValue()));
+			
+			sheet.addCell(new Number(25,row,a4.getC1().doubleValue()));
+			sheet.addCell(new Number(26,row,a4.getC18().doubleValue()));
+			sheet.addCell(new Number(27,row,a2.getC5().doubleValue()));
+			sheet.addCell(new Number(28,row,a2.getC9().doubleValue()));
+			sheet.addCell(new Number(29,row,a2.getC13().doubleValue()));
+			sheet.addCell(new Number(30,row,a2.getC14().doubleValue()));
+			sheet.addCell(new Number(31,row,a2.getC16().doubleValue()));
+			sheet.addCell(new Number(32,row,a2.getC17().doubleValue()));
+			sheet.addCell(new Number(33,row,a2.getC15().doubleValue()));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} 		
+		return true;
 	}
 
 	// 数据字典列表

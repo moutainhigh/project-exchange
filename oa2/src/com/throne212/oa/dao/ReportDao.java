@@ -5,10 +5,8 @@ import java.text.Collator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -533,6 +531,28 @@ public class ReportDao {
 		s.close();
 		//·µ»Ønull
 		return null;
+	}
+	public List getReportFiles(Integer year,String dateType,Integer season,Integer month) throws Exception{
+		List params = new ArrayList();
+		params.add(year);
+		params.add(dateType);
+		String hql = "from "+ReportFile.class.getName()+" f where f.year=? and f.dateType=?";
+		if("s".equalsIgnoreCase(dateType)){
+			hql = hql + " and f.season=?";
+			params.add(season);
+		}else if("m".equalsIgnoreCase(dateType)){
+			hql = hql + " and f.month=?";
+			params.add(month);
+		}
+		hql += " order by f.org.listorder";
+		
+		Session s = HibernateSessionFactory.getSession();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.size();i++){
+			q.setParameter(i, params.get(i));
+		}
+		List list = q.list();
+		return list;
 	}
 	
 }
