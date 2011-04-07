@@ -28,35 +28,22 @@
 			<table width="90%" border="1" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr style="font-size: 14px; font-weight: 600;">					
 					<td align="center">
-						序号
-					</td>
-					<td align="center">
-						已有年份
-					</td>
-					<td align="center">
-						查看
+						全市医疗卫生单位部分医疗业务总表
 					</td>
 				</tr>
-				<c:forEach items="${years}" var="y" varStatus="status">
 				<tr style="font-size: 12px;">					
 					<td align="center">
-						${status.count }
-					</td>
-					<td align="center">
-						${y.value }
-					</td>
-					<td align="center">
-						<c:choose>
-							<c:when test="${not empty param.orgTypeId && param.orgTypeId==-1}">
-								<a href="${appPath}/report.do?method=listSummary&year=${y.value}&dateType=${param.dateType}&year=${y.value}">查看</a>
-							</c:when>
-							<c:otherwise>
-								<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}">查看</a>
-							</c:otherwise>
-						</c:choose>
+<c:choose>
+	<c:when test="${empty msg}">
+		<input type="button" value="生成报表" onclick="self.location.href='${appPath}/report.do?method=genSummary&dateType=${param.dateType}&year=${param.year}&month=${param.month}&season=${param.season}'"/>
+		<input type="button" value="重新生成" onclick="self.location.href='${appPath}/report.do?method=genSummary&dateType=${param.dateType}&year=${param.year}&month=${param.month}&season=${param.season}'"/>
+	</c:when>
+	<c:otherwise>
+		<span style="color:gray;">暂时无法生成汇总表，请上传该时期的报表文件</span>
+	</c:otherwise>
+</c:choose>
 					</td>
 				</tr>
-				</c:forEach>
 			</table>
 		</form>
 	</body>

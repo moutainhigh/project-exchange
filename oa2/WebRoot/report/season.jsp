@@ -46,10 +46,21 @@
 						${y.value }
 					</td>
 					<td align="center">
-						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=1">第一季</a>&nbsp;
-						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=2">第二季</a>&nbsp;
-						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=3">第三季</a>&nbsp;
-						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=4">第四季</a>&nbsp;
+						<c:choose>
+							<c:when test="${not empty param.orgTypeId && param.orgTypeId==-1}">
+								&nbsp;<a href="${appPath}/report.do?method=listSummary&year=${y.value}&dateType=${param.dateType}&orgTypeId=-1&season=1">第一季</a>&nbsp;
+								&nbsp;<a href="${appPath}/report.do?method=listSummary&year=${y.value}&dateType=${param.dateType}&orgTypeId=-1&season=2">第二季</a>&nbsp;
+								&nbsp;<a href="${appPath}/report.do?method=listSummary&year=${y.value}&dateType=${param.dateType}&orgTypeId=-1&season=3">第三季</a>&nbsp;
+								&nbsp;<a href="${appPath}/report.do?method=listSummary&year=${y.value}&dateType=${param.dateType}&orgTypeId=-1&season=4">第四季</a>&nbsp;
+							</c:when>
+							<c:otherwise>
+								&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=1">第一季</a>&nbsp;
+								&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=2">第二季</a>&nbsp;
+								&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=3">第三季</a>&nbsp;
+								&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&season=4">第四季</a>&nbsp;
+							</c:otherwise>
+						</c:choose>
+						
 					</td>
 				</tr>
 				</c:forEach>

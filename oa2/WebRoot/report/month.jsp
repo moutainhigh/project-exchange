@@ -47,7 +47,14 @@
 					</td>
 					<td align="center">
 						<c:forEach begin="1" end="12" var="m">
-						&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&month=${m}">${m}ÔÂ</a>
+						<c:choose>
+							<c:when test="${not empty param.orgTypeId && param.orgTypeId==-1}">
+								&nbsp;<a href="${appPath}/report.do?method=listSummary&year=${y.value}&dateType=${param.dateType}&orgTypeId=-1&month=${m}">${m}ÔÂ</a>
+							</c:when>
+							<c:otherwise>
+								&nbsp;<a href="${appPath}/report.do?method=listOrg&year=${y.value}&dateType=${param.dateType}&orgTypeId=${param.orgTypeId}&month=${m}">${m}ÔÂ</a>
+							</c:otherwise>
+						</c:choose>
 						</c:forEach>
 					</td>
 				</tr>
