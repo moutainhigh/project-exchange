@@ -881,6 +881,8 @@ public class ReportAction extends DispatchAction {
 			WorkReportA3 a3 = (WorkReportA3) reports[0][2];
 			WorkReportA4 a4 = (WorkReportA4) reports[0][3];
 			
+			sheet.setColumnView(2, 30);
+			
 			//–Ú∫≈∫Õ ±º‰
 			sheet.addCell(new Number(0,row,index+1));
 			sheet.addCell(new Label(1,row,date));
