@@ -39,6 +39,11 @@
 		<property type="double" name="c28"/>
 		<property type="double" name="c29"/>
 		<property type="double" name="c30"/>
+		<property type="double" name="c31"/>
+		<property type="double" name="c32"/>
+		<property type="double" name="c33"/>
+		<property type="double" name="c34"/>
+		<property type="double" name="c35"/>
 		<!-- 子类 -->
 		<subclass discriminator-value="A1" name="com.throne212.oa.domain.report.WorkReportA1"/>
 		<subclass discriminator-value="A2" name="com.throne212.oa.domain.report.WorkReportA2"/>

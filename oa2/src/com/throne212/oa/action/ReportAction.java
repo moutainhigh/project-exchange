@@ -812,7 +812,8 @@ public class ReportAction extends DispatchAction {
 			path += "report" + File.separator + "excel";
 			System.out.println("excel saved path : " + path);
 			String sourceFile = path + File.separator + "template3.xls";// 模板文件3
-			String excelName = "summary" + y.getValue() + (season == null ? "" : season.toString()) + (month == null ? "" : month.toString()) + ".xls";
+			String date = y.getValue() + (season == null ? "" : season.toString()) + (month == null ? "" : month.toString());
+			String excelName = "summary" + date + ".xls";
 			String targetFile = path + File.separator + excelName;
 
 			// Excel模板文件建模
@@ -849,7 +850,7 @@ public class ReportAction extends DispatchAction {
 				WorkReport reportB7 = reportDao.getExistReport(WorkReportB7.class, file);
 				WorkReport[][] reports = new WorkReport[][] { { reportA1, reportA2, reportA3, reportA4 }, { reportB1, reportB2, reportB3, reportB4, reportB5, reportB6, reportB7 } };
 
-				boolean isSucc = buildOneSummary(workbook.getSheet(0),reports,hos,currRow,Util.getDate(file.getDate()),i);
+				boolean isSucc = buildOneSummary(workbook.getSheet(0),reports,hos,currRow,date,i);
 				if(isSucc){
 					currRow++;
 				}			

@@ -36,6 +36,12 @@ public class WorkReport {
 	protected Double c28;
 	protected Double c29;
 	protected Double c30;
+	protected Double c31;
+	protected Double c32;
+	protected Double c33;
+	protected Double c34;
+	protected Double c35;
+	
 
 	public void setC(int index, Double value) {
 		Field f;
@@ -316,5 +322,45 @@ public class WorkReport {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Double getC31() {
+		return c31;
+	}
+
+	public void setC31(Double c31) {
+		this.c31 = c31;
+	}
+
+	public Double getC32() {
+		return c32;
+	}
+
+	public void setC32(Double c32) {
+		this.c32 = c32;
+	}
+
+	public Double getC33() {
+		return c33;
+	}
+
+	public void setC33(Double c33) {
+		this.c33 = c33;
+	}
+
+	public Double getC34() {
+		return c34;
+	}
+
+	public void setC34(Double c34) {
+		this.c34 = c34;
+	}
+
+	public Double getC35() {
+		return c35;
+	}
+
+	public void setC35(Double c35) {
+		this.c35 = c35;
 	}
 }
