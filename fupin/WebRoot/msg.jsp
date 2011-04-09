@@ -15,8 +15,9 @@
 							loc=loc+'?callback=y'
 						}
 						//alert(loc);
+						//alert(window.opener.location);
 						window.opener.location.href = loc;
-						//window.opener.location.reload(true);
+						window.opener.location.reload(true);
 						window.close();
 					}
 				}

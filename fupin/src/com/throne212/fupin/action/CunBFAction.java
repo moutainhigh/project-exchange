@@ -390,6 +390,13 @@ public class CunBFAction extends BaseAction {
 		r.setRecordId(currId);
 		r.setState("待审核");
 		cunBFBiz.saveOrUpdateEntity(r);
+		
+		//修改状态
+		chengxiao = cunBFBiz.getEntityById(ChengxiaoCun.class, currId);
+		chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+		cunBFBiz.saveOrUpdateEntity(chengxiao);
+		chengxiao=null;
+		
 		this.setMsg("提交修改申请成功");
 		return chengxiaoCunList();
 	}
@@ -405,6 +412,13 @@ public class CunBFAction extends BaseAction {
 		r.setRecordId(currId);
 		r.setState("待审核");
 		cunBFBiz.saveOrUpdateEntity(r);
+		
+		//修改状态
+		cuoshi = cunBFBiz.getEntityById(CuoshiCun.class, currId);
+		cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+		cunBFBiz.saveOrUpdateEntity(cuoshi);
+		cuoshi=null;
+		
 		this.setMsg("提交修改申请成功");
 		return cuoshiCunList();
 	}

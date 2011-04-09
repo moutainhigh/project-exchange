@@ -59,7 +59,7 @@ var msg = '${msg}';
 	</select>
 
 		<input type="submit" class="button" value="查询"> 
-		<input type="button" onclick="winOpen('${appPath}main/family_bf/pic_edit.jsp',450,600);" class="button" value="上传">
+		<input type="button" onclick="winOpen('${appPath}main/family_bf/pic_edit.jsp',600,550);" class="button" value="上传">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 	</td>
 	<td width="5px" align="right"></td>

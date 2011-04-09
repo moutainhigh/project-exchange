@@ -15,14 +15,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
-<script>
+		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			//获取贫困户
+ 			var currFamily = '${pic.family.id}';
 			$(function(){
+				$.getJSON("${appPath}ajax/getAllFamilyByCunWithLeader?time="+new Date().getTime(), {}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#family').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#family').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(currFamily != ''){
+							$('#family').val(currFamily);
+							selectFamily(currFamily);
+						}
+					}
+				});			
 				var year = '${pic.year}';
 				if(year != ''){
 					$('#year').val(year);
 				}
+				
 			});
+			function selectFamily(fId){
+				if(fId){
+					$.getJSON("${appPath}ajax/getLeaderByFamily?time="+new Date().getTime(), {'familyId':fId}, function(json){
+						if(json && json['list'] && json['list'].length>0){
+							$('#leaderId').val(json['list'][0]['leaderName']);
+						}
+					});
+				}
+			}
+ 
+ 
 </script>
 <style type="text/css">
 .fileButton {
@@ -39,13 +64,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form onsubmit="return Validator.Validate(this)" method="post" enctype="multipart/form-data" action="${appPath}family_bf_saveOrUpdatePicFamily.action" name="upload">
 <input type="hidden" value="16483" name="village_id">
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
-<tbody><tr><td height="30" align="right" class="tables_headercell">
+<tbody><tr><td height="30" align="right" class="tables_headercell" colspan="2">
 	<input type="submit" value="确认" class="ewButton" name="确认" >
 	<input type="button" onclick="self.close();" class="ewButton" value="关闭" name="关闭">
 </td></tr>
 <tr>
-	<td height="30" class="tables_headercell" style="height:100%;">
+    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td class="tables_contentcell">
+    <select id="family" name="cuoshi.family.id" size="1" msg="贫困户不能为空!" datatype="Require" onchange="selectFamily(this.value);"></select><font color="#cc0033">在下拉菜单中选择户</font>
+    </td>
+  </tr>
+  <tr>
+    <td height="30" align="right" class="tables_leftcell">单位名称</td>
+    <td class="tables_contentcell"><input type="text" msg="单位名称不能为空" id="dwName" datatype="Require" size="20" value="${userObj.orgName}" name="" readonly="true"><font color="#666666">不能更改，系统自动提取</font>
+    </td>
+  </tr>    
+  <tr>
+    <td height="30" align="right" class="tables_leftcell">干部名称</td>
+    <td class="tables_contentcell">
+    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
+    </td>
+  </tr>
+<tr>
+	<td height="30" class="tables_leftcell">
 		图片类型
+	</td>
+	<td height="30" class="tables_leftcell" >
 		<select class="ewButton" name="pic.type">
 		<option value="帮扶前" <c:if test="${pic.type=='帮扶前'}">selected="selected"</c:if>>帮扶前</option>
 		<option value="帮扶后" <c:if test="${pic.type=='帮扶后'}">selected="selected"</c:if>>帮扶后</option>
@@ -62,13 +106,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			%>
 		
 		<option value="2">2年</option>
-		</select><br><br>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td height="30" class="tables_leftcell" style="height:100%;">
+		图片上传
+	</td>
+	<td height="30" class="tables_leftcell" style="height:100%;">
+		
 		<iframe src="${appPath}upload/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
 		<font color="#cc0033" style="font-weight: normal;">*请选择格式为JPG且大小不超过1.5MB的图片</font>
 	</td>
 </tr>
 <tr>
-	<td height="120" class="tables_contentcell">图片注解(最多50字)<font color="#cc0033">*</font><br>
+	<td height="30" class="tables_leftcell" style="height:100%;">
+		图片注解(最多50字)<font color="#cc0033">*</font>
+	</td>
+	<td height="120" class="tables_contentcell">
 	<textarea msg="图片注释不能为空" datatype="Require" name="pic.remark" rows="4" cols="45">${pic.remark}</textarea>
 	</td>
 </tr>

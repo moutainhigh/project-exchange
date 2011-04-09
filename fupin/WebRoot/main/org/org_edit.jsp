@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	帮扶贫困村：${org.cun.name }
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 		<tbody><tr>
-    	<td align="center" class="tables_contentcell" colspan="4">┏━━━帮扶责任人信息━━━┓</td>
+    	<td align="center" class="tables_contentcell" colspan="4">┏━━━驻村干部信息━━━┓</td>
 		</tr>
 		<tr>
 		<td height="30" align="right" width="10%" class="tables_leftcell">单位名称</td>
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</tr>
 		
 		<tr> 
-    	<td height="30" align="right" width="15%" class="tables_leftcell">联络员姓名</td>
+    	<td height="30" align="right" width="15%" class="tables_leftcell">姓名</td>
     	<td width="35%" class="tables_contentcell">
 		<input type="text" msg="联络员姓名不能为空,且必须为汉字" datatype="Chinese" size="20" value="${org.contactName }" id="llymc" name="org.contactName">
 		<font size="4" color="#cc0033"> *</font>

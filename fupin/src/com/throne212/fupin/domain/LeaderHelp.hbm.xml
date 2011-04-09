@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="LeaderHelp" table="fp_leader_help">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="family" column="family_id" lazy="false"></many-to-one>
+		<many-to-one name="leader" column="leader_id" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>

@@ -16,6 +16,19 @@
 		<script type="text/javascript" src="${appPath}js/jquery.datepick-zh-CN.js"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			var arr = new Array();
+			<c:forEach items="${family.leaderList}" var="l" varStatus="status">
+			arr[${status.count-1}]='${l.id}';
+			</c:forEach>
+			$(function(){
+				$('input[type="checkbox"]').each(function(){
+					for(var i=0;i<arr.length;i++){
+						if($(this).val() == arr[i]){
+							$(this).attr('checked',true);
+						}
+					}
+				});
+			});
 		</script>
 		<style>
 .tip:hover{

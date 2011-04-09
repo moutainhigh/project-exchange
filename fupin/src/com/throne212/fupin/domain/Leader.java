@@ -1,6 +1,6 @@
 package com.throne212.fupin.domain;
 
-public class Leader extends MyEntity {
+public class Leader extends MyEntity implements Comparable<Leader>{
 	
 	private Org org;
 	private Family family;
@@ -59,7 +59,12 @@ public class Leader extends MyEntity {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	
-	
+	public int compareTo(Leader o) {
+		if(this == null && o == null)
+			return 0;
+		if(o==null )
+			return 1;
+		return (int) (this.getId()-o.getId());
+	}
 
 }

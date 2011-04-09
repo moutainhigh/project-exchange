@@ -179,18 +179,13 @@ function displayAction(sid) {
                                  
 					</td>
 					<td height="25" align="center" class="tables_contentcell">
-				    <c:if test="${f.status=='未提交'}">
-						<a href="" >确认后提交</a>
-					</c:if>
-					<c:if test="${f.status!='未提交'}">
 						${f.status }
-					</c:if>
                     </td>
 					<td height="25" align="center" class="tables_contentcell">
 					<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
 						<a href="#" onclick="winOpen('${appPath}family_bf_saveOrUpdateReason.action?reason.id=${f.id}',600,390);">修改</a>
 					 </c:if>
-					 <c:if test="${f.status=='审核中'||f.status=='审核通过'}">
+					 &nbsp;<c:if test="${f.status=='审核通过'}">
 						<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
 					 </c:if>
 					 <c:if test="${f.status=='未提交'}">

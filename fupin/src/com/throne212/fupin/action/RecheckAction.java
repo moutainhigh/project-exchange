@@ -83,7 +83,7 @@ public class RecheckAction extends BaseAction {
 				c.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
 				shenHeBiz.saveOrUpdateEntity(c);
 			}
-		} else if ("户贫困原因".equals(recheck.getModule())) {
+		} else if ("户贫困原因".equals(recheck.getModule()) || "户帮扶原因".equals(recheck.getModule())) {
 			Reason c = shenHeBiz.getEntityById(Reason.class, recordId);
 			if (c != null) {
 				c.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);

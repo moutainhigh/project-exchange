@@ -58,7 +58,7 @@
 							编号
 						</td>
 						<td width="" class="tables_headercell">
-							户名
+							贫困户名称
 						</td>
 						<td width="" class="tables_headercell">
 							类型

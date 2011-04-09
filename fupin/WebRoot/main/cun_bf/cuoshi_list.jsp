@@ -172,7 +172,7 @@ var msg = '${msg}';
 		<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
 		<a href="#" onclick="winOpen('${appPath}cun_bf_saveOrUpdateCuoshiCun.action?cuoshi.id=${f.id}',600,390);">修改</a>
 		</c:if>
-		<c:if test="${f.status=='审核中'||f.status=='审核通过'}">
+		&nbsp;<c:if test="${f.status=='审核通过'}">
 		<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
 		</c:if>
 		

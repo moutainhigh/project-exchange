@@ -74,7 +74,7 @@ var msg = '${requestScope.msg}';
 		<input type="checkbox" onclick="checkAll(this);">
 		<td width="" class="tables_headercell">编号</td>
 		<td width="" class="tables_headercell">年度</td>
-		<td class="tables_headercell">户主姓名</td>
+		<td class="tables_headercell">图片说明</td>
 		<td width="" class="tables_headercell">上传时间</td>
 		<td width="" class="tables_headercell">类型</td>
 		<td width="" class="tables_headercell">状态</td>
@@ -93,7 +93,7 @@ var msg = '${requestScope.msg}';
 			${f.year }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			${f.cun.name }
+			${f.remark}
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.createDate }

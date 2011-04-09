@@ -2,17 +2,22 @@ package com.throne212.fupin.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ManagerDao;
 import com.throne212.fupin.domain.Area;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 
 public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
@@ -50,12 +55,37 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllCun(Integer pageIndex) {
 		PageBean<Cun> page = new PageBean<Cun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Cun t order by id";
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		String hql = "from Cun c where 1=1";
+		
+		Object[] param = null;
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (c.org=? or c.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId()};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and c.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen()};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and c.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea()};
+		}
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql , param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Cun> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Cun> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -63,14 +93,41 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	}
 
 	public PageBean getAllCun(String name, Integer pageIndex) {
+		
 		PageBean<Cun> page = new PageBean<Cun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Cun t where name like ? order by id";
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, "%"+name+"%").get(0);
+		String hql = "from Cun c where 1=1";
+		
+		Object[] param = {"%"+name+"%"};
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (c.org=? or c.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId(),"%"+name+"%"};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and c.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen(),"%"+name+"%"};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and c.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}
+		hql += " and name like ?";
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql , param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Cun> list = s.createQuery(hql).setParameter(0, "%"+name+"%").setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Cun> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -80,12 +137,37 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllFamily(Integer pageIndex) {
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Family t order by id";
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		String hql = "from Family f where 1=1";
+		
+		Object[] param = null;
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId()};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen()};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea()};
+		}
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Family> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Family> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -95,12 +177,38 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllFamily(String name, Integer pageIndex) {
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Family t where name like ? order by id";
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, "%"+name+"%").get(0);
+		String hql = "from Family f where 1=1";
+		
+		Object[] param = {"%"+name+"%"};
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId(),"%"+name+"%"};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen(),"%"+name+"%"};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}
+		hql += " and name like ?";
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Family> list = s.createQuery(hql).setParameter(0, "%"+name+"%").setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Family> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码

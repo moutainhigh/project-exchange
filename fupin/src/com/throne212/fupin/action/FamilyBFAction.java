@@ -1,7 +1,10 @@
 package com.throne212.fupin.action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.FamilyBFBiz;
@@ -16,6 +19,7 @@ import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
+import com.throne212.fupin.domain.LeaderHelp;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicFamily;
@@ -472,8 +476,20 @@ public class FamilyBFAction extends BaseAction {
 		if(pageBean.getResultList() != null && pageBean.getResultList().size()>0){
 			for(Object o : pageBean.getResultList()){
 				Family f = (Family) o;
-				List list = orgBiz.getEntitiesByColumn(Leader.class, "family", f);
-				f.setLeaderList(list);
+				
+				SortedSet sortSet = new TreeSet();
+				
+				List leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", f);
+				if(leaderList != null && leaderList.size()>0)
+					sortSet.addAll(leaderList);
+				
+				//通过映射表获取
+				List<LeaderHelp> leaderHelperList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", f);
+				for(LeaderHelp lh : leaderHelperList){
+					sortSet.add(lh.getLeader());
+				}
+				
+				f.setLeaderList(new ArrayList<Leader>(sortSet));
 			}
 		}
 		return "family_mapping_list";
@@ -490,22 +506,55 @@ public class FamilyBFAction extends BaseAction {
 		if (user instanceof Org) {
 			leaderList = orgBiz.getEntitiesByColumn(Leader.class, "org", user);
 		} 
+		Family f = family;
+		SortedSet sortSet = new TreeSet();
+		List leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", f);
+		if(leaderList != null && leaderList.size()>0)
+			sortSet.addAll(leaderList);
+		//通过映射表获取
+		List<LeaderHelp> leaderHelperList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", f);
+		for(LeaderHelp lh : leaderHelperList)
+			sortSet.add(lh.getLeader());
+		f.setLeaderList(new ArrayList<Leader>(sortSet));
 		
 		return "family_mapping_edit";
 	}
 	
 	public String saveFamilyMapping(){
 		String[] ids = (String[]) ActionContext.getContext().getParameters().get("leaderIds");
+		//清楚原有的帮扶
+		family = orgBiz.getEntityById(Family.class, family.getId());
+		List<Leader> leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", family);
+		if(leaderList!=null && leaderList.size()>0)
+			for(Leader l : leaderList){
+				l.setFamily(null);
+				orgBiz.saveOrUpdateEntity(l);
+			}
+		List<LeaderHelp> leaderHelperList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", family);
+		if(leaderHelperList!=null && leaderHelperList.size()>0)
+			for(LeaderHelp lh : leaderHelperList){
+				orgBiz.deleteEntity(LeaderHelp.class, lh.getId());
+			}
+		
+		
 		if(ids != null && ids.length > 0){
-			family = orgBiz.getEntityById(Family.class, family.getId());
 			for(String id : ids){
 				Leader leader = orgBiz.getEntityById(Leader.class, Long.parseLong(id));
 				leader.setFamily(family);
 				orgBiz.saveOrUpdateEntity(leader);
+				
+				//保存映射
+				List<LeaderHelp> lhList = familyBFBiz.getEntitiesByTwoColumn(LeaderHelp.class, "leader", leader, "family", family);
+				if(lhList == null || lhList.size()==0){
+					LeaderHelp lh = new LeaderHelp();
+					lh.setFamily(family);
+					lh.setLeader(leader);
+					orgBiz.saveOrUpdateEntity(lh);
+				}
 			}
-			this.setSucc("Y");
-			this.setMsg("帮扶方式保存成功");
 		}
+		this.setSucc("Y");
+		this.setMsg("帮扶方式保存成功");
 		return "family_mapping_edit";
 	}
 	
@@ -525,6 +574,13 @@ public class FamilyBFAction extends BaseAction {
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
+		
+		//修改状态
+		chengxiao = familyBFBiz.getEntityById(ChengxiaoFamily.class, currId);
+		chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+		familyBFBiz.saveOrUpdateEntity(chengxiao);
+		cuoshi=null;
+		
 		this.setMsg("提交修改申请成功");
 		return chengxiaoFamilyList();
 	}
@@ -540,13 +596,20 @@ public class FamilyBFAction extends BaseAction {
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
+		
+		//修改状态
+		cuoshi = familyBFBiz.getEntityById(CuoshiFamily.class, currId);
+		cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+		familyBFBiz.saveOrUpdateEntity(cuoshi);
+		cuoshi=null;
+		
 		this.setMsg("提交修改申请成功");
 		return cuoshiFamilyList();
 	}
 	public String updateApplyReason(){
 		Recheck r = new Recheck();
 		r.setCreateDate(new Date());
-		r.setModule("户帮扶原因");
+		r.setModule("户贫困原因");
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof Org){
 			r.setOrg((Org) user);
@@ -555,6 +618,13 @@ public class FamilyBFAction extends BaseAction {
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
+		
+		//修改状态
+		reason = familyBFBiz.getEntityById(Reason.class, currId);
+		reason.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+		familyBFBiz.saveOrUpdateEntity(reason);
+		cuoshi=null;
+		
 		this.setMsg("提交修改申请成功");
 		return reasonList();
 	}
@@ -570,6 +640,13 @@ public class FamilyBFAction extends BaseAction {
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
+		
+		//修改状态
+		record = familyBFBiz.getEntityById(Record.class, currId);
+		record.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
+		familyBFBiz.saveOrUpdateEntity(record);
+		cuoshi=null;
+		
 		this.setMsg("提交修改申请成功");
 		return recordList();
 	}

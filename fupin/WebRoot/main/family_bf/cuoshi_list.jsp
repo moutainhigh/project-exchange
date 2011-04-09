@@ -231,9 +231,9 @@ function displayAction(sid) {
 					<td height="25" align="center" class="tables_contentcell">
 						<span title="${f.family.leaderNames }">${f.family.leaderNames }</span>
 						</td>
-					<td height="25" align="center" class="tables_contentcell">
-						&nbsp;
-                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>
+					<td height="25" align="center" class="tables_contentcell"><div> 
+						&nbsp; 
+                       <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b></div>
                                  
 					</td>
 					<td height="25" align="center" class="tables_contentcell">
@@ -243,7 +243,7 @@ function displayAction(sid) {
 					<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
 						<a href="#" onclick="winOpen('${appPath}family_bf_saveOrUpdateCuoshiFamily.action?cuoshi.id=${f.id}',600,390);">修改</a>
 					 </c:if>
-					 <c:if test="${f.status=='审核中'||f.status=='审核通过'}">
+					 &nbsp;<c:if test="${f.status=='审核通过'}">
 						<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
 					 </c:if>
 					 <c:if test="${f.status=='未提交'}">

@@ -35,6 +35,7 @@
 	<mapping resource="com/throne212/fupin/domain/Zixun.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Message.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Discuss.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/LeaderHelp.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

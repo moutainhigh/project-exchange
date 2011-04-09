@@ -12,3 +12,12 @@ where u.user_type='org' and u.orgName='市汽车工业集团'
 select name
 from fp_diqu d
 where d.name = '龙新村'
+
+
+create table fp_leader_help
+(
+	`id` bigint(20) NOT NULL primary key,
+	`family_id` bigint(20),
+	`leader_id` bigint(20)
+)
+commit;

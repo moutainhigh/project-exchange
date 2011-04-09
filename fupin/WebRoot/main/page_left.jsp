@@ -181,7 +181,7 @@ function images_update(){
 		//menuArray[menuArray.length]="1,表二,./test.htm";
 
 		
-		menuArray[menuArray.length]="0,修改申请,${appPath}recheck_list.action";
+		//menuArray[menuArray.length]="0,修改申请,${appPath}recheck_list.action";
 		
         //menuArray[menuArray.length]="0,帐号维护,yonghuguanli.jsp";
         //menuArray[menuArray.length]="1,领导帐号,../common/chbfmanage/leaderuser.jsp"; 
@@ -212,7 +212,7 @@ function images_update(){
 	    //menuArray[menuArray.length]="2,8.2.年度报表,http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.2.html";
 	    //menuArray[24]="2,2.帐号激活,./help/help2.2.html";	
 	    </c:if>
-	    
+	    <%--
 	    <c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="0,信息审核,";
 	    </c:if>
@@ -238,6 +238,8 @@ function images_update(){
 		
 		menuArray[menuArray.length]="1,修改申请,${appPath}recheck_listRecheck.action";
 		</c:if>
+		--%>
+		menuArray[menuArray.length]="0,修改申请审核,${appPath}recheck_listRecheck.action";
 	
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">
