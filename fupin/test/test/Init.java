@@ -32,7 +32,7 @@ public class Init {
 		baseBiz.saveOrUpdateEntity(admin);
 		
 		Shi shi = new Shi();
-		shi.setName("四会市");
+		shi.setName("广州市");
 		baseBiz.saveOrUpdateEntity(shi);
 		
 		Area area = new Area();

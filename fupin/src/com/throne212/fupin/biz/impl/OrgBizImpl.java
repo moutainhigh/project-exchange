@@ -235,6 +235,8 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			}
 
 			this.saveOrUpdateEntity(f);
+			//baseDao.fluch();
+			baseDao.clear();
 			sum++;
 
 		}
