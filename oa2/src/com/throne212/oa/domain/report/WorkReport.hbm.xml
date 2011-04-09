@@ -7,7 +7,7 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="report_type" force="false" insert="true" not-null="true" />
-		<many-to-one name="file" column="file_id" lazy="false" cascade="save-update"></many-to-one>
+		<many-to-one name="file" column="file_id" lazy="false" cascade="none"></many-to-one>
 		<!-- 字段 -->
 		<property type="double" name="c1"/>
 		<property type="double" name="c2"/>

@@ -132,6 +132,13 @@ public class ReportDao {
 		s.getTransaction().commit();
 		s.close();
 	}
+	public void saveOrUpdateReportFile(ReportFile file) {
+		Session s = HibernateSessionFactory.getSession();
+		s.beginTransaction();
+		s.saveOrUpdate(file);
+		s.getTransaction().commit();
+		s.close();
+	}
 
 	public int deleteYear(int year) {
 		Session s = HibernateSessionFactory.getSession();
