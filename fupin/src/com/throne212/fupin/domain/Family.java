@@ -31,6 +31,13 @@ public class Family extends MyEntity {
 
 	private String jiegou;// 房屋结构
 	private Double mianji;// mianji
+	
+	//新的字段-测试10
+	private String tel;//联系电话
+	private String reason;//贫困原因
+	private String willing;//贫困意愿
+	private String weifang;//是否危房
+	
 
 	private Person person1;
 	private Person person2;
@@ -160,7 +167,9 @@ public class Family extends MyEntity {
 	}
 
 	public Double getIncome() {
-		return income;
+		if(income == null)
+			return null;
+		return Double.valueOf(Math.round(income));
 	}
 
 	public void setIncome(Double income) {
@@ -256,7 +265,9 @@ public class Family extends MyEntity {
 	}
 
 	public Double getMianji() {
-		return mianji;
+		if(mianji == null)
+			return null;
+		return Double.valueOf(Math.round(mianji));
 	}
 
 	public void setMianji(Double mianji) {
@@ -349,6 +360,38 @@ public class Family extends MyEntity {
 
 	public void setLeaderList(List<Leader> leaderList) {
 		this.leaderList = leaderList;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getWilling() {
+		return willing;
+	}
+
+	public void setWilling(String willing) {
+		this.willing = willing;
+	}
+
+	public String getWeifang() {
+		return weifang;
+	}
+
+	public void setWeifang(String weifang) {
+		this.weifang = weifang;
 	}
 
 }

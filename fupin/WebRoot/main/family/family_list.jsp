@@ -60,7 +60,7 @@
 							</c:if>
 							
 							<!--<input type="button" onclick="download();" value="导出Excel" class="button">-->
-							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',900,700);" class="button" value="新增">
+							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1100,700);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>
 						<td width="5px"></td>
@@ -116,8 +116,8 @@
 								${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',900,700);">修改</a>
-								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',900,700);">查看</a>
+								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',1100,700);">修改</a>
+								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',1100,700);">查看</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -35,6 +35,11 @@
 		<property name="type"></property>
 		<property name="wenhua"></property>
 		<property name="zu"></property>
+		<!-- 新字段 -->
+		<property name="tel"></property>
+		<property name="reason"></property>
+		<property name="willing"></property>		
+		<property name="weifang"></property>
 		
 		<component name="person1" class="Person">
 			<property name="birthday" column="birthday1"></property>
@@ -43,6 +48,15 @@
 			<property name="relate" column="relate1"></property>
 			<property name="wenhua" column="wenhua1"></property>
 			<property name="name" column="name1"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome"></property>
+			<property name="nongyeIncome" column="nongyeIncome"></property>
+			<property name="dibaoIncome" column="dibaoIncome"></property>
+			<property name="otherIncome" column="otherIncome"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao"></property>
+			<property name="yanglao" column="yanglao"></property>
+			<property name="stuCost" column="stuCost"></property>
+			<property name="remark" column="remark"></property>
 		</component>
 		<component name="person2" class="Person">
 			<property name="birthday" column="birthday2"></property>
@@ -51,6 +65,15 @@
 			<property name="relate" column="relate2"></property>
 			<property name="wenhua" column="wenhua2"></property>
 			<property name="name" column="name2"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome2"></property>
+			<property name="nongyeIncome" column="nongyeIncome2"></property>
+			<property name="dibaoIncome" column="dibaoIncome2"></property>
+			<property name="otherIncome" column="otherIncome2"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao2"></property>
+			<property name="yanglao" column="yanglao2"></property>
+			<property name="stuCost" column="stuCost2"></property>
+			<property name="remark" column="remark2"></property>
 		</component>
 		<component name="person3" class="Person">
 			<property name="birthday" column="birthday3"></property>
@@ -59,6 +82,15 @@
 			<property name="relate" column="relate3"></property>
 			<property name="wenhua" column="wenhua3"></property>
 			<property name="name" column="name3"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome3"></property>
+			<property name="nongyeIncome" column="nongyeIncome3"></property>
+			<property name="dibaoIncome" column="dibaoIncome3"></property>
+			<property name="otherIncome" column="otherIncome3"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao3"></property>
+			<property name="yanglao" column="yanglao3"></property>
+			<property name="stuCost" column="stuCost3"></property>
+			<property name="remark" column="remark3"></property>
 		</component>
 		<component name="person4" class="Person">
 			<property name="birthday" column="birthday4"></property>
@@ -67,6 +99,15 @@
 			<property name="relate" column="relate4"></property>
 			<property name="wenhua" column="wenhua4"></property>
 			<property name="name" column="name4"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome4"></property>
+			<property name="nongyeIncome" column="nongyeIncome4"></property>
+			<property name="dibaoIncome" column="dibaoIncome4"></property>
+			<property name="otherIncome" column="otherIncome4"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao4"></property>
+			<property name="yanglao" column="yanglao4"></property>
+			<property name="stuCost" column="stuCost4"></property>
+			<property name="remark" column="remark4"></property>
 		</component>
 		<component name="person5" class="Person">
 			<property name="birthday" column="birthday5"></property>
@@ -75,6 +116,15 @@
 			<property name="relate" column="relate5"></property>
 			<property name="wenhua" column="wenhua5"></property>
 			<property name="name" column="name5"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome5"></property>
+			<property name="nongyeIncome" column="nongyeIncome5"></property>
+			<property name="dibaoIncome" column="dibaoIncome5"></property>
+			<property name="otherIncome" column="otherIncome5"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao5"></property>
+			<property name="yanglao" column="yanglao5"></property>
+			<property name="stuCost" column="stuCost5"></property>
+			<property name="remark" column="remark5"></property>
 		</component>
 		<component name="person6" class="Person">
 			<property name="birthday" column="birthday6"></property>
@@ -83,6 +133,15 @@
 			<property name="relate" column="relate6"></property>
 			<property name="wenhua" column="wenhua6"></property>
 			<property name="name" column="name6"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome6"></property>
+			<property name="nongyeIncome" column="nongyeIncome6"></property>
+			<property name="dibaoIncome" column="dibaoIncome6"></property>
+			<property name="otherIncome" column="otherIncome6"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao6"></property>
+			<property name="yanglao" column="yanglao6"></property>
+			<property name="stuCost" column="stuCost6"></property>
+			<property name="remark" column="remark6"></property>
 		</component>
 		<component name="person7" class="Person">
 			<property name="birthday" column="birthday7"></property>
@@ -91,6 +150,15 @@
 			<property name="relate" column="relate7"></property>
 			<property name="wenhua" column="wenhua7"></property>
 			<property name="name" column="name7"></property>
+			<!-- 新字段 -->
+			<property name="gongziIncome" column="gongziIncome7"></property>
+			<property name="nongyeIncome" column="nongyeIncome7"></property>
+			<property name="dibaoIncome" column="dibaoIncome7"></property>
+			<property name="otherIncome" column="otherIncome7"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao7"></property>
+			<property name="yanglao" column="yanglao7"></property>
+			<property name="stuCost" column="stuCost7"></property>
+			<property name="remark" column="remark7"></property>
 		</component>
 		<component name="person8" class="Person">
 			<property name="birthday" column="birthday8"></property>
@@ -99,6 +167,15 @@
 			<property name="relate" column="relate8"></property>
 			<property name="wenhua" column="wenhua8"></property>
 			<property name="name" column="name8"></property>
+			<!-- 新字段 
+			<property name="gongziIncome" column="gongziIncome8"></property>
+			<property name="nongyeIncome" column="nongyeIncome8"></property>
+			<property name="dibaoIncome" column="dibaoIncome8"></property>
+			<property name="otherIncome" column="otherIncome8"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao8"></property>
+			<property name="yanglao" column="yanglao8"></property>
+			<property name="stuCost" column="stuCost8"></property>
+			<property name="remark" column="remark8"></property>-->
 		</component>
 		<component name="person9" class="Person">
 			<property name="birthday" column="birthday9"></property>
@@ -107,6 +184,15 @@
 			<property name="relate" column="relate9"></property>
 			<property name="wenhua" column="wenhua9"></property>
 			<property name="name" column="name9"></property>
+			<!-- 新字段 
+			<property name="gongziIncome" column="gongziIncome9"></property>
+			<property name="nongyeIncome" column="nongyeIncome9"></property>
+			<property name="dibaoIncome" column="dibaoIncome9"></property>
+			<property name="otherIncome" column="otherIncome9"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao9"></property>
+			<property name="yanglao" column="yanglao9"></property>
+			<property name="stuCost" column="stuCost9"></property>
+			<property name="remark" column="remark9"></property>-->
 		</component>
 		<component name="person10" class="Person">
 			<property name="birthday" column="birthday10"></property>
@@ -115,6 +201,15 @@
 			<property name="relate" column="relate10"></property>
 			<property name="wenhua" column="wenhua10"></property>
 			<property name="name" column="name10"></property>
+			<!-- 新字段 
+			<property name="gongziIncome" column="gongziIncome10"></property>
+			<property name="nongyeIncome" column="nongyeIncome10"></property>
+			<property name="dibaoIncome" column="dibaoIncome10"></property>
+			<property name="otherIncome" column="otherIncome10"></property>
+			<property name="hezuoYiliao" column="hezuoYiliao10"></property>
+			<property name="yanglao" column="yanglao10"></property>
+			<property name="stuCost" column="stuCost10"></property>
+			<property name="remark" column="remark10"></property>-->
 		</component>
 		
 		
