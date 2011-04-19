@@ -201,6 +201,11 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			Family f = this.getEntityByUnique(Family.class, "idNo", area);
 			if(f == null)
 				f = new Family();
+			
+			//类型
+			if(f.getType()==null){
+				f.setType(3);//默认贫困类型为3
+			}
 
 			Area a = (Area) this.getEntityByUnique(Area.class, "name", area);
 			if (a == null) {

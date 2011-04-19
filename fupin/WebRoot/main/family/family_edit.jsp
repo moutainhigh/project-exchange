@@ -51,6 +51,11 @@
 				}
 			}
 			</c:if>
+			function saveForm(){
+				alert('wwwe');
+				document.forms[0].submit();
+				alert('wewe');
+			}
 		</script>
 	</head>
 	<body>
@@ -62,16 +67,23 @@
 					<tr>
 						<td colspan="3" align="center" class="tables_leftcell">贫困村名称</td>
 						<td colspan="15" class="tables_contentcell">
-							<c:if test="${empty f.id}">
-								<select id="areaId" name="areaId" onchange="selectArea(this.value);"></select>区(县)
-								&nbsp;&nbsp;
-								<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);"></select>镇
-								&nbsp;&nbsp;
-								<select id="cunId" name="family.cun.id"></select>村
-							</c:if>
-							<c:if test="${not empty f.id}">
-							${f.cun.zhen.area.name}${f.cun.zhen.name }${f.cun.name }<input type="hidden" name="family.cun.id" value="${family.cun.id }"/>
-							</c:if>
+							<c:choose>
+								<c:when test="${userObj.roleType=='帮扶单位管理员' && not empty userObj.cun}">
+									${userObj.cun.zhen.area.name}${userObj.cun.zhen.name }${userObj.cun.name }<input type="hidden" name="family.cun.id" value="${userObj.cun.id }"/>
+								</c:when>
+								<c:otherwise>
+									<c:if test="${empty f.id}">
+										<select id="areaId" name="areaId" onchange="selectArea(this.value);"></select>区(县)
+										&nbsp;&nbsp;
+										<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);"></select>镇
+										&nbsp;&nbsp;
+										<select id="cunId" name="family.cun.id"></select>村
+									</c:if>
+									<c:if test="${not empty f.id}">
+									${f.cun.zhen.area.name}${f.cun.zhen.name }${f.cun.name }<input type="hidden" name="family.cun.id" value="${family.cun.id }"/>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
 							&nbsp;
 						</td>
 					</tr>
@@ -93,7 +105,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td  align="center" class="tables_leftcell">
+						<td width="50" align="center" class="tables_leftcell">
 							姓名<font size="4" color="#cc0033">*</font>
 						</td>
 						<td colspan="1" class="tables_contentcell">
@@ -187,7 +199,7 @@
 						<td align="center" class="tables_contentcell">
 							其他
 						</td>
-						<td align="center" class="tables_contentcell">
+						<td width="60"  align="center" class="tables_contentcell">
 							结构（砖瓦/泥房）
 						</td>
 						<td align="center" class="tables_contentcell">
@@ -203,16 +215,19 @@
 						</td>
 						<td colspan="3" class="tables_contentcell">
 							&nbsp;
-							<select name="family.type" style="width: 100px;">
+							<select name="family.type" style="">
 								<option value=""></option>
 								<option value="1" <c:if test="${f.type==1}">selected="selected"</c:if>>
-									1
+									1-有劳动能力的低保户
 								</option>
 								<option value="2" <c:if test="${f.type==2}">selected="selected"</c:if>>
-									2
+									2-无劳动能力的低保户
 								</option>
-								<option value="3" <c:if test="${f.type==3}">selected="selected"</c:if>>
-									3
+								<option value="3" <c:if test="${empty f.type || f.type==3}">selected="selected"</c:if>>
+									3-有劳动能力低收入困难家庭
+								</option>
+								<option value="4" <c:if test="${empty f.type || f.type==3}">selected="selected"</c:if>>
+									4-无劳动能力低收入困难家庭
 								</option>
 							</select>
 						</td>
@@ -378,7 +393,8 @@
 					%>
 					<tr>
 						<td align="center" class="tables_contentcell" colspan="18">
-							<input type="submit" value="确认" class="button" name="确认">
+							<input type="submit" value="确认" class="button">
+							<input type="button" value="保存" class="button" onclick="saveForm();">
 							<input type="button" onclick="self.close();" class="button" value="取消" name="取消">
 						</td>
 					</tr>

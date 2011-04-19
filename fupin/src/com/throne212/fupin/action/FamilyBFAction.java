@@ -323,6 +323,9 @@ public class FamilyBFAction extends BaseAction {
 				this.setMsg("尚未指定帮扶村，不能进行操作!");
 				return "pic_edit";
 			}
+			//设置户
+			if(pic.getFamily()!=null && pic.getFamily().getId()!=null)
+				family = orgBiz.getEntityById(Family.class, pic.getFamily().getId());
 			pic.setFamily(family);
 			String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
 			if (image != null) {

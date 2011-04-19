@@ -11,26 +11,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <title>图片上传管理</title>
 <link href="${appPath}main/main_data/manage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.autocomplete.css" />
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
+		<script src="${appPath}js/jquery.autocomplete.js"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			//获取贫困户
  			var currFamily = '${pic.family.id}';
 			$(function(){
-				$.getJSON("${appPath}ajax/getAllFamilyByCunWithLeader?time="+new Date().getTime(), {}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#family').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++)
-							$('#family').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
-						if(currFamily != ''){
-							$('#family').val(currFamily);
-							selectFamily(currFamily);
-						}
-					}
-				});			
+				if(currFamily != ''){
+					selectFamily(currFamily);
+				}			
 				var year = '${pic.year}';
 				if(year != ''){
 					$('#year').val(year);
@@ -46,6 +40,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					});
 				}
 			}
+			//自动填充
+			$(function(){
+				$("#familyName").autocomplete('${appPath}ajax/queryFamilyByName?time='+new Date().getTime(), {
+					multiple: false,
+					minChars: 1,
+					parse: function(data) {
+						return $.map(data['list'], function(row) {
+							return {
+								data: row['name']+'('+row['id']+')',
+								value: row['name'],
+								result: row['name']
+							}
+						});
+					},
+					formatItem: function(item) {
+						return item;
+					}
+				}).result(function(event, item) {
+					//location.href = item.url;
+					var familyId = item.substring(item.indexOf('(')+1,item.length-1);
+					$('#familyId').val(familyId);
+					selectFamily(familyId);
+				});			
+			});
  
  
 </script>
@@ -71,7 +89,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <tr>
     <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
     <td class="tables_contentcell">
-    <select id="family" name="cuoshi.family.id" size="1" msg="贫困户不能为空!" datatype="Require" onchange="selectFamily(this.value);"></select><font color="#cc0033">在下拉菜单中选择户</font>
+    <input name="pic.family.id" id="familyId" value="${pic.family.id}" type="hidden"/>
+    <input id="familyName" value="${pic.family.name}"/>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
     </td>
   </tr>
   <tr>

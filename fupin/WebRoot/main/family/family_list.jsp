@@ -31,6 +31,9 @@
 			document.forms[0].action = '${appPath}family_downloadExcel.action';
 			document.forms[0].submit();
 		} 
+		$(function(){
+			$('input[value="Excel"]').val('资料导出');
+		});
 		</script>
 		<style>
 .tables_search {
@@ -53,15 +56,13 @@
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 						
 							<input type="submit" class="button" value="查询"> 
-							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="导入Excel">
-							
-							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
-							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="调查表导入">
-							</c:if>
-							
-							<!--<input type="button" onclick="download();" value="导出Excel" class="button">-->
-							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1100,700);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
+							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1100,700);" class="button" value="逐户录入">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
+							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
+							</c:if>
+							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="批量导入">
+							<!--<input type="button" onclick="download();" value="导出Excel" class="button">-->
 						</td>
 						<td width="5px"></td>
 					</tr>

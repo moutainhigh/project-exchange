@@ -298,6 +298,12 @@
 					list\[\d+\]\.pinyin
 				</param>
 			</result>
+			<result name="query_family" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
 		</action>		
 	</package>
 </struts>

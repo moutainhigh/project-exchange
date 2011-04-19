@@ -55,6 +55,15 @@
 			<property name="you"></property>
 			<property name="item" length="2048"></property>
 			<property name="pinyin"></property>
+			<!-- 新增字段 -->
+			<property name="poorFamilyNum1"></property>
+			<property name="poorPersonNum1"></property>
+			<property name="poorFamilyNum2"></property>
+			<property name="poorPersonNum2"></property>
+			<property name="poorFamilyNum3"></property>
+			<property name="poorPersonNum3"></property>
+			<property name="poorFamilyNum4"></property>
+			<property name="poorPersonNum4"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

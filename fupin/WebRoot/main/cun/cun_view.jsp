@@ -36,25 +36,11 @@
 		<td class="tables_contentcell">&nbsp;${c.personNum }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">需要搬迁户数</td>
-		<td class="tables_contentcell">&nbsp;${c.needBanFamily }</td>
-
-		<td height="30" align="right" class="tables_leftcell">需要搬迁人数</td>
-		<td class="tables_contentcell">&nbsp;${c.needBanPerson }</td>
-	</tr>
-	<tr>
 		<td height="30" align="right" class="tables_leftcell">劳动力总人数</td>
 		<td class="tables_contentcell">&nbsp;${c.labor }</td>
 
 		<td height="30" align="right" class="tables_leftcell">外出务工人数</td>
 		<td class="tables_contentcell">&nbsp;${c.outLabor }</td>
-	</tr>
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">培训人次</td>
-		<td class="tables_contentcell">&nbsp;${c.trainingNum }</td>
-
-		<td height="30" align="right" class="tables_leftcell">转移人数</td>
-		<td class="tables_contentcell">&nbsp;${c.transNum }</td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困户数</td>
@@ -63,12 +49,34 @@
 		<td height="30" align="right" class="tables_leftcell">贫困人口数</td>
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum }</td>
 	</tr>
+	<!-- 新增字段 -->
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">低保户数</td>
-		<td class="tables_contentcell">&nbsp;${c.dibaoFamily }</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户户数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum1 }</td>
 
-		<td height="30" align="right" class="tables_leftcell">低保人数</td>
-		<td class="tables_contentcell">&nbsp;${c.dibaoPerson }</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户人口数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorPersonNum1 }</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户户数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum2 }</td>
+
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户人口数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorPersonNum2 }</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭户数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum3 }</td>
+
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭人口数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorPersonNum3 }</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum4 }</td>
+
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td class="tables_contentcell">&nbsp;${c.poorPersonNum4 }</td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">通电自然村数</td>
@@ -99,7 +107,7 @@
 		<td class="tables_contentcell">&nbsp;${c.income }<font>元</font></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">行政村道路是否硬底化</td>
+		<td height="30" align="right" class="tables_leftcell">100人以上自然村是否硬底化</td>
 		<td height="30" class="tables_contentcell">${c.ying }</td>
 
 		<td height="30" align="right" class="tables_leftcell">村两委是否有固定办公场所</td>
@@ -113,7 +121,7 @@
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">
-			贫困村急需项目
+			贫困村发展村集体项目计划
 		</td>
 		<td height="30" class="tables_contentcell" colspan="3">
 			<textarea readonly="true" rows="5" cols="45" id="jxjsxm" name="jxjsxm">${c.item }</textarea>

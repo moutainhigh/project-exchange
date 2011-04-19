@@ -14,6 +14,14 @@ public class Cun extends Diqu {
 	private Integer transNum;//转移人数
 	private Integer poorFamilyNum;
 	private Integer poorPersonNum;
+	private Integer poorFamilyNum1;
+	private Integer poorPersonNum1;
+	private Integer poorFamilyNum2;
+	private Integer poorPersonNum2;
+	private Integer poorFamilyNum3;
+	private Integer poorPersonNum3;
+	private Integer poorFamilyNum4;
+	private Integer poorPersonNum4;
 	private Integer dibaoFamily;
 	private Integer dibaoPerson;
 	private Integer dian;
@@ -250,6 +258,70 @@ public class Cun extends Diqu {
 
 	public void setPinyin(String pinyin) {
 		this.pinyin = pinyin;
+	}
+
+	public Integer getPoorFamilyNum1() {
+		return poorFamilyNum1;
+	}
+
+	public void setPoorFamilyNum1(Integer poorFamilyNum1) {
+		this.poorFamilyNum1 = poorFamilyNum1;
+	}
+
+	public Integer getPoorPersonNum1() {
+		return poorPersonNum1;
+	}
+
+	public void setPoorPersonNum1(Integer poorPersonNum1) {
+		this.poorPersonNum1 = poorPersonNum1;
+	}
+
+	public Integer getPoorFamilyNum2() {
+		return poorFamilyNum2;
+	}
+
+	public void setPoorFamilyNum2(Integer poorFamilyNum2) {
+		this.poorFamilyNum2 = poorFamilyNum2;
+	}
+
+	public Integer getPoorPersonNum2() {
+		return poorPersonNum2;
+	}
+
+	public void setPoorPersonNum2(Integer poorPersonNum2) {
+		this.poorPersonNum2 = poorPersonNum2;
+	}
+
+	public Integer getPoorFamilyNum3() {
+		return poorFamilyNum3;
+	}
+
+	public void setPoorFamilyNum3(Integer poorFamilyNum3) {
+		this.poorFamilyNum3 = poorFamilyNum3;
+	}
+
+	public Integer getPoorPersonNum3() {
+		return poorPersonNum3;
+	}
+
+	public void setPoorPersonNum3(Integer poorPersonNum3) {
+		this.poorPersonNum3 = poorPersonNum3;
+	}
+
+	public Integer getPoorFamilyNum4() {
+		return poorFamilyNum4;
+	}
+
+	public void setPoorFamilyNum4(Integer poorFamilyNum4) {
+		this.poorFamilyNum4 = poorFamilyNum4;
+	}
+
+	public Integer getPoorPersonNum4() {
+		return poorPersonNum4;
+	}
+
+	public void setPoorPersonNum4(Integer poorPersonNum4) {
+		this.poorPersonNum4 = poorPersonNum4;
 	}
 
 }

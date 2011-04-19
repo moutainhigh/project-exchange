@@ -14,6 +14,48 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			function calPersonNum(){
+				var f = document.forms[0];
+				var num1 = f['cun.poorPersonNum1'].value;
+				var num2 = f['cun.poorPersonNum2'].value;
+				var num3 = f['cun.poorPersonNum3'].value;
+				var num4 = f['cun.poorPersonNum4'].value;
+				var val = 0;
+				if(num1){
+					val+=parseInt(num1);
+				}
+				if(num2){
+					val+=parseInt(num2);
+				}
+				if(num3){
+					val+=parseInt(num3);
+				}
+				if(num4){
+					val+=parseInt(num4);
+				}
+				f['cun.poorPersonNum'].value = val;
+			}
+			function calFamilyNum(){
+				var f = document.forms[0];
+				var num1 = f['cun.poorFamilyNum1'].value;
+				var num2 = f['cun.poorFamilyNum2'].value;
+				var num3 = f['cun.poorFamilyNum3'].value;
+				var num4 = f['cun.poorFamilyNum4'].value;
+				var val = 0;
+				if(num1){
+					val+=parseInt(num1);
+				}
+				if(num2){
+					val+=parseInt(num2);
+				}
+				if(num3){
+					val+=parseInt(num3);
+				}
+				if(num4){
+					val+=parseInt(num4);
+				}
+				f['cun.poorFamilyNum'].value = val;
+			}
 		</script>
 	</head>
 	<body>
@@ -32,19 +74,20 @@
 		<td class="tables_contentcell">&nbsp;${cun.zhen.area.name}${cun.zhen.name}${cun.name}</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">户数</td>
+		<td height="30" align="right" class="tables_leftcell">总户数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.familyNum }" name="cun.familyNum"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">人口数</td>
+		<td height="30" align="right" class="tables_leftcell">总人口数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.personNum }" name="cun.personNum"/></td>
 	</tr>
+	<!--  
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">需要搬迁户数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.needBanFamily }" name="cun.needBanFamily"/></td>
 
 		<td height="30" align="right" class="tables_leftcell">需要搬迁人数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.needBanPerson }" name="cun.needBanPerson"/></td>
-	</tr>
+	</tr>-->
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">劳动力总人数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.labor }" name="cun.labor"/></td>
@@ -52,27 +95,62 @@
 		<td height="30" align="right" class="tables_leftcell">外出务工人数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.outLabor }" name="cun.outLabor"/></td>
 	</tr>
+	<!--  
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">培训人次</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.trainingNum }" name="cun.trainingNum"/></td>
 
 		<td height="30" align="right" class="tables_leftcell">转移人数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.transNum }" name="cun.transNum"/></td>
-	</tr>
+	</tr>-->
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困户数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum }" name="cun.poorFamilyNum"/></td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum }" name="cun.poorFamilyNum"/>
+		<br/><span style="color:gray;">(由以下四项自动统计)</span>
+		</td>
 
 		<td height="30" align="right" class="tables_leftcell">贫困人口数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum }" name="cun.poorPersonNum"/></td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum }" name="cun.poorPersonNum"/>
+		<br/><span style="color:gray;">(由以下四项自动统计)</span>
+		</td>
 	</tr>
+	<!-- 新增字段 -->
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户户数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum1 }" name="cun.poorFamilyNum1" onblur="calFamilyNum();"/></td>
+
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户人口数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum1 }" name="cun.poorPersonNum1" onblur="calPersonNum();"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户户数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum2 }" name="cun.poorFamilyNum2" onblur="calFamilyNum();"/></td>
+
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户人口数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum2 }" name="cun.poorPersonNum2" onblur="calPersonNum();"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭户数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum3 }" name="cun.poorFamilyNum3" onblur="calFamilyNum();"/></td>
+
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭人口数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum3 }" name="cun.poorPersonNum3" onblur="calPersonNum();"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum4 }" name="cun.poorFamilyNum4" onblur="calFamilyNum();"/></td>
+
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum4 }" name="cun.poorPersonNum4" onblur="calPersonNum();"/></td>
+	</tr>
+	<!--  
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">低保户数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dibaoFamily }" name="cun.dibaoFamily"/></td>
 
 		<td height="30" align="right" class="tables_leftcell">低保人数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dibaoPerson }" name="cun.dibaoPerson"/></td>
-	</tr>
+	</tr>-->
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">通电自然村数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dian }" name="cun.dian"/></td>
@@ -84,11 +162,11 @@
 		<td height="30" align="right" class="tables_leftcell">耕地总面积</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.mianji }" name="cun.mianji"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">泥砖房数</td>
+		<td height="30" align="right" class="tables_leftcell">山地总面积</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.house }" name="cun.house"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">危房</td>
+		<td height="30" align="right" class="tables_leftcell">危房数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.weiHouse }" name="cun.weiHouse"/></td>
 
 		<td height="30" align="right" class="tables_leftcell">解决人畜饮水自然村数</td>
@@ -102,7 +180,7 @@
 		<td class="tables_contentcell">&nbsp;<input msg="必须为金额！" require="false" datatype="Double" type="text" value="${cun.income }" name="cun.income"/><font>元</font></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">行政村道路是否硬底化</td>
+		<td height="30" align="right" class="tables_leftcell">100人以上自然村是否硬底化</td>
 		<td height="30" class="tables_contentcell"><input type="text" value="${cun.ying }" name="cun.ying"/></td>
 
 		<td height="30" align="right" class="tables_leftcell">村两委是否有固定办公场所</td>
@@ -116,7 +194,7 @@
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">
-			贫困村急需项目
+			贫困村发展村集体项目计划
 		</td>
 		<td height="30" class="tables_contentcell" colspan="3">
 			<textarea rows="5" cols="45" id="jxjsxm" name="cun.item">${cun.item }</textarea>
