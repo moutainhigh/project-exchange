@@ -19,7 +19,7 @@
 			<c:if test="${empty f.id}">
 			$(function(){
 				//初始化日期输入数据
-				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+				//$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#areaId').html('<option value=""></option>');
@@ -51,22 +51,32 @@
 				}
 			}
 			</c:if>
-			function saveForm(){
-				alert('wwwe');
-				document.forms[0].submit();
-				alert('wewe');
+			function myValid(){
+				//alert('we');
+				//alert($('#birthday').val());
+				//alert($('#birthday').val());
+				if($('#birthday').val() != ''){
+					var str = $('#birthday').val();
+					if(!/^(\d{4})(-|\/)(\d{2})(-|\/)(\d{2})$/.test(str)){
+						alert('请严格安装日期格式录入生日');
+						return false;
+					} 
+				}
+				if(Validator.Validate(document.forms[0])){
+					document.forms[0].submit();
+				}
 			}
 		</script>
 	</head>
 	<body>
 		<c:set var="f" value="${family}"></c:set>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}family_saveFamily.action" name="">
+		<form method="post" action="${appPath}family_saveFamily.action" name="">
 			<input type="hidden" value="${family.id}" name="family.id" id="">
-			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
-						<td colspan="3" align="center" class="tables_leftcell">贫困村名称</td>
-						<td colspan="15" class="tables_contentcell">
+						<td colspan="4" align="center" class="tables_leftcell">贫困村名称</td>
+						<td colspan="14" class="tables_contentcell">
 							<c:choose>
 								<c:when test="${userObj.roleType=='帮扶单位管理员' && not empty userObj.cun}">
 									${userObj.cun.zhen.area.name}${userObj.cun.zhen.name }${userObj.cun.name }<input type="hidden" name="family.cun.id" value="${userObj.cun.id }"/>
@@ -89,132 +99,76 @@
 					</tr>
 					<tr>
 						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
-							<h2>一、户主情况</h2>
+							一、户主情况
 						</td>
-						<td  align="center" class="tables_leftcell" colspan="3">
-							户主联系电话：
-						</td>
-						<td  align="center" class="tables_contentcell" colspan="4">
-							<input type="text" name="family.tel" value="${f.tel }"  style="width: 100%"/>
-						</td>
-						<td  align="center" class="tables_leftcell" colspan="4">
-							贫困原因
-						</td>
-						<td  align="center" class="tables_leftcell" colspan="3">
-							脱贫意愿<br/>(含帮扶措施、所需资金)
-						</td>
+						<td class="tables_contentcell" colspan="14">&nbsp;</td>
 					</tr>
 					<tr>
-						<td width="50" align="center" class="tables_leftcell">
-							姓名<font size="4" color="#cc0033">*</font>
+						<td colspan="2" align="center" class="tables_leftcell">
+							序号
 						</td>
-						<td colspan="1" class="tables_contentcell">
-							<input type="text" style="height: 22px;width: 100%;" msg="姓名不能为空" datatype="Require" size="20" value="${f.name}" id="username" name="family.name">
+						<td colspan="2" class="tables_contentcell" style="width: 100px;">
+							<c:if test="${not empty f.id}">${f.id}</c:if>
+							<c:if test="${empty f.id}"><span style="color:gray;font-size: 12px;">自动生成</span></c:if>
 						</td>
-						<td  align="center" class="tables_leftcell">
+						<td colspan="2" align="center" class="tables_leftcell" style="text-align: center;">
+							姓名<font color="#cc0033">*</font>
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							<input type="text" style="width: 50px;" msg="姓名不能为空" datatype="Require" size="20" value="${f.name}" id="username" name="family.name">
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
 							性别
 						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;
+						<td colspan="2" class="tables_contentcell">
 							<!--<input type="text" name="family.gender" value="${f.gender}"  style="width: 100%"/>  -->
 							<select name="family.gender">
 								<option value="男" <c:if test="${f.gender=='男'}">selected="selected"</c:if>>男</option>
 								<option value="女" <c:if test="${f.gender=='女'}">selected="selected"</c:if>>女</option>
 							</select>
 						</td>
-						<td  align="center" class="tables_leftcell">
-							村小组
-						</td>
-						<td colspan="6" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.zu" value="${f.zu }"  style="width: 100%"/>
-						</td>
-						<td colspan="4" class="tables_contentcell" rowspan="5">
-							<textarea name="family.reason" style="height: 100%;width: 100%;">${f.reason}</textarea>
-						</td>
-						<td colspan="3" class="tables_contentcell" rowspan="5">
-							<textarea name="family.willing" style="height: 100%;width: 100%;">${f.willing}</textarea>
-						</td>
-					</tr>	
-					<tr>
-						<td  align="center" class="tables_leftcell">
+						<td colspan="2" align="center" class="tables_leftcell">
 							出生年月
 						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.birthday" value="<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM-dd"/>" class="datetime"  style="width: 100%"/>
+						<td colspan="4" class="tables_contentcell">
+							<input type="text" id="birthday" name="family.birthday" value="<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM-dd"/>" class="datetime"  style="width: 80px"/>
+							<span style="color:gray;">例如：1971-09-05</span>
 						</td>
-						<td  align="center" class="tables_leftcell">
+						
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_leftcell">
 							文化程度
 						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;
+						<td colspan="2" class="tables_contentcell">
 							<!-- <input type="text" name="family.wenhua" value="${f.wenhua }"  /> -->
-							<select name="family.wenhua" style="width: 100%">
+							<select name="family.wenhua" style="width: 100px;">
+								<option value="文盲（半文盲）" <c:if test="${f.wenhua=='文盲（半文盲）'}">selected="selected"</c:if>>文盲（半文盲）</option>
 								<option value="小学" <c:if test="${f.wenhua=='小学'}">selected="selected"</c:if>>小学</option>
 								<option value="初中" <c:if test="${empty f.wenhua || f.wenhua=='初中'}">selected="selected"</c:if>>初中</option>
 								<option value="高中" <c:if test="${f.wenhua=='高中'}">selected="selected"</c:if>>高中</option>
-								<option value="中专（职业技校）" <c:if test="${f.wenhua=='中专（职业技校）'}">selected="selected"</c:if>>中专（职业技校）</option>
+								<option value="中专技校" <c:if test="${f.wenhua=='中专技校'}">selected="selected"</c:if>>中专技校</option>
 								<option value="大专" <c:if test="${f.wenhua=='大专'}">selected="selected"</c:if>>大专</option>
 								<option value="本科" <c:if test="${f.wenhua=='本科'}">selected="selected"</c:if>>本科</option>
 							</select>
 						</td>
-						<td colspan="7" class="tables_headercell" align="center" valign="middle" >
-							<h2>二、家庭基本情况</h2>
-						</td>
-					</tr>
-					<tr>
-						<td  align="center" class="tables_leftcell">
+						<td colspan="2" align="center" class="tables_leftcell">
 							身份证
 						</td>
-						<td colspan="3" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.idNo" value="${f.idNo }"  style="width: 100%"/>
+						<td colspan="2" class="tables_contentcell">
+							<input type="text" name="family.idNo" value="${f.idNo }"  style="width: 140px"/>
 						</td>
-						<td colspan="4"  align="center" class="tables_leftcell">
-							耕地面积（亩）
-						</td>
-						<td colspan="3"  align="center" class="tables_leftcell">
-							住房（平方米）
-						</td>
-					</tr>
-					<tr>
-						<td  align="center" class="tables_leftcell">
+						<td colspan="2" align="center" class="tables_leftcell">
 							年人均纯收入
 						</td>
-						<td colspan="3" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.income" value="${f.income }" />
+						<td colspan="2" class="tables_contentcell">
+							<input type="text" name="family.income" value="${f.income }" style="width: 70px;"/>
 							元
 						</td>
-						<td  align="center" class="tables_contentcell">
-							水田
-						</td>
-						<td align="center" class="tables_contentcell">
-							旱地
-						</td>
-						<td align="center" class="tables_contentcell">
-							林果地
-						</td>
-						<td align="center" class="tables_contentcell">
-							其他
-						</td>
-						<td width="60"  align="center" class="tables_contentcell">
-							结构（砖瓦/泥房）
-						</td>
-						<td align="center" class="tables_contentcell">
-							是否危房
-						</td>
-						<td align="center" class="tables_contentcell">
-							面积（平米）
-						</td>
-					</tr>
-					<tr>
-						<td  align="center" class="tables_leftcell">
+						<td colspan="2" align="center" class="tables_leftcell">
 							贫困对象类型
 						</td>
-						<td colspan="3" class="tables_contentcell">
-							&nbsp;
+						<td colspan="4" class="tables_contentcell">
 							<select name="family.type" style="">
 								<option value=""></option>
 								<option value="1" <c:if test="${f.type==1}">selected="selected"</c:if>>
@@ -231,39 +185,164 @@
 								</option>
 							</select>
 						</td>
-						<td  align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.shuitian" value="${f.shuitian }" style="width: 100%" />
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_leftcell">
+							村小组
 						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.handi" value="${f.handi }" style="width: 100%" />
+						<td colspan="2" class="tables_contentcell">
+							<input type="text" name="family.zu" value="${f.zu }"  style="width: 80px;"/>
 						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.linguodi" value="${f.linguodi }" style="width: 100%" />
+						<td colspan="2" align="center" class="tables_leftcell" colspan="2">
+							户主联系电话：
 						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.other" value="${f.other }" style="width: 100%" />
+						<td colspan="2" align="" class="tables_contentcell" colspan="4">
+							<input type="text" name="family.tel" value="${f.tel }"  style="width: 120px;"/>
 						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.jiegou" value="${f.jiegou }" style="width: 100%" />
+						<td colspan="2" align="center" class="tables_leftcell">
+							登记年月
 						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.weifang" value="${f.weifang }" style="width: 100%" />
+						<td colspan="2" class="tables_contentcell">
+							<input type="text" name="family.segment1" value="2011-03"  style="width: 100%"/>
 						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-							<input type="text" name="family.mianji" value="${f.mianji }" style="width: 100%" />
+						<td colspan="2" height="30" align="right" class="tables_leftcell" style="text-align: center;">
+							是否超生
+						</td>
+						<td colspan="4" class="tables_contentcell">
+							<!-- <input type="text" name="family.dibao" value="${f.dibao }"/> -->
+							<select name="family.dibao">
+								<option value="是" <c:if test="${f.dibao=='是'}">selected="selected"</c:if>>是</option>
+								<option value="否" <c:if test="${empty f.dibao || f.dibao=='否'}">selected="selected"</c:if>>否</option>
+							</select>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="18" class="tables_headercell" align="center" valign="middle" style="height: 22px;">
-							<h2>三、家庭成员</h2>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							脱贫状态
 						</td>
+						<td colspan="2" class="tables_contentcell">
+							<!-- <input type="text" name="family.tuopin" value="${f.tuopin }"/>-->
+							<select name="family.tuopin">
+								<option value="是" <c:if test="${f.tuopin=='是'}">selected="selected"</c:if>>是</option>
+								<option value="否" <c:if test="${empty f.tuopin || f.tuopin=='否'}">selected="selected"</c:if>>否</option>
+							</select>
+						</td>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							公开状态
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							<!-- <input type="text" name="family.gongkai" value="${f.gongkai }"/> -->
+							<select name="family.gongkai">
+								<option value="公开" <c:if test="${f.gongkai=='公开'}">selected="selected"</c:if>>公开</option>
+								<option value="不公开" <c:if test="${empty f.gongkai || f.gongkai=='不公开'}">selected="selected"</c:if>>不公开</option>
+							</select>
+						</td>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							残疾人数
+						</td>
+						<td colspan="8" class="tables_contentcell">
+							<!-- <input type="text" name="family.canji" value="${f.canji }"/>-->
+							<select name="family.canji">
+								<option value="0" <c:if test="${f.canji=='0'}">selected="selected"</c:if>>0</option>
+								<option value="1" <c:if test="${f.canji=='1'}">selected="selected"</c:if>>1</option>
+								<option value="2" <c:if test="${f.canji=='2'}">selected="selected"</c:if>>2</option>
+								<option value="3" <c:if test="${f.canji=='3'}">selected="selected"</c:if>>3</option>
+								<option value="4" <c:if test="${f.canji=='4'}">selected="selected"</c:if>>4</option>
+								<option value="5" <c:if test="${f.canji=='5'}">selected="selected"</c:if>>5</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
+							二、家庭基本情况
+						</td>
+						<td class="tables_contentcell" colspan="14">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="8"  align="center" class="tables_leftcell">
+							耕地面积（亩）
+						</td>
+						<td colspan="6"  align="center" class="tables_leftcell">
+							住房（平方米）
+						</td>
+						<td class="tables_contentcell" colspan="4">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_contentcell">
+							水田
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							旱地
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							林果地
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							其他
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							结构（砖瓦/泥房）
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							是否危房
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							面积（平米）
+						</td>
+						<td class="tables_contentcell" colspan="4">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.shuitian" value="${f.shuitian }" style="width: 80px" />
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.handi" value="${f.handi }" style="width: 80px" />
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.linguodi" value="${f.linguodi }" style="width: 80px" />
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.other" value="${f.other }" style="width: 80px" />
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.jiegou" value="${f.jiegou }" style="width: 80px" />
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.weifang" value="${f.weifang }" style="width: 80px" />
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;
+							<input type="text" name="family.mianji" value="${f.mianji }" style="width: 80px" />
+						</td>
+						<td class="tables_contentcell" colspan="4">&nbsp;</td>
+					</tr>
+					<tr>
+						<td  align="center" class="tables_leftcell" colspan="4">
+							贫困原因
+						</td>
+						<td colspan="14" class="tables_contentcell">
+							<textarea name="family.reason" style="height: 50px;width: 95%;">${f.reason}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td  align="center" class="tables_leftcell" colspan="4">
+							脱贫意愿<br/>(含帮扶措施、所需资金)
+						</td>
+						<td colspan="14" class="tables_contentcell">
+							<textarea name="family.willing" style="height: 50px;width: 95%;">${f.willing}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
+							 三、家庭成员
+						</td>
+						<td class="tables_contentcell" colspan="14">&nbsp;</td>
 					</tr>
 					<tr align="center">
 						<td  class="tables_leftcell">
@@ -328,11 +407,11 @@
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getName()%>" name="family.person<%=i%>.name"  style="width: 100%" />
+							<input type="text" value="<%=p.getName()%>" name="family.person<%=i%>.name"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<!--<input type="text" value="<%=p.getGender()%>" name="family.person<%=i%>.gender"  style="width: 100%" />-->
+							<!--<input type="text" value="<%=p.getGender()%>" name="family.person<%=i%>.gender"  style="width: 90%" />-->
 							<select name="family.person<%=i%>.gender">
 								<option value=""></option>
 								<option value="男" <%if("男".equals(p.getGender())){%>selected="selected"<%}%>>男</option>
@@ -341,51 +420,51 @@
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" name="family.person<%=i%>.birthday" value="<fmt:formatDate value="<%=p.getBirthday()%>" pattern="yyyy-MM-dd"/>" class="datetime"  style="width: 100%" />
+							<input type="text" name="family.person<%=i%>.birthday" value="<fmt:formatDate value="<%=p.getBirthday()%>" pattern="yyyy-MM-dd"/>" class="datetime"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getRelate()%>" name="family.person<%=i%>.relate"  style="width: 100%" />
+							<input type="text" value="<%=p.getRelate()%>" name="family.person<%=i%>.relate"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getWenhua()%>" name="family.person<%=i%>.wenhua"  style="width: 100%" />
+							<input type="text" value="<%=p.getWenhua()%>" name="family.person<%=i%>.wenhua"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell" colspan="3">
 							&nbsp;
-							<input type="text" value="<%=p.getJob()%>" name="family.person<%=i%>.job"  style="width: 100%" />
+							<input type="text" value="<%=p.getJob()%>" name="family.person<%=i%>.job"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getGongziIncome()==null?"":p.getGongziIncome()%>" name="family.person<%=i%>.gongziIncome"  style="width: 100%" />
+							<input type="text" value="<%=p.getGongziIncome()==null?"":p.getGongziIncome()%>" name="family.person<%=i%>.gongziIncome"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getNongyeIncome()==null?"":p.getNongyeIncome()%>" name="family.person<%=i%>.nongyeIncome"  style="width: 100%" />
+							<input type="text" value="<%=p.getNongyeIncome()==null?"":p.getNongyeIncome()%>" name="family.person<%=i%>.nongyeIncome"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getDibaoIncome()==null?"":p.getDibaoIncome()%>" name="family.person<%=i%>.dibaoIncome"  style="width: 100%" />
+							<input type="text" value="<%=p.getDibaoIncome()==null?"":p.getDibaoIncome()%>" name="family.person<%=i%>.dibaoIncome"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getOtherIncome()==null?"":p.getOtherIncome()%>" name="family.person<%=i%>.otherIncome"  style="width: 100%" />
+							<input type="text" value="<%=p.getOtherIncome()==null?"":p.getOtherIncome()%>" name="family.person<%=i%>.otherIncome"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getHezuoYiliao()==null?"":p.getHezuoYiliao()%>" name="family.person<%=i%>.hezuoYiliao"  style="width: 100%" />
+							<input type="text" value="<%=p.getHezuoYiliao()==null?"":p.getHezuoYiliao()%>" name="family.person<%=i%>.hezuoYiliao"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getYanglao()==null?"":p.getYanglao()%>" name="family.person<%=i%>.yanglao"  style="width: 100%" />
+							<input type="text" value="<%=p.getYanglao()==null?"":p.getYanglao()%>" name="family.person<%=i%>.yanglao"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getStuCost()==null?"":p.getStuCost()%>" name="family.person<%=i%>.stuCost"  style="width: 100%" />
+							<input type="text" value="<%=p.getStuCost()==null?"":p.getStuCost()%>" name="family.person<%=i%>.stuCost"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" value="<%=p.getRemark()==null?"":p.getRemark()%>" name="family.person<%=i%>.remark"  style="width: 100%" />
+							<input type="text" value="<%=p.getRemark()==null?"":p.getRemark()%>" name="family.person<%=i%>.remark"  style="width: 90%" />
 						</td>
 					</tr>
 					<%
@@ -393,8 +472,7 @@
 					%>
 					<tr>
 						<td align="center" class="tables_contentcell" colspan="18">
-							<input type="submit" value="确认" class="button">
-							<input type="button" value="保存" class="button" onclick="saveForm();">
+							<input type="button" value="确认" class="button" onclick="myValid();">
 							<input type="button" onclick="self.close();" class="button" value="取消" name="取消">
 						</td>
 					</tr>

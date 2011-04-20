@@ -57,7 +57,7 @@
 						
 							<input type="submit" class="button" value="查询"> 
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
-							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1100,700);" class="button" value="逐户录入">
+							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1150,700);" class="button" value="逐户录入">
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
 							</c:if>
@@ -117,8 +117,8 @@
 								${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',1100,700);">修改</a>
-								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',1100,700);">查看</a>
+								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',1150,700);">修改</a>
+								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',1150,700);">查看</a>
 							</td>
 						</tr>
 					</c:forEach>
