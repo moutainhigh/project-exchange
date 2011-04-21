@@ -20,153 +20,202 @@
 	</head>
 	<body>
 		<c:set var="f" value="${family}"></c:set>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}family_saveFamily.action" name="">
-			<input type="hidden" value="${family.id}" name="family.id" id="">
-			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+		<form method="post" action="${appPath}family_saveFamily.action" name="">
+			/<input type="hidden" value="${family.id}" name="family.id" id="">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
-						<td colspan="3" align="center" class="tables_leftcell">贫困村名称</td>
-						<td colspan="15" class="tables_contentcell">
-							&nbsp;${f.cun.zhen.area.name}${f.cun.zhen.name }${f.cun.name }
+						<td colspan="4" align="center" class="tables_leftcell">贫困村名称</td>
+						<td colspan="14" class="tables_contentcell">
+							${f.cun.zhen.area.name}${f.cun.zhen.name }${f.cun.name }
+							&nbsp;
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
-							<h2>一、户主情况</h2>
+						<td align="center" class="tables_headercell" colspan="18" align="center" valign="middle" >
+							一、户主情况
 						</td>
-						<td  align="center" class="tables_leftcell" colspan="3">
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_leftcell">
+							序号
+						</td>
+						<td colspan="2" class="tables_contentcell" style="width: 100px;">
+							${f.id}
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell" style="text-align: center;">
+							姓名
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.name}
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							性别
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.gender}
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							出生年月
+						</td>
+						<td colspan="4" class="tables_contentcell">
+							&nbsp;<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM"/>
+						</td>
+						
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_leftcell">
+							文化程度
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.wenhua }
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							身份证
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.idNo }
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							年人均纯收入
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.income }元
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							贫困对象类型
+						</td>
+						<td colspan="4" class="tables_contentcell">
+							&nbsp;${f.type}
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_leftcell">
+							村小组
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.zu }
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell" colspan="2">
 							户主联系电话：
 						</td>
-						<td  align="center" class="tables_contentcell" colspan="4">
+						<td colspan="2" align="" class="tables_contentcell" colspan="4">
 							&nbsp;${f.tel }
 						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							登记年月
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;2011-03
+						</td>
+						<td colspan="2" height="30" align="right" class="tables_leftcell" style="text-align: center;">
+							是否超生
+						</td>
+						<td colspan="4" class="tables_contentcell">
+							&nbsp;${f.dibao }
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							脱贫状态
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${family.tuopin}
+						</td>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							公开状态
+						</td>
+						<td colspan="2" class="tables_contentcell">
+							&nbsp;${f.gongkai }
+						</td>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							残疾人数
+						</td>
+						<td colspan="8" class="tables_contentcell">
+							&nbsp;${f.canji }
+						</td>
+					</tr>
+					<tr>
+						<td align="center" class="tables_headercell" colspan="18" align="center" valign="middle" >
+							二、家庭基本情况
+						</td>
+					</tr>
+					<tr>
+						<td colspan="8"  align="center" class="tables_leftcell">
+							耕地面积（亩）
+						</td>
+						<td colspan="6"  align="center" class="tables_leftcell">
+							住房（平方米）
+						</td>
+						<td class="tables_contentcell" colspan="4">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_contentcell">
+							水田
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							旱地
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							林果地
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							其他
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							结构（砖瓦/泥房）
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							是否危房
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							面积（平米）
+						</td>
+						<td class="tables_contentcell" colspan="4">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.shuitian }
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.handi }
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.linguodi }
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.other }
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.jiegou }
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.weifang }
+						</td>
+						<td colspan="2" align="center" class="tables_contentcell">
+							&nbsp;${f.mianji }
+						</td>
+						<td class="tables_contentcell" colspan="4">&nbsp;</td>
+					</tr>
+					<tr>
 						<td  align="center" class="tables_leftcell" colspan="4">
 							贫困原因
 						</td>
-						<td  align="center" class="tables_leftcell" colspan="3">
-							脱贫意愿<br/>(含帮扶措施、所需资金)
-						</td>
-					</tr>
-					<tr>
-						<td  align="center" class="tables_leftcell">
-							姓名<font size="4" color="#cc0033">*</font>
-						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;${f.name}
-						</td>
-						<td  align="center" class="tables_leftcell">
-							性别
-						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;${f.gender}
-						</td>
-						<td  align="center" class="tables_leftcell">
-							村小组
-						</td>
-						<td colspan="6" class="tables_contentcell">
-							&nbsp;${f.zu }
-						</td>
-						<td colspan="4" class="tables_contentcell" rowspan="5">
+						<td colspan="14" class="tables_contentcell">
 							&nbsp;${f.reason}
 						</td>
-						<td colspan="3" class="tables_contentcell" rowspan="5">
+					</tr>
+					<tr>
+						<td  align="center" class="tables_leftcell" colspan="4">
+							脱贫意愿<br/>(含帮扶措施、所需资金)
+						</td>
+						<td colspan="14" class="tables_contentcell">
 							&nbsp;${f.willing}
 						</td>
-					</tr>	
-					<tr>
-						<td  align="center" class="tables_leftcell">
-							出生年月
-						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;
-							<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM-dd"/>
-						</td>
-						<td  align="center" class="tables_leftcell">
-							文化程度
-						</td>
-						<td colspan="1" class="tables_contentcell">
-							&nbsp;${f.wenhua }
-						</td>
-						<td colspan="7" class="tables_headercell" align="center" valign="middle" >
-							<h2>二、家庭基本情况</h2>
-						</td>
 					</tr>
 					<tr>
-						<td  align="center" class="tables_leftcell">
-							身份证
-						</td>
-						<td colspan="3" class="tables_contentcell">
-							&nbsp;${f.idNo }
-						</td>
-						<td colspan="4"  align="center" class="tables_leftcell">
-							耕地面积（亩）
-						</td>
-						<td colspan="3"  align="center" class="tables_leftcell">
-							住房（平方米）
-						</td>
-					</tr>
-					<tr>
-						<td  align="center" class="tables_leftcell">
-							年人均纯收入
-						</td>
-						<td colspan="3" class="tables_contentcell">
-							&nbsp;${f.income }
-							元
-						</td>
-						<td  align="center" class="tables_contentcell">
-							水田
-						</td>
-						<td align="center" class="tables_contentcell">
-							旱地
-						</td>
-						<td align="center" class="tables_contentcell">
-							林果地
-						</td>
-						<td align="center" class="tables_contentcell">
-							其他
-						</td>
-						<td align="center" class="tables_contentcell">
-							结构（砖瓦/泥房）
-						</td>
-						<td align="center" class="tables_contentcell">
-							是否危房
-						</td>
-						<td align="center" class="tables_contentcell">
-							面积（平米）
-						</td>
-					</tr>
-					<tr>
-						<td  align="center" class="tables_leftcell">
-							贫困对象类型
-						</td>
-						<td colspan="3" class="tables_contentcell">
-							&nbsp;${f.typeTxt }
-						</td>
-						<td  align="center" class="tables_contentcell">
-							&nbsp;${f.shuitian }
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;${f.handi }
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;${f.linguodi }
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;${f.other }
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;${f.jiegou }
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;${f.weifang }
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;${f.mianji }
-						</td>
-					</tr>
-					<tr>
-						<td colspan="18" class="tables_headercell" align="center" valign="middle" style="height: 22px;">
-							<h2>三、家庭成员</h2>
+						<td align="center" class="tables_headercell" colspan="18" align="center" valign="middle" >
+							 三、家庭成员
 						</td>
 					</tr>
 					<tr align="center">
@@ -219,35 +268,35 @@
 					<%
 						Family family = (Family) pageContext.getAttribute("f");
 						//System.out.println(family);
-						int num=1;
 						for (int i = 1; i <= 10; i++) {
 							Person p = null;
 							if (family != null)
 								p = family.getPerson(i);
-							if(p==null)
-								continue;
+							if (p == null)
+								p = new Person("","",null,"","","","","","","","","","","");
 					%>
 					<tr>
 						<td align="center" class="tables_contentcell">
-							<%=num++%>
+							<%=i%>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;<%=p.getName()%>
+							&nbsp;
+							<%=p.getName()%>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;<%=p.getGender()%>
+							&nbsp;<%=p.getGender()==null?"":p.getGender()%>
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;<fmt:formatDate value="<%=p.getBirthday()%>" pattern="yyyy-MM-dd"/>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;<%=p.getRelate()%>
+							&nbsp;<%=p.getRelate()==null?"":p.getRelate()%>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;<%=p.getWenhua()%>
+							&nbsp;<%=p.getWenhua()==null?"":p.getWenhua()%>
 						</td>
 						<td align="center" class="tables_contentcell" colspan="3">
-							&nbsp;<%=p.getJob()%>
+							&nbsp;<%=p.getJob()==null?"":p.getJob()%>
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;<%=p.getGongziIncome()==null?"":p.getGongziIncome()%>

@@ -10,17 +10,18 @@ import com.opensymphony.xwork2.conversion.impl.DefaultTypeConverter;
 public class MyDateConverter extends DefaultTypeConverter {
 
 	private static final DateFormat[] ACCEPT_DATE_FORMATS = {
+	new SimpleDateFormat("yyyy-MM"),
 	new SimpleDateFormat("yyyy-MM-dd"),
 	new SimpleDateFormat("yyyy/MM/dd"), 
 	new SimpleDateFormat("dd/MM/yyyy"),
-	new SimpleDateFormat("yyyMMdd") }; // 支持转换的日期格�?
+	new SimpleDateFormat("yyyMMdd") }; // 支持转换的日期格�?
 
 	@Override
 	public Object convertValue(Map context, Object value, Class toType) {
 		
 		//System.out.println("调用日期转换...");
 
-		if (toType == Date.class) { // 浏览器向服务器提交时，进行String to Date的转�?
+		if (toType == Date.class) { // 浏览器向服务器提交时，进行String to Date的转�?
 
 			Date date = null;
 
@@ -34,7 +35,7 @@ public class MyDateConverter extends DefaultTypeConverter {
 
 				try {
 
-					return format.parse(dateString);// 遍历日期支持格式，进行转�?
+					return format.parse(dateString);// 遍历日期支持格式，进行转�?
 
 				} catch (Exception e) {
 
@@ -48,7 +49,7 @@ public class MyDateConverter extends DefaultTypeConverter {
 
 		}
 
-		else if (toType == String.class) { // 服务器向浏览器输出时，进行Date to String的类型转�?
+		else if (toType == String.class) { // 服务器向浏览器输出时，进行Date to String的类型转�?
 
 			Date date = (Date) value;
 

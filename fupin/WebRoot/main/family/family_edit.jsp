@@ -57,7 +57,7 @@
 				//alert($('#birthday').val());
 				if($('#birthday').val() != ''){
 					var str = $('#birthday').val();
-					if(!/^(\d{4})(-|\/)(\d{2})(-|\/)(\d{2})$/.test(str)){
+					if(!/^(\d{4})(-|\/)(\d{2})$/.test(str)){
 						alert('请严格安装日期格式录入生日');
 						return false;
 					} 
@@ -71,7 +71,7 @@
 	<body>
 		<c:set var="f" value="${family}"></c:set>
 		<form method="post" action="${appPath}family_saveFamily.action" name="">
-			<input type="hidden" value="${family.id}" name="family.id" id="">
+			/<input type="hidden" value="${family.id}" name="family.id" id="">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
@@ -98,10 +98,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
+						<td align="center" class="tables_headercell" colspan="18" align="center" valign="middle" >
 							一、户主情况
 						</td>
-						<td class="tables_contentcell" colspan="14">&nbsp;</td>
+						<!-- <td class="tables_contentcell" colspan="14">&nbsp;</td> -->
 					</tr>
 					<tr>
 						<td colspan="2" align="center" class="tables_leftcell">
@@ -121,18 +121,21 @@
 							性别
 						</td>
 						<td colspan="2" class="tables_contentcell">
-							<!--<input type="text" name="family.gender" value="${f.gender}"  style="width: 100%"/>  -->
+							<!--<input type="text" name="family.gender" value="${f.gender}"  style="width: 100%"/>  
 							<select name="family.gender">
 								<option value="男" <c:if test="${f.gender=='男'}">selected="selected"</c:if>>男</option>
 								<option value="女" <c:if test="${f.gender=='女'}">selected="selected"</c:if>>女</option>
-							</select>
+							</select>-->
+							<input type="radio" name="family.gender" value="男" <c:if test="${empty f.gender|| f.gender=='男'}">checked="checked"</c:if>/>男
+							&nbsp;
+							<input type="radio" name="family.gender" value="女" <c:if test="${f.gender=='女'}">checked="checked"</c:if>/>女
 						</td>
 						<td colspan="2" align="center" class="tables_leftcell">
 							出生年月
 						</td>
 						<td colspan="4" class="tables_contentcell">
-							<input type="text" id="birthday" name="family.birthday" value="<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM-dd"/>" class="datetime"  style="width: 80px"/>
-							<span style="color:gray;">例如：1971-09-05</span>
+							<input type="text" id="birthday" name="family.birthday" value="<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM"/>" class="datetime"  style="width: 80px"/>
+							<span style="color:gray;">例如：1971-09</span>
 						</td>
 						
 					</tr>
@@ -253,10 +256,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
+						<td align="center" class="tables_headercell" colspan="18" align="center" valign="middle" >
 							二、家庭基本情况
 						</td>
-						<td class="tables_contentcell" colspan="14">&nbsp;</td>
 					</tr>
 					<tr>
 						<td colspan="8"  align="center" class="tables_leftcell">
@@ -339,10 +341,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class="tables_headercell" colspan="4" align="center" valign="middle" >
+						<td align="center" class="tables_headercell" colspan="18" align="center" valign="middle" >
 							 三、家庭成员
 						</td>
-						<td class="tables_contentcell" colspan="14">&nbsp;</td>
 					</tr>
 					<tr align="center">
 						<td  class="tables_leftcell">
