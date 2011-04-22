@@ -105,6 +105,22 @@ public class FamilyAction extends BaseAction {
 		}
 		return "upload2";
 	}
+	//数据导入，Excel模板3
+	public String uploadExcel3(){
+		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if(fileName!=null){
+			String msg = null;
+			try {
+				msg = orgBiz.uploadFamilyData3(fileName);
+				this.setSucc("Y");
+				this.setMsg("数据导入成功\\n"+msg);
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("数据导入失败\\n"+e.getMessage());
+			}
+		}
+		return "upload";
+	}
 	//数据导出
 	public String downloadExcel(){
 		try {

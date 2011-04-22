@@ -204,6 +204,10 @@
 				<param name="actionName">family_uploadExcel2</param>
          		<param name="namespace">/</param> 
 			</result>
+			<result name="family3" type="chain">
+				<param name="actionName">family_uploadExcel3</param>
+         		<param name="namespace">/</param> 
+			</result>
 		</action>
 		<!-- 业务咨询 -->
 		<action name="zixun_*" method="{1}" class="com.throne212.fupin.action.ZixunAction">

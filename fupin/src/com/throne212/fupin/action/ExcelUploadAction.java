@@ -35,6 +35,8 @@ public class ExcelUploadAction extends BaseAction {
 					return "cun";
 				}else if("family2".equals(type)){
 					return "family2";
+				}else if("family3".equals(type)){
+					return "family3";
 				}
 				return "success";
 			} catch (IOException e) {

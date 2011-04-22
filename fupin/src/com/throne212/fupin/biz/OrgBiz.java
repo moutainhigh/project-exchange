@@ -28,6 +28,7 @@ public interface OrgBiz extends BaseBiz {
 	
 	public String uploadFamilyData(String fileName) throws Exception;
 	public String uploadFamilyData2(String fileName) throws Exception;//调查表导入
+	public String uploadFamilyData3(String fileName) throws Exception;//模板2导入
 	public String uploadCunData(String fileName) throws Exception;
 	public String getFamilyExcelDownloadFile(String name) throws Exception;
 

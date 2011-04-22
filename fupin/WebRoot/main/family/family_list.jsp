@@ -62,6 +62,7 @@
 							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
 							</c:if>
 							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="批量导入">
+							<input type="button" onclick="winOpen('${appPath}main/family/upload3.jsp',350,180);" class="button" value="批量导入2">
 							<!--<input type="button" onclick="download();" value="导出Excel" class="button">-->
 						</td>
 						<td width="5px"></td>
