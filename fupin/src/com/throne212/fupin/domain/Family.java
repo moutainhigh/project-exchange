@@ -103,7 +103,7 @@ public class Family extends MyEntity {
 	}
 	public void setPerson(Person p,int i) {
 		try {
-			Method m = this.getClass().getDeclaredMethod("setPerson" + i);
+			Method m = this.getClass().getDeclaredMethod("setPerson" + i,Person.class);
 			m.invoke(this, p);
 		} catch (Exception e) {
 			e.printStackTrace();

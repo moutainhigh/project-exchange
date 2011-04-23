@@ -49,6 +49,16 @@ public class Util {
 		}
 		return null;
 	}
+	public static Date getDateByTxtInExcel(String dateTxt) throws ParseException {
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			return dateFormat.parse(dateTxt);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static String getCurrentDateTime() {
 		Date date = new Date();

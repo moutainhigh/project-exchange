@@ -162,6 +162,8 @@
 			<result name="upload_fail">/main/family/fail.jsp</result>
 			<result name="upload2">/main/family/upload2.jsp</result>
 			<result name="upload_fail2">/main/family/fail2.jsp</result>
+			<result name="upload3">/main/family/upload3.jsp</result>
+			<result name="upload_fail3">/main/family/fail3.jsp</result>
 		</action>
 		<!-- 贫困村模块 -->
 		<action name="cun_*" method="{1}" class="com.throne212.fupin.action.CunAction">

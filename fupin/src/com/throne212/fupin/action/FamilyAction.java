@@ -119,7 +119,7 @@ public class FamilyAction extends BaseAction {
 				this.setMsg("数据导入失败\\n"+e.getMessage());
 			}
 		}
-		return "upload";
+		return "upload3";
 	}
 	//数据导出
 	public String downloadExcel(){

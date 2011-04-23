@@ -425,7 +425,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				f.setIncome(Double.parseDouble(income));
 				if (!Util.isEmpty(type))
 					f.setType(Integer.parseInt(type));
-				f.setBirthday(Util.getDateByTxt(birthday));
+				f.setBirthday(Util.getDateByTxtInExcel(birthday));
 				if (!Util.isEmpty(shuitian))
 					f.setShuitian(Double.parseDouble(shuitian));
 				if (!Util.isEmpty(handi))
@@ -437,7 +437,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				if (!Util.isEmpty(mianji))
 					f.setMianji(Double.parseDouble(mianji));
 
-			} catch (RuntimeException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				sb.append("第" + (i + 1) + "行，数据错误,请检查家庭收入、类型等数据格式");
 				throw new RuntimeException(sb.toString());
@@ -466,7 +466,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				String remark = sheet.getCell(col++, i).getContents();
 				Person p = new Person();
 				try {
-					p.setBirthday(Util.getDateByTxt(birthdayPer));
+					//p.setBirthday(Util.getDateByTxt(birthdayPer));
 					p.setName(namePer);
 					p.setGender(genderPer);
 					p.setWenhua(wenhuaPer);
@@ -481,7 +481,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 					p.setStuCost(xuefei);
 					p.setRemark(remark);
 					f.setPerson(p, j+1);
-				} catch (RuntimeException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					sb.append("第" + (i + 1) + "行，家庭成员数据错误,请检查生日、年龄等数据格式");
 					throw new RuntimeException(sb.toString());
@@ -489,8 +489,9 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				
 			}
 
-			this.saveOrUpdateEntity(f);
-			// baseDao.fluch();
+			baseDao.saveOrUpdate(f);
+			logger.debug("import family from Excel succ, rowindex="+i);
+			baseDao.fluch();
 			baseDao.clear();
 			sum++;
 
