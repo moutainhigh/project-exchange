@@ -21,7 +21,7 @@
 	<body>
 		<c:set var="f" value="${family}"></c:set>
 		<form method="post" action="${appPath}family_saveFamily.action" name="">
-			/<input type="hidden" value="${family.id}" name="family.id" id="">
+			<input type="hidden" value="${family.id}" name="family.id" id="">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
@@ -131,8 +131,14 @@
 						<td colspan="2" height="30" align="center" class="tables_leftcell">
 							残疾人数
 						</td>
-						<td colspan="8" class="tables_contentcell">
+						<td colspan="2" class="tables_contentcell">
 							&nbsp;${f.canji }
+						</td>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							家庭人口数
+						</td>
+						<td colspan="4" class="tables_contentcell">
+							&nbsp;${f.segment2 }
 						</td>
 					</tr>
 					<tr>

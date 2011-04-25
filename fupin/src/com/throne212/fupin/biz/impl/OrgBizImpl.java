@@ -200,8 +200,11 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				zhen = sheet.getCell(6, i).getContents();
 
 			Family f = this.getEntityByUnique(Family.class, "idNo", idNo);
+			//覆盖
 			if (f == null)
 				f = new Family();
+			else
+				continue;
 
 			// 类型
 			if (f.getType() == null) {
@@ -241,7 +244,8 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			}
 
 			this.saveOrUpdateEntity(f);
-			// baseDao.fluch();
+			logger.debug("import family from Excel succ, rowindex="+i);
+			baseDao.fluch();
 			baseDao.clear();
 			sum++;
 

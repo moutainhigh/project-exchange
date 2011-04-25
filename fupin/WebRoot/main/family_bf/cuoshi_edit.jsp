@@ -118,7 +118,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			%>
 		
-		<option value="2">2年</option>
 		</select> <font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
   </tr><tr>
     <td height="30" align="right" class="tables_leftcell">帮扶措施</td>

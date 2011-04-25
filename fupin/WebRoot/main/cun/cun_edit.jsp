@@ -143,20 +143,23 @@
 		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum4 }" name="cun.poorPersonNum4" onblur="calPersonNum();"/></td>
 	</tr>
-	<!--  
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">低保户数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dibaoFamily }" name="cun.dibaoFamily"/></td>
-
-		<td height="30" align="right" class="tables_leftcell">低保人数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dibaoPerson }" name="cun.dibaoPerson"/></td>
-	</tr>-->
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">通电自然村数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dian }" name="cun.dian"/></td>
-
-		<td height="30" align="right" class="tables_leftcell">通邮自然村数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.you }" name="cun.you"/></td>
+		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.pureWater }" name="cun.pureWater"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">通电话自然村数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tel }" name="cun.tel"/></td>
+		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tv }" name="cun.tv"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">通路灯自然村数</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.light }" name="cun.light"/></td>
+		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目</td>
+		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.ying }" name="cun.ying"/></td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">耕地总面积</td>
@@ -168,23 +171,8 @@
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">危房数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.weiHouse }" name="cun.weiHouse"/></td>
-
-		<td height="30" align="right" class="tables_leftcell">解决人畜饮水自然村数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.water }" name="cun.water"/></td>
-	</tr>
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">通广播电视自然村数</td>
-		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tv }" name="cun.tv"/></td>
-
 		<td height="30" align="right" class="tables_leftcell">村集体经济收入</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为金额！" require="false" datatype="Double" type="text" value="${cun.income }" name="cun.income"/><font>元</font></td>
-	</tr>
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">100人以上自然村是否硬底化</td>
-		<td height="30" class="tables_contentcell"><input type="text" value="${cun.ying }" name="cun.ying"/></td>
-
-		<td height="30" align="right" class="tables_leftcell">村两委是否有固定办公场所</td>
-		<td height="30" class="tables_contentcell"><input type="text" value="${cun.office }" name="cun.office"/></td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困村简介</td>

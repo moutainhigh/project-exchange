@@ -64,6 +64,10 @@
 			<property name="poorPersonNum3"></property>
 			<property name="poorFamilyNum4"></property>
 			<property name="poorPersonNum4"></property>
+			
+			<property name="tel"></property>
+			<property name="pureWater" column="pure_water"></property>
+			<property name="light"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

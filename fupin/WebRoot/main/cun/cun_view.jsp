@@ -80,38 +80,34 @@
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">通电自然村数</td>
-		<td class="tables_contentcell">&nbsp;${c.dian }</td>
-
-		<td height="30" align="right" class="tables_leftcell">通邮自然村数</td>
-		<td class="tables_contentcell">&nbsp;${c.you }</td>
+		<td class="tables_contentcell">&nbsp;${cun.dian }</td>
+		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数</td>
+		<td class="tables_contentcell">&nbsp;${cun.pureWater }</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">通电话自然村数</td>
+		<td class="tables_contentcell">&nbsp;${cun.tel }</td>
+		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数</td>
+		<td class="tables_contentcell">&nbsp;${cun.tv }</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">通路灯自然村数</td>
+		<td class="tables_contentcell">&nbsp;${cun.light }</td>
+		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目</td>
+		<td class="tables_contentcell">&nbsp;${cun.ying }</td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">耕地总面积</td>
-		<td class="tables_contentcell">&nbsp;${c.mianji }</td>
+		<td class="tables_contentcell">&nbsp;${cun.mianji }</td>
 
-		<td height="30" align="right" class="tables_leftcell">泥砖房数</td>
-		<td class="tables_contentcell">&nbsp;${c.house }</td>
+		<td height="30" align="right" class="tables_leftcell">山地总面积</td>
+		<td class="tables_contentcell">&nbsp;${cun.house }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">危房</td>
-		<td class="tables_contentcell">&nbsp;${c.weiHouse }</td>
-
-		<td height="30" align="right" class="tables_leftcell">解决人畜饮水自然村数</td>
-		<td class="tables_contentcell">&nbsp;${c.water }</td>
-	</tr>
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">通广播电视自然村数</td>
-		<td class="tables_contentcell">&nbsp;${c.tv }</td>
-
+		<td height="30" align="right" class="tables_leftcell">危房数</td>
+		<td class="tables_contentcell">&nbsp;${cun.weiHouse }</td>
 		<td height="30" align="right" class="tables_leftcell">村集体经济收入</td>
-		<td class="tables_contentcell">&nbsp;${c.income }<font>元</font></td>
-	</tr>
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">100人以上自然村是否硬底化</td>
-		<td height="30" class="tables_contentcell">${c.ying }</td>
-
-		<td height="30" align="right" class="tables_leftcell">村两委是否有固定办公场所</td>
-		<td height="30" class="tables_contentcell">${c.office }</td>
+		<td class="tables_contentcell">&nbsp;${cun.income }<font>元</font></td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困村简介</td>

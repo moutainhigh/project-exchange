@@ -38,6 +38,12 @@ public class Cun extends Diqu {
 	
 	private String pinyin;
 	
+	//新增字段
+	private Integer pureWater;//纯净水
+	private Integer tel;//电话
+	private Integer light;//路灯
+	
+	
 	//完整名
 	private String absName;
 	
@@ -322,6 +328,30 @@ public class Cun extends Diqu {
 
 	public void setPoorPersonNum4(Integer poorPersonNum4) {
 		this.poorPersonNum4 = poorPersonNum4;
+	}
+
+	public Integer getPureWater() {
+		return pureWater;
+	}
+
+	public void setPureWater(Integer pureWater) {
+		this.pureWater = pureWater;
+	}
+
+	public Integer getTel() {
+		return tel;
+	}
+
+	public void setTel(Integer tel) {
+		this.tel = tel;
+	}
+
+	public Integer getLight() {
+		return light;
+	}
+
+	public void setLight(Integer light) {
+		this.light = light;
 	}
 
 }

@@ -71,7 +71,7 @@
 	<body>
 		<c:set var="f" value="${family}"></c:set>
 		<form method="post" action="${appPath}family_saveFamily.action" name="">
-			/<input type="hidden" value="${family.id}" name="family.id" id="">
+			<input type="hidden" value="${family.id}" name="family.id" id="">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
@@ -243,7 +243,7 @@
 						<td colspan="2" height="30" align="center" class="tables_leftcell">
 							残疾人数
 						</td>
-						<td colspan="8" class="tables_contentcell">
+						<td colspan="2" class="tables_contentcell">
 							<!-- <input type="text" name="family.canji" value="${f.canji }"/>-->
 							<select name="family.canji">
 								<option value="0" <c:if test="${f.canji=='0'}">selected="selected"</c:if>>0</option>
@@ -253,6 +253,12 @@
 								<option value="4" <c:if test="${f.canji=='4'}">selected="selected"</c:if>>4</option>
 								<option value="5" <c:if test="${f.canji=='5'}">selected="selected"</c:if>>5</option>
 							</select>
+						</td>
+						<td colspan="2" height="30" align="center" class="tables_leftcell">
+							家庭人口数
+						</td>
+						<td colspan="4" class="tables_contentcell">
+							<input type="text" name="family.segment2" value="${f.segment2 }"/>
 						</td>
 					</tr>
 					<tr>
