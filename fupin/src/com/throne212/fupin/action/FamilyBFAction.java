@@ -477,6 +477,8 @@ public class FamilyBFAction extends BaseAction {
 		} 
 		//添加干部数据
 		if(pageBean.getResultList() != null && pageBean.getResultList().size()>0){
+			//清除垃圾数据
+			orgBiz.deleteNonLeaderData();
 			for(Object o : pageBean.getResultList()){
 				Family f = (Family) o;
 				

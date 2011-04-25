@@ -3,6 +3,7 @@ package com.throne212.fupin.dao;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Zhen;
 
@@ -33,4 +34,6 @@ public interface ManagerDao extends BaseDao {
 	
 	public Cun getCunByAreaAndName(Area area,String name);
 	public Cun getCunByAreaZhenAndName(Area area, Zhen zhen,String name);
+	
+	public void deleteNonLeaderData();
 }

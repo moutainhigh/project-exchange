@@ -1,9 +1,12 @@
 package com.throne212.fupin.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
@@ -305,6 +308,18 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			return list.get(0);
 		else
 			return null;
+	}
+	
+	public void deleteNonLeaderData(){
+		this.getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session s) throws HibernateException, SQLException {
+				String hql = "delete LeaderHelp lh where lh.leader not in(from Leader)";
+				long rst = s.createQuery(hql).executeUpdate();
+				logger.info("共删除"+rst+"条多余的干部链接数据");
+				return null;
+			}
+		});
+		
 	}
 
 }

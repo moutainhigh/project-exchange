@@ -567,5 +567,9 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		}
 		return null;
 	}
+	
+	public void deleteNonLeaderData(){
+		managerDao.deleteNonLeaderData();
+	}
 
 }

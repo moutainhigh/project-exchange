@@ -81,6 +81,8 @@ public class OrgAction extends BaseAction {
 				Long id = Long.parseLong(idStr);
 				orgBiz.deleteEntity(Leader.class, id);
 			}
+			//清除垃圾数据in中间表
+			orgBiz.deleteNonLeaderData();
 			this.setMsg("删除干部成功");
 		}
 		return leaderList();

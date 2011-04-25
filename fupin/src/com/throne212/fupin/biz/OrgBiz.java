@@ -3,6 +3,7 @@ package com.throne212.fupin.biz;
 import java.util.List;
 
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Zhen;
 
@@ -25,6 +26,7 @@ public interface OrgBiz extends BaseBiz {
 	
 	//干部
 	public PageBean getAllLeader(Org org,String name,Integer pageIndex);
+	public void deleteNonLeaderData();
 	
 	public String uploadFamilyData(String fileName) throws Exception;
 	public String uploadFamilyData2(String fileName) throws Exception;//调查表导入
