@@ -294,7 +294,14 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		String weifang = sheet.getCell(9, 7).getContents();
 		String mianji = sheet.getCell(10, 7).getContents();
 
-		Family f = new Family();
+		//Family f = new Family();
+		if(Util.isEmpty(idNo))
+			return "贫困户资料导入失败，缺失身份证号";
+		Family f = this.getEntityByUnique(Family.class, "idNo", idNo);
+		//覆盖
+		if (f == null)
+			f = new Family();
+		
 		try {
 			f.setCun(org.getCun());
 			f.setName(name);
@@ -302,53 +309,74 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			f.setZu(zu);
 			// 原因，脱贫意愿缺失
 
-			f.setBirthday(Util.getDateByTxt(birthday));
+			f.setBirthday(Util.getDateByTxtNoDay(birthday));
 			f.setWenhua(wenhua);
 			f.setIdNo(idNo);
-			f.setIncome(Double.parseDouble(income));
-			f.setType(Integer.parseInt(type));
-			f.setShuitian(Double.parseDouble(shuitian));
-			f.setHandi(Double.parseDouble(handi));
-			f.setLinguodi(Double.parseDouble(linguodi));
-			f.setOther(Double.parseDouble(other));
+			if(!Util.isEmpty(income))
+				f.setIncome(Double.parseDouble(income));
+			//f.setType(Integer.parseInt(type));
+			//始终是3
+			f.setType(3);
+			if(!Util.isEmpty(shuitian))
+				f.setShuitian(Double.parseDouble(shuitian));
+			if(!Util.isEmpty(handi))
+				f.setHandi(Double.parseDouble(handi));
+			if(!Util.isEmpty(linguodi))
+				f.setLinguodi(Double.parseDouble(linguodi));
+			if(!Util.isEmpty(other))
+				f.setOther(Double.parseDouble(other));
 			f.setJiegou(structure);
 			// 危房字段缺失
-
-			f.setMianji(Double.parseDouble(mianji));
+			f.setWeifang(weifang);
+			f.setReason(reason);
+			f.setWilling(willing);
+			
+			if(!Util.isEmpty(mianji))
+				f.setMianji(Double.parseDouble(mianji));
 
 			int sum = 0;
 			for (int i = 10; i < 100; i++) {
-				String c1 = sheet.getCell(0, i).getContents();
-				String c2 = sheet.getCell(1, i).getContents();
-				if (Util.isEmpty(c1) || Util.isEmpty(c2))
+				String c1 = sheet.getCell(1, i).getContents();
+				String c2 = sheet.getCell(2, i).getContents();
+				if (Util.isEmpty(c1))
 					break;
-				String c3 = sheet.getCell(2, i).getContents();
-				String c4 = sheet.getCell(3, i).getContents();
-				String c5 = sheet.getCell(4, i).getContents();
-				String c6 = sheet.getCell(5, i).getContents();
-				String c7 = sheet.getCell(6, i).getContents();
-				String c8 = sheet.getCell(7, i).getContents();
-				String c9 = sheet.getCell(8, i).getContents();
-				String c10 = sheet.getCell(9, i).getContents();
-				String c11 = sheet.getCell(10, i).getContents();
-				String c12 = sheet.getCell(11, i).getContents();
-				String c13 = sheet.getCell(12, i).getContents();
-				String c14 = sheet.getCell(13, i).getContents();
+				String c3 = sheet.getCell(3, i).getContents();
+				String c4 = sheet.getCell(4, i).getContents();
+				String c5 = sheet.getCell(5, i).getContents();
+				String c6 = sheet.getCell(6, i).getContents();
+				String c7 = sheet.getCell(9, i).getContents();
+				String c8 = sheet.getCell(11, i).getContents();
+				String c9 = sheet.getCell(12, i).getContents();
+				String c10 = sheet.getCell(13, i).getContents();
+				String c11 = sheet.getCell(14, i).getContents();
+				String c12 = sheet.getCell(15, i).getContents();
+				String c13 = sheet.getCell(16, i).getContents();
+				String c14 = sheet.getCell(17, i).getContents();
 
 				Person p = new Person();
 				p.setName(c1);
 				p.setGender(c2);
-				p.setBirthday(Util.getDateByTxt(c3));
+				p.setBirthday(Util.getDateByTxtNoDay(c3));
 				p.setRelate(c4);
 				p.setWenhua(c5);
 				p.setJob(c6);
 
 				// 缺失字段
+				p.setGongziIncome(c7);
+				p.setNongyeIncome(c8);
+				p.setDibaoIncome(c9);
+				p.setOtherIncome(c10);
+				p.setHezuoYiliao(c11);
+				p.setYanglao(c12);
+				p.setStuCost(c13);
+				p.setRemark(c14);
+				
 				f.setPerson(p, ++sum);
 			}
 
 			this.saveOrUpdateEntity(f);
 			sb.append("贫困户资料导入成功，户主姓名为:" + name);
+			workbook.close();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			throw new RuntimeException("导入失败，请检查数据是否完整和准确");

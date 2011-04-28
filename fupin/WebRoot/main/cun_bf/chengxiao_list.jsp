@@ -63,8 +63,8 @@ var msg = '${msg}';
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}cun_bf_deleteChengxiaoCun.action';
-				document.forms[0].submit();
+				document.forms[1].action = '${appPath}cun_bf_deleteChengxiaoCun.action';
+				document.forms[1].submit();
 			}
 		}
 </script>

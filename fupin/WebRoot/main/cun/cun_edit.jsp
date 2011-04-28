@@ -60,7 +60,7 @@
 	</head>
 	<body>
 		<c:set var="c" value="${cun}" scope="page"></c:set>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}cun_saveCun.action" name="">
+		<form method="post" onsubmit="return Validator.Validate(this);" action="${appPath}cun_saveCun.action" name="">
 			<input type="hidden" value="${cun.id}" name="cun.id" id="">
 			<c:if test="${not empty cun.org}"><input type="hidden" value="${cun.org.id}" name="cun.org.id" id=""></c:if>
 			<input type="hidden" value="${cun.zhen.id}" name="cun.zhen.id" id="">
