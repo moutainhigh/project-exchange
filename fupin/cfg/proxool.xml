@@ -12,5 +12,6 @@
 		<driver-class>com.mysql.jdbc.Driver</driver-class>
 		<maximum-connection-count>100</maximum-connection-count>
 		<minimum-connection-count>1</minimum-connection-count>
+		<maximum-active-time>3600000</maximum-active-time>
 	</proxool>
 </something-else-entirely>
