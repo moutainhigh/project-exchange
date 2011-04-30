@@ -259,14 +259,14 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 
 	// 调查表导入
 	public String uploadFamilyData2(String fileName) throws Exception {
-		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if (!(user instanceof Org)) {
-			throw new RuntimeException("只有单位管理员可以导入贫困户资料");
-		} else if (((Org) user).getCun() == null) {
-			throw new RuntimeException("该单位还没有映射村的帮扶，不能进行这项操作");
-		}
+//		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+//		if (!(user instanceof Org)) {
+//			throw new RuntimeException("只有单位管理员可以导入贫困户资料");
+//		} else if (((Org) user).getCun() == null) {
+//			throw new RuntimeException("该单位还没有映射村的帮扶，不能进行这项操作");
+//		}
 
-		Org org = ((Org) user);
+		//Org org = ((Org) user);
 
 		StringBuffer sb = new StringBuffer();
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
@@ -298,12 +298,11 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		if(Util.isEmpty(idNo))
 			return "贫困户资料导入失败，缺失身份证号";
 		Family f = this.getEntityByUnique(Family.class, "idNo", idNo);
-		//覆盖
 		if (f == null)
-			f = new Family();
+			return "该贫困户没有找到，身份证号为：" + idNo;
 		
 		try {
-			f.setCun(org.getCun());
+			//f.setCun(org.getCun());
 			f.setName(name);
 			f.setGender(gender);
 			f.setZu(zu);
