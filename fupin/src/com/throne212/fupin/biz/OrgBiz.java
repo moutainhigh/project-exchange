@@ -19,6 +19,7 @@ public interface OrgBiz extends BaseBiz {
 	
 	public List getAllOrg();
 	
+	public void deleteFamily(Long familyId); 
 	
 	//贫困户
 	public PageBean getAllFamily(String name,Integer pageIndex);

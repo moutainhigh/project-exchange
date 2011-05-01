@@ -321,5 +321,25 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		});
 		
 	}
+	
+	public void deleteFamily(Long familyId){
+		String hql = "delete from ChengxiaoFamily c where c.family.id=?";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		int len = s.createQuery(hql).setParameter(0, familyId).executeUpdate();
+		
+		hql = "delete from CuoshiFamily c where c.family.id=?";
+		len = s.createQuery(hql).setParameter(0, familyId).executeUpdate();
+		
+		hql = "delete from PicFamily c where c.family.id=?";
+		len = s.createQuery(hql).setParameter(0, familyId).executeUpdate();
+		
+		hql = "delete from Record c where c.family.id=?";
+		len = s.createQuery(hql).setParameter(0, familyId).executeUpdate();
+		
+		hql = "delete from Reason c where c.family.id=?";
+		len = s.createQuery(hql).setParameter(0, familyId).executeUpdate();
+		
+		super.deleteById(Family.class, familyId);
+	}
 
 }

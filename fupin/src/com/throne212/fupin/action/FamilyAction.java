@@ -54,9 +54,9 @@ public class FamilyAction extends BaseAction {
 
 	// 删除
 	public String deleteFamily() {
-		String[] shiWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("ids");
-		if (shiWrokOrgIds != null && shiWrokOrgIds.length > 0) {
-			for (String idStr : shiWrokOrgIds) {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String idStr : ids) {
 				Long id = Long.parseLong(idStr);
 				//删除帮扶关系 
 				List<Leader> leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family.id", id);
@@ -66,7 +66,7 @@ public class FamilyAction extends BaseAction {
 						orgBiz.saveOrUpdateEntity(l);
 					}
 				}
-				orgBiz.deleteEntity(Family.class, id);
+				orgBiz.deleteFamily(id);
 			}
 			this.setMsg("删除贫困户成功");
 		}

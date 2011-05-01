@@ -36,4 +36,6 @@ public interface ManagerDao extends BaseDao {
 	public Cun getCunByAreaZhenAndName(Area area, Zhen zhen,String name);
 	
 	public void deleteNonLeaderData();
+	
+	public void deleteFamily(Long familyId);
 }

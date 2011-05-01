@@ -599,4 +599,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		managerDao.deleteNonLeaderData();
 	}
 
+	public void deleteFamily(Long familyId){
+		managerDao.deleteFamily(familyId);
+	}
 }
