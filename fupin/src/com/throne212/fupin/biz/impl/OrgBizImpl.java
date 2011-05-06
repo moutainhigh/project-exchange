@@ -222,9 +222,9 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			if (!Util.isEmpty(zhen)) {
 				Zhen z = (Zhen) this.getEntityByUnique(Zhen.class, "name", area);
 				c = managerDao.getCunByAreaZhenAndName(a, z, cun);
+			}else{
+				c = managerDao.getCunByAreaAndName(a, cun);
 			}
-
-			c = managerDao.getCunByAreaAndName(a, cun);
 			if (c == null) {
 				sb.append("第" + (i + 1) + "行，数据错误,没有找到村名:" + cun);
 				throw new RuntimeException(sb.toString());
@@ -311,7 +311,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			f.setZu(zu);
 			// 原因，脱贫意愿缺失
 
-			f.setBirthday(Util.getDateByTxtNoDay(birthday));
+			f.setBirthday(Util.getDate(birthday));
 			f.setWenhua(wenhua);
 			f.setIdNo(idNo);
 			try {
@@ -417,7 +417,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				Person p = new Person();
 				p.setName(c1);
 				p.setGender(c2);
-				p.setBirthday(Util.getDateByTxtNoDay(c3));
+				p.setBirthday(Util.getDate(c3));
 				p.setRelate(c4);
 				p.setWenhua(c5);
 				p.setJob(c6);

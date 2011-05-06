@@ -26,6 +26,38 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class Util {
 	private static Logger logger = Logger.getLogger(Util.class);
+	
+	public static Date getDate(String dateTxt) throws ParseException {
+		if(!isEmpty(dateTxt)){
+			dateTxt = dateTxt.replaceAll("\"", "");
+		}
+		try {
+			return new SimpleDateFormat("yyyy-M").parse(dateTxt);
+		} catch (Exception e1) {
+			try {
+				return new SimpleDateFormat("yyyy-M-d").parse(dateTxt);
+			} catch (Exception e2) {
+				try {
+					return new SimpleDateFormat("yyyy.M").parse(dateTxt);
+				} catch (Exception e3) {
+					try {
+						return new SimpleDateFormat("yyyy.M.d").parse(dateTxt);
+					} catch (Exception e4) {
+						try {
+							return new SimpleDateFormat("yyyy年M月").parse(dateTxt);
+						} catch (Exception e5) {
+							try {
+								return new SimpleDateFormat("yyyy年M月d日").parse(dateTxt);
+							} catch (Exception e6) {
+								
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
 
 	public static String getCurrentDate() {
 		return getDate(new Date());
@@ -43,7 +75,7 @@ public class Util {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			return dateFormat.parse(dateTxt);
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -53,7 +85,7 @@ public class Util {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
 			return dateFormat.parse(dateTxt);
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -63,7 +95,7 @@ public class Util {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			return dateFormat.parse(dateTxt);
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
