@@ -220,7 +220,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 
 			// 如果有镇的名字，就加入镇的判断
 			if (!Util.isEmpty(zhen)) {
-				Zhen z = (Zhen) this.getEntityByUnique(Zhen.class, "name", area);
+				Zhen z = (Zhen) this.getEntityByUnique(Zhen.class, "name", zhen);
 				c = managerDao.getCunByAreaZhenAndName(a, z, cun);
 			}else{
 				c = managerDao.getCunByAreaAndName(a, cun);
