@@ -51,15 +51,19 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="6%" class="tables_headercell">
+						<td height="28" width="" class="tables_headercell">
 							<input type="checkbox" onclick="checkAll(this);">
-						<td width="40%" class="tables_headercell">
+						</td>
+						<td width="" class="tables_headercell">
+							镇名称
+						</td>
+						<td width="" class="tables_headercell">
 							村名称
 						</td>
-						<td width="20%" class="tables_headercell">
+						<td width="" class="tables_headercell">
 							帮扶单位
 						</td>
-						<td width="14%" class="tables_headercell">
+						<td width="" class="tables_headercell">
 							操作
 						</td>
 					</tr>
@@ -67,6 +71,9 @@
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
 								<input type="checkbox" value="${f.id}" name="ids">
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.zhen.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.name}
