@@ -14,7 +14,6 @@ import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-import com.lowagie.text.Cell;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
@@ -200,7 +199,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				zhen = sheet.getCell(6, i).getContents();
 
 			Family f = this.getEntityByUnique(Family.class, "idNo", idNo);
-			//覆盖
+			// 覆盖
 			if (f == null)
 				f = new Family();
 			else
@@ -244,7 +243,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			}
 
 			this.saveOrUpdateEntity(f);
-			logger.debug("import family from Excel succ, rowindex="+i);
+			logger.debug("import family from Excel succ, rowindex=" + i);
 			baseDao.fluch();
 			baseDao.clear();
 			sum++;
@@ -259,14 +258,15 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 
 	// 调查表导入
 	public String uploadFamilyData2(String fileName) throws Exception {
-//		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-//		if (!(user instanceof Org)) {
-//			throw new RuntimeException("只有单位管理员可以导入贫困户资料");
-//		} else if (((Org) user).getCun() == null) {
-//			throw new RuntimeException("该单位还没有映射村的帮扶，不能进行这项操作");
-//		}
+		// User user = (User)
+		// ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		// if (!(user instanceof Org)) {
+		// throw new RuntimeException("只有单位管理员可以导入贫困户资料");
+		// } else if (((Org) user).getCun() == null) {
+		// throw new RuntimeException("该单位还没有映射村的帮扶，不能进行这项操作");
+		// }
 
-		//Org org = ((Org) user);
+		// Org org = ((Org) user);
 
 		StringBuffer sb = new StringBuffer();
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
@@ -294,15 +294,18 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		String weifang = sheet.getCell(9, 7).getContents();
 		String mianji = sheet.getCell(10, 7).getContents();
 
-		//Family f = new Family();
-		if(Util.isEmpty(idNo))
-			return "贫困户资料导入失败，缺失身份证号";
+		// Family f = new Family();
+		if (Util.isEmpty(idNo)) {
+			workbook.close();
+			throw new Exception("贫困户资料导入失败，缺失身份证号");
+		}
 		Family f = this.getEntityByUnique(Family.class, "idNo", idNo);
-		if (f == null)
-			return "该贫困户没有找到，身份证号为：" + idNo;
-		
+		if (f == null) {
+			workbook.close();
+			throw new Exception("该贫困户没有找到，身份证号为：" + idNo);
+		}
 		try {
-			//f.setCun(org.getCun());
+			// f.setCun(org.getCun());
 			f.setName(name);
 			f.setGender(gender);
 			f.setZu(zu);
@@ -311,27 +314,86 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			f.setBirthday(Util.getDateByTxtNoDay(birthday));
 			f.setWenhua(wenhua);
 			f.setIdNo(idNo);
-			if(!Util.isEmpty(income))
-				f.setIncome(Double.parseDouble(income));
-			//f.setType(Integer.parseInt(type));
-			//始终是3
+			try {
+				if (!Util.isEmpty(income)){
+					if(income.length()==1 && (int)income.charAt(0) == 65533)//非法空格字符
+						income = "";
+					else
+						f.setIncome(Double.parseDouble(income.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("家庭收入项有非法字符，例如：123.00");
+			}
+			// f.setType(Integer.parseInt(type));
+			// 始终是3
 			f.setType(3);
-			if(!Util.isEmpty(shuitian))
-				f.setShuitian(Double.parseDouble(shuitian));
-			if(!Util.isEmpty(handi))
-				f.setHandi(Double.parseDouble(handi));
-			if(!Util.isEmpty(linguodi))
-				f.setLinguodi(Double.parseDouble(linguodi));
-			if(!Util.isEmpty(other))
-				f.setOther(Double.parseDouble(other));
+			try {
+				if (!Util.isEmpty(shuitian)){
+					if(shuitian.length()==1 && (int)shuitian.charAt(0) == 65533)//非法空格字符
+						shuitian = "";
+					else
+						f.setShuitian(Double.parseDouble(shuitian.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("水田项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(handi)){
+					if(handi.length()==1 && (int)handi.charAt(0) == 65533)//非法空格字符
+						handi = "";
+					else
+						f.setHandi(Double.parseDouble(handi.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("旱地面积项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(linguodi)){
+					if(linguodi.length()==1 && (int)linguodi.charAt(0) == 65533)//非法空格字符
+						linguodi = "";
+					else
+						f.setLinguodi(Double.parseDouble(linguodi.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("林果地项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(other)){
+					if(other.length()==1 && (int)other.charAt(0) == 65533)//非法空格字符
+						other = "";
+					else
+						f.setOther(Double.parseDouble(other.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("其他收入项有非法字符，例如：123.00");
+			}
 			f.setJiegou(structure);
 			// 危房字段缺失
 			f.setWeifang(weifang);
 			f.setReason(reason);
 			f.setWilling(willing);
-			
-			if(!Util.isEmpty(mianji))
-				f.setMianji(Double.parseDouble(mianji));
+			try {
+				if (!Util.isEmpty(mianji)){
+					if(mianji.length()==1 && (int)mianji.charAt(0) == 65533)//非法空格字符
+						mianji = "";
+					else
+						f.setMianji(Double.parseDouble(mianji.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("面积有非法字符，例如：123.00");
+			}
 
 			int sum = 0;
 			for (int i = 10; i < 100; i++) {
@@ -369,7 +431,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				p.setYanglao(c12);
 				p.setStuCost(c13);
 				p.setRemark(c14);
-				
+
 				f.setPerson(p, ++sum);
 			}
 
@@ -424,9 +486,9 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				f = new Family();
 
 			// 类型
-			if (Util.isEmpty(type)) {
-				f.setType(3);// 默认贫困类型为3
-			}
+//			if (Util.isEmpty(type)) {
+//				f.setType(3);// 默认贫困类型为3
+//			}
 
 			Zhen z = (Zhen) this.getEntityByUnique(Zhen.class, "name", zhen);
 			if (z == null) {
@@ -451,34 +513,95 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			f.setWilling(willing);
 			f.setJiegou(jiegou);
 			f.setWeifang(weifang);
+			f.setBirthday(Util.getDateByTxtInExcel(birthday));
+			
+			try {
+				if (!Util.isEmpty(income)){
+					if(income.length()==1 && (int)income.charAt(0) == 65533)//非法空格字符
+						income = "";
+					else
+						f.setIncome(Double.parseDouble(income.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("第" + (i + 1) + "行，家庭收入项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(shuitian)){
+					if(shuitian.length()==1 && (int)shuitian.charAt(0) == 65533)//非法空格字符
+						shuitian = "";
+					else
+						f.setShuitian(Double.parseDouble(shuitian.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("第" + (i + 1) + "行，水田项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(handi)){
+					if(handi.length()==1 && (int)handi.charAt(0) == 65533)//非法空格字符
+						handi = "";
+					else
+						f.setHandi(Double.parseDouble(handi.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("第" + (i + 1) + "行，旱地面积项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(linguodi)){
+					if(linguodi.length()==1 && (int)linguodi.charAt(0) == 65533)//非法空格字符
+						linguodi = "";
+					else
+						f.setLinguodi(Double.parseDouble(linguodi.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("第" + (i + 1) + "行，林果地项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(other)){
+					if(other.length()==1 && (int)other.charAt(0) == 65533)//非法空格字符
+						other = "";
+					else
+						f.setOther(Double.parseDouble(other.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("第" + (i + 1) + "行，其他收入项有非法字符，例如：123.00");
+			}
+			try {
+				if (!Util.isEmpty(mianji)){
+					if(mianji.length()==1 && (int)mianji.charAt(0) == 65533)//非法空格字符
+						mianji = "";
+					else
+						f.setMianji(Double.parseDouble(mianji.trim()));
+				}
+			} catch (RuntimeException e) {
+				logger.warn("Excel导入数据字符有误", e);
+				workbook.close();
+				throw new Exception("第" + (i + 1) + "行，面积有非法字符，例如：123.00");
+			}
 
 			try {
-				f.setIncome(Double.parseDouble(income));
 				if (!Util.isEmpty(type))
 					f.setType(Integer.parseInt(type));
-				f.setBirthday(Util.getDateByTxtInExcel(birthday));
-				if (!Util.isEmpty(shuitian))
-					f.setShuitian(Double.parseDouble(shuitian));
-				if (!Util.isEmpty(handi))
-					f.setHandi(Double.parseDouble(handi));
-				if (!Util.isEmpty(linguodi))
-					f.setLinguodi(Double.parseDouble(linguodi));
-				if (!Util.isEmpty(other))
-					f.setOther(Double.parseDouble(other));
-				if (!Util.isEmpty(mianji))
-					f.setMianji(Double.parseDouble(mianji));
-
 			} catch (Exception e) {
 				e.printStackTrace();
-				sb.append("第" + (i + 1) + "行，数据错误,请检查家庭收入、类型等数据格式");
+				sb.append("第" + (i + 1) + "行，贫困类型错误，只能为：1,2,3,4");
 				throw new RuntimeException(sb.toString());
 			}
 
 			// 添加家庭成员
 			for (int j = 0; j < 10; j++) {
-				int col = j*16+21;
+				int col = j * 16 + 21;
 				String namePer = sheet.getCell(col++, i).getContents();
-				if(Util.isEmpty(namePer))
+				if (Util.isEmpty(namePer))
 					continue;
 				String genderPer = sheet.getCell(col++, i).getContents();
 				String idNoPer = sheet.getCell(col++, i).getContents();
@@ -497,7 +620,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				String remark = sheet.getCell(col++, i).getContents();
 				Person p = new Person();
 				try {
-					//p.setBirthday(Util.getDateByTxt(birthdayPer));
+					// p.setBirthday(Util.getDateByTxt(birthdayPer));
 					p.setName(namePer);
 					p.setGender(genderPer);
 					p.setWenhua(wenhuaPer);
@@ -511,17 +634,17 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 					p.setYanglao(yanglao);
 					p.setStuCost(xuefei);
 					p.setRemark(remark);
-					f.setPerson(p, j+1);
+					f.setPerson(p, j + 1);
 				} catch (Exception e) {
 					e.printStackTrace();
 					sb.append("第" + (i + 1) + "行，家庭成员数据错误,请检查生日、年龄等数据格式");
 					throw new RuntimeException(sb.toString());
 				}
-				
+
 			}
 
 			baseDao.saveOrUpdate(f);
-			logger.debug("import family from Excel succ, rowindex="+i);
+			logger.debug("import family from Excel succ, rowindex=" + i);
 			baseDao.fluch();
 			baseDao.clear();
 			sum++;
@@ -594,12 +717,12 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		}
 		return null;
 	}
-	
-	public void deleteNonLeaderData(){
+
+	public void deleteNonLeaderData() {
 		managerDao.deleteNonLeaderData();
 	}
 
-	public void deleteFamily(Long familyId){
+	public void deleteFamily(Long familyId) {
 		managerDao.deleteFamily(familyId);
 	}
 }
