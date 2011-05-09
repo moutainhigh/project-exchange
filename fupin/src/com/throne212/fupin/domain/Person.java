@@ -1,6 +1,8 @@
 package com.throne212.fupin.domain;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Person extends MyEntity {
 
@@ -74,6 +76,21 @@ public class Person extends MyEntity {
 
 	public Date getBirthday() {
 		return birthday;
+	}
+	
+	// 获取生日的字符形式
+	public String getBirthdayTxt() {
+		if (birthday == null)
+			return "";
+		Calendar time = new GregorianCalendar();
+		time.setTime(birthday);
+		int year = time.get(Calendar.YEAR);
+		int month = time.get(Calendar.MONTH) + 1;
+		int day = time.get(Calendar.DAY_OF_MONTH);
+		if (month == 1 && day == 1)
+			return year + "年";
+		else
+			return year + "-" + month;
 	}
 
 	public void setBirthday(Date birthday) {

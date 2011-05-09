@@ -134,7 +134,7 @@
 							出生年月
 						</td>
 						<td colspan="4" class="tables_contentcell">
-							<input type="text" id="birthday" name="family.birthday" value="<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM"/>" class="datetime"  style="width: 80px"/>
+							<input type="text" id="birthday" name="family.birthday" value="${f.birthdayTxt }" class="datetime"  style="width: 80px"/>
 							<span style="color:gray;">例如：1971-09</span>
 						</td>
 						
@@ -427,7 +427,7 @@
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<input type="text" name="family.person<%=i%>.birthday" value="<fmt:formatDate value="<%=p.getBirthday()%>" pattern="yyyy-MM-dd"/>" class="datetime"  style="width: 90%" />
+							<input type="text" value="<%=p.getBirthdayTxt()%>" name="family.person<%=i%>.birthday" class="datetime"  style="width: 90%" />
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;

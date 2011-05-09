@@ -59,7 +59,7 @@
 							出生年月
 						</td>
 						<td colspan="4" class="tables_contentcell">
-							&nbsp;<fmt:formatDate value="${f.birthday }" pattern="yyyy-MM"/>
+							&nbsp;${f.birthdayTxt }
 						</td>
 						
 					</tr>
@@ -293,7 +293,7 @@
 							&nbsp;<%=p.getGender()==null?"":p.getGender()%>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;<fmt:formatDate value="<%=p.getBirthday()%>" pattern="yyyy-MM-dd"/>
+							&nbsp;<%=p.getBirthdayTxt()%>
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;<%=p.getRelate()==null?"":p.getRelate()%>

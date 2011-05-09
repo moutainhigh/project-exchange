@@ -324,7 +324,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			} catch (RuntimeException e) {
 				logger.warn("Excel导入数据字符有误", e);
 				workbook.close();
-				throw new Exception("家庭收入项有非法字符，例如：123.00");
+				throw new Exception("家庭收入有非法字符如中文，正确填写方法是：123.00");
 			}
 			// f.setType(Integer.parseInt(type));
 			// 始终是3
@@ -525,7 +525,7 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			} catch (RuntimeException e) {
 				logger.warn("Excel导入数据字符有误", e);
 				workbook.close();
-				throw new Exception("第" + (i + 1) + "行，家庭收入项有非法字符，例如：123.00");
+				throw new Exception("第" + (i + 1) + "行，家庭收入有非法字符如中文，正确填写方法是：123.00");
 			}
 			try {
 				if (!Util.isEmpty(shuitian)){

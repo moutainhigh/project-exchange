@@ -49,7 +49,19 @@ public class Util {
 							try {
 								return new SimpleDateFormat("yyyy年M月d日").parse(dateTxt);
 							} catch (Exception e6) {
-								
+								try {
+									return new SimpleDateFormat("yyyy年M").parse(dateTxt);
+								} catch (Exception e7) {
+									try {
+										return new SimpleDateFormat("yyyy年").parse(dateTxt);
+									} catch (Exception e8) {
+										try {
+											return new SimpleDateFormat("yyyy").parse(dateTxt);
+										} catch (Exception e9) {
+											
+										}
+									}
+								}
 							}
 						}
 					}

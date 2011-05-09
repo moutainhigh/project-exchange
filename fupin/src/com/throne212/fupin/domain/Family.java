@@ -1,7 +1,9 @@
 package com.throne212.fupin.domain;
 
 import java.lang.reflect.Method;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
@@ -31,13 +33,12 @@ public class Family extends MyEntity {
 
 	private String jiegou;// 房屋结构
 	private Double mianji;// mianji
-	
-	//新的字段-测试10
-	private String tel;//联系电话
-	private String reason;//贫困原因
-	private String willing;//贫困意愿
-	private String weifang;//是否危房
-	
+
+	// 新的字段-测试10
+	private String tel;// 联系电话
+	private String reason;// 贫困原因
+	private String willing;// 贫困意愿
+	private String weifang;// 是否危房
 
 	private Person person1;
 	private Person person2;
@@ -53,7 +54,7 @@ public class Family extends MyEntity {
 	private List<Leader> leaderList;
 
 	public String getLeaderNames() {
-		if(leaderList == null || leaderList.size() == 0){
+		if (leaderList == null || leaderList.size() == 0) {
 			return "暂时没有帮扶干部";
 		}
 		StringBuffer sb = new StringBuffer();
@@ -64,10 +65,10 @@ public class Family extends MyEntity {
 		return sb.toString();
 	}
 
-	public int getLeaderSize(){
-		if(leaderList == null){
+	public int getLeaderSize() {
+		if (leaderList == null) {
 			return 0;
-		}else{
+		} else {
 			return leaderList.size();
 		}
 	}
@@ -101,13 +102,29 @@ public class Family extends MyEntity {
 		}
 		return null;
 	}
-	public void setPerson(Person p,int i) {
+
+	public void setPerson(Person p, int i) {
 		try {
-			Method m = this.getClass().getDeclaredMethod("setPerson" + i,Person.class);
+			Method m = this.getClass().getDeclaredMethod("setPerson" + i, Person.class);
 			m.invoke(this, p);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	// 获取生日的字符形式
+	public String getBirthdayTxt() {
+		if (birthday == null)
+			return "";
+		Calendar time = new GregorianCalendar();
+		time.setTime(birthday);
+		int year = time.get(Calendar.YEAR);
+		int month = time.get(Calendar.MONTH) + 1;
+		int day = time.get(Calendar.DAY_OF_MONTH);
+		if (month == 1 && day == 1)
+			return year + "年";
+		else
+			return year + "-" + month;
 	}
 
 	public Cun getCun() {
@@ -167,7 +184,7 @@ public class Family extends MyEntity {
 	}
 
 	public Double getIncome() {
-		if(income == null)
+		if (income == null)
 			return null;
 		return Double.valueOf(Math.round(income));
 	}
@@ -265,7 +282,7 @@ public class Family extends MyEntity {
 	}
 
 	public Double getMianji() {
-		if(mianji == null)
+		if (mianji == null)
 			return null;
 		return Double.valueOf(Math.round(mianji));
 	}
