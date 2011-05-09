@@ -122,9 +122,9 @@ public class Family extends MyEntity {
 		int month = time.get(Calendar.MONTH) + 1;
 		int day = time.get(Calendar.DAY_OF_MONTH);
 		if (month == 1 && day == 1)
-			return year + "年";
+			return year + "-01";
 		else
-			return year + "-" + month;
+			return year + "-" + (month<10?"0"+month:month);
 	}
 
 	public Cun getCun() {
