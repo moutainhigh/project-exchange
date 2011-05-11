@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.oa.domain.birth">
+	<class name="Birth" table="oa2_birth">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<property name="no" column="the_no"></property>
+		<property name="name" column="the_name"></property>
+		<property name="birthday"></property>
+		<property name="weeks"></property>
+		<property name="weight"></property>
+		<property name="height"></property>
+		<property name="place"></property>
+		<many-to-one name="org" lazy="false"></many-to-one>
+		<many-to-one name="health" lazy="false"></many-to-one>
+		<property name="person"></property>
+
+		<property name="mother"></property>
+		<property name="motherBirthday"></property>
+		<property name="motherCountry"></property>
+		<many-to-one name="motherNation" lazy="false"></many-to-one>
+		<property name="motherIdNo"></property>
+
+		<property name="father"></property>
+		<property name="fatherBirthday"></property>
+		<property name="fatherCountry"></property>
+		<many-to-one name="fatherNation" lazy="false"></many-to-one>
+		<property name="fatherIdNo"></property>
+
+		<property name="address"></property>
+		<property name="date" column="publish_date"></property>
+		<property name="bufa"></property>
+	</class>
+</hibernate-mapping>

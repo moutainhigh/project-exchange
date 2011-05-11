@@ -4,6 +4,8 @@ import org.hibernate.Session;
 
 import com.throne212.oa.HibernateSessionFactory;
 import com.throne212.oa.domain.DropdownList;
+import com.throne212.oa.domain.birth.Health;
+import com.throne212.oa.domain.birth.JieShengOrg;
 import com.throne212.oa.domain.doctor.BodyGrade;
 import com.throne212.oa.domain.doctor.Cun;
 import com.throne212.oa.domain.doctor.Grade;
@@ -135,6 +137,15 @@ public class Init {
 		
 		String[] checkArr = {"考核项目001","考核项目002","考核项目003","考核项目004","考核项目005"};
 		saveDropdownList(s,checkArr,CheckItem.class);
+		
+		//出生证
+		saveDropdownList(s,nationArr, com.throne212.oa.domain.birth.BirthNation.class);
+		
+		String[] healthArr = {"很好","一般","不好","很差"};
+		saveDropdownList(s,healthArr,Health.class);
+		
+		String[] jieshengOrgArr = {"第三人民医院","妇幼保健院"};
+		saveDropdownList(s,jieshengOrgArr,JieShengOrg.class);
 		
 		s.getTransaction().commit();
 		s.close();

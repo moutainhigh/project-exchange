@@ -48,5 +48,9 @@
 		<subclass discriminator-value="muyingworker_speical" name="com.throne212.oa.domain.muyingworker.Special"/>
 		<subclass discriminator-value="muyingworker_title" name="com.throne212.oa.domain.muyingworker.Title"/>
 		<subclass discriminator-value="muyingworker_checkitem" name="com.throne212.oa.domain.muyingworker.CheckItem"/>
+		<!-- 出生证 -->
+		<subclass discriminator-value="birth_nation" name="com.throne212.oa.domain.birth.BirthNation"/>
+		<subclass discriminator-value="birth_org" name="com.throne212.oa.domain.birth.JieShengOrg"/>
+		<subclass discriminator-value="birth_health" name="com.throne212.oa.domain.birth.Health"/>
 	</class>
 </hibernate-mapping>

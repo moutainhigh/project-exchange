@@ -17,7 +17,7 @@
 		com.mysql.jdbc.Driver
 	</property>
 	<property name="hibernate.dialect">
-		org.hibernate.dialect.Oracle8iDialect
+		org.hibernate.dialect.MySQLDialect
 	</property>
 	<property name="hibernate.cache.provider_class">
 		org.hibernate.cache.HashtableCacheProvider
@@ -38,7 +38,7 @@
 		</property>
 	-->
 	<property name="hbm2ddl.auto">none</property>
-	<property name="dialect">org.hibernate.dialect.Oracle8iDialect</property>
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 	<mapping resource="com/throne212/oa/domain/doctor/Doctor.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/person/Person.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/file/PersonFile.hbm.xml" />
@@ -51,6 +51,7 @@
 	<mapping
 		resource="com/throne212/oa/domain/muyingworker/Worker.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/muyingorg/Org.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/birth/Birth.hbm.xml" />
 
 </session-factory>
 </hibernate-configuration>
