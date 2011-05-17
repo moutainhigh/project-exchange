@@ -1,5 +1,6 @@
 package com.throne212.oa.action;
 
+import java.io.FileOutputStream;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +22,7 @@ import com.throne212.oa.dao.DoctorDao;
 import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.domain.DropdownList;
 import com.throne212.oa.domain.doctor.Doctor;
+import com.throne212.oa.domain.muyingorg.Org;
 
 public class DoctorAction extends DispatchAction{
 	
@@ -191,6 +193,33 @@ public class DoctorAction extends DispatchAction{
 		if (dicName != null)
 			request.getSession().getServletContext().removeAttribute(request.getParameter("dicName"));
 		return this.dicEdit(mapping, form, request, response);
+	}
+	
+	//¥Ú”°
+	public ActionForward getDoctorInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		Doctor d = docDao.getDoctorById(Long.parseLong(id));
+		request.setAttribute("doc", d);
+		return mapping.findForward("print");
+	}
+	public ActionForward savePos(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String json = request.getParameter("json");
+		if(json!=null){
+			StringBuffer sb = new StringBuffer(json);
+			sb.deleteCharAt(sb.length()-2);
+			System.out.println("new json pos="+sb);
+			
+			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+			path = path.substring(0, path.indexOf("WEB-INF"));
+			path += "doctor/json.txt";
+			System.out.println("json saved path : " + path);
+			
+			FileOutputStream fos = new FileOutputStream(path);
+			fos.write(sb.toString().getBytes());
+			fos.flush();
+			fos.close();
+		}
+		return null;
 	}
 	
 	public static void main(String[] args) {

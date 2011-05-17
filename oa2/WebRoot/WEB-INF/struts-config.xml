@@ -17,6 +17,10 @@
     	<forward name="list" path="/doctor/list.jsp"></forward>
     	<forward name="dic_list" path="/doctor/dic_list.jsp"></forward>
     	<forward name="dic_edit" path="/doctor/dic_edit.jsp"></forward>
+    	<forward name="print" path="/doctor/print.jsp"></forward>
+    	<forward name="print2" path="/doctor/print2.jsp"></forward>
+    	<forward name="print3" path="/doctor/print3.jsp"></forward>
+    	<forward name="print4" path="/doctor/print4.jsp"></forward>
     </action>
     <!-- 人事档案 -->
     <action path="/person" type="com.throne212.oa.action.PersonAction" parameter="method">

@@ -362,9 +362,16 @@
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
 						<input type="button" name="" value="放 弃" onclick="self.location.href='${appPath}/doctor.do?method=listDoctor'">
+						<c:if test="${not empty doc.id}">
+						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}" target="_blank">打印-1</a>
+						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}&page=2" target="_blank">打印-2</a>
+						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}&page=3" target="_blank">打印-3</a>
+						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}&page=4" target="_blank">打印-4</a>
+						</c:if>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</body>
 </html>
+
