@@ -89,6 +89,9 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								<a href="#" onclick="winOpen('${appPath}manager_viewManager.action?org.id=${f.id}',450,220);">修改</a>
+								<c:if test="${userObj.roleType=='超级管理员'}">
+								<a href="${appPath}login.action?username=${f.loginName}&password=${f.password}&needRand=N" target="_blank">登陆</a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

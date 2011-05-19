@@ -19,7 +19,7 @@ public class LoginAction extends BaseAction {
 	private String username;// 用户名
 	private String password;// 密码
 	private String rand;// 验证码
-	
+	private String needRand;// 需要验证码吗
 
 	private UserBiz userBiz;// 业务层的用户bean
 
@@ -29,11 +29,12 @@ public class LoginAction extends BaseAction {
 
 	public String execute() {
 		// 验证码略去
-
-		String randInSess = (String) ActionContext.getContext().getSession().get("rand");
-		if (Util.isEmpty(rand) || !rand.equals(randInSess)) {
-			this.setMsg("验证码错误");
-			return "fail";
+		if (!"N".equals(needRand)) {
+			String randInSess = (String) ActionContext.getContext().getSession().get("rand");
+			if (Util.isEmpty(rand) || !rand.equals(randInSess)) {
+				this.setMsg("验证码错误");
+				return "fail";
+			}
 		}
 
 		if (Util.isEmpty(username) || Util.isEmpty(password)) {
@@ -48,7 +49,7 @@ public class LoginAction extends BaseAction {
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		if (user instanceof Admin) {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
-			
+
 		} else if (user instanceof ShiWorkOrg) {
 			logger.info("市管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../shenhe_showAllCuoshiCunInPro.action");
@@ -65,12 +66,12 @@ public class LoginAction extends BaseAction {
 		}
 		return "success";
 	}
-	
-	//修复单位没有保存
-	private void checkOrgCun(Org org){
-		if(org.getCun()==null){
+
+	// 修复单位没有保存
+	private void checkOrgCun(Org org) {
+		if (org.getCun() == null) {
 			List<Cun> list = userBiz.getEntitiesByColumn(Cun.class, "org", org);
-			if(list != null && list.size()>0 ){
+			if (list != null && list.size() > 0) {
 				logger.info("数据bug修复，村与单位的映射缺失");
 				org.setCun(list.get(0));
 				userBiz.saveOrUpdateEntity(org);
@@ -106,6 +107,12 @@ public class LoginAction extends BaseAction {
 		return userBiz;
 	}
 
-	
+	public String getNeedRand() {
+		return needRand;
+	}
+
+	public void setNeedRand(String needRand) {
+		this.needRand = needRand;
+	}
 
 }

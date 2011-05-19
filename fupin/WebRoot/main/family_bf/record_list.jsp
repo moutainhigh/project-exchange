@@ -174,9 +174,9 @@ function displayAction(sid) {
 					<td height="28" class="tables_headercell">
 						<input type="checkbox" onclick="checkAll(this);">
 					</td>
-				<td height="28" class="tables_headercell">编号</td>
-<td width="6%" class="tables_headercell">
-						年度
+					<td height="28" class="tables_headercell">编号</td>
+					<td class="tables_headercell">
+						到户时间
 					</td>
 					<td class="tables_headercell">
 						贫困户名称
