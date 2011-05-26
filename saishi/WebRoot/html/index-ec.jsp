@@ -900,6 +900,7 @@ function initialise() {
 	L0301 = theMenu.addChild(L03, "Document", "赛事录入", "${appPath}data_gameList.action", "录入赛事,添加删除修改...");
 	L0302 = theMenu.addChild(L03, "Document", "新闻管理", "${appPath}data_newsList.action", "新闻管理,添加删除修改新闻...");
 	L0303 = theMenu.addChild(L03, "Document", "音乐管理", "${appPath}data_musicList.action", "音乐管理,添加删除修改音乐...");
+	L0302 = theMenu.addChild(L03, "Document", "前台页面管理", "${appPath}data_gotoContent.action", "前台页面管理...");
 	<c:if test="${userObj.userRole=='超级管理员'}">
 	L0306 = theMenu.addChild(L03, "Document", "用户管理", "${appPath}data_userList.action", "用户管理...");
 	</c:if>

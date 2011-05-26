@@ -63,6 +63,8 @@
 			<result name="news_list">/html/account/service/news_list.jsp</result>
 			<result name="music_edit">/html/account/service/music_edit.jsp</result>
 			<result name="music_list">/html/account/service/music_list.jsp</result>
+			<!-- 前台界面 -->
+			<result name="content">/html/account/service/content.jsp</result>
 		</action>
 		<!-- 上传音乐 -->
 		<action name="FileUploadAction_*" method="{1}" class="com.throne212.saishi.action.FileUploadAction">
@@ -72,6 +74,7 @@
 		</action>
 		<action name="*" method="{1}" class="com.throne212.saishi.action.FrontAction">
 			<result name="news">/html/news/news.jsp</result>
+			<result name="{1}">/{1}.jsp</result>
 		</action>
 	</package>
 	<package name="json" extends="json-default" namespace="/ajax">

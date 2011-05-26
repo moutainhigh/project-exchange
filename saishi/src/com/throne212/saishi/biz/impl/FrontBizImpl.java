@@ -7,7 +7,7 @@ import com.throne212.saishi.dao.GameDao;
 import com.throne212.saishi.dao.NewsDao;
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.News;
-import com.throne212.saishi.domain.Queue;
+import com.throne212.saishi.domain.Tixing;
 
 public class FrontBizImpl extends BaseBizImpl implements FrontBiz {
 	
@@ -31,10 +31,10 @@ public class FrontBizImpl extends BaseBizImpl implements FrontBiz {
 	}
 
 	public List<News> getTopNews() {
-		return newsDao.getTopNews();
+		return newsDao.getTopNews("普通新闻");
 	}
 
-	public List<Queue> getTopTixing() {
+	public List<Tixing> getTopTixing() {
 		return gameDao.getTopTixing();
 	}
 

@@ -1,6 +1,7 @@
 package com.throne212.saishi.biz.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import com.throne212.saishi.biz.DataBiz;
 import com.throne212.saishi.common.PageBean;
@@ -11,6 +12,7 @@ import com.throne212.saishi.dao.UserDao;
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.Music;
 import com.throne212.saishi.domain.News;
+import com.throne212.saishi.domain.Tixing;
 import com.throne212.saishi.domain.User;
 
 public class DataBizImpl extends BaseBizImpl implements DataBiz {
@@ -150,6 +152,26 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	public void tixing(Long gameId){
 		Game game = userDao.getEntityById(Game.class, gameId);
 		gameDao.tixing(game);
+	}
+	
+	public List<News> getTop10News(){
+		return newsDao.getTopNews("普通新闻");
+	}
+	public List<News> getTop10News2(){
+		return newsDao.getTopNews("文章");
+	}
+	public List<News> getTop10News3(){
+		return newsDao.getTopNews("日志");
+	}
+	public List<News> getTop10News4(){
+		return newsDao.getTopNews("帖子");
+	}
+	public List<News> getTop10News5(){
+		return newsDao.getTopNews("知识堂");
+	}
+	
+	public List<Tixing> getTop5Tixing(){
+		return gameDao.getTopTixing();
 	}
 
 	public UserDao getUserDao() {

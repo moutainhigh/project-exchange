@@ -131,10 +131,7 @@
 			</tr>
 		</table>
 		<div class="button_bar">
-		
-			<button class="common_button" onclick="to('${appPath}html/account/service/game_edit.jsp');">
-				新建
-			</button>
+			<input type="button" class="common_button" onclick="to('${appPath}html/account/service/game_edit.jsp');" value="新建"/>
 			<button class="common_button" onclick="query();">
 				查询
 			</button>

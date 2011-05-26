@@ -6,10 +6,14 @@
 		<id column="id" name="id" type="long">
 			<generator class="increment" />
 		</id>
-	<property name="title" length="256"></property>
-	<property name="content" length="1024"></property>
-	<property name="author" length="128"></property>
-	
+		
+		<discriminator column="news_type" type="string"></discriminator>
+		
+		<property name="title" length="256"></property>
+		<property name="content" length="1024"></property>
+		<property name="author" length="128"></property>
+		<property name="url" length="1024"></property>
+		<property name="type" length="1024"></property>
 
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
@@ -21,6 +25,9 @@
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
 		
+		<subclass discriminator-value="pic" extends="News" name="PicNews">
+			<property name="image"></property>
+		</subclass>
 		
 	</class>
 </hibernate-mapping>

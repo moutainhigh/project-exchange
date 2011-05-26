@@ -1,11 +1,13 @@
 package com.throne212.saishi.biz;
 
 import java.util.Date;
+import java.util.List;
 
 import com.throne212.saishi.common.PageBean;
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.Music;
 import com.throne212.saishi.domain.News;
+import com.throne212.saishi.domain.Tixing;
 import com.throne212.saishi.domain.User;
 
 public interface DataBiz extends BaseBiz {
@@ -25,6 +27,8 @@ public interface DataBiz extends BaseBiz {
 	public PageBean<Game> getGameList(Game condition, Date startDate, Date endDate, Date fromDate, Date toDate, Integer pageIndex, String orderBy, String orderType, int pageSize);
 	
 	public void tixing(Long gameId);
+	
+	public List<Tixing> getTop5Tixing();
 
 	// 新闻
 	public News saveNews(News news);
@@ -32,6 +36,12 @@ public interface DataBiz extends BaseBiz {
 	public News deleteNews(News news);
 
 	public PageBean<News> getNewsList(News condition, Date fromDate, Date toDate, Integer pageIndex, String orderBy, String orderType, int pageSize);
+	
+	public List<News> getTop10News();
+	public List<News> getTop10News2();
+	public List<News> getTop10News3();
+	public List<News> getTop10News4();
+	public List<News> getTop10News5();
 
 	// 音乐
 	public Music saveMusic(Music music);

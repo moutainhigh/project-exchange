@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.News;
-import com.throne212.saishi.domain.Queue;
+import com.throne212.saishi.domain.Tixing;
 
 public interface FrontBiz extends BaseBiz {
 
@@ -15,7 +15,7 @@ public interface FrontBiz extends BaseBiz {
 	public List<Game> getTopGames();
 	
 	//最新的5条提醒
-	public List<Queue> getTopTixing();
+	public List<Tixing> getTopTixing();
 	
 	//推荐视频
 	public Game getGame();

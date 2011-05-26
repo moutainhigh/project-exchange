@@ -1,6 +1,7 @@
 package com.throne212.saishi.action;
 
 import java.util.Date;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.saishi.biz.BaseBiz;
@@ -9,6 +10,7 @@ import com.throne212.saishi.common.PageBean;
 import com.throne212.saishi.common.Util;
 import com.throne212.saishi.common.WebConstants;
 import com.throne212.saishi.domain.Admin;
+import com.throne212.saishi.domain.Content;
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.Manager;
 import com.throne212.saishi.domain.Music;
@@ -246,6 +248,25 @@ public class DataAction extends BaseAction {
 		}
 		return musicList();
 	}
+	
+	private Content c;
+	//前台页面
+	public String gotoContent() {
+		List<Content> list = dataBiz.getAll(Content.class);
+		if(list !=null && list.size()>0){
+			c = list.get(0);			
+		}else{
+			c = new Content();
+			dataBiz.saveOrUpdateEntity(c);
+		}
+		return "content";
+	}
+	//前台页面
+	public String saveContent() {
+		dataBiz.saveOrUpdateEntity(c);
+		this.setMsg("界面保存成功");
+		return "content";
+	}
 
 	public PageBean getPageBean() {
 		return pageBean;
@@ -373,6 +394,14 @@ public class DataAction extends BaseAction {
 
 	public void setMusic(Music music) {
 		this.music = music;
+	}
+
+	public Content getC() {
+		return c;
+	}
+
+	public void setC(Content c) {
+		this.c = c;
 	}
 
 }

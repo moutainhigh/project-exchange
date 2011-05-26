@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.saishi.domain">
+	<class name="Tixing" table="ss_tixing">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		
+		<many-to-one name="game" column="game_id" lazy="false"></many-to-one>
+		<property name="date" column="tixing_date"></property>
+		
+	</class>
+</hibernate-mapping>

@@ -3,7 +3,7 @@
 	padding:0px;
 	font:12px/20px "宋体";
 	color:#333;
-	background-color: #000;
+	/*background-color: #000;*/
 }
 
 /******** 清除标签基本样式 *********/
@@ -98,6 +98,8 @@ h4 {font-size:12px;color:#000;}
 .mar_l5 {margin-left:5px;}
 .mar_l10 {margin-left:10px;}
 .mar_l20 {margin-left:20px;}
+.mar_l50 {margin-left:50px;}
+.mar_l75 {margin-left:75px;}
 .mar_l100 {margin-left:100px;}
 
 .mar_r5 {margin-right:5px;}
@@ -155,8 +157,8 @@ h4 {font-size:12px;color:#000;}
 
 .section{padding:1px;}
 .section{
-	background:#1d374f;
-	border:2px solid #e3e3e3;
+	/*background:#1d374f;*/
+	/*border:2px solid #e3e3e3;*/
 	clear:both;
 }
 .section .ptitle{

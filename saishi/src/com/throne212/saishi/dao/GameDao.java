@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.throne212.saishi.common.PageBean;
 import com.throne212.saishi.domain.Game;
-import com.throne212.saishi.domain.Queue;
+import com.throne212.saishi.domain.Tixing;
 
 public interface GameDao extends BaseDao {
 
@@ -17,7 +17,7 @@ public interface GameDao extends BaseDao {
 	public List<Game> getTopGames();
 	
 	//最新的5条提醒
-	public List<Queue> getTopTixing();
+	public List<Tixing> getTopTixing();
 	
 	//推荐视频
 	public Game getGame();

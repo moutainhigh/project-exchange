@@ -1,7 +1,6 @@
 package com.throne212.saishi.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import com.throne212.saishi.comunicate.MultiThreadServer;
 import com.throne212.saishi.dao.GameDao;
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.Queue;
+import com.throne212.saishi.domain.Tixing;
 
 public class GameDaoImpl extends BaseDaoImpl implements GameDao {
 
@@ -122,6 +122,11 @@ public class GameDaoImpl extends BaseDaoImpl implements GameDao {
 			q.setClient(clientList.size()+"");//提醒的人次
 			this.saveOrUpdate(q);
 		}
+		//填入一条提醒记录
+		Tixing t = new Tixing();
+		t.setGame(game);
+		t.setDate(new Date());
+		this.saveOrUpdate(t);
 	}
 	
 	//最近的赛事
@@ -134,8 +139,8 @@ public class GameDaoImpl extends BaseDaoImpl implements GameDao {
 	}
 	
 	//最新的5条提醒
-	public List<Queue> getTopTixing(){
-		String hql = "from Queue q order by createDate desc";
+	public List<Tixing> getTopTixing(){
+		String hql = "from Tixing q order by date desc";
 		Session s = this.getSession();
 		Query q = s.createQuery(hql);
 		q.setMaxResults(5);

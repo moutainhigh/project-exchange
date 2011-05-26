@@ -108,9 +108,7 @@
 		</table>
 		<div class="button_bar">
 		
-			<button class="common_button" onclick="to('${appPath}html/account/service/news_edit.jsp');">
-				新建
-			</button>
+			<input type="button" class="common_button" value="新建" onclick="to('${appPath}html/account/service/news_edit.jsp');"/>
 			<button class="common_button" onclick="query();">
 				查询
 			</button>
@@ -125,11 +123,11 @@
 					标题
 				</th>
 				<th>
-					作者
+					URL
 				</th>
 			
 				<th>
-					内容
+					类型
 				</th>
 				<th>
 					发布时间
@@ -147,10 +145,10 @@
 					${f.title }
 				</td>
 				<td class="list_data_text">
-					${f.author}
+					${f.url}
 				</td>
 				<td width="20%" class="list_data_text">
-					${f.shortContent }
+					${f.type }
 				</td>
 				<td class="list_data_text">
 					${f.createDate }

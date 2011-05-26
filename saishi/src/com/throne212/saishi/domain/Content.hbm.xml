@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.saishi.domain">
+	<class name="Content" table="ss_content">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		
+		<property name="adImage"/>
+		<property name="adUrl"/>
+		<property name="picImage"/>
+		<property name="picNews"/>
+		<property name="picNewsUrl"/>
+		<property name="videoImage"/>
+		<property name="videoNews"/>
+		<property name="videoNewsUrl"/>
+		
+	</class>
+</hibernate-mapping>

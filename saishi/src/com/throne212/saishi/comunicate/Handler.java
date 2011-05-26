@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import com.throne212.saishi.biz.DataBiz;
 import com.throne212.saishi.common.Util;
@@ -90,11 +87,9 @@ public class Handler implements Runnable {
 				pw.print("\n\r");
 				pw.flush();
 			}
-			MultiThreadServer.list.remove(client);
 		} catch (IOException e) {
 			e.printStackTrace();
 			//意外退出
-			MultiThreadServer.list.remove(client);
 		} finally {
 			try {
 				if (socket != null)
@@ -102,6 +97,7 @@ public class Handler implements Runnable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			MultiThreadServer.list.remove(client);
 		}
 	}
 }

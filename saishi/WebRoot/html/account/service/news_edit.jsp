@@ -21,11 +21,8 @@
 				if($('#title').val() == null || $('#title').val()==''){
 					alert('标题不能为空');
 					return false;
-				}else if($('#author').val() == null || $('#author').val()==''){
-					alert('作者不能为空');
-					return false;
-				}else if($('#content').val() == null || $('#content').val()==''){
-					alert('内容不能为空');
+				}else if($('#url').val() == null || $('#url').val()==''){
+					alert('url不能为空');
 					return false;
 				}else{
 					document.forms[0].submit();
@@ -47,24 +44,32 @@
 						标题
 					</th>
 					<td>
-						<input value="${news.title }" name="news.title " id="title"/>
-						<span class="red_star">*</span>
-					</td>
-					<th>
-						作者
-					</th>
-					<td>
-					<input value="${news.author}" name="news.author" id="author"/>
+						<input value="${news.title }" name="news.title " id="title" size="50"/>
 						<span class="red_star">*</span>
 					</td>
 				</tr>
-			
 				<tr>
 					<th>
-						新闻内容
+						类型
 					</th>
 					<td>
-						<textarea cols="40" rows="5" value="${news.content}" name="news.content" id="content" >${news.content}</textarea>
+						<select name="news.type" id="newsType">
+							<option value=""></option>
+							<option value="普通新闻" <c:if test="${'普通新闻'==news.type}">selected="selected"</c:if>>普通新闻</option>
+							<option value="文章" <c:if test="${'文章'==news.type}">selected="selected"</c:if>>文章</option>
+							<option value="日志" <c:if test="${'日志'==news.type}">selected="selected"</c:if>>日志</option>
+							<option value="帖子" <c:if test="${'帖子'==news.type}">selected="selected"</c:if>>帖子</option>
+							<option value="知识堂" <c:if test="${'知识堂'==news.type}">selected="selected"</c:if>>知识堂</option>
+						</select>
+						<span class="red_star">*</span>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						URL
+					</th>
+					<td>
+						<input value="${news.url }" name="news.url " id="url" size="50"/>
 						<span class="red_star">*</span>
 					</td>
 				</tr>
