@@ -839,12 +839,12 @@ public class ReportAction extends DispatchAction {
 					System.out.println(hos.getName() + " 报表没有上传");
 					continue;
 				}
-				//市值的
+				//卫生院的
 				WorkReport reportA1 = reportDao.getExistReport(WorkReportA1.class, file);
 				WorkReport reportA2 = reportDao.getExistReport(WorkReportA2.class, file);
 				WorkReport reportA3 = reportDao.getExistReport(WorkReportA3.class, file);
 				WorkReport reportA4 = reportDao.getExistReport(WorkReportA4.class, file);
-				//卫生院的
+				//市值的
 				WorkReport reportB1 = reportDao.getExistReport(WorkReportB1.class, file);
 				WorkReport reportB2 = reportDao.getExistReport(WorkReportB2.class, file);
 				WorkReport reportB3 = reportDao.getExistReport(WorkReportB3.class, file);
@@ -871,8 +871,9 @@ public class ReportAction extends DispatchAction {
 				}
 				
 				if (isSucc) {
-					currRow++;
+					
 				}
+				currRow++;
 
 			}
 			workbook.write();
@@ -908,39 +909,39 @@ public class ReportAction extends DispatchAction {
 			sheet.addCell(new Label(2, row, hos.getName()));
 
 			// 诊疗人次数
-			sheet.addCell(new Number(3, row, a1.getC2().doubleValue()));
-			sheet.addCell(new Number(4, row, a1.getC4().doubleValue()));
-			sheet.addCell(new Number(5, row, a1.getC5().doubleValue()));
-			sheet.addCell(new Number(6, row, a1.getC31().doubleValue()));
+			sheet.addCell(new Number(3, row, a1.getC2()==null?0:a1.getC2().doubleValue()));
+			sheet.addCell(new Number(4, row, a1.getC4()==null?0:a1.getC4().doubleValue()));
+			sheet.addCell(new Number(5, row, a1.getC5()==null?0:a1.getC5().doubleValue()));
+			sheet.addCell(new Number(6, row, a1.getC31()==null?0:a1.getC31().doubleValue()));
 
-			sheet.addCell(new Number(7, row, a1.getC11().doubleValue()));
-			sheet.addCell(new Number(8, row, a1.getC19().doubleValue()));
-			sheet.addCell(new Number(9, row, a1.getC20().doubleValue()));
-			sheet.addCell(new Number(10, row, a1.getC22().doubleValue()));
-			sheet.addCell(new Number(11, row, a1.getC23().doubleValue()));
-			sheet.addCell(new Number(12, row, a1.getC27().doubleValue()));
-			sheet.addCell(new Number(13, row, a1.getC29().doubleValue()));
-			sheet.addCell(new Number(14, row, a1.getC30().doubleValue()));
-			sheet.addCell(new Number(15, row, a1.getC12().doubleValue()));
-			sheet.addCell(new Number(16,row,a2.getC16().doubleValue()));
-			sheet.addCell(new Number(17,row,a2.getC17().doubleValue()));
-			sheet.addCell(new Number(18, row, a2.getC16().doubleValue()));
-			sheet.addCell(new Number(19, row, a2.getC17().doubleValue()));
-			sheet.addCell(new Number(20, row, a2.getC11().doubleValue()));
-			sheet.addCell(new Number(21, row, a2.getC11().doubleValue()));
-			sheet.addCell(new Number(22, row, a2.getC12().doubleValue()));
-			sheet.addCell(new Number(23, row, a2.getC13().doubleValue()));
-			sheet.addCell(new Number(24, row, a2.getC14().doubleValue()));
+			sheet.addCell(new Number(7, row, a1.getC11()==null?0:a1.getC11().doubleValue()));
+			sheet.addCell(new Number(8, row, a1.getC19()==null?0:a1.getC19().doubleValue()));
+			sheet.addCell(new Number(9, row, a1.getC20()==null?0:a1.getC20().doubleValue()));
+			sheet.addCell(new Number(10, row, a1.getC22()==null?0:a1.getC22().doubleValue()));
+			sheet.addCell(new Number(11, row, a1.getC23()==null?0:a1.getC23().doubleValue()));
+			sheet.addCell(new Number(12, row, a1.getC27()==null?0:a1.getC27().doubleValue()));
+			sheet.addCell(new Number(13, row, a1.getC29()==null?0:a1.getC29().doubleValue()));
+			sheet.addCell(new Number(14, row, a1.getC30()==null?0:a1.getC30().doubleValue()));
+			sheet.addCell(new Number(15, row, a1.getC12()==null?0:a1.getC12().doubleValue()));
+			sheet.addCell(new Number(16,row,a2.getC16()==null?0:a2.getC16().doubleValue()));
+			sheet.addCell(new Number(17,row,a2.getC17()==null?0:a2.getC17().doubleValue()));
+			sheet.addCell(new Number(18, row, a2.getC16()==null?0:a2.getC16().doubleValue()));
+			sheet.addCell(new Number(19, row, a2.getC17()==null?0:a2.getC17().doubleValue()));
+			sheet.addCell(new Number(20, row, a2.getC11()==null?0:a2.getC11().doubleValue()));
+			sheet.addCell(new Number(21, row, a2.getC11()==null?0:a2.getC11().doubleValue()));
+			sheet.addCell(new Number(22, row, a2.getC12()==null?0:a2.getC12().doubleValue()));
+			sheet.addCell(new Number(23, row, a2.getC13()==null?0:a2.getC13().doubleValue()));
+			sheet.addCell(new Number(24, row, a2.getC14()==null?0:a2.getC14().doubleValue()));
 
-			sheet.addCell(new Number(25, row, a4.getC1().doubleValue()));
-			sheet.addCell(new Number(26, row, a4.getC18().doubleValue()));
-			sheet.addCell(new Number(27, row, a4.getC5().doubleValue()));
-			sheet.addCell(new Number(28, row, a4.getC9().doubleValue()));
-			sheet.addCell(new Number(29, row, a4.getC13().doubleValue()));
-			sheet.addCell(new Number(30, row, a4.getC14().doubleValue()));
-			sheet.addCell(new Number(31, row, a4.getC16().doubleValue()));
-			sheet.addCell(new Number(32, row, a4.getC17().doubleValue()));
-			sheet.addCell(new Number(33, row, a4.getC15().doubleValue()));
+			sheet.addCell(new Number(25, row, a4.getC1()==null?0:a4.getC1().doubleValue()));
+			sheet.addCell(new Number(26, row, a4.getC18()==null?0:a4.getC18().doubleValue()));
+			sheet.addCell(new Number(27, row, a4.getC5()==null?0:a4.getC5().doubleValue()));
+			sheet.addCell(new Number(28, row, a4.getC9()==null?0:a4.getC9().doubleValue()));
+			sheet.addCell(new Number(29, row, a4.getC13()==null?0:a4.getC13().doubleValue()));
+			sheet.addCell(new Number(30, row, a4.getC14()==null?0:a4.getC14().doubleValue()));
+			sheet.addCell(new Number(31, row, a4.getC16()==null?0:a4.getC16().doubleValue()));
+			sheet.addCell(new Number(32, row, a4.getC17()==null?0:a4.getC17().doubleValue()));
+			sheet.addCell(new Number(33, row, a4.getC15()==null?0:a4.getC15().doubleValue()));
 
 		} catch (Exception e) {
 			e.printStackTrace();

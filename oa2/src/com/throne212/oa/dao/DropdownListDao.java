@@ -12,7 +12,7 @@ import com.throne212.oa.domain.report.HospitalType;
 public class DropdownListDao {
 
 	public List getDropdownList(String clazzName) {
-		String hql = "from " + clazzName + " order by listorder asc";
+		String hql = "from " + clazzName + " order by listorder asc,id asc";
 		Session s = HibernateSessionFactory.getSession();
 		List list = s.createQuery(hql).list();
 		s.close();
