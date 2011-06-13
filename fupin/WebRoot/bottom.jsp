@@ -14,36 +14,35 @@ body {
 	margin-bottom: 0px;
 }
 -->
-</style></head>
+</style>
+<link href="css.css" rel="stylesheet" type="text/css" />
+</head>
 
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-  	<%
+    <td height="5" bgcolor="#013E7F"></td>
+  </tr>
+  <tr>
+    <td height="25" align="center" bgcolor="#CCFBFF">
+    <%
     	User user = (User)session.getAttribute("userObj");
     	if(user instanceof AreaWorkOrg){
     		AreaWorkOrg a = (AreaWorkOrg)user;
     		if("Y".equals(a.getIsDiv())){
-     %>
-    <td width="757" background="images/a1_topbg.gif"><img src="images/a1_top01_baiyun.gif" width="757" height="96" /></td>
-    <%
+    			out.print("白云区");
     		}else{
-     %>
-    <td width="757" background="images/a1_topbg.gif"><img src="images/a1_top01.gif" width="757" height="96" /></td>
-    <%
+    			out.print("广州市");
     		}
     	}else{
-    %>
-    <td width="757" background="images/a1_topbg.gif"><img src="images/a1_top01.gif" width="757" height="96" /></td>
-    <%
+    		out.print("广州市");
     	}
     %>
-    
-    <td background="images/a1_topbg.gif">&nbsp;</td>
-    <td width="254" background="images/a1_topbg.gif"><img src="images/a1_top02.gif" width="254" height="96" border="0" usemap="#Map" /></td>
+    扶贫开发办公室 版权所有</td>
   </tr>
 </table>
-
-<map name="Map" id="Map"><area shape="rect" coords="83,69,172,90" href="#" /><area shape="rect" coords="184,67,248,92" href="${appPath}logout.action" /></map></body>
+</body>
 </html>
+
+
 

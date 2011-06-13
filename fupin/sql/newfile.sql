@@ -36,7 +36,58 @@ select 	q.name as '区（县）',
 from fp_diqu c
 LEFT OUTER JOIN fp_diqu z ON c.zhen_id = z.id
 LEFT OUTER JOIN fp_diqu q ON z.area_id = q.id
-where 	c.diqu_type='cun' and z.diqu_type='zhen' and q.diqu_type='area' 
+where 	c.diqu_type='cun' and z.diqu_type='zhen' and q.diqu_type='area'
+and (z.name = '温泉镇' or  
+z.name = '吕田镇' or
+z.name = '良口镇' or
+z.name = '鳌头镇' or
+z.name = '小楼镇' or
+z.name = '正果镇' or
+z.name = '派潭镇' or
+z.name = '梯面镇' 
+)
 group by q.name,z.name,c.name
+
+
+select 	q.name as '区（县）',
+		z.name as '镇名称',
+		c.name as '村名称',
+		(select count(f2.id) 
+			from fp_family f2 
+			LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id
+			where c2.id=c.id) as '贫困户数',
+		(select count(f2.id) 
+			from fp_family f2 
+			LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id
+			where f2.reason is not null and c2.id=c.id) as '已录入数',
+		(select count(f2.id) 
+			from fp_family f2 
+			LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id
+			where f2.reason is null and c2.id=c.id) as '未录入数',
+		(select o.orgName
+			from fp_user o 
+			where o.id=c.org and o.user_type='org') as '帮扶单位',
+		(select o.contactName
+			from fp_user o 
+			where o.id=c.org and o.user_type='org') as '联系人',
+		(select o.contactTel
+			from fp_user o 
+			where o.id=c.org and o.user_type='org') as '联系电话'
+from fp_diqu c
+LEFT OUTER JOIN fp_diqu z ON c.zhen_id = z.id
+LEFT OUTER JOIN fp_diqu q ON z.area_id = q.id
+where 	c.diqu_type='cun' and z.diqu_type='zhen' and q.diqu_type='area'
+and (z.name != '温泉镇' and  
+z.name != '吕田镇' and
+z.name != '良口镇' and
+z.name != '鳌头镇' and
+z.name != '小楼镇' and
+z.name != '正果镇' and
+z.name != '派潭镇' and
+z.name != '梯面镇' 
+)
+group by q.name,z.name,c.name
+
+
 
 select count(*) from fp_diqu where diqu_type = 'cun'

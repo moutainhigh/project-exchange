@@ -103,6 +103,22 @@
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
+							工作队帐号登录名
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" size="20" value="${ areaWorkOrg.loginName2}" id="username2" name="areaWorkOrg.loginName2">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							工作队密码
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" size="20" value="${areaWorkOrg.password2}" id="password2" name="areaWorkOrg.password2">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
 							说明：
 						</td>
 						<td class="tables_contentcell">

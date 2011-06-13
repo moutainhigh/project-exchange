@@ -34,6 +34,48 @@
 		$(function(){
 			$('input[value="Excel"]').val('资料导出');
 		});
+		$(function(){
+			$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
+				if(json && json['list'] && json['list'].length){
+					$('#shiId').html('<option value=""></option>');
+					for(var i=0;i<json['list'].length;i++)
+						$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+				}
+			});
+		});
+		function selectShi(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#areaId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+					}
+				});
+			}
+		}
+		function selectArea(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#zhenId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+					}
+				});
+			}
+		}
+		function selectZhen(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#cunId2').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+					}
+				});
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -52,10 +94,11 @@
 							您当前所处页面：贫困户资料维护
 						</td>
 						<td align="right">
-							<label>贫困户名（模糊查询）: </label>
-							<input name="queryKey" value="${param.queryKey}" type="text"/>
-						
+							<c:if test="${userObj.roleType!='超级管理员' && userObj.roleType!='市级管理员'}">
+							<label>贫困户名: </label>
+							<input name="queryKey" value="${param.queryKey}" type="text"/>							
 							<input type="submit" class="button" value="查询"> 
+							</c:if>
 							
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
@@ -74,6 +117,34 @@
 						</td>
 						<td width="5px"></td>
 					</tr>
+					<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
+					<tr>
+						<td align="right" colspan="2">
+							<span class="STYLE1">市：</span>
+			                   <select id="shiId" name="shiId" onchange="selectShi(this.value);">
+								<option value="">-----------</option>
+							 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;县：</span>
+						<select id="areaId" name="areaId" onchange="selectArea(this.value);">
+									<option value="">----------</option>
+								  </select>
+			 			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+							
+							<label>贫困户名: </label>
+							<input name="queryKey" value="${param.queryKey}" type="text"/>							
+							<input type="submit" class="button" value="查询"> 
+							
+						</td>
+						<td width="5px"></td>
+					</tr>
+					</c:if>
 				</tbody>
 			</table>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">

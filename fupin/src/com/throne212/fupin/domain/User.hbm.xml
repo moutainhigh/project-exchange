@@ -31,6 +31,10 @@
 		<subclass discriminator-value="areaworkorg" extends="User" name="AreaWorkOrg">
 			<many-to-one name="area" column="area_id" lazy="false"></many-to-one>
 			<many-to-one name="shiWorkOrg" column="shiWorkOrg_id" lazy="false"></many-to-one>
+			<property name="loginName2"></property>
+			<property name="password2"></property>
+			<property name="isWorkGroup"></property>
+			<property name="isDiv"></property>
 		</subclass>
 		<subclass discriminator-value="zhenworkorg" extends="User" name="ZhenWorkOrg">
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
@@ -54,6 +58,11 @@
 			<property name="contactPost" length="100"></property>
 			<property name="contactEmail" length="100"></property>
 			<property name="pinyin"></property>
+		</subclass>
+		<!-- 工作组 -->
+		<subclass discriminator-value="work_team" extends="User" name="WorkTeam">
+			<many-to-one name="zhen" column="team_bf_zhen_id" lazy="false"></many-to-one>
+			<many-to-one name="area" column="team_from_area_id" lazy="false"></many-to-one>
 		</subclass>
 	</class>
 </hibernate-mapping>

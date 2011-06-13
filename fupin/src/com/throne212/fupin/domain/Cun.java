@@ -4,6 +4,9 @@ public class Cun extends Diqu {
 	private Zhen zhen;
 	private Org org;
 	
+	//可能是工作组直接帮扶该村
+	private WorkTeam team;//工作组
+	
 	private Integer familyNum;//户数
 	private Integer personNum;//人口
 	private Integer needBanFamily;//需要搬迁户数
@@ -352,6 +355,14 @@ public class Cun extends Diqu {
 
 	public void setLight(Integer light) {
 		this.light = light;
+	}
+
+	public WorkTeam getTeam() {
+		return team;
+	}
+
+	public void setTeam(WorkTeam team) {
+		this.team = team;
 	}
 
 }

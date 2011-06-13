@@ -31,6 +31,7 @@
 		<subclass discriminator-value="cun" extends="Diqu" name="Cun">
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
 			<many-to-one name="org"  lazy="false"></many-to-one>
+			<many-to-one name="team" column="team_id"  lazy="false"></many-to-one>
 			<property name="dian"></property>
 			<property name="dibaoFamily"></property>
 			<property name="dibaoPerson"></property>

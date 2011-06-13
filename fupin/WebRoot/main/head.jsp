@@ -72,7 +72,7 @@ function getExplorInfo(){
 					&nbsp;  
 					&nbsp;<img src="${appPath}main/page_top_data/user.gif" width="15" align="absmiddle" height="15"/> 
               
-${userObj.loginName }（<span title="${userObj.roleName }">${userObj.roleName }</span>）</td>
+${userObj.loginNameTxt }（<span title="${userObj.roleName }">${userObj.roleName }</span>）</td>
     <td width="80"><!--<img src="${appPath}images/a1_qp.gif" width="12" height="11" /> 全屏-->&nbsp;</td>
   </tr>
 </table>

@@ -94,7 +94,7 @@
 			<result name="password">/main/password/password_edit.jsp</result>
 		</action>
 		<!-- 超级管理员模块 -->
-			<action name="admin_*" method="{1}" class="com.throne212.fupin.action.AdminAction">
+		<action name="admin_*" method="{1}" class="com.throne212.fupin.action.AdminAction">
 			<result name="shiWorkOrg_list">/main/admin/shi_account_list.jsp</result>
 			<result name="shiWorkOrg_edit">/main/admin/shi_account_edit.jsp</result>
 			<result name="areaWorkOrg_list">/main/admin/area_account_list.jsp</result>
@@ -103,6 +103,11 @@
 			<result name="zhenWorkOrg_edit">/main/admin/zhen_account_edit.jsp</result>
 			<result name="per_list">/main/admin/per_list.jsp</result>
 			<result name="per_edit">/main/admin/per_edit.jsp</result>
+		</action>
+		<!-- 工作组 -->
+		<action name="team_*" method="{1}" class="com.throne212.fupin.action.TeamAction">
+			<result name="team_list">/main/team/team_list.jsp</result>
+			<result name="team_edit">/main/team/team_edit.jsp</result>
 		</action>
 		<!-- 地区管理模块 -->
 		<action name="diqu_*" method="{1}" class="com.throne212.fupin.action.DiquAction">

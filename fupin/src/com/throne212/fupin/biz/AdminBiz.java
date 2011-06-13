@@ -26,4 +26,6 @@ public interface AdminBiz extends BaseBiz {
 	//根据拼音找村
 	public List<Cun> getCunListByLike(String pinyin);
 	
+	//工作组
+	
 }

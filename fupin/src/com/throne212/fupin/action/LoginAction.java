@@ -54,6 +54,10 @@ public class LoginAction extends BaseAction {
 			logger.info("市管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../shenhe_showAllCuoshiCunInPro.action");
 		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(username.equals(a.getLoginName2())){
+				a.setIsWorkGroup("Y");
+			}
 			logger.info("区县管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../shenhe_showAllCuoshiCunInPro.action");
 		} else if (user instanceof ZhenWorkOrg) {

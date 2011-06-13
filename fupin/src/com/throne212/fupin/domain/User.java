@@ -27,6 +27,9 @@ public class User extends MyEntity implements Serializable {
 			return ((AreaWorkOrg)this).getArea().getName()+"扶贫工作队•区县级管理员";
 		}else if(this instanceof ZhenWorkOrg){
 			return ((ZhenWorkOrg)this).getZhen().getName()+"扶贫工作组•镇级管理员";
+		}else if(this instanceof WorkTeam){
+			WorkTeam team = ((WorkTeam)this);
+			return team.getArea().getName()+"扶贫工作组•对应帮扶"+team.getZhen().getName();
 		}
 		return null;
 	}
@@ -38,6 +41,9 @@ public class User extends MyEntity implements Serializable {
 			return ((AreaWorkOrg)this).getArea().getName()+"扶贫工作队";
 		}else if(this instanceof ZhenWorkOrg){
 			return ((ZhenWorkOrg)this).getZhen().getName()+"扶贫工作组";
+		}else if(this instanceof WorkTeam){
+			WorkTeam team = ((WorkTeam)this);
+			return team.getArea().getName()+"扶贫工作组•对应帮扶"+team.getZhen().getName();
 		}
 		return null;
 	}
@@ -53,12 +59,22 @@ public class User extends MyEntity implements Serializable {
 			return "县级管理员";
 		}else if(this instanceof ZhenWorkOrg){
 			return "镇级管理员";
+		}else if(this instanceof WorkTeam){
+			return "扶贫工作组";
 		}
 		return null;
 	}
 	
 	
-	
+	public String getLoginNameTxt() {
+		if(this instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) this;
+			if("Y".equals(a.getIsWorkGroup())){
+				return a.getLoginName2();
+			}
+		}
+		return loginName;
+	}
 
 	public String getLoginName() {
 		return loginName;

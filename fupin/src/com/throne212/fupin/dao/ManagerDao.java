@@ -21,8 +21,9 @@ public interface ManagerDao extends BaseDao {
 	
 	//贫困户
 	public PageBean getAllFamily(Integer pageIndex);
-	
 	public PageBean getAllFamily(String name,Integer pageIndex);
+	public PageBean getAllFamily(Integer pageIndex,Long areaId,Long zhenId,Long cunId);	
+	public PageBean getAllFamily(String name,Integer pageIndex,Long areaId,Long zhenId,Long cunId);
 	
 	public PageBean getAllFamily(Org org, Integer pageIndex);
 	public PageBean getAllFamily(Org org,String name,Integer pageIndex);

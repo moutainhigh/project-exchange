@@ -18,7 +18,7 @@
 			</frameset>
 		</frameset>
   </frameset>
-  <frame src="bottom.html" name="bottomFrame" scrolling="no" noresize="noresize" id="bottomFrame" title="bottomFrame" />
+  <frame src="bottom.jsp" name="bottomFrame" scrolling="no" noresize="noresize" id="bottomFrame" title="bottomFrame" />
 </frameset>
 <noframes><body>
 </body>

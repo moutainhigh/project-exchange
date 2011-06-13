@@ -154,7 +154,7 @@ function images_update(){
 		menuArray[menuArray.length]="1,单位信息维护,${appPath}org_editOrg.action";
 		menuArray[menuArray.length]="1,帮扶干部,${appPath}org_leaderList.action";
 		</c:if>
-		<c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">
+		<c:if test="${userObj.roleType=='县级管理员'}">
 		menuArray[menuArray.length]="0,镇帮扶维护";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}zhen_bf_cuoshiZhenList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";
@@ -256,18 +256,17 @@ function images_update(){
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenBFList.action";
+	    menuArray[menuArray.length]="1,工作组管理,${appPath}team_teamList.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,帮扶单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,${appPath}manager_managerList.action";
 	    menuArray[menuArray.length]="1,单位的村帮扶指定,${appPath}manager_managerMappingList.action";
 	    </c:if>
 	    
-	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员'}">
 	    menuArray[menuArray.length]="0,贫困村户资料维护,";
 	    menuArray[menuArray.length]="1,贫困村资料维护,${appPath}cun_cunList.action";
 	    menuArray[menuArray.length]="1,贫困户资料维护,${appPath}family_familyList.action";
 
-	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="0,设置前台贫困户查看权限,${appPath}admin_perList.action";
 	    </c:if>
@@ -279,6 +278,7 @@ function images_update(){
 	    </c:if>
 	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
 	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
+	    
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
 	var mytree = new DepartTree('mytree')

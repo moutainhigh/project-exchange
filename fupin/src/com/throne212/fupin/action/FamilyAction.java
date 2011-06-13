@@ -14,22 +14,32 @@ import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
+import com.throne212.fupin.domain.ShiWorkOrg;
+import com.throne212.fupin.domain.User;
 
 public class FamilyAction extends BaseAction {
 
 	private PageBean pageBean;
 	private Integer pageIndex;
 	private String queryKey;
+	private Long areaId;
+	private Long zhenId;
+	private Long cunId;
 	
 	private InputStream downloadFile;
 
 	private OrgBiz orgBiz;
 
 	public String familyList() {
-		pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Admin || user instanceof ShiWorkOrg){
+			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,areaId,zhenId,cunId);
+		}else
+			pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
 		return "family_list";
 	}
 
@@ -184,6 +194,30 @@ public class FamilyAction extends BaseAction {
 
 	public void setDownloadFile(InputStream downloadFile) {
 		this.downloadFile = downloadFile;
+	}
+
+	public Long getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(Long areaId) {
+		this.areaId = areaId;
+	}
+
+	public Long getZhenId() {
+		return zhenId;
+	}
+
+	public void setZhenId(Long zhenId) {
+		this.zhenId = zhenId;
+	}
+
+	public Long getCunId() {
+		return cunId;
+	}
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
 	}
 
 

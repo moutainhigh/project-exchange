@@ -23,6 +23,7 @@ public interface OrgBiz extends BaseBiz {
 	
 	//贫困户
 	public PageBean getAllFamily(String name,Integer pageIndex);
+	public PageBean getAllFamily(String name,Integer pageIndex,Long areaId,Long zhenId,Long cunId);
 	public PageBean getAllFamily(Org org,String name,Integer pageIndex);
 	
 	//干部

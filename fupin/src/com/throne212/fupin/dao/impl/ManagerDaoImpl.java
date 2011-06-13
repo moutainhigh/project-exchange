@@ -19,6 +19,7 @@ import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.WorkTeam;
 import com.throne212.fupin.domain.Zhen;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
@@ -76,6 +77,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and c.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
 			param = new Object[]{areaOrg.getArea()};
+		}else if(user instanceof WorkTeam){
+			hql += " and c.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team};
 		}
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql , param).get(0);
@@ -117,7 +122,12 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and c.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
 			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and c.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
 		}
+		
 		hql += " and name like ?";
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql , param).get(0);
@@ -158,6 +168,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and f.cun.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
 			param = new Object[]{areaOrg.getArea()};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team};
 		}
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,param).get(0);
@@ -176,7 +190,119 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
-
+	
+	public PageBean getAllFamily(Integer pageIndex,Long areaId,Long zhenId,Long cunId) {
+		PageBean<Family> page = new PageBean<Family>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from Family f where 1=1";
+		
+		Object[] param = null;
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId()};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen()};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea()};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team};
+		}
+		
+		if(cunId != null){
+			hql += " and f.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and f.cun.zhen.id="+zhenId;
+		}else if(areaId != null){
+			hql += " and f.cun.zhen.area.id="+areaId;
+		}
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,param).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}		
+		
+		List<Family> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	public PageBean getAllFamily(String name, Integer pageIndex,Long areaId,Long zhenId,Long cunId) {
+		PageBean<Family> page = new PageBean<Family>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from Family f where 1=1";
+		
+		Object[] param = {"%"+name+"%"};
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId(),"%"+name+"%"};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen(),"%"+name+"%"};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
+		}
+		hql += " and name like ?";
+		
+		if(cunId != null){
+			hql += " and f.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and f.cun.zhen.id="+zhenId;
+		}else if(areaId != null){
+			hql += " and f.cun.zhen.area.id="+areaId;
+		}
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, param).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Family> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	
+	
 	public PageBean getAllFamily(String name, Integer pageIndex) {
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
@@ -198,6 +324,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and f.cun.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
 			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
 		}
 		hql += " and name like ?";
 		
