@@ -51,6 +51,7 @@ public class FamilyBFAction extends BaseAction {
 			return "cuoshifamily_list";
 		}
 		pageBean = familyBFBiz.getAllCuoshiFamilyByCunId(cuoshi,org.getCun().getId(), pageIndex);
+		addLeaderData();
 		return "cuoshifamily_list";
 	}
 	
@@ -134,6 +135,7 @@ public class FamilyBFAction extends BaseAction {
 			return "reason_list";
 		}
 		pageBean = familyBFBiz.getAllChengxiaoFamilyByCunId(chengxiao,org.getCun().getId(), pageIndex);
+		addLeaderData();
 		return "chengxiaofamily_list";
 	}
 	// 增加或修改户帮扶成效
@@ -211,6 +213,8 @@ public class FamilyBFAction extends BaseAction {
 			return "reason_list";
 		}
 		pageBean = familyBFBiz.getAllReasonByCunId(reason,org.getCun().getId(), pageIndex);
+		//添加干部数据
+		addLeaderData();
 		return "reason_list";
 	}
 	//增加或修改贫困原因
@@ -398,6 +402,7 @@ public class FamilyBFAction extends BaseAction {
 			return "reason_list";
 		}
 		pageBean = familyBFBiz.getAllRecordByCunId(record,org.getCun().getId(), pageIndex,fromDate,toDate);
+		addLeaderData();
 		return "record_list";
 	}
 	//增加或修改帮扶记录
@@ -476,11 +481,26 @@ public class FamilyBFAction extends BaseAction {
 			pageBean = orgBiz.getAllFamily((Org) user,queryKey, pageIndex);
 		} 
 		//添加干部数据
+		addLeaderData();
+		return "family_mapping_list";
+	}
+	//添加干部数据
+	private void addLeaderData(){
 		if(pageBean.getResultList() != null && pageBean.getResultList().size()>0){
 			//清除垃圾数据
 			orgBiz.deleteNonLeaderData();
 			for(Object o : pageBean.getResultList()){
-				Family f = (Family) o;
+				Family f = null;
+				if(o instanceof Family)
+					f = (Family) o;
+				else if(o instanceof Reason)
+					f = ((Reason) o).getFamily();
+				else if(o instanceof CuoshiFamily)
+					f = ((CuoshiFamily) o).getFamily();
+				else if(o instanceof Record)
+					f = ((Record) o).getFamily();
+				else if(o instanceof ChengxiaoFamily)
+					f = ((ChengxiaoFamily) o).getFamily();
 				
 				SortedSet sortSet = new TreeSet();
 				
@@ -497,7 +517,6 @@ public class FamilyBFAction extends BaseAction {
 				f.setLeaderList(new ArrayList<Leader>(sortSet));
 			}
 		}
-		return "family_mapping_list";
 	}
 	
 	private List leaderList;

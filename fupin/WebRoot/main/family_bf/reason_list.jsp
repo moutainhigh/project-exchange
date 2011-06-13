@@ -172,7 +172,7 @@ function displayAction(sid) {
 						&nbsp;${f.family.name}</td>
 					<td height="25" align="center" class="tables_contentcell">
 						<span title="${f.family.leaderNames }">${f.family.leaderNames }</span>
-						</td>
+					</td>
 					<td height="25" align="center" class="tables_contentcell">
 						&nbsp;
                        <a style="text-decoration: underline;" href="#" class="tip">${f.shortContent } <span><p>${f.content }</p></span></a><b>...</b>

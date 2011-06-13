@@ -55,10 +55,10 @@
 				//alert('we');
 				//alert($('#birthday').val());
 				//alert($('#birthday').val());
-				if($('#birthday').val() != ''){
+				if($('#birthday').val()!=null && $('#birthday').val()!=''){
 					var str = $('#birthday').val();
 					if(!/^(\d{4})(-|\/)(\d{2})$/.test(str)){
-						alert('请严格安装日期格式录入生日');
+						alert('请严格按照日期格式录入生日');
 						return false;
 					} 
 				}
