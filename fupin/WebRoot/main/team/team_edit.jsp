@@ -22,7 +22,10 @@
 						for(var i=0;i<json['list'].length;i++)
 							$('#area').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						if(currArea != ''){
-							$('#area').val(currArea);
+							//解决ie6下的bug
+							setTimeout(function(){ 
+							    $("#area").val(currArea); 
+							},1);
 							$('#area').attr('disabled',true);
 						}
 					}
@@ -33,7 +36,10 @@
 						for(var i=0;i<json['list'].length;i++)
 							$('#zhen').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						if(currZhen != ''){
-							$('#zhen').val(currZhen);
+							//$('#zhen').val(currZhen);
+							setTimeout(function(){ 
+							    $("#zhen").val(currZhen); 
+							},1);
 							selectZhen(currZhen);
 						}
 					}
