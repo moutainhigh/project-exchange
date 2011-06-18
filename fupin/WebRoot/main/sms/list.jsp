@@ -23,7 +23,19 @@
 		}
 		function deleteInfo(){
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
-				document.forms[0].action = '${appPath}manager_deleteManager.action';
+				document.forms[0].action = '${appPath}mes_deleteMessage.action';
+				document.forms[0].submit();
+			}
+		}
+		function passInfo(){
+			if(confirm('您确定通过审核吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}zixun_passZixun.action';
+				document.forms[0].submit();
+			}
+		}
+		function notpassInfo(){
+			if(confirm('您确定不通过审核吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}zixun_notPassZixun.action';
 				document.forms[0].submit();
 			}
 		}
@@ -35,21 +47,53 @@
 	background-color: #418FD0;
 }
 </style>
+<style type="text/css">
+
+.tip{
+    position:relative;
+    color:#00c;
+    text-decoration:none;    
+    padding:5px;
+    z-index:0;
+}
+.tip:hover{
+    background:none;
+    text-decoration:none;
+    color:#000;
+    z-index:1;
+}
+.tip span {
+    display: none;
+    text-decoration:none;
+}
+.tip:hover span{
+    display:block;
+    position:absolute;top:20px;left:10px;
+    border-bottom:0px solid #eee;
+    text-decoration:none;
+    border-right:0px solid #eee;
+    width:300px;
+}
+.tip:hover span p {
+    
+    text-align:left;
+    text-decoration:none;
+    padding:5px;   
+    border:1px solid #ccc;
+    background:#cff;
+}
+</style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}manager_managerList.action" name="searchForm">
+		<form method="get" action="${appPath}org_leaderList.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：帮扶单位管理 >> 单位管理员帐号管理
+							您当前所处页面：短信发送
 						</td>
 						<td align="right">
-							<label>管理登录名（模糊查询）: </label>
-							<input name="queryKey" value="${param.queryKey}" type="text"/>
-							<input type="submit" class="button" value="查询"> 
-							<input type="button" onclick="winOpen('${appPath}main/manager/manager_edit.jsp',450,220);" class="button" value="新增">
-							<input type="button" onclick="deleteInfo();" class="button" value="删除">
+						<input type="button" onclick="winOpen('${appPath}main/sms/edit.jsp',600,600);" class="button" value="发送短信">
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -58,53 +102,32 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="6%" class="tables_headercell">
-							<input type="checkbox" onclick="checkAll(this);">
 						<td width="" class="tables_headercell">
-							帐号名
+							发送者
 						</td>
 						<td width="" class="tables_headercell">
-							单位名称
+							内容
 						</td>
 						<td width="" class="tables_headercell">
-							直属区（县）
-						</td>
-						<td width="" class="tables_headercell">
-							说明
-						</td>
-						<td width="" class="tables_headercell">
-							操作
+							发送时间
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								<input type="checkbox" value="${f.id}" name="ids">
+								&nbsp; ${f.smsUserName}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.loginName}
+								&nbsp; ${f.content}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.orgName}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.area.name}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.remark}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}manager_viewManager.action?org.id=${f.id}',450,220);">修改</a>
-								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
-								<a href="${appPath}login.action?username=${f.loginName}&password=${f.password}&needRand=N" target="_blank">登陆</a>
-								</c:if>
+							<fmt:formatDate value="${f.date}" pattern="yyyy-MM-dd hh:mm:ss"/> 
 							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="5">
-							<jsp:include page="../../pager.jsp"></jsp:include>
-						</td>
+						<td height="25" align="right" class="tables_contentcell" colspan="8"><jsp:include page="../../pager.jsp"></jsp:include>
+						<br></td>
 					</tr>
 				</tbody>
 			</table>

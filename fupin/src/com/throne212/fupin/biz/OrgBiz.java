@@ -1,9 +1,9 @@
 package com.throne212.fupin.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.throne212.fupin.common.PageBean;
-import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Zhen;
 
@@ -35,5 +35,5 @@ public interface OrgBiz extends BaseBiz {
 	public String uploadFamilyData3(String fileName) throws Exception;//模板2导入
 	public String uploadCunData(String fileName) throws Exception;
 	public String getFamilyExcelDownloadFile(String name) throws Exception;
-
+	
 }

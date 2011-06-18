@@ -261,6 +261,7 @@ function images_update(){
 	    menuArray[menuArray.length]="0,帮扶单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,${appPath}manager_managerList.action";
 	    menuArray[menuArray.length]="1,单位的村帮扶指定,${appPath}manager_managerMappingList.action";
+	    //menuArray[menuArray.length]="1,单位所属地区管理,${appPath}manager_managerList.action";
 	    </c:if>
 	    
 	    menuArray[menuArray.length]="0,贫困村户资料维护,";
@@ -277,6 +278,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,咨询信息回复,${appPath}zixun_zixunListPass.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
+	    menuArray[menuArray.length]="0,短信服务,${appPath}sms_getAllSMS.action";
 	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
 	    
 	}

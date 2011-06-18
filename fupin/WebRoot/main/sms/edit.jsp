@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>发送通知</title>
+		<title>发送短信</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
@@ -25,35 +25,18 @@
 		</script>
 	</head>
 	<body>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}mes_sendMessage.action" name="">
-			<input type="hidden" value="${message.id}" name="message.id" id="">
+		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}sms_sendSMS.action" name="">
+			<input type="hidden" value="${sms.id}" name="sms.id" id="">
 			
 			<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
-	<tbody><tr>
-		<td height="30" align="right" class="tables_leftcell">
-		标题
-		</td>
-		<td class="tables_contentcell">
-		<input id="title" type="text" name="message.title" value="${message.title }" size="50" msg="标题不能为空！" datatype="Require" />
-<font size="4" color="#cc0033">*</font>
-		</td>
-	</tr>
+	<tbody>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">
-		收信人
+		收信人手机号码
 		</td>
 		<td class="tables_contentcell">
-		<input id="titleInput" type="text" name="message.recieverString" value="${message.recieverString }" size="50" msg="标题不能为空！" datatype="Require" readonly="readonly"/>
-		<font size="2" color="#cc0033">*(收信人之间用+号隔开)</font>
-		<br/>
-		选择用户（群）：
-		<br/>
-		<select id="user_select" onchange="selectUser(this.value);">
-			<option value=""></option>
-			<c:forEach var="f" items="${messageBiz.userTreeList}">
-			<option value="${f['key']}">${f['value']}</option>
-			</c:forEach>
-		</select>
+		<input id="titleInput" type="text" name="sms.tel" value="${sms.tel }" size="50" msg="手机号不能为空！" datatype="Require"/>
+		<font size="2" color="#cc0033">*(收信人手机号码之间用+号隔开)</font>
 		</td>
 	</tr>
 	<tr>
@@ -61,22 +44,10 @@
 		内容
 		</td>
 		<td class="tables_contentcell">
-		<textarea id="content" name="message.content" value="${message.content }" rows="6" cols="50" msg="内容不能为空！" datatype="Require">${message.content}</textarea>
+		<textarea id="content" name="sms.content" value="${sms.content }" rows="6" cols="50" msg="内容不能为空！" datatype="Require">${message.content}</textarea>
 		<font size="4" color="#cc0033">*</font>
 		</td>
 	</tr>
-	<tr>
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">
-		附件
-		</td>
-		<td class="tables_contentcell" height="200">
-		<font color="#cc0033" style="font-weight: normal;">请选择不超过5M的附件</font>
-		<iframe src="${appPath}uploadAttach/upload.jsp" width="100%" height="100%" frameborder="0"></iframe>
-		
-		</td>
-	</tr>
-
 
 	<tr>
 		<td align="center" class="tables_contentcell" colspan="4">

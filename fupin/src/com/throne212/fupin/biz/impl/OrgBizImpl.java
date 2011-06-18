@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.WorkbookSettings;
 import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WritableCellFormat;
@@ -21,12 +23,15 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ManagerDao;
 import com.throne212.fupin.domain.Area;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Person;
+import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 
@@ -463,8 +468,15 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "upload";
 		FileInputStream fin = new FileInputStream(path + File.separator + fileName);
-
-		Workbook workbook = Workbook.getWorkbook(fin);
+		
+		WorkbookSettings setting = new WorkbookSettings();
+		//setting.setWindowProtected(false);
+		//setting.set
+		//String rw = setting.getWriteAccess();
+		//setting.setWriteAccess("r");
+		//rw = setting.getWriteAccess();
+		Workbook workbook = Workbook.getWorkbook(fin,setting);
+		
 		Sheet sheet = workbook.getSheet(0);
 		int row = sheet.getRows();
 		int cols = sheet.getColumns();
@@ -734,4 +746,5 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 	public void deleteFamily(Long familyId) {
 		managerDao.deleteFamily(familyId);
 	}
+	
 }

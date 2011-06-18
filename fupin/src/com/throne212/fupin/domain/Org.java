@@ -23,6 +23,8 @@ public class Org extends User {
 	private String contactPost;//邮政编码
 	private String contactEmail;//电子邮箱 	
 	
+	private Area area;//直属区县
+	
 	private String pinyin;
 	
 	public Cun getCun() {
@@ -120,6 +122,12 @@ public class Org extends User {
 	}
 	public void setPinyin(String pinyin) {
 		this.pinyin = pinyin;
+	}
+	public Area getArea() {
+		return area;
+	}
+	public void setArea(Area area) {
+		this.area = area;
 	}
 
 }

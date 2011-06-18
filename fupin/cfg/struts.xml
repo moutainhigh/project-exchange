@@ -237,6 +237,11 @@
                 <param name="bufferSize">4096</param>
             </result> 
 		</action>
+		<!-- 短信服务 -->
+		<action name="sms_*" method="{1}" class="com.throne212.fupin.action.SMSAction">
+			<result name="sms_edit">/main/sms/edit.jsp</result>
+			<result name="sms_list">/main/sms/list.jsp</result>
+		</action>
 		<!-- 论坛交流 -->
 		<action name="dis_*" method="{1}" class="com.throne212.fupin.action.DiscussAction">
 			<result name="show_dis_publish">/main/discuss/edit.jsp</result>
@@ -313,6 +318,11 @@
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
 					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="user_ids" type="json">
+				<param name="includeProperties">  
+					item
 				</param>
 			</result>
 		</action>		

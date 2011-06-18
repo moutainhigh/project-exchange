@@ -12,8 +12,23 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			var areaId = '${org.area.id}';
 			$(function(){
+				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#areaId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(areaId != ''){
+							//解决ie6下的bug
+							setTimeout(function(){ 
+							    $("#areaId").val(areaId); 
+							},1);
+						}
+					}
+				});
 			});
+			
 		</script>
 	</head>
 	<body>
@@ -49,6 +64,14 @@
 						<td class="tables_contentcell">
 							<input type="text" style="height: 22px;" msg="密码不能为空！" datatype="Require" size="20" value="${org.password}" id="password" name="org.password">
 							<font size="4" color="#cc0033">*</font>
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							若为直属单位，请选择直属区县：
+						</td>
+						<td class="tables_contentcell">
+							<select id="areaId" name="org.area.id"></select>
 						</td>
 					</tr>
 					<tr>

@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.MessageBiz;
@@ -40,8 +42,12 @@ public class MessageAction extends BaseAction {
 		if (message != null && message.getTitle() != null) {// 发送通知
 			String recieverString = message.getRecieverString();
 			String[] reciever = recieverString.split("[+]");
+			Set<String> set = new HashSet<String>();
+			for (String loginName : reciever) {//排除重复
+				set.add(loginName);
+			}
 			List<String> notExist = new ArrayList<String>();
-			for (String loginName : reciever) {
+			for (String loginName : set) {
 				logger.debug(loginName);
 				User user = messageBiz.getEntityByUnique(User.class,
 						"loginName", loginName);
@@ -55,8 +61,7 @@ public class MessageAction extends BaseAction {
 					sendMessage.setCreateDate(sendDate);
 					sendMessage.setReciever(user);
 					
-					String attach = (String) ActionContext.getContext()
-							.getSession().get(WebConstants.SESS_ATTACH);
+					String attach = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_ATTACH);
 					if (attach != null) {
 						sendMessage.setAttatch(attach);
 						ActionContext.getContext().getSession().remove(
@@ -64,8 +69,7 @@ public class MessageAction extends BaseAction {
 					} else {
 						
 					}
-					User currUser = (User) ActionContext.getContext()
-							.getSession().get(WebConstants.SESS_USER_OBJ);
+					User currUser = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 					sendMessage.setSender(currUser);
 					messageBiz.saveOrUpdateEntity(sendMessage);
 
@@ -78,8 +82,7 @@ public class MessageAction extends BaseAction {
 
 				}
 				String sb= sBuffer.toString();
-				this.setMsg("通知发送成功,标题【" + message.getTitle()
-						+ "】 以下用户不存在:"+sb.substring(0, sb.length()-1)+"请重新填入并发送：" );
+				this.setMsg("通知发送成功,标题【" + message.getTitle() + "】 以下用户不存在:"+sb.substring(0, sb.length()-1)+"请重新填入并发送：" );
 			} else {
 				this.setMsg("通知发送成功,标题【" + message.getTitle() + "】");
 			}

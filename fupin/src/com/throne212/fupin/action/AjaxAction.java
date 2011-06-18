@@ -12,6 +12,7 @@ import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.biz.BaseBiz;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
@@ -23,7 +24,9 @@ import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.WorkTeam;
 import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class AjaxAction extends BaseAction {
 
@@ -276,6 +279,55 @@ public class AjaxAction extends BaseAction {
 		}
 		return "query_family";
 	}
+	
+	//树形用户结构
+	private String item;
+	public String getUserIds(){
+		if(!Util.isEmpty(item)){
+			String[] arr = item.split("-");
+			String type = arr[1];
+			StringBuffer sb = new StringBuffer();
+			if("0".equals(type)){
+				List<User> userList = adminBiz.getAll(User.class);
+				for(User u : userList){
+					if(!(u instanceof Admin)){
+						sb.append(u.getLoginName());
+						sb.append("+");
+					}
+				}
+			}else if("2".equals(type)){
+				Long id = Long.parseLong(arr[2]);
+				AreaWorkOrg area = adminBiz.getEntityById(AreaWorkOrg.class, id);
+				sb.append(area.getLoginName());
+				sb.append("+");
+				//驻扎镇得工作组
+				WorkTeam team = adminBiz.getEntityByUnique(WorkTeam.class, "area", area.getArea());
+				if(team != null) {
+					sb.append(team.getLoginName());
+					sb.append("+");
+				}
+				//获得zhen列表
+				List<ZhenWorkOrg> zhenList = adminBiz.getEntitiesByColumn(ZhenWorkOrg.class, "zhen.area", area.getArea());
+				for(ZhenWorkOrg zhen : zhenList){
+					sb.append(zhen.getLoginName());
+					sb.append("+");
+				}
+				//获得直属单位列表
+				List<Org> orgList = adminBiz.getEntitiesByColumn(Org.class, "area", area.getArea());
+				for(Org o : orgList){
+					sb.append(o.getLoginName());
+					sb.append("+");
+				}		
+			}else if("3".equals(type) || "4".equals(type) || "1".equals(type)){
+				Long id = Long.parseLong(arr[2]);
+				User user = adminBiz.getEntityById(User.class, id);
+				sb.append(user.getLoginName());
+				sb.append("+");
+			}
+			item = sb.toString();
+		}
+		return "user_ids";
+	}
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
@@ -347,6 +399,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setFamilyId(Long familyId) {
 		this.familyId = familyId;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.throne212.fupin.action;
 
 import java.util.Date;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
@@ -44,6 +45,8 @@ public class ManagerAction extends BaseAction {
 			orgInDB.setPassword(org.getPassword());
 			orgInDB.setRemark(org.getRemark());
 			orgInDB.setOrgName(org.getOrgName());
+			if(org.getArea()!=null && org.getArea().getId()!=null)
+				orgInDB.setArea(org.getArea());
 			if(!Util.isEmpty(org.getOrgName())){
 				orgInDB.setPinyin(PinyinToolkit.cn2Pinyin(org.getOrgName()));
 			}
@@ -78,6 +81,16 @@ public class ManagerAction extends BaseAction {
 	}
 	public String cancelMapping(){
 		cun = orgBiz.getEntityById(Cun.class, cun.getId());
+		if(cun == null){
+			this.setMsg("撤销指定失败");
+			return managerMappingList();
+		}
+		//把其他的帮扶这个村的机构也撤销了
+		List<Org> list = orgBiz.getEntitiesByColumn(Org.class, "cun.id", cun.getId());
+		for(Org o : list){
+			o.setCun(null);
+			orgBiz.saveOrUpdateEntity(o);
+		}
 		cun.setOrg(null);
 		orgBiz.saveOrUpdateEntity(cun);
 		this.setMsg("撤销指定成功");
