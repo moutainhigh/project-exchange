@@ -6,10 +6,12 @@ import java.util.List;
 import com.throne212.saishi.biz.DataBiz;
 import com.throne212.saishi.common.PageBean;
 import com.throne212.saishi.dao.GameDao;
+import com.throne212.saishi.dao.InstallLogDao;
 import com.throne212.saishi.dao.MusicDao;
 import com.throne212.saishi.dao.NewsDao;
 import com.throne212.saishi.dao.UserDao;
 import com.throne212.saishi.domain.Game;
+import com.throne212.saishi.domain.InstallLog;
 import com.throne212.saishi.domain.Music;
 import com.throne212.saishi.domain.News;
 import com.throne212.saishi.domain.Tixing;
@@ -20,6 +22,7 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 	private GameDao gameDao;
 	private NewsDao newsDao;
 	private MusicDao musicDao;
+	private InstallLogDao logDao;
 	//用户管理
 	public <T extends User> T saveUser(T user) {
 		// 判断是否为新的用户
@@ -170,6 +173,18 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 		return newsDao.getTopNews("知识堂");
 	}
 	
+	//统计
+	public PageBean<InstallLog> getInstallLog(Integer page){
+		if(page==null || page<=0)
+			page = 1;
+		return logDao.getInstallLog(page);
+	}
+	public PageBean<InstallLog> getUninstallLog(Integer page){
+		if(page==null || page<=0)
+			page = 1;
+		return logDao.getUninstallLog(page);
+	}
+	
 	public List<Tixing> getTop5Tixing(){
 		return gameDao.getTopTixing();
 	}
@@ -204,6 +219,14 @@ public class DataBizImpl extends BaseBizImpl implements DataBiz {
 
 	public void setMusicDao(MusicDao musicDao) {
 		this.musicDao = musicDao;
+	}
+
+	public InstallLogDao getLogDao() {
+		return logDao;
+	}
+
+	public void setLogDao(InstallLogDao logDao) {
+		this.logDao = logDao;
 	}
 
 

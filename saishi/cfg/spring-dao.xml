@@ -18,6 +18,8 @@
 	<bean id="musicDao" class="com.throne212.saishi.dao.impl.MusicDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+	<bean id="logDao" class="com.throne212.saishi.dao.impl.InstallLogDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 </beans>

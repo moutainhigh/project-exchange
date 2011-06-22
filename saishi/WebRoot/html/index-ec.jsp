@@ -906,6 +906,8 @@ function initialise() {
 	</c:if>
 	L04 = theMenu.addChild(l2ID, "Folder", "数据统计", "", "设定个人数据...");
 	L0401 = theMenu.addChild(L04, "Document", "在线统计", "${appPath}stat_online.action", "数据统计...");
+	L0401 = theMenu.addChild(L04, "Document", "安装统计", "${appPath}stat_install.action", "数据统计...");
+	L0401 = theMenu.addChild(L04, "Document", "卸载统计", "${appPath}stat_uninstall.action", "数据统计...");
 	
 	L05 = theMenu.addChild(l2ID, "Folder", "个人信息", "", "设定个人数据...");
 	L0501 = theMenu.addChild(L05, "Document", "密码修改", "${appPath}html/personal/password.jsp", "修改个人密码，防止盗用...");

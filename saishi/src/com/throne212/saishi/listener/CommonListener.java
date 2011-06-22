@@ -1,7 +1,7 @@
 package com.throne212.saishi.listener;
 
 import java.io.IOException;
-import java.util.Date;
+import java.net.MalformedURLException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -21,6 +21,7 @@ import com.throne212.saishi.domain.Admin;
 
 public class CommonListener implements ServletContextListener {
 
+	public static String INFO_URL = "http://";
 	private Logger logger = Logger.getLogger(this.getClass());
 
 	public void contextDestroyed(ServletContextEvent arg0) {
@@ -29,6 +30,14 @@ public class CommonListener implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent e) {
+		try {
+			INFO_URL += e.getServletContext().getResource("").getPath();
+			INFO_URL = INFO_URL.replaceAll("///", "//");
+		} catch (MalformedURLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		// 获取spring容器
 		ApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(e.getServletContext());
 		// 设置上下文路径

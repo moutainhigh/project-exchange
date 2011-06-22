@@ -106,7 +106,7 @@ public class DataAction extends BaseAction {
 			this.setMsg("赛事保存失败，请检查数据是否录入完整");
 			return "game_edit";
 		}
-		if (game != null && game.getStartDate() != null && !Util.isEmpty(game.getStartDate().toString())) {// 添加或更新赛事信息
+		if (game != null && !Util.isEmpty(game.getTitle())) {// 添加或更新赛事信息
 			game.setCreateName(((User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ)).getName());
 			game = dataBiz.saveGame(game);
 			this.setMsg("赛事保存成功,类型【" + game.getType() + "】");

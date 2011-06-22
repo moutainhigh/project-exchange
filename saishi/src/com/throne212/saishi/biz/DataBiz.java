@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.throne212.saishi.common.PageBean;
 import com.throne212.saishi.domain.Game;
+import com.throne212.saishi.domain.InstallLog;
 import com.throne212.saishi.domain.Music;
 import com.throne212.saishi.domain.News;
 import com.throne212.saishi.domain.Tixing;
@@ -50,4 +51,8 @@ public interface DataBiz extends BaseBiz {
 
 	public PageBean<Music> getMusicList(Music condition, Date fromDate, Date toDate, Integer pageIndex, String orderBy, String orderType, int pageSize);
 
+	//统计
+	public PageBean<InstallLog> getInstallLog(Integer page);
+	public PageBean<InstallLog> getUninstallLog(Integer page);
+	
 }

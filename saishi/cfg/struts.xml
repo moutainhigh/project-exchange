@@ -52,6 +52,8 @@
 		<!-- 数据统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.saishi.action.StatAction">
 			<result name="online">/html/stat/online.jsp</result>
+			<result name="install">/html/stat/install_list.jsp</result>
+			<result name="uninstall">/html/stat/uninstall_list.jsp</result>
 		</action>
 		<!-- 数据设定 -->
 		<action name="data_*" method="{1}" class="com.throne212.saishi.action.DataAction">

@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import com.throne212.saishi.biz.DataBiz;
-import com.throne212.saishi.common.Util;
 import com.throne212.saishi.domain.Game;
 import com.throne212.saishi.domain.Queue;
 
@@ -32,16 +31,21 @@ public class Handler implements Runnable {
 				Game game = q.getGame();
 				StringBuffer sb = new StringBuffer();
 				if (game != null) {
-					sb.append(game.getTitle());
-					sb.append(" ");
-					sb.append("开始时间:");
-					sb.append(Util.getDate(game.getStartDate()));
-					sb.append(" ");
-					sb.append(game.getHour() + "时");
-					sb.append(game.getMinute() + "分");
+//					sb.append(game.getTitle());
+//					sb.append(" ");
+//					sb.append("开始时间:");
+//					sb.append(Util.getDate(game.getStartDate()));
+//					sb.append(" ");
+//					sb.append(game.getHour() + "时");
+//					sb.append(game.getMinute() + "分");
+//					//删除队列记录
+//					dataBiz.deleteEntity(Queue.class, q.getId());
+//					return sb.toString();
 					//删除队列记录
 					dataBiz.deleteEntity(Queue.class, q.getId());
-					return sb.toString();
+					String str = "http://wwe.soft1983.com/info?gameId="+game.getId()+"&time="+System.currentTimeMillis();
+					//String str = CommonListener.INFO_URL + "info?gameId="+game.getId();
+					return str;
 				}
 			}
 			
@@ -72,7 +76,7 @@ public class Handler implements Runnable {
 			PrintWriter pw = getWriter(socket);
 			String msg = null;
 			while ((msg = br.readLine()) != null) {
-				System.out.println("收到的信息：["+msg+"]");
+				//System.out.println("收到的信息：["+msg+"]");
 				if (msg.equals("0001")) {
 					pw.print(echo(msg) + "1" + "ping");
 				} else if (msg.equals("0002")) {//获取及时赛事
@@ -91,6 +95,7 @@ public class Handler implements Runnable {
 			e.printStackTrace();
 			//意外退出
 		} finally {
+			System.out.println("connection closed " + socket.getInetAddress() + ":" + socket.getPort());
 			try {
 				if (socket != null)
 					socket.close();

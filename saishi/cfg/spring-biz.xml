@@ -15,5 +15,6 @@
 		<property name="gameDao" ref="gameDao"></property>
 		<property name="newsDao" ref="newsDao"></property>
 		<property name="musicDao" ref="musicDao"></property>
+		<property name="logDao" ref="logDao"></property>
 	</bean>
 </beans>

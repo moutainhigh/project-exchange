@@ -143,22 +143,13 @@
 					编号
 				</th>
 				<th>
-					开始时间
-				</th>
-				<th>
-					时长
-				</th>
-				<th>
-					选手
-				</th>
-				<th>
-					类型
-				</th>
-				<th>
 					标题
 				</th>
 				<th>
-					推荐与否
+					翻译
+				</th>
+				<th>
+					简介
 				</th>
 				<th>
 					操作
@@ -170,22 +161,13 @@
 					${f.id}
 				</td>
 				<td class="list_data_text">
-			<fmt:formatDate value="${f.startDate}" pattern="yyyy-MM-dd"/>&nbsp;${f.hour}时${f.minute}分
-				</td>
-				<td class="list_data_text">
-					${f.duration }
-				</td>
-				<td class="list_data_text">
-					${f.player}
-				</td>
-				<td class="list_data_text">
-					${f.type }
-				</td>
-				<td class="list_data_text">
 					${f.title }
 				</td>
 				<td class="list_data_text">
-					<c:if test="${not empty f.recommend && f.recommend==true}">推荐</c:if>&nbsp;
+					${f.trans }
+				</td>
+				<td class="list_data_text">
+					${f.remark }
 				</td>
 				<td class="list_data_op">
 					<a href="${appPath}data_saveGame.action?game.id=${f.id}" >修改</a>

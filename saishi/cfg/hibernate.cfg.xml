@@ -28,6 +28,7 @@
 	<mapping resource="com/throne212/saishi/domain/Queue.hbm.xml" />
 	<mapping resource="com/throne212/saishi/domain/Content.hbm.xml" />
 	<mapping resource="com/throne212/saishi/domain/Tixing.hbm.xml" />
+	<mapping resource="com/throne212/saishi/domain/InstallLog.hbm.xml" />
 
 </session-factory>
 </hibernate-configuration>

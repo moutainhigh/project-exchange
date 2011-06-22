@@ -18,23 +18,8 @@
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
 			function submitGame(){
-				if($('#startDate').val() == null || $('#startDate').val()==''){
-					alert('开始时间不能为空');
-					return false;
-				}else if($('#hour').val() == null || $('#hour').val()==''){
-					alert('时不能为空');
-					return false;
-				}else if($('#minute').val() == null || $('#minute').val()==''){
-					alert('分不能为空');
-					return false;
-				}else if($('#type').val() == null || $('#type').val()==''){
-					alert('类型不能为空');
-					return false;
-				}else if($('#duration').val() == null || $('#duration').val()==''){
-					alert('时长不能为空');
-					return false;
-				}else if($('#intro').val() == null || $('#intro').val()==''){
-					alert('简介不能为空');
+				if($('#title').val() == null || $('#title').val()==''){
+					alert('标题不能为空');
 					return false;
 				}else{
 					document.forms[0].submit();
@@ -52,56 +37,6 @@
 			<input type="hidden" name="game.id" value="${game.id}"/>
 			<table class="query_form_table">
 				<tr>
-					<th >
-						开始时间
-					</th>
-					<td>
-						<input size="10" id="startDate" name="game.startDate" class="datetime" value="<fmt:formatDate value="${game.startDate}" pattern="yyyy-MM-dd"/>"/>
-						<span class="red_star">*</span>
-						<input size="4" id="hour" name="game.hour"  value="${game.hour}"/>时
-						<span class="red_star">*</span>
-						<input size="4" id="minute" name="game.minute"  value="${game.minute}"/>分
-						<span class="red_star">*</span>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						选手
-					</th>
-					<td>
-						<input  name="game.player" id="player" value="${game.player }"/>
-						<span class="red_star">*</span>
-					</td>
-				</tr>
-				<tr>
-					<th>
-					类型
-					</th>
-					<td>
-						<input value="${game.type }" name="game.type" id="type"/>
-						<span class="red_star">*(赛事类型)</span>
-					</td>
-				</tr>
-				<tr>
-					<th>
-					时长
-					</th>
-					<td>
-						<input value="${game.duration }" name="game.duration" id="duration"/>
-						<span class="red_star">*</span>
-					</td>
-				</tr>
-				<tr>
-					<th>
-					URL
-					</th>
-					<td colspan="3">
-						<input value="${game.url }" name="game.url" id="url" style="width: 300px;"/>
-						<span class="red_star">*(赛事的网页链接地址，请填入完整的绝对地址)</span>
-					</td>
-					
-				</tr>
-				<tr>
 					<th>
 						标题
 					</th>
@@ -112,11 +47,38 @@
 				</tr>
 				<tr>
 					<th>
-						简介
+					链接URL
+					</th>
+					<td colspan="3">
+						<input value="${game.url }" name="game.url" id="url" style="width: 300px;"/>
+						<span class="red_star">*(赛事的网页链接地址，请填入完整的绝对地址)</span>
+					</td>
+					
+				</tr>
+				<tr>
+					<th>
+					图片URL
+					</th>
+					<td colspan="3">
+						<input value="${game.image }" name="game.image" id="image" style="width: 300px;"/>
+						<span class="red_star">*(赛事的网页链接地址，请填入完整的绝对地址，最佳长宽比为：150*100)</span>
+					</td>
+					
+				</tr>
+				<tr>
+					<th>
+						翻译
 					</th>
 					<td>
-						<textarea cols="40" rows="5" value="${game.intro}" name="game.intro" id="intro" >${game.intro}</textarea>
-						<span class="red_star">*</span>
+						<textarea cols="40" rows="5" value="${game.trans}" name="game.trans" id="trans" >${game.trans}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						备注
+					</th>
+					<td>
+						<textarea cols="40" rows="5" value="${game.remark}" name="game.remark" id="remark" >${game.remark}</textarea>
 					</td>
 				</tr>
 			</table>
