@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 </head><body>
 
-<form onsubmit="return Validator.Validate(this)" method="get" action="${appPath}cun_bf_saveOrUpdateCuoshiCun.action" name="dataForm">
+<form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}cun_bf_saveOrUpdateCuoshiCun.action" name="dataForm">
 			<input type="hidden" value="${cuoshi.id}" name="cuoshi.id" id="">
 			<c:if test="${not empty cuoshi.id}">
 			

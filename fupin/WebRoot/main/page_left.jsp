@@ -150,6 +150,9 @@ function images_update(){
 	if(window.quanxian=='5')
 	{
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+		menuArray[menuArray.length]="0,报表维护,";
+		menuArray[menuArray.length]="1,工作统计表,${appPath}report_viewReport1.action";
+		menuArray[menuArray.length]="1,工作落实情况统计表,${appPath}report_viewReport2.action";
 		menuArray[menuArray.length]="0,单位与干部维护,";
 		menuArray[menuArray.length]="1,单位信息维护,${appPath}org_editOrg.action";
 		menuArray[menuArray.length]="1,帮扶干部,${appPath}org_leaderList.action";

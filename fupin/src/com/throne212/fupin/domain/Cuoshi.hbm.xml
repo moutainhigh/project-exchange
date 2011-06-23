@@ -9,7 +9,7 @@
 		<discriminator column="cuoshi_type" type="string" force="false" insert="true" />
 	<property name="year" length="100"></property>
 	<property name="season" length="100"></property>
-	<property name="content" length="1024"></property>
+	<property name="content" length="102400"></property>
 	<property name="type" length="100"></property>
 	<property name="status" length="100"></property>
 	<property name="reason" length="100"></property>

@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 </head><body>
 
-<form onsubmit="return Validator.Validate(this)" method="get" action="${appPath}cun_bf_saveOrUpdateChengxiaoCun.action" name="dataForm">
+<form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}cun_bf_saveOrUpdateChengxiaoCun.action" name="dataForm">
 			<input type="hidden" value="${chengxiao.id}" name="chengxiao.id" id="">
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr>

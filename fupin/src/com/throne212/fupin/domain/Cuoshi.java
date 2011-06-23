@@ -11,7 +11,9 @@ public class Cuoshi extends MyEntity {
 	
 	public String getShortContent(){
 		String shortContent;
-		if (this.getContent().length()>16) {
+		if(this.getContent() == null){
+			return "";
+		}else if (this.getContent().length()>16) {
 			shortContent=this.getContent().substring(0, 16);
 		}else {
 			shortContent=this.getContent();

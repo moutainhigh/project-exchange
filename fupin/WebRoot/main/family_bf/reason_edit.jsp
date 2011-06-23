@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 
 </head><body onload="">
-  <form onsubmit="return Validator.Validate(this)" method="get" action="${appPath}family_bf_saveOrUpdateReason.action" name="dataForm">
+  <form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}family_bf_saveOrUpdateReason.action" name="dataForm">
   <!--<input type="hidden" id="_gbids" name="_gbids" value=""/>-->
 <!--<input type="hidden" id="_hzid" name="_hzid" value=""/>-->
 <input type="hidden" value="${reason.id}" name="reason.id" id="">

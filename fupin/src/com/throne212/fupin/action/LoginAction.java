@@ -2,6 +2,11 @@ package com.throne212.fupin.action;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.UserBiz;
 import com.throne212.fupin.common.Util;
@@ -20,6 +25,7 @@ public class LoginAction extends BaseAction {
 	private String password;// 密码
 	private String rand;// 验证码
 	private String needRand;// 需要验证码吗
+	private Boolean remember;//记住密码
 
 	private UserBiz userBiz;// 业务层的用户bean
 
@@ -67,6 +73,14 @@ public class LoginAction extends BaseAction {
 			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../org_editOrg.action");
 			checkOrgCun((Org) user);
+		}
+		
+		//保留cookie
+		HttpServletResponse response = ServletActionContext.getResponse();
+		if(remember != null && remember){
+			Cookie c = new Cookie("username",username);
+			c.setMaxAge(30*24*60*60);
+			response.addCookie(c);
 		}
 		return "success";
 	}
@@ -117,6 +131,14 @@ public class LoginAction extends BaseAction {
 
 	public void setNeedRand(String needRand) {
 		this.needRand = needRand;
+	}
+
+	public Boolean getRemember() {
+		return remember;
+	}
+
+	public void setRemember(Boolean remember) {
+		this.remember = remember;
 	}
 
 }

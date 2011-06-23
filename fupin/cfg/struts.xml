@@ -249,6 +249,11 @@
 			<result name="publish">/main/discuss/edit.jsp</result>
 			<result name="show_discuss_reply">/main/discuss/reply_list.jsp</result>
 		</action>
+		<!-- 报表工具 -->
+		<action name="report_*" method="{1}" class="com.throne212.fupin.action.ReportAction">
+			<result name="report_edit1">/main/report/edit1.jsp</result>
+			<result name="report_edit2">/main/report/edit2.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

@@ -6,7 +6,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>广州市扶贫信息网 - 后台登录</title>
 		<link href="${appPath}css.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${appPath}js/jquery.js"></script>
 		<script type="text/javascript">
+	function getCookie(name)//取cookies函数        
+	{
+    	var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+     	if(arr != null) return unescape(arr[2]); return null;
+	}
 	function breakout_of_frame()
 	{
 	  // see http://www.thesitewizard.com/archive/framebreak.shtml
@@ -38,6 +44,13 @@
 	if(msg != ''){
 		alert(msg);
 	}
+	$(function(){
+		//alert();
+		var username = getCookie("username");
+		if(username){
+			$('#username').val(username);
+		}
+	});
 </script>
 	</head>
 
@@ -90,7 +103,7 @@
 										</tr>
 										<tr>
 											<td height="23" colspan="2" align="center">
-												<input type="radio" name="radiobutton" value="radiobutton" />
+												<input type="radio" name="remember" value="true" />
 												记住用户名 忘记密码
 											</td>
 										</tr>
