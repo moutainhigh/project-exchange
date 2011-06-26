@@ -171,6 +171,16 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 			return rst;
 		}
 	}
+	
+	public <T> long getEntitySum(Class<T> clazz, String colName, Object value){
+		String hql = "select count(*) from " + clazz.getName() + " where "+colName+"=?";
+		Long rst = (Long) this.getHibernateTemplate().find(hql,value).get(0);
+		if (rst == null || rst < 0) {
+			return -1;
+		} else {
+			return rst;
+		}
+	}
 
 	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue) {
 		String hql = "from " + clazz.getName() + " where " + colName + " like ? ";

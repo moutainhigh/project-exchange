@@ -149,10 +149,19 @@ function images_update(){
 	
 	if(window.quanxian=='5')
 	{
-		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	
+		<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,报表维护,";
-		menuArray[menuArray.length]="1,工作统计表,${appPath}report_viewReport1.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='超级管理员'}">
+	    menuArray[menuArray.length]="1,报表解锁,${appPath}report_reportList.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	    menuArray[menuArray.length]="1,工作统计表,${appPath}report_viewReport1.action";
 		menuArray[menuArray.length]="1,工作落实情况统计表,${appPath}report_viewReport2.action";
+	    </c:if>
+	
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,单位与干部维护,";
 		menuArray[menuArray.length]="1,单位信息维护,${appPath}org_editOrg.action";
 		menuArray[menuArray.length]="1,帮扶干部,${appPath}org_leaderList.action";
@@ -273,6 +282,7 @@ function images_update(){
 
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="0,设置前台贫困户查看权限,${appPath}admin_perList.action";
+	    menuArray[menuArray.length]="0,报表解锁,${appPath}report_reportList.action";
 	    </c:if>
 	    //menuArray[menuArray.length]="0,报表审核,";
 	    <c:if test="${userObj.roleType=='市级管理员' || userObj.roleType=='超级管理员'}">

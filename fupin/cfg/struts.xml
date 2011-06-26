@@ -253,6 +253,7 @@
 		<action name="report_*" method="{1}" class="com.throne212.fupin.action.ReportAction">
 			<result name="report_edit1">/main/report/edit1.jsp</result>
 			<result name="report_edit2">/main/report/edit2.jsp</result>
+			<result name="report_list">/main/report/report_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

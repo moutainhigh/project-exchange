@@ -12,6 +12,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.domain.ChengxiaoFamily;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.PicFamily;
@@ -365,6 +366,16 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
+	}
+	
+	public Long getPersonSum(Cun cun){
+		long sum = 0;
+		for(int i=10;i>=1;i--){
+			String hql = "select count(*) from Family f where f.person"+i+".name is no null and f.person"+i+".name!='' and f.cun=?";
+			Long num = (Long) this.getHibernateTemplate().find(hql, cun).get(0);
+			sum += num;
+		}
+		return sum;
 	}
 
 }

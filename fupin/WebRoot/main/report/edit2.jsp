@@ -14,6 +14,27 @@
 		if(msg != ''){
 			alert(msg);
 		}
+		var year = '${r.year}';
+		var type = '${r.type}';
+		var time = '${r.time}';
+		var lock = '${r.lock}';
+		$(function(){
+			if(year != ''){
+				setTimeout(function(){ 
+				    $('#year').val(year);
+				},1);
+			}
+			if(type != ''){
+				setTimeout(function(){ 
+				   $('#reportType').val(type);
+				},1);
+				chooseType(type);
+			}		
+			//加锁，禁止修改
+			if(lock == '1' || lock == '2'){
+				$('input[type="text"]').attr("readonly",true);
+			}
+		});
 		function chooseType(type){
 			if('year' == type){
 				$('#time').attr('disabled',true);
@@ -24,6 +45,11 @@
 					str += '<option value="'+i+'">第'+i+'季度</option>';
 				}
 				$('#time').html(str);
+				if(time != ''){
+					setTimeout(function(){ 
+					  $('#time').val(time);
+					},1);
+				}
 			}else if('month' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
@@ -31,7 +57,36 @@
 					str += '<option value="'+i+'">第'+i+'月</option>';
 				}
 				$('#time').html(str);
+				if(time != ''){
+					setTimeout(function(){ 
+					  $('#time').val(time);
+					},1);
+				}
 			}
+		}
+		function query(){
+			var f = document.forms[0];
+			f.action = '${appPath}report_viewReport2.action';
+			f.submit();
+		}
+		function saveReport(){
+			if(confirm('报表提交后不允许修改，是否提交')){
+				var f = document.forms[0];
+				f.action = '${appPath}report_saveReport2.action';
+				f.submit();
+			}
+		}
+		function unlockReport(){
+			if(confirm('确定需要解锁吗？')){
+				var f = document.forms[0];
+				f.action = '${appPath}report_requstUnlock2.action';
+				f.submit();
+			}
+		}
+		function excel(){
+			var f = document.forms[0];
+				f.action = '${appPath}report_excelReport1.action';
+				f.submit();
 		}
 		</script>
 		<style>
@@ -100,7 +155,7 @@
 					<tr align="center">
 						<td width="" class="tables_headercell">
 							年度：
-							<select name="year" id="year">
+							<select name="r.year" id="year">
 								<option value=""></option>
 								<option value="2011">2011</option>
 								<option value="2012">2012</option>
@@ -108,7 +163,7 @@
 						</td>
 						<td width="" class="tables_headercell">
 							类型：
-							<select name="type" id="reportType" onchange="chooseType(this.value);">
+							<select name="r.type" id="reportType" onchange="chooseType(this.value);">
 								<option value=""></option>
 								<option value="year">年度报表</option>
 								<option value="season">季度报表</option>
@@ -117,13 +172,26 @@
 						</td>
 						<td width="" class="tables_headercell">
 							时间：
-							<select name="time" id="time">
+							<select name="r.time" id="time">
 								<option value=""></option>
 							</select>
 						</td>
+						<td width="" class="tables_headercell">
+							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
+							&nbsp;
+							<c:if test="${empty r.id || r.lock==0}">
+							&nbsp;
+							<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
+							</c:if>
+							<c:if test="${not empty r.id && r.lock==1}">
+							&nbsp;
+							<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+							</c:if>
+							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">
+						</td>
 					</tr>
 					<tr>
-						<td class="tables_contentcell" colspan="3" align="center">
+						<td class="tables_contentcell" colspan="4" align="center">
 							<table id="data_table" cellspacing="0" cellpadding="0" border="0" class="tables_table" style="margin: 5px 10px;width:85%;" align="center">
 								<tr>
 									<td align="center" class="tables_headercell" colspan="4">帮扶资金</td>
@@ -133,7 +201,7 @@
 									帮扶单位
 									</td>
 									<td class="tables_contentcell" width="50%">
-									<input type="text"/>
+									${userObj.orgName }
 									</td>
 								</tr>
 								<tr>
@@ -141,7 +209,7 @@
 									贫困村
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									${userObj.cun.name }
 									</td>
 								</tr>
 								<tr>
@@ -152,7 +220,7 @@
 									规划投入资金（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item1" value="${r.item1}"/>
 									</td>
 								</tr>
 								<tr>
@@ -160,7 +228,7 @@
 									已投入帮扶资金
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item2" value="${r.item2}"/>
 									</td>
 								</tr>
 								<tr>
@@ -171,7 +239,7 @@
 									用于帮扶到户资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item3" value="${r.item3}"/>
 									</td>
 								</tr>
 								<tr>
@@ -179,7 +247,7 @@
 									用于帮扶到村资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item4" value="${r.item4}"/>
 									</td>
 								</tr>
 								<tr>
@@ -190,7 +258,7 @@
 									财政专项(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item5" value="${r.item5}"/>
 									</td>
 								</tr>
 								<tr>
@@ -198,7 +266,7 @@
 									信贷资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item6" value="${r.item6}"/>
 									</td>
 								</tr>
 								<tr>
@@ -206,7 +274,7 @@
 									单位自筹(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item7" value="${r.item7}"/>
 									</td>
 								</tr>
 								<tr>
@@ -214,7 +282,7 @@
 									社会募捐（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item8" value="${r.item8}"/>
 									</td>
 								</tr>
 								<tr>
@@ -222,7 +290,7 @@
 									社会引资（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text"/>
+									<input type="text" name="r.item9" value="${r.item9}"/>
 									</td>
 								</tr>
 								<tr>
@@ -243,11 +311,13 @@
 							</table>							
 						</td>
 					</tr>
+					<c:if test="${empty r.id || r.lock==0}">
 					<tr>
-						<td align="center" class="tables_contentcell" colspan="3">
-						<input type="submit" value="保存" class="button" name="保存">
+						<td align="center" class="tables_contentcell" colspan="4">&nbsp;
+						<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
 						</td>
 					</tr>
+					</c:if>	
 				</tbody>
 			</table>
 		</form>

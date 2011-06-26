@@ -43,4 +43,7 @@
 	<bean id="discussDao" class="com.throne212.fupin.dao.impl.DiscussDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="reportDao" class="com.throne212.fupin.dao.impl.ReportDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

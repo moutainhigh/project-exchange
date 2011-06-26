@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.ChengxiaoFamily;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
@@ -29,6 +30,9 @@ public interface FamilyDao extends BaseDao {
 	//帮扶记录
 	public PageBean<Record> getAllRecordByCunId(Record condition,Long cunId,Integer pageIndex,Date fromDate,Date toDate);
 	public PageBean<Record> getAllRecord(Record condition,Integer pageIndex,Date fromDate,Date toDate);
+	
+	//统计户数和人数
+	public Long getPersonSum(Cun cun);
 	
 
 }
