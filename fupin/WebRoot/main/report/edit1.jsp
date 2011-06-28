@@ -71,6 +71,11 @@
 			f.action = '${appPath}report_viewReport1.action';
 			f.submit();
 		}
+		function tmpSaveReport(){
+			var f = document.forms[0];
+			f.action = '${appPath}report_tmpSaveReport1.action';
+			f.submit();
+		}
 		function saveReport(){
 			if(confirm('报表提交后不允许修改，是否提交')){
 				var f = document.forms[0];
@@ -180,12 +185,11 @@
 						</td>
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
-							<c:if test="${empty r.id || r.lock==0}">
-							&nbsp;
+							<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
 							<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
+							<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
 							</c:if>
-							<c:if test="${not empty r.id && r.lock==1}">
-							&nbsp;
+							<c:if test="${not empty r.lock && r.lock==1}">
 							<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
 							</c:if>
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">

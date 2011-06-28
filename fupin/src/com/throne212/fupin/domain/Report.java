@@ -13,7 +13,7 @@ public class Report extends MyEntity{
 	private String time;
 	
 	//锁定
-	private Integer lock;//0代表未锁/已解锁，1代表锁定，2代表请求解锁
+	private Integer lock;//0代表未锁/已解锁，1代表锁定，2代表请求解锁, 3代表暂存
 
 	// 项目
 	private String item1;

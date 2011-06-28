@@ -1,6 +1,5 @@
 package com.throne212.fupin.action;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -85,7 +84,17 @@ public class ReportAction extends BaseAction {
 
 		return "report_edit1";
 	}
-
+	public String tmpSaveReport1() {
+		r = reportBiz.saveReport(r, "1");
+		if (r == null) {
+			this.setMsg("暂时保存报表失败");
+		} else {
+			r.setLock(3);//3代表暂存
+			reportBiz.saveOrUpdateEntity(r);
+			this.setMsg("暂时报表保存成功");
+		}
+		return viewReport1();
+	}
 	public String saveReport1() {
 		r = reportBiz.saveReport(r, "1");
 		if (r == null) {
@@ -133,6 +142,17 @@ public class ReportAction extends BaseAction {
 			this.setMsg("保存报表失败");
 		} else {
 			this.setMsg("报表保存成功");
+		}
+		return viewReport2();
+	}
+	public String tmpSaveReport2() {
+		r = reportBiz.saveReport(r, "2");
+		if (r == null) {
+			this.setMsg("暂时保存报表失败");
+		} else {
+			r.setLock(3);//3代表暂存
+			reportBiz.saveOrUpdateEntity(r);
+			this.setMsg("暂时报表保存成功");
 		}
 		return viewReport2();
 	}

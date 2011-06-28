@@ -104,20 +104,24 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 	}
 	private void addItems(Report report,Report mReport) {
 		for (int i = 1; i <= 60; i++) {
-			Double temp = 0.0;
-			//原来的item的值
-			if(Util.isEmpty(report.getItem(i))){
-				temp = 0.0;
-			}else{
-				temp = Double.valueOf(report.getItem(i));
+			try {
+				Double temp = 0.0;
+				//原来的item的值
+				if(Util.isEmpty(report.getItem(i))){
+					temp = 0.0;
+				}else{
+					temp = Double.valueOf(report.getItem(i));
+				}
+				//月份的item的值
+				if(Util.isEmpty(mReport.getItem(i))){
+					temp += 0.0;
+				}else{
+					temp += Double.valueOf(mReport.getItem(i));
+				}
+				report.setItem(i, temp+"");
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
 			}
-			//月份的item的值
-			if(Util.isEmpty(mReport.getItem(i))){
-				temp += 0.0;
-			}else{
-				temp += Double.valueOf(mReport.getItem(i));
-			}
-			report.setItem(i, temp+"");
 		}
 	}
 	private void clearItemsZero(Report report) {

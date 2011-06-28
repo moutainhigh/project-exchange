@@ -22,6 +22,8 @@ import org.apache.log4j.Logger;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.throne212.fupin.listener.CommonListener;
+import com.throne212.fupin.sms.SmsServicePortType;
 
 
 public class Util {
@@ -296,6 +298,18 @@ public class Util {
 			rateMoney += ratePerDay * money;
 		}
 		return addMoney(money, rateMoney);
+	}
+	
+	/**
+	 * 返回值：	-2：短信设备连接失败
+	 * 			-1：发送失败
+	 * 			>0:	发送成功
+	 * */
+	public static int sendMessage(String phoneStr,String content,String userName,int userId){
+		SmsServicePortType sme = CommonListener.sme;
+		if(sme == null)
+			return -2;
+		return sme.sendMessageToMobile("192.168.2.28","oa","mas","oa","oa123456",phoneStr,content,userName,userId);		
 	}
 	
 
