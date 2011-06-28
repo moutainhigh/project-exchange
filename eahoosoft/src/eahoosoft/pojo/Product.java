@@ -16,6 +16,9 @@ public class Product {
 	private Double price;
 	private String fileName;
 	private String size;
+	private Integer orderNum;
+	private Integer indexOrderNum;
+	private String icon;//hot,new,free
 
 	private Category cate;
 	private Set<Feature> features = new HashSet<Feature>();
@@ -130,6 +133,30 @@ public class Product {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
+
+	public Integer getIndexOrderNum() {
+		return indexOrderNum;
+	}
+
+	public void setIndexOrderNum(Integer indexOrderNum) {
+		this.indexOrderNum = indexOrderNum;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eahoosoft.pojo">
+	<class name="Guide" table="eahoosoft_guide">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="description" length="1024"></property>
+		<property name="content" length="10240"></property>
+		<property name="fileName"></property>
+		<property name="keywords" length="1024"></property>
+		<property name="name"></property>
+		<property name="title"></property>
+		
+	</class>
+</hibernate-mapping>
