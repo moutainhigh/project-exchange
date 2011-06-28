@@ -365,6 +365,42 @@ public class Init {
 		p17.setFeatures(getFeature17(p17));
 		s.save(p17);
 		
+		Product p18 = new Product();
+		p18.setBuyUrl("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-31");
+		p18.setCate(c1);
+		p18.setDescription("<p>Eahoosoft DVD to FLV Converter is a professional DVD to FLV converter with super fast conversion speed and excellent quality. It can convert DVD to FLV, SWF for Youtube, Myspace and Google video,etc.<br>Eahoosoft DVD to FLV Converter also allows you to select target subtitle and audio track. The converted small sized Flash Video can be easily shared with your friends and family by E-mail, FTP upload, or just regular storage devices.<br>Eahoosoft DVD to FLV Converter has powerful function of trimming, cropping, merging, and effecting. In the process of converting, you can easily adjust and see the effects of video brightness, contrast and saturation at the same time. Only a few clicks to convert your DVD to FLV and enjoy it on the web with others for your ideal life.<br>                </p>");
+		p18.setDownUrl("DVDtoFlash.exe");
+		p18.setFileName("dvd-to-flash-converter");
+		p18.setImage("dvd-to-flash-box.jpg");
+		p18.setName("Eahoosoft DVD to Flash Converter");
+		p18.setPrice(18.95);
+		p18.setScreenShot("DVDtoFlash.jpg");
+		p18.setShortDesc("Eahoosoft DVD to FLV Converter is a professional DVD to FLV converter with super fast conversion speed and excellent quality. It can convert DVD to FLV, SWF for Youtube, Myspace and Google video,etc.");
+		p18.setSize("18.20Mb");
+		p18.setShortName("DVD to Flash Converter");
+		p18.setOrderNum(15);
+		p18.setIcon(null);
+		p18.setFeatures(getFeature18(p18));
+		s.save(p18);
+		
+		Product p19 = new Product();
+		p19.setBuyUrl("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-29");
+		p19.setCate(c1);
+		p19.setDescription("<p>Eahoosoft DVD to HD Converter can convert DVD to various HD formats with no limitation. High-Definition video<br>Besides supporting versatile HD formats, Eahoosoft DVD to HD Converter also allows you editing function and customize advanced parameters is supported as well. Capture pictures and preview are also allowed with ideal DVD to HD Converter. To hold DVD to HD Converter at hand let you enjoy colorful videos at iPod, iPhone, Xbox,Blackberry and almost all portable devices at anytime and anyplace. In addition, both novice and beginners can convert DVD to HD with friendly-use interface provided by DVD to HD Converter. Why not try Eahoosoft DVD to HD Converter right now? Free download supported!<br>               </p>");
+		p19.setDownUrl("DVDtoHD.exe");
+		p19.setFileName("dvd-to-hd-converter");
+		p19.setImage("dvd-to-hd-box.jpg");
+		p19.setName("Eahoosoft DVD to HD Video Converter");
+		p19.setPrice(19.95);
+		p19.setScreenShot("DVDtoHD.jpg");
+		p19.setShortDesc("Eahoosoft DVD to HD Converter can convert DVD to various HD formats with no limitation.");
+		p19.setSize("19.20Mb");
+		p19.setShortName("DVD to HD Video Converter");
+		p19.setOrderNum(16);
+		p19.setIcon(null);
+		p19.setFeatures(getFeature19(p19));
+		s.save(p19);
+		
 		s.getTransaction().commit();
 		s.close();
 	}
@@ -604,6 +640,32 @@ public class Init {
 		set.add(buildFeature("Select audio track and subtitle ","This excellent DVD to AVI converter allows you select audio track and subtitle for your output file "));
 		set.add(buildFeature("Easy to use ","A few clicks are all you need to do to convert DVD to iPod. "));
 		set.add(buildFeature("Fastest Conversion Speed ","Provide the fastest conversion speed (>400%), completely support dual core CPU. "));
+		return set;
+	}
+	private static Set<Feature> getFeature18(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("Directly convert DVD to FLV, SWF with a flash player ","Eahoosoft DVD to FLV Converter can perfectly convert DVD to FLV, SWF for you to upload to Youtube, Myspace and Google video. "));
+		set.add(buildFeature("Colorful video effect ","Adjust the display brightness, contrast and saturation. "));
+		set.add(buildFeature("Wonderful video/audio settings ","More video and audio settings are provided by this DVD to FLV Converter, such as Video Resolution, Video Bitrate, Frame Rate, Encoder and Audio Channels, Sample Rate, Encoder, Audio Bitrate then save them as user-defined profile for future use. You also can customize you need video resolution in form of xxx*xxx. "));
+		set.add(buildFeature("Trim DVD Casually ","You could trim any segments you want to convert from DVD to FLV by accurately setting start time and end time or just drag the slider bar to the position where you want to trim. "));
+		set.add(buildFeature("Merge into one file ","If you want to merge the selected contents into one file you can check the \"Merge into one file\" option. As default the merged file is named after the first selected file (either a title or a chapter). "));
+		set.add(buildFeature("Crop your video ","With Eahoosoft DVD to FLV Converter you can remove black edge of your DVD movie and get any playing area of the video by using its \"Crop\" function. You can also select the \"Zoom\" mode to extrude your video slightly to adjust to your portable devices so you can get the best video quality. "));
+		set.add(buildFeature("Support preview and take favorite image ","You can preview the source video and edited video and compare the before and after files for your further operation. If you like the current image of the video you can use the \"Snapshot\" option to take a snapshot of the film and save as a picture file. You can select the destination of the picture by clicking the \"Preferences\" button. "));
+		set.add(buildFeature("Easy to use ","A few clicks are all you need to do to rip and copy DVD movies. "));
+		set.add(buildFeature("Select audio track and subtitle ","This excellent DVD to FLV converter allows you select audio track and subtitle for your output file. "));
+		set.add(buildFeature("Fastest Conversion Speed ","Provide the fastest conversion speed (>400%), completely support dual core CPU. "));
+		return set;
+	}
+	private static Set<Feature> getFeature19(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("Convert DVD to hd video ","Convert almost all kinds of DVD movies to hd video such as convert DVD to HD avi, HD mp4, HD ts, HD mpg and so on. "));
+		set.add(buildFeature("Wonderful video effects ","Adjust the display brightness, contrast and saturation to get special effects. "));
+		set.add(buildFeature("Output video and audio parameters ","More video and audio settings are provided by this DVD to iPod Converter, such as Video Resolution, Video Bitrate, Frame Rate, Encoder and Audio Channels, Sample Rate, Encoder, Audio Bitrate "));
+		set.add(buildFeature("trim, merge and crop video ","Clip any part of the DVD movie into video clips by accurately setting start time and end time or just dragging the slider bar to the position where you want to stop the trimming. Merge many DVD titles/chapters into one by checking the \"Merge into one file\" option. With Eahoosoft DVD to HD Converter you can remove black edges of your DVD movie and crop movie image size by using its \"Crop\" function. You can also select the \"Zoom\" mode to extrude your video slightly to adjust to iPod so you can get the best video quality. "));
+		set.add(buildFeature("Support preview and take favorite image ","You can preview the source video and edited video and compare the before and after files for your further operation. If you like the current image of the video you can use the \"Snapshot\" option to take a snapshot of the film and save as a picture file. You can select the destination of the picture by clicking the \"Preferences\" button. "));
+		set.add(buildFeature("Select audio track and subtitle ","This excellent DVD to HD converter allows you select audio track and subtitle for your output file. "));
+		set.add(buildFeature("Easy to use ","A few clicks are all you need to do to convert DVD to HD. "));
+		set.add(buildFeature("Fastest Conversion Speed ",""));
 		return set;
 	}
 	private static int i;
