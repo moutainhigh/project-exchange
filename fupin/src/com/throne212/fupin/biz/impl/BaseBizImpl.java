@@ -88,5 +88,7 @@ public class BaseBizImpl implements BaseBiz {
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue){
 		return baseDao.getEntitiesByTwoColumn(clazz, colOneName, oneValue, colTwoName, twoValue);
 	}
-
+	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue,String colTwoName){
+		return baseDao.getEntitiesSecondColIsNull(clazz, colOneName, oneValue, colTwoName);
+	}
 }

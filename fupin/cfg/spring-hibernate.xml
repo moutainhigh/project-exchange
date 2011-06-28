@@ -41,6 +41,8 @@
 				<value>messageBiz</value>
 				<value>discussBiz</value>
 				<value>reportBiz</value>
+				<value>groupBiz</value>
+				<value>contactBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

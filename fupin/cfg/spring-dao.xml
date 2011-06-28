@@ -46,4 +46,10 @@
 	<bean id="reportDao" class="com.throne212.fupin.dao.impl.ReportDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="groupDao" class="com.throne212.fupin.dao.impl.ContactGroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="contactDao" class="com.throne212.fupin.dao.impl.ContactDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

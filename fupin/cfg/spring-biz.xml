@@ -58,4 +58,13 @@
 		<property name="reportDao" ref="reportDao"></property>
 		<property name="familyDao" ref="familyDao"></property>
 	</bean>
+	<bean id="groupBiz" class="com.throne212.fupin.biz.impl.ContactGroupBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
+	<bean id="contactBiz" class="com.throne212.fupin.biz.impl.ContactBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="contactDao" ref="contactDao"></property>
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
 </beans>

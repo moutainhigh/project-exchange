@@ -3,7 +3,10 @@ package com.throne212.fupin.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -15,6 +18,8 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.Contact;
+import com.throne212.fupin.domain.ContactGroup;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Diqu;
 import com.throne212.fupin.domain.Family;
@@ -38,6 +43,7 @@ public class AjaxAction extends BaseAction {
 	}
 
 	private List list;
+//	private List listTree;//用于显示树形通讯组
 
 	// 获取所有市
 	public String getAllShi() {
@@ -328,6 +334,140 @@ public class AjaxAction extends BaseAction {
 		}
 		return "user_ids";
 	}
+	
+   //获取用户的通讯组
+//	private List<String> treeLists=new ArrayList<String>();
+
+	public String getAllGroupOfUser(){
+		
+		list=new ArrayList<ContactGroup>();
+		
+		List<ContactGroup> rootGroupList=null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		rootGroupList=baseBiz.getEntitiesSecondColIsNull(ContactGroup.class, "userName", user.getLoginName(), "parentGroup.id");
+		if (rootGroupList!=null) {
+			for (ContactGroup contactGroup : rootGroupList) {
+				contactGroup.setShowTreeName(contactGroup.getGroupName());
+				list.add(contactGroup);
+				getGroupTreeList(contactGroup,1);				
+			}
+			
+		}
+		
+		return "list_group";
+	}
+	
+	
+	private void getGroupTreeList(ContactGroup parentGroup,int level){
+	
+		StringBuffer strPre = new StringBuffer("");
+		for(int i=0; i<level*2; i++) {
+			strPre.append("-");
+		}
+		List<ContactGroup> childList=baseBiz.getEntitiesByColumn(ContactGroup.class, "parentGroup", parentGroup);
+		for (ContactGroup contactGroup : childList) {
+			contactGroup.setShowTreeName(strPre+contactGroup.getGroupName());
+			list.add(contactGroup);
+			getGroupTreeList(contactGroup,level+1);
+		}	
+	}
+	
+	// 获取用户选择的通信录
+
+	private String choosedIds;
+	private String telNo;
+
+	public String getSelectedContacts() {
+		ContactGroup groupSel = null;
+		List<ContactGroup> groupSelectList = new ArrayList<ContactGroup>();
+		List<ContactGroup> groupList = new ArrayList<ContactGroup>();
+		List<Contact> contactList = new ArrayList<Contact>();
+		String[] ids = (String[]) choosedIds.substring(1).split("[+]");
+
+		List<Long> gIdList = new ArrayList<Long>();
+		List<Long> cIdList = new ArrayList<Long>();
+		if (ids != null && ids.length > 0) {
+			for (String idStr : ids) {
+				System.out.println("id:" + idStr);
+				if (idStr.charAt(0) == 'g') {
+					Long idLong = Long.parseLong(idStr.substring(2));
+					gIdList.add(idLong);
+					System.out.println(idLong);
+				}
+				if (idStr.charAt(0) == 'c') {
+					Long idLong = Long.parseLong(idStr.substring(2));
+					cIdList.add(idLong);
+					System.out.println(idLong);
+				}
+			}
+
+			for (Long gId : gIdList) {
+				groupSel = baseBiz.getEntityById(ContactGroup.class, gId);
+				groupSelectList.add(groupSel);
+			}
+			for (ContactGroup contactGroup : groupSelectList) {
+				groupList.add(contactGroup);
+				getChildGroup(contactGroup, groupList);
+			}
+			try {
+				groupList = removeRepeatElement(groupList);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for (ContactGroup contactGroup : groupList) {
+				contactList.addAll(baseBiz.getEntitiesByColumn(Contact.class, "group", contactGroup));
+			}
+			for (Long cId : cIdList) {
+				contactList.add(baseBiz.getEntityById(Contact.class, cId));
+			}
+			try {
+				contactList = removeRepeatElement(contactList);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			StringBuffer sBuffer = new StringBuffer();
+			for (Contact contact : contactList) {
+				sBuffer.append(contact.getTelNo() + "+");
+			}
+			String telNoStr = sBuffer.toString();
+			if (telNoStr.length() > 0)
+				telNo = telNoStr.substring(0, telNoStr.length() - 1);
+			System.out.println(telNo);
+		}
+		return "select_contacts";
+
+	}
+	
+	
+	private void getChildGroup(ContactGroup parentGroup,List<ContactGroup> list){
+	
+	List<ContactGroup> childList=baseBiz.getEntitiesByColumn(ContactGroup.class, "parentGroup", parentGroup);
+	for (ContactGroup contactGroup : childList) {
+		list.add(contactGroup);
+		getChildGroup(contactGroup,list);
+	}	
+	
+}
+	
+	 public static List removeRepeatElement(List l) throws Exception {
+	
+		     Set set = new HashSet();
+		     List list = new ArrayList();
+		     System.out.println(l.size()+"传入的List的长度");
+		     for (int i = 0; i < l.size(); i++) {
+		      set.add(l.get(i));
+		     }
+		     System.out.println(set.size()+"处理后set的长度");
+		     for (Iterator it = set.iterator(); it.hasNext();) {
+		      list.add(it.next());
+		     }
+		     System.out.println(list.size()+"返回的list的长度");
+		     return list;
+		    }
+	
+	
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
@@ -408,5 +548,24 @@ public class AjaxAction extends BaseAction {
 	public void setItem(String item) {
 		this.item = item;
 	}
+
+	public String getChoosedIds() {
+		return choosedIds;
+	}
+
+	public void setChoosedIds(String choosedIds) {
+		this.choosedIds = choosedIds;
+	}
+
+
+
+	public String getTelNo() {
+		return telNo;
+	}
+
+	public void setTelNo(String telNo) {
+		this.telNo = telNo;
+	}
+
 
 }

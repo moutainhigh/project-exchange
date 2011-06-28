@@ -9,6 +9,7 @@ import java.util.Set;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.MessageBiz;
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Message;
 import com.throne212.fupin.domain.SMS;
@@ -32,7 +33,8 @@ public class SMSAction extends BaseAction {
 			this.setMsg("通知发送失败，请检查数据是否录入完整");
 			return "sms_edit";
 		}
-		if (sms != null && sms.getTel() != null) {// 发送通知
+		StringBuffer sb = new StringBuffer();
+		if (sms != null && sms.getTel() != null) {// 发送短信
 			String recieverString = sms.getTel();
 			Set<String> set = new HashSet<String>();
 			if(recieverString.contains("+")){
@@ -43,55 +45,31 @@ public class SMSAction extends BaseAction {
 			}else{
 				set.add(recieverString);
 			}
-			List<String> notExist = new ArrayList<String>();
-			for (String loginName : set) {
-				logger.debug(loginName);
-//				User user = messageBiz.getEntityByUnique(User.class,
-//						"loginName", loginName);
-//				if (user == null) {
-//					notExist.add(loginName);
-//				} else {
-//					Date sendDate = new Date();
-//					Message sendMessage = new Message();
-//					sendMessage.setTitle(message.getTitle());
-//					sendMessage.setContent(message.getContent());
-//					sendMessage.setCreateDate(sendDate);
-//					sendMessage.setReciever(user);
-//					
-//					String attach = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_ATTACH);
-//					if (attach != null) {
-//						sendMessage.setAttatch(attach);
-//						ActionContext.getContext().getSession().remove(
-//								WebConstants.SESS_ATTACH);
-//					} else {
-//						
-//					}
-//					User currUser = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-//					sendMessage.setSender(currUser);
-//					messageBiz.saveOrUpdateEntity(sendMessage);
-//					this.setMsg("发送成功");
-//					this.setSucc("Y");
-//
-//				}
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			for (String tel : set) {
+				logger.info("正在发送短信给：" + tel);
+				int rst = -1;
+				try {
+					rst = Util.sendMessage(tel, sms.getContent(), user.getLoginName(), user.getId().intValue());//0为成功
+					if(rst == 0){
+						sb.append("("+tel+")发送成功");
+						sb.append("\n");
+						logger.info("成功发送短信给：" + tel);
+					}else{
+						sb.append("("+tel+")发送失败");
+						sb.append("\n");
+					}
+				} catch (Exception e) {
+					logger.warn("发送短信失败", e);
+					sb.append("发送失败，短息服务连接失败，请联系管理员");
+					break;
+				}				
 			}
-//			if (notExist != null && notExist.size() > 0) {
-//				StringBuffer sBuffer = new StringBuffer();
-//				for (String user : notExist) {
-//					sBuffer.append(user + "+");
-//
-//				}
-//				String sb= sBuffer.toString();
-//				this.setMsg("通知发送成功,标题【" + message.getTitle() + "】 以下用户不存在:"+sb.substring(0, sb.length()-1)+"请重新填入并发送：" );
-//			} else {
-//				this.setMsg("通知发送成功,标题【" + message.getTitle() + "】");
-//			}
-//			this.setSucc("Y");
-//			message = null;
-//
-//			return "mes_send";
-		} 
+		} else{
+			sb.append("发送失败，参数缺失");
+		}
 		this.setSucc("N");
-		this.setMsg("发送失败");
+		this.setMsg(sb.toString());
 		return "sms_edit";
 	}
 

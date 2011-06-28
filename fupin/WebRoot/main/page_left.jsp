@@ -291,7 +291,10 @@ function images_update(){
 	    menuArray[menuArray.length]="1,咨询信息回复,${appPath}zixun_zixunListPass.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
-	    menuArray[menuArray.length]="0,短信服务,${appPath}sms_getAllSMS.action";
+	    menuArray[menuArray.length]="0,短信服务,";
+	    menuArray[menuArray.length]="1,短信发送,${appPath}sms_getAllSMS.action";
+	    menuArray[menuArray.length]="1,通讯录组,${appPath}group_groupList.action";
+	    menuArray[menuArray.length]="1,通讯录,${appPath}contact_queryContact.action";
 	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
 	    
 	}

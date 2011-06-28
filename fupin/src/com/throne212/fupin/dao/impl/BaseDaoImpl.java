@@ -186,6 +186,15 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		String hql = "from " + clazz.getName() + " where " + colName + " like ? ";
 		return this.getHibernateTemplate().find(hql, "%" + likeValue + "%");
 	}
+	
+	
+	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue,String colTwoName){
+		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e."+colTwoName+" is null order by e.id desc";
+		List paramValueList = new ArrayList();
+		paramValueList.add(oneValue);
+		
+		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
+	}
 
 //	public <T extends Log> List<T> getLogList(MyEntity entity,String refName){
 //		String entityName = entity.getClass().getSimpleName()+"Log";

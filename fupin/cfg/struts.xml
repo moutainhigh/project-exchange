@@ -255,6 +255,17 @@
 			<result name="report_edit2">/main/report/edit2.jsp</result>
 			<result name="report_list">/main/report/report_list.jsp</result>
 		</action>
+		<!-- 通讯组管理 -->
+		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">
+			<result name="edit_group">/main/sms_manage_group/group_edit.jsp</result>
+			<result name="list_group">/main/sms_manage_group/group_list.jsp</result>
+		</action>
+		<!-- 通讯录管理 -->
+		<action name="contact_*" method="{1}" class="com.throne212.fupin.action.ContactAction">
+			<result name="edit_contact">/main/sms_contact/contact_edit.jsp</result>
+			<result name="query_contact">/main/sms_contact/contact_list.jsp</result>
+			<result name="choose_contacts">/main/sms/choose_contact.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">
@@ -329,6 +340,17 @@
 			<result name="user_ids" type="json">
 				<param name="includeProperties">  
 					item
+				</param>
+			</result>
+			<result name="list_group" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.showTreeName
+				</param>
+			</result>
+			<result name="select_contacts" type="json">
+				<param name="includeProperties">  
+					telNo
 				</param>
 			</result>
 		</action>		

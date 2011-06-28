@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="Contact" table="fp_contact">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="owner"></property>
+		<property name="orgName"></property>
+		<property name="duty" ></property>
+		<property name="contactName" ></property>
+		<property name="telNo" ></property>
+		<many-to-one name="group" column="group_id" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>

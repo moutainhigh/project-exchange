@@ -38,6 +38,8 @@
 	<mapping resource="com/throne212/fupin/domain/LeaderHelp.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/SMS.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Report.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/ContactGroup.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Contact.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 
