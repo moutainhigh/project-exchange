@@ -16,7 +16,7 @@
 			$(function(){
 				$.getJSON("${appPath}ajax/getAllGroupOfUser?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
-						$('#groupId').html('<option value=""></option>');
+						$('#groupId').html('<option value="">==顶级组==</option>');
 						for(var i=0;i<json['list'].length;i++)
 						$('#groupId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['showTreeName']+'</option>');
 					}
@@ -40,9 +40,10 @@
 						上级组
 						</td>
 						<td class="tables_contentcell">
-							<select id="groupId" name="groupId" ></select>
+							<select id="groupId" name="groupId" >
+								<option value="">==顶级组==</option>
+							</select>
 							&nbsp;&nbsp;
-						
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>

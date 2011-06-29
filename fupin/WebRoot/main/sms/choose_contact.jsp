@@ -4,19 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%!
 private String getChildGroupOptionHtml(List<ContactGroup> gList){
-StringBuffer sb = new StringBuffer();
-for(ContactGroup g:gList){
-sb.append("<option value=\"g_"+g.getId()+"\">"+g.getShowTreeName()+"</option>");
-//所属的通讯录
-	if(g.getContactList()!=null && g.getContactList().size()>0){
-		for(Contact c : g.getContactList()){
-			sb.append("<option value=\"c_"+c.getId()+"\">"+c.getContactName()+"("+c.getTelNo()+")"+"</option>");
+	StringBuffer sb = new StringBuffer();
+	for(ContactGroup g:gList){
+		sb.append("<option value=\"g_"+g.getId()+"\">"+g.getShowTreeName()+"</option>");
+		//所属的通讯录
+		if(g.getContactList()!=null && g.getContactList().size()>0){
+			for(Contact c : g.getContactList()){
+				sb.append("<option value=\"c_"+c.getId()+"\">&nbsp;&nbsp;"+c.getContactName()+"("+c.getTelNo()+")"+"</option>");
+			}
 		}
 	}
-}
-	
-	
-	System.out.println(sb.toString());
+	//System.out.println(sb.toString());
 	return sb.toString();
 }
 %>
@@ -118,15 +116,23 @@ sb.append("<option value=\"g_"+g.getId()+"\">"+g.getShowTreeName()+"</option>");
 			<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 	<tbody>
 	<tr>
-		<td height="300" width="40%" align="left" class="tables_contentcell">
-		组织结构(按住Ctrl键可进行多选 )：
-		<br>
-		 <select multiple="multiple"  id="groupOrContactIds"  size="20" name="groupOrContactIds" style="width: 100%;height: 100%">
+		<td height="25" align="center" class="tables_contentcell">
+			<h4>通讯录(按住Ctrl键可进行多选)</h4>
+		</td>
+		<td align="center" class="tables_contentcell">
+			&nbsp;
+		</td>
+		<td align="center" class="tables_contentcell">
+			<h4>已选取</h4>
+		</td>		
+	</tr>
+	<tr>
+	<tr>
+		<td height="500" width="40%" align="left" class="tables_contentcell">
+		 <select multiple="multiple"  id="groupOrContactIds" name="groupOrContactIds" style="width: 100%;height: 100%">
 		 	<% 
 		 		List<ContactGroup> gList = (List<ContactGroup>)request.getAttribute("gList");
-		 		
-		 			out.print(getChildGroupOptionHtml(gList)); 
-		 		
+		 		out.print(getChildGroupOptionHtml(gList)); 
 		 	%>
 		 </select>
 		</td>
@@ -143,9 +149,8 @@ sb.append("<option value=\"g_"+g.getId()+"\">"+g.getShowTreeName()+"</option>");
 		
 		</td>
 		
-		<td height="300" width="40%" align="left" class="tables_contentcell">
-		已选取：
-		<select multiple="multiple"  id="choosedIds"  size="20" name="ids" style="width: 100%;height: 100%">
+		<td width="40%" align="left" class="tables_contentcell">
+		<select multiple="multiple"  id="choosedIds" name="ids" style="width: 100%;height: 100%">
 		 
 		 </select>
 		</td>

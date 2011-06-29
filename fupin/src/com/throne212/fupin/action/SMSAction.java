@@ -1,9 +1,6 @@
 package com.throne212.fupin.action;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -11,7 +8,6 @@ import com.throne212.fupin.biz.MessageBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
-import com.throne212.fupin.domain.Message;
 import com.throne212.fupin.domain.SMS;
 import com.throne212.fupin.domain.User;
 
@@ -55,6 +51,10 @@ public class SMSAction extends BaseAction {
 						sb.append("("+tel+")发送成功");
 						sb.append("\n");
 						logger.info("成功发送短信给：" + tel);
+					}else if(rst == -108){
+						sb.append("发送失败，短息服务连接失败，请联系管理员");
+						logger.warn("发送短信失败,短息服务连接失败");
+						break;
 					}else{
 						sb.append("("+tel+")发送失败");
 						sb.append("\n");

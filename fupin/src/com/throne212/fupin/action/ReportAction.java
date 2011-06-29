@@ -56,7 +56,7 @@ public class ReportAction extends BaseAction {
 			Calendar c = GregorianCalendar.getInstance();
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
-			String time = (c.get(Calendar.MONTH) + 1) + "";
+			String time = (c.get(Calendar.MONTH)) + "";
 			r = reportBiz.getReport("1", year, type, time);
 			if (r == null) {
 				r = new Report1();
@@ -85,6 +85,18 @@ public class ReportAction extends BaseAction {
 		return "report_edit1";
 	}
 	public String tmpSaveReport1() {
+		if(r!=null && "month".equals(r.getType())){
+			String time = r.getTime();
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
+			if(r.getYear()>year){
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+				return viewReport1();
+			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+				return viewReport1();
+			}
+		}
 		r = reportBiz.saveReport(r, "1");
 		if (r == null) {
 			this.setMsg("暂时保存报表失败");
@@ -96,6 +108,18 @@ public class ReportAction extends BaseAction {
 		return viewReport1();
 	}
 	public String saveReport1() {
+		if(r!=null && "month".equals(r.getType())){
+			String time = r.getTime();
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
+			if(r.getYear()>year){
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+				return viewReport1();
+			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+				return viewReport1();
+			}
+		}
 		r = reportBiz.saveReport(r, "1");
 		if (r == null) {
 			this.setMsg("保存报表失败");
@@ -111,7 +135,7 @@ public class ReportAction extends BaseAction {
 			Calendar c = GregorianCalendar.getInstance();
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
-			String time = (c.get(Calendar.MONTH) + 1) + "";
+			String time = (c.get(Calendar.MONTH)) + "";
 			r = reportBiz.getReport("2", year, type, time);
 			if (r == null) {
 				r = new Report2();
@@ -137,6 +161,18 @@ public class ReportAction extends BaseAction {
 	}
 
 	public String saveReport2() {
+		if(r!=null && "month".equals(r.getType())){
+			String time = r.getTime();
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
+			if(r.getYear()>year){
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+				return viewReport2();
+			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+				return viewReport2();
+			}
+		}
 		r = reportBiz.saveReport(r, "2");
 		if (r == null) {
 			this.setMsg("保存报表失败");
@@ -146,6 +182,18 @@ public class ReportAction extends BaseAction {
 		return viewReport2();
 	}
 	public String tmpSaveReport2() {
+		if(r!=null && "month".equals(r.getType())){
+			String time = r.getTime();
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
+			if(r.getYear()>year){
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+				return viewReport2();
+			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+				return viewReport2();
+			}
+		}
 		r = reportBiz.saveReport(r, "2");
 		if (r == null) {
 			this.setMsg("暂时保存报表失败");

@@ -72,6 +72,14 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 					for (int m = minMonth; m <= maxMonth; m++) {
 						Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
 						addItems(reportSeason,mReport);
+						//特殊字段处理
+						if(maxMonth == m && "1".equals(reportType)){
+							reportSeason.setItem13(mReport.getItem13());
+							reportSeason.setItem14(mReport.getItem14());
+						}else{
+							reportSeason.setItem13("");
+							reportSeason.setItem14("");
+						}
 					}
 					clearItemsZero(reportSeason);
 					reportDao.saveOrUpdate(reportSeason);
@@ -79,15 +87,23 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 				
 				
 				// 生成年度的
-				Report yearSeason = reportDao.getReport(reportType, org, cun, r.getYear(), "year", null);
-				if(yearSeason.getLock() == null || yearSeason.getLock() == 0){	
-					clearItems(yearSeason);
+				Report reportYear = reportDao.getReport(reportType, org, cun, r.getYear(), "year", null);
+				if(reportYear.getLock() == null || reportYear.getLock() == 0){	
+					clearItems(reportYear);
 					for (int m = 1; m <= 12; m++) {
 						Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
-						addItems(yearSeason,mReport);
+						addItems(reportYear,mReport);
+						//特殊字段处理
+						if(12 == m && "1".equals(reportType)){
+							reportYear.setItem13(mReport.getItem13());
+							reportYear.setItem14(mReport.getItem14());
+						}else{
+							reportYear.setItem13("");
+							reportYear.setItem14("");
+						}
 					}
-					clearItemsZero(yearSeason);
-					reportDao.saveOrUpdate(yearSeason);
+					clearItemsZero(reportYear);
+					reportDao.saveOrUpdate(reportYear);
 				}
 
 			}
@@ -158,7 +174,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			r.setItem3(cun.getPoorFamilyNum1() == null ? "" : cun.getPoorFamilyNum1() + "");
 			r.setItem4(cun.getPoorPersonNum1() == null ? "" : cun.getPoorPersonNum1() + "");
 			r.setItem5(cun.getPoorFamilyNum2() == null ? "" : cun.getPoorFamilyNum2() + "");
-			r.setItem6(cun.getPoorPersonNum2() == null ? "" : cun.getPoorFamilyNum2() + "");
+			r.setItem6(cun.getPoorPersonNum2() == null ? "" : cun.getPoorPersonNum2() + "");
 			r.setItem7(cun.getPoorFamilyNum3() == null ? "" : cun.getPoorFamilyNum3() + "");
 			r.setItem8(cun.getPoorPersonNum3() == null ? "" : cun.getPoorPersonNum3() + "");
 			r.setItem9(cun.getPoorFamilyNum4() == null ? "" : cun.getPoorFamilyNum4() + "");
@@ -197,26 +213,44 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		Org org = (Org) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = org.getCun();
 		Report report = reportDao.getReport(reportType, org, cun, year, type, time);
+		
 		if (report != null && report.getId() != null) {
-			if("1".equals(reportType))
-				fillReportRow1(7, sourceFile, targetFile, org, cun, report);
-			else if("2".equals(reportType))
-				fillReportRow2(7, sourceFile, targetFile, org, cun, report);
+			//打开excel文件
+			Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+			if("1".equals(reportType)){
+				fillReportRow1(7, workbook, org, cun, report,false);
+				if(!"year".equals(r.getType())){
+					fillReportRow1(8, workbook, org, cun, reportDao.getReport(reportType, org, cun, year, "year", null),true);
+				}
+			}else if("2".equals(reportType)){
+				fillReportRow2(7, workbook, org, cun, report,false);
+				if(!"year".equals(r.getType())){
+					fillReportRow2(8, workbook, org, cun, reportDao.getReport(reportType, org, cun, year, "year", null),true);
+				}
+			}
+			//关闭
+			workbook.write();
+			workbook.close();
+			rw.close();
 			return targetFile;
 		}
+		
 		return null;
 	}
 
-	public void fillReportRow1(int row, String sourceFile, String targetFile, Org org, Cun cun, Report report) throws Exception {
-		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
-		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
-
+	public void fillReportRow1(int row, WritableWorkbook workbook, Org org, Cun cun, Report report,boolean leiji) throws Exception {
+		
 		WritableSheet sheet1 = workbook.getSheet(0);
 		WritableSheet sheet2 = workbook.getSheet(1);
 
 		// 装填sheet1
-		sheet1.addCell(new Label(0, row, org.getOrgName()));
-		sheet1.addCell(new Label(1, row, cun.getName()));
+		if(leiji){
+			sheet1.addCell(new Label(0, row, "累计"));
+		}else{
+			sheet1.addCell(new Label(0, row, org.getOrgName()));
+			sheet1.addCell(new Label(1, row, cun.getName()));
+		}
 		for (int i = 2; i <= 30; i++) {
 			sheet1.addCell(new Label(i, row, report.getItem(i - 1)));
 		}
@@ -228,26 +262,20 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			sheet2.addCell(new Label(i, row, report.getItem(i + 28)));
 		}
 
-		workbook.write();
-		workbook.close();
-		rw.close();
+		
 	}
-	public void fillReportRow2(int row, String sourceFile, String targetFile, Org org, Cun cun, Report report) throws Exception {
-		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
-		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
-
+	public void fillReportRow2(int row, WritableWorkbook workbook, Org org, Cun cun, Report report,boolean leiji) throws Exception {
 		WritableSheet sheet1 = workbook.getSheet(0);
-
 		// 装填sheet1
-		sheet1.addCell(new Label(0, row, org.getOrgName()));
-		sheet1.addCell(new Label(1, row, cun.getName()));
+		if(leiji){
+			sheet1.addCell(new Label(0, row, "累计"));
+		}else{
+			sheet1.addCell(new Label(0, row, org.getOrgName()));
+			sheet1.addCell(new Label(1, row, cun.getName()));
+		}
 		for (int i = 2; i <= 10; i++) {
 			sheet1.addCell(new Label(i, row, report.getItem(i - 1)));
 		}
-
-		workbook.write();
-		workbook.close();
-		rw.close();
 	}
 
 }

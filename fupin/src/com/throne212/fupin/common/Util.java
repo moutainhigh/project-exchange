@@ -301,14 +301,15 @@ public class Util {
 	}
 	
 	/**
-	 * 返回值：	-2：短信设备连接失败
-	 * 			-1：发送失败
-	 * 			>0:	发送成功
+	 * 返回值：	-108：短信设备连接失败
+	 * 			0:	发送成功
+	 * 			其他：发送失败
+	 * 			
 	 * */
 	public static int sendMessage(String phoneStr,String content,String userName,int userId){
 		SmsServicePortType sme = CommonListener.sme;
 		if(sme == null)
-			return -2;
+			return -108;
 		return sme.sendMessageToMobile("192.168.2.28","oa","mas","oa","oa123456",phoneStr,content,userName,userId);		
 	}
 	

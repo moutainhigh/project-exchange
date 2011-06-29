@@ -93,7 +93,7 @@
 							您当前所处页面：短信发送
 						</td>
 						<td align="right">
-						<input type="button" onclick="winOpen('${appPath}main/sms/edit.jsp',600,600);" class="button" value="发送短信">
+						<input type="button" onclick="winOpen('${appPath}main/sms/edit.jsp',600,300);" class="button" value="发送短信">
 						</td>
 						<td width="5px"></td>
 					</tr>

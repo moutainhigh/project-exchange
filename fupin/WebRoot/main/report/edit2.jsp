@@ -42,7 +42,11 @@
 				$('#time').attr('disabled',false);
 				var str = '';
 				for(var i=1;i<=4;i++){
-					str += '<option value="'+i+'">第'+i+'季度</option>';
+					if(($('#year').val()==2011 || year == '2011') && i==1){
+						break;
+					}else{
+						str += '<option value="'+i+'">第'+i+'季度</option>';
+					}
 				}
 				$('#time').html(str);
 				if(time != ''){
@@ -54,7 +58,17 @@
 				$('#time').attr('disabled',false);
 				var str = '';
 				for(var i=1;i<=12;i++){
-					str += '<option value="'+i+'">第'+i+'月</option>';
+					if($('#year').val()==2011 || year == '2011'){
+						if(i<=4)
+							continue;
+						if(i==5){
+							str += '<option value="'+i+'">第3-5月</option>';
+						}else{
+							str += '<option value="'+i+'">第'+i+'月</option>';
+						}
+					}else{
+						str += '<option value="'+i+'">第'+i+'月</option>';
+					}
 				}
 				$('#time').html(str);
 				if(time != ''){
@@ -75,6 +89,27 @@
 			f.submit();
 		}
 		function saveReport(){
+			//数字正则检查
+			var pass = true;
+			$('input[type="text"]').each(function(){
+				if($(this).val()!='' && $(this).val()!=null && !/^\d+(\.\d+)?$/.test($(this).val())){
+					pass = false;
+					//alert($(this).attr('name'));
+				}
+			});
+			if(!pass){
+				alert('所有项目都必须是数字');
+				return false;
+			}
+			//规则检查
+			if($('#item2').val() != parseInt($('#item3').val())+parseInt($('#item4').val())){
+				alert('注意：已投入帮扶资金= 用于帮扶到户资金 + 用于帮扶到村资金');
+				return false;
+			}
+			if($('#item2').val() != parseInt($('#item5').val())+parseInt($('#item6').val())+parseInt($('#item7').val())+parseInt($('#item8').val())+parseInt($('#item9').val())){
+				alert('注意：已投入帮扶资金= 财政专项 + 信贷资金 + 单位自筹 + 社会募捐 + 社会引资');
+				return false;
+			}
 			if(confirm('报表提交后不允许修改，是否提交')){
 				var f = document.forms[0];
 				f.action = '${appPath}report_saveReport2.action';
@@ -163,7 +198,6 @@
 							<select name="r.year" id="year">
 								<option value=""></option>
 								<option value="2011">2011</option>
-								<option value="2012">2012</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
@@ -223,7 +257,7 @@
 									规划投入资金（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item1" value="${r.item1}"/>
+									<input type="text" name="r.item1" id="item1" value="${r.item1}"/>
 									</td>
 								</tr>
 								<tr>
@@ -231,7 +265,7 @@
 									已投入帮扶资金
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item2" value="${r.item2}"/>
+									<input type="text" name="r.item2" id="item2" value="${r.item2}"/>
 									</td>
 								</tr>
 								<tr>
@@ -242,7 +276,7 @@
 									用于帮扶到户资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item3" value="${r.item3}"/>
+									<input type="text" name="r.item3" id="item3" value="${r.item3}"/>
 									</td>
 								</tr>
 								<tr>
@@ -250,7 +284,7 @@
 									用于帮扶到村资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item4" value="${r.item4}"/>
+									<input type="text" name="r.item4" id="item4" value="${r.item4}"/>
 									</td>
 								</tr>
 								<tr>
@@ -261,7 +295,7 @@
 									财政专项(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item5" value="${r.item5}"/>
+									<input type="text" name="r.item5" id="item5" value="${r.item5}"/>
 									</td>
 								</tr>
 								<tr>
@@ -269,7 +303,7 @@
 									信贷资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item6" value="${r.item6}"/>
+									<input type="text" name="r.item6" id="item6" value="${r.item6}"/>
 									</td>
 								</tr>
 								<tr>
@@ -277,7 +311,7 @@
 									单位自筹(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item7" value="${r.item7}"/>
+									<input type="text" name="r.item7" id="item7" value="${r.item7}"/>
 									</td>
 								</tr>
 								<tr>
@@ -285,7 +319,7 @@
 									社会募捐（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item8" value="${r.item8}"/>
+									<input type="text" name="r.item8" id="item8" value="${r.item8}"/>
 									</td>
 								</tr>
 								<tr>
@@ -293,7 +327,7 @@
 									社会引资（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item9" value="${r.item9}"/>
+									<input type="text" name="r.item9" id="item9" value="${r.item9}"/>
 									</td>
 								</tr>
 								<tr>

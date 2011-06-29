@@ -65,7 +65,7 @@
 		内容
 		</td>
 		<td class="tables_contentcell">
-		<textarea id="content" name="sms.content" value="${sms.content }" rows="6" cols="50" msg="内容不能为空！" datatype="Require">${message.content}</textarea>
+		<textarea id="content" name="sms.content" rows="6" cols="50" msg="内容不能为空！" datatype="Require">${sms.content }</textarea>
 		<font size="4" color="#cc0033">*</font>
 		</td>
 	</tr>

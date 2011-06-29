@@ -44,7 +44,11 @@
 				$('#time').attr('disabled',false);
 				var str = '';
 				for(var i=1;i<=4;i++){
-					str += '<option value="'+i+'">第'+i+'季度</option>';
+					if(($('#year').val()==2011 || year == '2011') && i==1){
+						continue;
+					}else{
+						str += '<option value="'+i+'">第'+i+'季度</option>';
+					}
 				}
 				$('#time').html(str);
 				if(time != ''){
@@ -53,10 +57,21 @@
 					},1);
 				}
 			}else if('month' == type){
+				//2011年，去掉月度报表的第1 2 3 4 5月，改为第3-5月。5月份之后的月份正常显示。
 				$('#time').attr('disabled',false);
 				var str = '';
 				for(var i=1;i<=12;i++){
-					str += '<option value="'+i+'">第'+i+'月</option>';
+					if($('#year').val()==2011 || year == '2011'){
+						if(i<=4)
+							continue;
+						if(i==5){
+							str += '<option value="'+i+'">第3-5月</option>';
+						}else{
+							str += '<option value="'+i+'">第'+i+'月</option>';
+						}
+					}else{
+						str += '<option value="'+i+'">第'+i+'月</option>';
+					}
 				}
 				$('#time').html(str);
 				if(time != ''){
@@ -72,11 +87,48 @@
 			f.submit();
 		}
 		function tmpSaveReport(){
+			//自动提取不得为空
+			var autoPass = true;
+			$('input[readonly=true]').each(function(){
+				if($(this).val()==null || $(this).val()==''){
+					autoPass = false;
+					//alert(autoPass);
+				}
+			});
+			//alert(autoPass);
+			if(!autoPass){
+				alert('灰色输入框为系统自动提取贫困村资料维护中相应数据，不允许为空，请在贫困村资料维护页面中补充完整!');
+				return false;
+			}
 			var f = document.forms[0];
 			f.action = '${appPath}report_tmpSaveReport1.action';
 			f.submit();
 		}
 		function saveReport(){
+			//自动提取不得为空
+			var autoPass = true;
+			$('input[readonly=true]').each(function(){
+				if($(this).val()==null || $(this).val()==''){
+					autoPass = false;
+					//alert(autoPass);
+				}
+			});
+			if(!autoPass){
+				alert('灰色输入框为系统自动提取贫困村资料维护中相应数据，不允许为空，请在贫困村资料维护页面中补充完整!');
+				return false;
+			}
+			//数字正则检查
+			var pass = true;
+			$('input[type="text"]').each(function(){
+				if($(this).val()!='' && $(this).val()!=null && !/^\d+(\.\d+)?$/.test($(this).val())){
+					pass = false;
+					//alert($(this).attr('name'));
+				}
+			});
+			if(!pass){
+				alert('所有项目都必须是数字');
+				return false;
+			}
 			if(confirm('报表提交后不允许修改，是否提交')){
 				var f = document.forms[0];
 				f.action = '${appPath}report_saveReport1.action';
@@ -165,7 +217,6 @@
 							<select name="r.year" id="year">
 								<option value=""></option>
 								<option value="2011">2011</option>
-								<option value="2012">2012</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">

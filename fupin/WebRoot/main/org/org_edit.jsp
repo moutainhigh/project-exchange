@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	帮扶贫困村：${org.cun.name }
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 		<tbody><tr>
-    	<td align="center" class="tables_contentcell" colspan="4">┏━━━驻村干部信息━━━┓</td>
+    	<td align="center" class="tables_contentcell" colspan="4">┏━━━单位责任人信息━━━┓</td>
 		</tr>
 		<tr>
 		<td height="30" align="right" width="10%" class="tables_leftcell">单位名称</td>
@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</td>
 		</tr> 
 		<tr>
-    	<td align="center" class="tables_contentcell" colspan="4">┏━━━单位联络员信息━━━┓</td>
+    	<td align="center" class="tables_contentcell" colspan="4">┏━━━驻村干部信息━━━┓</td>
 		</tr>
 		
 		<tr> 
