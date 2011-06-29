@@ -573,11 +573,11 @@ public class Init {
 		p29.setName("Eahoosoft DVD to iPad Converter");
 		p29.setPrice(18.95);
 		p29.setScreenShot("dvd-ipad.jpg");
-		p29.setShortDesc("Eahoosoft DVD to iPad Converter is specifically designed for Apple iPad users to watch DVD movies on your iPad’s Multi-Touch screen. With this DVD to iPad converter, you can rip DVD to iPad H.264 (SD and HD), MP4, MOV,and MPEG-4 videos in different resolutions (1280*720, 960*540,720*480, 640*480).");
+		p29.setShortDesc("Eahoosoft DVD to iPad Converter is specifically designed for Apple iPad users to watch DVD movies on your iPad's Multi-Touch screen. With this DVD to iPad converter, you can rip DVD to iPad H.264 (SD and HD), MP4, MOV,and MPEG-4 videos in different resolutions (1280*720, 960*540,720*480, 640*480).");
 		p29.setSize("5.20Mb");
 		p29.setShortName("DVD to iPad Converter");
 		p29.setOrderNum(2);
-		p29.setIndexOrderNum(null);
+		p29.setIndexOrderNum(4);
 		p29.setFeatures(getFeature29(p29));
 		s.save(p29);
 		
@@ -595,7 +595,7 @@ public class Init {
 		p30.setSize("5.20Mb");
 		p30.setShortName("iPad Video Converter");
 		p30.setOrderNum(3);
-		p30.setIndexOrderNum(null);
+		p30.setIndexOrderNum(5);
 		p30.setFeatures(getFeature30(p30));
 		s.save(p30);
 		
@@ -688,6 +688,27 @@ public class Init {
 		p35.setIndexOrderNum(null);
 		p35.setFeatures(getFeature35(p35));
 		s.save(p35);
+		
+		
+		//free
+		Product p36 = new Product();
+		p36.setBuyUrl(null);
+		p36.setCate(null);
+		p36.setDescription("<p>Eahoosoft video converter is <strong>freeware</strong> for users.<br>                  All-in-one powerful video converter  software to convert all videos Between <strong>AVI,  MPEG, WMV, H.264/AVC, DivX, MP4, MKV, RM, MOV, XviD, 3GP, FLV</strong> and other video  formats; Download it now and you will be surprised by this amazing Video  Converter.<br>                 Extract audio from videos and convert them to  audio (MP3, WMA) High-speed encoder ensures smooth conversion of video data. NO  Experience or Computer Skills Necessary! As easy as 1-2-3!  It works fast and steady,fast conversion speeds and high quality. Batch conversion  enables you to convert multiple videos to videos/music at the same time.  Support video preview when conversion. Clip your videos and personalize the  Output Video Clip function to convert any part of the video files and adjust  output setting in terms of your preferences. Adjust a variety of output  parameters: bit rate, Frame rate, sample rate, channel, codec, Aspect ratio,  and many others</p>");
+		p36.setDownUrl("EahoosoftFreeVideoConverter.exe");
+		p36.setFileName("free-video-converter");
+		p36.setImage("free-video-converter-box.jpg");
+		p36.setName("Free Eahoosoft Video Converter");
+		p36.setPrice(null);
+		p36.setScreenShot("free.jpg");
+		p36.setShortDesc("Eahoosoft video converter is freeware for users.All-in-one powerful video converter software to convert all videos Between AVI, MPEG, WMV, H.264/AVC, DivX, MP4, MKV, RM, MOV, XviD, 3GP, FLV and other video formats; Download it now and you will be surprised by this amazing Video Converter.");
+		p36.setSize("5.20Mb");
+		p36.setShortName("Free Eahoosoft Video Converter");
+		p36.setOrderNum(null);
+		p36.setIndexOrderNum(null);
+		p36.setFeatures(getFeature36(p36));
+		s.save(p36);
+		
 		
 		s.getTransaction().commit();
 		s.close();
@@ -1148,6 +1169,19 @@ public class Init {
 		set.add(buildFeature("iPod Music Converter","Convert on trend music like AIFF, MP3, AAC, WMA, WAV, M4A, CUE, APE to iPhone and iPod AIFF, MP3, AAC, WAV, M4A. Supports CD decoding."));
 		set.add(buildFeature("Key Specifications:","Works well with all iPod types including iPod touch, iPod shuffle, iPod nano (5th Gen), iPod classic<br/>Supports multithreading and group conversion that allows several files at the same time<br/>Allows you to convert a segment from audio or video file; divide a huge file into several so you can place it in your iPod<br/>Add in output parameters as well as codec, resolution quality, audio channel, sample rate, frame rate, and bit rate<br/>Convert a source file into several iPod video settings at a time<br/>Automatically shuts down, exit, and hibernate your CPU, once the task is done"));
 		set.add(buildFeature("What's new in 2.11?","Automatically shuts down your computer once conversion is finished. "));
+		return set;
+	}
+	private static Set<Feature> getFeature36(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("User friendly interface","You can easily operate this free converting tool even you are fresh man. The guide on software interface will help you a lot."));
+		set.add(buildFeature("Support popular formats","This free software allows you to convert AVI, MPEG, WMV, H.264/AVC, DivX, MP4, MKV, RM, MOV, XviD, 3GP, FLV or more."));
+		set.add(buildFeature("Batch conversion","Drag the several files to the software, and it will convert them one by one."));
+		set.add(buildFeature("Preview the movies ","To check the video is right for converting, you are able to preview it on Eahoosoft video converter."));
+		set.add(buildFeature("Convert video to audio","Extract audio files from movies, means, convert any part of movies to mp3, wma directly."));
+		set.add(buildFeature("High output quality and steady","This free software will convert your videos with high quality, fast and steady."));
+		set.add(buildFeature("Clip videos","Clip movies you need and set the parameters as you like. You could set start and end time freely."));
+		set.add(buildFeature("Merge the movie and audios","You will merge video and audios or merge many videos together."));
+		set.add(buildFeature("Last but most important one Freeware is the best!!!",""));
 		return set;
 	}
 	private static int i;

@@ -20,7 +20,7 @@
 		com.mysql.jdbc.Driver
 	</property>
 	<property name="hbm2ddl.auto">create</property>
-	<property name="show_sql">true</property>
+	<property name="show_sql">false</property>
 
 	<mapping resource="eahoosoft/pojo/Category.hbm.xml" />
 	<mapping resource="eahoosoft/pojo/Product.hbm.xml" />

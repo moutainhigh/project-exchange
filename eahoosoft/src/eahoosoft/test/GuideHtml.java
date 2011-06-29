@@ -1,6 +1,7 @@
 package eahoosoft.test;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import org.hibernate.Session;
 import org.jsoup.Jsoup;
@@ -28,22 +29,33 @@ public class GuideHtml {
 				Element head = doc.head();
 				Element body = doc.body();
 				
-				//����
 				String title = doc.title();
-				//����͹ؼ��
 				String keywords = head.select("meta[name=keywords]").get(0).attr("content");
 				String description = head.select("meta[name=description]").get(0).attr("content");
 				//System.out.println(description);
 				
-				//���±���
 				Elements h1 = doc.select("h1");
 				String name = h1.get(0).text();
 				//System.out.println(name);
 				
-				//��������
 				Element myContent = doc.select("#my_content").get(0);
 				String content = myContent.html();
 				//System.out.println(content);
+				
+				String linkName = ""; 
+				if(f.getName().contains("how-to-convert")){
+					String[] arr = f.getName().split("-");
+					for(int i=2;i<arr.length;i++){
+						linkName += (arr[i].toUpperCase()+" ");
+					}
+					linkName = linkName.replaceAll(".HTML", "");
+				}else{
+					String[] arr = f.getName().split("-");
+					linkName = "Convert ";
+					for(int i=0;i<=2;i++){
+						linkName += (arr[i].toUpperCase()+" ");
+					}
+				}
 				
 				Guide g = new Guide();
 				g.setContent(content);
@@ -52,12 +64,13 @@ public class GuideHtml {
 				g.setKeywords(keywords);
 				g.setName(name);
 				g.setTitle(title);
+				g.setLinkName(linkName);
 				
 				s.saveOrUpdate(g);
 			} catch (RuntimeException e) {
 				e.printStackTrace();
-				System.out.println("�������ļ���"+f.getName());
-				break;
+				System.out.println("�������ļ���出错在################"+f.getName());
+				continue;
 			}
 			
 		}

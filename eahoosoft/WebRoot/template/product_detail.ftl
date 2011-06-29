@@ -20,8 +20,11 @@
 		  <h2 class="productsShowTitle">${p.name}</h2>
 	      <div class="productsLeft"> <img width="142" height="175" alt="${p.name}" src="../images/${p.image}"><br>
 	        <p class="lefttext"><a target="_blank" href="../images/${p.screenShot}"><img alt="view snapshot" src="../images/view-snapshot.jpg"></a></p>
-	       <div class="buyNowBig"><a href="${p.buyUrl}" target="_blank"><span>Buy Now<br>
-					Price: $#{p.price;m2M2}</span></a></div><div class="freeTrialBig"><a href="../download/${p.downUrl}"><span>Free Trial<br>
+	        <#if p.buyUrl?exists>
+	        <div class="buyNowBig"><a href="${p.buyUrl}" target="_blank"><span>Buy Now<br>
+					Price: $#{p.price;m2M2}</span></a></div>
+			</#if>
+			<div class="freeTrialBig"><a href="../download/${p.downUrl}"><span>Free Trial<br>
 					Size: ${p.size}</span></a></div>
 	      </div>
 	      <div class="productsMid">
@@ -38,8 +41,10 @@
 			<div class="clear" style="overflow:hidden;width:430px;margin:5px auto;">
 				<div class="freeTrialBig_below"><a href="../download/${p.downUrl}"><span>Free Trial<br>
 					Size: ${p.size}</span></a></div>
+				<#if p.buyUrl?exists>
 				<div class="buyNowBig_below"><a href="${p.buyUrl}" target="_blank"><span>Buy Now<br>
 					Price: $#{p.price;m2M2}</span></a></div>
+				</#if>
 				<div class="clear"></div>
 			</div>		
 	      </div>

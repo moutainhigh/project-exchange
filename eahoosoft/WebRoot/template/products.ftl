@@ -7,13 +7,6 @@
 	<meta name="description" content="${appKeywords}"/>
 	<link type="text/css" rel="stylesheet" href="${appPath}layout.css">
 	<#include "/script.ftl"/>
-	<script type="text/javascript">
-		var currCate = '${currCate}';
-		$(function(){
-			if(currCate!='')
-				$('#subNavMenu li').eq(parseInt(currCate)).addClass('currentLink');
-		});
-	</script>
 </head>
 <body>
 	<div id="wrap">

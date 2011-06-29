@@ -41,6 +41,14 @@ public class Index {
 		//添加顶部、底部和右侧的变量
 		Common.fillRightData(map);
 		
+		//guide
+		s = HibernateSessionFactory.getSession();
+		List<Product> glList = s.createQuery("from Guide g order by content").setMaxResults(6).list();
+		map.put("glList", glList);
+		List<Product> grList = s.createQuery("from Guide g order by content desc").setMaxResults(6).list();
+		map.put("grList", grList);
+		s.close();
+		
 		PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\index.html"));
 		
 		template.process(map, pw);

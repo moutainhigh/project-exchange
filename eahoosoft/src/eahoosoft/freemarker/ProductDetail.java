@@ -12,7 +12,6 @@ import org.hibernate.Session;
 
 import eahoosoft.dao.HibernateSessionFactory;
 import eahoosoft.pojo.Product;
-import eahoosoft.test.Init;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 

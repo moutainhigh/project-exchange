@@ -34,42 +34,23 @@
 	        <!--product list items end-->
 	        <!--guide-->
 	        <div class="small">
-	          <h3 class="guide">Guide Center</h3>
+	          <h3 class="guide" style="cursor:pointer;" onClick="self.location.href='${appPath}guide.html'">Guide Center</h3>
 	          <div class="fl">
 	            <ul>
-	              <li><a href="#">How to use Eahoosoft Video Converter</a></li>
-	              <li><a href="#">How to use HD Converter </a></li>
-	              <li><a href="#">How to use 3GP Video Converter</a></li>
-				  <li><a href="#">How to use Eahoosoft Video Converter</a></li>
-	              <li><a href="#">How to use HD Converter </a></li>
-	              <li><a href="#">How to use 3GP Video Converter</a></li>
+	              <#list glList as g>
+	              <li><a href="guide/${g.fileName}">${g.linkName}</a></li>
+	              </#list>
 	            </ul>
 	          </div>
 	          <div class="fr">
 	            <ul>
-	              <li><a href="#">How to use DVD Converter Suite</a></li>
-	              <li><a href="#">How to use HD Converter </a></li>
-	              <li><a href="#">How to use 3GP Video Converter</a></li>
-				  <li><a href="#">How to use Eahoosoft Video Converter</a></li>
-				  <li><a href="#">How to use DVD Converter Suite</a></li>
-	              <li><a href="#">How to use HD Converter </a></li>
+	              <#list grList as g>
+	              <li><a href="guide/${g.fileName}">${g.linkName}</a></li>
+	              </#list>
 	            </ul>
 	          </div>
 	        </div>
 	        <!--guide end-->
-	        <!--news-->
-	        <div class="small">
-	          <h3 class="news">Express News</h3>
-	          <ul>
-	            <li><a href="#">Eahoosoft DVD to iPhone Converter </a><span> Jan 14th, 2011</span></li>
-	            <li><a href="#">Enables you to convert popular video formats like AVI</a><span>Dec 15th, 2010</span></li>
-	            <li><a href="#">iPad Converter is specifically designed for Apple iPad users to watch DVD</a> <span> Nov 23rd, 2010</span></li>
-	            <li><a href="#">Enables you to convert popular video formats like AVI</a> <span> Nov 2nd, 2010</span></li>
-	            <li><a href="#">Enables you to convert popular video formats like AVI</a> <span> Oct 28st, 2010</span></li>
-	            <li><a href="#">Enables you to convert popular video formats like AVI</a> <span> May 4th, 2010</span></li>            
-	          </ul>
-	        </div>
-	        <!--news end-->
 	      </div>
 	      <!--right products-->
 		  <#include "/right.ftl">

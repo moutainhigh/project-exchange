@@ -12,6 +12,7 @@
 		<property name="keywords" length="1024"></property>
 		<property name="name"></property>
 		<property name="title"></property>
+		<property name="linkName"></property>
 		
 	</class>
 </hibernate-mapping>
