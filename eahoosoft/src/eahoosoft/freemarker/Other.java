@@ -27,6 +27,7 @@ public class Other {
 		Map map = new HashMap();		
 		//添加公用的数据模型
 		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"support.html", map);
 		//标题栏模块下标
 		map.put("currModule", 4);//支持			
 		//添加顶部、底部和右侧的变量
@@ -39,6 +40,7 @@ public class Other {
 		map = new HashMap();		
 		//添加公用的数据模型
 		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"news.html", map);
 		//标题栏模块下标
 		map.put("currModule", 5);//新闻		
 		//添加顶部、底部和右侧的变量
@@ -51,6 +53,7 @@ public class Other {
 		map = new HashMap();		
 		//添加公用的数据模型
 		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"free-video-converter/free-video-converter.html", map);
 		//标题栏模块下标
 		map.put("currModule", 6);//free
 		//添加顶部、底部和右侧的变量
@@ -69,6 +72,7 @@ public class Other {
 		map = new HashMap();		
 		//添加公用的数据模型
 		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"contact.html", map);
 		//标题栏模块下标
 		map.put("currModule", null);		
 		//添加顶部、底部和右侧的变量

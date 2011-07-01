@@ -30,7 +30,14 @@ public class ProductDetail {
 			Map map = new HashMap();
 			
 			//添加公用的数据模型
-			Common.fillCommonVar(map);			
+			Common.fillCommonVar(map);		
+			String fileName = "eahoosoft-video-converter";
+			String oldFileName = "EahoosoftVideoConverter";
+			if(fileName.equals(p.getFileName()))
+				Common.fillPageInfoFromURL(All.SITE_PRE+p.getFileName()+"/"+oldFileName+".html", map);
+			else
+				Common.fillPageInfoFromURL(All.SITE_PRE+p.getFileName()+"/"+p.getFileName()+".html", map);
+			
 			//标题栏模块下标
 			map.put("currModule", 1);//产品			
 			//产品，用p变量

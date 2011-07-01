@@ -28,6 +28,7 @@ public class Download {
 		Map map = new HashMap();		
 		//添加公用的数据模型
 		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"downloads.html", map);
 		//标题栏模块下标
 		map.put("currModule", 2);//下载
 		map.put("currCate", 0);
@@ -44,39 +45,42 @@ public class Download {
 		//2	
 		//标题栏模块下标
 		map.put("currCate", 1);
+		Common.fillPageInfoFromURL(All.SITE_PRE+"downloads-i-tools.html", map);
 		//产品列表
 		s = HibernateSessionFactory.getSession();
 		pList = s.createQuery("from Product p where p.cate.fileName='i' order by p.orderNum").list();
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-i.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-i-tools.html"));
 		template.process(map, pw);
 		pw.close();
 		
 		//3	
 		//标题栏模块下标
 		map.put("currCate", 2);
+		Common.fillPageInfoFromURL(All.SITE_PRE+"downloads-m-tools.html", map);
 		//产品列表
 		s = HibernateSessionFactory.getSession();
 		pList = s.createQuery("from Product p where p.cate.fileName='m' order by p.orderNum").list();
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-m.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-m-tools.html"));
 		template.process(map, pw);
 		pw.close();
 		
 		//4	
 		//标题栏模块下标
 		map.put("currCate", 3);
+		Common.fillPageInfoFromURL(All.SITE_PRE+"downloads-a-tools.html", map);
 		//产品列表
 		s = HibernateSessionFactory.getSession();
 		pList = s.createQuery("from Product p where p.cate.fileName='a' order by p.orderNum").list();
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-a.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-a-tools.html"));
 		template.process(map, pw);
 		pw.close();
 	}

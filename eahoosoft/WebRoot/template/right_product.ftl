@@ -1,8 +1,16 @@
 	      <div id="secondContents">
 	        <div id="topads"> 
-	          <a href="${appPath}contact.html"><img border="0" alt="Contact Us" src="${appPath}images/0006_ContactUs.png" width="261" height="68" /></a> 
+	          <a href="${appPath}contact.html"><img border="0" alt="Contact Us" src="${appPath}images/0006_ContactUs.png" width="261" height="68"></a> 
 	        </div>
 	        <div id="divwin0">
+	          <ul>
+	            <li class="listTitle">
+	              <h3>Screen Shot</h3>
+	            </li>
+	            <li style="text-indent:0;"><a href="${appPath}images/${p.screenShot}" target="_blank"><img width="230" height="150" src="${appPath}images/${p.screenShot}"/></a></li>
+	          </ul>
+	        </div>
+	        <div id="divwin1">
 	          <ul>
 	            <li class="listTitle">
 	              <h3>Mac Software</h3>

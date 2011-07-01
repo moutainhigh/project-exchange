@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>${appTitle}</title>
 	<meta name="keywords" content="${appDesc}" />
 	<meta name="description" content="${appKeywords}"/>
-	<link type="text/css" rel="stylesheet" href="${appPath}layout.css">
+	<link type="text/css" rel="stylesheet" href="${appPath}layout.css" />
 	<#include "/script.ftl"/>
 </head>
 <body>
@@ -28,7 +28,7 @@
 	      <div class="productsListShow">
 	        <h2><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></h2>
 	        <div class="productsListImg"><a href="${p.fileName}/${p.fileName}.html"><img width="142" height="175" alt="${p.name}" src="images/${p.image}"></a></div>
-	        <p>${p.description[0..500]}<span class="learnMore">&gt;<a href="${p.fileName}/${p.fileName}.html">Learn more</a></span><br>
+	        <p>${p.description[0..500]}<span class="learnMore">&gt;<a href="${p.fileName}/${p.fileName}.html">Learn more</a></span><br />
 	        </p>
 	        <p class="productsInfo"> Price:<span class="price">$#{p.price;m2M2}</span> <span class="buyNow"><a href="${p.buyUrl}" target="_blank">Buy Now</a></span> <span class="download"><a href="download/${p.downUrl}">Download</a></span> </p>
 	      </div>

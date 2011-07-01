@@ -40,6 +40,9 @@ public class GuideHtml {
 				
 				Element myContent = doc.select("#my_content").get(0);
 				String content = myContent.html();
+				//替换一些字符
+				content = content.replaceAll("EahoosoftVideoConverter\\.html", "eahoosoft-video-converter.html");
+				content = content.replaceAll("eahoosoft-DVD-Ripper/eahoosoft-DVD-Ripper\\.html", "eahoosoft-dvd-ripper/eahoosoft-dvd-ripper.html");
 				//System.out.println(content);
 				
 				String linkName = ""; 

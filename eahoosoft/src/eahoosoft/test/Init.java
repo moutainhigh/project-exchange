@@ -153,13 +153,13 @@ public class Init {
 		Product p6 = new Product();
 		p6.setBuyUrl("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-9");
 		p6.setCate(c1);
-		p6.setDescription("<p align=\"left\">Eahoosoft DVD Ripper - one of the best dvd ripper software, can rip DVD to <b>MP4, H.264, AVI, MP3, WMV, WMA, FLV, MKV, MPEG-1, MPEG-2, 3GP, 3GPP, VOB, DivX, Mov, RM, RMVB, M4A, AAC, WAV, etc</b>. with fast DVD ripping speed and excellent image and sound quality.<br>                    Eahoosoft DVD Ripper support almost all popular portable players, with the Best DVD Ripper software, you can easily rip your DVD to <b>iPad, iPhone 4, PSP, iPod Classic, iPod Touch, iPod Nano, iPhone (3G), iPhone, Zune, Zune 2, Blackberry, Nokia, Creative Zen, Sony Walkman, iRiver PMP, Archos, PS3, Apple TV, Xbox, iPAQ, NDS, Pocket PC, Mobile Phone, etc</b>. It is really outstanding and best DVD Ripper software. <br>                    This Best DVD Ripper provides easy and powerful movie edit functions, such as video trimming, video effecting and video cropping, which cater to customer’s personal need. Compared with other DVD Ripper software, the best DVD Ripper has more settings you can customize, such as customize video and audio bitrate, adjust resolution, set frame rate, etc. <br>                    With Eahoosoft DVD Ripper software, you can get excellent image and luxuriant sound in smaller file size just within a few clicks. </p>");
+		p6.setDescription("<p align=\"left\">Eahoosoft DVD Ripper - one of the best dvd ripper software, can rip DVD to <b>MP4, H.264, AVI, MP3, WMV, WMA, FLV, MKV, MPEG-1, MPEG-2, 3GP, 3GPP, VOB, DivX, Mov, RM, RMVB, M4A, AAC, WAV, etc</b>. with fast DVD ripping speed and excellent image and sound quality.<br>                    Eahoosoft DVD Ripper support almost all popular portable players, with the Best DVD Ripper software, you can easily rip your DVD to <b>iPad, iPhone 4, PSP, iPod Classic, iPod Touch, iPod Nano, iPhone (3G), iPhone, Zune, Zune 2, Blackberry, Nokia, Creative Zen, Sony Walkman, iRiver PMP, Archos, PS3, Apple TV, Xbox, iPAQ, NDS, Pocket PC, Mobile Phone, etc</b>. It is really outstanding and best DVD Ripper software. <br>                    This Best DVD Ripper provides easy and powerful movie edit functions, such as video trimming, video effecting and video cropping, which cater to customer's personal need. Compared with other DVD Ripper software, the best DVD Ripper has more settings you can customize, such as customize video and audio bitrate, adjust resolution, set frame rate, etc. <br>                    With Eahoosoft DVD Ripper software, you can get excellent image and luxuriant sound in smaller file size just within a few clicks. </p>");
 		p6.setDownUrl("DVDRipper.exe");
 		p6.setFileName("eahoosoft-dvd-ripper");
 		p6.setImage("dvd-ripper-box.jpg");
 		p6.setName("Eahoosoft DVD Ripper");
 		p6.setPrice(29.95);
-		p6.setScreenShot("dvd-ripper1.jpg");
+		p6.setScreenShot("dvd-ripper.jpg");
 		p6.setShortDesc("Eahoosoft DVD Ripper - one of the best dvd ripper software, can rip DVD to MP4, H.264, AVI, MP3, WMV, WMA, FLV, MKV, MPEG-1, MPEG-2, 3GP, 3GPP, VOB, DivX, Mov, RM, RMVB, M4A, AAC, WAV, etc. with fast DVD ripping speed and excellent image and sound quality.");
 		p6.setSize("7.15Mb");
 		p6.setShortName("DVD Ripper");
@@ -613,7 +613,7 @@ public class Init {
 		Product p30 = new Product();
 		p30.setBuyUrl("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-4");
 		p30.setCate(c2);
-		p30.setDescription("<p>iPad Video Converter is especially made for iPad customers who wish to watch almost every file saved on various formats on their iPad. It converts all types of video setting such as 3GP, AVI, ASF, MPEG, RMVB, DivX, MOV, WMV, RM, and MP4 and Audio setting such as CDA, MP2, APE, OGG, AC3, RA, and WMA to iPad video such as <strong>FLV to iPad, MPG to iPad</strong>. It also allows you to convert HD videos, like, H3264/MPEG-4AVC, AVCHID to iPad 720p H.264 video. So watching high definition films can now be done wherever and whenever!<br>                <strong>Platform</strong>: Windows 7/NT4/2000/2003/XP/Vista&nbsp;&nbsp;<a href=\"../ipad-video-converter-mac/ipad-video-converter-mac.html\">Go to Mac Version &gt;&gt;</a>				</p>");
+		p30.setDescription("<p>iPad Video Converter is especially made for iPad customers who wish to watch almost every file saved on various formats on their iPad. It converts all types of video setting such as 3GP, AVI, ASF, MPEG, RMVB, DivX, MOV, WMV, RM, and MP4 and Audio setting such as CDA, MP2, APE, OGG, AC3, RA, and WMA to iPad video such as <strong>FLV to iPad, MPG to iPad</strong>. It also allows you to convert HD videos, like, H3264/MPEG-4AVC, AVCHID to iPad 720p H.264 video. So watching high definition films can now be done wherever and whenever!<br/></p>");
 		p30.setDownUrl("Videotoipad.exe");
 		p30.setFileName("ipad-video-converter");
 		p30.setImage("ipad-video-converter-box.jpg");
@@ -759,6 +759,7 @@ public class Init {
 		p37.setShortName("iPad Video Converter for Mac");
 		p37.setOrderNum(3);
 		p37.setIcon("new");
+		p37.setVersion("2.0.0");
 		p37.setFeatures(getFeature37(p37));
 		s.save(p37);
 		
@@ -952,7 +953,7 @@ public class Init {
 		set.add(buildFeature("High Speed Multi-core CPU","FLV supports multi-core CPU which means that you convert as many files as you wish at the peak conversion speed at the same time. "));
 		set.add(buildFeature("Video to FLV converter","It allows you to turn 3GP, XviDm, MOV, RM, MKV, AVCHD, H.264/AVC, MP4, DivX, WMV, MPEG, AVI files into Flash FLV videos."));
 		set.add(buildFeature("merge several files into a single flash video formats(flv, swf, f4v) file. ",""));
-		set.add(buildFeature("Main Features","Batch multithreading and conversion which allows you to convert many files at a time using one click.<br/>Choose any video cut of a file to convert by just specifying its start and duration period; divide one file into different files<br/>Manually modify multiple audio and video parameters frame rate, bit rate, sample rate, and codec.<br/>Automatic computer shut down feature. With this innovative feature you won’t have to wait at the end of their task<br/>Watch the input file before or during the conversion and the output file at the end of the conversion using a built-in sizable player<br/>"));
+		set.add(buildFeature("Main Features","Batch multithreading and conversion which allows you to convert many files at a time using one click.<br/>Choose any video cut of a file to convert by just specifying its start and duration period; divide one file into different files<br/>Manually modify multiple audio and video parameters frame rate, bit rate, sample rate, and codec.<br/>Automatic computer shut down feature. With this innovative feature you won't have to wait at the end of their task<br/>Watch the input file before or during the conversion and the output file at the end of the conversion using a built-in sizable player<br/>"));
 		return set;
 	}
 	private static Set<Feature> getFeature14(Product p){
@@ -1172,7 +1173,7 @@ public class Init {
 		set.add(buildFeature("Convert DVD and any video/audio to MP4/H.264 ","Eahoosoft DVD to iPhone Converter Suite could easily convert DVD and video/audio files to iPhone/iPhone (3G), iPhone 3GS/ iPhone 4 MP4, H.264, and MOV. "));
 		set.add(buildFeature("Professional function of audio converter ","Eahoosoft DVD to iPhone Converter Suite could easily convert any audio such as MP3, MP2, AAC, AC3, WAV, MID, MIDI, WMA, M4A, RA, RAM to iPhone M4A/AAC/MP3 audio files."));
 		set.add(buildFeature("Easy and powerful editing function (Merge, Trim, Crop) ","Eahoosoft DVD to iPhone Converter Suite offers powerful editing functions such as merging multiple DVD chapters, titles or different videos files into one file, trimming any clip of video or DVD, cropping video size and so forth. "));
-		set.add(buildFeature("Set video effect ","Define video settings, so you can set the Video Encoder, Frame Rate, Video Bitrate, Resolution. As for the Resolution, if you don’t find what you want, you are available to input your own resolution in Width(pixels) * Height(pixels). Set audio settings, including Audio Encoder, Sample Rate, Channels, Audio Bitrate. All the settings can be saved in the option list of \"User-Defined\". "));
+		set.add(buildFeature("Set video effect ","Define video settings, so you can set the Video Encoder, Frame Rate, Video Bitrate, Resolution. As for the Resolution, if you don't find what you want, you are available to input your own resolution in Width(pixels) * Height(pixels). Set audio settings, including Audio Encoder, Sample Rate, Channels, Audio Bitrate. All the settings can be saved in the option list of \"User-Defined\". "));
 		set.add(buildFeature("Snapshot picture and preview ","With Eahoosoft DVD to iPhone Suite, it provides the original video preview and output video preview, you can see the video effect when you modify it. If you like the current image of the video you can use the “Snapshotoption. Just click the “Snapshotbutton the image will be saved and you can click the “Openbutton next to “Snapshotbutton to open your picture. "));
 		set.add(buildFeature("Easy to use ","The Best DVD to iPhone Converter Suite is very user-friendly and easy to use. Only a few clicks to complete the conversion with supervising the whole process on real time."));
 		set.add(buildFeature("Fastest Conversion Speed ","Provide the fastest conversion speed (>300%), completely support dual core CPU. "));

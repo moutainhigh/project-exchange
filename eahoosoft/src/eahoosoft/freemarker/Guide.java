@@ -33,7 +33,7 @@ public class Guide {
 		//添加顶部、底部和右侧的变量
 		Common.fillRightData(map);	
 		
-		int maxPerPage = 100;
+		int maxPerPage = 99;
 		Session s = HibernateSessionFactory.getSession();
 		Long count = (Long)s.createQuery("select count(*) from Guide").uniqueResult();
 		s.close();
@@ -50,7 +50,7 @@ public class Guide {
 			pList.add(arr);
 		}
 		
-		for(int i=1;i<=count/maxPerPage+1;i++){				
+		for(int i=1;i<=count/maxPerPage+1;i++){	
 			//guide数据			
 			s = HibernateSessionFactory.getSession();
 			List<eahoosoft.pojo.Guide> gList = s.createQuery("from Guide order by fileName asc").setMaxResults(maxPerPage).setFirstResult((i-1)*maxPerPage).list();

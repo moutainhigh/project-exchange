@@ -43,9 +43,9 @@ public class Index {
 		
 		//guide
 		s = HibernateSessionFactory.getSession();
-		List<Product> glList = s.createQuery("from Guide g order by content").setMaxResults(6).list();
+		List<Product> glList = s.createQuery("from Guide g order by content").setMaxResults(8).list();
 		map.put("glList", glList);
-		List<Product> grList = s.createQuery("from Guide g order by content desc").setMaxResults(6).list();
+		List<Product> grList = s.createQuery("from Guide g order by content desc").setMaxResults(8).list();
 		map.put("grList", grList);
 		s.close();
 		

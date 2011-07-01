@@ -1,14 +1,17 @@
 package eahoosoft.freemarker;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Session;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import eahoosoft.common.Constants;
 import eahoosoft.dao.HibernateSessionFactory;
 import eahoosoft.pojo.Product;
-import eahoosoft.test.Init;
 
 
 public class Common {
@@ -17,6 +20,22 @@ public class Common {
 		map.put("appTitle", Constants.APP_TITLE);
 		map.put("appDesc", Constants.APP_DESC);
 		map.put("appKeywords", Constants.APP_KEY_WORDS);
+	}
+	public static void fillPageInfoFromURL(String urlStr,Map map){
+		try {
+			URL url = new URL(urlStr);
+			Document doc = Jsoup.parse(url,5000);
+			Element head = doc.head();
+			String title = doc.title();			
+			String keywords = head.select("meta[name=keywords]").get(0).attr("content");
+			String description = head.select("meta[name=description]").get(0).attr("content");
+			map.put("appTitle", title);
+			map.put("appDesc", description);
+			map.put("appKeywords", keywords);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("发生错误的URL是：" + urlStr);
+		} 
 	}
 	public static void fillRightData(Map map){
 		Session s = HibernateSessionFactory.getSession();
