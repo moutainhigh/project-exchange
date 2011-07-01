@@ -18,6 +18,7 @@ public class Product {
 	private String size;
 	private Integer orderNum;
 	private Integer indexOrderNum;
+	private String version;
 	private String icon;//hot,new,free
 
 	private Category cate;
@@ -157,6 +158,14 @@ public class Product {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 }

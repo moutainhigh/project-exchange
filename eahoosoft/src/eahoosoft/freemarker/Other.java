@@ -20,7 +20,7 @@ public class Other {
 	public static void main(String[] args) throws Exception{
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("support.ftl");		
@@ -31,7 +31,7 @@ public class Other {
 		map.put("currModule", 4);//支持			
 		//添加顶部、底部和右侧的变量
 		Common.fillRightData(map);		
-		PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\support.html"));		
+		PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"support.html"));		
 		template.process(map, pw);		
 		pw.close();
 		
@@ -43,7 +43,7 @@ public class Other {
 		map.put("currModule", 5);//新闻		
 		//添加顶部、底部和右侧的变量
 		Common.fillRightData(map);		
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\news.html"));		
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"news.html"));		
 		template.process(map, pw);		
 		pw.close();
 		
@@ -61,7 +61,7 @@ public class Other {
 		Product p = list.get(0);
 		map.put("p", p);
 		s.close();		
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\"+p.getFileName()+"\\"+p.getFileName()+".html"));	
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+p.getFileName()+"\\"+p.getFileName()+".html"));	
 		template.process(map, pw);		
 		pw.close();
 		
@@ -73,7 +73,7 @@ public class Other {
 		map.put("currModule", null);		
 		//添加顶部、底部和右侧的变量
 		Common.fillRightData(map);		
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\contact.html"));		
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"contact.html"));		
 		template.process(map, pw);		
 		pw.close();
 	}

@@ -19,7 +19,7 @@ public class Purchase {
 	public static void main(String[] args) throws Exception{
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("purchase.ftl");
@@ -38,7 +38,7 @@ public class Purchase {
 		s.close();
 		//添加顶部、底部和右侧的变量
 		map.put("op", "Windows");
-		PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\purchase.html"));
+		PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"purchase.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -52,7 +52,7 @@ public class Purchase {
 		s.close();
 		//添加顶部、底部和右侧的变量
 		map.put("op", "Windows");
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\purchase-i.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"purchase-i.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -67,7 +67,7 @@ public class Purchase {
 		//添加顶部、底部和右侧的变量
 		//平台
 		map.put("op", "Mac");
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\purchase-m.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"purchase-m.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -81,7 +81,7 @@ public class Purchase {
 		s.close();
 		//添加顶部、底部和右侧的变量
 		map.put("op", "Windows");
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\purchase-a.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"purchase-a.html"));
 		template.process(map, pw);
 		pw.close();
 	}

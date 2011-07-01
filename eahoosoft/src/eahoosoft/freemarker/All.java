@@ -4,6 +4,9 @@ import eahoosoft.test.GuideHtml;
 import eahoosoft.test.Init;
 
 public class All {
+	public static String SAMPLE_DIR = "D:\\work\\workspace_6.6\\eahoosoft\\WebRoot\\template\\";
+	public static String SOFT_DIR = "E:\\Program Files\\EasyPHP 3.0\\www\\soft\\";
+	public static String GUIDE_DIR = "D:\\tmp\\guide";
 	public static void main(String[] args) throws Exception {
 		//初始化数据
 		Init.main(null);

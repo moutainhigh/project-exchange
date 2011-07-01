@@ -5,7 +5,7 @@
 			<a href="${appPath}eahoosoft-video-converter/eahoosoft-video-converter.html">Eahoosoft Video Converter</a>|
 			<a href="${appPath}dvd-converter-suite/dvd-converter-suite.html">DVD Converter</a>|
 			<a href="${appPath}eahoosoft-audio-converter/eahoosoft-audio-converter.html">Audio Converter</a>|
-			<a href="${appPath}products-i.html">iPhone/iPad Converter</a>
+			<a href="${appPath}products-i-tools.html">iPhone/iPad Converter</a>
 		  </div>
 	      <ul>
 	        <li><a href="${appPath}index.html"><span>Home</span></a></li>

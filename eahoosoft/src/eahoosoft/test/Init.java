@@ -53,6 +53,7 @@ public class Init {
 		p1.setSize("5.20Mb");
 		p1.setFeatures(getFeature1(p1));
 		p1.setOrderNum(4);
+		p1.setVersion("V2.1.2");
 		s.save(p1);
 		
 		Product p2 = new Product();
@@ -72,10 +73,11 @@ public class Init {
 		p2.setPrice(24.95);
 		p2.setScreenShot("ipad-converter-suite-bk.jpg");
 		p2.setShortDesc("Eahoosoft iPad Converter Suite integrates two useful software, including Eahoosoft DVD to iPad Converter software (iPad DVD software) and iPad Video Converter software. ");
-		p2.setSize("5.20Mb");
+		p2.setSize("12.6Mb");
 		p2.setShortName("iPad Converter Suite");
 		p2.setOrderNum(1);
 		p2.setIndexOrderNum(2);
+		p2.setVersion("V2.0.1");
 		p2.setFeatures(getFeature2(p2));
 		s.save(p2);
 		
@@ -99,11 +101,12 @@ public class Init {
 		p3.setPrice(39.00);
 		p3.setScreenShot("dvdconvertersuite.jpg");
 		p3.setShortDesc("Eahoosoft DVD Converter Suite is the perfect combination of Eahoosoft DVD Ripper, Eahoosoft Video Converter.");
-		p3.setSize("15.20Mb");
+		p3.setSize("12.6Mb");
 		p3.setShortName("DVD Converter Suite");
 		p3.setOrderNum(1);
 		p3.setIndexOrderNum(1);
 		p3.setIcon("hot");
+		p3.setVersion("V2.0.1");
 		p3.setFeatures(getFeature3(p3));
 		s.save(p3);
 		
@@ -120,9 +123,10 @@ public class Init {
 		p4.setPrice(18.95);
 		p4.setScreenShot("audio-s.jpg");
 		p4.setShortDesc("Eahoosoft Audio Converter is a powerful all-in-one professional audio converter for audio conversion, audio extraction, audio CD ripping. ");
-		p4.setSize("8.20Mb");
+		p4.setSize("8.06Mb");
 		p4.setShortName("Audio Converter");
 		p4.setOrderNum(1);
+		p4.setVersion("V2.0.1");
 		p4.setFeatures(getFeature4(p4));
 		s.save(p4);
 		
@@ -138,10 +142,11 @@ public class Init {
 		p5.setPrice(19.95);
 		p5.setScreenShot("video-converter-mac.jpg");
 		p5.setShortDesc("All-in-one powerful video converter software for mac that allows you to modify and convert audio, video, and animated icons.");
-		p5.setSize("8.20Mb");
+		p5.setSize("8.06Mb");
 		p5.setShortName("Video Converter for Mac");
 		p5.setOrderNum(1);
 		p5.setIcon("new");
+		p5.setVersion("V2.0.1");
 		p5.setFeatures(getFeature5(p5));
 		s.save(p5);
 		
@@ -156,11 +161,12 @@ public class Init {
 		p6.setPrice(29.95);
 		p6.setScreenShot("dvd-ripper1.jpg");
 		p6.setShortDesc("Eahoosoft DVD Ripper - one of the best dvd ripper software, can rip DVD to MP4, H.264, AVI, MP3, WMV, WMA, FLV, MKV, MPEG-1, MPEG-2, 3GP, 3GPP, VOB, DivX, Mov, RM, RMVB, M4A, AAC, WAV, etc. with fast DVD ripping speed and excellent image and sound quality.");
-		p6.setSize("8.20Mb");
+		p6.setSize("7.15Mb");
 		p6.setShortName("DVD Ripper");
 		p6.setOrderNum(2);
 		p6.setIcon("hot");
 		p6.setIndexOrderNum(3);
+		p6.setVersion("V2.0.1");
 		p6.setFeatures(getFeature6(p6));
 		s.save(p6);
 		
@@ -175,10 +181,11 @@ public class Init {
 		p7.setPrice(14.95);
 		p7.setScreenShot("dvd-audio-ripper.jpg");
 		p7.setShortDesc("Eahoosoft DVD Audio Ripper is the best DVD Audio Ripper and DVD Audio Extractor, which can rip DVD to the most popular audio formats including MP3, WMA, WAV, OGG, AAC, AC3, AIFF, AU, FLAC and extract the audio from the DVD movie.");
-		p7.setSize("8.20Mb");
+		p7.setSize("7.08Mb");
 		p7.setShortName("DVD Audio Ripper");
 		p7.setOrderNum(3);
 		p7.setIcon(null);
+		p7.setVersion("V2.0.1");
 		p7.setFeatures(getFeature7(p7));
 		s.save(p7);
 		
@@ -193,10 +200,11 @@ public class Init {
 		p8.setPrice(18.95);
 		p8.setScreenShot("MP4-Video-Converter.jpg");
 		p8.setShortDesc("Eahoosoft MP4 Video Converter is a professional MP4 Video Converter which is designed to convert almost any video formats to MP4 video formats, such as AVI to MP4, WMV to MP4. ");
-		p8.setSize("8.20Mb");
+		p8.setSize("5.01Mb");
 		p8.setShortName("MP4 Video Converter");
 		p8.setOrderNum(5);
 		p8.setIcon(null);
+		p8.setVersion("V2.0.1");
 		p8.setFeatures(getFeature8(p8));
 		s.save(p8);
 		
@@ -211,10 +219,11 @@ public class Init {
 		p9.setPrice(19.95);
 		p9.setScreenShot("AVI-Video-Converter.jpg");
 		p9.setShortDesc("Eahoosoft AVI Video Converter is one first-class AVI Converter to convert F4V to AVI, RMVB to AVI, ASF to AVI etc. and other popular video formats to AVI formats, which is high compatible with different types of Creative Zen, BlackBerry, Wii, PSP, PS3 and other devices. ");
-		p9.setSize("9.20Mb");
+		p9.setSize("5.01Mb");
 		p9.setShortName("AVI Video Converter");
 		p9.setOrderNum(6);
 		p9.setIcon(null);
+		p9.setVersion("V2.0.1");
 		p9.setFeatures(getFeature9(p9));
 		s.save(p9);
 		
@@ -229,10 +238,11 @@ public class Init {
 		p10.setPrice(18.95);
 		p10.setScreenShot("MOV-Video-Converter.jpg");
 		p10.setShortDesc("Eahoosoft MOV Video Converter is a world-class QuickTime MOV Video Converter which can convert QuickTime MOV to MP4, AVI, WMV, 3GP, FLV, SWF, and all popular video formats,such as FLV to MOV, RMVB to MOV, MKV to MOV etc.");
-		p10.setSize("10.20Mb");
+		p10.setSize("5.01Mb");
 		p10.setShortName("MOV Video Converter");
 		p10.setOrderNum(7);
 		p10.setIcon(null);
+		p10.setVersion("V2.0.1");
 		p10.setFeatures(getFeature10(p10));
 		s.save(p10);
 		
@@ -247,10 +257,11 @@ public class Init {
 		p11.setPrice(18.95);
 		p11.setScreenShot("3GP-Video-Converter.jpg");
 		p11.setShortDesc("Eahoosoft 3GP Video Converter provides an excellent solution for 3GP mobile phone users to convert video files including AVI, DivX, XviD, WMV(Window Media Player), MPEG, MPG, DAT(VCD), RM(RealPlayer), MOV(QuickTime), ASF, VOB(DVD) etc. ");
-		p11.setSize("11.20Mb");
+		p11.setSize("5.01Mb");
 		p11.setShortName("3GP Video Converter");
 		p11.setOrderNum(8);
 		p11.setIcon(null);
+		p11.setVersion("V2.0.1");
 		p11.setFeatures(getFeature11(p11));
 		s.save(p11);
 		
@@ -265,10 +276,11 @@ public class Init {
 		p12.setPrice(18.95);
 		p12.setScreenShot("HD-Video-Converter.jpg");
 		p12.setShortDesc("Eahoosoft HD Video Converter enriches your life to enjoy HD videos anywhere. It is a high definition video converter (HD converter) designed to convert HD video to many popular formats, like AVI to HD, MP4 to HD, FLV to HD, etc. ");
-		p12.setSize("12.20Mb");
+		p12.setSize("5.01Mb");
 		p12.setShortName("HD Video Converter");
 		p12.setOrderNum(9);
 		p12.setIcon(null);
+		p12.setVersion("V2.0.1");
 		p12.setFeatures(getFeature12(p12));
 		s.save(p12);
 		
@@ -283,10 +295,11 @@ public class Init {
 		p13.setPrice(18.95);
 		p13.setScreenShot("flashconverter1.jpg");
 		p13.setShortDesc("FLV converter allows you to a have feel of how a professional flash video software is. Moreover, this FLV video converter can also convert various videos to FLV and SWF flash videos like convert AVI to FLV, MPEG, WMV, DivX, MP4, MKV, H.264, RM, RMVB, MOV, XviD, 3GP, ASF, VOB, M4V to FLV.");
-		p13.setSize("13.20Mb");
+		p13.setSize("7.55Mb");
 		p13.setShortName("Video to Flash Converter");
 		p13.setOrderNum(10);
 		p13.setIcon(null);
+		p13.setVersion("V2.1.1");
 		p13.setFeatures(getFeature13(p13));
 		s.save(p13);
 		
@@ -302,10 +315,11 @@ public class Init {
 		p14.setPrice(18.95);
 		p14.setScreenShot("pspconverter1.jpg");
 		p14.setShortDesc("PSP video converter is an all in one device that allows you to convert PS3/PSP, PSP-MP4, and PSP-movie in all formats which includes ASF, AVI, RM, MPEG, GIF, WMV, VOB, MP4, 3GP, DivX, FLV, MOV, MKV, AVCHD to H.264/AVC or PSP MP4 setting in various resolutions which includes 1080p, 720p, 480p and convert sound settings like CDA, APE, WMA, CUE, WAV, OGG, AC3, M4A to PSP MP3 setting. such as AVI to PSP, RMVB to PSP etc");
-		p14.setSize("14.20Mb");
+		p14.setSize("8.31Mb");
 		p14.setShortName("PSP Video Converter");
 		p14.setOrderNum(11);
 		p14.setIcon(null);
+		p14.setVersion("V2.1.1");
 		p14.setFeatures(getFeature14(p14));
 		s.save(p14);
 		
@@ -321,10 +335,11 @@ public class Init {
 		p15.setPrice(18.95);
 		p15.setScreenShot("nokiaconverter1.jpg");
 		p15.setShortDesc("Eahoosoft Nokia Video Converter provides perfect solution to convert your favorite video files to Nokia mobile phone format with the best quality of picture and sound. ");
-		p15.setSize("15.20Mb");
+		p15.setSize("8.37Mb");
 		p15.setShortName("Nokia Video Converter");
 		p15.setOrderNum(12);
 		p15.setIcon(null);
+		p15.setVersion("V2.1.0");
 		p15.setFeatures(getFeature15(p15));
 		s.save(p15);
 		
@@ -340,10 +355,11 @@ public class Init {
 		p16.setPrice(18.95);
 		p16.setScreenShot("DVDto3GP.jpg");
 		p16.setShortDesc("Eahoosoft DVD to 3GP Converter is designed for Nokia, Motorola, Sony Ericsson and other mobile phones.");
-		p16.setSize("16.20Mb");
+		p16.setSize("8.37Mb");
 		p16.setShortName("DVD to 3GP Converter");
 		p16.setOrderNum(13);
 		p16.setIcon(null);
+		p16.setVersion("V2.1.0");
 		p16.setFeatures(getFeature16(p16));
 		s.save(p16);
 		
@@ -358,10 +374,11 @@ public class Init {
 		p17.setPrice(18.95);
 		p17.setScreenShot("DVDtoAVI.jpg");
 		p17.setShortDesc("Eahoosoft DVD to AVI Converter is a professional DVD to AVI Converter with super fast conversion speed and excellent quality. It can convert DVD to AVI, H.264 AVI, DivX, XviD, MPEG-1, MPEG-2, and convert DVD to HD AVI, DivX HD, XviD HD efficiently. ");
-		p17.setSize("17.20Mb");
+		p17.setSize("8.37Mb");
 		p17.setShortName("DVD to AVI Converter");
 		p17.setOrderNum(14);
 		p17.setIcon(null);
+		p17.setVersion("V2.1.0");
 		p17.setFeatures(getFeature17(p17));
 		s.save(p17);
 		
@@ -376,10 +393,11 @@ public class Init {
 		p18.setPrice(18.95);
 		p18.setScreenShot("DVDtoFlash.jpg");
 		p18.setShortDesc("Eahoosoft DVD to FLV Converter is a professional DVD to FLV converter with super fast conversion speed and excellent quality. It can convert DVD to FLV, SWF for Youtube, Myspace and Google video,etc.");
-		p18.setSize("18.20Mb");
+		p18.setSize("8.37Mb");
 		p18.setShortName("DVD to Flash Converter");
 		p18.setOrderNum(15);
 		p18.setIcon(null);
+		p18.setVersion("V2.1.0");
 		p18.setFeatures(getFeature18(p18));
 		s.save(p18);
 		
@@ -394,10 +412,11 @@ public class Init {
 		p19.setPrice(18.95);
 		p19.setScreenShot("DVDtoHD.jpg");
 		p19.setShortDesc("Eahoosoft DVD to HD Converter can convert DVD to various HD formats with no limitation.");
-		p19.setSize("19.20Mb");
+		p19.setSize("8.37Mb");
 		p19.setShortName("DVD to HD Video Converter");
 		p19.setOrderNum(16);
 		p19.setIcon(null);
+		p19.setVersion("V2.1.0");
 		p19.setFeatures(getFeature19(p19));
 		s.save(p19);
 		
@@ -412,10 +431,11 @@ public class Init {
 		p20.setPrice(18.95);
 		p20.setScreenShot("DVDtoMobilePhone.jpg");
 		p20.setShortDesc("Eahoosoft DVD to Mobile Phone Converter is professional DVD to Mobile Phone Converter software, which helps you rip and convert DVD to Mobile Phone 3GP, MP4, AVI, 3G2 and other video and audio formats. The output videos/audios can be played on most popular Mobile Phones including Nokia, Samsung, Motorola, LG, Sony Ericsson, Palm, etc.");
-		p20.setSize("20.20Mb");
+		p20.setSize("8.37Mb");
 		p20.setShortName("DVD to Mobile Phone Converter");
 		p20.setOrderNum(17);
 		p20.setIcon(null);
+		p20.setVersion("V2.1.0");
 		p20.setFeatures(getFeature20(p20));
 		s.save(p20);
 		
@@ -430,10 +450,11 @@ public class Init {
 		p21.setPrice(18.95);
 		p21.setScreenShot("DVDtoMOV.jpg");
 		p21.setShortDesc("Eahoosoft DVD to MOV Converter is an easy-to-use DVD MOV Converter to convert DVD files to MOV . With all popular codec built in, it can convert DVD movies to all popular video/audio formats like MOV, MP4, 3GP, MPEG, WMV, MPG, FLV, MP3, M4A, WMA, WAV etc. with super fast speed and high quality. ");
-		p21.setSize("21.21Mb");
+		p21.setSize("8.37Mb");
 		p21.setShortName("DVD to MOV Converter");
 		p21.setOrderNum(18);
 		p21.setIcon(null);
+		p21.setVersion("V2.1.0");
 		p21.setFeatures(getFeature21(p21));
 		s.save(p21);
 		
@@ -448,10 +469,11 @@ public class Init {
 		p22.setPrice(18.95);
 		p22.setScreenShot("DVDtoMP4.jpg");
 		p22.setShortDesc("Eahoosoft DVD to MP4 Converter is the best DVD to MP4 Converter, which can help you convert DVD to MP4, H.264/MPEG-4 AVC (.mp4), MOV, AVI, and convert DVD to HD MP4, HD MOV, HD AVI, DVD to audio like M4A, MP3, AAC, etc for all MP4 players such as iPod, iPod touch, iPod nano, iPhone, iPhone 3G, iPhone 3GS, PSP, Creative Zen, Zune, Zune 2, iRiver PMP, Archos, PS3, Xbox, and more.");
-		p22.setSize("22.22Mb");
+		p22.setSize("8.37Mb");
 		p22.setShortName("DVD to MP4 Converter");
 		p22.setOrderNum(19);
 		p22.setIcon(null);
+		p22.setVersion("V2.1.0");
 		p22.setFeatures(getFeature22(p22));
 		s.save(p22);
 		
@@ -466,10 +488,11 @@ public class Init {
 		p23.setPrice(18.95);
 		p23.setScreenShot("DVDtoPSP.jpg");
 		p23.setShortDesc("Eahoosoft DVD to PSP Converter is the professional DVD to PSP Converter program, which helps you to convert DVD to PSP MP4, convert DVD to PS3 MP4, even DVD to PSP H.264 (.psp), PS3 AVI and extract audio track from DVD to MP3, AAC PSP audio formats.");
-		p23.setSize("23.23Mb");
+		p23.setSize("8.37Mb");
 		p23.setShortName("DVD to PSP Converter");
 		p23.setOrderNum(20);
 		p23.setIcon(null);
+		p23.setVersion("V2.1.0");
 		p23.setFeatures(getFeature23(p23));
 		s.save(p23);
 		
@@ -484,10 +507,11 @@ public class Init {
 		p24.setPrice(18.95);
 		p24.setScreenShot("DVDtoWMV.jpg");
 		p24.setShortDesc("Eahoosoft DVD to WMV Converter is a professional DVD to WMV Converter, which can convert DVD to WMV, WMA, MP3 with the greatest quality and the highest speed. This excellent converter supports most of the WMV players such as Google Phone, BlackBerry Storm, BlackBerry Bold, Palm Pre, Zune, Zune 2, PSP, PS3, Xbox 360, Dell Player, HP iPAQ...");
-		p24.setSize("24.24Mb");
+		p24.setSize("8.37Mb");
 		p24.setShortName("DVD to WMV Converter");
 		p24.setOrderNum(21);
 		p24.setIcon(null);
+		p24.setVersion("V2.1.0");
 		p24.setFeatures(getFeature24(p24));
 		s.save(p24);
 		
@@ -502,10 +526,11 @@ public class Init {
 		p25.setPrice(18.95);
 		p25.setScreenShot("DVDtoZune.jpg");
 		p25.setShortDesc("Eahoosoft DVD to Zune Converter is the most professional DVD to Zune Converter software which can convert DVD to Zune WMV, MP4, H.264/MPEG-4 AVC(.mp4). So you can play your favorite DVD on Microsoft Zune. Moreover, as expected, this DVD to Zune Converter can rip DVD to Zune MP3, WMA, M4A, AAC.");
-		p25.setSize("25.25Mb");
+		p25.setSize("8.37Mb");
 		p25.setShortName("DVD to Zune Converter");
 		p25.setOrderNum(22);
 		p25.setIcon(null);
+		p25.setVersion("V2.1.0");
 		p25.setFeatures(getFeature25(p25));
 		s.save(p25);
 		
@@ -521,10 +546,11 @@ public class Init {
 		p26.setPrice(18.95);
 		p26.setScreenShot("audio-converter-mac.jpg");
 		p26.setShortDesc("Eahoosoft Audio Converter for Mac is a powerful all-in-one professional audio converter for audio conversion, audio extraction, audio CD ripping on MAC OS X .");
-		p26.setSize("8.20Mb");
+		p26.setSize("8.06Mb");
 		p26.setShortName("Audio Converter for Mac");
 		p26.setOrderNum(2);
 		p26.setIcon("new");
+		p26.setVersion("V2.0.1");
 		p26.setFeatures(getFeature26(p26));
 		s.save(p26);
 		
@@ -540,9 +566,10 @@ public class Init {
 		p27.setPrice(14.95);
 		p27.setScreenShot("wma-mp3.jpg");
 		p27.setShortDesc("Here comes the amazing WMA MP3 converter for your MP3 player now! Eahoosoft WMA MP3 Converter converts almost all popular audio formats (WMA, WAV, AAC, FLAC, OGG, APE, etc.) to WMA MP3 audio files, as well as extracts WMA MP3 music from just about any video formats including high-definition (HD) video formats (AVI, MPEG, MP4, WMV, H.264/MPEG-4 AVC, AVCHD, etc.). ");
-		p27.setSize("8.20Mb");
+		p27.setSize("8.06Mb");
 		p27.setShortName("WMA MP3 Converter");
 		p27.setOrderNum(2);
+		p27.setVersion("V2.1.0");
 		p27.setFeatures(getFeature27(p27));
 		s.save(p27);
 		
@@ -557,16 +584,17 @@ public class Init {
 		p28.setPrice(18.95);
 		p28.setScreenShot("VideotoAudio.jpg");
 		p28.setShortDesc("Eahoosoft Video to Audio Converter is a easy and flexible tool used to extract audio from AVI, MPEG, VOB, WMV/ASF, DAT, RM/RMVB, MOV format medium files to MP3, WAV, WMA and OGG format.");
-		p28.setSize("8.20Mb");
+		p28.setSize("5.06Mb");
 		p28.setShortName("Video to Audio Converter");
 		p28.setOrderNum(3);
+		p28.setVersion("V2.1.0");
 		p28.setFeatures(getFeature28(p28));
 		s.save(p28);
 		
 		Product p29 = new Product();
 		p29.setBuyUrl("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-10");
 		p29.setCate(c2);
-		p29.setDescription("<p align=\"left\">Eahoosoft DVD to iPad Converter is specifically designed for Apple iPad users to watch DVD movies on your iPad’s Multi-Touch screen. With this DVD to iPad converter, you can rip DVD to <b>iPad H.264 (SD and HD), MP4, MOV,and MPEG-4 videos in different resolutions (1280*720, 960*540,720*480, 640*480)</b>. All conversions are optimized to offer you the best possible DVD movie experience on your iPad.<br>Apart from converting DVD to iPad videos, Eahoosoft DVD to iPad Converter allows you to rip DVD audio to iPad MP3, WMA audios; customize conversion parameters, split files, convert a video segment, preview movies, select audio and subtitles, capture video images, and specify the output file size.<br>Download Eahoosoft DVD to iPad Converter for FREE now and experience DVD movies in high-resolution on your iPad.<br>1.Rip and convert DVD to iPad video formats (MPEG-4, MP4, H.264,MOV) <br>2.Rip and convert DVD to iPad audio formats (MP3, WMA) </p>");
+		p29.setDescription("<p align=\"left\">Eahoosoft DVD to iPad Converter is specifically designed for Apple iPad users to watch DVD movies on your iPad's Multi-Touch screen. With this DVD to iPad converter, you can rip DVD to <b>iPad H.264 (SD and HD), MP4, MOV,and MPEG-4 videos in different resolutions (1280*720, 960*540,720*480, 640*480)</b>. All conversions are optimized to offer you the best possible DVD movie experience on your iPad.<br>Apart from converting DVD to iPad videos, Eahoosoft DVD to iPad Converter allows you to rip DVD audio to iPad MP3, WMA audios; customize conversion parameters, split files, convert a video segment, preview movies, select audio and subtitles, capture video images, and specify the output file size.<br>Download Eahoosoft DVD to iPad Converter for FREE now and experience DVD movies in high-resolution on your iPad.<br>1.Rip and convert DVD to iPad video formats (MPEG-4, MP4, H.264,MOV) <br>2.Rip and convert DVD to iPad audio formats (MP3, WMA) </p>");
 		p29.setDownUrl("DVDtoiPad.exe");
 		p29.setFileName("dvd-to-iPad-converter");
 		p29.setImage("dvd-to-ipad-box.jpg");
@@ -574,10 +602,11 @@ public class Init {
 		p29.setPrice(18.95);
 		p29.setScreenShot("dvd-ipad.jpg");
 		p29.setShortDesc("Eahoosoft DVD to iPad Converter is specifically designed for Apple iPad users to watch DVD movies on your iPad's Multi-Touch screen. With this DVD to iPad converter, you can rip DVD to iPad H.264 (SD and HD), MP4, MOV,and MPEG-4 videos in different resolutions (1280*720, 960*540,720*480, 640*480).");
-		p29.setSize("5.20Mb");
+		p29.setSize("7.07Mb");
 		p29.setShortName("DVD to iPad Converter");
 		p29.setOrderNum(2);
 		p29.setIndexOrderNum(4);
+		p29.setVersion("V2.0.1");
 		p29.setFeatures(getFeature29(p29));
 		s.save(p29);
 		
@@ -592,10 +621,11 @@ public class Init {
 		p30.setPrice(18.95);
 		p30.setScreenShot("ipadconverter.jpg");
 		p30.setShortDesc("iPad Video Converter is especially made for iPad customers who wish to watch almost every file saved on various formats on their iPad. ");
-		p30.setSize("5.20Mb");
+		p30.setSize("8.11Mb");
 		p30.setShortName("iPad Video Converter");
 		p30.setOrderNum(3);
 		p30.setIndexOrderNum(5);
+		p30.setVersion("V2.1.1");
 		p30.setFeatures(getFeature30(p30));
 		s.save(p30);
 		
@@ -610,10 +640,11 @@ public class Init {
 		p31.setPrice(24.95);
 		p31.setScreenShot("iphone-converter-suite-bk.jpg");
 		p31.setShortDesc("Eahoosoft DVD to iPhone Suite has the function of Eahoosoft DVD to iPhone Converter and Eahoosoft iPhone Video Converter, so with Eahoosoft DVD to iPhone Suite you can convert both DVD movie and video files to MP4, MOV, H.264, MP3, M4A formats.");
-		p31.setSize("5.20Mb");
+		p31.setSize("12.7Mb");
 		p31.setShortName("iPhone Converter Suite");
 		p31.setOrderNum(4);
 		p31.setIndexOrderNum(null);
+		p31.setVersion("V2.0.1");
 		p31.setFeatures(getFeature31(p31));
 		s.save(p31);
 		
@@ -628,10 +659,11 @@ public class Init {
 		p32.setPrice(18.95);
 		p32.setScreenShot("dvd-iphone.jpg");
 		p32.setShortDesc("Eahoosoft DVD to iPhone Converter is the Best DVD to iPhone Converter program. It can convert DVD to iPhone MP4, MOV, H.264 etc video and MP3, WMA, etc audio formats easily and fast, also owns the way to convert DVD to iPhone 3G, iPhone 3GS, iPhone 4. ");
-		p32.setSize("5.20Mb");
+		p32.setSize("8.20Mb");
 		p32.setShortName("DVD to iPhone Converter");
 		p32.setOrderNum(5);
 		p32.setIndexOrderNum(null);
+		p32.setVersion("V2.0.1");
 		p32.setFeatures(getFeature32(p32));
 		s.save(p32);
 		
@@ -646,10 +678,11 @@ public class Init {
 		p33.setPrice(18.95);
 		p33.setScreenShot("iphoneconverter.jpg");
 		p33.setShortDesc("An iPhone video converter is the number one video converter tool that allows you to turn all video files such as WMV, AVI, RM, MKV, VOB, DivX, H.264, VOB, AVCHD, RMVB, MPEG, and MP4 into iPhone movies excellently. ");
-		p33.setSize("5.20Mb");
+		p33.setSize("8.30Mb");
 		p33.setShortName("iPhone Video Converter");
 		p33.setOrderNum(6);
 		p33.setIndexOrderNum(null);
+		p33.setVersion("V2.1.1");
 		p33.setFeatures(getFeature33(p33));
 		s.save(p33);
 		
@@ -664,10 +697,11 @@ public class Init {
 		p34.setPrice(18.95);
 		p34.setScreenShot("dvd-ipod.jpg");
 		p34.setShortDesc("Eahoosoft DVD to iPod Converter is the most professional DVD to iPod converter software to DVD to iPod Touch, DVD to iPod Nano, DVD to iPod Classic. You can easily convert almost all kinds of DVDs to iPod MP4 video, MP4 AVC video, MOV, M4V and iPod MP3 etc audio with the latest MPEG-4 video encoding technology.");
-		p34.setSize("5.20Mb");
+		p34.setSize("7.10Mb");
 		p34.setShortName("DVD to iPod Converter");
 		p34.setOrderNum(7);
 		p34.setIndexOrderNum(null);
+		p34.setVersion("V2.0.1");
 		p34.setFeatures(getFeature34(p34));
 		s.save(p34);
 		
@@ -682,10 +716,11 @@ public class Init {
 		p35.setPrice(18.95);
 		p35.setScreenShot("ipodconverter.jpg");
 		p35.setShortDesc("With the launch of iPod video converter you can now watch a movie or video in any setting on your iPod. ");
-		p35.setSize("5.20Mb");
+		p35.setSize("8.30Mb");
 		p35.setShortName("ipod Video Converter");
 		p35.setOrderNum(8);
 		p35.setIndexOrderNum(null);
+		p35.setVersion("V2.1.1");
 		p35.setFeatures(getFeature35(p35));
 		s.save(p35);
 		
@@ -708,6 +743,24 @@ public class Init {
 		p36.setIndexOrderNum(null);
 		p36.setFeatures(getFeature36(p36));
 		s.save(p36);
+		
+		Product p37 = new Product();
+		p37.setBuyUrl("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-36");
+		p37.setCate(c3);
+		p37.setDescription("<p>iPad Video Converter for Mac is especially made for iPad customers who wish to watch almost every file saved on various formats on their iPad. It converts all types of video setting such as 3GP, AVI, ASF, MPEG, RMVB, DivX, MOV, WMV, RM, and MP4 and Audio setting such as CDA, MP2, APE, OGG, AC3, RA, and WMA to iPad video such as FLV to iPad, MPG to iPad. It also allows you to convert HD videos, like, H3264/MPEG-4AVC, AVCHID to iPad 720p H.264 video. So watching high definition films can now be done wherever and whenever!<br>               <strong>Platform</strong>: Mac OS X&nbsp;&nbsp;<a href=\"../ipad-video-converter/ipad-video-converter.html\">Go to Windows Version &gt;&gt;</a>				</p>");
+		p37.setDownUrl("ipad-video-converter-mac.dmg");
+		p37.setFileName("ipad-video-converter-mac");
+		p37.setImage("ipad-video-converter-box.jpg");
+		p37.setName("Eahoosoft iPad Video Converter for Mac");
+		p37.setPrice(18.95);
+		p37.setScreenShot("ipad-video-converter-mac.jpg");
+		p37.setShortDesc("iPad Video Converter for Mac is especially made for iPad customers who wish to watch almost every file saved on various formats on their iPad.");
+		p37.setSize("8.06Mb");
+		p37.setShortName("iPad Video Converter for Mac");
+		p37.setOrderNum(3);
+		p37.setIcon("new");
+		p37.setFeatures(getFeature37(p37));
+		s.save(p37);
 		
 		
 		s.getTransaction().commit();
@@ -1182,6 +1235,17 @@ public class Init {
 		set.add(buildFeature("Clip videos","Clip movies you need and set the parameters as you like. You could set start and end time freely."));
 		set.add(buildFeature("Merge the movie and audios","You will merge video and audios or merge many videos together."));
 		set.add(buildFeature("Last but most important one Freeware is the best!!!",""));
+		return set;
+	}
+	private static Set<Feature> getFeature37(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("iPad High Definition Converter","Convert High Definition videos into iPad 720p H.264, supported high definition setting includes AVCHD*.mts,*m2ts, AVI HD, WMV HD, Quick Time HD, MPEG-2 TS HD, MPEG-4 TS HD, H.264/MPEG-4 AVC. "));
+		set.add(buildFeature("Supports Mutlti-core CPU","You can maximize the use of your multi-core processor by turning files using all cores for instant conversion."));
+		set.add(buildFeature("iPad Music converter","Get audios from videos and turn them into iPad AIFF, AAC, WAV, MP3 audio; just turn all well known audio setting into iPad audio format."));
+		set.add(buildFeature("iPad Video Converter ","iPad video converter allows you to convert just any popular video setting to MOV video, MPEG4, and H.264. "));
+		set.add(buildFeature("Major Features","    Multilingual interfaces<br/>    Modify a variety of output parameters: frame rate, channel codec, aspect ratio, bit rate, and many more<br/>    Automatically divide files into numerous parts by setting the start time and the duration period<br/>    Allows you to have conversion outlines with optimized output parameters to perfectly sync your iPad<br/>    Watch video and extract from it<br/>    Output multiple setting in one file<br/>"));
+		set.add(buildFeature("OS Supported: ","Mac OS X v10.5 - 10.6, Snow Leopard support"));
+		set.add(buildFeature("Hardware Requirements: ","800MHz Intel or AMD CPU, or above;<br/>512MB RAM or more."));
 		return set;
 	}
 	private static int i;

@@ -19,7 +19,7 @@ public class ProductDetail {
 	public static void main(String[] args) throws Exception{
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("product_detail.ftl");
@@ -38,10 +38,10 @@ public class ProductDetail {
 			//添加顶部、底部和右侧的变量
 			Common.fillRightData(map);
 			
-			File dir = new File("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\"+p.getFileName());
+			File dir = new File(All.SOFT_DIR + p.getFileName());
 			if(!dir.exists())
 				dir.mkdir();
-			File file = new File("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\"+p.getFileName()+"\\"+p.getFileName()+".html");
+			File file = new File(All.SOFT_DIR + p.getFileName()+"\\"+p.getFileName()+".html");
 			PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 			template.process(map, pw);
 			pw.close();

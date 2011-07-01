@@ -1,7 +1,6 @@
 package eahoosoft.test;
 
 import java.io.File;
-import java.util.regex.Pattern;
 
 import org.hibernate.Session;
 import org.jsoup.Jsoup;
@@ -10,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import eahoosoft.dao.HibernateSessionFactory;
+import eahoosoft.freemarker.All;
 import eahoosoft.pojo.Guide;
 
 public class GuideHtml {
@@ -18,7 +18,7 @@ public class GuideHtml {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
-		File guideDir = new File("D:\\tmp\\guide");
+		File guideDir = new File(All.GUIDE_DIR);
 		File[] htmlFiles = guideDir.listFiles();
 		
 		for(File f : htmlFiles){

@@ -22,7 +22,7 @@ public class Guide {
 		//GuideHtml.main(null);
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("guide.ftl");		
@@ -57,7 +57,7 @@ public class Guide {
 			s.close();			
 			map.put("gList", gList);
 			
-			PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\guide"+pList.get(i-1)[1]+".html"));		
+			PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"guide"+pList.get(i-1)[1]+".html"));		
 			template.process(map, pw);		
 			pw.close();
 		}	
@@ -68,7 +68,7 @@ public class Guide {
 		for(eahoosoft.pojo.Guide g : gList){
 			template = cfg.getTemplate("guide_detail.ftl");	
 			map.put("g", g);
-			PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\guide\\"+g.getFileName()));		
+			PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"guide\\"+g.getFileName()));		
 			template.process(map, pw);		
 			pw.close();
 		}

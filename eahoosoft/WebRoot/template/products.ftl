@@ -18,9 +18,9 @@
 	    <div id="subNavMenu">
 	      <ul>
 	        <li><a href="products.html">DVD/Video Tools</a></li>
-	        <li><a href="products-i.html">iPod/iPad/iPhone Tools</a></li>
-	        <li><a href="products-m.html">Mac Software</a></li>
-	        <li><a href="products-a.html">Audio Tools</a></li>
+	        <li><a href="products-i-tools.html">iPod/iPad/iPhone Tools</a></li>
+	        <li><a href="products-m-tools.html">Mac Software</a></li>
+	        <li><a href="products-a-tools.html">Audio Tools</a></li>
 	      </ul>
 	    </div>
 	    <div id="listBox">

@@ -32,7 +32,7 @@
 	        </div>
 	        </#list>
 	        <!--product list items end-->
-	        <!--guide-->
+	        <!--guide
 	        <div class="small">
 	          <h3 class="guide" style="cursor:pointer;" onClick="self.location.href='${appPath}guide.html'">Guide Center</h3>
 	          <div class="fl">
@@ -50,10 +50,11 @@
 	            </ul>
 	          </div>
 	        </div>
-	        <!--guide end-->
+	        guide end-->
 	      </div>
 	      <!--right products-->
 		  <#include "/right.ftl">
+		  <#include "/right_guide.ftl">
 	      <!--right products end-->
 	  </div>
 	  <!--contents end-->

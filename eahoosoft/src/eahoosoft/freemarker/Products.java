@@ -20,7 +20,7 @@ public class Products {
 	public static void main(String[] args) throws Exception{
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("products.ftl");
@@ -38,7 +38,7 @@ public class Products {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\products.html"));
+		PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"products.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -51,7 +51,7 @@ public class Products {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\products-i.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"products-i.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -64,7 +64,7 @@ public class Products {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\products-m.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"products-m.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -77,7 +77,7 @@ public class Products {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\products-a.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"products-a.html"));
 		template.process(map, pw);
 		pw.close();
 	}

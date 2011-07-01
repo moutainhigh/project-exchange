@@ -19,7 +19,7 @@ public class Download {
 	public static void main(String[] args) throws Exception{
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("download.ftl");
@@ -37,7 +37,7 @@ public class Download {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\download.html"));
+		PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -50,7 +50,7 @@ public class Download {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\download-i.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-i.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -63,7 +63,7 @@ public class Download {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\download-m.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-m.html"));
 		template.process(map, pw);
 		pw.close();
 		
@@ -76,7 +76,7 @@ public class Download {
 		map.put("pList", pList);
 		s.close();
 		//添加顶部、底部和右侧的变量
-		pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\download-a.html"));
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"download-a.html"));
 		template.process(map, pw);
 		pw.close();
 	}

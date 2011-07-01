@@ -19,7 +19,7 @@ public class Index {
 	public static void main(String[] args) throws Exception{
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File("D:\\work\\workspace\\workspace_6.6\\eahoosoft\\WebRoot\\template"));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("index.ftl");
@@ -49,7 +49,7 @@ public class Index {
 		map.put("grList", grList);
 		s.close();
 		
-		PrintWriter pw = new PrintWriter(new FileOutputStream("E:\\Program Files\\EasyPHP-5.3.6.0\\www\\soft\\index.html"));
+		PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"index.html"));
 		
 		template.process(map, pw);
 		
