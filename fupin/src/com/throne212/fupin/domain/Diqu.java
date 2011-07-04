@@ -5,6 +5,17 @@ public class Diqu extends MyEntity {
 	protected String name;
 	protected String remark;
 	
+	public Diqu(Long id,String name, String remark) {
+		super();
+		super.id = id;
+		this.name = name;
+		this.remark = remark;
+	}
+
+	public Diqu() {
+		super();
+	}
+
 	public String getType(){
 		if(this instanceof Shi)
 			return "市";

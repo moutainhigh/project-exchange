@@ -65,6 +65,13 @@ public class User extends MyEntity implements Serializable {
 		return null;
 	}
 	
+	public String getIsDiv(){
+		if(this instanceof AreaWorkOrg){
+			return ((AreaWorkOrg)this).getIsDiv();
+		}
+		return null;
+	}
+	
 	
 	public String getLoginNameTxt() {
 		if(this instanceof AreaWorkOrg){

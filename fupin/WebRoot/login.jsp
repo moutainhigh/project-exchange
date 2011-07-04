@@ -50,6 +50,12 @@
 		if(username){
 			$('#username').val(username);
 		}
+		//更换图标
+		var url  = window.location.href;
+		if(url.indexOf('baiyun') > -1){
+			$('#login_title').attr('background','${appPath}images/ht_01_baiyun.gif');
+			$('#version_txt').html('版权所有：白云区扶贫办公室');
+		}
 	});
 </script>
 	</head>
@@ -58,7 +64,7 @@
 		<form action="${appPath}login.action" id="loginForm" method="post">
 			<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
-					<td height="158" background="${appPath}images/ht_01.gif">
+					<td height="158" background="${appPath}images/ht_01.gif" id="login_title">
 						&nbsp;
 					</td>
 				</tr>
@@ -137,10 +143,10 @@
 					<td height="148" align="right" valign="top" background="images/ht_03.gif">
 						<table width="832" border="0" align="center" cellpadding="0" cellspacing="0">
 							<tr>
-								<td width="832" height="3"></td>
+								<td width="832" height="3">&nbsp;</td>
 							</tr>
 							<tr>
-								<td height="31" align="right">
+								<td height="31" align="right" id="version_txt">
 									版权所有：广州市扶贫办公室
 								</td>
 							</tr>

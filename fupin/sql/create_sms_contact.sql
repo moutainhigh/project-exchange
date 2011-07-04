@@ -1,3 +1,6 @@
+DROP TABLE fp_contact_group;
+DROP TABLE fp_contact;
+
 CREATE TABLE fp_contact_group
 (
 	id bigint primary key,
@@ -5,7 +8,7 @@ CREATE TABLE fp_contact_group
 	groupName varchar(255),
 	parent_group_id bigint,
 	isLeaf tinyint(1)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE fp_contact
@@ -17,4 +20,4 @@ CREATE TABLE fp_contact
 	contactName varchar(255),
 	telNo varchar(255),
 	group_id bigint
-)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

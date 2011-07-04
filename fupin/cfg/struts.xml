@@ -38,6 +38,10 @@
             <result name="show_pic">/upload/show.jsp</result>
 		</global-results>
 		<!-- 登入 -->
+		<action name="baiyun">
+			<result name="success">/login.jsp</result>
+		</action>
+		<!-- 登入 -->
 		<action name="login" class="com.throne212.fupin.action.LoginAction">
 			<result name="success" type="redirect">/index.jsp</result>
 			<result name="fail">/login.jsp</result>
@@ -45,6 +49,7 @@
 		<!-- 登出 -->
 		<action name="logout" class="com.throne212.fupin.action.LogoutAction">
 			<result name="success" type="redirect">/login.jsp</result>
+			<result name="success_baiyun" type="redirect">/baiyun</result>
 		</action>
 		<!-- 审核模块 -->
 		<action name="shenhe_*" method="{1}" class="com.throne212.fupin.action.ShenHeAction">

@@ -27,6 +27,13 @@
 				document.forms[0].submit();
 			}
 		}
+		var isDiv = '${userObj.isDiv}';
+		$(function(){
+			if(isDiv == 'Y'){
+				$('select option').eq(1).remove();
+				$('select option').eq(1).remove();
+			}
+		});
 		</script>
 	</head>
 	<body>

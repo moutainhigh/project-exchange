@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -28,10 +27,8 @@ import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Person;
-import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
-import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 
@@ -86,6 +83,13 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 	}
 
 	public List getAllOrg() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if("Y".equals(a.getIsDiv())){
+				return managerDao.getEntitiesByColumn(Org.class, "area", a.getArea());
+			}
+		} 
 		return managerDao.getAll(Org.class);
 	}
 

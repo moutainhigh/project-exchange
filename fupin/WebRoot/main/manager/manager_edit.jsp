@@ -13,6 +13,9 @@
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			var areaId = '${org.area.id}';
+			var isDiv = '${userObj.isDiv}';
+			if(isDiv == 'Y')
+				areaId = '${userObj.area.id}';
 			$(function(){
 				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -23,6 +26,9 @@
 							//解决ie6下的bug
 							setTimeout(function(){ 
 							    $("#areaId").val(areaId); 
+							    if(isDiv == 'Y'){
+							    	$("#areaId").attr('disabled',true);
+							    }
 							},1);
 						}
 					}
@@ -36,6 +42,9 @@
 			<input type="hidden" value="${org.id}" name="org.id" id="">
 			<c:if test="${not empty org.id}">
 			<input type="hidden" value="${org.loginName}" name="org.loginName" id="">
+			</c:if>
+			<c:if test="${userObj.isDiv=='Y'}">
+			<input type="hidden" value="${userObj.area.id}" name="org.area.id" id="">
 			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>

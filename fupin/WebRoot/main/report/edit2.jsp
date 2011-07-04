@@ -18,6 +18,10 @@
 		var type = '${r.type}';
 		var time = '${r.time}';
 		var lock = '${r.lock}';
+		var maxMonth = '${maxMonth}';
+		var maxSeason = '${maxSeason}';
+		maxMonth = maxMonth==''?12:parseInt(maxMonth);
+		maxSeason = maxSeason==''?4:parseInt(maxSeason);
 		$(function(){
 			if(year != ''){
 				setTimeout(function(){ 
@@ -41,7 +45,7 @@
 			}else if('season' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=4;i++){
+				for(var i=1;i<=maxSeason;i++){
 					if(($('#year').val()==2011 || year == '2011') && i==1){
 						break;
 					}else{
@@ -57,7 +61,7 @@
 			}else if('month' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=12;i++){
+				for(var i=1;i<=maxMonth;i++){
 					if($('#year').val()==2011 || year == '2011'){
 						if(i<=4)
 							continue;

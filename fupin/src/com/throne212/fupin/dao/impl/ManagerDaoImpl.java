@@ -29,7 +29,17 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllManager(Integer pageIndex) {
 		PageBean<Org> page = new PageBean<Org>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Org t order by id";
+		String hql = "from Org t where 1=1";
+		
+		//白云区的自能看自己辖区的单位
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg){
+			AreaWorkOrg baiyun = (AreaWorkOrg) user;
+			if("Y".equals(baiyun.getIsDiv())){
+				hql += " and area.id="+baiyun.getArea().getId();
+			}
+		}
+		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
@@ -44,7 +54,17 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllManager(String name, Integer pageIndex) {
 		PageBean<Org> page = new PageBean<Org>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Org t where loginName like ? order by id";
+		String hql = "from Org t where loginName like ?";
+		
+		//白云区的自能看自己辖区的单位
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg){
+			AreaWorkOrg baiyun = (AreaWorkOrg) user;
+			if("Y".equals(baiyun.getIsDiv())){
+				hql += " and area.id="+baiyun.getArea().getId();
+			}
+		}
+		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, "%"+name+"%").get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目

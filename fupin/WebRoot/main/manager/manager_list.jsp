@@ -102,7 +102,7 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="5">
+						<td height="25" align="right" class="tables_contentcell" colspan="6">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

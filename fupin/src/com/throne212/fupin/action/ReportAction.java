@@ -16,6 +16,8 @@ public class ReportAction extends BaseAction {
 
 	private ReportBiz reportBiz;
 	private Report r;
+	private Integer maxMonth;
+	private Integer maxSeason;
 
 	// excel导出文件
 	private InputStream downloadFile;
@@ -78,6 +80,10 @@ public class ReportAction extends BaseAction {
 				r.setTime(time);
 			}
 		}
+		
+		//最大的月份和季度
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		maxSeason = maxMonth%3==0?maxMonth/3:maxMonth/3+1;
 
 		// 填充灰色项目
 		reportBiz.fillReport(r);
@@ -157,6 +163,11 @@ public class ReportAction extends BaseAction {
 				r.setTime(time);
 			}
 		}
+		
+		//最大的月份和季度
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		maxSeason = maxMonth%3==0?maxMonth/3:maxMonth/3+1;
+		
 		return "report_edit2";
 	}
 
@@ -286,6 +297,22 @@ public class ReportAction extends BaseAction {
 
 	public void setDownloadFile(InputStream downloadFile) {
 		this.downloadFile = downloadFile;
+	}
+
+	public Integer getMaxMonth() {
+		return maxMonth;
+	}
+
+	public void setMaxMonth(Integer maxMonth) {
+		this.maxMonth = maxMonth;
+	}
+
+	public Integer getMaxSeason() {
+		return maxSeason;
+	}
+
+	public void setMaxSeason(Integer maxSeason) {
+		this.maxSeason = maxSeason;
 	}
 
 }

@@ -18,6 +18,10 @@
 		var type = '${r.type}';
 		var time = '${r.time}';
 		var lock = '${r.lock}';
+		var maxMonth = '${maxMonth}';
+		var maxSeason = '${maxSeason}';
+		maxMonth = maxMonth==''?12:parseInt(maxMonth);
+		maxSeason = maxSeason==''?4:parseInt(maxSeason);
 		$(function(){
 			if(year != ''){
 				setTimeout(function(){ 
@@ -43,7 +47,7 @@
 			}else if('season' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=4;i++){
+				for(var i=1;i<=maxSeason;i++){
 					if(($('#year').val()==2011 || year == '2011') && i==1){
 						continue;
 					}else{
@@ -60,7 +64,7 @@
 				//2011年，去掉月度报表的第1 2 3 4 5月，改为第3-5月。5月份之后的月份正常显示。
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=12;i++){
+				for(var i=1;i<=maxMonth;i++){
 					if($('#year').val()==2011 || year == '2011'){
 						if(i<=4)
 							continue;

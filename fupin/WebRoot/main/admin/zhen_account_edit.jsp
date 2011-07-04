@@ -12,6 +12,7 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			var isDiv = '${userObj.isDiv}';
 			var currAreaWorkOrg = '${zhenWorkOrg.areaWorkOrg.id}';
 			var currShiWorkOrg='${zhenWorkOrg.areaWorkOrg.shiWorkOrg.id}';
 			$(function(){
@@ -27,7 +28,9 @@
 						for(var i=0;i<json['list'].length;i++)
 							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['orgName']+'</option>');
 						if(currShiWorkOrg != ''){
-							$('#shiworkorg').val(currShiWorkOrg);
+							setTimeout(function(){ 
+							   $('#shiworkorg').val(currShiWorkOrg);
+							},1);
 							selectAreaWorkOrgs(currShiWorkOrg);
 						}
 					}
@@ -40,7 +43,6 @@
 			function selectAreas(val){
 				$('#zhen').html('<option value=""></option>');
 				if(val && val!=''){
-					//供货厂列表
 					$.getJSON("${appPath}ajax/getZhenByAreaWorkOrg?time="+new Date().getTime(), {'areaWorkOrgId':val}, function(json){
 						if(json && json['list'] && json['list'].length){
 							for(var i=0;i<json['list'].length;i++){
@@ -48,15 +50,20 @@
 								$('#zhen').append(str);
 							}
 							if(currZhenId){
-								$('#zhen').val(currZhenId);
+								setTimeout(function(){ 
+								   $('#zhen').val(currZhenId);
+								},1);
 							}
 						}
 					});
 				}
 			}
 			//根据市扶贫单位获取区扶贫单位
-				var currAreaWorkOrgId='${zhenWorkOrg.areaWorkOrg.id}';
-				function selectAreaWorkOrgs(val){
+			var currAreaWorkOrgId='${zhenWorkOrg.areaWorkOrg.id}';
+			if(currAreaWorkOrgId=='' && isDiv == 'Y'){
+				currAreaWorkOrgId = '${userObj.id}';
+			}
+			function selectAreaWorkOrgs(val){
 				$('#areaworkorg').html('<option value=""></option>');
 				if(val && val!=''){
 				
@@ -67,8 +74,19 @@
 								$('#areaworkorg').append(str);
 							}
 							if(currAreaWorkOrgId){
-								$('#areaworkorg').val(currAreaWorkOrgId);
-								selectAreas($('#areaworkorg').val());
+								if(isDiv == 'Y'){
+									setTimeout(function(){ 
+									  $('#areaworkorg').val('${userObj.id}');
+									  $('#areaworkorg').attr('disabled',true);
+									  selectAreas($('#areaworkorg').val());
+									},1);
+								}else{
+									setTimeout(function(){ 
+									  $('#areaworkorg').val(currAreaWorkOrgId);
+									  selectAreas($('#areaworkorg').val());
+									},1);
+								}
+								
 							}
 						}
 					});
@@ -80,9 +98,12 @@
 	</head>
 	<body>
 		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}admin_saveOrUpdateZhenWorkOrg.action" name="">
-			<input type="hidden" value="${zhenWorkOrg.id}" name="areaWorkOrg.id" id="">
-			<c:if test="${not empty areaWorkOrg.id}">
+			<input type="hidden" value="${zhenWorkOrg.id}" name="zhenWorkOrg.id" id="">
+			<c:if test="${not empty zhenWorkOrg.id}">
 			<input type="hidden" value="${zhenWorkOrg.loginName}" name="zhenWorkOrg.loginName" id="">
+			</c:if>
+			<c:if test="${userObj.isDiv=='Y'}">
+			<input type="hidden" value="${userObj.id }" name="zhenWorkOrg.areaWorkOrg.id"/>
 			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>

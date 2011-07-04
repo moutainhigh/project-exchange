@@ -12,13 +12,27 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			var isDiv = '${userObj.isDiv}';
 			<c:if test="${empty diqu.id}">
 			$(function(){
+				//去掉类型
+				if(isDiv == 'Y'){
+					$('#type option').eq(1).remove();
+					$('#type option').eq(1).remove();
+				}
 				$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#shiId').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(isDiv == 'Y'){
+							setTimeout(function(){ 
+							   $('#shiId option').eq(1).attr('selected',true);
+							},1);
+							selectShi(json['list'][0]['id']);
+							$('#shiId').attr('disabled',true);
+							selectType('Area');
+						}
 					}
 				});
 			});
@@ -29,6 +43,12 @@
 							$('#areaId').html('<option value=""></option>');
 							for(var i=0;i<json['list'].length;i++)
 								$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+							if(isDiv == 'Y'){
+								$('#areaId option').eq(1).attr('selected',true);
+								selectArea(json['list'][0]['id']);
+								$('#areaId').attr('disabled',true);
+								selectType('Zhen');
+							}
 						}
 					});
 				}
@@ -70,6 +90,9 @@
 	<body>
 		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}diqu_saveDiqu.action" name="">
 			<input type="hidden" value="${diqu.id}" name="diqu.id" id="">
+			<c:if test="${userObj.isDiv == 'Y'}">
+			<input type="hidden" value="${userObj.area.id}" name="areaId">
+			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<c:if test="${empty diqu.id}">

@@ -171,12 +171,13 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			r.setItem1(cun.getPoorFamilyNum() == null ? "" : cun.getPoorFamilyNum() + "");
 			// Long personSum = familyDao.getPersonSum(cun);
 			r.setItem2(cun.getPoorPersonNum() == null ? "" : cun.getPoorPersonNum() + "");
+			
 			r.setItem3(cun.getPoorFamilyNum1() == null ? "" : cun.getPoorFamilyNum1() + "");
 			r.setItem4(cun.getPoorPersonNum1() == null ? "" : cun.getPoorPersonNum1() + "");
-			r.setItem5(cun.getPoorFamilyNum2() == null ? "" : cun.getPoorFamilyNum2() + "");
-			r.setItem6(cun.getPoorPersonNum2() == null ? "" : cun.getPoorPersonNum2() + "");
-			r.setItem7(cun.getPoorFamilyNum3() == null ? "" : cun.getPoorFamilyNum3() + "");
-			r.setItem8(cun.getPoorPersonNum3() == null ? "" : cun.getPoorPersonNum3() + "");
+			r.setItem5(cun.getPoorFamilyNum3() == null ? "" : cun.getPoorFamilyNum3() + "");
+			r.setItem6(cun.getPoorPersonNum3() == null ? "" : cun.getPoorPersonNum3() + "");
+			r.setItem7(cun.getPoorFamilyNum2() == null ? "" : cun.getPoorFamilyNum2() + "");
+			r.setItem8(cun.getPoorPersonNum2() == null ? "" : cun.getPoorPersonNum2() + "");			
 			r.setItem9(cun.getPoorFamilyNum4() == null ? "" : cun.getPoorFamilyNum4() + "");
 			r.setItem10(cun.getPoorPersonNum4() == null ? "" : cun.getPoorPersonNum4() + "");
 			r.setItem11(cun.getWeiHouse() == null ? "" : cun.getWeiHouse() + "");

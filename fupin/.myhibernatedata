@@ -1,7 +1,7 @@
 #
-#Mon Mar 07 16:58:51 CST 2011
+#Mon Jul 04 13:40:55 CST 2011
 genBasicCompId=false
-sessionFactoryName=
+sessionFactoryName=test.HibernateSessionFactory
 profile=
 daoSFId=
 version=3.2
