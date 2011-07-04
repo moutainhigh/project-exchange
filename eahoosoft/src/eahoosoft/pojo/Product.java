@@ -23,6 +23,7 @@ public class Product {
 
 	private Category cate;
 	private Set<Feature> features = new HashSet<Feature>();
+	private Set<HotTag> hotTags = new HashSet<HotTag>();
 
 	public Long getId() {
 		return id;
@@ -166,6 +167,14 @@ public class Product {
 
 	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	public Set<HotTag> getHotTags() {
+		return hotTags;
+	}
+
+	public void setHotTags(Set<HotTag> hotTags) {
+		this.hotTags = hotTags;
 	}
 
 }

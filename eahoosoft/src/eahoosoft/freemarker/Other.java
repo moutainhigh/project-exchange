@@ -80,5 +80,47 @@ public class Other {
 		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"contact.html"));		
 		template.process(map, pw);		
 		pw.close();
+		
+		//about us
+		template = cfg.getTemplate("about-us.ftl");		
+		map = new HashMap();		
+		//添加公用的数据模型
+		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"about-us.html", map);
+		//标题栏模块下标
+		map.put("currModule", null);		
+		//添加顶部、底部和右侧的变量
+		Common.fillRightData(map);		
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"about-us.html"));		
+		template.process(map, pw);		
+		pw.close();
+		
+		//links
+		template = cfg.getTemplate("links.ftl");		
+		map = new HashMap();		
+		//添加公用的数据模型
+		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"links.html", map);
+		//标题栏模块下标
+		map.put("currModule", null);		
+		//添加顶部、底部和右侧的变量
+		Common.fillRightData(map);		
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"links.html"));		
+		template.process(map, pw);		
+		pw.close();
+		
+		//FAQ
+		template = cfg.getTemplate("faqs.ftl");		
+		map = new HashMap();		
+		//添加公用的数据模型
+		Common.fillCommonVar(map);		
+		Common.fillPageInfoFromURL(All.SITE_PRE+"faqs.html", map);
+		//标题栏模块下标
+		map.put("currModule", null);		
+		//添加顶部、底部和右侧的变量
+		Common.fillRightData(map);		
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"faqs.html"));		
+		template.process(map, pw);		
+		pw.close();
 	}
 }

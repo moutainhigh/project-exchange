@@ -27,11 +27,11 @@ public class Common {
 			Document doc = Jsoup.parse(url,5000);
 			Element head = doc.head();
 			String title = doc.title();			
-			String keywords = head.select("meta[name=keywords]").get(0).attr("content");
-			String description = head.select("meta[name=description]").get(0).attr("content");
 			map.put("appTitle", title);
-			map.put("appDesc", description);
+			String keywords = head.select("meta[name=keywords]").get(0).attr("content");
 			map.put("appKeywords", keywords);
+			String description = head.select("meta[name=description]").get(0).attr("content");
+			map.put("appDesc", description);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("发生错误的URL是：" + urlStr);

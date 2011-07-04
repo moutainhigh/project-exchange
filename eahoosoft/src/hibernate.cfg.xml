@@ -26,6 +26,7 @@
 	<mapping resource="eahoosoft/pojo/Product.hbm.xml" />
 	<mapping resource="eahoosoft/pojo/Feature.hbm.xml" />
 	<mapping resource="eahoosoft/pojo/Guide.hbm.xml" />
+	<mapping resource="eahoosoft/pojo/HotTag.hbm.xml" />
 
 </session-factory>
 

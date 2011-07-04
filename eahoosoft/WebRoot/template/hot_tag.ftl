@@ -14,27 +14,19 @@
 	  <#include "/header.ftl"/>
 	  <div class="contents-top"></div>
 	  <div id="contents">
-	    <div id="location"><a class="localtionIndex" href="index.html">Home</a>|<span class="localtionSec">Contact Us</span></div>
-	    <div id="mainContents">
-	      <div class="newsList noBg"> 
-	      	<span class="supportH1">User Guide for Converters</span>
-		    <ul class="more_ul">
-		    	<#list gList as g>
-				<li><a href="guide/${g.fileName}">${g.linkName}</a></li>
-				</#list>
-			</ul>
-			<div class="page">
-	      		(
-	      		<#list pList as p>
-				<a href="guide${p[1]}.html">${p[0]}</a>|
-				</#list>
-	      		)
-	      	</div>
+	    <div id="location"><a class="localtionIndex" href="${appPath}index.html">Home</a>|<a class="localtionTwo" href="../products.html">Products</a>|<span class="localtionSec">${h.product.name}</span></div>    
+		<div id="mainContents">
+	      <div class="newsList noBg">
+			<!--content-->
+			<div class="divl3" id="my_content">
+				${h.content}	
+	        </div>
+			<!--content end-->	
 	      </div>
 	    </div>
-	    <!--right products-->
-	    <#include "/right.ftl">
-        <!--right products end-->		
+		<!--right products-->
+	    <#include "/right_product.ftl">
+        <!--right products end-->
 	  </div>
 	  <div class="contents-bottom"></div>
 	</div>

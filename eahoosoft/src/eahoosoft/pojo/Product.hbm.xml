@@ -27,5 +27,9 @@
 			<key column="pro_id"></key>
 			<one-to-many class="Feature"/>
 		</set>
+		<set name="hotTags" lazy="false" cascade="all" order-by="id">
+			<key column="pro_id"></key>
+			<one-to-many class="HotTag"/>
+		</set>
 	</class>
 </hibernate-mapping>

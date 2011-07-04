@@ -1,6 +1,7 @@
 package eahoosoft.freemarker;
 
 import eahoosoft.test.GuideHtml;
+import eahoosoft.test.HotTagHtml;
 import eahoosoft.test.Init;
 
 public class All {
@@ -12,6 +13,7 @@ public class All {
 		//初始化数据
 		Init.main(null);
 		GuideHtml.main(null);
+		HotTagHtml.main(null);
 		//生成HTML
 		Index.main(null);
 		Products.main(null);
@@ -20,5 +22,6 @@ public class All {
 		Purchase.main(null);
 		Other.main(null);
 		Guide.main(null);
+		HotTag.main(null);
 	}
 }

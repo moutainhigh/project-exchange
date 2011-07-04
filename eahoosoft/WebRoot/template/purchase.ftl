@@ -3,8 +3,8 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>${appTitle}</title>
-	<meta name="keywords" content="${appDesc}" />
-	<meta name="description" content="${appKeywords}"/>
+	<meta name="keywords" content="${appKeywords}" />
+	<meta name="description" content="${appDesc}"/>
 	<link type="text/css" rel="stylesheet" href="${appPath}layout.css" />
 	<#include "/script.ftl"/>
 </head>
@@ -27,7 +27,7 @@
 	        <ul class="dpList">
 	          <li class="title"> <span class="icon">ICON</span> <span class="sort">iPad/iPod/iPhone Tools</span> <span class="price">Price</span> <span class="os">OS</span> <span class="operate">Purchase</span> </li>
 	          <#list pList as p>
-	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc[0..80]}...</span></span> <span class="price">$#{p.price;m2M2}</span> <span class="os">${op}</span><span class="operate"><a href="${p.buyUrl}" class="buyNow">Buy Now</a> <a href="${p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
+	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}...</span></span> <span class="price">$#{p.price;m2M2}</span> <span class="os">${op}</span><span class="operate"><a href="${p.buyUrl}" class="buyNow">Buy Now</a> <a href="${p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
 	          </#list>
 	        </ul>
 	    </div>

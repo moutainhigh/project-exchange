@@ -13,6 +13,16 @@
 	        <div id="divwin1">
 	          <ul>
 	            <li class="listTitle">
+	              <h3>Hot Tags</h3>
+	            </li>
+	            <#list p.hotTags as h>
+	            <li><a href="${h.href}">${h.linkName}</a></li>
+	            </#list>
+	          </ul>
+	        </div>
+	        <div id="divwin2">
+	          <ul>
+	            <li class="listTitle">
 	              <h3>Mac Software</h3>
 	            </li>
 	            <#list mList as p>
