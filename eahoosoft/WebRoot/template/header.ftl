@@ -10,9 +10,9 @@
 	      <ul>
 	        <li><a href="${appPath}index.html"><span>Home</span></a></li>
 	        <li><a href="${appPath}products.html"><span>Products</span></a></li>
-	        <li><a href="${appPath}download.html"><span>Download</span></a></li>
+	        <li><a href="${appPath}download.html"><span>Downloads</span></a></li>
 	        <li><a href="${appPath}purchase.html"><span>Purchase</span></a></li>
-	        <li><a href="${appPath}support.html"><span>Supports</span></a></li>
+	        <li><a href="${appPath}support.html"><span>Support</span></a></li>
 	        <li><a href="${appPath}news.html"><span>News</span></a></li>
 	        <li><a href="${appPath}free-video-converter/free-video-converter.html"><span>Freeware</span></a></li>
 	      </ul>
