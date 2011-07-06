@@ -12,7 +12,6 @@ import org.hibernate.Session;
 
 import eahoosoft.dao.HibernateSessionFactory;
 import eahoosoft.pojo.Product;
-import eahoosoft.test.Init;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -23,6 +22,7 @@ public class Other {
 		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
+		//support
 		Template template = cfg.getTemplate("support.ftl");		
 		Map map = new HashMap();		
 		//添加公用的数据模型
@@ -36,6 +36,7 @@ public class Other {
 		template.process(map, pw);		
 		pw.close();
 		
+		//news
 		template = cfg.getTemplate("news.ftl");		
 		map = new HashMap();		
 		//添加公用的数据模型

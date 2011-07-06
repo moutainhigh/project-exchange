@@ -54,4 +54,10 @@ public class Common {
 		List<Product> aList = s.createQuery("from Product p where p.cate.fileName='a' order by p.orderNum").list();
 		map.put("aList", aList);
 	}
+	public static String replaceChars(String content){
+		content = content.replaceAll("“", "\"");
+		content = content.replaceAll("’", "'");
+		content = content.replaceAll("<br>", "<br/>");
+		return content;
+	}
 }

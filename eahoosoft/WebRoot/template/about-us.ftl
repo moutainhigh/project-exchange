@@ -14,7 +14,7 @@
 	  <#include "/header.ftl"/>
 	  <div class="contents-top"></div>
 	  <div id="contents">
-	    <div id="location"><a class="localtionIndex" href="index.html">Home</a>|<span class="localtionSec">Contact Us</span></div>
+	    <div id="location"><a class="localtionIndex" href="index.html">Home</a>|<span class="localtionSec">About Us</span></div>
 	    <div id="mainContents">
 	      <div class="newsList noBg"> 
 		    <span class="supportH1">About Us</span>

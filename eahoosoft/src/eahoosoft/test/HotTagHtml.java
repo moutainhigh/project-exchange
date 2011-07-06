@@ -10,6 +10,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import eahoosoft.dao.HibernateSessionFactory;
+import eahoosoft.freemarker.All;
+import eahoosoft.freemarker.Common;
 import eahoosoft.pojo.HotTag;
 import eahoosoft.pojo.Product;
 
@@ -27,9 +29,9 @@ public class HotTagHtml {
 			String fileName = "eahoosoft-video-converter";
 			String oldFileName = "EahoosoftVideoConverter";
 			if(fileName.equals(p.getFileName()))
-				url = new URL("http://www.eahoosoft.com/"+p.getFileName()+"/"+oldFileName+".html");
+				url = new URL(All.SITE_PRE+p.getFileName()+"/"+oldFileName+".html");
 			else
-				url = new URL("http://www.eahoosoft.com/"+p.getFileName()+"/"+p.getFileName()+".html");
+				url = new URL(All.SITE_PRE+p.getFileName()+"/"+p.getFileName()+".html");
 			
 			Document doc = Jsoup.parse(url,10000);
 			
@@ -95,6 +97,7 @@ public class HotTagHtml {
 		content = content.replaceAll("EahoosoftVideoConverter\\.html", "eahoosoft-video-converter.html");
 		content = content.replaceAll("eahoosoft-DVD-Ripper/eahoosoft-DVD-Ripper\\.html", "eahoosoft-dvd-ripper/eahoosoft-dvd-ripper.html");
 		//System.out.println(content);
+		content = Common.replaceChars(content);
 		
 		HotTag h = new HotTag();
 		h.setContent(content);

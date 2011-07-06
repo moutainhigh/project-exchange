@@ -10,6 +10,8 @@ public class Guide {
 	private String content;
 	private String fileName;
 	private String linkName;
+	private String linkDown;
+	private String linkBuy;
 	
 	public Long getId() {
 		return id;
@@ -58,6 +60,18 @@ public class Guide {
 	}
 	public void setLinkName(String linkName) {
 		this.linkName = linkName;
+	}
+	public String getLinkDown() {
+		return linkDown;
+	}
+	public void setLinkDown(String linkDown) {
+		this.linkDown = linkDown;
+	}
+	public String getLinkBuy() {
+		return linkBuy;
+	}
+	public void setLinkBuy(String linkBuy) {
+		this.linkBuy = linkBuy;
 	}
 	
 	

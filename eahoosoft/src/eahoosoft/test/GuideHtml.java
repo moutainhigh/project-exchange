@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 
 import eahoosoft.dao.HibernateSessionFactory;
 import eahoosoft.freemarker.All;
+import eahoosoft.freemarker.Common;
 import eahoosoft.pojo.Guide;
 
 public class GuideHtml {
@@ -44,6 +45,17 @@ public class GuideHtml {
 				content = content.replaceAll("EahoosoftVideoConverter\\.html", "eahoosoft-video-converter.html");
 				content = content.replaceAll("eahoosoft-DVD-Ripper/eahoosoft-DVD-Ripper\\.html", "eahoosoft-dvd-ripper/eahoosoft-dvd-ripper.html");
 				//System.out.println(content);
+				content = Common.replaceChars(content);
+				
+				//替换按钮
+				String linkDown = null;
+				String linkBuy = null;
+				Elements btns = doc.select(".button").select("a");
+				if(btns.size() > 0){
+					linkDown = btns.get(0).attr("href");
+					linkBuy = btns.get(1).attr("href");
+				}
+				
 				
 				String linkName = ""; 
 				if(f.getName().contains("how-to-convert")){
@@ -68,6 +80,8 @@ public class GuideHtml {
 				g.setName(name);
 				g.setTitle(title);
 				g.setLinkName(linkName);
+				g.setLinkDown(linkDown);
+				g.setLinkBuy(linkBuy);
 				
 				s.saveOrUpdate(g);
 			} catch (RuntimeException e) {

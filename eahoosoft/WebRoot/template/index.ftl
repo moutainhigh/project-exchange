@@ -32,25 +32,6 @@
 	        </div>
 	        </#list>
 	        <!--product list items end-->
-	        <!--guide
-	        <div class="small">
-	          <h3 class="guide" style="cursor:pointer;" onClick="self.location.href='${appPath}guide.html'">Guide Center</h3>
-	          <div class="fl">
-	            <ul>
-	              <#list glList as g>
-	              <li><a href="guide/${g.fileName}">${g.linkName}</a></li>
-	              </#list>
-	            </ul>
-	          </div>
-	          <div class="fr">
-	            <ul>
-	              <#list grList as g>
-	              <li><a href="guide/${g.fileName}">${g.linkName}</a></li>
-	              </#list>
-	            </ul>
-	          </div>
-	        </div>
-	        guide end-->
 	      </div>
 	      <!--right products-->
 		  <#include "/right.ftl">

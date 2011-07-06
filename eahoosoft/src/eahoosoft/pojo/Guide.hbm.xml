@@ -13,6 +13,8 @@
 		<property name="name"></property>
 		<property name="title"></property>
 		<property name="linkName"></property>
+		<property name="linkDown"></property>
+		<property name="linkBuy"></property>
 		
 	</class>
 </hibernate-mapping>

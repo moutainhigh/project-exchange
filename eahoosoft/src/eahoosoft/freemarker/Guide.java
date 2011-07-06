@@ -3,6 +3,7 @@ package eahoosoft.freemarker;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,9 +11,12 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.hibernate.Session;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import eahoosoft.dao.HibernateSessionFactory;
-import eahoosoft.test.GuideHtml;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -29,7 +33,10 @@ public class Guide {
 		
 		Map map = new HashMap();		
 		//添加公用的数据模型
-		Common.fillCommonVar(map);					
+		Common.fillCommonVar(map);			
+		map.put("appTitle", "Guide - Eahoosoft");
+		map.put("appDesc", "Read the step-by-step guides for eahoosoft products.");
+		map.put("appKeywords", "Guides, How-tos");
 		//添加顶部、底部和右侧的变量
 		Common.fillRightData(map);	
 		
@@ -63,10 +70,39 @@ public class Guide {
 		}	
 		
 		//生成详细页面
+		URL url = new URL(All.SITE_PRE+"index.html");		
+		Document doc = Jsoup.parse(url,10000);
+		Element userGuide = doc.select(".DIV4").get(5);
+		Elements links = userGuide.select("a");
+		List<eahoosoft.pojo.Guide> ugList = new ArrayList<eahoosoft.pojo.Guide>(); 
+		for(Element link : links){
+			eahoosoft.pojo.Guide g = new eahoosoft.pojo.Guide();
+			g.setLinkName(link.text());
+			g.setFileName(link.attr("href"));
+			ugList.add(g);
+		}
+		map.put("ugList", ugList);
 		s = HibernateSessionFactory.getSession();
 		List<eahoosoft.pojo.Guide> gList = s.createQuery("from Guide").list();
 		for(eahoosoft.pojo.Guide g : gList){
 			template = cfg.getTemplate("guide_detail.ftl");	
+			
+			String content = g.getContent();
+			if(g.getLinkBuy()==null){
+				g.setLinkBuy("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-2");
+			}
+			if(g.getLinkDown()==null){
+				g.setLinkDown("../download/VideoConverter.exe");
+			}
+			content = content.replaceAll("<p class=\"button\">.+</p>", "<p class=\"button\">"+
+				"<div style=\"overflow:hidden;width:430px;margin:5px auto;\" class=\"clear\">"+
+				"	<div class=\"freeTrialBig_below\"><a href=\""+g.getLinkDown()+"\"><span>Free Trial</span></a></div>"+
+				"	<div class=\"buyNowBig_below\"><a target=\"_blank\" href=\""+g.getLinkBuy()+"\"><span>Buy Now</span></a></div>"+
+				"	<div class=\"clear\"></div>"+
+				"</div>"+
+				"</p>");
+			g.setContent(content);
+			
 			map.put("g", g);
 			PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"guide\\"+g.getFileName()));		
 			template.process(map, pw);		

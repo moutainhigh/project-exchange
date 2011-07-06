@@ -10,9 +10,7 @@ import java.util.Map;
 
 import org.hibernate.Session;
 
-import eahoosoft.common.Constants;
 import eahoosoft.dao.HibernateSessionFactory;
-import eahoosoft.pojo.Product;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 

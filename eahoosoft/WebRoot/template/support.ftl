@@ -19,7 +19,13 @@
 	      <div class="newsList noBg"> 
 		    <span class="supportH1">Support Center</span>
 	        <div class="linksTop">
-	        	
+	        <p style="color:#305C85; font-size:12px">Tutorial of All Video Converter Software</p>
+	        <p>&nbsp;&nbsp;<a href="support/convert-films-for-iphone.html">How to convert films for iphone</a></p>
+	        <p>&nbsp;&nbsp;<a href="support/convert-mkv-to-mp4.html">How to convert mkv to mp4</a></p>
+	        <p>&nbsp;&nbsp;<a href="support/convert-video-to-Sony-PSP.html">How to convert video to Sony PSP</a></p>
+	        <p>&nbsp;&nbsp;<a href="support/video-to-ipad.html">How to convert video to ipad</a></p>
+	        <p>&nbsp;&nbsp;<a href="support/convert-movie-for-ipod.html">How to convert movie for ipod </a></p>
+	        
             <img src="images/arrow.gif" width="10">&nbsp;&nbsp;&nbsp;<strong>We would like to try our best to provide you with the best software products and service. So we welcome any question or suggestion.</strong><br>
             We promise to our customers that we will deal with emails within 24 hours after receiving them. Free trial customers are also welcome to enjoy our effective One Business Day Email Service! Please do not hesitate to contact us. <br>
             <br>

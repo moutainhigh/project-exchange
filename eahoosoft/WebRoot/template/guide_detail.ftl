@@ -31,6 +31,7 @@
 	    </div>
 		<!--right products-->
 	    <#include "/right.ftl">
+	    <#include "/right_guide.ftl">
         <!--right products end-->
 	  </div>
 	  <div class="contents-bottom"></div>
