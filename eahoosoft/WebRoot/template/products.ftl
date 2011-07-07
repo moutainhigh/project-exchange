@@ -28,7 +28,7 @@
 	      <div class="productsListShow">
 	        <h2><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></h2>
 	        <div class="productsListImg"><a href="${p.fileName}/${p.fileName}.html"><img width="142" height="175" alt="${p.name}" src="images/${p.image}"></a></div>
-	        <p>${p.shortDesc}<span class="learnMore">&gt;<a href="${p.fileName}/${p.fileName}.html">Learn more</a></span><br />
+	        <p>${p.longDesc}<span class="learnMore">&gt;<a href="${p.fileName}/${p.fileName}.html">Learn more</a></span><br />
 	        </p>
 	        <p class="productsInfo"> Price:<span class="price">$#{p.price;m2M2}</span> <span class="buyNow"><a href="${p.buyUrl}" target="_blank">Buy Now</a></span> <span class="download"><a href="download/${p.downUrl}">Download</a></span> </p>
 	      </div>

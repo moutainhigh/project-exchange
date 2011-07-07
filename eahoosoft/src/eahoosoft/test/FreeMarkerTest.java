@@ -24,5 +24,6 @@ public class FreeMarkerTest {
 		template.process(map, pw);
 		
 		pw.close();
+		
 	}
 }

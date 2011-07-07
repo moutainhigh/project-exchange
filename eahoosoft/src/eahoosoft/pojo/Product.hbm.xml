@@ -21,6 +21,7 @@
 		<property name="indexOrderNum"></property>
 		<property name="version"></property>
 		<property name="icon"></property>
+		<property name="longDesc" length="2048"></property>
 		
 		<many-to-one name="cate" lazy="false" column="cate_id"></many-to-one>
 		<set name="features" lazy="false" cascade="all" order-by="orderNum">

@@ -1,11 +1,13 @@
 package eahoosoft.test;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.hibernate.Session;
 
 import eahoosoft.dao.HibernateSessionFactory;
+import eahoosoft.freemarker.Common;
 import eahoosoft.pojo.Category;
 import eahoosoft.pojo.Feature;
 import eahoosoft.pojo.Product;
@@ -762,6 +764,35 @@ public class Init {
 		p37.setVersion("2.0.0");
 		p37.setFeatures(getFeature37(p37));
 		s.save(p37);
+		
+		
+		//更换购买链接
+		List<Product> list = s.createQuery("from Product").list();
+		for(Product pro : list){
+			if(pro.getBuyUrl()!=null)
+				pro.setBuyUrl(Common.replaceChars(pro.getBuyUrl()));
+			//长介绍
+			String desc = pro.getDescription();
+			int start = desc.indexOf(">")+1;
+			int end = desc.indexOf("<br>");
+			if(end < 0)
+				end = desc.indexOf("<br/>");
+			if(end < 0)
+				end = desc.indexOf("</p>");
+			
+			if(end > 0 && end-start<300){
+				end = desc.indexOf("<br>", end+5);
+				if(end < 0)
+					end = desc.indexOf("<br/>", end+5);
+				if(end < 0)
+					end = desc.indexOf("</p>", end+5);
+			}
+			
+			if(end < 0)
+				end = desc.length()-1;
+			String longDesc = desc.substring(start, end);
+			pro.setLongDesc(longDesc);
+		}
 		
 		
 		s.getTransaction().commit();

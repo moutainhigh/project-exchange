@@ -22,7 +22,7 @@
 	        <div class="productsList">
 	          <h2><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></h2>
 	          <div class="productsListContents">
-	            <p>${p.description[0..500]}&nbsp;<a href="${p.fileName}/${p.fileName}.html" class="learnMore">&gt;Learn more</a></p>
+	            <p>${p.longDesc}&nbsp;<a href="${p.fileName}/${p.fileName}.html" class="learnMore">&gt;Learn more</a></p>
 	            <a class="buyNowSmall" href="${p.buyUrl}" target="_blank"><span>Buy Now<br />
 	            Price: $#{p.price;m2M2}</span></a> <a class="freeTrialSmall" href="download/${p.downUrl}"><span> Free Trial<br />
 	            Size: ${p.size}</span></a> </div>

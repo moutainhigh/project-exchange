@@ -25,12 +25,11 @@ public class Common {
 		try {
 			URL url = new URL(urlStr);
 			Document doc = Jsoup.parse(url,5000);
-			Element head = doc.head();
 			String title = doc.title();			
 			map.put("appTitle", title);
-			String keywords = head.select("meta[name=keywords]").get(0).attr("content");
+			String keywords = doc.select("meta[name=keywords]").get(0).attr("content");
 			map.put("appKeywords", keywords);
-			String description = head.select("meta[name=description]").get(0).attr("content");
+			String description = doc.select("meta[name=description]").get(0).attr("content");
 			map.put("appDesc", description);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,6 +57,22 @@ public class Common {
 		content = content.replaceAll("“", "\"");
 		content = content.replaceAll("’", "'");
 		content = content.replaceAll("<br>", "<br/>");
+		content = content.replaceAll("eahoosoft-DVD-Ripper.html", "eahoosoft-dvd-ripper.html");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-14", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-10&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-35", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-11&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-34", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-12&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-36", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-13&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-2", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-2&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-1", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-3&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-4", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-4&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-3", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-5&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-7", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-6&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-10", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-7&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-9", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-8&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi?item=29237-20", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-9&q=1&v=0&d=0");
+		//content = content.replaceAll("", "");
+		//content = content.replaceAll("", "");
+		
 		return content;
 	}
 }

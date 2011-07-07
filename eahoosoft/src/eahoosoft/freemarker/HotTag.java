@@ -26,7 +26,7 @@ public class HotTag {
 		Session s = HibernateSessionFactory.getSession();
 		List<eahoosoft.pojo.HotTag> list = s.createQuery("from HotTag").list();
 		for(eahoosoft.pojo.HotTag h : list){
-			if(h.getHref().contains("guide"))
+			if(h.getHref().contains("guide") || h.getHref().contains("support"))
 				continue;
 			if(h.getHref().contains(h.getProduct().getFileName()))
 				continue;

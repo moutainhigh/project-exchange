@@ -52,13 +52,28 @@ public class HotTagHtml {
 				String path = link.baseUri().substring(0,link.baseUri().lastIndexOf("/")+1) + href;
 				try {
 					HotTag h = null;
-					if(link.attr("href").contains("guide"))
+					if(link.attr("href").contains("guide")){
 						h = new HotTag();
-					else
+						h.setLinkName(link.html());
+						h.setProduct(p);
+						h.setHref(link.attr("href"));
+					}else if("#".equals(href)){
+						h = new HotTag();
+						h.setLinkName(link.html());
+						h.setProduct(p);
+						h.setHref(p.getFileName()+".html");
+					}else if(link.attr("href").contains("support/")){
+						h = new HotTag();
+						h.setLinkName(link.html());
+						h.setProduct(p);
+						h.setHref(link.attr("href"));
+					}else{
 						h = buildHotTag(new URL(path));
-					h.setLinkName(link.html());
-					h.setProduct(p);
-					h.setHref(link.attr("href"));
+						h.setLinkName(link.html());
+						h.setProduct(p);
+						h.setHref(link.attr("href"));
+					}
+					
 					s.saveOrUpdate(h);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,11 +97,16 @@ public class HotTagHtml {
 		String description = null;
 		
 		try {
-			keywords = head.select("meta[name=keywords]").get(0).attr("content");
-			description = head.select("meta[name=description]").get(0).attr("content");
+			keywords = doc.select("meta[name=keywords]").get(0).attr("content");
+			description = doc.select("meta[name=description]").get(0).attr("content");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			//e.printStackTrace();
+			try {
+				description = doc.select("meta").last().attr("name");
+			} catch (RuntimeException e1) {
+				e1.printStackTrace();
+				System.out.println("错误处在#$$$$$$$$$$$$$$$$$" + url);
+			}
 		}
 		// System.out.println(description);
 
@@ -98,6 +118,7 @@ public class HotTagHtml {
 		content = content.replaceAll("eahoosoft-DVD-Ripper/eahoosoft-DVD-Ripper\\.html", "eahoosoft-dvd-ripper/eahoosoft-dvd-ripper.html");
 		//System.out.println(content);
 		content = Common.replaceChars(content);
+		content = content.replaceAll("font-size:17px;font-weight:bold; margin-top:10px; text-align:center;", "font-size:12px;font-weight:bold; margin-top:10px; text-align:center;");
 		
 		HotTag h = new HotTag();
 		h.setContent(content);

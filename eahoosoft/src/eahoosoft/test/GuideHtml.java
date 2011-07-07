@@ -31,8 +31,8 @@ public class GuideHtml {
 				Element body = doc.body();
 				
 				String title = doc.title();
-				String keywords = head.select("meta[name=keywords]").get(0).attr("content");
-				String description = head.select("meta[name=description]").get(0).attr("content");
+				String keywords = doc.select("meta[name=keywords]").get(0).attr("content");
+				String description = doc.select("meta[name=description]").get(0).attr("content");
 				//System.out.println(description);
 				
 				Elements h1 = doc.select("h1");

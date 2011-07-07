@@ -28,7 +28,7 @@
 	            <#list mList as p>
 	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName}</a></li>
 	            </#list>
-	            <li><a href="${appPath}products-m.html" class="nav-more">&gt;&gt; Learn More</a></li>
+	            <li><a href="${appPath}products-m-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
 	            <li class="listTitle">
 	              <h3>Video Tools</h3>
 	            </li>
@@ -49,14 +49,14 @@
 	            <#list iList as p>
 	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName}</a></li>
 	            </#list>
-	            <li><a href="${appPath}products-i.html" class="nav-more">&gt;&gt; Learn More</a></li>
+	            <li><a href="${appPath}products-i-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
 	            <li class="listTitle">
 	              <h3>Audio Tools</h3>
 	            </li>
 	            <#list aList as p>
 	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName}</a></li>
 	            </#list>
-	            <li><a href="${appPath}products-a.html" class="nav-more">&gt;&gt; Learn More</a></li>
+	            <li><a href="${appPath}products-a-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
 	          </ul>
 	        </div>
 	      </div>

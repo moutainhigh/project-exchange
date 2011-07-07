@@ -3,8 +3,8 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>${appTitle}</title>
-	<meta name="keywords" content="${appDesc}" />
-	<meta name="description" content="${appKeywords}"/>
+	<meta name="keywords" content="${appKeywords}" />
+	<meta name="description" content="${appDesc}"/>
 	<link type="text/css" rel="stylesheet" href="${appPath}layout.css" />
 	<#include "/script.ftl"/>
 </head>

@@ -35,6 +35,7 @@ public class Supports {
 				doc = Jsoup.parse(url,10000);
 				String content = doc.select(".divl2").get(0).html();
 				content = Common.replaceChars(content);
+				content = content.replaceAll("font-size:17px;font-weight:bold; margin-top:20px","font-size: 17px; font-weight: bold; margin-top: 20px; text-align: center;");
 				
 				String fileName = e.attr("href").split("/")[1];
 				

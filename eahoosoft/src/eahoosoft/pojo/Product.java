@@ -9,6 +9,7 @@ public class Product {
 	private String shortName;
 	private String description;
 	private String shortDesc;
+	private String longDesc;
 	private String image;
 	private String buyUrl;
 	private String downUrl;
@@ -175,6 +176,14 @@ public class Product {
 
 	public void setHotTags(Set<HotTag> hotTags) {
 		this.hotTags = hotTags;
+	}
+
+	public String getLongDesc() {
+		return longDesc;
+	}
+
+	public void setLongDesc(String longDesc) {
+		this.longDesc = longDesc;
 	}
 
 }
