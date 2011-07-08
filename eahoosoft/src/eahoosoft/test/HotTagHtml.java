@@ -72,6 +72,8 @@ public class HotTagHtml {
 						h.setLinkName(link.html());
 						h.setProduct(p);
 						h.setHref(link.attr("href"));
+						if(h.getHref().contains("iPad"))
+							h.setHref(h.getHref().replaceAll("iPad", "ipad"));
 					}
 					
 					s.saveOrUpdate(h);
@@ -118,7 +120,22 @@ public class HotTagHtml {
 		content = content.replaceAll("eahoosoft-DVD-Ripper/eahoosoft-DVD-Ripper\\.html", "eahoosoft-dvd-ripper/eahoosoft-dvd-ripper.html");
 		//System.out.println(content);
 		content = Common.replaceChars(content);
-		content = content.replaceAll("font-size:17px;font-weight:bold; margin-top:10px; text-align:center;", "font-size:12px;font-weight:bold; margin-top:10px; text-align:center;");
+		if(content.contains("Rip DVD to ipad"))
+			content = content.replaceAll("font-size:17px;font-weight:bold; margin-top:10px; text-align:center;", "font-size:12px;font-weight:bold; margin-top:10px; text-align:center;");
+		content = content.replaceAll("<p>", "<p style=\"padding-left:0;\">");
+		
+		//替换图片
+		int start = -1;
+		int fromIndex = 0;
+		while((start=Common.nextImg(content,fromIndex))>0){
+			int end = content.indexOf(">", start);
+			fromIndex = end;
+			if(content.charAt(end-1)!='/'){
+				StringBuffer sb = new StringBuffer(content);
+				sb.replace(end, end+1, "/><br/>");
+				content = sb.toString();
+			}
+		}
 		
 		HotTag h = new HotTag();
 		h.setContent(content);
