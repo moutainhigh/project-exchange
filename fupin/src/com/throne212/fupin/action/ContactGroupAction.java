@@ -99,8 +99,9 @@ public class ContactGroupAction extends BaseAction {
 			}
 
 			for (ContactGroup contactGroup : groupDelList) {
-
-				System.out.println("删除通讯组....");
+				if(contactGroup == null)
+					continue;
+				logger.debug("删除通讯组....");
 				deleteChild(contactGroup);
 
 			}
@@ -121,7 +122,8 @@ public class ContactGroupAction extends BaseAction {
 
 			deleteChild(contactGroup);
 		}
-		System.out.println("删除...." + parentGroup.getGroupName());
+		
+		logger.debug("删除...." + parentGroup.getGroupName());
 		groupBiz.deleteEntity(ContactGroup.class, parentGroup.getId());
 
 	}
@@ -140,19 +142,12 @@ public class ContactGroupAction extends BaseAction {
 
 		Set<ContactGroup> set = new HashSet<ContactGroup>();
 		List<ContactGroup> list = new ArrayList<ContactGroup>();
-		System.out.println();
-		System.out.println(l.size() + "传入的List的长度");
 		for (int i = 0; i < l.size(); i++) {
 			set.add(l.get(i));
 		}
-		System.out.println();
-		System.out.println(set.size() + "处理后set的长度");
-		System.out.println();
 		for (Iterator<ContactGroup> it = set.iterator(); it.hasNext();) {
 			list.add(it.next());
 		}
-		System.out.println(list.size() + "返回的list的长度");
-		System.out.println();
 		return list;
 	}
 

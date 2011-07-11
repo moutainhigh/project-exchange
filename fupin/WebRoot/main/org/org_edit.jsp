@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -55,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>您当前所处页面：单位与干部维护&gt;&gt;单位信息维护</td>
 		</tr>
 	</tbody></table>
-	
+	<c:if test="${userObj.isDiv!='Y' }">
 	帮扶贫困村：${org.cun.name }
 	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 		<tbody><tr>
@@ -156,6 +157,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</td>
 		</tr>
 	</tbody></table>
+	</c:if>
+	
+	<c:if test="${userObj.isDiv=='Y' }">
+	<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
+		<tbody><tr>
+    	<td align="center" class="tables_leftcell" colspan="3">驻村干部</td>
+    	<td align="center" class="tables_leftcell" colspan="2">分管领导（联系人）</td>
+		</tr>
+		<tr>
+    	<td align="center" class="tables_leftcell" colspan="1">姓名</td>
+    	<td align="center" class="tables_leftcell" colspan="1">联系电话（手机）</td>
+    	<td align="center" class="tables_leftcell" colspan="1">驻村起始时间</td>
+    	<td align="center" class="tables_leftcell" colspan="1">姓名</td>
+    	<td align="center" class="tables_leftcell" colspan="1">联系电话（手机）</td>
+		</tr>
+		<tr>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
+		</tr>
+		
+		<tr>
+    	<td align="center" class="tables_contentcell" colspan="5">
+		<input type="submit" value="确认" class="button" name="确认">
+		<input type="button" class="button" value="取消" name="取消">
+		</td>
+		</tr>
+	</tbody></table>
+	</c:if>
 	
 	</form>
 </body></html>

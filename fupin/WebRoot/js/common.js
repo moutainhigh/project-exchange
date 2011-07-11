@@ -56,7 +56,7 @@ function gotoPage(pageIndex,url){
 		url += '?';
 	}
 	url += "pageIndex=" + pageIndex;
-
+	url = url.replace("#","");
 	//alert(url);
 	self.location.href = url;
 }

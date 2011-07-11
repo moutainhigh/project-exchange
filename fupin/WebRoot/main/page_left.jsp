@@ -157,8 +157,8 @@ function images_update(){
 	    menuArray[menuArray.length]="1,报表解锁,${appPath}report_reportList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	    menuArray[menuArray.length]="1,工作统计表,${appPath}report_viewReport1.action";
-		menuArray[menuArray.length]="1,工作落实情况统计表,${appPath}report_viewReport2.action";
+	    menuArray[menuArray.length]="1,表一表二,${appPath}report_viewReport1.action";
+		menuArray[menuArray.length]="1,表三,${appPath}report_viewReport2.action";
 	    </c:if>
 	
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">

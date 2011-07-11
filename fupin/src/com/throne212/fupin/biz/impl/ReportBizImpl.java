@@ -61,56 +61,67 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 
 			// 如果是月份的报表，则生成季度和年份的报表
 			if ("month".equals(r.getType())) {
-				// 生成季度的
-				int month = Integer.valueOf(r.getTime());
-				int time = month % 3 == 0 ? month / 3 : month / 3 + 1;
-				Report reportSeason = reportDao.getReport(reportType, org, cun, r.getYear(), "season", time + "");
-				if(reportSeason.getLock() == null || reportSeason.getLock() == 0){
-					int minMonth = time * 3 - 2;
-					int maxMonth = time * 3;
-					clearItems(reportSeason);
-					for (int m = minMonth; m <= maxMonth; m++) {
-						Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
-						addItems(reportSeason,mReport);
-						//特殊字段处理
-						if(maxMonth == m && "1".equals(reportType)){
-							reportSeason.setItem13(mReport.getItem13());
-							reportSeason.setItem14(mReport.getItem14());
-						}else{
-							reportSeason.setItem13("");
-							reportSeason.setItem14("");
-						}
-					}
-					clearItemsZero(reportSeason);
-					reportDao.saveOrUpdate(reportSeason);
-				}
-				
-				
-				// 生成年度的
-				Report reportYear = reportDao.getReport(reportType, org, cun, r.getYear(), "year", null);
-				if(reportYear.getLock() == null || reportYear.getLock() == 0){	
-					clearItems(reportYear);
-					for (int m = 1; m <= 12; m++) {
-						Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
-						addItems(reportYear,mReport);
-						//特殊字段处理
-						if(12 == m && "1".equals(reportType)){
-							reportYear.setItem13(mReport.getItem13());
-							reportYear.setItem14(mReport.getItem14());
-						}else{
-							reportYear.setItem13("");
-							reportYear.setItem14("");
-						}
-					}
-					clearItemsZero(reportYear);
-					reportDao.saveOrUpdate(reportYear);
-				}
-
+				generateSeasonAndYear(reportType,org,cun,r);
 			}
 
 			return report;
 		}
 		return null;
+	}
+	
+	private void generateSeasonAndYear(String reportType,Org org,Cun cun,Report r){
+		// 生成季度的
+		int month = Integer.valueOf(r.getTime());
+		int time = month % 3 == 0 ? month / 3 : month / 3 + 1;
+		Report reportSeason = reportDao.getReport(reportType, org, cun, r.getYear(), "season", time + "");
+		if(reportSeason.getLock() == null || reportSeason.getLock() == 0){
+			int minMonth = time * 3 - 2;
+			int maxMonth = time * 3;
+			clearItems(reportSeason);
+			for (int m = minMonth; m <= maxMonth; m++) {
+				Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
+				addItems(reportSeason,mReport);
+				//特殊字段处理
+				if(maxMonth == m && "1".equals(reportType)){
+					reportSeason.setItem13(mReport.getItem13());
+					reportSeason.setItem14(mReport.getItem14());
+					reportSeason.setItem31(mReport.getItem31());
+					fillReport(reportSeason);
+				}else if(maxMonth == m && "2".equals(reportType)){
+					reportSeason.setItem1(mReport.getItem1());
+				}else{
+					reportSeason.setItem13("");
+					reportSeason.setItem14("");
+				}
+			}
+			clearItemsZero(reportSeason);
+			reportDao.saveOrUpdate(reportSeason);
+		}
+		
+		
+		// 生成年度的
+		Report reportYear = reportDao.getReport(reportType, org, cun, r.getYear(), "year", null);
+		if(reportYear.getLock() == null || reportYear.getLock() == 0){	
+			clearItems(reportYear);
+			for (int m = 1; m <= 12; m++) {
+				Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
+				addItems(reportYear,mReport);
+				//特殊字段处理
+				if(12 == m && "1".equals(reportType)){
+					reportYear.setItem13(mReport.getItem13());
+					reportYear.setItem14(mReport.getItem14());
+					reportYear.setItem31(mReport.getItem31());
+					fillReport(reportYear);
+				}else if(12 == m && "2".equals(reportType)){
+					reportYear.setItem1(mReport.getItem1());
+				}else{
+					reportYear.setItem13("");
+					reportYear.setItem14("");
+				}
+			}
+			clearItemsZero(reportYear);
+			reportDao.saveOrUpdate(reportYear);
+		}
 	}
 
 	private void clearItems(Report report) {
@@ -160,6 +171,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		return null;
 	}
 
+	//显示最新的cun的数据
 	public void fillReport(Report r) {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Org) {
@@ -183,6 +195,9 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			r.setItem11(cun.getWeiHouse() == null ? "" : cun.getWeiHouse() + "");
 
 			r.setItem30(cun.getIncome() == null ? "" : cun.getIncome() + "");
+//			if("0".equals(r.getItem30())){
+//				r.setItem30("");
+//			}
 		}
 	}
 
@@ -220,14 +235,49 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			Workbook rw = Workbook.getWorkbook(new File(sourceFile));
 			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
 			if("1".equals(reportType)){
+				//重新更新一下季度和年度的数据
+				if("year".equals(report.getType()) || "season".equals(report.getType())){
+					generateSeasonAndYear("1",org,cun,reportDao.getReport("1", org, cun, year, "month", "6"));
+				}			
+				//日期类型
+				String str = year+"年";
+				if("season".equals(report.getType())){
+					str += time+"季";
+				}else if("month".equals(report.getType())){
+					str += time+"月";
+				}
+				WritableSheet sheet1 = workbook.getSheet(0);
+				WritableSheet sheet2 = workbook.getSheet(1);
+				sheet1.addCell(new Label(0, 2, str));
+				sheet2.addCell(new Label(0, 2, str));
 				fillReportRow1(7, workbook, org, cun, report,false);
-				if(!"year".equals(r.getType())){
-					fillReportRow1(8, workbook, org, cun, reportDao.getReport(reportType, org, cun, year, "year", null),true);
+				if(!"year".equals(report.getType())){
+					Report leijiReport = reportDao.getReport(reportType, org, cun, year, "year", null);
+					//特殊字段处理
+					if("season".equals(report.getType())){
+						leijiReport.setItem13(report.getItem13());
+						leijiReport.setItem14(report.getItem14());
+						leijiReport.setItem31(report.getItem31());
+					}		
+					//fillReportRow1(8, workbook, org, cun, leijiReport,true);
 				}
 			}else if("2".equals(reportType)){
-				fillReportRow2(7, workbook, org, cun, report,false);
-				if(!"year".equals(r.getType())){
-					fillReportRow2(8, workbook, org, cun, reportDao.getReport(reportType, org, cun, year, "year", null),true);
+				//重新更新一下季度和年度的数据
+				if("year".equals(report.getType()) || "season".equals(report.getType())){
+					generateSeasonAndYear("2",org,cun,reportDao.getReport("2", org, cun, year, "month", "6"));
+				}
+				//日期类型
+				String str = year+"年";
+				if("season".equals(report.getType())){
+					str += time+"季";
+				}else if("month".equals(report.getType())){
+					str += time+"月";
+				}
+				WritableSheet sheet1 = workbook.getSheet(0);
+				sheet1.addCell(new Label(0, 2, str));
+				fillReportRow2(6, workbook, org, cun, report,false);
+				if(!"year".equals(report.getType())){
+					//fillReportRow2(7, workbook, org, cun, reportDao.getReport(reportType, org, cun, year, "year", null),true);
 				}
 			}
 			//关闭
@@ -257,8 +307,12 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		}
 
 		// 装填sheet2
-		sheet2.addCell(new Label(0, row, org.getOrgName()));
-		sheet2.addCell(new Label(1, row, cun.getName()));
+		if(leiji){
+			sheet2.addCell(new Label(0, row, "累计"));
+		}else{
+			sheet2.addCell(new Label(0, row, org.getOrgName()));
+			sheet2.addCell(new Label(1, row, cun.getName()));
+		}
 		for (int i = 2; i <= 30; i++) {
 			sheet2.addCell(new Label(i, row, report.getItem(i + 28)));
 		}

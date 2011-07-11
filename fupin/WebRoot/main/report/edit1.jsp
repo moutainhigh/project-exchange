@@ -35,7 +35,7 @@
 				chooseType(type);
 			}			
 			//加锁，禁止修改
-			if(lock == '1' || lock == '2'){
+			if(lock == '1' || lock == '2' || type=='year' || type=='season'){
 				$('input[type="text"]').attr("readonly",true);
 			}	
 			//自动地区数据灰化
@@ -205,7 +205,7 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：报表维护&gt;&gt;工作统计表
+							您当前所处页面：报表维护&gt;&gt;表一表二
 						</td>
 						<td align="right">&nbsp;
 						</td>
@@ -240,12 +240,14 @@
 						</td>
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
-							<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
-							<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
-							<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
-							</c:if>
-							<c:if test="${not empty r.lock && r.lock==1}">
-							<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+							<c:if test="${empty r.type || r.type=='month'}">
+								<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
+								<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
+								<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
+								</c:if>
+								<c:if test="${not empty r.lock && r.lock==1}">
+								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+								</c:if>
 							</c:if>
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">
 						</td>
@@ -789,7 +791,13 @@
 									<td class="tables_contentcell" colspan="4" style="color:gray;text-align: left;padding-left:30px;">
 									说明：
 									<br/>
-									灰色输入框为系统自动提取数据
+									1."预计本年脱贫户数"、"预计本年脱贫人数"、"预计今年村级集体经济收入"、"规划投入资金" 栏，每月填写时可根据实际情况作修改，以当前月最新数据为准。
+									<br/>
+									2.月度报表其余栏目填写本月内产生数据。
+									<br/>
+									3.季度报表由月度报表自动累计生成。
+									<br/>
+									4.灰色输入框为系统从"贫困村资料维护"中自动提取数据
 									</td>
 								</tr>
 							</table>							

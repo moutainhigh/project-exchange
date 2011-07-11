@@ -68,6 +68,11 @@ public class User extends MyEntity implements Serializable {
 	public String getIsDiv(){
 		if(this instanceof AreaWorkOrg){
 			return ((AreaWorkOrg)this).getIsDiv();
+		}else if(this instanceof Org){
+			Org org = ((Org)this);
+			if(org.getArea()!=null && org.getArea().getName().contains("白云区")){
+				return "Y";
+			}
 		}
 		return null;
 	}

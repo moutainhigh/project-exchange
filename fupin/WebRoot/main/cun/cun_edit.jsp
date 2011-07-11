@@ -56,7 +56,14 @@
 				}
 				f['cun.poorFamilyNum'].value = val;
 			}
+			$(function(){
+				$('input[type="text"]').css('width','70%');
+			});
 		</script>
+		<style>
+		textarea{width:99%;height:80%;}
+		
+		</style>
 	</head>
 	<body>
 		<c:set var="c" value="${cun}" scope="page"></c:set>
@@ -65,6 +72,8 @@
 			<c:if test="${not empty cun.org}"><input type="hidden" value="${cun.org.id}" name="cun.org.id" id=""></c:if>
 			<input type="hidden" value="${cun.zhen.id}" name="cun.zhen.id" id="">
 			<input type="hidden" value="${cun.name}" name="cun.name" id="">
+			
+<c:if test="${userObj.isDiv!='Y'}">
 			<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 	<tbody><tr>
 		<td height="30" align="right" class="tables_leftcell">所属镇</td>
@@ -196,6 +205,63 @@
 		</td>
 	</tr>
 </tbody></table>
+</c:if>
+
+<c:if test="${userObj.isDiv=='Y'}">
+<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
+	<tbody>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">村</td>
+		<td class="tables_contentcell">&nbsp;${cun.zhen.area.name}${cun.zhen.name}${cun.name}</td>
+		<td align="right" class="tables_leftcell">村户籍人口数</td>
+		<td class="tables_contentcell"><input type="text"/></td>
+		<td align="right" class="tables_leftcell">户数</td>
+		<td class="tables_contentcell"><input type="text"/></td>
+		<td align="right" class="tables_leftcell">耕地面积</td>
+		<td class="tables_contentcell"><input type="text"/></td>
+		<td align="right" class="tables_leftcell">山地面积</td>
+		<td class="tables_contentcell"><input type="text"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">2010年村集体收入</td>
+		<td class="tables_contentcell" colspan="2"><input type="text"/></td>
+		<td align="right" class="tables_leftcell" colspan="2">其中上级转移至村的收入</td>
+		<td class="tables_contentcell" colspan="2"><input type="text"/></td>
+		<td align="right" class="tables_leftcell">村集体土地</td>
+		<td class="tables_contentcell" colspan="3"><input type="text"/></td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">村集体现有基本基础设施与公共服务设施建设项目</td>
+		<td class="tables_contentcell" colspan="9">&nbsp;
+		<textarea rows="" cols=""></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">村现有资源</td>
+		<td class="tables_contentcell" colspan="9">&nbsp;
+		<textarea rows="" cols=""></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">村集体经济发展计划</td>
+		<td class="tables_contentcell" colspan="9">&nbsp;
+		<textarea rows="" cols=""></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">村两委干部基本情况</td>
+		<td class="tables_contentcell" colspan="9">&nbsp;
+		<textarea rows="" cols=""></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" class="tables_contentcell" colspan="10">
+			<input type="submit" class="button" value="确定" name="确定">
+			<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
+		</td>
+	</tr>
+</tbody></table>
+</c:if>
 		</form>
 	</body>
 </html>

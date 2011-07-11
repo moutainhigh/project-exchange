@@ -36,7 +36,7 @@ public class CommonListener implements ServletContextListener {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					//sme = new SmsService().getSmsServiceHttpPort();
+					sme = new SmsService().getSmsServiceHttpPort();
 				} catch (RuntimeException e1) {
 					logger.warn("短信服务连接失败", e1);
 				}

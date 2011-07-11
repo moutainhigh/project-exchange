@@ -59,7 +59,7 @@ public class ContactGroupDaoImpl extends BaseDaoImpl implements ContactGroupDao 
 		// if(list !=null && list.size()>0){
 		String blank = "";
 		for (int i = 0; i < level; i++)
-			blank += "--";
+			blank += "&nbsp;&nbsp;";
 
 		for (ContactGroup g : list) {
 			g.setShowTreeName(blank + g.getGroupName());

@@ -24,10 +24,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			});
 		</script>
+		<style>
+		textarea{width:99%;width:80%;}
+		</style>
 </head><body>
 
 <form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}cun_bf_saveOrUpdateChengxiaoCun.action" name="dataForm">
 			<input type="hidden" value="${chengxiao.id}" name="chengxiao.id" id="">
+			<c:if test="${userObj.isDiv!='Y'}">
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr>
 	<td height="30" width="15%" align="right" class="tables_leftcell">贫困村名称</td>
@@ -80,5 +84,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</td>
 	</tr>  
 </tbody></table>
+</c:if>
+
+<c:if test="${userObj.isDiv=='Y'}">
+<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+	<tbody>
+	<tr>
+	    <td class="tables_contentcell">
+	    年度:
+	    <select style="width: 135px;" name="chengxiao.year" id="year">
+			<%
+			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
+			for(int i=year;i<year+2;i++){
+			%>
+			<option value="<%=i%>"><%=i%></option>
+			<%	
+			}
+			%>
+		<option value="2">2年</option>
+		</select>
+	    </td>
+	</tr>
+	<tr>
+	    <td class="tables_contentcell">
+	    帮扶内容<br/>
+	    <textarea rows="" cols=""></textarea>
+	    </td>
+	</tr>
+	<tr>
+	    <td class="tables_contentcell">
+	   帮扶成效<br/>
+	    <textarea rows="" cols=""></textarea>
+	    </td>
+	</tr>
+	<tr>
+	<td height="30" align="center" class="tables_contentcell">
+	<input type="submit" value="确认" class="button" name="确认">
+	<input type="button" onclick="self.close();" class="button" value="取消" name="取消">
+	</td>
+	</tr>  
+</tbody></table>
+</c:if>
+
 </form>
 </body></html>

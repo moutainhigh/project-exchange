@@ -29,6 +29,10 @@ public class SMSAction extends BaseAction {
 			this.setMsg("通知发送失败，请检查数据是否录入完整");
 			return "sms_edit";
 		}
+		if (sms.getContent()!=null && sms.getContent().length()>120){
+			this.setMsg("短信内容过长，请注意不要超过120个汉字");
+			return "sms_edit";
+		}
 		StringBuffer sb = new StringBuffer();
 		if (sms != null && sms.getTel() != null) {// 发送短信
 			String recieverString = sms.getTel();
@@ -50,25 +54,31 @@ public class SMSAction extends BaseAction {
 					if(rst == 0){
 						sb.append("("+tel+")发送成功");
 						sb.append("\n");
+						this.setSucc("Y");
 						logger.info("成功发送短信给：" + tel);
 					}else if(rst == -108){
 						sb.append("发送失败，短息服务连接失败，请联系管理员");
 						logger.warn("发送短信失败,短息服务连接失败");
+						this.setSucc(null);
 						break;
 					}else{
 						sb.append("("+tel+")发送失败");
 						sb.append("\n");
+						this.setSucc(null);
 					}
 				} catch (Exception e) {
 					logger.warn("发送短信失败", e);
 					sb.append("发送失败，短息服务连接失败，请联系管理员");
+					this.setSucc(null);
 					break;
 				}				
 			}
 		} else{
 			sb.append("发送失败，参数缺失");
 		}
-		this.setSucc("N");
+		if(Util.isEmpty(this.getSucc())){
+			this.setSucc("N");
+		}
 		this.setMsg(sb.toString());
 		return "sms_edit";
 	}

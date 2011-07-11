@@ -66,9 +66,11 @@
 						<td width="" class="tables_headercell">
 							单位名称
 						</td>
+						<c:if test="${userObj.isDiv!='Y'}">
 						<td width="" class="tables_headercell">
 							直属区（县）
 						</td>
+						</c:if>
 						<td width="" class="tables_headercell">
 							说明
 						</td>
@@ -87,9 +89,11 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.orgName}
 							</td>
+							<c:if test="${userObj.isDiv!='Y'}">
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.area.name}
 							</td>
+							</c:if>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.remark}
 							</td>

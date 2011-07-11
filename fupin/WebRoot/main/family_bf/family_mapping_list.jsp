@@ -48,6 +48,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<c:if test="${userObj.isDiv!='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
@@ -109,6 +110,125 @@
 					</tr>
 				</tbody>
 			</table>
+			</c:if>
+			<c:if test="${userObj.isDiv=='Y'}">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+				<tbody>
+					<tr align="center">
+						<td height="28" width="" class="tables_headercell" rowspan="3">
+							序号
+						</td>
+						<td width="" class="tables_headercell" colspan="6">
+							结对帮扶对象
+						</td>
+						<td width="" class="tables_headercell" colspan="6">
+							结对帮扶单位帮扶干部及联系人
+						</td>
+						<td width="" class="tables_headercell" rowspan="3">
+							操作
+						</td>
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell" colspan="2">
+							对接村
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							结对帮扶干部
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							分管领导（联系人）
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							劳动力人数
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							联系电话（手机）
+						</td>
+						<td width="" class="tables_headercell" colspan="4">
+							结对帮扶干部
+						</td>
+						<td width="" class="tables_headercell" colspan="2">
+							分管领导（联系人）
+						</td>
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell">
+							所属镇
+						</td>
+						<td width="" class="tables_headercell">
+							村名
+						</td>
+						<td width="" class="tables_headercell">
+							工作单位
+						</td>
+						<td width="" class="tables_headercell">
+							姓名
+						</td>
+						<td width="" class="tables_headercell">
+							联系电话（手机）
+						</td>
+						<td width="" class="tables_headercell">
+							结对起始时间
+						</td>
+						<td width="" class="tables_headercell">
+							姓名
+						</td>
+						<td width="" class="tables_headercell">
+							分管领导（联系人）
+						</td>
+					</tr>
+					<tr>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="right" class="tables_contentcell" colspan="14">
+							<jsp:include page="../../pager.jsp"></jsp:include>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</c:if>
 		</form>
 	</body>
 </html>

@@ -23,7 +23,7 @@ import javax.xml.ws.WebServiceClient;
  * </p>
  * 
  */
-@WebServiceClient(name = "smsService", targetNamespace = "www.kwhope.com", wsdlLocation = "http://192.168.1.91:7003/kwoa/gzagriservices/smsService?wsdl")
+@WebServiceClient(name = "smsService", targetNamespace = "www.kwhope.com", wsdlLocation = "http://192.168.1.91:80/kwoa/gzagriservices/smsService?wsdl")
 public class SmsService extends Service {
 
 	private final static URL SMSSERVICE_WSDL_LOCATION;
@@ -34,9 +34,9 @@ public class SmsService extends Service {
 		try {
 			URL baseUrl;
 			baseUrl = com.throne212.fupin.sms.SmsService.class.getResource(".");
-			url = new URL(baseUrl, "http://192.168.1.91:7003/kwoa/gzagriservices/smsService?wsdl");
+			url = new URL(baseUrl, "http://192.168.1.91:80/kwoa/gzagriservices/smsService?wsdl");
 		} catch (MalformedURLException e) {
-			logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.1.91:7003/kwoa/gzagriservices/smsService?wsdl', retrying as a local file");
+			logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.1.91:80/kwoa/gzagriservices/smsService?wsdl', retrying as a local file");
 			logger.warning(e.getMessage());
 		}
 		SMSSERVICE_WSDL_LOCATION = url;

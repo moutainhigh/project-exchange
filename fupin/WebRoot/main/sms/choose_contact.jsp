@@ -10,7 +10,7 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 		//所属的通讯录
 		if(g.getContactList()!=null && g.getContactList().size()>0){
 			for(Contact c : g.getContactList()){
-				sb.append("<option value=\"c_"+c.getId()+"\">&nbsp;&nbsp;"+c.getContactName()+"("+c.getTelNo()+")"+"</option>");
+				sb.append("<option value=\"c_"+c.getId()+"\">&nbsp;&nbsp;&nbsp;&nbsp;"+c.getContactName()+"("+c.getTelNo()+")"+"</option>");
 			}
 		}
 	}
@@ -28,8 +28,6 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
-			
-			
 			$(function(){
 				/*$.getJSON("${appPath}ajax/getAllGroupAndContactOfUser?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){
@@ -38,6 +36,9 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 						$('#groupOrContactId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['showTreeName']+'</option>');
 					}
 				});*/
+				$('#groupOrContactIds option').dblclick(function(){
+					addSelect();
+				});
 			});
 			
 			function addSelect(){

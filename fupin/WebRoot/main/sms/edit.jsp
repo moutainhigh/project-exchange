@@ -65,8 +65,9 @@
 		内容
 		</td>
 		<td class="tables_contentcell">
+		<font color="#cc0033">*(短信内容不可以超过120个汉字)</font>
+		<br/>
 		<textarea id="content" name="sms.content" rows="6" cols="50" msg="内容不能为空！" datatype="Require">${sms.content }</textarea>
-		<font size="4" color="#cc0033">*</font>
 		</td>
 	</tr>
 

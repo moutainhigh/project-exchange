@@ -35,7 +35,7 @@
 				chooseType(type);
 			}		
 			//加锁，禁止修改
-			if(lock == '1' || lock == '2'){
+			if(lock == '1' || lock == '2' || type=='year' || type=='season'){
 				$('input[type="text"]').attr("readonly",true);
 			}
 		});
@@ -47,7 +47,7 @@
 				var str = '';
 				for(var i=1;i<=maxSeason;i++){
 					if(($('#year').val()==2011 || year == '2011') && i==1){
-						break;
+						continue;
 					}else{
 						str += '<option value="'+i+'">第'+i+'季度</option>';
 					}
@@ -129,7 +129,7 @@
 		}
 		function excel(){
 			var f = document.forms[0];
-				f.action = '${appPath}report_excelReport1.action';
+				f.action = '${appPath}report_excelReport2.action';
 				f.submit();
 		}
 		</script>
@@ -186,7 +186,7 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：报表维护&gt;&gt;工作落实情况统计表
+							您当前所处页面：报表维护&gt;&gt;表三
 						</td>
 						<td align="right">&nbsp;
 						</td>
@@ -221,12 +221,14 @@
 						</td>
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
-							<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
-							<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
-							<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
-							</c:if>
-							<c:if test="${not empty r.lock && r.lock==1}">
-							<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+							<c:if test="${empty r.type || r.type=='month'}">
+								<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
+								<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
+								<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
+								</c:if>
+								<c:if test="${not empty r.lock && r.lock==1}">
+								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+								</c:if>
 							</c:if>
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">
 						</td>

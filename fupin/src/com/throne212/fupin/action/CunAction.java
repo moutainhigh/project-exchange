@@ -1,5 +1,7 @@
 package com.throne212.fupin.action;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
@@ -35,6 +37,14 @@ public class CunAction extends BaseAction {
 	}
 	
 	public String saveCun() {
+		//村集体收入,如果填0，保存提示成功但不显示
+		if(cun != null && cun.getIncome()==null){
+			String income = ServletActionContext.getRequest().getParameter("cun.income");
+			if("0".equals(income)){
+				cun.setIncome(0.0);
+			}
+		}
+			
 		orgBiz.saveOrUpdateEntity(cun);
 		this.setSucc("Y");
 		this.setMsg("贫困村资料保存成功");

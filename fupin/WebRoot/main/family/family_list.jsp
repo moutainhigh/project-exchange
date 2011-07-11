@@ -37,12 +37,14 @@
 		$(function(){
 			$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
 				if(json && json['list'] && json['list'].length){
-					$('#shiId').html('<option value=""></option>');
+					$('#shiId').html('');
 					for(var i=0;i<json['list'].length;i++)
 						$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+					selectShi($('#shiId').val());
 				}
 			});
 		});
+		var paramAreaId = '${param.areaId}';
 		function selectShi(val){
 			if(val){
 				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
@@ -50,10 +52,17 @@
 						$('#areaId').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramAreaId!=''){
+							setTimeout(function(){
+								$('#areaId').val(paramAreaId);
+								selectArea(paramAreaId);
+							},1);
+						}
 					}
 				});
 			}
 		}
+		var paramZhenId = '${param.zhenId}';
 		function selectArea(val){
 			if(val){
 				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
@@ -61,10 +70,17 @@
 						$('#zhenId').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(paramZhenId);
+								selectZhen(paramZhenId);
+							},1);
+						}
 					}
 				});
 			}
 		}
+		var paramCunId = '${param.cunId}';
 		function selectZhen(val){
 			if(val){
 				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
@@ -72,6 +88,11 @@
 						$('#cunId2').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramCunId!=''){
+							setTimeout(function(){
+								$('#cunId2').val(paramCunId);
+							},1);
+						}
 					}
 				});
 			}
@@ -124,7 +145,7 @@
 			                   <select id="shiId" name="shiId" onchange="selectShi(this.value);">
 								<option value="">-----------</option>
 							 </select>
-						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;县：</span>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区/县：</span>
 						<select id="areaId" name="areaId" onchange="selectArea(this.value);">
 									<option value="">----------</option>
 								  </select>

@@ -14,8 +14,10 @@
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			var areaId = '${org.area.id}';
 			var isDiv = '${userObj.isDiv}';
+			<c:if test="${userObj.isDiv=='Y'}">
 			if(isDiv == 'Y')
 				areaId = '${userObj.area.id}';
+			</c:if>
 			$(function(){
 				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {}, function(json){
 					if(json && json['list'] && json['list'].length){

@@ -48,6 +48,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<c:if test="${userObj.isDiv!='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
@@ -97,6 +98,104 @@
 					</tr>
 				</tbody>
 			</table>
+			</c:if>
+			<c:if test="${userObj.isDiv=='Y'}">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+				<tbody>
+					<tr align="center">
+						<td height="28" width="" class="tables_headercell" rowspan="3">
+							序号
+						</td>
+						<td width="" class="tables_headercell" colspan="4" rowspan="2">
+							对口帮扶对象
+						</td>
+						<td width="" class="tables_headercell" colspan="6">
+							帮扶责任单位驻村干部及联系人
+						</td>
+					</tr>
+					<tr align="center">
+						<td height="28" width="" class="tables_headercell" colspan="4">
+							驻村干部
+						</td>
+						<td width="" class="tables_headercell" colspan="2">
+							分管领导（联系人）
+						</td>
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell">
+							驻所属镇
+						</td>
+						<td class="tables_headercell">
+							村名
+						</td>
+						<td class="tables_headercell">
+							村负责人
+						</td>
+						<td class="tables_headercell">
+							联系电话（手机）
+						</td>
+						<td class="tables_headercell">
+							工作单位
+						</td>
+						<td class="tables_headercell">
+							姓名
+						</td>
+						<td class="tables_headercell">
+							联系电话（手机）
+						</td>
+						<td class="tables_headercell">
+							驻村起始时间
+						</td>
+						<td class="tables_headercell">
+							姓名
+						</td>
+						<td class="tables_headercell">
+							联系电话（手机）
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							1
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="right" class="tables_contentcell" colspan="15">
+							<jsp:include page="../../pager.jsp"></jsp:include>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</c:if>
 		</form>
 	</body>
 </html>

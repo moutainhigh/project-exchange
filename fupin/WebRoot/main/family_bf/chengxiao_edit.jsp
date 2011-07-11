@@ -71,7 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
  
 </script>
-
+<style>
+		textarea{width:99%;width:80%;}
+		</style>
 </head><body onload="">
   <form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}family_bf_saveOrUpdateChengxiaoFamily.action" name="dataForm">
   <!--<input type="hidden" id="_gbids" name="_gbids" value=""/>-->
@@ -82,6 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
   <input type="hidden" value="0" name="dwid" id="dwid">  
 
+<c:if test="${userObj.isDiv!='Y'}">
   <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody><tr>
     <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
@@ -134,5 +137,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 </td>
   </tr>  
 </tbody></table>
+</c:if>
+
+
+<c:if test="${userObj.isDiv=='Y'}">
+<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
+  <tbody>
+	<tr>
+		<td height="30" align="right" class="tables_leftcell">帮扶年度</td>
+		<td class="tables_contentcell" colspan="1"><select name="cuoshi.year">
+			<%
+			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
+			for(int i=year;i<year+2;i++){
+			%>
+			<option value="<%=i%>"><%=i%></option>
+			<%	
+			}
+			%>
+		</select> <font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
+  </tr>
+  <tr>
+		<td class="tables_contentcell" colspan="4" align="center">
+		帮扶情况
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第一季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols=""></textarea>
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第二季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols=""></textarea>
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第三季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols=""></textarea>
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第四季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols=""></textarea>
+		</td>
+  </tr> 
+  <tr>
+		<td class="tables_contentcell" colspan="4" align="center">
+		帮扶成效
+		</td>
+  </tr>
+  <tr>
+		<td class="tables_contentcell" colspan="2">
+		通过我单位干部对该贫困户的帮扶，现阶段有以下成效：<br/>
+		<textarea rows="" cols=""></textarea>
+		</td>
+  </tr>
+  <tr>
+     <td align="center" class="tables_contentcell" colspan="4">
+     <input type="submit" value="确认" class="button" name="确认">
+	 <input type="button" onclick="self.close();" class="button" value="取消" name="取消">
+	 </td>
+  </tr>  
+</tbody></table>
+</c:if>
+
 </form>
 <div id="livemargins_control" style="position: absolute; display: none; z-index: 9999;"><img height="5" width="77" style="position: absolute; left: -77px; top: -5px;" src="chrome://livemargins/skin/monitor-background-horizontal.png">	<img style="position: absolute; left: 0pt; top: -5px;" src="chrome://livemargins/skin/monitor-background-vertical.png">	<img style="position: absolute; left: 1px; top: 0pt; opacity: 0.5; cursor: pointer;" onmouseout="this.style.opacity=0.5" onmouseover="this.style.opacity=1" src="chrome://livemargins/skin/monitor-play-button.png" id="monitor-play-button"></div></body></html>
