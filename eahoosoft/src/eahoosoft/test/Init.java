@@ -566,7 +566,7 @@ public class Init {
 		p27.setImage("wma-mp3-box.jpg");
 		p27.setName("Eahoosoft WMA MP3 Converter");
 		p27.setPrice(14.95);
-		p27.setScreenShot("wma-mp3.jpg");
+		p27.setScreenShot("wma-mp3-shot.jpg");
 		p27.setShortDesc("Converts almost all popular audio formats (WMA, WAV, AAC, FLAC, OGG, APE, etc.) to WMA MP3 audio files, as well as extracts WMA MP3 music from just about any video formats. ");
 		p27.setSize("8.06Mb");
 		p27.setShortName("WMA MP3 Converter");

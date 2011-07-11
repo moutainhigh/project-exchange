@@ -65,6 +65,10 @@ public class Index {
 			Guide g = new Guide();
 			g.setLinkName(link.text());
 			g.setFileName(link.attr("href"));
+			g.setFileName(g.getFileName().replaceAll("eahoosoft-DVD-Ripper", "eahoosoft-dvd-ripper"));
+			g.setFileName(g.getFileName().replaceAll("dvd-to-iPad-converter", "dvd-to-ipad-converter"));
+			g.setFileName(g.getFileName().replaceAll("dvd-to-iPhone-converter", "dvd-to-iphone-converter"));
+			g.setFileName(g.getFileName().replaceAll("dvd-to-iPod-converter", "dvd-to-ipod-converter"));
 			ugList.add(g);
 		}
 		map.put("ugList", ugList);
