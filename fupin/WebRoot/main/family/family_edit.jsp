@@ -17,6 +17,7 @@
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			<c:if test="${empty f.id}">
+			var isDiv = '${userObj.isDiv}';
 			$(function(){
 				//初始化日期输入数据
 				//$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
@@ -25,6 +26,13 @@
 						$('#areaId').html('<option value=""></option>');
 						for(var i=0;i<json['list'].length;i++)
 							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(isDiv == 'Y'){
+							setTimeout(function(){
+								$('#areaId').val(json['list'][0]['id']);
+								$('#areaId').attr('disabled',true);
+								selectArea(json['list'][0]['id']);
+							},1);
+						}
 					}
 				});
 			});

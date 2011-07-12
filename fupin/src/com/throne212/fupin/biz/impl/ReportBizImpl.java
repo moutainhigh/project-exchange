@@ -74,54 +74,50 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		int month = Integer.valueOf(r.getTime());
 		int time = month % 3 == 0 ? month / 3 : month / 3 + 1;
 		Report reportSeason = reportDao.getReport(reportType, org, cun, r.getYear(), "season", time + "");
-		if(reportSeason.getLock() == null || reportSeason.getLock() == 0){
-			int minMonth = time * 3 - 2;
-			int maxMonth = time * 3;
-			clearItems(reportSeason);
-			for (int m = minMonth; m <= maxMonth; m++) {
-				Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
-				addItems(reportSeason,mReport);
-				//特殊字段处理
-				if(maxMonth == m && "1".equals(reportType)){
-					reportSeason.setItem13(mReport.getItem13());
-					reportSeason.setItem14(mReport.getItem14());
-					reportSeason.setItem31(mReport.getItem31());
-					fillReport(reportSeason);
-				}else if(maxMonth == m && "2".equals(reportType)){
-					reportSeason.setItem1(mReport.getItem1());
-				}else{
-					reportSeason.setItem13("");
-					reportSeason.setItem14("");
-				}
+		int minMonth = time * 3 - 2;
+		int maxMonth = time * 3;
+		clearItems(reportSeason);
+		for (int m = minMonth; m <= maxMonth; m++) {
+			Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
+			addItems(reportSeason,mReport);
+			//特殊字段处理
+			if(maxMonth == m && "1".equals(reportType)){
+				reportSeason.setItem13(mReport.getItem13());
+				reportSeason.setItem14(mReport.getItem14());
+				reportSeason.setItem31(mReport.getItem31());
+				fillReport(reportSeason);
+			}else if(maxMonth == m && "2".equals(reportType)){
+				reportSeason.setItem1(mReport.getItem1());
+			}else{
+				reportSeason.setItem13("");
+				reportSeason.setItem14("");
 			}
-			clearItemsZero(reportSeason);
-			reportDao.saveOrUpdate(reportSeason);
 		}
+		clearItemsZero(reportSeason);
+		reportDao.saveOrUpdate(reportSeason);
 		
 		
 		// 生成年度的
 		Report reportYear = reportDao.getReport(reportType, org, cun, r.getYear(), "year", null);
-		if(reportYear.getLock() == null || reportYear.getLock() == 0){	
-			clearItems(reportYear);
-			for (int m = 1; m <= 12; m++) {
-				Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
-				addItems(reportYear,mReport);
-				//特殊字段处理
-				if(12 == m && "1".equals(reportType)){
-					reportYear.setItem13(mReport.getItem13());
-					reportYear.setItem14(mReport.getItem14());
-					reportYear.setItem31(mReport.getItem31());
-					fillReport(reportYear);
-				}else if(12 == m && "2".equals(reportType)){
-					reportYear.setItem1(mReport.getItem1());
-				}else{
-					reportYear.setItem13("");
-					reportYear.setItem14("");
-				}
+		clearItems(reportYear);
+		for (int m = 1; m <= 12; m++) {
+			Report mReport = reportDao.getReport(reportType, org, cun, r.getYear(), "month", m + "");
+			addItems(reportYear,mReport);
+			//特殊字段处理
+			if(12 == m && "1".equals(reportType)){
+				reportYear.setItem13(mReport.getItem13());
+				reportYear.setItem14(mReport.getItem14());
+				reportYear.setItem31(mReport.getItem31());
+				fillReport(reportYear);
+			}else if(12 == m && "2".equals(reportType)){
+				reportYear.setItem1(mReport.getItem1());
+			}else{
+				reportYear.setItem13("");
+				reportYear.setItem14("");
 			}
-			clearItemsZero(reportYear);
-			reportDao.saveOrUpdate(reportYear);
 		}
+		clearItemsZero(reportYear);
+		reportDao.saveOrUpdate(reportYear);
 	}
 
 	private void clearItems(Report report) {

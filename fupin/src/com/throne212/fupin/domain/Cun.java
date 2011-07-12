@@ -49,6 +49,21 @@ public class Cun extends Diqu {
 	
 	//完整名
 	private String absName;
+	//是否是206
+	public boolean getIs206() {
+		if(this!=null && (
+				"温泉镇".equals(this.getZhen().getName()) ||
+				"吕田镇".equals(this.getZhen().getName()) ||
+				"良口镇".equals(this.getZhen().getName()) ||
+				"鳌头镇".equals(this.getZhen().getName()) ||
+				"小楼镇".equals(this.getZhen().getName()) ||
+				"正果镇".equals(this.getZhen().getName()) ||
+				"派潭镇".equals(this.getZhen().getName()) ||
+				"梯面镇".equals(this.getZhen().getName()))){
+			return true;
+		}
+		return false;
+	}
 	
 	public void setAbsName(String absName) {
 		this.absName = absName;
@@ -364,5 +379,6 @@ public class Cun extends Diqu {
 	public void setTeam(WorkTeam team) {
 		this.team = team;
 	}
+
 
 }

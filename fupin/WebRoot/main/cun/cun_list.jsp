@@ -91,7 +91,9 @@
 								${f.zhen.area.name}${f.zhen.name}${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								<c:if test="${not f.is206}">
 								<a href="#" onclick="winOpen('${appPath}cun_editCun.action?cun.id=${f.id}',750,650);">资料完善</a>
+								</c:if>
 								<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${f.id}',750,650);">查看</a>
 							</td>
 						</tr>

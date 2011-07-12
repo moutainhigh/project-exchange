@@ -153,12 +153,16 @@
 							联系电话（手机）
 						</td>
 					</tr>
+					<c:forEach items="${pageBean.resultList}" var="f">
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
-							1
+							${f.id}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.zhen.name}
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp; ${f.name}
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp; 
@@ -167,16 +171,13 @@
 							&nbsp; 
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.org.orgName }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.org.contactName }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp; 
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.org.contactMobile }
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp; 
@@ -188,6 +189,7 @@
 							&nbsp; 
 						</td>
 					</tr>
+					</c:forEach>
 					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="15">
 							<jsp:include page="../../pager.jsp"></jsp:include>

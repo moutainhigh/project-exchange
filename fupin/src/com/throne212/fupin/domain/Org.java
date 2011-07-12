@@ -21,9 +21,14 @@ public class Org extends User {
 	private String contactFax;//传真号码
 	private String contactAddr;//通讯地址
 	private String contactPost;//邮政编码
-	private String contactEmail;//电子邮箱 	
+	private String contactEmail;//电子邮箱 
 	
 	private Area area;//直属区县
+	
+	//白云专属字段
+	private String fromDate;//驻村起始时间
+	private String leaderName;//分管领导
+	private String leaderMobile;//分管领导手机
 	
 	private String pinyin;
 	
@@ -128,6 +133,24 @@ public class Org extends User {
 	}
 	public void setArea(Area area) {
 		this.area = area;
+	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getLeaderName() {
+		return leaderName;
+	}
+	public void setLeaderName(String leaderName) {
+		this.leaderName = leaderName;
+	}
+	public String getLeaderMobile() {
+		return leaderMobile;
+	}
+	public void setLeaderMobile(String leaderMobile) {
+		this.leaderMobile = leaderMobile;
 	}
 
 }
