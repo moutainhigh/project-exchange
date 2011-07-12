@@ -26,7 +26,7 @@
 	            <a class="buyNowSmall" href="${p.buyUrl}" target="_blank"><span>Buy Now<br />
 	            Price: $#{p.price;m2M2}</span></a> <a class="freeTrialSmall" href="download/${p.downUrl}"><span> Free Trial<br />
 	            Size: ${p.size}</span></a> </div>
-	          <div class="productsImg"><a href="${p.fileName}/${p.fileName}.html"><img alt="Video Converter" src="images/${p.image}"></a>
+	          <div class="productsImg"><a href="${p.fileName}/${p.fileName}.html"><img alt="${p.name}" src="images/${p.image}"></a>
 	            <div style="margin-left:19px; margin-top:10px;"></div>
 	          </div>
 	        </div>

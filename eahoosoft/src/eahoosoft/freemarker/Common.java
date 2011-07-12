@@ -60,7 +60,11 @@ public class Common {
 		content = content.replaceAll("’", "'");
 		content = content.replaceAll("：", ":");
 		content = content.replaceAll("<br>", "<br/>");
-		content = content.replaceAll("eahoosoft-DVD-Ripper.html", "eahoosoft-dvd-ripper.html");
+		content = content.replaceAll("eahoosoft-DVD-Ripper", "eahoosoft-dvd-ripper");
+		content = content.replaceAll("dvd-to-iPad-converter", "dvd-to-ipad-converter");
+		content = content.replaceAll("dvd-to-iPhone-converter", "dvd-to-iphone-converter");
+		content = content.replaceAll("dvd-to-iPod-converter", "dvd-to-ipod-converter");
+		
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-14", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-10&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-35", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-11&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-34", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-12&q=1&v=0&d=0");

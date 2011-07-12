@@ -594,7 +594,7 @@ public class Init {
 		s.save(p28);
 		
 		Product p29 = new Product();
-		p29.setBuyUrl("https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-3&q=1&v=0&d=00");
+		p29.setBuyUrl("https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-7&q=1&v=0&d=00");
 		p29.setCate(c2);
 		p29.setDescription("<p align=\"left\">Eahoosoft DVD to iPad Converter is specifically designed for Apple iPad users to watch DVD movies on your iPad's Multi-Touch screen. With this DVD to iPad converter, you can rip DVD to <b>iPad H.264 (SD and HD), MP4, MOV,and MPEG-4 videos in different resolutions (1280*720, 960*540,720*480, 640*480)</b>. All conversions are optimized to offer you the best possible DVD movie experience on your iPad.<br>Apart from converting DVD to iPad videos, Eahoosoft DVD to iPad Converter allows you to rip DVD audio to iPad MP3, WMA audios; customize conversion parameters, split files, convert a video segment, preview movies, select audio and subtitles, capture video images, and specify the output file size.<br>Download Eahoosoft DVD to iPad Converter for FREE now and experience DVD movies in high-resolution on your iPad.<br>1.Rip and convert DVD to iPad video formats (MPEG-4, MP4, H.264,MOV) <br>2.Rip and convert DVD to iPad audio formats (MP3, WMA) </p>");
 		p29.setDownUrl("DVDtoiPad.exe");
