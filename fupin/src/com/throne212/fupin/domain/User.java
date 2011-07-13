@@ -87,6 +87,26 @@ public class User extends MyEntity implements Serializable {
 		}
 		return loginName;
 	}
+	
+	public boolean getIs206() {
+		if(this!=null && this instanceof Org){
+			Org o = (Org) this;
+			if(o.getCun()!=null){
+				if("温泉镇".equals(o.getCun().getZhen().getName()) ||
+						"吕田镇".equals(o.getCun().getZhen().getName()) ||
+						"良口镇".equals(o.getCun().getZhen().getName()) ||
+						"鳌头镇".equals(o.getCun().getZhen().getName()) ||
+						"小楼镇".equals(o.getCun().getZhen().getName()) ||
+						"正果镇".equals(o.getCun().getZhen().getName()) ||
+						"派潭镇".equals(o.getCun().getZhen().getName()) ||
+						"流溪河林场".equals(o.getCun().getZhen().getName()) ||
+						"梯面镇".equals(o.getCun().getZhen().getName())){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	public String getLoginName() {
 		return loginName;

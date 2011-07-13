@@ -44,7 +44,8 @@ z.name = '鳌头镇' or
 z.name = '小楼镇' or
 z.name = '正果镇' or
 z.name = '派潭镇' or
-z.name = '梯面镇' 
+z.name = '梯面镇' or
+z.name = '流溪河林场'
 )
 group by q.name,z.name,c.name
 
@@ -84,7 +85,8 @@ z.name != '鳌头镇' and
 z.name != '小楼镇' and
 z.name != '正果镇' and
 z.name != '派潭镇' and
-z.name != '梯面镇' 
+z.name != '梯面镇' and
+z.name != '流溪河林场'
 )
 group by q.name,z.name,c.name
 

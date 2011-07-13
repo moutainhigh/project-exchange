@@ -59,6 +59,7 @@ public class Cun extends Diqu {
 				"小楼镇".equals(this.getZhen().getName()) ||
 				"正果镇".equals(this.getZhen().getName()) ||
 				"派潭镇".equals(this.getZhen().getName()) ||
+				"流溪河林场".equals(this.getZhen().getName()) ||
 				"梯面镇".equals(this.getZhen().getName()))){
 			return true;
 		}
