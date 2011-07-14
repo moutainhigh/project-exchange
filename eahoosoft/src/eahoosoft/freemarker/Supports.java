@@ -29,8 +29,10 @@ public class Supports {
 		
 		Elements links = doc.select(".divl2 a");
 		
+		//System.out.println("links size:::::::::::::"+links.size());
+		
 		for(Element e : links){
-			if(e.attr("href").startsWith("support")){
+			if(e.attr("href").startsWith("support/")){
 				url = new URL(All.SITE_PRE+e.attr("href"));
 				doc = Jsoup.parse(url,10000);
 				String content = doc.select(".divl2").get(0).html();
@@ -53,6 +55,7 @@ public class Supports {
 				PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 				template.process(map, pw);
 				pw.close();
+				//System.out.println("ttttttttttttttttt:"+e.html());
 			}
 		}
 		

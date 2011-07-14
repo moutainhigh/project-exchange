@@ -60,6 +60,7 @@ public class Common {
 		content = content.replaceAll("’", "'");
 		content = content.replaceAll("：", ":");
 		content = content.replaceAll("<br>", "<br/>");
+		content = content.replaceAll("<br >", "<br/>");
 		content = content.replaceAll("eahoosoft-DVD-Ripper", "eahoosoft-dvd-ripper");
 		content = content.replaceAll("dvd-to-iPad-converter", "dvd-to-ipad-converter");
 		content = content.replaceAll("dvd-to-iPhone-converter", "dvd-to-iphone-converter");
@@ -69,10 +70,10 @@ public class Common {
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-35", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-11&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-34", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-12&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-36", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-13&q=1&v=0&d=0");
-		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-2", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-2&q=1&v=0&d=0");
-		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-1", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-3&q=1&v=0&d=0");
-		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-4", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-4&q=1&v=0&d=0");
-		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-3", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-5&q=1&v=0&d=0");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-2\"", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-2&q=1&v=0&d=0\"");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-1\"", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-3&q=1&v=0&d=0\"");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-4\"", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-4&q=1&v=0&d=0\"");
+		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-3\"", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-5&q=1&v=0&d=0\"");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-7", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-6&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-10", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-7&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-9", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-8&q=1&v=0&d=0");

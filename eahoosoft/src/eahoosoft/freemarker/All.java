@@ -27,17 +27,22 @@ public class All {
 		Other.main(null);
 		Guide.main(null);
 		HotTag.main(null);
+		System.out.println("SOFT_DIR222:"+SOFT_DIR);
 		Supports.main(null);
+		System.out.println("SOFT_DIR:"+SOFT_DIR);
 		replaceChars(SOFT_DIR);
 	}
 	private static void replaceChars(String dirPath) throws Exception{
 		File dir = new File(dirPath);
 		if(dir.isDirectory()){
-			File[] files = dir.listFiles();
-			for(File f : files){
-				if(f.isDirectory())
-					replaceChars(f.getAbsolutePath());
-				else if(f.getName().contains(".html")){
+			String[] fileNames = dir.list();
+			for(String fileName : fileNames){
+				File f = new File(dirPath+"\\"+fileName);
+				if(f.isDirectory()){
+					String absPath = f.getAbsolutePath();
+					System.out.println(absPath);
+					replaceChars(absPath);
+				}else if(f.getName().contains(".html")){
 					String content = readFile(f);
 					content = Common.replaceChars(content);
 					writeFile(f,content);
