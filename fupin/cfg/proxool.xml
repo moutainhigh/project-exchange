@@ -3,7 +3,11 @@
 	<proxool>
 		<alias>pool</alias>
 
-		<driver-url>jdbc:mysql://localhost:3306/fupin</driver-url>
+		<driver-url>
+			<![CDATA[
+			jdbc:mysql://localhost/fupin?useUnicode=true&characterEncoding=UTF-8
+			]]>
+		</driver-url>
 		<driver-properties>
 			<property name="user" value="fupin" />
 			<property name="password" value="123" />

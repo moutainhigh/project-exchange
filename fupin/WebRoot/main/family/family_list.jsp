@@ -197,7 +197,7 @@
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
-						<tr>
+						<tr <c:if test="${f.type==5}">style="background: pink"</c:if>>
 							<td height="25" align="center" class="tables_contentcell">
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
@@ -208,8 +208,8 @@
 								&nbsp; ${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-								${f.type }
+								&nbsp; 								
+								${f.type}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 

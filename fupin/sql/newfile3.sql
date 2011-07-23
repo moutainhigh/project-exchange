@@ -1,10 +1,11 @@
-select 	q.name as '区（县）',
+﻿select 	q.name as '区（县）',
 		z.name as '镇名称',
 		c.name as '村名称',
 		(select count(f2.id) 
 			from fp_family f2 
 			LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id
 			where c2.id=c.id) as '贫困户数',
+		c.poorPersonNum  as '贫困人口数',
 		(select o.orgName
 			from fp_user o 
 			where o.id=c.org and o.user_type='org') as '帮扶单位',
@@ -34,4 +35,5 @@ z.name = '派潭镇' or
 z.name = '梯面镇' or
 z.name = '流溪河林场'
 )
+and c.name != '塘田村' and c.name != '安山村'
 group by q.name,z.name,c.name

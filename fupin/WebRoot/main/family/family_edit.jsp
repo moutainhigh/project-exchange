@@ -188,11 +188,14 @@
 								<option value="2" <c:if test="${f.type==2}">selected="selected"</c:if>>
 									2-无劳动能力的低保户
 								</option>
-								<option value="3" <c:if test="${empty f.type || f.type==3}">selected="selected"</c:if>>
+								<option value="3" <c:if test="${f.type==3}">selected="selected"</c:if>>
 									3-有劳动能力低收入困难家庭
 								</option>
 								<option value="4" <c:if test="${f.type==4}">selected="selected"</c:if>>
 									4-无劳动能力低收入困难家庭
+								</option>
+								<option value="5" <c:if test="${empty f.type || f.type==5}">selected="selected"</c:if>>
+									5-新增贫困户
 								</option>
 							</select>
 						</td>
