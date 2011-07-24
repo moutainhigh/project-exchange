@@ -78,6 +78,26 @@ public class Common {
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-10", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-7&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-9", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-8&q=1&v=0&d=0");
 		content = content.replaceAll("https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-20", "https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-9&q=1&v=0&d=0");
+		
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=05", 
+			"https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-14&q=1&v=0&d=0");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=06", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-16");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=07", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-17");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=08", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-18");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=09", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-19");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=01", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-11");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=02", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-12");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-3&q=1&v=0&d=03", 
+			"https://www.regnow.com/softsell/nph-softsell.cgi\\?item=29237-13");
+		content = content.replaceAll("https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-7&q=1&v=0&d=00", 
+			"https://usd.swreg.org/cgi-bin/s.cgi\\?s=128442&p=128442-7&q=1&v=0&d=0");
+		
 		//content = content.replaceAll("", "");
 		//content = content.replaceAll("", "");
 		int start = -1;
