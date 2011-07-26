@@ -1,5 +1,6 @@
 package com.throne212.fupin.biz.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ContactBizImpl extends BaseBizImpl implements ContactBiz {
 	private ContactGroupDao groupDao;
 
 	public PageBean getContactOfUser(Contact condition, String userName, Integer pageIndex) {
-		if(pageIndex == null || pageIndex < 1)
+		if (pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
 		return contactDao.getContactOfUser(condition, userName, pageIndex);
 	}
@@ -28,35 +29,49 @@ public class ContactBizImpl extends BaseBizImpl implements ContactBiz {
 		if (contact.getId() == null) {
 			contact.setCreateDate(new Date());
 			contact.setOwner(loginName);
-			if (groupId!=null) {
-				ContactGroup contactGroup=baseDao.getEntityById(ContactGroup.class, groupId);
-			    contact.setGroup(contactGroup);
-			} 
-			
+			if (groupId != null) {
+				ContactGroup contactGroup = baseDao.getEntityById(ContactGroup.class, groupId);
+				contact.setGroup(contactGroup);
+			}
+
 			baseDao.saveOrUpdate(contact);
-			
+
 			logger.info("添加通讯人【" + contact.getContactName() + "】成功");
 		} else {
 			Contact contactInDB = baseDao.getEntityById(Contact.class, contact.getId());
-			String oldName=contactInDB.getContactName();
-			
-			
+			String oldName = contactInDB.getContactName();
+
 			contactInDB.setContactName(contact.getContactName());
 			contactInDB.setOrgName(contact.getOrgName());
 			contactInDB.setDuty(contact.getDuty());
 			contactInDB.setTelNo(contact.getTelNo());
 			baseDao.saveOrUpdate(contactInDB);
-			contact=contactInDB;
-			logger.info("更新通讯人【" + oldName+ "】成功");
+			contact = contactInDB;
+			logger.info("更新通讯人【" + oldName + "】成功");
 		}
 		return contact;
-	
+
 	}
-	
-	
-	public List<ContactGroup> getAllContactTree(){
+
+	public List<ContactGroup> getAllContactTree() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		return groupDao.getAllContactTree(user.getLoginName());
+	}
+
+	public List<Contact> getContactsInGroup(Long gId) {
+		List<Contact> list = new ArrayList<Contact>();
+		ContactGroup g = contactDao.getEntityById(ContactGroup.class, gId);
+		if (g != null) {
+			List<Contact> clist = contactDao.getEntitiesByColumn(Contact.class, "group.id", gId);
+			if (clist != null && clist.size() > 0)
+				list.addAll(clist);
+			List<ContactGroup> glist = contactDao.getEntitiesByColumn(ContactGroup.class, "parentGroup.id", gId);
+			if(glist != null && glist.size() > 0){
+				for(ContactGroup childGroup : glist)
+					list.addAll(getContactsInGroup(childGroup.getId()));
+			}
+		}
+		return list;
 	}
 
 	public ContactDao getContactDao() {

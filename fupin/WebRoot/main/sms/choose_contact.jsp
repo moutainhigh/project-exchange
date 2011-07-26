@@ -54,21 +54,44 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 			  	 optionsValue=selectedObj[i].value;
 			  	 optionTxt=selectedObj[i].innerHTML;
 			  	 
-			  	 var flag=false;
-			  	 for(var j=0;j<choosedObj.length;j++){
-			  	    if(optionsValue==choosedObj[j].value){
-			  	 		flag=true;
-			  		 }
-			  	 }
+			  	 if(optionsValue.indexOf('g_') > -1){
+			  	 	getContactOptionsByGroup(selectedObj[i].value);
+			  	 }else{
 			  	 
-			  	if(flag==false){
-			  	 $("#choosedIds").append("<option value='"+optionsValue+"'>"+optionTxt+"</option>");
+				  	 var flag=false;
+				  	 for(var j=0;j<choosedObj.length;j++){
+				  	    if(optionsValue==choosedObj[j].value){
+				  	 		flag=true;
+				  		 }
+				  	 }
+				  	 
+				  	if(flag==false){
+				  		$("#choosedIds").append("<option value='"+optionsValue+"'>"+optionTxt.replace(/\&nbsp;/g,"")+"</option>");
+				  	}
 			  	}
 			  }
 			}
 			
 			function getContactOptionsByGroup(val){
-				
+				var gid = val.substring(2);
+				var choosedObj=$("#choosedIds option");
+				$.getJSON("${appPath}ajax/getContactsByGroup?time="+new Date().getTime(), {'gId':gid}, function(json){
+					if(json && json['list'] && json['list'].length){
+						for(var i=0;i<json['list'].length;i++){
+							optionsValue="c_"+json['list'][i]['id'];
+			  	 			optionTxt=json['list'][i]['contactName']+"("+json['list'][i]['telNo']+")";
+							var flag=false;
+						  	for(var j=0;j<choosedObj.length;j++){
+						  	   	if(optionsValue==choosedObj[j].value){
+						  			flag=true;
+						  	 	}
+						  	}
+						  	if(flag==false){
+						  		$("#choosedIds").append("<option value='"+optionsValue+"'>"+optionTxt+"</option>");
+						  	}
+						}						
+					}
+				});
 			}
 			
 			function deleteSelect(){

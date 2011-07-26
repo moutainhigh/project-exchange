@@ -13,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.biz.BaseBiz;
+import com.throne212.fupin.biz.ContactBiz;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
@@ -37,6 +38,7 @@ public class AjaxAction extends BaseAction {
 
 	private AdminBiz adminBiz;
 	private BaseBiz baseBiz;
+	private ContactBiz contactBiz;
 
 	public String test() {
 		return "msg";
@@ -468,9 +470,10 @@ public class AjaxAction extends BaseAction {
 	}
 
 	//根据组获得所有下属的联系人
+	private Long gId;
 	public String getContactsByGroup(){
-		
-		return "";
+		list = contactBiz.getContactsInGroup(gId);
+		return "contacts_in_group";
 	}
 	
 	public AdminBiz getAdminBiz() {
@@ -567,6 +570,22 @@ public class AjaxAction extends BaseAction {
 
 	public void setTelNo(String telNo) {
 		this.telNo = telNo;
+	}
+
+	public ContactBiz getContactBiz() {
+		return contactBiz;
+	}
+
+	public void setContactBiz(ContactBiz contactBiz) {
+		this.contactBiz = contactBiz;
+	}
+
+	public Long getgId() {
+		return gId;
+	}
+
+	public void setgId(Long gId) {
+		this.gId = gId;
 	}
 
 }

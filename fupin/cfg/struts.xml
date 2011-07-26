@@ -358,6 +358,13 @@
 					telNo
 				</param>
 			</result>
+			<result name="contacts_in_group" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.telNo,
+					list\[\d+\]\.contactName
+				</param>
+			</result>
 		</action>		
 	</package>
 </struts>

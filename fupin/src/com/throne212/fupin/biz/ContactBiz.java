@@ -14,5 +14,7 @@ public interface ContactBiz extends BaseBiz {
 	
 	
 	public Contact saveContact(String loginName,Long groupId,Contact contact);
+	
+	public List<Contact> getContactsInGroup(Long gId);
 
 }
