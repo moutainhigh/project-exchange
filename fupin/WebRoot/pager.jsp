@@ -7,7 +7,7 @@
 	第${pageBean.pageIndex}页/共${pageBean.maxPage}页&nbsp;&nbsp;
 	<c:choose>
 		<c:when test="${!pageBean.isFirstPage}">
-			<a href="javascript:gotoPage(1,);">[首页]</a>
+			<a href="javascript:gotoPage(1);">[首页]</a>
 		</c:when>
 		<c:otherwise>
 			[首页]

@@ -43,7 +43,8 @@ public class AjaxAction extends BaseAction {
 	}
 
 	private List list;
-//	private List listTree;//用于显示树形通讯组
+
+	// private List listTree;//用于显示树形通讯组
 
 	// 获取所有市
 	public String getAllShi() {
@@ -285,46 +286,47 @@ public class AjaxAction extends BaseAction {
 		}
 		return "query_family";
 	}
-	
-	//树形用户结构
+
+	// 树形用户结构
 	private String item;
-	public String getUserIds(){
-		if(!Util.isEmpty(item)){
+
+	public String getUserIds() {
+		if (!Util.isEmpty(item)) {
 			String[] arr = item.split("-");
 			String type = arr[1];
 			StringBuffer sb = new StringBuffer();
-			if("0".equals(type)){
+			if ("0".equals(type)) {
 				List<User> userList = adminBiz.getAll(User.class);
-				for(User u : userList){
-					if(!(u instanceof Admin)){
+				for (User u : userList) {
+					if (!(u instanceof Admin)) {
 						sb.append(u.getLoginName());
 						sb.append("+");
 					}
 				}
-			}else if("2".equals(type)){
+			} else if ("2".equals(type)) {
 				Long id = Long.parseLong(arr[2]);
 				AreaWorkOrg area = adminBiz.getEntityById(AreaWorkOrg.class, id);
 				sb.append(area.getLoginName());
 				sb.append("+");
-				//驻扎镇得工作组
+				// 驻扎镇得工作组
 				WorkTeam team = adminBiz.getEntityByUnique(WorkTeam.class, "area", area.getArea());
-				if(team != null) {
+				if (team != null) {
 					sb.append(team.getLoginName());
 					sb.append("+");
 				}
-				//获得zhen列表
+				// 获得zhen列表
 				List<ZhenWorkOrg> zhenList = adminBiz.getEntitiesByColumn(ZhenWorkOrg.class, "zhen.area", area.getArea());
-				for(ZhenWorkOrg zhen : zhenList){
+				for (ZhenWorkOrg zhen : zhenList) {
 					sb.append(zhen.getLoginName());
 					sb.append("+");
 				}
-				//获得直属单位列表
+				// 获得直属单位列表
 				List<Org> orgList = adminBiz.getEntitiesByColumn(Org.class, "area", area.getArea());
-				for(Org o : orgList){
+				for (Org o : orgList) {
 					sb.append(o.getLoginName());
 					sb.append("+");
-				}		
-			}else if("3".equals(type) || "4".equals(type) || "1".equals(type)){
+				}
+			} else if ("3".equals(type) || "4".equals(type) || "1".equals(type)) {
 				Long id = Long.parseLong(arr[2]);
 				User user = adminBiz.getEntityById(User.class, id);
 				sb.append(user.getLoginName());
@@ -334,44 +336,43 @@ public class AjaxAction extends BaseAction {
 		}
 		return "user_ids";
 	}
-	
-   //获取用户的通讯组
-//	private List<String> treeLists=new ArrayList<String>();
 
-	public String getAllGroupOfUser(){
-		
-		list=new ArrayList<ContactGroup>();
-		
-		List<ContactGroup> rootGroupList=null;
+	// 获取用户的通讯组
+	// private List<String> treeLists=new ArrayList<String>();
+
+	public String getAllGroupOfUser() {
+
+		list = new ArrayList<ContactGroup>();
+
+		List<ContactGroup> rootGroupList = null;
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		rootGroupList=baseBiz.getEntitiesSecondColIsNull(ContactGroup.class, "userName", user.getLoginName(), "parentGroup.id");
-		if (rootGroupList!=null) {
+		rootGroupList = baseBiz.getEntitiesSecondColIsNull(ContactGroup.class, "userName", user.getLoginName(), "parentGroup.id");
+		if (rootGroupList != null) {
 			for (ContactGroup contactGroup : rootGroupList) {
 				contactGroup.setShowTreeName(contactGroup.getGroupName());
 				list.add(contactGroup);
-				getGroupTreeList(contactGroup,1);				
+				getGroupTreeList(contactGroup, 1);
 			}
-			
+
 		}
-		
+
 		return "list_group";
 	}
-	
-	
-	private void getGroupTreeList(ContactGroup parentGroup,int level){
-	
+
+	private void getGroupTreeList(ContactGroup parentGroup, int level) {
+
 		StringBuffer strPre = new StringBuffer("");
-		for(int i=0; i<level*2; i++) {
+		for (int i = 0; i < level * 2; i++) {
 			strPre.append("-");
 		}
-		List<ContactGroup> childList=baseBiz.getEntitiesByColumn(ContactGroup.class, "parentGroup", parentGroup);
+		List<ContactGroup> childList = baseBiz.getEntitiesByColumn(ContactGroup.class, "parentGroup", parentGroup);
 		for (ContactGroup contactGroup : childList) {
-			contactGroup.setShowTreeName(strPre+contactGroup.getGroupName());
+			contactGroup.setShowTreeName(strPre + contactGroup.getGroupName());
 			list.add(contactGroup);
-			getGroupTreeList(contactGroup,level+1);
-		}	
+			getGroupTreeList(contactGroup, level + 1);
+		}
 	}
-	
+
 	// 获取用户选择的通信录
 
 	private String choosedIds;
@@ -439,36 +440,39 @@ public class AjaxAction extends BaseAction {
 		return "select_contacts";
 
 	}
-	
-	
-	private void getChildGroup(ContactGroup parentGroup,List<ContactGroup> list){
-	
-	List<ContactGroup> childList=baseBiz.getEntitiesByColumn(ContactGroup.class, "parentGroup", parentGroup);
-	for (ContactGroup contactGroup : childList) {
-		list.add(contactGroup);
-		getChildGroup(contactGroup,list);
-	}	
-	
-}
-	
-	 public static List removeRepeatElement(List l) throws Exception {
-	
-		     Set set = new HashSet();
-		     List list = new ArrayList();
-		     System.out.println(l.size()+"传入的List的长度");
-		     for (int i = 0; i < l.size(); i++) {
-		      set.add(l.get(i));
-		     }
-		     System.out.println(set.size()+"处理后set的长度");
-		     for (Iterator it = set.iterator(); it.hasNext();) {
-		      list.add(it.next());
-		     }
-		     System.out.println(list.size()+"返回的list的长度");
-		     return list;
-		    }
-	
-	
 
+	private void getChildGroup(ContactGroup parentGroup, List<ContactGroup> list) {
+
+		List<ContactGroup> childList = baseBiz.getEntitiesByColumn(ContactGroup.class, "parentGroup", parentGroup);
+		for (ContactGroup contactGroup : childList) {
+			list.add(contactGroup);
+			getChildGroup(contactGroup, list);
+		}
+
+	}
+
+	public static List removeRepeatElement(List l) throws Exception {
+
+		Set set = new HashSet();
+		List list = new ArrayList();
+		System.out.println(l.size() + "传入的List的长度");
+		for (int i = 0; i < l.size(); i++) {
+			set.add(l.get(i));
+		}
+		System.out.println(set.size() + "处理后set的长度");
+		for (Iterator it = set.iterator(); it.hasNext();) {
+			list.add(it.next());
+		}
+		System.out.println(list.size() + "返回的list的长度");
+		return list;
+	}
+
+	//根据组获得所有下属的联系人
+	public String getContactsByGroup(){
+		
+		return "";
+	}
+	
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}
@@ -557,8 +561,6 @@ public class AjaxAction extends BaseAction {
 		this.choosedIds = choosedIds;
 	}
 
-
-
 	public String getTelNo() {
 		return telNo;
 	}
@@ -566,6 +568,5 @@ public class AjaxAction extends BaseAction {
 	public void setTelNo(String telNo) {
 		this.telNo = telNo;
 	}
-
 
 }

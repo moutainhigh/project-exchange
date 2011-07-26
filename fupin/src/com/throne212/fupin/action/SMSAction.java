@@ -52,29 +52,27 @@ public class SMSAction extends BaseAction {
 				try {
 					rst = Util.sendMessage(tel, sms.getContent(), user.getLoginName(), user.getId().intValue());//0为成功
 					if(rst == 0){
-						sb.append("("+tel+")发送成功");
-						sb.append("\n");
+						sb.append("("+tel+")发送成功.\\n");
 						this.setSucc("Y");
 						logger.info("成功发送短信给：" + tel);
 					}else if(rst == -108){
-						sb.append("发送失败，短息服务连接失败，请联系管理员");
+						sb.append("发送失败，短息服务连接失败，请联系管理员.");
 						logger.warn("发送短信失败,短息服务连接失败");
 						this.setSucc(null);
 						break;
 					}else{
-						sb.append("("+tel+")发送失败");
-						sb.append("\n");
+						sb.append("("+tel+")发送失败.\\n");
 						this.setSucc(null);
 					}
 				} catch (Exception e) {
 					logger.warn("发送短信失败", e);
-					sb.append("发送失败，短息服务连接失败，请联系管理员");
+					sb.append("发送失败，短息服务连接失败，请联系管理员.");
 					this.setSucc(null);
 					break;
 				}				
 			}
 		} else{
-			sb.append("发送失败，参数缺失");
+			sb.append("发送失败，参数缺失.");
 		}
 		if(Util.isEmpty(this.getSucc())){
 			this.setSucc("N");

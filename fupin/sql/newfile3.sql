@@ -17,10 +17,10 @@
 			where o.id=c.org and o.user_type='org') as '联系电话',
 		(select count(*) 
 			from fp_report r
-			where r.cun_id=c.id and type='month' and time='5' and year=2011 and report_type='1') as '3-5月录入情况',
+			where r.cun_id=c.id and type='month' and time='5' and year=2011 and report_type='1' and item14 is not null and item14!='') as '3-5月录入情况',
 		(select count(*) 
 			from fp_report r
-			where r.cun_id=c.id and type='month' and time='6' and year=2011 and report_type='1') as '6月录入情况'
+			where r.cun_id=c.id and type='month' and time='6' and year=2011 and report_type='1' and item14 is not null and item14!='') as '6月录入情况'
 from fp_diqu c
 LEFT OUTER JOIN fp_diqu z ON c.zhen_id = z.id
 LEFT OUTER JOIN fp_diqu q ON z.area_id = q.id

@@ -67,6 +67,10 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 			  }
 			}
 			
+			function getContactOptionsByGroup(val){
+				
+			}
+			
 			function deleteSelect(){
 			 $("#choosedIds option:selected").remove();
 			}
