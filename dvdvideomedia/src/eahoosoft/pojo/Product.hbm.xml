@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eahoosoft.pojo">
+	<class name="Product" table="eahoosoft_product">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="buyUrl"></property>
+		<property name="description" length="10240"></property>
+		<property name="downUrl"></property>
+		<property name="fileName"></property>
+		<property name="image"></property>
+		<property name="name"></property>
+		<property name="price"></property>
+		<property name="screenShot"></property>
+		<property name="shortDesc" length="1024"></property>
+		<property name="shortName"></property>
+		<property name="size"></property>
+		<property name="orderNum"></property>
+		<property name="indexOrderNum"></property>
+		<property name="version"></property>
+		<property name="icon"></property>
+		<property name="longDesc" length="2048"></property>
+		
+		<many-to-one name="cate" lazy="false" column="cate_id"></many-to-one>
+		<set name="features" lazy="false" cascade="all" order-by="orderNum">
+			<key column="pro_id"></key>
+			<one-to-many class="Feature"/>
+		</set>
+		<set name="hotTags" lazy="false" cascade="all" order-by="id">
+			<key column="pro_id"></key>
+			<one-to-many class="HotTag"/>
+		</set>
+	</class>
+</hibernate-mapping>

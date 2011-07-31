@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eahoosoft.pojo">
+	<class name="Category" table="eahoosoft_category">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="fileName"></property>
+		<property name="name"></property>
+		<set name="products" cascade="none" lazy="false">
+			<key column="cate_id"></key>
+			<one-to-many class="Product"/>
+		</set>
+	</class>
+</hibernate-mapping>

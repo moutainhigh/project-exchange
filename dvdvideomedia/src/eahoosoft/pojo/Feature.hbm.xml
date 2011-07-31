@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eahoosoft.pojo">
+	<class name="Feature" table="eahoosoft_feature">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="content" length="1024"></property>
+		<property name="title"></property>
+		<property name="orderNum"></property>
+		<many-to-one name="product" lazy="false" column="pro_id"></many-to-one>
+	</class>
+</hibernate-mapping>
