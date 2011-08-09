@@ -259,6 +259,7 @@
 			<result name="report_edit1">/main/report/edit1.jsp</result>
 			<result name="report_edit2">/main/report/edit2.jsp</result>
 			<result name="report_list">/main/report/report_list.jsp</result>
+			<result name="report_export">/main/report/report_export.jsp</result>
 		</action>
 		<!-- 通讯组管理 -->
 		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">

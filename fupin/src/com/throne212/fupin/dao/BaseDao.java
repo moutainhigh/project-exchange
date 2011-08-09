@@ -1,11 +1,7 @@
 package com.throne212.fupin.dao;
 
-
-
 import java.util.Collection;
 import java.util.List;
-
-
 
 //ͨ�õĻ�DAO
 public interface BaseDao {
@@ -17,6 +13,7 @@ public interface BaseDao {
 	public <T> List<T> getAll(Class<T> clazz, String orderBy, String style, int startIndex, int length);
 
 	public <T> long getEntitySum(Class<T> clazz);
+
 	public <T> long getEntitySum(Class<T> clazz, String colName, Object value);
 
 	public <T> T getEntityById(Class<T> clazz, Long id);
@@ -28,8 +25,11 @@ public interface BaseDao {
 	public <T> T getEntityByUniqueColumn(Class<T> clazz, String colName, Object value);
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value);
-	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue);
-	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue,String colTwoName);
+
+	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue, String colTwoName, Object twoValue);
+
+	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue, String colTwoName);
+
 	public <T> List<T> getEntitiesOrderByColumns(Class<T> clazz, String orderType, String... colNames);
 
 	public <T> void saveOrUpdate(T entity);
@@ -47,7 +47,7 @@ public interface BaseDao {
 	public void commit();
 
 	public int loadRecordCount(final String hql, final Object[] cols);
-	
-	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue);
-	
+
+	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue);
+
 }

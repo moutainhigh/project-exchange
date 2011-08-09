@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ReportBiz;
+import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
@@ -80,26 +81,27 @@ public class ReportAction extends BaseAction {
 				r.setTime(time);
 			}
 		}
-		
-		//最大的月份和季度
+
+		// 最大的月份和季度
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
-		maxSeason = maxMonth%3==0?maxMonth/3:maxMonth/3+1;
+		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
 		// 填充灰色项目
 		reportBiz.fillReport(r);
 
 		return "report_edit1";
 	}
+
 	public String tmpSaveReport1() {
-		if(r!=null && "month".equals(r.getType())){
+		if (r != null && "month".equals(r.getType())) {
 			String time = r.getTime();
-			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH) + 1;
 			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
-			if(r.getYear()>year){
-				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+			if (r.getYear() > year) {
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
 				return viewReport1();
-			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
-				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+			} else if (r.getYear() == year && Integer.valueOf(time) >= month) {
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
 				return viewReport1();
 			}
 		}
@@ -107,22 +109,23 @@ public class ReportAction extends BaseAction {
 		if (r == null) {
 			this.setMsg("暂时保存报表失败");
 		} else {
-			r.setLock(3);//3代表暂存
+			r.setLock(3);// 3代表暂存
 			reportBiz.saveOrUpdateEntity(r);
 			this.setMsg("暂时报表保存成功");
 		}
 		return viewReport1();
 	}
+
 	public String saveReport1() {
-		if(r!=null && "month".equals(r.getType())){
+		if (r != null && "month".equals(r.getType())) {
 			String time = r.getTime();
-			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH) + 1;
 			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
-			if(r.getYear()>year){
-				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+			if (r.getYear() > year) {
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
 				return viewReport1();
-			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
-				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+			} else if (r.getYear() == year && Integer.valueOf(time) >= month) {
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
 				return viewReport1();
 			}
 		}
@@ -163,24 +166,24 @@ public class ReportAction extends BaseAction {
 				r.setTime(time);
 			}
 		}
-		
-		//最大的月份和季度
+
+		// 最大的月份和季度
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
-		maxSeason = maxMonth%3==0?maxMonth/3:maxMonth/3+1;
-		
+		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
+
 		return "report_edit2";
 	}
 
 	public String saveReport2() {
-		if(r!=null && "month".equals(r.getType())){
+		if (r != null && "month".equals(r.getType())) {
 			String time = r.getTime();
-			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH) + 1;
 			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
-			if(r.getYear()>year){
-				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+			if (r.getYear() > year) {
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
 				return viewReport2();
-			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
-				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+			} else if (r.getYear() == year && Integer.valueOf(time) >= month) {
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
 				return viewReport2();
 			}
 		}
@@ -192,16 +195,17 @@ public class ReportAction extends BaseAction {
 		}
 		return viewReport2();
 	}
+
 	public String tmpSaveReport2() {
-		if(r!=null && "month".equals(r.getType())){
+		if (r != null && "month".equals(r.getType())) {
 			String time = r.getTime();
-			int month = GregorianCalendar.getInstance().get(Calendar.MONTH)+1;
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH) + 1;
 			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
-			if(r.getYear()>year){
-				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于"+year);
+			if (r.getYear() > year) {
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
 				return viewReport2();
-			}else if(r.getYear()==year && Integer.valueOf(time) >= month){
-				this.setMsg("对不起，您只能选择之前的月份，月份数需小于"+month);
+			} else if (r.getYear() == year && Integer.valueOf(time) >= month) {
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
 				return viewReport2();
 			}
 		}
@@ -209,7 +213,7 @@ public class ReportAction extends BaseAction {
 		if (r == null) {
 			this.setMsg("暂时保存报表失败");
 		} else {
-			r.setLock(3);//3代表暂存
+			r.setLock(3);// 3代表暂存
 			reportBiz.saveOrUpdateEntity(r);
 			this.setMsg("暂时报表保存成功");
 		}
@@ -242,7 +246,7 @@ public class ReportAction extends BaseAction {
 		}
 		return reportList();
 	}
-	
+
 	// 导出Excel2
 	public String excelReport2() {
 		if (r == null) {
@@ -265,6 +269,28 @@ public class ReportAction extends BaseAction {
 			return viewReport2();
 		}
 		return "excel";
+	}
+
+	private ReportParam reportParam;
+
+	public String export() {
+		if (reportParam == null)
+			return "report_export";
+		String filePath = null;
+		try {
+			filePath = reportBiz.getExcelReportFilePath(reportParam);
+			if (filePath != null) {
+				downloadFile = new FileInputStream(filePath);
+				this.setMsg("report-" + reportParam.getDiqu() + "_" + reportParam.getIs206() + "_" + reportParam.getName());
+				return "excel";
+			} else {
+				this.setMsg("报表文件生成失败，数据不完整或参数错误，请联系管理员");
+			}
+		} catch (Exception e) {
+			logger.error("报表文件生成失败", e);
+			this.setMsg("报表文件生成失败，请联系管理员");
+		}
+		return "report_export";
 	}
 
 	public Report getR() {
@@ -313,6 +339,14 @@ public class ReportAction extends BaseAction {
 
 	public void setMaxSeason(Integer maxSeason) {
 		this.maxSeason = maxSeason;
+	}
+
+	public ReportParam getReportParam() {
+		return reportParam;
+	}
+
+	public void setReportParam(ReportParam reportParam) {
+		this.reportParam = reportParam;
 	}
 
 }
