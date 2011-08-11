@@ -7,6 +7,8 @@ public class ReportParam {
 	private String diqu;// 增城/从化
 
 	private String name;// 报表名称，表1、2或表3
+	
+	private String month;//月份
 
 	public String getIs206() {
 		return is206;
@@ -30,6 +32,14 @@ public class ReportParam {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
 }

@@ -148,9 +148,9 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		sql.append("left outer join fp_diqu z on z.id=c.zhen_id ");
 		sql.append("left outer join fp_diqu a on a.id=z.area_id ");
 		if ("3".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time=6 and r.report_type=2 and r.type='month' ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time="+reportParam.getMonth()+" and r.report_type=2 and r.type='month' ");
 		if ("12".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time=6 and r.report_type=1 and r.type='month' ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time="+reportParam.getMonth()+" and r.report_type=1 and r.type='month' ");
 		sql.append("where c.diqu_type='cun' ");
 		sql.append("and z.diqu_type='zhen' ");
 		sql.append("and a.diqu_type='area' ");
@@ -207,13 +207,15 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			if ("12".equals(reportParam.getName()))
 				row = 2;
 			while (rs.next()) {
+				System.out.println(rs.getObject("帮扶单位")+":"+rs.getObject(56));
 				for (int i = 0; i < colSize; i++) {
 					try {
 						Object obj = rs.getObject(i + 1);
 						if(i < 9)
 							sheet1.addCell(new Label(i, row, obj == null ? "" : obj.toString()));
-						else
+						else{
 							sheet1.addCell(new Number(i, row, obj == null || "".equals(obj.toString()) ? 0 : Double.parseDouble(obj.toString())));
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

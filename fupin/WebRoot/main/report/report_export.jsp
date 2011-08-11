@@ -18,6 +18,18 @@
 			document.forms[0].action = '${appPath}report_export.action';
 			document.forms[0].submit();
 		}
+		$(function(){
+			var now = new Date();
+			var m = now.getMonth() + 1;
+			for(var i=1;i<=m;i++){
+				$('#month').append("<option value=\""+i+"\">"+i+"</option>");
+			}
+			setTimeout(function(){
+				if(m == 1)
+					m = 13;
+				$('#month').val(m-1);
+			},100);
+		});
 		</script>
 		<style>
 .tables_search {
@@ -67,6 +79,16 @@
 							<select name="reportParam.diqu">
 								<option value="conghua">从化</option>
 								<option value="zengcheng">增城</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							月份
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							<select name="reportParam.month" id="month">
+								
 							</select>
 						</td>
 					</tr>
