@@ -18,7 +18,7 @@ import eahoosoft.pojo.Product;
 
 public class Common {
 	public static void fillCommonVar(Map map){
-		map.put("appPath", "/");
+		map.put("appPath", "/soft/");
 		map.put("appTitle", Constants.APP_TITLE);
 		map.put("appDesc", Constants.APP_DESC);
 		map.put("appKeywords", Constants.APP_KEY_WORDS);
