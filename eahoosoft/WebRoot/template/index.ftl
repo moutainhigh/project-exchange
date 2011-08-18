@@ -6,6 +6,8 @@
 	<meta name="keywords" content="${appKeywords}" />
 	<meta name="description" content="${appDesc}"/>
 	<link type="text/css" rel="stylesheet" href="${appPath}index.css" />
+	<link rel=stylesheet type=text/css href="lanrenxixi.css" />
+	<SCRIPT type=text/javascript src="lanrentuku.js"></SCRIPT>
 	<#include "/script.ftl"/>
 </head>
 <body>
