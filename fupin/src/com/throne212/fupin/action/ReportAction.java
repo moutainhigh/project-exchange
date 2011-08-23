@@ -7,11 +7,15 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.sun.faces.config.WebConfiguration;
 import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
+import com.throne212.fupin.domain.User;
 
 public class ReportAction extends BaseAction {
 
@@ -55,6 +59,17 @@ public class ReportAction extends BaseAction {
 	}
 
 	public String viewReport1() {
+		
+		//如果该单位用户未指定村帮扶，不能进行操作
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			Org org = (Org) user;
+			if(org.getCun() == null){
+				this.setMsg("未指定存帮扶，请联系管理员指定村帮扶以后再进行报表操作");
+				return "report_edit1";
+			}
+		}
+		
 		if (r == null) {// 默认条件打开，定向到当前的年得月份
 			Calendar c = GregorianCalendar.getInstance();
 			Integer year = c.get(Calendar.YEAR);

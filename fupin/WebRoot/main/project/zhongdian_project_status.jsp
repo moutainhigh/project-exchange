@@ -21,6 +21,18 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		$(function(){
+			var str = '';
+			for(var i=1;i<=12;i++){
+				str += '<option value="'+i+'">第'+i+'月</option>';
+			}
+			$('#time').html(str);
+			if(time != ''){
+				setTimeout(function(){ 
+				  //$('#time').val(time);
+				},1);
+			}
+		});
 		</script>
 		<style>
 .tables_search {
@@ -40,10 +52,7 @@
 							您当前所处页面：项目管理  >> 村项目进度报表
 						</td>
 						<td align="right">
-							<input type="button" class="button" value="新增"/>
-							<input type="button" class="button" value="删除"/>
-							<input type="button" class="button" value="修改"/>
-							<!--  <input type="button" class="button" value="导出excel"/>--> 
+							&nbsp;
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -53,71 +62,97 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td width="" class="tables_headercell" rowspan="2">
-							序号
+						<td width="" class="tables_headercell">
+							年度：
+							<select name="r.year" id="year">
+								<option value=""></option>
+								<option value="2011">2011</option>
+							</select>
 						</td>
-						<td width="" class="tables_headercell" colspan="2">
+						<td width="" class="tables_headercell">
+							时间：
+							<select name="r.time" id="time">
+								<option value=""></option>
+							</select>
+						</td>
+						<td width="" class="tables_headercell">
+							上/下半月：
+							<input type="radio" checked="checked" name="type" value="1"/>
+							<input type="radio" name="type" value="2"/>
+						</td>
+						<td width="" class="tables_headercell">
+							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
+							<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
+							<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
+							<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" rowspan="2">
 							帮扶对象
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							项目名称
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							项目完成情况
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							存在问题及拟解决措施
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							总投资额（万元）
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							帮扶资金到位情况（万元）
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							帮扶单位
-						</td>
-					</tr>
-					<tr>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_contentcell">
 							所属镇
 						</td>
-						<td width="" class="tables_headercell">
-							村名
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
 						</td>
 					</tr>
-						<tr>
-							<td height="25" align="center" class="tables_contentcell">
-								1
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-							</td>
-						</tr>
-					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="12">
-							<jsp:include page="../../pager.jsp"></jsp:include>
+					<tr align="center">
+						<td width="" class="tables_contentcell">
+							村名
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							项目名称
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							项目完成情况
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							存在问题及拟解决措施
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							总投资额（万元）
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							帮扶资金到位情况（万元）
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							帮扶单位
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
 						</td>
 					</tr>
 				</tbody>

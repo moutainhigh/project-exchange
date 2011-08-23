@@ -65,6 +65,13 @@ public class AjaxAction extends BaseAction {
 	}
 
 	public String getAllZhen() {
+		// 判断是不是div
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if ("Y".equals(user.getIsDiv())) {
+			Area area = adminBiz.getEntityByUnique(Area.class, "name", "白云区");
+			parentId = area == null ? null : area.getId();
+		}
+
 		if (parentId != null)
 			list = adminBiz.getEntitiesByColumn(Zhen.class, "area", adminBiz.getEntityById(Area.class, parentId));
 		else
@@ -469,13 +476,20 @@ public class AjaxAction extends BaseAction {
 		return list;
 	}
 
-	//根据组获得所有下属的联系人
+	// 根据组获得所有下属的联系人
 	private Long gId;
-	public String getContactsByGroup(){
+
+	public String getContactsByGroup() {
 		list = contactBiz.getContactsInGroup(gId);
 		return "contacts_in_group";
 	}
 	
+	private Long cunId;
+	public String getOrgByCun(){
+		list = adminBiz.getEntitiesByColumn(Org.class, "cun.id", cunId);
+		return "org_list";
+	}
+
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
 	}
@@ -586,6 +600,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setgId(Long gId) {
 		this.gId = gId;
+	}
+
+	public Long getCunId() {
+		return cunId;
+	}
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
 	}
 
 }

@@ -366,6 +366,12 @@
 					list\[\d+\]\.contactName
 				</param>
 			</result>
+			<result name="org_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.orgName
+				</param>
+			</result>
 		</action>		
 	</package>
 </struts>

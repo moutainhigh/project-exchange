@@ -40,7 +40,7 @@
 							您当前所处页面：项目管理  >> 村项目管理
 						</td>
 						<td align="right">
-							<input type="button" class="button" value="新增"/>
+							<input type="button" onclick="winOpen('${appPath}main/project/cun_project_edit.jsp',450,400);" class="button" value="新增">
 							<input type="button" class="button" value="删除"/>
 							<input type="button" class="button" value="修改"/>
 							<!--  <input type="button" class="button" value="导出excel"/>--> 
