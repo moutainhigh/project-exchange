@@ -9,6 +9,7 @@ import com.throne212.fupin.dao.UserDao;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.ShiWorkOrg;
+import com.throne212.fupin.domain.WorkTeam;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
@@ -112,6 +113,17 @@ public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+	
+	public void deleteTeam(Long teamId){
+		List<Cun> cunList = userDao.getEntitiesByColumn(Cun.class, "team.id", teamId);
+		if(cunList != null && cunList.size()>0 ){
+			for(Cun cun : cunList){
+				cun.setTeam(null);
+				userDao.saveOrUpdate(cun);
+			}
+		}
+		userDao.deleteById(WorkTeam.class, teamId);
 	}
 
 }

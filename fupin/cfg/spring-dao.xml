@@ -52,4 +52,7 @@
 	<bean id="contactDao" class="com.throne212.fupin.dao.impl.ContactDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="statDao" class="com.throne212.fupin.dao.impl.StatDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

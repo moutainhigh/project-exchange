@@ -58,6 +58,23 @@ public class TeamAction extends BaseAction {
 		}
 		return "team_edit";
 	}
+	
+	public String deleteTeams(){
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if(ids != null && ids.length > 0){
+			try {
+				for(String idStr : ids){
+					Long id = Long.parseLong(idStr);
+					adminBiz.deleteTeam(id);
+				}
+				this.setMsg("删除成功，删除记录数:" + ids.length);
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("删除失败，请联系管理员");
+			}
+		}
+		return teamList();
+	}
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;

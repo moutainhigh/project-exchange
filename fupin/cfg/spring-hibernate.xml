@@ -43,6 +43,7 @@
 				<value>reportBiz</value>
 				<value>groupBiz</value>
 				<value>contactBiz</value>
+				<value>statBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

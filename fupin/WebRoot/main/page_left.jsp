@@ -150,9 +150,7 @@ function images_update(){
 	if(window.quanxian=='5')
 	{
 	
-		<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,报表维护,";
-	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,报表导出,${appPath}report_export.action";
 	    menuArray[menuArray.length]="1,报表解锁,${appPath}report_reportList.action";
@@ -161,6 +159,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,表一表二,${appPath}report_viewReport1.action";
 		menuArray[menuArray.length]="1,表三,${appPath}report_viewReport2.action";
 	    </c:if>
+	    menuArray[menuArray.length]="1,贫困户类型统计,${appPath}stat_familyTypeList.action";
 	
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,单位与干部维护,";

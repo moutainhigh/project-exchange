@@ -14,6 +14,19 @@
 		if(msg != ''){
 			alert(msg);
 		}
+		function checkAll(obj){
+			if($(obj).attr('checked')){
+				$('input[type="checkbox"]').attr('checked',true);
+			}else{
+				$('input[type="checkbox"]').attr('checked',false);
+			}
+		}
+		function deleteInfo(){
+			if($('input:checked').length>0 && confirm('您确定删除吗？')){
+				document.forms[0].action = '${appPath}team_deleteTeams.action';
+				document.forms[0].submit();
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -24,7 +37,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}admin_zhenWorkOrgList.action" name="searchForm">
+		<form method="get" action="${appPath}team_deleteTeams.action" name="searchForm">
 			<input type="hidden" name="del" id="del" value="">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
@@ -34,6 +47,7 @@
 						</td>
 						<td align="right">
 							<input type="button" onclick="winOpen('${appPath}main/team/team_edit.jsp',450,420);" class="button" value="新增">
+							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -42,6 +56,9 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
+						<td height="28" width="" class="tables_headercell">
+							<input type="checkbox" onclick="checkAll(this);">
+						</td>
 						<td class="tables_headercell">
 							帐号名
 						</td>
@@ -60,6 +77,9 @@
 					</tr>
 					<c:forEach items="${teamList}" var="f">
 						<tr>
+							<td height="25" align="center" class="tables_contentcell">
+								<input type="checkbox" value="${f.id}" name="ids">
+							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.loginName}
 							</td>

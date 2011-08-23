@@ -20,7 +20,10 @@
 						for(var i=0;i<json['list'].length;i++)
 							$('#shi').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
 						if(currShi != '')
-							$('#shi').val(currShi);
+							setTimeout(function(){
+								$('#shi').val(currShi);
+							},1);
+							
 					}
 				});
 			});

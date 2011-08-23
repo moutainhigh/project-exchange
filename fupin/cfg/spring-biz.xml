@@ -67,4 +67,7 @@
 		<property name="contactDao" ref="contactDao"></property>
 		<property name="groupDao" ref="groupDao"></property>
 	</bean>
+	<bean id="statBiz" class="com.throne212.fupin.biz.impl.StatBizImpl">
+		<property name="statDao" ref="statDao"></property>
+	</bean>
 </beans>

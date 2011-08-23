@@ -27,5 +27,5 @@ public interface AdminBiz extends BaseBiz {
 	public List<Cun> getCunListByLike(String pinyin);
 	
 	//工作组
-	
+	public void deleteTeam(Long teamId);
 }

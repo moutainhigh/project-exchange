@@ -26,7 +26,9 @@
 						for(var i=0;i<json['list'].length;i++)
 							$('#shiworkorg').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['orgName']+'</option>');
 						if(currShiWorkOrg != ''){
-							$('#shiworkorg').val(currShiWorkOrg);
+							setTimeout(function(){
+								$('#shiworkorg').val(currShiWorkOrg);
+							},1);
 							selectAreas(currShiWorkOrg);
 						}
 					}
@@ -47,7 +49,9 @@
 								$('#area').append(str);
 							}
 							if(currAreaId){
-								$('#area').val(currAreaId);
+								setTimeout(function(){
+									$('#area').val(currAreaId);
+								},1);
 							}
 						}
 					});

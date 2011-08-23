@@ -261,6 +261,10 @@
 			<result name="report_list">/main/report/report_list.jsp</result>
 			<result name="report_export">/main/report/report_export.jsp</result>
 		</action>
+		<!-- 统计 -->
+		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
+			<result name="family_type_stat">/main/report/family_type_stat.jsp</result>
+		</action>
 		<!-- 通讯组管理 -->
 		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">
 			<result name="edit_group">/main/sms_manage_group/group_edit.jsp</result>
