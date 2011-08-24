@@ -107,7 +107,11 @@ where c.diqu_type='cun'
 	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
 	(select count(*) from fp_family f where f.cun_id=c.id) as sum
 from fp_diqu c left outer join fp_user t on c.team_id=t.id
+left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
 where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
 	and t.user_type='work_team'
 	and t.loginName=:loginName
  </sql-query>
@@ -137,7 +141,11 @@ where c.diqu_type='cun'
 	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
 	(select count(*) from fp_family f where f.cun_id=c.id) as sum
 from fp_diqu c left outer join fp_user t on c.team_id=t.id
+left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
 where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
 	and t.user_type='work_team'
 	and t.team_from_area_id=:areaId
  </sql-query>
@@ -150,7 +158,10 @@ where c.diqu_type='cun'
 	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
 	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
 	(select count(*) from fp_family f where f.cun_id=c.id) as sum
-from fp_diqu c 
+from fp_diqu c left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
 where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
  </sql-query>
 </hibernate-mapping>

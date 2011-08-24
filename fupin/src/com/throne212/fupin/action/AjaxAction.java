@@ -80,10 +80,18 @@ public class AjaxAction extends BaseAction {
 	}
 
 	public String getAllCun() {
-		if (parentId != null)
-			list = adminBiz.getEntitiesByColumn(Cun.class, "zhen", adminBiz.getEntityById(Zhen.class, parentId));
-		else
-			list = adminBiz.getAll(Cun.class);
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof WorkTeam) {
+			if (parentId != null)
+				list = adminBiz.getEntitiesByTwoColumn(Cun.class, "zhen.id", parentId, "team.id", user.getId());
+			else
+				list = adminBiz.getEntitiesByColumn(Cun.class, "team.id", user.getId());
+		} else {
+			if (parentId != null)
+				list = adminBiz.getEntitiesByColumn(Cun.class, "zhen", adminBiz.getEntityById(Zhen.class, parentId));
+			else
+				list = adminBiz.getAll(Cun.class);
+		}
 		return "list";
 	}
 
@@ -483,9 +491,10 @@ public class AjaxAction extends BaseAction {
 		list = contactBiz.getContactsInGroup(gId);
 		return "contacts_in_group";
 	}
-	
+
 	private Long cunId;
-	public String getOrgByCun(){
+
+	public String getOrgByCun() {
 		list = adminBiz.getEntitiesByColumn(Org.class, "cun.id", cunId);
 		return "org_list";
 	}
