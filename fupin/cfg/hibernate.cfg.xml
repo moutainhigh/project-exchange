@@ -40,6 +40,7 @@
 	<mapping resource="com/throne212/fupin/domain/Report.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/ContactGroup.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Contact.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Project.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

@@ -70,4 +70,8 @@
 	<bean id="statBiz" class="com.throne212.fupin.biz.impl.StatBizImpl">
 		<property name="statDao" ref="statDao"></property>
 	</bean>
+	<bean id="projectBiz" class="com.throne212.fupin.biz.impl.ProjectBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="projectDao" ref="projectDao"></property>
+	</bean>
 </beans>

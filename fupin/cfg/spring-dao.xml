@@ -55,4 +55,7 @@
 	<bean id="statDao" class="com.throne212.fupin.dao.impl.StatDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="projectDao" class="com.throne212.fupin.dao.impl.ProjectDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

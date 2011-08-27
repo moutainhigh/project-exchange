@@ -260,7 +260,7 @@ function images_update(){
 	    //白云区的项目管理
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
 	    menuArray[menuArray.length]="0,项目管理,";
-	    menuArray[menuArray.length]="1,村项目管理,${appPath}main/project/cun_project_list.jsp";
+	    menuArray[menuArray.length]="1,村项目管理,${appPath}pro_proCunList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
 	    menuArray[menuArray.length]="1,村项目进度报表,${appPath}main/project/cun_project_status.jsp";

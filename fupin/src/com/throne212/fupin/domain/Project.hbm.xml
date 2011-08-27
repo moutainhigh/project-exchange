@@ -18,5 +18,27 @@
 			<property name="leader"></property>
 			<property name="money"></property>
 		</subclass>
+		<subclass discriminator-value="zhongdian" extends="Project" name="ProjectZhongdian">
+			<property name="content" length="1024"></property>
+			<property name="money"></property>
+			<property name="amount"></property>
+			<property name="baojian"></property>
+			<property name="lixiang"></property>
+			<property name="moneyQu"></property>
+			<property name="moneyShehui"></property>
+			<property name="moneyShi"></property>
+			<property name="moneyZhen"></property>
+			<property name="shishi"></property>
+		</subclass>
+		<subclass discriminator-value="shehui" extends="Project" name="ProjectShehui">
+			<property name="content" length="1024"></property>
+			<property name="money"></property>
+			<property name="fuzeren"></property>
+			<property name="gongshangZhiwu"></property>
+			<property name="juanMoney"></property>
+			<property name="shouFuzeren"></property>
+			<property name="shouZhiwu"></property>
+			<property name="zhiwu"></property>
+		</subclass>
 	</class>
 </hibernate-mapping>

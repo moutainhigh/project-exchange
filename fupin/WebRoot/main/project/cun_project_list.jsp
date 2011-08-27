@@ -21,6 +21,12 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		function deleteInfo(){
+			if(confirm('您确定删除吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}pro_deleteCunProjects.action';
+				document.forms[0].submit();
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -41,8 +47,7 @@
 						</td>
 						<td align="right">
 							<input type="button" onclick="winOpen('${appPath}main/project/cun_project_edit.jsp',450,400);" class="button" value="新增">
-							<input type="button" class="button" value="删除"/>
-							<input type="button" class="button" value="修改"/>
+							<input type="button" class="button" value="删除" onclick="deleteInfo();"/>
 							<!--  <input type="button" class="button" value="导出excel"/>--> 
 						</td>
 						<td width="5px"></td>
@@ -83,6 +88,9 @@
 						<td width="" class="tables_headercell" colspan="2">
 							挂村区领导联络员
 						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							操作
+						</td>
 					</tr>
 					<tr>
 						<td width="" class="tables_headercell">
@@ -98,46 +106,51 @@
 							电话
 						</td>
 					</tr>
+					<c:forEach items="${pageBean.resultList}" var="f" varStatus="status">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${status.count }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.cun.zhen.name }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.cun.name }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.name }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.content }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.deadline }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.money }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.org.orgName }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.leader }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.contactName }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.contactTel }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								<a href="#" onclick="winOpen('${appPath}pro_editCunPro.action?proCun.id=${f.id }',450,400);" >修改</a>
 							</td>
 						</tr>
+					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="12">
+						<td height="25" align="right" class="tables_contentcell" colspan="13">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

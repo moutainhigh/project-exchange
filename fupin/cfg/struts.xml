@@ -265,6 +265,15 @@
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
 			<result name="family_type_stat">/main/report/family_type_stat.jsp</result>
 		</action>
+		<!-- 项目管理 -->
+		<action name="pro_*" method="{1}" class="com.throne212.fupin.action.ProjectAction">
+			<result name="pro_cun_list">/main/project/cun_project_list.jsp</result>
+			<result name="pro_cun_edit">/main/project/cun_project_edit.jsp</result>
+			<result name="pro_zhongdian_list">/main/project/zhongdian_project_list.jsp</result>
+			<result name="pro_zhongdian_edit">/main/project/zhongdian_project_edit.jsp</result>
+			<result name="pro_shehui_list">/main/project/cun_shehui_list.jsp</result>
+			<result name="pro_shehui_edit">/main/project/cun_shehui_edit.jsp</result>
+		</action>
 		<!-- 通讯组管理 -->
 		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">
 			<result name="edit_group">/main/sms_manage_group/group_edit.jsp</result>
