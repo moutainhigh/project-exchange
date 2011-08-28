@@ -21,6 +21,12 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		function deleteInfo(){
+			if(confirm('您确定删除吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}pro_deleteShProjects.action';
+				document.forms[0].submit();
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -40,16 +46,16 @@
 							您当前所处页面：项目管理  >> 社会企业扶贫项目
 						</td>
 						<td align="right">
-							<input type="button" class="button" value="新增"/>
-							<input type="button" class="button" value="删除"/>
-							<input type="button" class="button" value="修改"/>
+							<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+							<input type="button" onclick="winOpen('${appPath}pro_editShPro.action',700,400);" class="button" value="新增">
+							<input type="button" class="button" value="删除" onclick="deleteInfo();"/>
+							</c:if>
 							<!--  <input type="button" class="button" value="导出excel"/>--> 
 						</td>
 						<td width="5px"></td>
 					</tr>
 				</tbody>
 			</table>
-			<c:if test="${userObj.isDiv=='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
@@ -87,55 +93,65 @@
 							项目内容
 						</td>
 						<td width="" class="tables_headercell">
-							项目金额
+							项目金额（万元）
+						</td>
+						<td width="" class="tables_headercell">
+							操作
 						</td>
 					</tr>
+					<c:forEach items="${pageBean.resultList}" var="f" varStatus="status">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								1
+								${status.count }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<select></select>
+								&nbsp; ${f.org.orgName }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.fuzeren }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.zhiwu }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.gongshangZhiwu }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.juanMoney }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.name }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.shouFuzeren }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.shouZhiwu }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.content }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
+								&nbsp; ${f.money }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp;
+								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_editShPro.action?proSh.id=${f.id }',700,400);" >修改</a>
+								</c:if>
 							</td>
 						</tr>
+					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="12">
+						<td height="25" align="right" class="tables_contentcell" colspan="13">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			</c:if>
 		</form>
 	</body>
 </html>

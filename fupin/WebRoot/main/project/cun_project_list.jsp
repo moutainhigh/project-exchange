@@ -46,15 +46,16 @@
 							您当前所处页面：项目管理  >> 村项目管理
 						</td>
 						<td align="right">
+							<c:if test="${userObj.roleType!='帮扶单位管理员'}">
 							<input type="button" onclick="winOpen('${appPath}main/project/cun_project_edit.jsp',450,400);" class="button" value="新增">
 							<input type="button" class="button" value="删除" onclick="deleteInfo();"/>
+							</c:if>
 							<!--  <input type="button" class="button" value="导出excel"/>--> 
 						</td>
 						<td width="5px"></td>
 					</tr>
 				</tbody>
 			</table>
-			<c:if test="${userObj.isDiv=='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
@@ -145,7 +146,10 @@
 								&nbsp; ${f.contactTel }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								&nbsp;
+								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_editCunPro.action?proCun.id=${f.id }',450,400);" >修改</a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>
@@ -156,7 +160,6 @@
 					</tr>
 				</tbody>
 			</table>
-			</c:if>
 		</form>
 	</body>
 </html>

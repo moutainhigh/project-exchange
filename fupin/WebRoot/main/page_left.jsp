@@ -263,19 +263,19 @@ function images_update(){
 	    menuArray[menuArray.length]="1,村项目管理,${appPath}pro_proCunList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,村项目进度报表,${appPath}main/project/cun_project_status.jsp";
+	    menuArray[menuArray.length]="1,村项目进度报表,${appPath}pro_cunStat.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目,${appPath}main/project/zhongdian_project_list.jsp";
+	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目,${appPath}pro_proZdList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目进度报表,${appPath}main/project/zhongdian_project_status.jsp";
+	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目进度报表,${appPath}pro_zdStat.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,社会企业扶贫项目,${appPath}main/project/shehui_project_list.jsp";
+	    menuArray[menuArray.length]="1,社会企业扶贫项目,${appPath}pro_proShList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,社会企业扶贫项目进度报表,${appPath}main/project/shehui_project_status.jsp";
+	    menuArray[menuArray.length]="1,社会企业扶贫项目进度报表,${appPath}pro_shStat.action";
 	    </c:if>
 	    
 	    

@@ -1,9 +1,10 @@
 package com.throne212.fupin.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 //����ʵ��ĳ�����
-public abstract class MyEntity {
+public abstract class MyEntity implements Serializable{
 	protected Long id;//
 	protected Date createDate;// ��������
 	protected String createName;// ���������

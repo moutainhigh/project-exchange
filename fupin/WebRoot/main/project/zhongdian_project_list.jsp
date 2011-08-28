@@ -21,6 +21,12 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		function deleteInfo(){
+			if(confirm('您确定删除吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}pro_deleteZdProjects.action';
+				document.forms[0].submit();
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -40,16 +46,16 @@
 							您当前所处页面：项目管理  >> 重点帮扶钟落潭镇项目
 						</td>
 						<td align="right">
-							<input type="button" class="button" value="新增"/>
-							<input type="button" class="button" value="删除"/>
-							<input type="button" class="button" value="修改"/>
+							<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+							<input type="button" onclick="winOpen('${appPath}pro_editZdPro.action',700,400);" class="button" value="新增">
+							<input type="button" class="button" value="删除" onclick="deleteInfo();"/>
+							</c:if>
 							<!--  <input type="button" class="button" value="导出excel"/>--> 
 						</td>
 						<td width="5px"></td>
 					</tr>
 				</tbody>
 			</table>
-			<c:if test="${userObj.isDiv=='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
@@ -77,6 +83,9 @@
 						<td width="" class="tables_headercell" rowspan="2">
 							帮扶单位
 						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							操作
+						</td>
 					</tr>
 					<tr>
 						<td width="" class="tables_headercell">
@@ -89,39 +98,46 @@
 							数量（万元）
 						</td>
 					</tr>
+					<c:forEach items="${pageBean.resultList}" var="f" varStatus="status">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
-								1
+								${status.count}
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
-								&nbsp; 
+								&nbsp; ${f.name }
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
-								&nbsp; 
+								&nbsp; ${f.content }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								立项
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<select></select>
+								&nbsp; ${f.lixiang }
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
-								&nbsp; 
+								&nbsp; ${f.money }
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
-								&nbsp; 
+								&nbsp; ${f.amount }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								市财政
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp;
+								&nbsp; ${f.moneyShi }
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
-								<select></select>
+								&nbsp; ${f.org.orgName }
+							</td>
+							<td height="25" align="center" class="tables_contentcell" rowspan="4">
+								&nbsp;
+								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_editZdPro.action?proZd.id=${f.id }',700,400);" >修改</a>
+								</c:if>
 							</td>
 						</tr>
 						<tr>
@@ -129,13 +145,13 @@
 								报建
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<select></select>
+								&nbsp; ${f.baojian }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								区财政
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp;
+								&nbsp; ${f.moneyQu }
 							</td>
 						</tr>
 						<tr>
@@ -143,13 +159,13 @@
 								实施
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="2">
-								<select></select>
+								&nbsp; ${f.shishi }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								镇街财政
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp;
+								&nbsp; ${f.moneyZhen }
 							</td>
 						</tr>
 						<tr>
@@ -157,9 +173,10 @@
 								社会资金
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp;
+								&nbsp; ${f.moneyShehui }
 							</td>
 						</tr>
+					</c:forEach>
 					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="12">
 							<jsp:include page="../../pager.jsp"></jsp:include>
@@ -167,7 +184,6 @@
 					</tr>
 				</tbody>
 			</table>
-			</c:if>
 		</form>
 	</body>
 </html>
