@@ -21,10 +21,8 @@ body {
   <tr>
   	<%
     	User user = (User)session.getAttribute("userObj");
-    	if(user instanceof AreaWorkOrg){
-    		AreaWorkOrg a = (AreaWorkOrg)user;
-    		System.out.println("baiyun not="+a.getIsDiv());
-    		if("Y".equals(a.getIsDiv())){
+    	if(user instanceof AreaWorkOrg || user instanceof Org){
+    		if("Y".equals(user.getIsDiv())){
      %>
     <td width="757" background="images/a1_topbg.gif"><img src="images/a1_top01_baiyun.gif" width="757" height="96" /></td>
     <%
