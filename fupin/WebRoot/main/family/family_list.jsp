@@ -28,9 +28,13 @@
 			}
 		}
 		function download(){
-			document.forms[0].action = '${appPath}family_downloadExcel.action';
+			document.forms[0].action = '${appPath}family_exportFamilyList.action';
 			document.forms[0].submit();
 		} 
+		function query(){
+			document.forms[0].action = '${appPath}family_familyList.action';
+			document.forms[0].submit();
+		}
 		$(function(){
 			$('input[value="Excel"]').val('资料导出');
 		});
@@ -118,7 +122,7 @@
 							<c:if test="${userObj.roleType!='超级管理员' && userObj.roleType!='市级管理员'}">
 							<label>贫困户名: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>							
-							<input type="submit" class="button" value="查询"> 
+							<input type="button" class="button" value="查询" onclick="query();" > 
 							</c:if>
 							
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
@@ -137,7 +141,7 @@
 							<input type="button" onclick="winOpen('${appPath}main/family/upload3.jsp',350,180);" class="button" value="批量导入2">
 							</c:if>
 							
-							<!--<input type="button" onclick="download();" value="导出Excel" class="button">-->
+							<input type="button" onclick="download();" value="完整导出Excel" class="button">
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -178,9 +182,6 @@
 							<input type="checkbox" onclick="checkAll(this);">
 						</td>
 						<td width="" class="tables_headercell">
-							编号
-						</td>
-						<td width="" class="tables_headercell">
 							户名
 						</td>
 						<td width="" class="tables_headercell">
@@ -188,6 +189,9 @@
 						</td>
 						<td width="" class="tables_headercell">
 							性别
+						</td>
+						<td width="" class="tables_headercell">
+							编号
 						</td>
 						<td width="" class="tables_headercell">
 							所属地区
@@ -202,9 +206,6 @@
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.id}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
@@ -214,6 +215,9 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
 								${f.gender }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.id}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
@@ -228,7 +232,10 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="7">
+						<td height="25" align="right" class="tables_contentcell" colspan="3">
+							<span style="color:red;font-weight: bold;">${pageBean.total }</span>
+						</td>
+						<td height="25" align="right" class="tables_contentcell" colspan="4">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

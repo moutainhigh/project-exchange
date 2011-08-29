@@ -45,7 +45,7 @@
 							您当前所处页面：帮扶单位管理 >> 单位管理员帐号管理
 						</td>
 						<td align="right">
-							<label>管理登录名（模糊查询）: </label>
+							<label>管理登录名/单位名称（模糊查询）: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 							<input type="submit" class="button" value="查询"> 
 							<input type="button" onclick="winOpen('${appPath}main/manager/manager_edit.jsp',450,220);" class="button" value="新增">

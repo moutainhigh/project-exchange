@@ -54,7 +54,7 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllManager(String name, Integer pageIndex) {
 		PageBean<Org> page = new PageBean<Org>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Org t where loginName like ?";
+		String hql = "from Org t where loginName like ? or orgName like ?";
 		
 		//白云区的自能看自己辖区的单位
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -65,11 +65,13 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			}
 		}
 		
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, "%"+name+"%").get(0);
+		String value = "%"+name+"%";
+		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[]{value,value}).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Org> list = s.createQuery(hql).setParameter(0, "%"+name+"%").setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		List<Org> list = s.createQuery(hql).setParameter(0, value).setParameter(1, value).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
@@ -167,6 +169,25 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		return page;
 	}
 	
+	private void fillTypeCount(String hql, Object[] param, PageBean<Family> page){
+		String typeHql = "select count(*) " + hql + " and type=:f_type";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(typeHql);
+		for(int i=1;i<=5;i++){
+			if(param !=null){
+				for (int j = 0; j < param.length; j++) {
+					Object object = param[j];
+					q.setParameter(j, object);
+				}
+			}
+			q.setParameter("f_type", i);
+			Long typeCount = (Long) q.uniqueResult();
+			if(page.getTotal() == null)
+				page.setTotal("");
+			page.setTotal((String)page.getTotal() + i + "-" + typeCount + "户, &nbsp;");
+		}
+	}
+	
 	public PageBean getAllFamily(Integer pageIndex) {
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
@@ -193,6 +214,11 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			WorkTeam team = (WorkTeam) user;
 			param = new Object[]{team};
 		}
+		
+		//统计各种分类的个数
+		fillTypeCount(hql,param,page);
+		
+		hql += " order by type,id";
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,param).get(0);
 		logger.debug("查询总数为：" + count);
@@ -245,6 +271,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		}else if(areaId != null){
 			hql += " and f.cun.zhen.area.id="+areaId;
 		}
+		
+		//统计各种分类的个数
+		fillTypeCount(hql,param,page);
+		hql += " order by type,id";
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,param).get(0);
 		logger.debug("查询总数为：" + count);
@@ -304,6 +334,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and f.cun.zhen.area.id="+areaId;
 		}
 		
+		//统计各种分类的个数
+		fillTypeCount(hql,param,page);
+		hql += " order by type,id";
+		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
@@ -351,6 +385,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		}
 		hql += " and name like ?";
 		
+		//统计各种分类的个数
+		fillTypeCount(hql,param,page);
+		hql += " order by type,id";
+		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
@@ -371,7 +409,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllFamily(Org org,Integer pageIndex){
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Family t where cun.org=? order by id";
+		String hql = "from Family t where cun.org=?";
+		//统计各种分类的个数
+		fillTypeCount(hql,null,page);
+		hql += " order by type,id";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[]{org}).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
@@ -386,7 +427,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 	public PageBean getAllFamily(Org org,String name,Integer pageIndex){
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Family t where cun.org=? and name like ? order by id";
+		String hql = "from Family t where cun.org=? and name like ?";
+		//统计各种分类的个数
+		fillTypeCount(hql,null,page);
+		hql += " order by type,id";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[]{org,"%"+name+"%"}).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
@@ -490,6 +534,175 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		len = s.createQuery(hql).setParameter(0, familyId).executeUpdate();
 		
 		super.deleteById(Family.class, familyId);
+	}
+	
+	public List<Family> getAllFamily() {
+		String hql = "from Family f where 1=1";
+		Object[] param = null;
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId()};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen()};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea()};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team};
+		}
+		hql += " order by type,id";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Family> list = q.list();
+		return list;
+	}
+	
+	public List<Family> getAllFamily(Long areaId,Long zhenId,Long cunId) {
+		String hql = "from Family f where 1=1";
+		Object[] param = null;
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId()};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen()};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea()};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team};
+		}
+		
+		if(cunId != null){
+			hql += " and f.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and f.cun.zhen.id="+zhenId;
+		}else if(areaId != null){
+			hql += " and f.cun.zhen.area.id="+areaId;
+		}
+		
+		hql += " order by type,id";
+		
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}		
+		List<Family> list = q.list();
+		return list;
+	}
+	
+	public List<Family> getAllFamily(String name, Long areaId,Long zhenId,Long cunId) {
+		String hql = "from Family f where 1=1";
+		
+		Object[] param = {"%"+name+"%"};
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId(),"%"+name+"%"};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen(),"%"+name+"%"};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
+		}
+		hql += " and name like ?";
+		
+		if(cunId != null){
+			hql += " and f.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and f.cun.zhen.id="+zhenId;
+		}else if(areaId != null){
+			hql += " and f.cun.zhen.area.id="+areaId;
+		}
+		
+		hql += " order by type,id";
+		
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Family> list = q.list();
+		return list;
+	}
+	
+	
+	public List<Family> getAllFamily(String name) {
+		String hql = "from Family f where 1=1";
+		
+		Object[] param = {"%"+name+"%"};
+		
+		//根据用户不同，得到不同的数据
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			hql += " and (f.cun.org=? or f.cun.id=?)";
+			Org org = (Org)user;
+			param = new Object[]{org,org.getCun()==null?null:org.getCun().getId(),"%"+name+"%"};
+		}else if(user instanceof ZhenWorkOrg){
+			hql += " and f.cun.zhen=?";
+			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
+			param = new Object[]{zhenOrg.getZhen(),"%"+name+"%"};
+		}else if(user instanceof AreaWorkOrg){
+			hql += " and f.cun.zhen.area=?";
+			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
+		}else if(user instanceof WorkTeam){
+			hql += " and f.cun.team=?";
+			WorkTeam team = (WorkTeam) user;
+			param = new Object[]{team,"%"+name+"%"};
+		}
+		hql += " and name like ?";
+		
+		hql += " order by type,id";
+		
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		if(param != null){
+			for(int i=0;i<param.length;i++){
+				q.setParameter(i, param[i]);
+			}
+		}
+		List<Family> list = q.list();
+		return list;
 	}
 
 }

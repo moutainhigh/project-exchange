@@ -33,6 +33,30 @@ public class FamilyAction extends BaseAction {
 	private InputStream downloadFile;
 
 	private OrgBiz orgBiz;
+	
+	// 导出Excel
+	public String exportFamilyList() {
+		String filePath = null;
+		try {
+			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+			if(user instanceof Admin || user instanceof ShiWorkOrg){
+				filePath = orgBiz.getAllFamilyExport(queryKey, pageIndex,areaId,zhenId,cunId);
+			}else
+				filePath = orgBiz.getAllFamilyExport(queryKey, pageIndex);
+			if (filePath != null) {
+				downloadFile = new FileInputStream(filePath);
+				this.setMsg("family_list");
+			} else {
+				this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+				return familyList();
+			}
+		} catch (Exception e) {
+			logger.error("Excel文件生成失败", e);
+			this.setMsg("Excel文件生成失败，请联系管理员");
+			return familyList();
+		}
+		return "excel";
+	}
 
 	public String familyList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);

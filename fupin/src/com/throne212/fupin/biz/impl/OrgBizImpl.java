@@ -17,6 +17,7 @@ import jxl.write.WritableWorkbook;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
+import com.throne212.fupin.common.FamilyTypeStatDO;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
@@ -109,6 +110,97 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			return managerDao.getAllFamily(pageIndex,areaId,zhenId,cunId);
 		else
 			return managerDao.getAllFamily(name, pageIndex, areaId,zhenId,cunId);
+	}
+	
+	public String getAllFamilyExport(String name, Integer pageIndex) throws Exception{
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "family" + File.separator;
+		String sourceFile = path + "family_list.xls";
+		String targetFile = path + "family_list" + System.currentTimeMillis() + ".xls";
+
+		// 获取数据
+		List<Family> list = null;
+		if (Util.isEmpty(name))
+			list = managerDao.getAllFamily();
+		else
+			list = managerDao.getAllFamily(name);
+
+		if (list != null && list.size() > 0) {
+			// 打开excel文件
+			Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+			
+			WritableSheet sheet = workbook.getSheet(0);
+			int row = 1;
+			for(Family f : list){
+				int col = 0;
+				sheet.addCell(new Label(col++, row, f.getName()));
+				sheet.addCell(new Number(col++, row, f.getType()));
+				sheet.addCell(new Label(col++, row, f.getGender()));
+				sheet.addCell(new Number(col++, row, f.getId()));
+				sheet.addCell(new Label(col++, row, f.getCun().getZhen().getArea().getName() + f.getCun().getZhen().getName() + f.getCun().getName()));
+				row++;
+			}
+			
+			// 关闭
+			workbook.write();
+			workbook.close();
+			rw.close();
+			
+		}
+
+		return targetFile;
+		
+	}
+	
+	public String getAllFamilyExport(String name,Integer pageIndex,Long areaId,Long zhenId,Long cunId) throws Exception{
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "family" + File.separator;
+		String sourceFile = path + "family_list.xls";
+		String targetFile = path + "family_list" + System.currentTimeMillis() + ".xls";
+
+		// 获取数据
+		List<Family> list = null;
+		if (Util.isEmpty(name))
+			list = managerDao.getAllFamily(areaId,zhenId,cunId);
+		else
+			list = managerDao.getAllFamily(name, areaId,zhenId,cunId);
+
+		if (list != null && list.size() > 0) {
+			// 打开excel文件
+			Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+			
+			WritableSheet sheet = workbook.getSheet(0);
+			int row = 1;
+			for(Family f : list){
+				int col = 0;
+				sheet.addCell(new Label(col++, row, f.getName()));
+				sheet.addCell(new Label(col++, row, f.getType()==null?"":f.getType().toString()));
+				sheet.addCell(new Label(col++, row, f.getGender()));
+				sheet.addCell(new Number(col++, row, f.getId()));
+				sheet.addCell(new Label(col++, row, f.getCun().getZhen().getArea().getName() + f.getCun().getZhen().getName() + f.getCun().getName()));
+				row++;
+			}
+			
+			// 关闭
+			workbook.write();
+			workbook.close();
+			rw.close();
+			
+		}
+
+		return targetFile;
 	}
 
 	public PageBean getAllFamily(Org org, String name, Integer pageIndex) {
