@@ -149,7 +149,7 @@ public class ProjectAction extends BaseAction {
 
 	// 获取所有的单位
 	public List<Org> getAllOrgList() {
-		return projectBiz.getAll(Org.class);
+		return projectBiz.getEntitiesByColumn(Org.class, "area.name", "白云区");
 	}
 	
 	// 重点项目进度
@@ -226,7 +226,7 @@ public class ProjectAction extends BaseAction {
 		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
 		if (ids != null && ids.length > 0) {
 			for (String id : ids) {
-				projectBiz.deleteEntity(ProjectZhongdian.class, Long.parseLong(id));
+				projectBiz.deleteEntity(ProjectShehui.class, Long.parseLong(id));
 			}
 			this.setMsg("删除项目成功:" + ids.length);
 		}

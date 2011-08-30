@@ -411,7 +411,7 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from Family t where cun.org=?";
 		//统计各种分类的个数
-		fillTypeCount(hql,null,page);
+		fillTypeCount(hql,new Object[]{org},page);
 		hql += " order by type,id";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[]{org}).get(0);
 		logger.debug("查询总数为：" + count);
@@ -429,7 +429,7 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from Family t where cun.org=? and name like ?";
 		//统计各种分类的个数
-		fillTypeCount(hql,null,page);
+		fillTypeCount(hql,new Object[]{org,"%"+name+"%"},page);
 		hql += " order by type,id";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql, new Object[]{org,"%"+name+"%"}).get(0);
 		logger.debug("查询总数为：" + count);

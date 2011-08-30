@@ -88,6 +88,9 @@
 								<c:if test="${not empty f.org}">
 								<br/><a href="${appPath}manager_cancelMapping.action?cun.id=${f.id}">取消帮扶</a>
 								</c:if>
+								<c:if test="${(userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员') && not empty f.org}">
+								<br/><a href="${appPath}login.action?username=${f.org.loginName}&password=${f.org.password}&needRand=N">登录</a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>
@@ -111,6 +114,9 @@
 						</td>
 						<td width="" class="tables_headercell" colspan="6">
 							帮扶责任单位驻村干部及联系人
+						</td>
+						<td width="" class="tables_headercell" rowspan="3">
+							操作
 						</td>
 					</tr>
 					<tr align="center">
@@ -188,10 +194,19 @@
 						<td align="center" class="tables_contentcell">
 							&nbsp; 
 						</td>
+						<td align="center" class="tables_contentcell">
+							<a href="#" onclick="winOpen('${appPath}manager_viewMapping.action?cun.id=${f.id}',450,120);">新增/修改帮扶单位</a>
+							<c:if test="${not empty f.org}">
+							<br/><a href="${appPath}manager_cancelMapping.action?cun.id=${f.id}">取消帮扶</a>
+							</c:if>
+							<c:if test="${(userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员'&&userObj.isDiv=='Y')) && not empty f.org}">
+							<br/><a href="${appPath}login.action?username=${f.org.loginName}&password=${f.org.password}&needRand=N">登录</a>
+							</c:if>
+						</td>
 					</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="15">
+						<td height="25" align="right" class="tables_contentcell" colspan="16">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

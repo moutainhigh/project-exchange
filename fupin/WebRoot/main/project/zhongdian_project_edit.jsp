@@ -6,14 +6,17 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<title>重点帮扶钟落潭镇项目 </title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.datepick.css" />
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
+		<script type="text/javascript" src="${appPath}js/jquery.datepick.js"></script>
+		<script type="text/javascript" src="${appPath}js/jquery.datepick-zh-CN.js"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			$(function(){
-			
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
 		</script>
 	</head>
@@ -44,33 +47,22 @@
 					    </td>
 					</tr>
 					<tr>
-					    <td height="30" align="right" class="tables_leftcell">建设规模及内容</td>
+					    <td height="100" align="right" class="tables_leftcell">建设规模及内容</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_content" datatype="Require" msg="建设规模及内容不能为空！" size="40" value="${proZd.content}" name="proZd.content"/>
+							<textarea id="pro_content" datatype="Require" msg="建设规模及内容不能为空！" name="proZd.content" rows="5" style="width: 90%;">${proZd.content}</textarea>
 						<font size="4" color="#cc0033">*</font>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell">具体实施时间节点（立项、报建、实施等环节） </td>
 					    <td class="tables_contentcell">
-							立项 <select name="proZd.lixiang">
-								<option value=""></option>
-								<c:forEach var="f" begin="2011" end="2020" step="1">
-								<option value="${f}" <c:if test="${proZd.lixiang==f}">selected="selected"</c:if>>${f}</option>
-								</c:forEach>
-							</select><br/>
-							报建<select name="proZd.baojian">
-								<option value=""></option>
-								<c:forEach var="f" begin="2011" end="2020" step="1">
-								<option value="${f}" <c:if test="${proZd.baojian==f}">selected="selected"</c:if>>${f}</option>
-								</c:forEach>
-							</select><br/>
-							实施 <select name="proZd.shishi">
-								<option value=""></option>
-								<c:forEach var="f" begin="2011" end="2020" step="1">
-								<option value="${f}" <c:if test="${proZd.shishi==f}">selected="selected"</c:if>>${f}</option>
-								</c:forEach>
-							</select>
+							立项 <input value="${proZd.lixiang }" name="proZd.lixiang" class="datetime"/>
+							<br/>
+							报建
+							<input value="${proZd.baojian }" name="proZd.baojian" class="datetime"/>
+							<br/>
+							实施 
+							<input value="${proZd.shishi }" name="proZd.shishi" class="datetime"/>
 					    </td>
 					</tr>
 					<tr>

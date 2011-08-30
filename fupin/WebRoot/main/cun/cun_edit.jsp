@@ -211,19 +211,19 @@
 <table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 	<tbody>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">村</td>
+		<td height="30" align="right" class="tables_leftcell" width="100">村</td>
 		<td class="tables_contentcell">&nbsp;${cun.zhen.area.name}${cun.zhen.name}${cun.name}</td>
 		<td align="right" class="tables_leftcell">村户籍人口数</td>
 		<td class="tables_contentcell"><input type="text"/></td>
 		<td align="right" class="tables_leftcell">户数</td>
-		<td class="tables_contentcell"><input type="text"/></td>
+		<td class="tables_contentcell" width="100"><input type="text"/></td>
 		<td align="right" class="tables_leftcell">耕地面积</td>
 		<td class="tables_contentcell"><input type="text"/></td>
 		<td align="right" class="tables_leftcell">山地面积</td>
-		<td class="tables_contentcell"><input type="text"/></td>
+		<td class="tables_contentcell" width="100"><input type="text"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">2010年村集体收入</td>
+		<td height="30" align="right" class="tables_leftcell" width="100">2010年村集体收入</td>
 		<td class="tables_contentcell" colspan="2"><input type="text"/></td>
 		<td align="right" class="tables_leftcell" colspan="2">其中上级转移至村的收入</td>
 		<td class="tables_contentcell" colspan="2"><input type="text"/></td>
@@ -231,25 +231,25 @@
 		<td class="tables_contentcell" colspan="3"><input type="text"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">村集体现有基本基础设施与公共服务设施建设项目</td>
+		<td height="100" align="right" class="tables_leftcell" width="100">村集体现有基本基础设施与公共服务设施建设项目</td>
 		<td class="tables_contentcell" colspan="9">&nbsp;
 		<textarea rows="" cols=""></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">村现有资源</td>
+		<td height="100" align="right" class="tables_leftcell" width="100">村现有资源</td>
 		<td class="tables_contentcell" colspan="9">&nbsp;
 		<textarea rows="" cols=""></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">村集体经济发展计划</td>
+		<td height="100" align="right" class="tables_leftcell" width="100">村集体经济发展计划</td>
 		<td class="tables_contentcell" colspan="9">&nbsp;
 		<textarea rows="" cols=""></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">村两委干部基本情况</td>
+		<td height="100" align="right" class="tables_leftcell" width="100">村两委干部基本情况</td>
 		<td class="tables_contentcell" colspan="9">&nbsp;
 		<textarea rows="" cols=""></textarea>
 		</td>

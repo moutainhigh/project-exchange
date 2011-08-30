@@ -40,7 +40,6 @@
 					    <td height="30" align="right" class="tables_leftcell">企业负责人</td>
 					    <td class="tables_contentcell">
 							<input type="text" id="pro_name" size="20" value="${proSh.fuzeren}" name="proSh.fuzeren"/>
-						<font size="4" color="#cc0033">*</font>
 					    </td>
 					</tr>	
 					<tr>
@@ -65,13 +64,13 @@
 					    <td height="30" align="right" class="tables_leftcell">捐赠项目名称</td>
 					    <td class="tables_contentcell">
 							<input type="text" id="money" msg="捐赠项目名称为必选项！" datatype="Require" size="20" value="${proSh.name}" name="proSh.name"/>
+							<font size="4" color="#cc0033">*</font>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell">受捐赠单位负责人</td>
 					    <td class="tables_contentcell">
 							<input type="text" id="pro_name" size="20" value="${proSh.shouFuzeren}" name="proSh.shouFuzeren"/>
-						<font size="4" color="#cc0033">*</font>
 					    </td>
 					</tr>	
 					<tr>
@@ -81,10 +80,10 @@
 					    </td>
 					</tr>
 					<tr>
-					    <td height="30" align="right" class="tables_leftcell">建设规模及内容</td>
+					    <td height="100" align="right" class="tables_leftcell">建设规模及内容</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_content" datatype="Require" msg="建设规模及内容不能为空！" size="40" value="${proSh.content}" name="proSh.content"/>
-						<font size="4" color="#cc0033">*</font>
+							<textarea datatype="Require" msg="建设规模及内容不能为空！" rows="5" id="pro_content" name="proSh.content">${proSh.content}</textarea>
+							<font size="4" color="#cc0033">*</font>
 					    </td>
 					</tr>
 					<tr>
