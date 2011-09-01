@@ -16,8 +16,8 @@ public class All {
 	public static void main(String[] args) throws Exception {
 		//初始化数据
 		Init.main(null);
-		//GuideHtml.main(null);
-		//HotTagHtml.main(null);
+		GuideHtml.main(null);
+		HotTagHtml.main(null);
 		//生成HTML
 		Index.main(null);
 		Products.main(null);
@@ -25,8 +25,8 @@ public class All {
 		Download.main(null);
 		Purchase.main(null);
 		Other.main(null);
-		//Guide.main(null);
-		//HotTag.main(null);
+		Guide.main(null);
+		HotTag.main(null);
 		System.out.println("SOFT_DIR222:"+SOFT_DIR);
 		Supports.main(null);
 		System.out.println("SOFT_DIR:"+SOFT_DIR);

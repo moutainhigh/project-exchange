@@ -105,7 +105,7 @@ public class Common {
 		while((start=nextImg(content,fromIndex))>0){
 			int end = content.indexOf(">", start);
 			fromIndex = end;
-			if(content.charAt(end-1)!='/'){
+			if(end>1 && content.charAt(end-1)!='/'){
 				StringBuffer sb = new StringBuffer(content);
 				sb.replace(end, end+1, "/>");
 				content = sb.toString();

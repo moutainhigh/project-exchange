@@ -33,7 +33,15 @@ public class HotTagHtml {
 			else
 				url = new URL(All.SITE_PRE+p.getFileName()+"/"+p.getFileName()+".html");
 			
-			Document doc = Jsoup.parse(url,10000);
+			Document doc = null;
+			
+			try {
+				doc = Jsoup.parse(url,10000);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				continue;
+			}
 			
 			Elements contents = doc.select(".content");
 			Element content = contents.get(2);

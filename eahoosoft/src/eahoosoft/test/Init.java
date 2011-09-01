@@ -38,6 +38,11 @@ public class Init {
 		c4.setFileName("a");
 		s.save(c4);
 		
+		Category c5 = new Category();
+		c5.setName("iPhone/iPad Apps");
+		c5.setFileName("g");
+		s.save(c5);
+		
 		
 		//添加产品
 		Product p1 = new Product();
@@ -765,6 +770,65 @@ public class Init {
 		p37.setFeatures(getFeature37(p37));
 		s.save(p37);
 		
+		//image converter
+		Product p38 = new Product();
+		p38.setBuyUrl("https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-15&q=1&v=0&d=0");
+		p38.setCate(c1);
+		p38.setDescription("<p>With   this easy yet multifunctional  Image Converter download, you can convert   your photos handily without any technical knowledge required.</p>	        <p>Eahoosoft Image Converter is a very useful tool for image conversion, capable of <strong>batch converting the file format of images</strong>, supporting more than 14   formats including bmp, wbmp, jpeg, png, tiff, gif, pcx, tga, ico, psd, jp2, j2k,   dcx, pdf, etc. Changes image attributes, such as color, quality, brightness,   contrast, and more.            </p>");
+		p38.setDownUrl("EahoosoftImageConverter.exe");
+		p38.setFileName("eahoosoft-image-converter");
+		p38.setImage("image-converter-box.png");
+		p38.setName("Eahoosoft Image Converter");
+		p38.setPrice(24.95);
+		p38.setScreenShot("EahoosoftImageConverter.jpg");
+		p38.setShortDesc("Eahoosoft Image Converter is a very useful tool for image conversion, capable of batch converting the file format of images.");
+		p38.setSize("1.85Mb");
+		p38.setShortName("Image Converter");
+		p38.setOrderNum(23);
+		p38.setIcon("new");
+		p38.setVersion("2.0.0");
+		p38.setFeatures(getFeature38(p38));
+		s.save(p38);
+		
+		//funny game
+		Product p39 = new Product();
+		p39.setBuyUrl("http://itunes.apple.com/us/app/funny-bumper-ball/id451465399?ls=1&mt=8");
+		p39.setCate(c5);
+		p39.setDescription("Here is a simple puzzle games. It is specifically designed for Apple iPad users.No matter straight horizontal or oblique ,if you make the five same colour ball into line, you can eliminate the ball to score. When the different colors of the ball turn into more and more, do you become hurry-scurry and disorderly? With the highly intelligent, can you vanquish these naughty wacky ball? Free download games and have a try!");
+		p39.setDownUrl("http://itunes.apple.com/us/app/funny-bumper-ball/id451465399?ls=1&mt=8");
+		p39.setFileName("funny-bumper-ball");
+		p39.setImage("funny-bumper-ball-01.png");
+		p39.setName("Eahoosoft Funny Bumper Ball");
+		p39.setPrice(1.99);
+		p39.setScreenShot("funny-bumper-ball-02.png");
+		p39.setShortDesc("Here is a simple puzzle games. It is specifically designed for Apple iPad users.");
+		p39.setSize("4.3Mb");
+		p39.setShortName("Funny Bumper Ball");
+		p39.setOrderNum(1);
+		p39.setIcon("new");
+		p39.setVersion("1.0.0");
+		p39.setFeatures(getFeature39(p39));
+		s.save(p39);
+		
+		//free ripper
+		Product p40 = new Product();
+		p40.setBuyUrl(null);
+		p40.setCate(c4);
+		p40.setDescription("Eahoosoft CD Ripper - High-quality CD ripping software, DVDVideoMedia Free CD Ripper rips CD to nearly all audio formats MP3, WMA, WAV, AAC, FLAC, OGG, APE and many others, making CDs available on different music players. Rip CDs in a wink with DVDVideoMedia Free CD Ripper. Download this amazing Free CD ripperl now! ");
+		p40.setDownUrl("free-cd-ripper.exe");
+		p40.setFileName("free-cd-ripper");
+		p40.setImage("free-cd-ripper.jpg");
+		p40.setName("Eahoosoft Free CD Ripper");
+		p40.setPrice(0.0);
+		p40.setScreenShot("free-cd-ripper.jpg");
+		p40.setShortDesc("Eahoosoft CD Ripper - High-quality CD ripping software, DVDVideoMedia Free CD Ripper rips CD to nearly all audio formats.");
+		p40.setSize("1.6Mb");
+		p40.setShortName("Free CD Ripper");
+		p40.setOrderNum(4);
+		p40.setIcon("free");
+		p40.setVersion("2.0.0");
+		p40.setFeatures(getFeature40(p40));
+		s.save(p40);
 		
 		//更换购买链接
 		List<Product> list = s.createQuery("from Product").list();
@@ -1278,6 +1342,37 @@ public class Init {
 		set.add(buildFeature("Major Features","    Multilingual interfaces<br/>    Modify a variety of output parameters: frame rate, channel codec, aspect ratio, bit rate, and many more<br/>    Automatically divide files into numerous parts by setting the start time and the duration period<br/>    Allows you to have conversion outlines with optimized output parameters to perfectly sync your iPad<br/>    Watch video and extract from it<br/>    Output multiple setting in one file<br/>"));
 		set.add(buildFeature("OS Supported: ","Mac OS X v10.5 - 10.6, Snow Leopard support"));
 		set.add(buildFeature("Hardware Requirements: ","800MHz Intel or AMD CPU, or above;<br/>512MB RAM or more."));
+		return set;
+	}
+	private static Set<Feature> getFeature38(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("Supporting more than 14 formats including bmp, wbmp, jpeg, png, tiff, gif, pcx, tga, ico, psd, jp2, j2k, dcx, pdf, etc",""));
+		set.add(buildFeature("Adjusts image size on scale or according to custom size",""));
+		set.add(buildFeature("Capable of adding user-defined water mark onto images",""));
+		set.add(buildFeature("Previews source files with effect previews",""));
+		set.add(buildFeature("Supports image rotation",""));
+		set.add(buildFeature("Very easy to use",""));
+		return set;
+	}
+	private static Set<Feature> getFeature39(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("","<h4 style=\"background:none;\">"+
+				  "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0\" width=\"480\" height=\"320\" id=\"FLVPlayer\">"+
+                  "  <param name=\"movie\" value=\"http://www.eahoosoft.com/video/funny-bumper-ball.swf\" />"+
+                  "  <param name=\"salign\" value=\"lt\" />"+
+                  "  <param name=\"quality\" value=\"high\" />"+
+                  "  <param name=\"scale\" value=\"noscale\" />"+
+                  "  <param name=\"FlashVars\" value=\"&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=http://www.eahoosoft.com/video/funny-bumper-ball&autoPlay=true&autoRewind=true\" />"+
+                  "  <embed src=\"http://www.eahoosoft.com/video/funny-bumper-ball.swf\" flashvars=\"&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=http://www.eahoosoft.com/video/funny-bumper-ball&autoPlay=true&autoRewind=true\" quality=\"high\" scale=\"noscale\" width=\"480\" height=\"320\" name=\"FLVPlayer\" salign=\"LT\" type=\"application/x-shockwave-flash\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" />"+                    
+"</object>"+
+"				</h4>"));
+		return set;
+	}
+	private static Set<Feature> getFeature40(Product p){
+		Set<Feature> set = new TreeSet<Feature>();
+		set.add(buildFeature("Extract CD soundtrack",""));
+		set.add(buildFeature("Rip CDs to MP3, WMA, WAV, AAC, FLAC, OGG, APE and many other audio formats",""));
+		set.add(buildFeature("Rip one CD soundtrack to different format music files in one go",""));
 		return set;
 	}
 	private static int i;
