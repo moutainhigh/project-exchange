@@ -42,7 +42,10 @@ public class All {
 					String absPath = f.getAbsolutePath();
 					System.out.println(absPath);
 					replaceChars(absPath);
-				}else if(f.getName().contains(".html")){
+				}else if(f.getName().endsWith(".html")){
+					if(f.getName().contains("free-video")){
+						System.out.println("free-video:" + f.getAbsolutePath());
+					}
 					String content = readFile(f);
 					content = Common.replaceChars(content);
 					writeFile(f,content);

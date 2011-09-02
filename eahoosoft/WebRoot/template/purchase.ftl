@@ -21,13 +21,14 @@
 	        <li><a href="purchase-i-tools.html">iPod/iPad/iPhone Tools</a></li>
 	        <li><a href="purchase-m-tools.html">Mac Software</a></li>
 	        <li><a href="purchase-a-tools.html">Audio Tools</a></li>
+	        <li><a href="purchase-g-tools.html">iPhone/iPad Apps</a></li>
 	      </ul>
 	    </div>
 	    <div id="listBox">
 	        <ul class="dpList">
 	          <li class="title"> <span class="icon">ICON</span> <span class="sort">iPad/iPod/iPhone Tools</span> <span class="price">Price</span> <span class="os">OS</span> <span class="operate">Purchase</span> </li>
 	          <#list pList as p>
-	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}</span></span> <span class="price">$#{p.price;m2M2}</span> <span class="os">${op}</span><span class="operate"><a href="${p.buyUrl}" class="buyNow">Buy Now</a> <a href="${p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
+	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}</span></span> <span class="price">$#{p.price;m2M2}</span> <span class="os">${op}</span><span class="operate"><#if p.buyUrl?exists><a href="${p.buyUrl}" class="buyNow">Buy Now</a></#if> <a href="${p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
 	          </#list>
 	        </ul>
 	    </div>

@@ -24,7 +24,7 @@
 	        <div class="buyNowBig"><a href="${p.buyUrl}" target="_blank"><span>Buy Now<br>
 					Price: $#{p.price;m2M2}</span></a></div>
 			</#if>
-			<div class="freeTrialBig"><a href="../download/${p.downUrl}"><span>Free Trial<br>
+			<div class="freeTrialBig"><a href="<#if p.downUrl?exists>../download/${p.downUrl}<#else>${p.buyUrl}</#if>"><span>Free Trial<br>
 					Size: ${p.size}</span></a></div>
 	      </div>
 	      <div class="productsMid">
@@ -39,7 +39,7 @@
 	        </div>
 			</#list>
 			<div class="clear" style="overflow:hidden;width:430px;margin:5px auto;">
-				<div class="freeTrialBig_below"><a href="../download/${p.downUrl}"><span>Free Trial<br>
+				<div class="freeTrialBig_below"><a href="<#if p.downUrl?exists>../download/${p.downUrl}<#else>${p.buyUrl}</#if>"><span>Free Trial<br>
 					Size: ${p.size}</span></a></div>
 				<#if p.buyUrl?exists>
 				<div class="buyNowBig_below"><a href="${p.buyUrl}" target="_blank"><span>Buy Now<br>

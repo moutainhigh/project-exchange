@@ -21,6 +21,7 @@
 	        <li><a href="products-i-tools.html">iPod/iPad/iPhone Tools</a></li>
 	        <li><a href="products-m-tools.html">Mac Software</a></li>
 	        <li><a href="products-a-tools.html">Audio Tools</a></li>
+	        <li><a href="products-g-tools.html">iPhone/iPad Apps</a></li>
 	      </ul>
 	    </div>
 	    <div id="listBox">
@@ -30,7 +31,7 @@
 	        <div class="productsListImg"><a href="${p.fileName}/${p.fileName}.html"><img width="142" height="175" alt="${p.name}" src="images/${p.image}"></a></div>
 	        <p>${p.longDesc}<span class="learnMore">&gt;<a href="${p.fileName}/${p.fileName}.html">Learn more</a></span><br />
 	        </p>
-	        <p class="productsInfo"> Price:<span class="price">$#{p.price;m2M2}</span> <span class="buyNow"><a href="${p.buyUrl}" target="_blank">Buy Now</a></span> <span class="download"><a href="download/${p.downUrl}">Download</a></span> </p>
+	        <p class="productsInfo"> Price:<span class="price">$#{p.price;m2M2}</span> <span class="buyNow"><#if p.buyUrl?exists><a href="${p.buyUrl}" target="_blank">Buy Now</a></#if></span> <span class="download"><a href="<#if p.downUrl?exists>../download/${p.downUrl}<#else>${p.buyUrl}</#if>">Download</a></span> </p>
 	      </div>
 	      </#list>
 		</div>

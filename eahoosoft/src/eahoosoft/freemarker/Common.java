@@ -18,7 +18,7 @@ import eahoosoft.pojo.Product;
 
 public class Common {
 	public static void fillCommonVar(Map map){
-		map.put("appPath", "/soft/");
+		map.put("appPath", "/");
 		map.put("appTitle", Constants.APP_TITLE);
 		map.put("appDesc", Constants.APP_DESC);
 		map.put("appKeywords", Constants.APP_KEY_WORDS);
@@ -54,6 +54,9 @@ public class Common {
 		
 		List<Product> aList = s.createQuery("from Product p where p.cate.fileName='a' order by p.orderNum").list();
 		map.put("aList", aList);
+		
+		List<Product> gList = s.createQuery("from Product p where p.cate.fileName='g' order by p.orderNum").list();
+		map.put("gList", gList);
 	}
 	public static String replaceChars(String content){
 		content = content.replaceAll("“", "\"");

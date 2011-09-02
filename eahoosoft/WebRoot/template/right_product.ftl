@@ -57,6 +57,13 @@
 	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName}</a></li>
 	            </#list>
 	            <li><a href="${appPath}products-a-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
+	            <li class="listTitle">
+	              <h3>iPhone/iPad Apps</h3>
+	            </li>
+	            <#list gList as p>
+	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName}</a></li>
+	            </#list>
+	            <li><a href="${appPath}products-g-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
 	          </ul>
 	        </div>
 	      </div>

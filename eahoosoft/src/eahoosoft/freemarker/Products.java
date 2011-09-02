@@ -84,5 +84,19 @@ public class Products {
 		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"products-a-tools.html"));
 		template.process(map, pw);
 		pw.close();
+		
+		//5
+		//标题栏模块下标
+		map.put("currCate", 4);
+		Common.fillPageInfoFromURL(All.SITE_PRE+"products-g-tools.html", map);
+		//产品列表
+		s = HibernateSessionFactory.getSession();
+		pList = s.createQuery("from Product p where p.cate.fileName='g' order by p.orderNum").list();
+		map.put("pList", pList);
+		s.close();
+		//添加顶部、底部和右侧的变量
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"products-g-tools.html"));
+		template.process(map, pw);
+		pw.close();
 	}
 }
