@@ -103,5 +103,20 @@ public class Purchase {
 		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"purchase-g-tools.html"));
 		template.process(map, pw);
 		pw.close();
+		
+		//6
+		//标题栏模块下标
+		map.put("currCate", 5);
+		Common.fillPageInfoFromURL(All.SITE_PRE+"purchase-p-tools.html", map);
+		//产品列表
+		s = HibernateSessionFactory.getSession();
+		pList = s.createQuery("from Product p where p.cate.fileName='p' order by p.orderNum").list();
+		map.put("pList", pList);
+		s.close();
+		//添加顶部、底部和右侧的变量
+		map.put("op", "Windows 7/vista/xp/2000");
+		pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"purchase-p-tools.html"));
+		template.process(map, pw);
+		pw.close();
 	}
 }

@@ -57,6 +57,9 @@ public class Common {
 		
 		List<Product> gList = s.createQuery("from Product p where p.cate.fileName='g' order by p.orderNum").list();
 		map.put("gList", gList);
+		
+		List<Product> ppList = s.createQuery("from Product p where p.cate.fileName='p' order by p.orderNum").list();
+		map.put("ppList", ppList);
 	}
 	public static String replaceChars(String content){
 		content = content.replaceAll("“", "\"");

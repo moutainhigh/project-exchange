@@ -22,6 +22,7 @@
 	        <li><a href="products-m-tools.html">Mac Software</a></li>
 	        <li><a href="products-a-tools.html">Audio Tools</a></li>
 	        <li><a href="products-g-tools.html">iPhone/iPad Apps</a></li>
+	        <li><a href="products-p-tools.html">Picture Tools</a></li>
 	      </ul>
 	    </div>
 	    <div id="listBox">

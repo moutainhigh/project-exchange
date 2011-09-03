@@ -43,6 +43,11 @@ public class Init {
 		c5.setFileName("g");
 		s.save(c5);
 		
+		Category c6 = new Category();
+		c6.setName("Picture Tools");
+		c6.setFileName("p");
+		s.save(c6);
+		
 		
 		//添加产品
 		Product p1 = new Product();
@@ -773,7 +778,7 @@ public class Init {
 		//image converter
 		Product p38 = new Product();
 		p38.setBuyUrl("https://usd.swreg.org/cgi-bin/s.cgi?s=128442&p=128442-15&q=1&v=0&d=0");
-		p38.setCate(c1);
+		p38.setCate(c6);
 		p38.setDescription("<p>With   this easy yet multifunctional  Image Converter download, you can convert   your photos handily without any technical knowledge required.</p>	        <p>Eahoosoft Image Converter is a very useful tool for image conversion, capable of <strong>batch converting the file format of images</strong>, supporting more than 14   formats including bmp, wbmp, jpeg, png, tiff, gif, pcx, tga, ico, psd, jp2, j2k,   dcx, pdf, etc. Changes image attributes, such as color, quality, brightness,   contrast, and more.            </p>");
 		p38.setDownUrl("EahoosoftImageConverter.exe");
 		p38.setFileName("eahoosoft-image-converter");

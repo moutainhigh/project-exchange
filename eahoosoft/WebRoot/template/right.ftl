@@ -46,6 +46,13 @@
 	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName?default('')}</a></li>
 	            </#list>
 	            <li><a href="${appPath}products-g-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
+	            <li class="listTitle">
+	              <h3>Picture Tools</h3>
+	            </li>
+	            <#list ppList as p>
+	            <li><a href="${appPath}${p.fileName}/${p.fileName}.html" class="${p.icon?default("")}">${p.shortName?default('')}</a></li>
+	            </#list>
+	            <li><a href="${appPath}products-p-tools.html" class="nav-more">&gt;&gt; Learn More</a></li>
 	          </ul>
 	        </div>
 	      </div>
