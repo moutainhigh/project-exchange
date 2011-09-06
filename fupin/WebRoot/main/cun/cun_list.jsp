@@ -48,7 +48,7 @@
 							<label>村名字（模糊查询）: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 							<input type="submit" class="button" value="查询">
-							<c:if test="${userObj.roleType=='超级管理员' || (userObj.roleType=='帮扶单位管理员' && not userObj.is206)}">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
 							<input type="button" onclick="winOpen('${appPath}main/cun/upload.jsp',300,300);" class="button" value="调查表导入">
 							</c:if>  
 						</td>
@@ -91,7 +91,7 @@
 								${f.zhen.area.name}${f.zhen.name}${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${not f.is206 || userObj.roleType=='超级管理员'}">
+								<c:if test="${userObj.isDiv=='Y' || userObj.roleType=='超级管理员'}">
 								<a href="#" onclick="winOpen('${appPath}cun_editCun.action?cun.id=${f.id}',750,650);">资料完善</a>
 								</c:if>
 								<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${f.id}',750,650);">查看</a>
