@@ -16,11 +16,12 @@ public class Product {
 	private String screenShot;
 	private Double price;
 	private String fileName;
+	private String dirName;
 	private String size;
 	private Integer orderNum;
 	private Integer indexOrderNum;
 	private String version;
-	private String icon;//hot,new,free
+	private String icon;// hot,new,free
 
 	private Category cate;
 	private Set<Feature> features = new HashSet<Feature>();
@@ -184,6 +185,14 @@ public class Product {
 
 	public void setLongDesc(String longDesc) {
 		this.longDesc = longDesc;
+	}
+
+	public String getDirName() {
+		return dirName;
+	}
+
+	public void setDirName(String dirName) {
+		this.dirName = dirName;
 	}
 
 }

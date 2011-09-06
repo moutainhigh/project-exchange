@@ -29,7 +29,7 @@
 	        <ul class="dpList">
 	          <li class="title"> <span class="icon">ICON</span> <span class="sort">iPad/iPod/iPhone Tools</span> <span class="price">Price</span> <span class="os">OS</span> <span class="operate">Purchase</span> </li>
 	          <#list pList as p>
-	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}</span></span> <span class="price">$#{p.price;m2M2}</span> <span class="os">${op}</span><span class="operate"><#if p.buyUrl?exists><a href="${p.buyUrl}" class="buyNow">Buy Now</a></#if> <a href="${p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
+	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.dirName!p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}</span></span> <span class="price">$#{p.price;m2M2}</span> <span class="os">${op}</span><span class="operate"><#if p.buyUrl?exists><a href="${p.buyUrl}" class="buyNow">Buy Now</a></#if> <a href="${p.dirName!p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
 	          </#list>
 	        </ul>
 	    </div>

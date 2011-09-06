@@ -28,9 +28,9 @@
 	    <div id="listBox">
 	      <#list pList as p>
 	      <div class="productsListShow">
-	        <h2><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></h2>
-	        <div class="productsListImg"><a href="${p.fileName}/${p.fileName}.html"><img width="142" height="175" alt="${p.name}" src="images/${p.image}"></a></div>
-	        <p>${p.longDesc}<span class="learnMore">&gt;<a href="${p.fileName}/${p.fileName}.html">Learn more</a></span><br />
+	        <h2><a href="${p.dirName!p.fileName}/${p.fileName}.html">${p.name}</a></h2>
+	        <div class="productsListImg"><a href="${p.dirName!p.fileName}/${p.fileName}.html"><img width="142" height="175" alt="${p.name}" src="images/${p.image}"></a></div>
+	        <p>${p.longDesc}<span class="learnMore">&gt;<a href="${p.dirName!p.fileName}/${p.fileName}.html">Learn more</a></span><br />
 	        </p>
 	        <p class="productsInfo"> Price:<span class="price">$#{p.price;m2M2}</span> <span class="buyNow"><#if p.buyUrl?exists><a href="${p.buyUrl}" target="_blank">Buy Now</a></#if></span> <span class="download"><a href="<#if p.downUrl?exists>../download/${p.downUrl}<#else>${p.buyUrl}</#if>">Download</a></span> </p>
 	      </div>

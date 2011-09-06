@@ -22,13 +22,13 @@
 	      	<!--product list items-->
 	      	<#list pList as p>
 	        <div class="productsList">
-	          <h2><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></h2>
+	          <h2><a href="${p.dirName!p.fileName}/${p.fileName}.html">${p.name}</a></h2>
 	          <div class="productsListContents">
-	            <p>${p.longDesc}&nbsp;<a href="${p.fileName}/${p.fileName}.html" class="learnMore">&gt;Learn more</a></p>
+	            <p>${p.longDesc}&nbsp;<a href="${p.dirName!p.fileName}/${p.fileName}.html" class="learnMore">&gt;Learn more</a></p>
 	            <a class="buyNowSmall" href="${p.buyUrl}" target="_blank"><span>Buy Now<br />
 	            Price: $#{p.price;m2M2}</span></a> <a class="freeTrialSmall" href="download/${p.downUrl}"><span> Free Trial<br />
 	            Size: ${p.size}</span></a> </div>
-	          <div class="productsImg"><a href="${p.fileName}/${p.fileName}.html"><img alt="${p.name}" src="images/${p.image}"></a>
+	          <div class="productsImg"><a href="${p.dirName!p.fileName}/${p.fileName}.html"><img alt="${p.name}" src="images/${p.image}"></a>
 	            <div style="margin-left:19px; margin-top:10px;"></div>
 	          </div>
 	        </div>

@@ -29,7 +29,7 @@
 	        <ul class="dpList">
 	          <li class="title"> <span class="icon">ICON</span> <span class="sort">iPad/iPod/iPhone Tools</span> <span class="version">Version</span> <span class="size">Size</span> <span class="operate">Free Download</span> </li>
 	          <#list pList as p>
-	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}</span></span> <span class="version">${p.version}</span> <span class="size">${p.size}</span> <span class="operate"> <a href="<#if p.downUrl?exists>${appPath}download/${p.downUrl}<#else>${p.buyUrl}</#if>" class="download">Download</a> <a href="${p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
+	          <li class="dpListShow"> <span class="icon"><img src="images/${p.image}" alt="${p.name}"></span> <span class="sort"> <span class="productsName"><a href="${p.dirName!p.fileName}/${p.fileName}.html">${p.name}</a></span><span class="productsDesc">${p.shortDesc}</span></span> <span class="version">${p.version}</span> <span class="size">${p.size}</span> <span class="operate"> <a href="<#if p.downUrl?exists>${appPath}download/${p.downUrl}<#else>${p.buyUrl}</#if>" class="download">Download</a> <a href="${p.dirName!p.fileName}/${p.fileName}.html" class="learnMore">Learn More</a> </span> </li>
 	          </#list>
 	        </ul>
 	    </div>

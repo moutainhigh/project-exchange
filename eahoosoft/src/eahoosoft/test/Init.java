@@ -802,6 +802,7 @@ public class Init {
 		p39.setDescription("Here is a simple puzzle games. It is specifically designed for Apple iPad users.No matter straight horizontal or oblique ,if you make the five same colour ball into line, you can eliminate the ball to score. When the different colors of the ball turn into more and more, do you become hurry-scurry and disorderly? With the highly intelligent, can you vanquish these naughty wacky ball? Free download games and have a try!");
 		p39.setDownUrl(null);
 		p39.setFileName("funny-bumper-ball");
+		p39.setDirName("ipad-games");
 		p39.setImage("funny-bumper-ball-01.png");
 		p39.setName("Eahoosoft Funny Bumper Ball");
 		p39.setPrice(1.99);

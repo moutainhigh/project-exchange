@@ -10,6 +10,7 @@
 		<property name="description" length="10240"></property>
 		<property name="downUrl"></property>
 		<property name="fileName"></property>
+		<property name="dirName"></property>
 		<property name="image"></property>
 		<property name="name"></property>
 		<property name="price"></property>

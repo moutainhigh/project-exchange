@@ -14,7 +14,7 @@
 	  <#include "/header.ftl"/>
 	  <div class="contents-top"></div>
 	  <div id="contents">
-	    <div id="location"><a class="localtionIndex" href="${appPath}index.html">Home</a>|<a class="localtionTwo" href="${appPath}${p.fileName}/${p.fileName}.html">${p.name}</a>|<span class="localtionSec">${h.linkName}</span></div>    
+	    <div id="location"><a class="localtionIndex" href="${appPath}index.html">Home</a>|<a class="localtionTwo" href="${appPath}${p.dirName!p.fileName}/${p.fileName}.html">${p.name}</a>|<span class="localtionSec">${h.linkName}</span></div>    
 		<div id="mainContents">
 	      <div class="newsList noBg">
 			<!--content-->
