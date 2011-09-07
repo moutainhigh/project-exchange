@@ -207,7 +207,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			if ("12".equals(reportParam.getName()))
 				row = 2;
 			while (rs.next()) {
-				System.out.println(rs.getObject("帮扶单位")+":"+rs.getObject(56));
+				//System.out.println(rs.getObject("帮扶单位")+":"+rs.getObject(56));
 				for (int i = 0; i < colSize; i++) {
 					try {
 						Object obj = rs.getObject(i + 1);
