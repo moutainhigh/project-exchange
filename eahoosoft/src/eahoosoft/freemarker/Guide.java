@@ -70,18 +70,18 @@ public class Guide {
 		}	
 		
 		//生成详细页面
-		URL url = new URL(All.SITE_PRE+"index.html");		
-		Document doc = Jsoup.parse(url,10000);
-		Element userGuide = doc.select(".DIV4").get(5);
-		Elements links = userGuide.select("a");
-		List<eahoosoft.pojo.Guide> ugList = new ArrayList<eahoosoft.pojo.Guide>(); 
-		for(Element link : links){
-			eahoosoft.pojo.Guide g = new eahoosoft.pojo.Guide();
-			g.setLinkName(link.text());
-			g.setFileName(link.attr("href"));
-			ugList.add(g);
-		}
-		map.put("ugList", ugList);
+//		URL url = new URL(All.SITE_PRE+"index.html");		
+//		Document doc = Jsoup.parse(url,10000);
+//		Element userGuide = doc.select(".DIV4").get(5);
+//		Elements links = userGuide.select("a");
+//		List<eahoosoft.pojo.Guide> ugList = new ArrayList<eahoosoft.pojo.Guide>(); 
+//		for(Element link : links){
+//			eahoosoft.pojo.Guide g = new eahoosoft.pojo.Guide();
+//			g.setLinkName(link.text());
+//			g.setFileName(link.attr("href"));
+//			ugList.add(g);
+//		}
+//		map.put("ugList", ugList);
 		s = HibernateSessionFactory.getSession();
 		List<eahoosoft.pojo.Guide> gList = s.createQuery("from Guide").list();
 		for(eahoosoft.pojo.Guide g : gList){

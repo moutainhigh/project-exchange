@@ -56,22 +56,22 @@ public class Index {
 //		map.put("grList", grList);
 //		s.close();
 		//user guide
-		URL url = new URL(All.SITE_PRE+"index.html");		
-		Document doc = Jsoup.parse(url,10000);
-		Element userGuide = doc.select(".DIV4").get(5);
-		Elements links = userGuide.select("a");
-		List<Guide> ugList = new ArrayList<Guide>(); 
-		for(Element link : links){
-			Guide g = new Guide();
-			g.setLinkName(link.text());
-			g.setFileName(link.attr("href"));
-			g.setFileName(g.getFileName().replaceAll("eahoosoft-DVD-Ripper", "eahoosoft-dvd-ripper"));
-			g.setFileName(g.getFileName().replaceAll("dvd-to-iPad-converter", "dvd-to-ipad-converter"));
-			g.setFileName(g.getFileName().replaceAll("dvd-to-iPhone-converter", "dvd-to-iphone-converter"));
-			g.setFileName(g.getFileName().replaceAll("dvd-to-iPod-converter", "dvd-to-ipod-converter"));
-			ugList.add(g);
-		}
-		map.put("ugList", ugList);
+//		URL url = new URL(All.SITE_PRE+"index.html");		
+//		Document doc = Jsoup.parse(url,10000);
+//		Element userGuide = doc.select(".DIV4").get(5);
+//		Elements links = userGuide.select("a");
+//		List<Guide> ugList = new ArrayList<Guide>(); 
+//		for(Element link : links){
+//			Guide g = new Guide();
+//			g.setLinkName(link.text());
+//			g.setFileName(link.attr("href"));
+//			g.setFileName(g.getFileName().replaceAll("eahoosoft-DVD-Ripper", "eahoosoft-dvd-ripper"));
+//			g.setFileName(g.getFileName().replaceAll("dvd-to-iPad-converter", "dvd-to-ipad-converter"));
+//			g.setFileName(g.getFileName().replaceAll("dvd-to-iPhone-converter", "dvd-to-iphone-converter"));
+//			g.setFileName(g.getFileName().replaceAll("dvd-to-iPod-converter", "dvd-to-ipod-converter"));
+//			ugList.add(g);
+//		}
+//		map.put("ugList", ugList);
 		
 		PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DIR+"index.html"));
 		
