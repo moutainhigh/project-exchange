@@ -28,7 +28,7 @@ r.item9 as '社会引资(元)'
 from fp_diqu c
 left outer join fp_diqu z on z.id=c.zhen_id
 left outer join fp_diqu a on a.id=z.area_id
-left outer join fp_report r on r.cun_id=c.id and r.time=6 and r.report_type=2 and r.type='month'
+left outer join fp_report r on r.cun_id=c.id and r.report_type=2 and r.type='year'
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'
@@ -45,7 +45,6 @@ z.name = '流溪河林场'
 and c.name != '塘田村' and c.name != '安山村'
 and a.name='从化市'
 group by a.name,z.name,c.name
-
 
 
 select distinct
@@ -126,7 +125,7 @@ r.item57 as '其他(个) '
 from fp_diqu c
 left outer join fp_diqu z on z.id=c.zhen_id
 left outer join fp_diqu a on a.id=z.area_id
-left outer join fp_report r on r.cun_id=c.id and r.time=6 and r.report_type=1 and r.type='month'
+left outer join fp_report r on r.cun_id=c.id and r.report_type=1 and r.type='year'
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'
@@ -177,7 +176,7 @@ r.item9 as '社会引资(元)'
 from fp_diqu c
 left outer join fp_diqu z on z.id=c.zhen_id
 left outer join fp_diqu a on a.id=z.area_id
-left outer join fp_report r on r.cun_id=c.id and r.time=6 and r.report_type=2 and r.type='month'
+left outer join fp_report r on r.cun_id=c.id and r.report_type=2 and r.type='year'
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'
@@ -276,7 +275,7 @@ r.item57 as '其他(个) '
 from fp_diqu c
 left outer join fp_diqu z on z.id=c.zhen_id
 left outer join fp_diqu a on a.id=z.area_id
-left outer join fp_report r on r.cun_id=c.id and r.time=6 and r.report_type=1 and r.type='month'
+left outer join fp_report r on r.cun_id=c.id and r.report_type=1 and r.type='year'
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'
