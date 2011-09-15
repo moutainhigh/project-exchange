@@ -74,6 +74,8 @@ public class Guide {
 			
 			String content = g.getContent();
 			content = content.replaceAll("http://www.eahoosoft.com/", "/");
+			content = content.replaceAll("eahoosoft", "dvdvideomedia");
+			content = content.replaceAll("Eahoosoft", "DVDVideoMedia Free");
 			g.setContent(content);
 			
 			map.put("g", g);
