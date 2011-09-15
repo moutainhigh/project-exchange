@@ -44,6 +44,7 @@ public class Init {
 		areaWorkOrg.setArea(area);
 		areaWorkOrg.setShiWorkOrg(shiWorkOrg);
 		areaWorkOrg.setRemark("remark");
+		areaWorkOrg.setIsDiv("Y");
 		baseBiz.saveOrUpdateEntity(areaWorkOrg);
 		
 	}

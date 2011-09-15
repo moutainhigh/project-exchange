@@ -39,6 +39,7 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 				hql += " and area.id="+baiyun.getArea().getId();
 			}
 		}
+		logger.debug("from manager hql=" + hql);
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
