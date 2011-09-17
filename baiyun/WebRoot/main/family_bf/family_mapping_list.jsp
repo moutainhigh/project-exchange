@@ -177,50 +177,53 @@
 							分管领导（联系人）
 						</td>
 					</tr>
+					<c:forEach items="${pageBean.resultList}" var="f">
 					<tr>
 						<td align="center" class="tables_contentcell">
-							&nbsp;
+							&nbsp;${f.id }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.zhen.name }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.name }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.contactName }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.contactName }
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;
+							&nbsp;${f.cun.org.contactMobile }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.orgName }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.contactName }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.contactMobile }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.segment1 }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.segment2 }
+						</td>
+						<td align="center" class="tables_contentcell">
+							&nbsp;${f.cun.org.segment3 }
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
-						</td>
-						<td align="center" class="tables_contentcell">
-							&nbsp;
+							<a href="#" onclick="winOpen('${appPath}family_bf_editFamilyMapping.action?family.id=${f.id}',550,600);">修改帮扶方式</a>
 						</td>
 					</tr>
+					</c:forEach>
 					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="14">
 							<jsp:include page="../../pager.jsp"></jsp:include>

@@ -73,7 +73,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
  
 </script>
-
+<style>
+		textarea{width:99%;width:80%;}
+		</style>
 </head><body onload="">
   <form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}family_bf_saveOrUpdateRecord.action" name="dataForm">
   <!--<input type="hidden" id="_gbids" name="_gbids" value=""/>-->
@@ -94,26 +96,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </td>
   </tr>
   
-  <tr>
-    <td height="30" align="right" class="tables_leftcell">干部名称</td>
-    <td class="tables_contentcell">
-    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
-    </td>
-  </tr>  
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">帮扶时间</td>
-		<td class="tables_contentcell">
-		<input msg="帮扶时间格式不正确（YYYY-MM-DD）" class="datetime" datatype="Date" size="20" value="<fmt:formatDate value="${record.recordDate}" pattern="yyyy-MM-dd"/>" id="dhrq" name="record.recordDate">
-		<font color="#cc0033">单击左侧文本框，在弹出的窗口中选择时间</font>
+		<td height="30" align="right" class="tables_leftcell">帮扶年度</td>
+		<td class="tables_contentcell" colspan="1"><select name="record.year">
+			<%
+			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
+			for(int i=year;i<year+2;i++){
+			%>
+			<option value="<%=i%>"><%=i%></option>
+			<%	
+			}
+			%>
+		</select> <font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
   </tr>
   <tr>
-    <td height="30" align="right" class="tables_leftcell">扶持内容</td>
-    <td class="tables_contentcell">
-      <font color="#cc0033">请填写扶持内容：</font>
-	  <textarea name="record.content" msg="帮扶内容不能为空" datatype="Require" rows="9" cols="50">${record.content }</textarea>
-	<font size="6" color="#cc0033">*</font>
-    </td>
-  </tr>    
+		<td class="tables_contentcell" colspan="4" align="center">
+		帮扶情况
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第一季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols="" name="record.s1">${record.s1 }</textarea>
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第二季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols="" name="record.s2">${record.s2 }</textarea>
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第三季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols="" name="record.s3">${record.s3 }</textarea>
+		</td>
+  </tr>
+  <tr>
+  	<td height="30" align="right" class="tables_leftcell">第四季度</td>
+		<td class="tables_contentcell" colspan="1">
+		<textarea rows="" cols="" name="record.s4">${record.s4 }</textarea>
+		</td>
+  </tr>   
  
   <tr>
      <td align="center" class="tables_contentcell" colspan="2">

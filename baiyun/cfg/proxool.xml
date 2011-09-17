@@ -9,7 +9,7 @@
 			]]>
 		</driver-url>
 		<driver-properties>
-			<property name="user" value="fupin" />
+			<property name="user" value="baiyun" />
 			<property name="password" value="123" />
 		</driver-properties>
 		

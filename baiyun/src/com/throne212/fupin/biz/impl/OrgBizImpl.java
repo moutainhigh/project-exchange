@@ -51,9 +51,15 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			logger.info("添加扶贫单位【" + org.getOrgName() + "】成功");
 		} else {
 			Org orgInDB = baseDao.getEntityById(Org.class, org.getId());
-			org.setCreateDate(orgInDB.getCreateDate());
-			baseDao.saveOrUpdate(org);
+			//org.setCreateDate(orgInDB.getCreateDate());
+			orgInDB.setContactName(org.getContactName());
+			orgInDB.setContactMobile(org.getContactMobile());
+			orgInDB.setSegment1(org.getSegment1());
+			orgInDB.setSegment2(org.getSegment2());
+			orgInDB.setSegment3(org.getSegment3());
+			baseDao.saveOrUpdate(orgInDB);
 			logger.info("更新扶贫单位【" + org.getOrgName() + "】成功");
+			return orgInDB;
 		}
 		return org;
 

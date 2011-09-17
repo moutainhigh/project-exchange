@@ -22,6 +22,11 @@
 		<property name="segment5"></property>
 		<!-- 公用字段 end -->
 		
+		<property name="s1"></property>
+		<property name="s2"></property>
+		<property name="s3"></property>
+		<property name="s4"></property>
+		<property name="year"></property>
 		
 	</class>
 </hibernate-mapping>

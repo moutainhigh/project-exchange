@@ -176,14 +176,14 @@ function images_update(){
 		menuArray[menuArray.length]="0,村帮扶维护";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}cun_bf_cuoshiCunList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}cun_bf_chengxiaoCunList.action";
-		menuArray[menuArray.length]="1,村图片管理,${appPath}cun_bf_picCunList.action";
+		//menuArray[menuArray.length]="1,村图片管理,${appPath}cun_bf_picCunList.action";
         menuArray[menuArray.length]="0,户帮扶维护";
         menuArray[menuArray.length]="1,规划到户,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}family_bf_cuoshiFamilyList.action";
         menuArray[menuArray.length]="1,到户记录（即扶持内容）,${appPath}family_bf_recordList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}family_bf_chengxiaoFamilyList.action";
-		menuArray[menuArray.length]="1,户图片管理,${appPath}family_bf_picFamilyList.action";
+		//menuArray[menuArray.length]="1,户图片管理,${appPath}family_bf_picFamilyList.action";
         
         ////HELP:
 	    menuArray[menuArray.length]="0,使用帮助,./help.htm";

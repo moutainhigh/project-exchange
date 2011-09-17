@@ -6,6 +6,8 @@ public class Chengxiao extends MyEntity {
 	private String status;
 	
 	public String getShortContent(){
+		if(content == null)
+			return null;
 		String shortContent;
 		if (this.getContent().length()>16) {
 			shortContent=this.getContent().substring(0, 16);

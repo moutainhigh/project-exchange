@@ -29,6 +29,8 @@
 		</subclass>
 		<subclass discriminator-value="cun" extends="Cuoshi" name="CuoshiCun">
 			<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
+			<property name="plan2011"></property>
+			<property name="plan2012"></property>
 		</subclass>
 		<subclass discriminator-value="family" extends="Cuoshi" name="CuoshiFamily">
 			<many-to-one name="family" column="family_id" lazy="false"></many-to-one>

@@ -20,13 +20,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link href="${appPath}main/main_data/manage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.datepick.css" />
 <script src="${appPath}js/jquery.js" language="javascript"></script>
 <script src="${appPath}js/sel_style.js" language="javascript"></script>
 <script src="${appPath}js/validateForm.js" language="javascript"></script>
+<script type="text/javascript" src="${appPath}js/jquery.datepick.js"></script>
+<script type="text/javascript" src="${appPath}js/jquery.datepick-zh-CN.js"></script>
 <script language="javascript">
 	var msg = '${msg}';
 	if(msg != '')
 		alert(msg);
+	$(function(){
+		$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+	});
 </script>
 
 <style>
@@ -172,11 +178,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td align="center" class="tables_leftcell" colspan="1">联系电话（手机）</td>
 		</tr>
 		<tr>
-    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
-    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
-    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
-    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
-    	<td align="center" class="tables_contentcell" colspan="1"><input type="text"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text" name="org.contactName" value="${org.contactName }"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text" name="org.contactMobile" value="${org.contactMobile }"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text" class="datetime" name="org.segment1" value="${org.segment1 }"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text" name="org.segment2" value="${org.segment2 }"/></td>
+    	<td align="center" class="tables_contentcell" colspan="1"><input type="text" name="org.segment3" value="${org.segment3 }"/></td>
 		</tr>
 		
 		<tr>

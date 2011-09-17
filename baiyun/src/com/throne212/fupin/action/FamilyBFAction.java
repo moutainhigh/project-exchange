@@ -411,11 +411,7 @@ public class FamilyBFAction extends BaseAction {
 			this.setMsg("保存失败，请检查数据是否录入完整");
 			return "record_edit";
 		}
-		if (record != null && record.getContent()!=null) {// 添加或更新信息
-			if (record.getRecordDate() == null) {
-				this.setMsg("请填入记录时间！");
-				return "record_edit";
-			}
+		if (record != null && !Util.isEmpty(record.getYear())) {// 添加或更新信息
 			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 			if (user instanceof Admin) {
 				this.setMsg("超级管理员无权进行此操作！");

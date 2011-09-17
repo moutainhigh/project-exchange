@@ -31,86 +31,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}cun_bf_saveOrUpdateCuoshiCun.action" name="dataForm">
 			<input type="hidden" value="${cuoshi.id}" name="cuoshi.id" id="">
-			<c:if test="${not empty cuoshi.id}">
 			
-			</c:if>
-			
-			<c:if test="${userObj.isDiv!='Y'}">
-<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
-	<tbody><tr>
-	<td height="30" width="40%" align="right" class="tables_leftcell">贫困村名称</td>
-    <td class="tables_contentcell">
-	<input type="text" datatype="Require" disabled="disabled" size="20" id="pkcmc" value="${userObj.cun.name }" name="cuoshi.cun.name"><font color="#666666">不能更改，系统自动提取</font>
-    </td>
-	</tr>
-	<tr>
-    <td height="30" align="right" class="tables_leftcell">单位名称</td>
-    <td class="tables_contentcell">
-    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	<input type="text" id="dwmc" datatype="Require" size="20" value="${userObj.orgName }" name="cuoshi.cun.shiWorkOrg.loginName" disabled="disabled"><font color="#666666">不能更改，系统自动提取</font>
-    </c:if>
-    </td>
-	</tr>    
-	<tr>
-		<td height="30" align="right" class="tables_leftcell">帮扶年度</td>
-		<td class="tables_contentcell">
-		<select style="width: 135px;" name="cuoshi.year" id="year">
-		<%--<c:if test="${not empty cuoshi.year}">
-		<option value="${cuoshi.year} " selected="selected">${cuoshi.year}</option>
-		</c:if> --%>
-			<%
-			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i<year+2;i++){
-			%>
-			<option value="<%=i%>"><%=i%></option>
-			<%	
-			}
-			%>
-		
-		<option value="2">2年</option>
-		</select>
-		<font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
-	</tr>
-
-		<tr style="display:none;">
-		<td height="30" align="right" class="tables_leftcell">帮扶季度</td>
-		<td class="tables_contentcell">
-		<select style="width: 135px;" name="cuoshi.season" >
-		
-		<c:if test="${not empty cuoshi.season}">
-			<option value="${cuoshi.season} " selected="selected">${cuoshi.season}</option>
-		</c:if>
-			<option value="">---------</option>
-			<option value="第一季度">第一季度</option>
-			<option value="第二季度">第二季度</option>
-			<option value="第三季度">第三季度</option>
-			<option value="第四季度">第四季度</option>
-		</select> <font size="4" color="#cc0033">*</font>(不选择季度则为填写年度措施)</td>
-	</tr>
-
-	<tr>
-    <td height="30" align="right" class="tables_leftcell">帮扶措施</td>
-    <td class="tables_contentcell">
-      <font color="#cc0033">请填写帮扶措施内容：</font>
-	<textarea name="cuoshi.content" value="${cuoshi.content }" msg="帮扶措施不能为空" datatype="Require" rows="10" cols="50">${cuoshi.content }</textarea>
-	<font size="4" color="#cc0033">*</font>
-    </td>
-	</tr>    
-	<tr>
-	<td height="30" align="center" class="tables_contentcell" colspan="2">
-	<input type="submit" value="确认" class="button" name="确认">
-	<input type="button" onclick="self.close();" class="button" value="取消" name="取消">
-	</td>
-	</tr>  
-</tbody></table>
-</c:if>
-
-<c:if test="${userObj.isDiv=='Y'}">
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr>
 	<td height="30" width="25%" align="right" class="tables_leftcell">帮扶单位</td>
     <td width="25%" class="tables_contentcell">
-    <input type="text"/>
+    <input type="text" disabled="disabled" readonly="readonly" value="${userObj.orgName }"/>
     </td>
     <td width="25%" class="tables_contentcell">&nbsp;
     </td>
@@ -120,29 +46,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<tr>
 		<td height="30" width="40%" align="right" class="tables_leftcell">帮扶单位负责人</td>
 	    <td class="tables_contentcell">
-	    <input type="text"/>
+	    <input type="text" disabled="disabled" readonly="readonly" value="${userObj.segment2 }"/>
 	    </td>
 	    <td class="tables_leftcell">联系电话
 	    </td>
-	    <td class="tables_contentcell"><input type="text"/>
+	    <td class="tables_contentcell">
+	    <input type="text" disabled="disabled" readonly="readonly" value="${userObj.segment3 }"/>
 	    </td>
 	</tr> 
 	<tr>
 	    <td class="tables_contentcell" colspan="4">
-	    规划帮扶措施（要求有两年总体帮扶及年度实施计划）：<br/>
-	    <textarea rows="" cols=""></textarea>
+	    规划帮扶措施（要求有两年总体帮扶及年度实施计划）<font color="red">*</font>：<br/>
+	    <textarea rows="" cols="" name="cuoshi.content" >${cuoshi.content }</textarea>
 	    </td>
 	</tr>
 	<tr>
 	    <td class="tables_contentcell" colspan="4">
 	    其中2011年的年度帮扶实施计划<br/>
-	    <textarea rows="" cols=""></textarea>
+	    <textarea rows="" cols="" name="cuoshi.plan2011">${cuoshi.plan2011 }</textarea>
 	    </td>
 	</tr>
 	<tr>
 	    <td class="tables_contentcell" colspan="4">
 	   2012年的年度实施计划<br/>
-	    <textarea rows="" cols=""></textarea>
+	    <textarea rows="" cols="" name="cuoshi.plan2012">${cuoshi.plan2012 }</textarea>
 	    </td>
 	</tr>
 	<tr>
@@ -152,7 +79,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</td>
 	</tr>  
 </tbody></table>
-</c:if>
 
 
 </form>

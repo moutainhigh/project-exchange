@@ -143,9 +143,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <c:if test="${userObj.isDiv=='Y'}">
 <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody>
+  	<tr>
+    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td class="tables_contentcell">
+    <input name="chengxiao.family.id" id="familyId" value="${chengxiao.family.id}" type="hidden"/>
+    <input id="familyName" value="${chengxiao.family.name}"/>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    </td>
+  </tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">帮扶年度</td>
-		<td class="tables_contentcell" colspan="1"><select name="cuoshi.year">
+		<td class="tables_contentcell" colspan="1"><select name="chengxiao.year">
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
 			for(int i=year;i<year+2;i++){
@@ -164,25 +172,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
   	<td height="30" align="right" class="tables_leftcell">第一季度</td>
 		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="chengxiao.s1">${chengxiao.s1 }</textarea>
 		</td>
   </tr>
   <tr>
   	<td height="30" align="right" class="tables_leftcell">第二季度</td>
 		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="chengxiao.s2">${chengxiao.s2 }</textarea>
 		</td>
   </tr>
   <tr>
   	<td height="30" align="right" class="tables_leftcell">第三季度</td>
 		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="chengxiao.s3">${chengxiao.s3 }</textarea>
 		</td>
   </tr>
   <tr>
   	<td height="30" align="right" class="tables_leftcell">第四季度</td>
 		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="chengxiao.s4">${chengxiao.s4 }</textarea>
 		</td>
   </tr> 
   <tr>
@@ -193,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
 		<td class="tables_contentcell" colspan="2">
 		通过我单位干部对该贫困户的帮扶，现阶段有以下成效：<br/>
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="chengxiao.content">${chengxiao.content }</textarea>
 		</td>
   </tr>
   <tr>

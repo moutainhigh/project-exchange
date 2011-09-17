@@ -108,13 +108,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<tr>
 	    <td class="tables_contentcell">
 	    帮扶内容<br/>
-	    <textarea rows="" cols=""></textarea>
+	    <textarea rows="" cols="" name="chengxiao.content2">${chengxiao.content2 }</textarea>
 	    </td>
 	</tr>
 	<tr>
 	    <td class="tables_contentcell">
 	   帮扶成效<br/>
-	    <textarea rows="" cols=""></textarea>
+	    <textarea rows="" cols="" name="chengxiao.content">${chengxiao.content }</textarea>
 	    </td>
 	</tr>
 	<tr>

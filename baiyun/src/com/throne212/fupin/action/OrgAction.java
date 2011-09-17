@@ -23,7 +23,11 @@ public class OrgAction extends BaseAction {
 		org.setPassword(orgInDB.getPassword());
 		org.setRemark(orgInDB.getRemark());
 		org = orgBiz.saveOrUpdateOrg(org);
-		this.setMsg("扶贫单位【" + org.getOrgName() + "】保存成功");
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, org);
+		}
+		this.setMsg("扶贫单位【" + orgInDB.getOrgName() + "】保存成功");
 		return "org_edit";
 	}
 	

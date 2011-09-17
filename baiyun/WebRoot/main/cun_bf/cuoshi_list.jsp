@@ -135,8 +135,6 @@ var msg = '${msg}';
 		<td height="28" width="6%" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
 		<td width="" class="tables_headercell">编号</td>
-		<td width="" class="tables_headercell">类型</td>
-		<td width="" class="tables_headercell">时间</td>
 		<td class="tables_headercell">贫困村名</td>
 		<td width="" class="tables_headercell">帮扶措施</td>
 		<td width="" class="tables_headercell">状态</td>
@@ -150,12 +148,6 @@ var msg = '${msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
 			${f.id }
-		</td>
-		<td height="25" align="center" class="tables_contentcell">
-			${f.type }
-		</td>
-		<td height="25" align="center" class="tables_contentcell">&nbsp;
-			${f.year }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">&nbsp;
 			${f.cun.name }
@@ -183,7 +175,7 @@ var msg = '${msg}';
 		</tr>
 			</c:forEach>
 	<tr>
-		<td height="25" align="right" class="tables_contentcell" colspan="9">
+		<td height="25" align="right" class="tables_contentcell" colspan="7">
 		<jsp:include page="../../pager.jsp"></jsp:include>
 		</td>
 	</tr>

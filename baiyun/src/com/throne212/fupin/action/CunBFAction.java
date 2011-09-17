@@ -78,11 +78,7 @@ public class CunBFAction extends BaseAction {
 			this.setMsg("保存失败，请检查数据是否录入完整");
 			return "cuoshicun_edit";
 		}
-		if (cuoshi != null && !Util.isEmpty(cuoshi.getYear())) {// 添加或更新信息
-			if (cuoshi.getYear() == null) {
-				this.setMsg("请选择帮扶年度！");
-				return "cuoshicun_edit";
-			}
+		if (cuoshi != null && !Util.isEmpty(cuoshi.getContent())) {// 添加或更新信息
 			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 			Cun cun = null;
 			if (user instanceof Admin) {
@@ -100,12 +96,6 @@ public class CunBFAction extends BaseAction {
 				return "cuoshicun_edit";
 			}
 			cuoshi.setCun(cun);
-			if (!"".equals(cuoshi.getYear()) && "".equals(cuoshi.getSeason())) {
-				cuoshi.setType(WebConstants.CUOSHI_TYPE_YEAR);
-			}
-			if (!"".equals(cuoshi.getYear()) && !"".equals(cuoshi.getSeason())) {
-				cuoshi.setType(WebConstants.CUOSHI_TYPE_SEASON);
-			}
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
 			cuoshi = cunBFBiz.saveOrUpdateCuoshiCun(cuoshi);
 			this.setMsg("保存成功");

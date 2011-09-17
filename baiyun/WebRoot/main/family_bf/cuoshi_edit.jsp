@@ -158,22 +158,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</select> <font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
   </tr>
   <tr>
-		<td height="30" align="right" class="tables_leftcell">贫困户姓名</td>
-		<td class="tables_contentcell" colspan="1">
-		<input type="text"/>
-		</td>
-		<td class="tables_contentcell" colspan="2">
-		在提示框中选择户，如张x将提示含有张x的贫困户
-		</td>			
+    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td class="tables_contentcell">
+    <input name="cuoshi.family.id" id="familyId" value="${cuoshi.family.id}" type="hidden"/>
+    <input id="familyName" value="${cuoshi.family.name}"/>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    </td>
   </tr>
   <tr>
 		<td height="30" align="right" class="tables_leftcell">帮扶干部姓名</td>
 		<td class="tables_contentcell" colspan="1">
-		<input type="text"/>
+		<input type="text" name="cuoshi.segment1" value="${cuoshi.segment1 }"/>
 		</td>
 		<td height="30" align="right" class="tables_leftcell">联系电话</td>
 		<td class="tables_contentcell" colspan="1">
-		<input type="text"/>
+		<input type="text" name="cuoshi.segment2" value="${cuoshi.segment2 }"/>
 		</td>		
   </tr>
   <tr>
@@ -185,13 +184,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
 		<td class="tables_contentcell" colspan="4">
 		其中2011年的年度实施计划<br/>
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="cuoshi.segment3">${cuoshi.segment3 }</textarea>
 		</td>
   </tr>
   <tr>
 		<td class="tables_contentcell" colspan="4">
 		2012年的年度实施计划<br/>
-		<textarea rows="" cols=""></textarea>
+		<textarea rows="" cols="" name="cuoshi.segment4">${cuoshi.segment4 }</textarea>
 		</td>
   </tr>   
   <tr>
