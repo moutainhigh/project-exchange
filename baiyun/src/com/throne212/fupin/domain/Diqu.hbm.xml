@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+ <class name="Diqu" table="fp_diqu">
+  <id column="id" name="id" type="long">
+   <generator class="increment"/>
+  </id>
+  <discriminator column="diqu_type" force="false" insert="true" not-null="true"/>
+  <property generated="never" lazy="false" length="100" name="name"/>
+  <property generated="never" lazy="false" length="2048" name="remark"/>
+  <!-- 公用字段 -->
+  <property column="create_date" generated="never" lazy="false" name="createDate"/>
+  <property column="create_name" generated="never" lazy="false" name="createName"/>
+  <property generated="never" lazy="false" name="segment1"/>
+  <property generated="never" lazy="false" name="segment2"/>
+  <property generated="never" lazy="false" name="segment3"/>
+  <property generated="never" lazy="false" name="segment4"/>
+  <property generated="never" lazy="false" name="segment5"/>
+  <!-- 公用字段 end -->
+  <subclass discriminator-value="shi" extends="Diqu" name="Shi" select-before-update="false"/>
+  <subclass discriminator-value="area" extends="Diqu" name="Area" select-before-update="false">
+   <many-to-one column="shi_id" lazy="false" name="shi"/>
+  </subclass>
+  <subclass discriminator-value="zhen" extends="Diqu" name="Zhen" select-before-update="false">
+   <many-to-one column="area_id" lazy="false" name="area"/>
+   <many-to-one column="shiWorkOrg_id" lazy="false" name="shiWorkOrg"/>
+   <many-to-one column="areaWorkOrg_id" lazy="false" name="areaWorkOrg"/>
+  </subclass>
+  <subclass discriminator-value="cun" extends="Diqu" name="Cun" select-before-update="false">
+   <many-to-one column="zhen_id" lazy="false" name="zhen"/>
+   <many-to-one lazy="false" name="org"/>
+   <many-to-one column="team_id" lazy="false" name="team"/>
+   <property generated="never" lazy="false" name="dian"/>
+   <property generated="never" lazy="false" name="dibaoFamily"/>
+   <property generated="never" lazy="false" name="dibaoPerson"/>
+   <property generated="never" lazy="false" name="familyNum"/>
+   <property generated="never" lazy="false" name="house"/>
+   <property generated="never" lazy="false" name="income"/>
+   <property generated="never" lazy="false" name="sjIncome" column="sj_income"/>
+   <property generated="never" lazy="false" name="labor"/>
+   <property generated="never" lazy="false" name="mianji"/>
+   <property generated="never" lazy="false" name="needBanFamily"/>
+   <property generated="never" lazy="false" name="needBanPerson"/>
+   <property generated="never" lazy="false" name="office"/>
+   <property generated="never" lazy="false" name="outLabor"/>
+   <property generated="never" lazy="false" name="personNum"/>
+   <property generated="never" lazy="false" name="poorFamilyNum"/>
+   <property generated="never" lazy="false" name="poorPersonNum"/>
+   <property generated="never" lazy="false" name="trainingNum"/>
+   <property generated="never" lazy="false" name="transNum"/>
+   <property generated="never" lazy="false" name="tv"/>
+   <property generated="never" lazy="false" name="water"/>
+   <property generated="never" lazy="false" name="weiHouse"/>
+   <property generated="never" lazy="false" name="ying"/>
+   <property generated="never" lazy="false" name="you"/>
+   <property generated="never" lazy="false" length="2048" name="item"/>
+   <property generated="never" lazy="false" name="pinyin"/>
+   <!-- 新增字段 -->
+   <property generated="never" lazy="false" name="poorFamilyNum1"/>
+   <property generated="never" lazy="false" name="poorPersonNum1"/>
+   <property generated="never" lazy="false" name="poorFamilyNum2"/>
+   <property generated="never" lazy="false" name="poorPersonNum2"/>
+   <property generated="never" lazy="false" name="poorFamilyNum3"/>
+   <property generated="never" lazy="false" name="poorPersonNum3"/>
+   <property generated="never" lazy="false" name="poorFamilyNum4"/>
+   <property generated="never" lazy="false" name="poorPersonNum4"/>
+   <property generated="never" lazy="false" name="tel"/>
+   <property column="pure_water" generated="never" lazy="false" name="pureWater"/>
+   <property generated="never" lazy="false" name="light"/>
+   <property generated="never" lazy="false" name="tudi"/>
+   <property generated="never" lazy="false" name="res" column="the_res"/>
+   <property generated="never" lazy="false" name="plan" column="the_plan"/>
+   <property generated="never" lazy="false" name="con" column="the_con"/>
+  </subclass>
+ </class>
+ <sql-query
+   name="family_type_org">
+select 
+	c.name as cunName,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=1) as type1,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=2) as type2,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
+	(select count(*) from fp_family f where f.cun_id=c.id) as sum
+from fp_diqu c left outer join fp_user o on c.org=o.id
+where c.diqu_type='cun'
+	and o.user_type='org'
+	and o.loginName=:loginName
+ </sql-query>
+ <sql-query
+   name="family_type_zhen">
+select 
+	c.name as cunName,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=1) as type1,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=2) as type2,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
+	(select count(*) from fp_family f where f.cun_id=c.id) as sum
+from fp_diqu c left outer join fp_diqu z on z.id=c.zhen_id
+where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and z.id=:zhenId
+ </sql-query>
+ <sql-query
+   name="family_type_team">
+ select 
+	c.name as cunName,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=1) as type1,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=2) as type2,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
+	(select count(*) from fp_family f where f.cun_id=c.id) as sum
+from fp_diqu c left outer join fp_user t on c.team_id=t.id
+left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
+where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
+	and t.user_type='work_team'
+	and t.loginName=:loginName
+ </sql-query>
+ <sql-query
+   name="family_type_area">
+select 
+	c.name as cunName,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=1) as type1,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=2) as type2,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
+	(select count(*) from fp_family f where f.cun_id=c.id) as sum
+from fp_diqu c left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
+where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
+	and a.id=:areaId
+ </sql-query>
+ <sql-query
+   name="family_type_group">
+ select 
+	c.name as cunName,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=1) as type1,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=2) as type2,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
+	(select count(*) from fp_family f where f.cun_id=c.id) as sum
+from fp_diqu c left outer join fp_user t on c.team_id=t.id
+left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
+where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
+	and t.user_type='work_team'
+	and t.team_from_area_id=:areaId
+ </sql-query>
+ <sql-query
+   name="family_type_all">
+ select 
+	c.name as cunName,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=1) as type1,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=2) as type2,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=3) as type3,
+	(select count(*) from fp_family f where f.cun_id=c.id and f.type=4) as type4,
+	(select count(*) from fp_family f where f.cun_id=c.id) as sum
+from fp_diqu c left outer join fp_diqu z on z.id=c.zhen_id
+left outer join fp_diqu a on a.id=z.area_id
+where c.diqu_type='cun'
+	and z.diqu_type='zhen'
+	and a.diqu_type='area'
+ </sql-query>
+</hibernate-mapping>

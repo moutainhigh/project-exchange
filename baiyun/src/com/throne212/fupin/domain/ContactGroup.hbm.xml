@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="ContactGroup" table="fp_contact_group">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="userName"></property>
+		<property name="groupName" ></property>
+		<property name="isLeaf" ></property>
+		<many-to-one name="parentGroup" column="parent_group_id" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="ProjectStat" table="fp_project_stat">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<discriminator column="stat_type" type="string" force="false" insert="true" />
+		<property name="complete" length="1024"></property>
+		<property name="money"></property>
+		<property name="problem" length="1024"></property>
+		<property name="year"></property>
+		<property name="month"></property>
+		<property name="half"></property>
+		<subclass discriminator-value="cun" extends="ProjectStat" name="ProjectCunStat">
+			<many-to-one name="project" column="pro_cun_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="zd" extends="ProjectStat" name="ProjectZdStat">
+			<many-to-one name="project" column="pro_zd_id" lazy="false"></many-to-one>
+		</subclass>
+		<subclass discriminator-value="sh" extends="ProjectStat" name="ProjectShStat">
+			<many-to-one name="project" column="pro_sh_id" lazy="false"></many-to-one>
+		</subclass>
+	</class>
+</hibernate-mapping>

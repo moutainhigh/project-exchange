@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="Project" table="fp_project">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<discriminator column="project_type" type="string" force="false" insert="true" />
+		<many-to-one name="org" column="org_id" lazy="false"></many-to-one>
+		<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
+		<property name="name"></property>
+		<subclass discriminator-value="cun" extends="Project" name="ProjectCun">
+			<property name="contactName"></property>
+			<property name="contactTel"></property>
+			<property name="content" length="1024"></property>
+			<property name="deadline"></property>
+			<property name="leader"></property>
+			<property name="money"></property>
+		</subclass>
+		<subclass discriminator-value="zhongdian" extends="Project" name="ProjectZhongdian">
+			<property name="content" length="1024"></property>
+			<property name="money"></property>
+			<property name="amount"></property>
+			<property name="baojian"></property>
+			<property name="lixiang"></property>
+			<property name="moneyQu"></property>
+			<property name="moneyShehui"></property>
+			<property name="moneyShi"></property>
+			<property name="moneyZhen"></property>
+			<property name="shishi"></property>
+		</subclass>
+		<subclass discriminator-value="shehui" extends="Project" name="ProjectShehui">
+			<property name="content" length="1024"></property>
+			<property name="money"></property>
+			<property name="fuzeren"></property>
+			<property name="gongshangZhiwu"></property>
+			<property name="juanMoney"></property>
+			<property name="shouFuzeren"></property>
+			<property name="shouZhiwu"></property>
+			<property name="zhiwu"></property>
+		</subclass>
+	</class>
+</hibernate-mapping>
