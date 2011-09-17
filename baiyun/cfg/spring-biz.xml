@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="baseBiz" class="com.throne212.fupin.biz.impl.BaseBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	<bean id="userBiz" class="com.throne212.fupin.biz.impl.UserBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	<bean id="orgBiz" class="com.throne212.fupin.biz.impl.OrgBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="managerDao" ref="managerDao"></property>
+	</bean>
+	<bean id="adminBiz" class="com.throne212.fupin.biz.impl.AdminBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="diquBiz" class="com.throne212.fupin.biz.impl.DiquBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="diquDao" ref="diquDao"></property>
+	</bean>
+	<bean id="zhenBFBiz" class="com.throne212.fupin.biz.impl.ZhenBFBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="zhenDao" ref="zhenDao"></property>
+	</bean>
+	<bean id="cunBFBiz" class="com.throne212.fupin.biz.impl.CunBFBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="cunDao" ref="cunDao"></property>
+	</bean>
+	<bean id="familyBFBiz" class="com.throne212.fupin.biz.impl.FamilyBFBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="familyDao" ref="familyDao"></property>
+	</bean>
+	<bean id="frontBiz" class="com.throne212.fupin.biz.impl.FrontBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="frontDao" ref="frontDao"></property>
+	</bean>
+	<bean id="shenHeBiz" class="com.throne212.fupin.biz.impl.ShenHeBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="shenHeDao" ref="shenHeDao"></property>
+	</bean>
+	
+	<bean id="zixunBiz" class="com.throne212.fupin.biz.impl.ZixunBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="zixunDao" ref="zixunDao"></property>
+	</bean>
+	<bean id="messageBiz" class="com.throne212.fupin.biz.impl.MessageBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="messageDao" ref="messageDao"></property>
+	</bean>
+	<bean id="discussBiz" class="com.throne212.fupin.biz.impl.DiscussBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="discussDao" ref="discussDao"></property>
+	</bean>
+	<bean id="reportBiz" class="com.throne212.fupin.biz.impl.ReportBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="reportDao" ref="reportDao"></property>
+		<property name="familyDao" ref="familyDao"></property>
+	</bean>
+	<bean id="groupBiz" class="com.throne212.fupin.biz.impl.ContactGroupBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
+	<bean id="contactBiz" class="com.throne212.fupin.biz.impl.ContactBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="contactDao" ref="contactDao"></property>
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
+	<bean id="statBiz" class="com.throne212.fupin.biz.impl.StatBizImpl">
+		<property name="statDao" ref="statDao"></property>
+	</bean>
+	<bean id="projectBiz" class="com.throne212.fupin.biz.impl.ProjectBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="projectDao" ref="projectDao"></property>
+	</bean>
+</beans>

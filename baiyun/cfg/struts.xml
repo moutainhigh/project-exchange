@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,dhtml,"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
+	<constant name="struts.multipart.maxSize" value="5242880" /><!-- 附件大小最大为5M -->
+	
+    <package name="struts2" extends="struts-default" namespace="/">    
+    	<interceptors>
+            <interceptor name="auth" class="com.throne212.fupin.filter.AccessInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <global-results>
+			<result name="login">/login.jsp</result>
+			<result name="excel" type="stream">  
+                <!-- 下载文件类型定义 -->  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <!-- 下载文件处理方法 -->  
+                <param name="contentDisposition">  
+                    attachment;filename="${msg}.xls"  
+                </param>  
+                <!-- 下载文件输出流定义 -->  
+                <param name="inputName">downloadFile</param>  
+            </result>
+            <result name="error">/html/error.jsp</result>
+            <result name="show_pic">/upload/show.jsp</result>
+		</global-results>
+		<!-- 登入 -->
+		<action name="baiyun">
+			<result name="success">/login.jsp</result>
+		</action>
+		<!-- 登入 -->
+		<action name="login" class="com.throne212.fupin.action.LoginAction">
+			<result name="success" type="redirect">/index.jsp</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+		<!-- 登出 -->
+		<action name="logout" class="com.throne212.fupin.action.LogoutAction">
+			<result name="success" type="redirect">/login.jsp</result>
+			<result name="success_baiyun" type="redirect">/baiyun</result>
+		</action>
+		<!-- 审核模块 -->
+		<action name="shenhe_*" method="{1}" class="com.throne212.fupin.action.ShenHeAction">
+			<result name="cuoshizhen_inpro">/main/shenhe/cuoshizhen_list.jsp</result>
+			<result name="chengxiaozhen_inpro">/main/shenhe/chengxiaozhen_list.jsp</result>
+			<result name="piczhen_inpro">/main/shenhe/piczhen_list.jsp</result>
+			<result name="cuoshicun_inpro">/main/shenhe/cuoshicun_list.jsp</result>
+			<result name="chengxiaocun_inpro">/main/shenhe/chengxiaocun_list.jsp</result>
+			<result name="piccun_inpro">/main/shenhe/piccun_list.jsp</result>
+			<result name="cuoshifamily_inpro">/main/shenhe/cuoshifamily_list.jsp</result>
+			<result name="chengxiaofamily_inpro">/main/shenhe/chengxiaofamily_list.jsp</result>
+			<result name="picfamily_inpro">/main/shenhe/picfamily_list.jsp</result>
+			<result name="reason_inpro">/main/shenhe/reason_list.jsp</result>
+			<result name="record_inpro">/main/shenhe/record_list.jsp</result>
+		</action>
+		<!-- 重审申请 -->
+		<action name="recheck_*" method="{1}" class="com.throne212.fupin.action.RecheckAction">
+			<result name="list">/main/recheck/list.jsp</result>
+			<result name="edit">/main/recheck/edit.jsp</result>
+			<result name="recheck_list">/main/recheck/recheck_list.jsp</result>
+		</action>
+		<!-- 前台展示模块 -->
+		<action name="front_*" method="{1}" class="com.throne212.fupin.action.FrontAction">
+			<result name="cun_info">/front/cun_info.jsp</result>
+			<result name="cun_org">/front/cun_org.jsp</result>
+			<result name="cun_cuoshi">/front/cun_cuoshi.jsp</result>
+			<result name="cun_chengxiao">/front/cun_chengxiao.jsp</result>
+			<result name="cun_family">/front/cun_family.jsp</result>
+			<result name="tree_shi_info">/leftTree.jsp</result>
+			<result name="area_stat">/front/area_stat.jsp</result>
+			<result name="area_cun_list">/front/area_cun_list.jsp</result>
+			<result name="zhen_stat">/front/zhen_stat.jsp</result>
+			<result name="zhen_cun_list">/front/zhen_cun_list.jsp</result>
+			<result name="shi_stat">/front/shi_stat.jsp</result>
+			<result name="shi_cun_list">/front/shi_cun_list.jsp</result>
+			<result name="login">/front/cun_login.jsp</result>
+			<result name="view_family">/front/view_family.jsp</result>
+			<result name="view_family_chengxiao">/front/view_family_chengxiao.jsp</result>
+			<result name="view_family_cuoshi">/front/view_family_cuoshi.jsp</result>
+			<result name="view_family_reason">/front/view_family_reason.jsp</result>
+			<result name="family_record">/front/view_family_record.jsp</result>
+			
+			<result name="query">/area/query.jsp</result>
+		</action>
+		<!-- 账号维护 -->
+		<action name="user_*" method="{1}" class="com.throne212.fupin.action.UserAction">
+			<result name="password">/main/password/password_edit.jsp</result>
+		</action>
+		<!-- 超级管理员模块 -->
+		<action name="admin_*" method="{1}" class="com.throne212.fupin.action.AdminAction">
+			<result name="shiWorkOrg_list">/main/admin/shi_account_list.jsp</result>
+			<result name="shiWorkOrg_edit">/main/admin/shi_account_edit.jsp</result>
+			<result name="areaWorkOrg_list">/main/admin/area_account_list.jsp</result>
+			<result name="areaWorkOrg_edit">/main/admin/area_account_edit.jsp</result>
+			<result name="zhenWorkOrg_list">/main/admin/zhen_account_list.jsp</result>
+			<result name="zhenWorkOrg_edit">/main/admin/zhen_account_edit.jsp</result>
+			<result name="per_list">/main/admin/per_list.jsp</result>
+			<result name="per_edit">/main/admin/per_edit.jsp</result>
+		</action>
+		<!-- 工作组 -->
+		<action name="team_*" method="{1}" class="com.throne212.fupin.action.TeamAction">
+			<result name="team_list">/main/team/team_list.jsp</result>
+			<result name="team_edit">/main/team/team_edit.jsp</result>
+		</action>
+		<!-- 地区管理模块 -->
+		<action name="diqu_*" method="{1}" class="com.throne212.fupin.action.DiquAction">
+			<result name="diqu_list">/main/area_data/diqu_list.jsp</result>
+			<result name="diqu_edit">/main/area_data/diqu_edit.jsp</result>
+		</action>
+		<!-- 镇帮扶模块 -->
+		<action name="zhen_bf_*" method="{1}" class="com.throne212.fupin.action.ZhenBFAction">
+			<result name="zhen_bf_list">/main/zhen_bf/zhen_list.jsp</result>
+			<result name="zhen_org_mapping">/main/zhen_bf/zhen_org_mapping.jsp</result>
+			<result name="cuoshizhen_list">/main/zhen_bf/cuoshi_list.jsp</result>
+			<result name="cuoshizhen_edit">/main/zhen_bf/cuoshi_edit.jsp</result>
+			<result name="chengxiaozhen_list">/main/zhen_bf/chengxiao_list.jsp</result>
+			<result name="chengxiaozhen_edit">/main/zhen_bf/chengxiao_edit.jsp</result>
+			<result name="pic_list">/main/zhen_bf/pic_list.jsp</result>
+			<result name="pic_edit">/main/zhen_bf/pic_edit.jsp</result>
+			
+		</action>
+		<!-- 村帮扶模块 -->
+		<action name="cun_bf_*" method="{1}" class="com.throne212.fupin.action.CunBFAction">
+			<result name="cuoshicun_list">/main/cun_bf/cuoshi_list.jsp</result>
+			<result name="cuoshicun_edit">/main/cun_bf/cuoshi_edit.jsp</result>
+			<result name="chengxiaocun_list">/main/cun_bf/chengxiao_list.jsp</result>
+			<result name="chengxiaocun_edit">/main/cun_bf/chengxiao_edit.jsp</result>
+			<result name="pic_list">/main/cun_bf/pic_list.jsp</result>
+			<result name="pic_edit">/main/cun_bf/pic_edit.jsp</result>
+		</action>
+		<!-- 户帮扶模块 -->
+		<action name="family_bf_*" method="{1}" class="com.throne212.fupin.action.FamilyBFAction">
+			<result name="cuoshifamily_list">/main/family_bf/cuoshi_list.jsp</result>
+			<result name="cuoshifamily_edit">/main/family_bf/cuoshi_edit.jsp</result>
+			<result name="chengxiaofamily_list">/main/family_bf/chengxiao_list.jsp</result>
+			<result name="chengxiaofamily_edit">/main/family_bf/chengxiao_edit.jsp</result>
+			<result name="reason_list">/main/family_bf/reason_list.jsp</result>
+			<result name="reason_edit">/main/family_bf/reason_edit.jsp</result>
+			<result name="pic_list">/main/family_bf/pic_list.jsp</result>
+			<result name="pic_edit">/main/family_bf/pic_edit.jsp</result>
+			<result name="record_list">/main/family_bf/record_list.jsp</result>
+			<result name="record_edit">/main/family_bf/record_edit.jsp</result>
+			<result name="family_mapping_list">/main/family_bf/family_mapping_list.jsp</result>
+			<result name="family_mapping_edit">/main/family_bf/family_mapping_edit.jsp</result>
+		</action>
+		
+		<!-- 管理员账号和村帮扶指定模块 -->
+		<action name="manager_*" method="{1}" class="com.throne212.fupin.action.ManagerAction">
+			<result name="manager_list">/main/manager/manager_list.jsp</result>
+			<result name="manager_edit">/main/manager/manager_edit.jsp</result>
+			<result name="manager_mapping">/main/manager/manager_mapping_list.jsp</result>
+			<result name="manager_cun_mapping">/main/manager/manager_cun_mapping.jsp</result>
+		</action>
+		<!-- 贫困户模块 -->
+		<action name="family_*" method="{1}" class="com.throne212.fupin.action.FamilyAction">
+			<result name="family_list">/main/family/family_list.jsp</result>
+			<result name="family_edit">/main/family/family_edit.jsp</result>
+			<result name="family_view">/main/family/family_view.jsp</result>
+			<result name="upload">/main/family/upload.jsp</result>
+			<result name="upload_fail">/main/family/fail.jsp</result>
+			<result name="upload2">/main/family/upload2.jsp</result>
+			<result name="upload_fail2">/main/family/fail2.jsp</result>
+			<result name="upload3">/main/family/upload3.jsp</result>
+			<result name="upload_fail3">/main/family/fail3.jsp</result>
+		</action>
+		<!-- 贫困村模块 -->
+		<action name="cun_*" method="{1}" class="com.throne212.fupin.action.CunAction">
+			<result name="cun_list">/main/cun/cun_list.jsp</result>
+			<result name="cun_edit">/main/cun/cun_edit.jsp</result>
+			<result name="cun_view">/main/cun/cun_view.jsp</result>
+			<result name="upload">/main/cun/upload.jsp</result>
+			<result name="upload_fail">/main/cun/fail.jsp</result>
+		</action>
+		<!-- 单位与干部模块 -->
+		<action name="org_*" method="{1}" class="com.throne212.fupin.action.OrgAction">
+			<result name="org_edit">/main/org/org_edit.jsp</result>
+			<result name="leader_edit">/main/org/leader_edit.jsp</result>
+			<result name="leader_list">/main/org/leader_list.jsp</result>
+		</action>
+		<!-- 上传图片 -->
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.fupin.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/upload/success.jsp</result>
+			<result name="error">/upload/fail.jsp</result>
+		</action>
+		<!-- 上传附件 -->
+		<action name="AttachUploadAction_*" method="{1}" class="com.throne212.fupin.action.AttachUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/uploadAttach/success.jsp</result>
+			<result name="error">/uploadAttach/fail.jsp</result>
+		</action>
+		<!-- 上传Excel -->
+		<action name="ExcelUploadAction_*" method="{1}" class="com.throne212.fupin.action.ExcelUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success" type="chain">
+				<param name="actionName">family_uploadExcel</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="cun" type="chain">
+				<param name="actionName">cun_uploadExcel</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="family2" type="chain">
+				<param name="actionName">family_uploadExcel2</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="family3" type="chain">
+				<param name="actionName">family_uploadExcel3</param>
+         		<param name="namespace">/</param> 
+			</result>
+		</action>
+		<!-- 业务咨询 -->
+		<action name="zixun_*" method="{1}" class="com.throne212.fupin.action.ZixunAction">
+			<result name="list">/main/zixun/list.jsp</result>
+			<result name="edit">/main/zixun/edit.jsp</result>
+			<result name="reply">/main/zixun/reply.jsp</result>
+			<result name="view">/main/zixun/reply.jsp</result>
+			<result name="reply_list">/main/zixun/list_reply.jsp</result>
+			<result name="zixun_publish">/front/zixun/zixun_edit.jsp</result>
+			<result name="zixun_front_list">/front/zixun/zixun_list.jsp</result>
+		</action>
+		<!-- 通知公告 -->
+		<action name="mes_*" method="{1}" class="com.throne212.fupin.action.MessageAction">
+			<result name="mes_send">/main/message/edit.jsp</result>
+			<result name="mes_list">/main/message/list.jsp</result>
+			<result name="download" type="stream">
+                <param name="inputName">inputStream</param>
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">attachment;filename="${attachDownload}"</param>
+                <param name="bufferSize">4096</param>
+            </result> 
+		</action>
+		<!-- 短信服务 -->
+		<action name="sms_*" method="{1}" class="com.throne212.fupin.action.SMSAction">
+			<result name="sms_edit">/main/sms/edit.jsp</result>
+			<result name="sms_list">/main/sms/list.jsp</result>
+		</action>
+		<!-- 论坛交流 -->
+		<action name="dis_*" method="{1}" class="com.throne212.fupin.action.DiscussAction">
+			<result name="show_dis_publish">/main/discuss/edit.jsp</result>
+			<result name="discuss_list">/main/discuss/list.jsp</result>
+			<result name="publish">/main/discuss/edit.jsp</result>
+			<result name="show_discuss_reply">/main/discuss/reply_list.jsp</result>
+		</action>
+		<!-- 报表工具 -->
+		<action name="report_*" method="{1}" class="com.throne212.fupin.action.ReportAction">
+			<result name="report_edit1">/main/report/edit1.jsp</result>
+			<result name="report_edit2">/main/report/edit2.jsp</result>
+			<result name="report_list">/main/report/report_list.jsp</result>
+			<result name="report_export">/main/report/report_export.jsp</result>
+		</action>
+		<!-- 统计 -->
+		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
+			<result name="family_type_stat">/main/report/family_type_stat.jsp</result>
+		</action>
+		<!-- 项目管理 -->
+		<action name="pro_*" method="{1}" class="com.throne212.fupin.action.ProjectAction">
+			<result name="pro_cun_list">/main/project/cun_project_list.jsp</result>
+			<result name="pro_cun_edit">/main/project/cun_project_edit.jsp</result>
+			<result name="cun_stat">/main/project/cun_project_status.jsp</result>
+			<result name="pro_zd_list">/main/project/zhongdian_project_list.jsp</result>
+			<result name="pro_zd_edit">/main/project/zhongdian_project_edit.jsp</result>
+			<result name="zd_stat">/main/project/zhongdian_project_status.jsp</result>
+			<result name="pro_sh_list">/main/project/shehui_project_list.jsp</result>
+			<result name="pro_sh_edit">/main/project/shehui_project_edit.jsp</result>
+			<result name="sh_stat">/main/project/shehui_project_status.jsp</result>
+		</action>
+		<!-- 通讯组管理 -->
+		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">
+			<result name="edit_group">/main/sms_manage_group/group_edit.jsp</result>
+			<result name="list_group">/main/sms_manage_group/group_list.jsp</result>
+		</action>
+		<!-- 通讯录管理 -->
+		<action name="contact_*" method="{1}" class="com.throne212.fupin.action.ContactAction">
+			<result name="edit_contact">/main/sms_contact/contact_edit.jsp</result>
+			<result name="query_contact">/main/sms_contact/contact_list.jsp</result>
+			<result name="choose_contacts">/main/sms/choose_contact.jsp</result>
+		</action>
+    </package>
+	<package name="json" extends="json-default" namespace="/ajax">
+        <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">
+        	<result name="list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="shi_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="shi_areas" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="shiworkorg_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.orgName
+				</param>
+			</result>
+			<result name="area_zhens" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="shiorg_areaorgs" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.orgName
+				</param>
+			</result>
+			<result name="cun_family" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="org_leader" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.leaderName
+				</param>
+			</result>
+			<result name="pinyin" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.absName,
+					list\[\d+\]\.pinyin
+				</param>
+			</result>
+			<result name="pinyin2" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.orgName,
+					list\[\d+\]\.pinyin
+				</param>
+			</result>
+			<result name="query_family" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.name
+				</param>
+			</result>
+			<result name="user_ids" type="json">
+				<param name="includeProperties">  
+					item
+				</param>
+			</result>
+			<result name="list_group" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.showTreeName
+				</param>
+			</result>
+			<result name="select_contacts" type="json">
+				<param name="includeProperties">  
+					telNo
+				</param>
+			</result>
+			<result name="contacts_in_group" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.telNo,
+					list\[\d+\]\.contactName
+				</param>
+			</result>
+			<result name="org_list" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.orgName
+				</param>
+			</result>
+		</action>		
+	</package>
+</struts>

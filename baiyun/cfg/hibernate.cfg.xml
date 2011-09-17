@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+	<property name="proxool.pool_alias">pool</property>
+	<property name="proxool.xml">proxool.xml</property>
+	<property name="connection.provider_class">
+		org.hibernate.connection.ProxoolConnectionProvider
+	</property>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="hibernate.dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<property name="hibernate.cache.provider_class">
+		org.hibernate.cache.HashtableCacheProvider
+	</property>
+	<property name="hbm2ddl.auto">none</property>
+	<mapping resource="com/throne212/fupin/domain/Diqu.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Family.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Leader.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/User.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Cuoshi.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Chengxiao.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Pic.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Reason.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Record.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Permission.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Recheck.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Zixun.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Message.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Discuss.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/LeaderHelp.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/SMS.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Report.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/ContactGroup.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Contact.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/Project.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/ProjectStat.hbm.xml" />
+</session-factory>
+</hibernate-configuration>
+

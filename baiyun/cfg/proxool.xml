@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<something-else-entirely>
+	<proxool>
+		<alias>pool</alias>
+
+		<driver-url>
+			<![CDATA[
+			jdbc:mysql://localhost/baiyun?useUnicode=true&characterEncoding=UTF-8
+			]]>
+		</driver-url>
+		<driver-properties>
+			<property name="user" value="fupin" />
+			<property name="password" value="123" />
+		</driver-properties>
+		
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<maximum-connection-count>100</maximum-connection-count>
+		<minimum-connection-count>1</minimum-connection-count>
+		<maximum-active-time>3600000</maximum-active-time>
+	</proxool>
+</something-else-entirely>
