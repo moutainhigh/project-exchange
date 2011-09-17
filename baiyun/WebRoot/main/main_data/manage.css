@@ -1,0 +1,234 @@
+BODY {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color: white;
+	border: none;
+}
+
+/* ????1 */
+.ewTableRow {
+	background-color: #FFFFFF; /* alt row color 1 */
+}
+
+/* ????2 */
+.ewTableAltRow {
+	background-color: #F5F5F5; /* alt row color 2 */
+}
+
+.tipcon {
+	background: #ffc;
+	border: 1px solid #000;
+	padding: 2px 3px 0;
+	white-space: nowrap;
+}
+
+.button {
+	height: 21px;
+	/*width: 50px;*/
+	margin-left:2px;
+	background:url("../../images/btn_bg.gif") repeat scroll 0 0 transparent;
+	border:1px solid #1F8AD5;
+}
+
+/* START - Table styles - bordercolorlight/bordercolordark equivalent */
+.tables_search {
+	margin: 0px 0px 5px 0px;
+	height: 40px;
+	background-color: #418FD0;
+	color:white;
+	border:1px solid #0A64A6;
+}
+
+.tables_table {
+	border-top: 1px solid #4D9EE3;
+	border-left: 1px solid #4D9EE3;
+	color: #000000;
+}
+
+.tables_table_full_border {
+	border-top: 1px solid #4D9EE3;
+	border-left: 1px solid #4D9EE3;
+	border-right: 1px solid #4D9EE3;
+	border-bottom: 1px solid #4D9EE3;
+}
+
+.tables_headercell {
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-right: 1px solid #4D9EE3;
+	border-bottom: 1px solid #4D9EE3;
+	BACKGROUND-COLOR: #418FD0;
+	/*background-image: url(../images/bbs_title_bg.gif);*/
+	background-position: bottom;
+	FONT-WEIGHT: bold;
+	COLOR: #FFFFFF;
+	padding: 5px;
+}
+
+.tables_leftcell {
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-right: 1px solid #4D9EE3;
+	border-bottom: 1px solid #4D9EE3;
+	BACKGROUND-COLOR: #EFF6FF;
+	padding: 5px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.tables_contentcell {
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-right: 1px solid #4D9EE3;
+	border-bottom: 1px solid #4D9EE3;
+	/*BACKGROUND-COLOR: #FFFFFF;*/
+	padding: 3px;
+	font-size: 12px;
+	color: #000000;
+}
+
+.tables_contentcellalt {
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-right: 1px solid #4D9EE3;
+	border-bottom: 1px solid #4D9EE3;
+	BACKGROUND-COLOR: #EFF6FF;
+	padding: 5px;
+	font-size: 12px;
+	color: #000000;
+}
+
+/* END - Table styles - bordercolorlight/bordercolordark equivalent */
+a:link {
+	font-size: 10pt;
+	color: #000000;
+	text-decoration: none
+}
+
+a:visited {
+	font-size: 10pt;
+	color: #000000;
+	text-decoration: none
+}
+
+a:hover {
+	font-size: 10pt;
+	color: #FF66FF;
+	text-decoration: none
+}
+
+a:active {
+	font-size: 10pt;
+	color: #FF0000;
+	text-decoration: none
+}
+
+td {
+	font-size: 10pt;
+}
+
+p {
+	font-size: 10pt;
+	color: #000000;
+	MARGIN-TOP: 5pt;
+	MARGIN-BOTTOM: 5pt
+}
+
+input {
+	height: 18px;
+	font-size: 12px
+}
+
+select {
+	height: 23px;
+	font-size: 12px;
+}
+
+}
+.tipcon {
+	background: #ffc;
+	border: 1px solid #000;
+	padding: 2px 3px 0;
+	white-space: nowrap;
+}
+
+.ewButton {
+	BORDER-RIGHT: #98bbd7 1px solid;
+	BORDER-TOP: #98bbd7 1px solid;
+	BACKGROUND: #eff6fb;
+	BORDER-LEFT: #98bbd7 1px solid;
+	BORDER-BOTTOM: #98bbd7 1px solid
+}
+
+.pagenum {
+	color: #D75116;
+}
+
+.pagerSpan {
+	margin: 0px 5px;
+	font-size: 14px;
+}
+
+.pagerSpan span {
+	font-size: 14px;
+}
+
+.current {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.pagerSpan a {
+	font-size: 14px;
+}
+
+.pagerSpan a:hover {
+	font-size: 14px;
+}
+
+.pagerSpan a:link {
+	font-size: 14px;
+	color: #000000;
+	text-decoration: none
+}
+
+.pagerSpan a:visited {
+	font-size: 14px;
+	color: #000000;
+	text-decoration: none
+}
+
+.pagerSpan a:hover {
+	font-size: 14px;
+	color: #FF66FF;
+	text-decoration: none
+}
+
+.pagerSpan a:active {
+	font-size: 14px;
+	color: #FF0000;
+	text-decoration: none
+}
+
+.tables_mytable {
+	border-top: 1px solid #4D9EE3;
+	border-left: 1px solid #4D9EE3;
+	border-right: 1px solid #4D9EE3;
+	border-bottom: 1px solid #4D9EE3;
+	color: #000000;
+}
+
+.tables_mytable td{
+	border: 1px solid #4D9EE3;	
+	BACKGROUND-COLOR: #EFF6FF;
+	align: center;	
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+

@@ -1,0 +1,47 @@
+TD {
+	FONT-SIZE: 12px; COLOR: #333333
+}
+A {
+	COLOR: #5d5959; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+.eng {
+	FONT-SIZE: 14px;
+	COLOR: #0263BE;
+	font-weight: bold;
+}
+.jdxw {
+	border: 1px solid #E5E5E5;
+}
+
+.input {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #AECCF0;
+	border-right-color: #AECCF0;
+	border-bottom-color: #AECCF0;
+	border-left-color: #AECCF0;
+}
+.nr {
+	FONT-SIZE: 12px; LINE-HEIGHT: 27px
+}
+.nr1 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 27px
+}
+.font-size {
+	font-size: 16px;
+	font-weight: bolder;
+	color: #0B4384;
+}
+
+.tt {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 23px
+}

@@ -1,0 +1,122 @@
+body {
+	font-size: 12px;
+	margin:0;
+	padding:0;
+	/*background-color: white;*/
+}
+
+TD {
+	FONT-SIZE: 12px; COLOR: #333333
+}
+A {
+	COLOR: #5d5959; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+.eng {
+	FONT-SIZE: 14px;
+	COLOR: #FFFFFF;
+	LINE-HEIGHT: 24px;
+	font-weight: bold;
+}
+.input {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #EAE4E2;
+	border-right-color: #EAE4E2;
+	border-bottom-color: #EAE4E2;
+	border-left-color: #EAE4E2;
+}
+.input1 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #B2DBF1;
+	border-right-color: #B2DBF1;
+	border-bottom-color: #B2DBF1;
+	border-left-color: #B2DBF1;
+}
+.input2 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #0492FF;
+	border-right-color: #0492FF;
+	border-bottom-color: #0492FF;
+	border-left-color: #0492FF;
+}.input3 {
+	border: 1px solid #CCCCCC;
+}
+.nr {
+	FONT-SIZE: 12px; LINE-HEIGHT: 20px
+}
+.in {
+	BORDER-RIGHT: #737373 1px; BORDER-TOP: #737373 1px; FONT-SIZE: 12px; BORDER-LEFT: #737373 1px; COLOR: #ff6600; BORDER-BOTTOM: #737373 1px
+}
+.link {
+	FONT-SIZE: 12px
+}
+.tt {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 23px
+}
+.cp {
+	FONT-SIZE: 12px; COLOR: #ffffff; LINE-HEIGHT: 18px
+}
+.cp1 {
+	FONT-SIZE: 14px;
+	COLOR: #2F79AA;
+	LINE-HEIGHT: 18px;
+	font-weight: bold;
+}
+.kuang {
+	height: 18px;
+	width: 40px;
+	border: 1px solid #CCCCCC;
+}
+.kuang2 {
+	height: 20px;
+	width: 140px;
+}
+.art {
+	font-size: 12px;
+	color: #FFFFFF;
+}
+.a-kuang {
+	border: 1px solid #0A64A6;
+}
+.a-kuang2 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #247BD7;
+	border-right-color: #247BD7;
+	border-bottom-color: #247BD7;
+	border-left-color: #247BD7;
+}
+.a-mg {
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}

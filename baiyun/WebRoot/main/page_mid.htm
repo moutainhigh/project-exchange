@@ -1,0 +1,71 @@
+<html><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>无标题文档</title>
+
+<link href="page_top_data/style.css" rel="stylesheet" type="text/css">
+<script src="page_mid_data/sel_style.js"></script>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+
+<script>
+
+function setTdCursorCss()
+{
+	var str = '<style><!--'
+	str += '.TdCursor{'
+	if(checkExplorer(6))
+		str += 'cursor:e-resize'
+	else
+		str += 'cursor:move'
+	str += '}'
+	str += '--></style>'
+	document.write(str)
+}
+setTdCursorCss()
+
+var x = '';
+var y = '';
+var menuWidth = 160
+function getFrameWidth()
+{
+	try{
+		if(event.button ==1)
+		{	var iWidth = event.x-x;
+			menuWidth = menuWidth + iWidth;
+			window.parent.left_right.cols = menuWidth + ',5,*'
+		}
+	}catch(e){}
+}
+function Win_left()
+{
+	if(window.parent.left_right.cols == '0,5,*')
+		{window.parent.left_right.cols = '170,5,*';
+		targetImg1.src='../images/get_left.gif';
+    }else
+       {window.parent.left_right.cols = '0,5,*';
+        targetImg1.src='../images/get_right.gif';
+    }
+}
+</script></head><body class="tab_2">
+<table width="5" border="0" cellpadding="0" cellspacing="0" height="100%">
+  <tbody><tr class="TdCursor" onmousedown="x=event.x;y=event.y;setCapture()" onmouseup="releaseCapture();" onmousemove="getFrameWidth()" title="拖动调节左右框架窗口" height="100%">
+    <td>
+	<table onmousedown="" onmousemove="" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr><td>
+			<img src="page_mid_data/get_left.gif" id="targetImg1" onclick="Win_left()" style="" alt="隐藏或者显示左边菜单">
+		</td></tr>
+	</tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+</body></html>

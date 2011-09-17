@@ -1,0 +1,175 @@
+BODY{
+FONT-FAMILY: Arial, Helvetica, sans-serif;
+font-size:12px;
+margin-left:5px;
+margin-top:5px;
+margin-right:5px;
+margin-bottom:5px;
+background-color:#ffffff;
+border: none;
+}
+	
+.tagon{
+background-image:url(../images/tag.gif);
+background-repeat:no-repeat;
+background-position:left;
+text-align:center;
+font-size:14px;
+font-weight:bold;
+color:#FFFFFF;
+cursor:pointer;
+}
+
+.tagoff{
+background-image:url(../images/tag.gif);
+background-repeat:no-repeat;
+background-position:right;
+text-align:center;
+font-size:14px;
+font-weight:bold;
+color:#66666;
+cursor:pointer;
+}
+
+.table_list{
+border-collapse:collapse;
+}
+
+.td_header{
+background-color:#6B8E23;
+background-image:url(../images/header_bg.gif);
+border:1px solid #B2C7E5;
+padding:5;
+font-size:12px;
+font-weight:bold;
+color:#FFFFFF;
+text-align:center;
+}
+
+.td_list{
+
+border:1px solid #B2C7E5;
+padding:5;
+font-size:12px;
+text-align:center;
+}
+
+.title
+{
+    font-size :14px;
+    font-weight :bold ;
+}
+
+.alt_tr
+{
+    background-color :#EAEFFD;
+}
+
+td {font-size:12px;color:#003366;}
+
+.tab_listing_head{
+     height:25px;
+     border:0px;
+	 background-image:url(../images/tiao.gif)
+     }
+.tab_listing_bottom{
+     height:25px;
+     border:0px;
+	 background-image:url(../images/main_13.gif)
+     }
+
+.tab_bg{
+     background-color:#477DF5;
+}
+.tab_0{
+     background-color:#9eb8f3;
+}
+.tab_1{
+     background-color:#b9cbf7;	 
+}
+.tab_2{
+	 background-color:#d3dffa;
+}
+.tab_3{
+	 background-color:#eaeffd;
+}
+.tab_5{
+     background-color:#ffffff;
+	 word-break : break-all;
+}
+
+.blue_tr
+{
+    background-color :#9EB8F3;
+    font-size :14px;
+    font-weight :bold ;
+}
+a{color:#000066;text-decoration:none}
+a:hover {color:#ff0000;text-decoration:none}
+a:active{color:#ff0000;text-decoration:none}
+
+input{
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size: 12px; 
+    border-top-width: 1px; 
+	border-right-width: 2px; 
+	border-bottom-width: 2px; 
+	border-left-width: 1px; 
+   }
+
+Textarea
+   {font-family:Arial, Helvetica, sans-serif; 
+	font-size: 12px; 
+    border-top-width: 1px; 
+	border-right-width: 2px; 
+	border-bottom-width: 2px; 
+	border-left-width: 1px; 
+	overflow:auto;
+   }
+
+select {
+   font-family:Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   color: #000000; 
+   background:#ffffff;
+   line-height: 15px;
+   border-top-width: 1px; 
+   border-right-width: 1px; 
+   border-bottom-width: 1px; 
+   border-left-width: 1px;    
+   }
+
+/*--------*/
+form input.focus,form textarea.focus{
+	border-color:orange;
+	color:red;
+}
+/*-------*/
+
+.button{ 
+   font-size: 12px; 
+   color: #000000; 
+   background:#dddddd;
+   line-height: 15px;
+   border-top-width: 1px; 
+   border-right-width: 1px; 
+   border-bottom-width: 1px; 
+   border-left-width: 1px; 
+   }
+
+.button2
+   {
+   font-size: 12px; 
+   color: #000000; 
+   border-style:double;
+   line-height: 15px;
+   border-top-width: 1px; 
+   border-right-width: 1px; 
+   border-bottom-width: 1px; 
+   border-left-width: 1px; 
+   }
+
+.button3{
+	border:0px;
+	background:inherit;
+}
