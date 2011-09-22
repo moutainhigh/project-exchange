@@ -103,7 +103,7 @@
 												&nbsp;
 											</td>
 											<td height="34">
-												<input name="rand" type="text" class="kuang" size="5" />
+												<input name="rand" type="text" class="kuang" size="5" onkeypress="formKeyPress(event);"/>
 												<img src="${appPath}rand.servlet" alt="验证码" id="yanzheng" />
 											</td>
 										</tr>
