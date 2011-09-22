@@ -59,44 +59,61 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="" class="tables_headercell">
+						<td height="28" width="" class="tables_headercell" rowspan="2">
 							<input type="checkbox" onclick="checkAll(this);">
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							序号
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							捐赠企业名称
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							企业负责人
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							职务
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							区工商联职务
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
+							项目落实人
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
 							捐赠金额（万元）
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							捐赠项目名称
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							受捐赠单位负责人
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							职务
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							项目内容
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" rowspan="2">
 							项目金额（万元）
 						</td>
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" colspan="3">
+							用地性质
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
 							操作
+						</td>
+					</tr>
+					<tr align="center">
+						<td height="28" width="" class="tables_headercell" rowspan="1">
+							现状
+						</td>
+						<td width="" class="tables_headercell" rowspan="1">
+							用地现状
+						</td>
+						<td width="" class="tables_headercell" rowspan="1">
+							规划性质
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f" varStatus="status">
@@ -120,6 +137,9 @@
 								&nbsp; ${f.gongshangZhiwu }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.luoshi }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.juanMoney }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
@@ -138,15 +158,27 @@
 								&nbsp; ${f.money }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.yongdi1 }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.yongdi2 }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.yongdi3 }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
 								&nbsp;
 								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_editShPro.action?proSh.id=${f.id }',700,400);" >修改</a>
+								</c:if>
+								<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_shStat.action?shStat.project.id=${f.id}',750,400);" >填报</a>
 								</c:if>
 							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="13">
+						<td height="25" align="right" class="tables_contentcell" colspan="17">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

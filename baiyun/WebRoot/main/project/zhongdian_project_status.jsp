@@ -10,10 +10,7 @@
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script language="javascript">
-		var msg = '${msg}';
-		if(msg != ''){
-			alert(msg);
-		}
+<jsp:include page="../../msg.jsp"></jsp:include>
 		function checkAll(obj){
 			if($(obj).attr('checked')){
 				$('input[type="checkbox"]').attr('checked',true);
@@ -71,19 +68,6 @@
 		<form method="get" action="${appPath}pro_saveProZdStat.action" name="searchForm">
 			<input type="hidden" name="zdStat.id" value="${zdStat.id}">
 			<input type="hidden" name="zdStat.project.id" value="${zdStat.project.id}">
-			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
-				<tbody>
-					<tr>
-						<td>
-							您当前所处页面：项目管理  >> 重点帮扶钟落潭镇项目进度报表
-						</td>
-						<td align="right">
-							&nbsp;
-						</td>
-						<td width="5px"></td>
-					</tr>
-				</tbody>
-			</table>
 			<c:if test="${userObj.isDiv=='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
@@ -102,11 +86,6 @@
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
-							上/下半月：
-							<input type="radio" name="zdStat.half" value="1"/>
-							<input type="radio" name="zdStat.half" value="2"/>
-						</td>
-						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<input type="button" value="保存" class="button" name="保存" onclick="save();">
 						</td>
@@ -121,26 +100,18 @@
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							项目完成情况
-						</td>
-						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${zdStat.complete }" name="zdStat.complete"/>
-						</td>
-					</tr>
-					<tr align="center">
-						<td width="" class="tables_contentcell" colspan="2">
-							存在问题及拟解决措施
-						</td>
-						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${zdStat.problem }" name="zdStat.problem"/>
-						</td>
-					</tr>
-					<tr align="center">
-						<td width="" class="tables_contentcell" colspan="2">
 							总投资额（万元）
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
 							&nbsp;  ${zdStat.project.money }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							建设规模及内容
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp;  ${zdStat.project.content }
 						</td>
 					</tr>
 					<tr align="center">
@@ -153,10 +124,26 @@
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							帮扶单位
+							项目进展情况
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; ${zdStat.project.org.orgName }
+							&nbsp; <input value="${zdStat.complete }" name="zdStat.complete"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							存在问题
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${zdStat.problem }" name="zdStat.problem"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							下一步推进措施
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${zdStat.content }" name="zdStat.content"/>
 						</td>
 					</tr>
 				</tbody>

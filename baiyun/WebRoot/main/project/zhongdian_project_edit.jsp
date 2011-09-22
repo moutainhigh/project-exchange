@@ -18,11 +18,20 @@
 			$(function(){
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			});
+			var orgId = '${proZd.org.id}';
+			$(function(){
+				if(orgId!=''){
+					$("#orgId").attr("disabled",true);
+				}
+			});
 		</script>
 	</head>
 	<body>
 		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}pro_saveProZd.action" name="">
 			<input type="hidden" value="${proZd.id}" name="proZd.id">
+			<c:if test="${not empty proZd.org.id}">
+			<input type="hidden" value="${proZd.org.id}" name="proZd.org.id">
+			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>

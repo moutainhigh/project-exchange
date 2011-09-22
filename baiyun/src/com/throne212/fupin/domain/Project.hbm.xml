@@ -39,6 +39,10 @@
 			<property name="shouFuzeren"></property>
 			<property name="shouZhiwu"></property>
 			<property name="zhiwu"></property>
+			<property name="yongdi1"></property>
+			<property name="yongdi2"></property>
+			<property name="yongdi3"></property>
+			<property name="luoshi"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

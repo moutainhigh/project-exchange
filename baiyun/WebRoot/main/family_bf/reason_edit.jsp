@@ -126,14 +126,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </td>
   </tr>    
   <tr>
-    <td height="30" align="right" class="tables_leftcell">帮扶措施</td>
-    <td class="tables_contentcell">
-      <font color="#cc0033">请填写帮扶措施（注：此处为选填）：：</font>
-	  <textarea name="reason.cuoshiContent"   rows="9" cols="50">${reason.cuoshiContent }</textarea>
-	<font size="6" color="#cc0033">*</font>
-    </td>
-  </tr>  
-  <tr>
      <td align="center" class="tables_contentcell" colspan="2">
      <input type="submit" value="确认" class="button" name="确认">
 	 <input type="button" onclick="self.close();" class="button" value="取消" name="取消">

@@ -138,6 +138,9 @@
 								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_editZdPro.action?proZd.id=${f.id }',700,400);" >修改</a>
 								</c:if>
+								<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_zdStat.action?zdStat.project.id=${f.id}',750,400);" >填报</a>
+								</c:if>
 							</td>
 						</tr>
 						<tr>

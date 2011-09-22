@@ -6,14 +6,14 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.datepick.css" />
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
+		<script type="text/javascript" src="${appPath}js/jquery.datepick.js"></script>
+		<script type="text/javascript" src="${appPath}js/jquery.datepick-zh-CN.js"></script>
 		<script language="javascript">
-		var msg = '${msg}';
-		if(msg != ''){
-			alert(msg);
-		}
+<jsp:include page="../../msg.jsp"></jsp:include>
 		function checkAll(obj){
 			if($(obj).attr('checked')){
 				$('input[type="checkbox"]').attr('checked',true);
@@ -25,6 +25,8 @@
 		var time = '${shStat.month}';
 		var half = '${shStat.half}';
 		$(function(){
+			$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+			
 			var str = '';
 			for(var i=1;i<=12;i++){
 				str += '<option value="'+i+'">第'+i+'月</option>';
@@ -71,19 +73,6 @@
 		<form method="get" action="${appPath}pro_saveProShStat.action" name="searchForm">
 			<input type="hidden" name="shStat.id" value="${shStat.id}">
 			<input type="hidden" name="shStat.project.id" value="${shStat.project.id}">
-			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
-				<tbody>
-					<tr>
-						<td>
-							您当前所处页面：项目管理  >> 社会企业扶贫项目进度报表
-						</td>
-						<td align="right">
-							&nbsp;
-						</td>
-						<td width="5px"></td>
-					</tr>
-				</tbody>
-			</table>
 			<c:if test="${userObj.isDiv=='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
@@ -102,42 +91,53 @@
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
-							上/下半月：
-							<input type="radio" name="shStat.half" value="1"/>
-							<input type="radio" name="shStat.half" value="2"/>
-						</td>
-						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<input type="button" value="保存" class="button" name="保存" onclick="save();">
 						</td>
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							项目名称
+							捐赠企业名称
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; ${shStat.project.name }
+							&nbsp; ${shStat.project.org.orgName }
 						</td>
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							项目完成情况
+							企业负责人
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${shStat.complete }" name="shStat.complete"/>
+							&nbsp; ${shStat.project.fuzeren }
 						</td>
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							存在问题及拟解决措施
+							职务
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${shStat.problem }" name="shStat.problem"/>
+							&nbsp; ${shStat.project.zhiwu }
 						</td>
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							总投资额（万元）
+							区工商联职务
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.gongshangZhiwu }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							项目落实人
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.luoshi }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							捐赠金额（万元）
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
 							&nbsp;  ${shStat.project.money }
@@ -145,20 +145,90 @@
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							帮扶资金到位情况（万元）
+							捐赠项目名称
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${shStat.money }" name="shStat.money"/>
+							&nbsp; ${shStat.project.name }
 						</td>
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							帮扶单位
+							受捐赠单位负责人
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; ${shStat.project.org.orgName }
+							&nbsp; ${shStat.project.shouFuzeren}
 						</td>
 					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							职务
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.shouZhiwu }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							项目内容
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.content }
+						</td>
+					</tr>
+					
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="1" rowspan="3">
+							项目用地性质
+						</td>
+						<td width="" class="tables_contentcell" colspan="1" rowspan="1">
+							现状
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.yongdi1 }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="1" rowspan="1">
+							用地现状
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.yongdi2 }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="1" rowspan="1">
+							规划性质
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; ${shStat.project.yongdi3 }
+						</td>
+					</tr>
+					
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							项目进度
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${shStat.complete }" name="shStat.complete"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							存在问题
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${shStat.problem }" name="shStat.problem"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							预计完成时间
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${shStat.money }" name="shStat.money" class="datetime"/>
+						</td>
+					</tr>
+					
 				</tbody>
 			</table>
 			</c:if>

@@ -25,6 +25,7 @@
 							setTimeout(function(){ 
 							    $("#zhenId").val(zhenId); 
 							    selectZhen(zhenId);
+							    $("#zhenId").attr("disabled",true); 
 							},1);
 						}
 					}
@@ -43,6 +44,7 @@
 							setTimeout(function(){ 
 							    $("#cunId").val(cunId); 
 							    selectCun(cunId);
+							    $("#cunId").attr("disabled",true); 
 							},1);
 						}
 					}
@@ -62,9 +64,12 @@
 		</script>
 	</head>
 	<body>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}pro_saveProCun.action" name="">
+		<form method="post" onsubmit="return Validator.Validate(this);" action="${appPath}pro_saveProCun.action" name="">
 			<input type="hidden" value="${proCun.id}" name="proCun.id">
 			<input type="hidden" value="${proCun.org.id}" name="proCun.org.id" id="orgId">
+			<c:if test="${not empty proCun.cun.id}">
+			<input type="hidden" value="${proCun.cun.id}" name="proCun.cun.id">
+			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>

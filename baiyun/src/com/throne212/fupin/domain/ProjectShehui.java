@@ -11,6 +11,12 @@ public class ProjectShehui extends Project {
 	private String shouZhiwu;// 职务
 	private String content;// 项目内容
 	private String money;// 项目金额
+	
+	private String yongdi1;//用地性质的现状
+	private String yongdi2;//用地现状
+	private String yongdi3;//规划性质
+	
+	private String luoshi;//项目落实人
 
 	public String getFuzeren() {
 		return fuzeren;
@@ -74,6 +80,38 @@ public class ProjectShehui extends Project {
 
 	public void setMoney(String money) {
 		this.money = money;
+	}
+
+	public String getYongdi1() {
+		return yongdi1;
+	}
+
+	public void setYongdi1(String yongdi1) {
+		this.yongdi1 = yongdi1;
+	}
+
+	public String getYongdi2() {
+		return yongdi2;
+	}
+
+	public void setYongdi2(String yongdi2) {
+		this.yongdi2 = yongdi2;
+	}
+
+	public String getYongdi3() {
+		return yongdi3;
+	}
+
+	public void setYongdi3(String yongdi3) {
+		this.yongdi3 = yongdi3;
+	}
+
+	public String getLuoshi() {
+		return luoshi;
+	}
+
+	public void setLuoshi(String luoshi) {
+		this.luoshi = luoshi;
 	}
 
 }

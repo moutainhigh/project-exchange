@@ -4,17 +4,26 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.sun.faces.config.WebConfiguration;
 import com.throne212.fupin.biz.ReportBiz;
+import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.ProjectCunStat;
+import com.throne212.fupin.domain.ProjectShStat;
+import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
+import com.throne212.fupin.domain.Report3;
 import com.throne212.fupin.domain.User;
 
 public class ReportAction extends BaseAction {
@@ -59,17 +68,17 @@ public class ReportAction extends BaseAction {
 	}
 
 	public String viewReport1() {
-		
-		//如果该单位用户未指定村帮扶，不能进行操作
+
+		// 如果该单位用户未指定村帮扶，不能进行操作
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Org){
+		if (user instanceof Org) {
 			Org org = (Org) user;
-			if(org.getCun() == null){
+			if (org.getCun() == null) {
 				this.setMsg("未指定存帮扶，请联系管理员指定村帮扶以后再进行报表操作");
 				return "report_edit1";
 			}
 		}
-		
+
 		if (r == null) {// 默认条件打开，定向到当前的年得月份
 			Calendar c = GregorianCalendar.getInstance();
 			Integer year = c.get(Calendar.YEAR);
@@ -102,7 +111,7 @@ public class ReportAction extends BaseAction {
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
 		// 填充灰色项目
-		reportBiz.fillReport(r);
+		// reportBiz.fillReport(r);
 
 		return "report_edit1";
 	}
@@ -308,6 +317,139 @@ public class ReportAction extends BaseAction {
 		return "report_export";
 	}
 
+	// report3
+	public String viewReport3() {
+		if (r3 == null) {// 默认条件打开，定向到当前的年得月份
+			Calendar c = GregorianCalendar.getInstance();
+			Integer year = c.get(Calendar.YEAR);
+			String type = "month";
+			String time = (c.get(Calendar.MONTH)) + "";
+			r3 = (Report3) reportBiz.getReport("3", year, type, time);
+			if (r3 == null) {
+				r3 = new Report3();
+				r3.setYear(year);
+				r3.setTime(time);
+				r3.setType(type);
+			}
+		} else if (r3 != null && r3.getId() == null) {// 按条件搜索
+			Integer year = r3.getYear();
+			String type = r3.getType();
+			String time = r3.getTime();
+			Report report = reportBiz.getReport("3", year, type, time);
+			if (report != null)
+				r3 = (Report3) report;
+			else {
+				r3 = new Report3();
+				r3.setYear(year);
+				r3.setType(type);
+				r3.setTime(time);
+			}
+		}
+
+		// 最大的月份和季度
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
+
+		return "report_edit3";
+	}
+
+	private Report3 r3;
+
+	public String saveReport3() {
+		if (r3 != null && "month".equals(r3.getType())) {
+			String time = r3.getTime();
+			int month = GregorianCalendar.getInstance().get(Calendar.MONTH) + 1;
+			int year = GregorianCalendar.getInstance().get(Calendar.YEAR);
+			if (r3.getYear() > year) {
+				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
+				return viewReport3();
+			} else if (r3.getYear() == year && Integer.valueOf(time) >= month) {
+				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
+				return viewReport3();
+			}
+		}
+		if (r3.getItems() == null || r3.getItems().size() == 0) {
+			this.setMsg("该镇没有任何的村项目，不能继续");
+			return viewReport3();
+		}
+		r3 = (Report3) reportBiz.saveReport(r3, "3");
+		if (r3 == null) {
+			this.setMsg("保存报表失败");
+		} else {
+			this.setMsg("报表保存成功");
+		}
+		return viewReport3();
+	}
+
+	public String tmpSaveReport3() {
+		saveReport3();
+		if (r3 != null && r3.getId() != null) {
+			r3.setLock(3);// 3代表暂存
+			reportBiz.saveOrUpdateEntity(r3);
+			this.setMsg("报表保存成功");
+		} else {
+			this.setMsg("报表保存失败");
+		}
+		return viewReport3();
+	}
+
+	// 解锁
+	public String requstUnlock3() {
+		reportBiz.requestUnlock(r3, "3");
+		this.setMsg("已经发送解锁请求");
+		return viewReport1();
+	}
+
+	// 工作落实情况统计表
+	public String report1Stat() {
+		List<Report1Stat> list = reportBiz.getReport1Stat();
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		return "report1_stat";
+	}
+
+	// 汇总查询
+	private PageBean pageBean;
+	private Integer pageIndex;
+
+	private Integer year;
+	private Integer month;
+
+	public String projectCunStat() {
+		if (year == null || month == null) {
+			Calendar now = GregorianCalendar.getInstance();
+			year = now.get(Calendar.YEAR);
+			month = now.get(Calendar.MONTH) + 1;
+		}
+		pageBean = reportBiz.getProStat(ProjectCunStat.class,year, month, pageIndex);
+		return "pro_cun_stat";
+	}
+
+	public String projectZdStat() {
+		if (year == null || month == null) {
+			Calendar now = GregorianCalendar.getInstance();
+			year = now.get(Calendar.YEAR);
+			month = now.get(Calendar.MONTH) + 1;
+		}
+		pageBean = reportBiz.getProStat(ProjectZdStat.class,year, month, pageIndex);
+		return "pro_zd_stat";
+	}
+
+	public String projectShStat() {
+		if (year == null || month == null) {
+			Calendar now = GregorianCalendar.getInstance();
+			year = now.get(Calendar.YEAR);
+			month = now.get(Calendar.MONTH) + 1;
+		}
+		pageBean = reportBiz.getProStat(ProjectShStat.class,year, month, pageIndex);
+		return "pro_sh_stat";
+	}
+
 	public Report getR() {
 		return r;
 	}
@@ -362,6 +504,46 @@ public class ReportAction extends BaseAction {
 
 	public void setReportParam(ReportParam reportParam) {
 		this.reportParam = reportParam;
+	}
+
+	public Report3 getR3() {
+		return r3;
+	}
+
+	public void setR3(Report3 r3) {
+		this.r3 = r3;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public Integer getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
 	}
 
 }

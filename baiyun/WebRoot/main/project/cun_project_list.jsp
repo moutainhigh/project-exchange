@@ -150,6 +150,9 @@
 								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_editCunPro.action?proCun.id=${f.id }',450,400);" >修改</a>
 								</c:if>
+								<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_cunStat.action?cunStat.project.id=${f.id}',750,400);" >填报</a>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

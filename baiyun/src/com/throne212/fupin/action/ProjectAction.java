@@ -70,26 +70,22 @@ public class ProjectAction extends BaseAction {
 	private ProjectCunStat cunStat;
 
 	public String cunStat() {
-		if (cunStat == null || cunStat.getYear() == null || cunStat.getMonth() == null || cunStat.getHalf() == null) {
-			cunStat = new ProjectCunStat();
+		if (cunStat.getYear() == null || cunStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			cunStat.setYear(now.get(Calendar.YEAR));
 			cunStat.setMonth(now.get(Calendar.MONTH) + 1);
-			int day = now.get(Calendar.DAY_OF_MONTH);
-			String half = day <= 15 ? "1" : "2";
-			cunStat.setHalf(half);
 			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
 			if (cunStatInDB != null)
 				cunStat = cunStatInDB;
 			else {
 				this.setMsg("本单位还没有指定村帮扶项目，请联系管理员先指定");
 			}
-		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null || !Util.isEmpty(cunStat.getHalf())) {
+		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {
 			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
 			if (cunStatInDB != null)
 				cunStat = cunStatInDB;
 			else {
-				this.setMsg("该半月暂时还没有进度数据");
+				this.setMsg("该月暂时还没有进度数据");
 			}
 		}
 		return "cun_stat";
@@ -102,6 +98,7 @@ public class ProjectAction extends BaseAction {
 		}
 		projectBiz.saveOrUpdateEntity(cunStat);
 		this.setMsg("保存成功");
+		this.setSucc("Y");
 		return cunStat();
 	}
 
@@ -156,26 +153,22 @@ public class ProjectAction extends BaseAction {
 	private ProjectZdStat zdStat;
 
 	public String zdStat() {
-		if (zdStat == null || zdStat.getYear() == null || zdStat.getMonth() == null || zdStat.getHalf() == null) {
-			zdStat = new ProjectZdStat();
+		if (zdStat == null || zdStat.getYear() == null || zdStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			zdStat.setYear(now.get(Calendar.YEAR));
 			zdStat.setMonth(now.get(Calendar.MONTH) + 1);
-			int day = now.get(Calendar.DAY_OF_MONTH);
-			String half = day <= 15 ? "1" : "2";
-			zdStat.setHalf(half);
 			ProjectZdStat zdStatInDB = projectBiz.getZdStat(zdStat);
 			if (zdStatInDB != null)
 				zdStat = zdStatInDB;
 			else {
 				this.setMsg("本单位还没有指定重点镇帮扶项目，请联系管理员先指定");
 			}
-		} else if (zdStat != null || zdStat.getYear() != null || zdStat.getMonth() != null || !Util.isEmpty(zdStat.getHalf())) {
+		} else if (zdStat != null || zdStat.getYear() != null || zdStat.getMonth() != null) {
 			ProjectZdStat zdStatInDB = projectBiz.getZdStat(zdStat);
 			if (zdStatInDB != null)
 				zdStat = zdStatInDB;
 			else {
-				this.setMsg("该半月暂时还没有进度数据");
+				this.setMsg("该月暂时还没有进度数据");
 			}
 		}
 		return "zd_stat";
@@ -188,6 +181,7 @@ public class ProjectAction extends BaseAction {
 		}
 		projectBiz.saveOrUpdateEntity(zdStat);
 		this.setMsg("保存成功");
+		this.setSucc("Y");
 		return zdStat();
 	}
 
@@ -237,26 +231,22 @@ public class ProjectAction extends BaseAction {
 	private ProjectShStat shStat;
 
 	public String shStat() {
-		if (shStat == null || shStat.getYear() == null || shStat.getMonth() == null || shStat.getHalf() == null) {
-			shStat = new ProjectShStat();
+		if (shStat.getYear() == null || shStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			shStat.setYear(now.get(Calendar.YEAR));
 			shStat.setMonth(now.get(Calendar.MONTH) + 1);
-			int day = now.get(Calendar.DAY_OF_MONTH);
-			String half = day <= 15 ? "1" : "2";
-			shStat.setHalf(half);
 			ProjectShStat shStatInDB = projectBiz.getShStat(shStat);
 			if (shStatInDB != null)
 				shStat = shStatInDB;
 			else {
 				this.setMsg("本单位还没有指定社会资金帮扶项目，请联系管理员先指定");
 			}
-		} else if (shStat != null || shStat.getYear() != null || shStat.getMonth() != null || !Util.isEmpty(shStat.getHalf())) {
+		} else if (shStat != null || shStat.getYear() != null || shStat.getMonth() != null) {
 			ProjectShStat shStatInDB = projectBiz.getShStat(shStat);
 			if (shStatInDB != null)
 				shStat = shStatInDB;
 			else {
-				this.setMsg("该半月暂时还没有进度数据");
+				this.setMsg("该月暂时还没有进度数据");
 			}
 		}
 		return "sh_stat";
@@ -269,6 +259,7 @@ public class ProjectAction extends BaseAction {
 		}
 		projectBiz.saveOrUpdateEntity(shStat);
 		this.setMsg("保存成功");
+		this.setSucc("Y");
 		return shStat();
 	}
 

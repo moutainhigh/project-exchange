@@ -107,7 +107,7 @@
 			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
-					<tr>
+					<tr style="display: none;">
 						<td height="30" align="right" class="tables_leftcell">
 						所属市扶贫办
 						</td>
@@ -116,7 +116,7 @@
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>
-						<tr>
+					<tr style="display: none;">
 						<td height="30" align="right" class="tables_leftcell">
 						所属区县扶贫办
 						</td>

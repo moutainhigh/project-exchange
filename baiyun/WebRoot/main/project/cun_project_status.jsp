@@ -10,10 +10,7 @@
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script language="javascript">
-		var msg = '${msg}';
-		if(msg != ''){
-			alert(msg);
-		}
+<jsp:include page="../../msg.jsp"></jsp:include>
 		function checkAll(obj){
 			if($(obj).attr('checked')){
 				$('input[type="checkbox"]').attr('checked',true);
@@ -27,7 +24,16 @@
 		$(function(){
 			var str = '';
 			for(var i=1;i<=12;i++){
-				str += '<option value="'+i+'">第'+i+'月</option>';
+				//str += '<option value="'+i+'">第'+i+'月</option>';
+				for(var i=1;i<=12;i++){
+					if($('#year').val()==2011 || year == '2011'){
+						if(i<=7)
+							continue;
+						str += '<option value="'+i+'">第'+i+'月</option>';
+					}else{
+						str += '<option value="'+i+'">第'+i+'月</option>';
+					}
+				}
 			}
 			$('#time').html(str);
 			
@@ -71,24 +77,11 @@
 		<form method="get" action="${appPath}pro_saveProCunStat.action" name="searchForm">
 			<input type="hidden" name="cunStat.id" value="${cunStat.id}">
 			<input type="hidden" name="cunStat.project.id" value="${cunStat.project.id}">
-			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
-				<tbody>
-					<tr>
-						<td>
-							您当前所处页面：项目管理  >> 村项目进度报表
-						</td>
-						<td align="right">
-							&nbsp;
-						</td>
-						<td width="5px"></td>
-					</tr>
-				</tbody>
-			</table>
 			<c:if test="${userObj.isDiv=='Y'}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td width="" class="tables_headercell">
+						<td width="" class="tables_headercell" colspan="1">
 							年度：
 							<select name="cunStat.year" id="year">
 								<option value=""></option>
@@ -101,15 +94,18 @@
 								<option value=""></option>
 							</select>
 						</td>
+						<!-- 
 						<td width="" class="tables_headercell">
 							上/下半月：
 							<input type="radio" name="cunStat.half" value="1"/>
 							<input type="radio" name="cunStat.half" value="2"/>
 						</td>
+						-->
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<input type="button" value="保存" class="button" name="保存" onclick="save();">
 						</td>
+						 
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" rowspan="2">
@@ -140,26 +136,18 @@
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							项目完成情况
-						</td>
-						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.complete }" name="cunStat.complete"/>
-						</td>
-					</tr>
-					<tr align="center">
-						<td width="" class="tables_contentcell" colspan="2">
-							存在问题及拟解决措施
-						</td>
-						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.problem }" name="cunStat.problem"/>
-						</td>
-					</tr>
-					<tr align="center">
-						<td width="" class="tables_contentcell" colspan="2">
 							总投资额（万元）
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
 							&nbsp;  ${cunStat.project.money }
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							建设规模及内容
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp;  ${cunStat.project.content }
 						</td>
 					</tr>
 					<tr align="center">
@@ -172,10 +160,26 @@
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
-							帮扶单位
+							项目进展情况
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; ${cunStat.project.org.orgName }
+							&nbsp; <input value="${cunStat.complete }" name="cunStat.complete"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							存在问题
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${cunStat.problem }" name="cunStat.problem"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							下一步推进措施
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; <input value="${cunStat.content }" name="cunStat.content"/>
 						</td>
 					</tr>
 				</tbody>

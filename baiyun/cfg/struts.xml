@@ -258,8 +258,13 @@
 		<action name="report_*" method="{1}" class="com.throne212.fupin.action.ReportAction">
 			<result name="report_edit1">/main/report/edit1.jsp</result>
 			<result name="report_edit2">/main/report/edit2.jsp</result>
+			<result name="report_edit3">/main/report/edit3.jsp</result>
 			<result name="report_list">/main/report/report_list.jsp</result>
+			<result name="report1_stat">/main/report/report1_stat.jsp</result>
 			<result name="report_export">/main/report/report_export.jsp</result>
+			<result name="pro_cun_stat">/main/report/pro_cun_stat.jsp</result>
+			<result name="pro_zd_stat">/main/report/pro_zd_stat.jsp</result>
+			<result name="pro_sh_stat">/main/report/pro_sh_stat.jsp</result>
 		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
@@ -336,7 +341,8 @@
 			<result name="org_leader" type="json">
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
-					list\[\d+\]\.leaderName
+					list\[\d+\]\.leaderName,
+					list\[\d+\]\.tel
 				</param>
 			</result>
 			<result name="pinyin" type="json">

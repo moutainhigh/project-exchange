@@ -51,16 +51,22 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 	public ProjectCunStat getCunStat(ProjectCunStat param) {
 		Integer year = param.getYear();
 		Integer month = param.getMonth();
-		String half = param.getHalf();
+		Long proId = param.getProject().getId();
 
-		String hql = "from ProjectCunStat s where year=? and month=? and half=?";
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		
+		String hql = "from ProjectCunStat s where year=? and month=? and s.project.id=" + proId;
+		
+		if (user instanceof Org) {
+			hql += " and s.project.org.id=" + user.getId();
+		}
 
-		List<ProjectCunStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month, half });
+		List<ProjectCunStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month });
 
 		if (statList != null && statList.size() > 0)
 			return statList.get(0);
 		
-		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		
 		if (user instanceof Org) {
 			hql = "from ProjectCun where org.id=" + user.getId();
 			List<ProjectCun> list = this.getHibernateTemplate().find(hql);
@@ -68,9 +74,9 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				ProjectCun proCun = list.get(0);
 				ProjectCunStat cunStat = new ProjectCunStat();
 				cunStat.setProject(proCun);
-				cunStat.setHalf(half);
 				cunStat.setMonth(month);
 				cunStat.setYear(year);
+				cunStat.setProject(param.getProject());
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
@@ -83,16 +89,16 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 	public ProjectZdStat getZdStat(ProjectZdStat param){
 		Integer year = param.getYear();
 		Integer month = param.getMonth();
-		String half = param.getHalf();
+		Long proId = param.getProject().getId();
 
-		String hql = "from ProjectZdStat s where year=? and month=? and half=?";
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		String hql = "from ProjectZdStat s where year=? and month=? and s.project.id=" + proId + " and s.project.org.id=" + user.getId();
 
-		List<ProjectZdStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month, half });
+		List<ProjectZdStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month });
 
 		if (statList != null && statList.size() > 0)
 			return statList.get(0);
 		
-		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Org) {
 			hql = "from ProjectZhongdian where org.id=" + user.getId();
 			List<ProjectZhongdian> list = this.getHibernateTemplate().find(hql);
@@ -100,9 +106,9 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				ProjectZhongdian proCun = list.get(0);
 				ProjectZdStat cunStat = new ProjectZdStat();
 				cunStat.setProject(proCun);
-				cunStat.setHalf(half);
 				cunStat.setMonth(month);
 				cunStat.setYear(year);
+				cunStat.setProject(param.getProject());
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
@@ -113,16 +119,16 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 	public ProjectShStat getShStat(ProjectShStat param){
 		Integer year = param.getYear();
 		Integer month = param.getMonth();
-		String half = param.getHalf();
+		Long proId = param.getProject().getId();
 
-		String hql = "from ProjectShStat s where year=? and month=? and half=?";
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		String hql = "from ProjectShStat s where year=? and month=? and s.project.id=" + proId + " and s.project.org.id=" + user.getId();
 
-		List<ProjectShStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month, half });
+		List<ProjectShStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month });
 
 		if (statList != null && statList.size() > 0)
 			return statList.get(0);
 		
-		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Org) {
 			hql = "from ProjectShehui where org.id=" + user.getId();
 			List<ProjectShehui> list = this.getHibernateTemplate().find(hql);
@@ -130,9 +136,9 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				ProjectShehui proCun = list.get(0);
 				ProjectShStat cunStat = new ProjectShStat();
 				cunStat.setProject(proCun);
-				cunStat.setHalf(half);
 				cunStat.setMonth(month);
 				cunStat.setYear(year);
+				cunStat.setProject(param.getProject());
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				

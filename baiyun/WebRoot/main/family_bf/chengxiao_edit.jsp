@@ -166,35 +166,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
   <tr>
 		<td class="tables_contentcell" colspan="4" align="center">
-		帮扶情况
-		</td>
-  </tr>
-  <tr>
-  	<td height="30" align="right" class="tables_leftcell">第一季度</td>
-		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols="" name="chengxiao.s1">${chengxiao.s1 }</textarea>
-		</td>
-  </tr>
-  <tr>
-  	<td height="30" align="right" class="tables_leftcell">第二季度</td>
-		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols="" name="chengxiao.s2">${chengxiao.s2 }</textarea>
-		</td>
-  </tr>
-  <tr>
-  	<td height="30" align="right" class="tables_leftcell">第三季度</td>
-		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols="" name="chengxiao.s3">${chengxiao.s3 }</textarea>
-		</td>
-  </tr>
-  <tr>
-  	<td height="30" align="right" class="tables_leftcell">第四季度</td>
-		<td class="tables_contentcell" colspan="1">
-		<textarea rows="" cols="" name="chengxiao.s4">${chengxiao.s4 }</textarea>
-		</td>
-  </tr> 
-  <tr>
-		<td class="tables_contentcell" colspan="4" align="center">
 		帮扶成效
 		</td>
   </tr>

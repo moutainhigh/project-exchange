@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -14,8 +18,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.AdminBiz;
 import com.throne212.fupin.biz.BaseBiz;
 import com.throne212.fupin.biz.ContactBiz;
+import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
@@ -39,6 +45,7 @@ public class AjaxAction extends BaseAction {
 	private AdminBiz adminBiz;
 	private BaseBiz baseBiz;
 	private ContactBiz contactBiz;
+	private ReportBiz reportBiz;
 
 	public String test() {
 		return "msg";
@@ -498,6 +505,24 @@ public class AjaxAction extends BaseAction {
 		list = adminBiz.getEntitiesByColumn(Org.class, "cun.id", cunId);
 		return "org_list";
 	}
+	
+	public String loadReport1Stat(){
+		List<Report1Stat> list = reportBiz.getReport1Stat();
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		//ActionContext actionContext = ActionContext.getContext();
+		//actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		try {
+			ServletActionContext.getResponse().getWriter().print(jsonObject.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.debug("jsonObject:" + jsonObject.toString());
+		return null;
+	}
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
@@ -617,6 +642,14 @@ public class AjaxAction extends BaseAction {
 
 	public void setCunId(Long cunId) {
 		this.cunId = cunId;
+	}
+
+	public ReportBiz getReportBiz() {
+		return reportBiz;
+	}
+
+	public void setReportBiz(ReportBiz reportBiz) {
+		this.reportBiz = reportBiz;
 	}
 
 }

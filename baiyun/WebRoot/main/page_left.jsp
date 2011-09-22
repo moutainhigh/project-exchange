@@ -150,16 +150,34 @@ function images_update(){
 	if(window.quanxian=='5')
 	{
 	
-		//menuArray[menuArray.length]="0,报表维护,";
-	    //<c:if test="${userObj.roleType=='超级管理员'}">
+		menuArray[menuArray.length]="0,报表维护,";
+	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    //menuArray[menuArray.length]="1,报表导出,${appPath}report_export.action";
-	    //menuArray[menuArray.length]="1,报表解锁,${appPath}report_reportList.action";
-	    //</c:if>
-	    //<c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	    //menuArray[menuArray.length]="1,表一表二,${appPath}report_viewReport1.action";
-		//menuArray[menuArray.length]="1,表三,${appPath}report_viewReport2.action";
-	    //</c:if>
+	    menuArray[menuArray.length]="1,报表解锁,${appPath}report_reportList.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	    menuArray[menuArray.length]="1,“结对帮扶低收入户”工作落实情况统计表,${appPath}report_viewReport1.action";
+	    </c:if>
 	    //menuArray[menuArray.length]="1,贫困户类型统计,${appPath}stat_familyTypeList.action";
+	
+		<c:if test="${userObj.roleType=='镇级管理员'}">
+		menuArray[menuArray.length]="1,对口帮扶低收入村项目建设及资金下拨明细表,${appPath}report_viewReport3.action";
+		</c:if>
+		
+		<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='县级管理员'}">
+		menuArray[menuArray.length]="1,工作落实情况统计表,${appPath}report_report1Stat.action";
+		</c:if>
+		
+		<c:if test="${userObj.roleType=='县级管理员' || userObj.roleType=='镇级管理员'}">
+		menuArray[menuArray.length]="0,汇总查询,";
+		menuArray[menuArray.length]="1,村项目汇总查询,${appPath}report_projectCunStat.action";
+		</c:if>
+		<c:if test="${userObj.roleType=='县级管理员' || (userObj.roleType=='镇级管理员' && userObj.zhen.name=='钟落潭镇')}">
+		menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目汇总查询,${appPath}report_projectZdStat.action";
+		</c:if>
+		<c:if test="${userObj.roleType=='县级管理员'}">
+		menuArray[menuArray.length]="1,社会企业扶贫项目汇总查询,${appPath}report_projectShStat.action";
+		</c:if>
 	
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,单位与干部维护,";
@@ -263,19 +281,19 @@ function images_update(){
 	    menuArray[menuArray.length]="1,村项目管理,${appPath}pro_proCunList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,村项目进度报表,${appPath}pro_cunStat.action";
+	    //menuArray[menuArray.length]="1,村项目进度报表,${appPath}pro_cunStat.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
 	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目,${appPath}pro_proZdList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目进度报表,${appPath}pro_zdStat.action";
+	    //menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目进度报表,${appPath}pro_zdStat.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
 	    menuArray[menuArray.length]="1,社会企业扶贫项目,${appPath}pro_proShList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,社会企业扶贫项目进度报表,${appPath}pro_shStat.action";
+	    //menuArray[menuArray.length]="1,社会企业扶贫项目进度报表,${appPath}pro_shStat.action";
 	    </c:if>
 	    
 	    

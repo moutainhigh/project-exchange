@@ -186,9 +186,15 @@
 						<td colspan="2" align="center" class="tables_leftcell">
 							年人均纯收入
 						</td>
-						<td colspan="16" class="tables_contentcell">
+						<td colspan="2" class="tables_contentcell">
 							<input type="text" name="family.income" value="${f.income }" style="width: 70px;"/>
 							元
+						</td>
+						<td colspan="2" align="center" class="tables_leftcell">
+							劳动力人数
+						</td>
+						<td colspan="12" class="tables_contentcell">
+							<input type="text" name="family.segment4" value="${f.segment4 }"  style="width: 140px"/>
 						</td>
 					</tr>
 					<tr>

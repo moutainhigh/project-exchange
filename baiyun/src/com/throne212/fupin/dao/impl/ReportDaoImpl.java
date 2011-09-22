@@ -5,10 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
-import jxl.Cell;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.Number;
@@ -17,13 +16,26 @@ import jxl.write.WritableWorkbook;
 
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.dataobject.Report1Stat;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.ProjectCun;
+import com.throne212.fupin.domain.ProjectCunStat;
+import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
+import com.throne212.fupin.domain.Report3;
+import com.throne212.fupin.domain.Report3Item;
+import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
@@ -53,6 +65,44 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			}
 		}
 		return list.get(0);
+	}
+
+	public Report3 getReport3(Zhen zhen, Integer year, String type, String time) {
+		String hql = "from Report3 where zhen=? and year=? and type=?";
+		if (!"year".equals(type)) {
+			hql += " and time='" + time + "'";
+		}
+		List<Report3> list = this.getHibernateTemplate().find(hql, new Object[] { zhen, year, type });
+		if (list == null || list.size() == 0) {// 新的创建
+			try {
+				Report3 r = new Report3();
+				r.setZhen(zhen);
+				r.setYear(year);
+				r.setTime(time);
+				r.setType(type);
+				this.saveOrUpdate(r);
+
+				hql = "from ProjectCun where cun.zhen.id=" + zhen.getId();
+				List<ProjectCun> pcList = this.getHibernateTemplate().find(hql);
+				for (ProjectCun pc : pcList) {
+					Report3Item r3i = new Report3Item();
+					r3i.setProCun(pc);
+					r3i.setR(r);
+					this.saveOrUpdate(r3i);
+				}
+
+				r.setItems(this.getHibernateTemplate().find("from Report3Item where r.id=" + r.getId()));
+
+				return r;
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+				return null;
+			}
+		}
+
+		Report3 r = list.get(0);
+		r.setItems(this.getHibernateTemplate().find("from Report3Item where r.id=" + r.getId()));
+		return r;
 	}
 
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile) {
@@ -147,10 +197,10 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		sql.append("from fp_diqu c ");
 		sql.append("left outer join fp_diqu z on z.id=c.zhen_id ");
 		sql.append("left outer join fp_diqu a on a.id=z.area_id ");
-		if ("3".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time="+reportParam.getMonth()+" and r.report_type=2 and r.type='month' ");
-		if ("12".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time="+reportParam.getMonth()+" and r.report_type=1 and r.type='month' ");
+		if ("3".equals(reportParam.getName()))
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time=" + reportParam.getMonth() + " and r.report_type=2 and r.type='month' ");
+		if ("12".equals(reportParam.getName()))
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time=" + reportParam.getMonth() + " and r.report_type=1 and r.type='month' ");
 		sql.append("where c.diqu_type='cun' ");
 		sql.append("and z.diqu_type='zhen' ");
 		sql.append("and a.diqu_type='area' ");
@@ -207,13 +257,13 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			if ("12".equals(reportParam.getName()))
 				row = 2;
 			while (rs.next()) {
-				//System.out.println(rs.getObject("帮扶单位")+":"+rs.getObject(56));
+				// System.out.println(rs.getObject("帮扶单位")+":"+rs.getObject(56));
 				for (int i = 0; i < colSize; i++) {
 					try {
 						Object obj = rs.getObject(i + 1);
-						if(i < 9)
+						if (i < 9)
 							sheet1.addCell(new Label(i, row, obj == null ? "" : obj.toString()));
-						else{
+						else {
 							sheet1.addCell(new Number(i, row, obj == null || "".equals(obj.toString()) ? 0 : Double.parseDouble(obj.toString())));
 						}
 					} catch (Exception e) {
@@ -264,5 +314,71 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		}
 
 		return null;
+	}
+
+	public List<Report1Stat> getReport1Stat() {
+		List<Report1Stat> list = new ArrayList<Report1Stat>();
+		List<Cun> cunList = null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof AreaWorkOrg) {// 白云区
+			cunList = this.getAll(Cun.class, "zhen.id", "asc");
+
+		} else if (user instanceof ZhenWorkOrg) {// 镇
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			cunList = this.getEntitiesByColumn(Cun.class, "zhen.id", z.getZhen().getId());
+		}
+
+		for (Cun c : cunList) {
+			Report1Stat s = new Report1Stat();
+			s.setCun(c.getName());
+			s.setOrg(c.getOrg().getOrgName());
+			s.setZhen(c.getZhen().getName());
+			for (int i = 7; i <= 12; i++) {// 7到12月
+				String hql = "select count(*) from Report1 r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=2011";
+				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
+				if (count > 0)
+					s.setOk(i, "Y");
+			}
+			list.add(s);
+		}
+
+		return list;
+	}
+
+	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex) {
+		PageBean bean = new PageBean();
+
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+
+		String hql = "from " + statClass.getSimpleName() + " where year=? and month=?";
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(statClass.getName().equals(ProjectCunStat.class.getName()) && user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and project.cun.zhen.id=" + z.getZhen().getId();
+		} 
+		
+		logger.debug("hql[" + year + "," + month + "]:" + hql);
+
+		String countHql = "select count(*) " + hql;
+		Long count = (Long) this.getHibernateTemplate().find(countHql, new Object[] { year, month }).get(0);
+		bean.setTotalRow(count.intValue());
+
+		logger.debug("pro stat count : " + count);
+
+		if(statClass.getName().equals(ProjectCunStat.class.getName())){
+			hql += " order by project.cun.zhen.id,project.cun.id";
+		}
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).setParameter(0, year).setParameter(1, month).list();
+
+		bean.setResultList(list);
+
+		bean.setPageIndex(pageIndex);
+		bean.setRowPerPage(WebConstants.PAGE_SIZE);
+
+		return bean;
 	}
 }

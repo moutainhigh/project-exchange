@@ -133,10 +133,10 @@
 							对接村
 						</td>
 						<td width="" class="tables_headercell" rowspan="2">
-							结对帮扶干部
+							户主姓名
 						</td>
 						<td width="" class="tables_headercell" rowspan="2">
-							分管领导（联系人）
+							家庭人数
 						</td>
 						<td width="" class="tables_headercell" rowspan="2">
 							劳动力人数
@@ -189,25 +189,31 @@
 							&nbsp;${f.cun.name }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.contactName }
+							&nbsp;${f.name }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.contactName }
+							&nbsp;${f.personNum }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;
+							&nbsp;${f.segment4 }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.contactMobile }
+							&nbsp;${f.tel }
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;${f.cun.org.orgName }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.contactName }
+							&nbsp;
+							<c:if test="${not empty f.leaderList }">
+							${f.leaderList[0].leaderName }
+							</c:if>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.contactMobile }
+							&nbsp;
+							<c:if test="${not empty f.leaderList }">
+							${f.leaderList[0].tel }
+							</c:if>
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;${f.cun.org.segment1 }

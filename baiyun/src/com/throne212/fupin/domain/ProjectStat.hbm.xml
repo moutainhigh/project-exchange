@@ -15,12 +15,15 @@
 		<property name="half"></property>
 		<subclass discriminator-value="cun" extends="ProjectStat" name="ProjectCunStat">
 			<many-to-one name="project" column="pro_cun_id" lazy="false"></many-to-one>
+			<property name="content"></property>
 		</subclass>
 		<subclass discriminator-value="zd" extends="ProjectStat" name="ProjectZdStat">
 			<many-to-one name="project" column="pro_zd_id" lazy="false"></many-to-one>
+			<property name="content"></property>
 		</subclass>
 		<subclass discriminator-value="sh" extends="ProjectStat" name="ProjectShStat">
 			<many-to-one name="project" column="pro_sh_id" lazy="false"></many-to-one>
+			<property name="preDate" column="pre_date"></property>
 		</subclass>
 	</class>
 </hibernate-mapping>

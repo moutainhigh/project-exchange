@@ -40,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$.getJSON("${appPath}ajax/getLeaderByFamily?time="+new Date().getTime(), {'familyId':fId}, function(json){
 						if(json && json['list'] && json['list'].length>0){
 							$('#leaderId').val(json['list'][0]['leaderName']);
+							$('#leaderTel').val(json['list'][0]['tel']);
 						}
 					});
 				}
@@ -159,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
   <tr>
     <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
-    <td class="tables_contentcell">
+    <td class="tables_contentcell" colspan="3">
     <input name="cuoshi.family.id" id="familyId" value="${cuoshi.family.id}" type="hidden"/>
     <input id="familyName" value="${cuoshi.family.name}"/>
     <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
@@ -168,11 +169,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
 		<td height="30" align="right" class="tables_leftcell">帮扶干部姓名</td>
 		<td class="tables_contentcell" colspan="1">
-		<input type="text" name="cuoshi.segment1" value="${cuoshi.segment1 }"/>
+		<input type="text" name="cuoshi.segment1" value="${cuoshi.segment1 }" readonly="readonly" id="leaderId"/>
 		</td>
 		<td height="30" align="right" class="tables_leftcell">联系电话</td>
 		<td class="tables_contentcell" colspan="1">
-		<input type="text" name="cuoshi.segment2" value="${cuoshi.segment2 }"/>
+		<input type="text" name="cuoshi.segment2" value="${cuoshi.segment2 }" readonly="readonly" id="leaderTel"/>
 		</td>		
   </tr>
   <tr>

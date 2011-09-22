@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 
 public class Family extends MyEntity {
@@ -52,6 +53,17 @@ public class Family extends MyEntity {
 	private Person person10;
 
 	private List<Leader> leaderList;
+	
+	public int getPersonNum(){
+		int sum = 0;
+		for(int i=1;i<=10;i++){
+			Person p = this.getPerson(i);
+			if(p!=null && !Util.isEmpty(p.getName())){
+				sum++;
+			}
+		}
+		return sum;
+	}
 
 	public String getLeaderNames() {
 		if (leaderList == null || leaderList.size() == 0) {

@@ -186,13 +186,13 @@
 							&nbsp; ${f.org.contactMobile }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.org.segment1 }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.org.segment2 }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp; 
+							&nbsp; ${f.org.segment3 }
 						</td>
 						<td align="center" class="tables_contentcell">
 							<a href="#" onclick="winOpen('${appPath}manager_viewMapping.action?cun.id=${f.id}',450,120);">新增/修改帮扶单位</a>

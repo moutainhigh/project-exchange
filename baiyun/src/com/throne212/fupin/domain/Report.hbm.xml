@@ -88,5 +88,8 @@
 
 		<subclass discriminator-value="1" extends="Report" name="Report1"></subclass>
 		<subclass discriminator-value="2" extends="Report" name="Report2"></subclass>
+		<subclass discriminator-value="3" extends="Report" name="Report3">
+			<many-to-one name="zhen" column="zhen_id"></many-to-one>
+		</subclass>
 	</class>
 </hibernate-mapping>

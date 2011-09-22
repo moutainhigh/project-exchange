@@ -2,7 +2,6 @@ package com.throne212.fupin.biz.impl;
 
 import java.io.File;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import jxl.Workbook;
@@ -12,15 +11,20 @@ import jxl.write.WritableWorkbook;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ReportBiz;
+import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.Report3;
+import com.throne212.fupin.domain.Report3Item;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 
@@ -69,6 +73,23 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			}
 
 			return report;
+		}else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {//镇级账号的report3
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			//
+			Report3 r3 = (Report3) r;
+			for(Report3Item i : r3.getItems()){
+				Report3Item iInDb = reportDao.getEntityById(Report3Item.class, i.getId());
+				iInDb.setComment(i.getComment());
+				iInDb.setReachDate(i.getReachDate());
+				iInDb.setReachMoney(i.getReachMoney());
+				iInDb.setPayDate(i.getPayDate());
+				iInDb.setPayMoney(i.getPayMoney());
+				reportDao.saveOrUpdate(iInDb);
+			}
+			Report3 r3InDB = reportDao.getReport3(z.getZhen(), r.getYear(), r.getType(), r.getTime());
+			r3InDB.setLock(1);
+			reportDao.saveOrUpdate(r3InDB);
+			return r3InDB;
 		}
 		return null;
 	}
@@ -168,6 +189,9 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			Report report = reportDao.getReport(reportType, org, cun, year, type, time);
 			if (report.getId() != null)
 				return report;
+		}else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {//镇级账号的report3
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			return reportDao.getReport3(z.getZhen(), year, type, time);
 		}
 		return null;
 	}
@@ -210,6 +234,11 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			Report report = reportDao.getReport(reportType, org, cun, r.getYear(), r.getType(), r.getTime());
 			report.setLock(2);// 2表示请求解锁
 			reportDao.saveOrUpdate(report);
+		}else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {//镇级账号的report3
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			Report3 r3 = reportDao.getReport3(z.getZhen(), r.getYear(), r.getType(), r.getTime());
+			r3.setLock(2);
+			reportDao.saveOrUpdate(r3);
 		}
 	}
 
@@ -346,6 +375,14 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		String targetFile = path + File.separator + fileName + "_" + Util.getDate(new Date()) + ".xls";
 
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
+	}
+	
+	public List<Report1Stat> getReport1Stat(){
+		return reportDao.getReport1Stat();
+	}
+	
+	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex){
+		return reportDao.getProStat(statClass,year,month,pageIndex);
 	}
 
 }
