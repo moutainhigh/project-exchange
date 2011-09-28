@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,dhtml,htm,html,do,"></constant>
+	<constant name="struts.i18n.encoding" value="gbk"/>
+	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
+	<constant name="struts.multipart.maxSize" value="5242880" /><!-- 附件大小最大为5M -->
+	
+    <package name="struts2" extends="struts-default" namespace="/">
+    	<interceptors>
+            <interceptor name="domain" class="com.throne212.jianzhi8.filter.DomainInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="domain" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <default-action-ref name="index" />
+        <global-results>
+        	<result name="404">/404.html</result>
+        </global-results>
+    	<action name="a*" method="a" class="com.throne212.jianzhi8.action.ViewAction">
+    		<param name="ctNo">{1}</param>
+    		<result name="view_job">/view_job.jsp</result>
+    		<result name="view_resume">/view_resume.jsp</result>
+    	</action>
+    	<!--<action name="sk*/*" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+        	<param name="kind">{1}</param>
+        	<param name="key">{2}</param>
+    		<result name="search">/search.jsp</result>
+    	</action>
+    	<action name="s/*" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+        	<param name="key">{1}</param>
+    		<result name="search">/search.jsp</result>
+    	</action>-->
+    	<action name="search" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+    		<result name="search">/search.jsp</result>
+    	</action>
+    	<action name="index" class="com.throne212.jianzhi8.action.IndexAction">
+    		<result name="success">/index.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="struts2_jianzhi" extends="struts2" namespace="/jianzhi">
+        <action name="*" method="jianzhi" class="com.throne212.jianzhi8.action.ListAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_jianzhi">/list_jianzhi.jsp</result>
+    	</action>
+    </package>
+    <package name="struts2_job" extends="struts2" namespace="/job">
+        <action name="*" method="job" class="com.throne212.jianzhi8.action.ListAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_job">/list_job.jsp</result>
+    	</action>
+    </package>
+    <package name="struts2_shixi" extends="struts2" namespace="/shixi">
+        <action name="*" method="shixi" class="com.throne212.jianzhi8.action.ListAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_shixi">/list_shixi.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="struts2-s" extends="struts-default" namespace="/s">
+    	<action name="*" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+        	<param name="key">{1}</param>
+    		<result name="search">/search.jsp</result>
+    	</action>
+    </package>
+    <package name="struts2-sk" extends="struts-default" namespace="/sk">
+    	<action name="*" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+        	<param name="key">{1}</param>
+    		<result name="search">/search.jsp</result>
+    	</action>
+    </package>
+    <package name="struts2-sk1" extends="struts-default" namespace="/sk1">
+    	<action name="*" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+        	<param name="kind">1</param>
+        	<param name="key">{1}</param>
+    		<result name="search">/search.jsp</result>
+    	</action>
+    </package>
+    <package name="struts2-sk0" extends="struts-default" namespace="/sk0">
+    	<action name="*" method="s" class="com.throne212.jianzhi8.action.SearchAction">
+        	<param name="kind">0</param>
+        	<param name="key">{1}</param>
+    		<result name="search">/search.jsp</result>
+    	</action>
+    </package>
+    
+    <!-- RENCAI -->
+    <package name="struts2_rencai" extends="struts2" namespace="/rencai">
+        <action name="*" method="rencai" class="com.throne212.jianzhi8.action.RencaiAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_rencai">/list_rencai.jsp</result>
+    	</action>
+    </package>
+    
+    <!-- renzheng -->
+    <package name="struts2_renzheng" extends="struts2" namespace="/renzheng">
+        <action name="*" method="renzheng" class="com.throne212.jianzhi8.action.RenzhengAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_renzheng">/list_renzheng.jsp</result>
+    	</action>
+    </package>
+    
+</struts>
