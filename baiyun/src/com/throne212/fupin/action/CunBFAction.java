@@ -20,6 +20,7 @@ import com.throne212.fupin.domain.Recheck;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class CunBFAction extends BaseAction {
 	private CunBFBiz cunBFBiz;
@@ -34,7 +35,7 @@ public class CunBFAction extends BaseAction {
 	public String cuoshiCunList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
-		if (user instanceof Admin) {
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
 			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi, pageIndex);
 			return "cuoshicun_list";
 		} else if (user instanceof Org) {
@@ -141,7 +142,7 @@ public class CunBFAction extends BaseAction {
 	public String chengxiaoCunList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
-		if (user instanceof Admin) {
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
 			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao, pageIndex);
 			return "chengxiaocun_list";
 		} else if (user instanceof Org) {

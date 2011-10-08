@@ -90,7 +90,11 @@ var msg = '${msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
 	<td>您当前所处页面：村帮扶维护&gt;&gt;帮扶成效 </td>
-	<td><a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${userObj.cun.id}',750,650);" style="color:white;">村详细资料</a></td>
+	<td>
+	&nbsp;
+	<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${userObj.cun.id}',750,650);" style="color:white;">村详细资料</a>
+	</c:if></td>
 	<td align="right">
 
 	
@@ -105,8 +109,10 @@ var msg = '${msg}';
 	</select>
 
 		<input type="submit" class="button" value="查询"> 
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		<input type="button" onclick="winOpen('${appPath}cun_bf_editCunChengxiao.action',600,390);" class="button" value="新增">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
+		</c:if>
 	</td>
 	<td width="5px" align="right"></td>
 	</tr>
@@ -147,6 +153,7 @@ var msg = '${msg}';
 			${f.status }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 			<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
 		<a href="#" onclick="winOpen('${appPath}cun_bf_editCunChengxiao?chengxiao.id=${f.id}',600,390);">修改</a>
 		 </c:if>
@@ -157,6 +164,8 @@ var msg = '${msg}';
 		<c:if test="${f.status=='未提交'}">
 		<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}cun_bf_confirmChengxiao.action?chengxiao.id=${f.id}';}" >确认后提交</a>
 		</c:if>
+		
+		</c:if>&nbsp;
 		</td>
 		</tr>
 			</c:forEach>

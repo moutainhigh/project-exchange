@@ -32,6 +32,14 @@ public class Org extends User {
 	
 	private String pinyin;
 	
+	//帮扶单位的类型,一类是政府机关单位，另一类是社会企业
+	private String typeName;
+	
+	//帮扶类型，帮户，帮村，帮镇
+	private boolean helpFamily;
+	private boolean helpCun;
+	private boolean helpZhen;
+	
 	public Cun getCun() {
 		return cun;
 	}
@@ -151,6 +159,30 @@ public class Org extends User {
 	}
 	public void setLeaderMobile(String leaderMobile) {
 		this.leaderMobile = leaderMobile;
+	}
+	public boolean isHelpFamily() {
+		return helpFamily;
+	}
+	public void setHelpFamily(boolean helpFamily) {
+		this.helpFamily = helpFamily;
+	}
+	public boolean isHelpCun() {
+		return helpCun;
+	}
+	public void setHelpCun(boolean helpCun) {
+		this.helpCun = helpCun;
+	}
+	public boolean isHelpZhen() {
+		return helpZhen;
+	}
+	public void setHelpZhen(boolean helpZhen) {
+		this.helpZhen = helpZhen;
+	}
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 }

@@ -1,21 +1,15 @@
 package com.throne212.fupin.action;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
-
-import jxl.Sheet;
-import jxl.Workbook;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
 import com.throne212.fupin.common.PageBean;
-import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
-import com.throne212.fupin.domain.Area;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.ShiWorkOrg;
@@ -60,7 +54,8 @@ public class FamilyAction extends BaseAction {
 
 	public String familyList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Admin || user instanceof ShiWorkOrg){
+		if(user instanceof Admin || user instanceof ShiWorkOrg || user instanceof AreaWorkOrg ){
+			areaId = 2L;
 			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,areaId,zhenId,cunId);
 		}else
 			pageBean = orgBiz.getAllFamily(queryKey, pageIndex);

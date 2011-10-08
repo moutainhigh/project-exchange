@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
@@ -14,6 +15,8 @@ import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.CuoshiZhen;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicZhen;
+import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 
@@ -23,10 +26,18 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		}
 		PageBean<ChengxiaoCun> page = new PageBean<ChengxiaoCun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from ChengxiaoCun t ";
+		String hql = "from ChengxiaoCun t where 1=1";
 		if (condition!=null&&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
-			hql+=" where status='"+condition.getStatus()+"'";
+			hql+=" and status='"+condition.getStatus()+"'";
 		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}
+		
 		hql+=" order by id desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
@@ -69,13 +80,21 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		}
 		PageBean<CuoshiCun> page = new PageBean<CuoshiCun>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from CuoshiCun t ";
+		String hql = "from CuoshiCun t where 1=1";
 		if (condition!=null &&condition.getType()!=null&&!"".equals(condition.getType())) {
-			hql+=" where type='"+condition.getType()+"'";
+			hql+=" and type='"+condition.getType()+"'";
 		}
 		if (condition!=null &&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
 			hql+=" and status='"+condition.getStatus()+"'";
 		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}
+		
 		hql+=" order by id desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);

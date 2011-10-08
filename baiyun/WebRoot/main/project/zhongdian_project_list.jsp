@@ -68,7 +68,7 @@
 						<td width="" class="tables_headercell" rowspan="2">
 							项目名称
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
+						<td width="150" class="tables_headercell" rowspan="2">
 							建设规模及内容
 						</td>
 						<td width="" class="tables_headercell" rowspan="2" colspan="2">
@@ -139,7 +139,7 @@
 								<a href="#" onclick="winOpen('${appPath}pro_editZdPro.action?proZd.id=${f.id }',700,400);" >修改</a>
 								</c:if>
 								<c:if test="${userObj.roleType=='帮扶单位管理员'}">
-								<a href="#" onclick="winOpen('${appPath}pro_zdStat.action?zdStat.project.id=${f.id}',750,400);" >填报</a>
+								<a href="#" onclick="winOpen('${appPath}pro_zdStat.action?zdStat.project.id=${f.id}&time='+new Date().getTime(),750,400);" >填报</a>
 								</c:if>
 							</td>
 						</tr>

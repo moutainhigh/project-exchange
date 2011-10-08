@@ -255,10 +255,6 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and f.cun.zhen=?";
 			ZhenWorkOrg zhenOrg = (ZhenWorkOrg) user;
 			param = new Object[]{zhenOrg.getZhen()};
-		}else if(user instanceof AreaWorkOrg){
-			hql += " and f.cun.zhen.area=?";
-			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
-			param = new Object[]{areaOrg.getArea()};
 		}else if(user instanceof WorkTeam){
 			hql += " and f.cun.team=?";
 			WorkTeam team = (WorkTeam) user;

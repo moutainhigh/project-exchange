@@ -16,10 +16,10 @@ import com.throne212.fupin.domain.Record;
 public class FamilyBFBizImpl extends BaseBizImpl implements FamilyBFBiz {
 private FamilyDao familyDao;
 	public PageBean<ChengxiaoFamily> getAllChengxiaoFamily(
-			ChengxiaoFamily condition, Integer pageIndex) {
+			ChengxiaoFamily condition, Long zhenId,Long cunId, Integer pageIndex) {
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		return familyDao.getAllChengxiaoFamily(condition,pageIndex);
+		return familyDao.getAllChengxiaoFamily(condition,zhenId,cunId,pageIndex);
 		
 	}
 
@@ -30,11 +30,11 @@ private FamilyDao familyDao;
 		return familyDao.getAllChengxiaoFamilyByCunId(condition,cunId, pageIndex);
 	}
 
-	public PageBean<CuoshiFamily> getAllCuoshiFamily(CuoshiFamily condition,
+	public PageBean<CuoshiFamily> getAllCuoshiFamily(CuoshiFamily condition,Long zhenId,Long cunId,
 			Integer pageIndex) {
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		return familyDao.getAllCuoshiFamily(condition,pageIndex);
+		return familyDao.getAllCuoshiFamily(condition,zhenId,cunId,pageIndex);
 	}
 
 	public PageBean<CuoshiFamily> getAllCuoshiFamilyByCunId(
@@ -71,10 +71,10 @@ private FamilyDao familyDao;
 	
 	
 
-	public PageBean<Reason> getAllReason(Reason condition, Integer pageIndex) {
+	public PageBean<Reason> getAllReason(Reason condition,Long zhenId,Long cunId, Integer pageIndex) {
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		return familyDao.getAllReason(condition,pageIndex);
+		return familyDao.getAllReason(condition,zhenId,cunId,pageIndex);
 	}
 
 	public PageBean<Reason> getAllReasonByCunId(Reason condition, Long cunId,
@@ -153,10 +153,10 @@ private FamilyDao familyDao;
 	}
 
 	public PageBean<Record> getAllRecord(Record condition, Integer pageIndex,
-			Date fromDate, Date toDate) {
+			Date fromDate, Date toDate,Long zhenId,Long cunId) {
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		return familyDao.getAllRecord(condition,pageIndex, fromDate, toDate);
+		return familyDao.getAllRecord(condition,pageIndex, fromDate, toDate,zhenId,cunId);
 	}
 
 	public PageBean<Record> getAllRecordByCunId(Record condition, Long cunId,

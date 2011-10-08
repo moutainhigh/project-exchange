@@ -73,11 +73,11 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			}
 
 			return report;
-		}else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {//镇级账号的report3
+		} else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {// 镇级账号的report3
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			//
 			Report3 r3 = (Report3) r;
-			for(Report3Item i : r3.getItems()){
+			for (Report3Item i : r3.getItems()) {
 				Report3Item iInDb = reportDao.getEntityById(Report3Item.class, i.getId());
 				iInDb.setComment(i.getComment());
 				iInDb.setReachDate(i.getReachDate());
@@ -189,11 +189,21 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			Report report = reportDao.getReport(reportType, org, cun, year, type, time);
 			if (report.getId() != null)
 				return report;
-		}else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {//镇级账号的report3
+		} else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {// 镇级账号的report3
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			return reportDao.getReport3(z.getZhen(), year, type, time);
 		}
 		return null;
+	}
+
+	public List<Report3> getReport3(Integer year, String type, String time) {
+		return reportDao.getReport3(year, type, time);
+	}
+
+	public Report getReport(String reportType, Integer year, String type, String time, Long cunId) {
+		Cun cun = reportDao.getEntityById(Cun.class, cunId);
+		Report report = reportDao.getReport(reportType, cun.getOrg(), cun, year, type, time);
+		return report;
 	}
 
 	// 显示最新的cun的数据
@@ -234,7 +244,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			Report report = reportDao.getReport(reportType, org, cun, r.getYear(), r.getType(), r.getTime());
 			report.setLock(2);// 2表示请求解锁
 			reportDao.saveOrUpdate(report);
-		}else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {//镇级账号的report3
+		} else if (user instanceof ZhenWorkOrg && reportType.equals("3")) {// 镇级账号的report3
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			Report3 r3 = reportDao.getReport3(z.getZhen(), r.getYear(), r.getType(), r.getTime());
 			r3.setLock(2);
@@ -376,13 +386,13 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
 	}
-	
-	public List<Report1Stat> getReport1Stat(){
+
+	public List<Report1Stat> getReport1Stat() {
 		return reportDao.getReport1Stat();
 	}
-	
-	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex){
-		return reportDao.getProStat(statClass,year,month,pageIndex);
+
+	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex) {
+		return reportDao.getProStat(statClass, year, month, pageIndex);
 	}
 
 }

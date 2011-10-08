@@ -13,6 +13,7 @@
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			var areaId = '${org.area.id}';
+			var typeName = '${org.typeName}';
 			var isDiv = '${userObj.isDiv}';
 			<c:if test="${userObj.isDiv=='Y'}">
 			if(isDiv == 'Y')
@@ -35,6 +36,11 @@
 						}
 					}
 				});
+				if(typeName != ''){
+					setTimeout(function(){ 
+					    $("#typeName").val(typeName); 
+					},1);
+				}
 			});
 			
 		</script>
@@ -83,6 +89,18 @@
 						</td>
 						<td class="tables_contentcell">
 							<select id="areaId" name="org.area.id"></select>
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							类型名称：
+						</td>
+						<td class="tables_contentcell">
+							<select id="typeName" name="org.typeName">
+								<option></option>
+								<option value="政府机关单位">政府机关单位</option>
+								<option value="社会企业">社会企业</option>
+							</select>
 						</td>
 					</tr>
 					<tr>

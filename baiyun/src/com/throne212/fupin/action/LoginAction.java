@@ -15,6 +15,9 @@ import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.ProjectCun;
+import com.throne212.fupin.domain.ProjectShehui;
+import com.throne212.fupin.domain.ProjectZhongdian;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.ZhenWorkOrg;
@@ -25,7 +28,7 @@ public class LoginAction extends BaseAction {
 	private String password;// 密码
 	private String rand;// 验证码
 	private String needRand;// 需要验证码吗
-	private Boolean remember;//记住密码
+	private Boolean remember;// 记住密码
 
 	private UserBiz userBiz;// 业务层的用户bean
 
@@ -61,7 +64,7 @@ public class LoginAction extends BaseAction {
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../shenhe_showAllCuoshiCunInPro.action");
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg a = (AreaWorkOrg) user;
-			if(username.equals(a.getLoginName2())){
+			if (username.equals(a.getLoginName2())) {
 				a.setIsWorkGroup("Y");
 			}
 			logger.info("区县管理员登录成功：" + user.getLoginName());
@@ -73,13 +76,14 @@ public class LoginAction extends BaseAction {
 			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../org_editOrg.action");
 			checkOrgCun((Org) user);
+			fillOrgHelpType((Org) user);
 		}
-		
-		//保留cookie
+
+		// 保留cookie
 		HttpServletResponse response = ServletActionContext.getResponse();
-		if(remember != null && remember){
-			Cookie c = new Cookie("username",username);
-			c.setMaxAge(30*24*60*60);
+		if (remember != null && remember) {
+			Cookie c = new Cookie("username", username);
+			c.setMaxAge(30 * 24 * 60 * 60);
 			response.addCookie(c);
 		}
 		return "success";
@@ -94,6 +98,21 @@ public class LoginAction extends BaseAction {
 				org.setCun(list.get(0));
 				userBiz.saveOrUpdateEntity(org);
 			}
+		}
+	}
+
+	public void fillOrgHelpType(Org org) {
+		List cunProj = userBiz.getEntitiesByColumn(ProjectCun.class, "org", org);
+		List zdProj = userBiz.getEntitiesByColumn(ProjectZhongdian.class, "org", org);
+		List shProj = userBiz.getEntitiesByColumn(ProjectShehui.class, "org", org);
+		if (cunProj == null && zdProj == null && shProj == null) {
+			org.setHelpFamily(true);
+		}
+		if (zdProj != null && zdProj.size() > 0) {
+			org.setHelpZhen(true);
+		}
+		if (cunProj != null && cunProj.size() > 0) {
+			org.setHelpCun(true);
 		}
 	}
 

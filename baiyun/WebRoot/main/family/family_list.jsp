@@ -39,33 +39,8 @@
 			$('input[value="Excel"]').val('资料导出');
 		});
 		$(function(){
-			$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
-				if(json && json['list'] && json['list'].length){
-					$('#shiId').html('');
-					for(var i=0;i<json['list'].length;i++)
-						$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
-					selectShi($('#shiId').val());
-				}
-			});
+			selectArea(2);
 		});
-		var paramAreaId = '${param.areaId}';
-		function selectShi(val){
-			if(val){
-				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
-					if(json && json['list'] && json['list'].length){
-						$('#areaId').html('<option value=""></option>');
-						for(var i=0;i<json['list'].length;i++)
-							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
-						if(paramAreaId!=''){
-							setTimeout(function(){
-								$('#areaId').val(paramAreaId);
-								selectArea(paramAreaId);
-							},1);
-						}
-					}
-				});
-			}
-		}
 		var paramZhenId = '${param.zhenId}';
 		function selectArea(val){
 			if(val){
@@ -119,6 +94,17 @@
 							您当前所处页面：贫困户资料维护
 						</td>
 						<td align="right">
+						
+					<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
+			 			<span class="STYLE1">镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+					</c:if>
 							<c:if test="${userObj.roleType!='超级管理员' && userObj.roleType!='市级管理员'}">
 							<label>贫困户名: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>							
@@ -145,34 +131,6 @@
 						</td>
 						<td width="5px"></td>
 					</tr>
-					<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
-					<tr>
-						<td align="right" colspan="2">
-							<span class="STYLE1">市：</span>
-			                   <select id="shiId" name="shiId" onchange="selectShi(this.value);">
-								<option value="">-----------</option>
-							 </select>
-						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区/县：</span>
-						<select id="areaId" name="areaId" onchange="selectArea(this.value);">
-									<option value="">----------</option>
-								  </select>
-			 			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镇：</span>
-			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
-									<option value="">----------</option>
-								 </select>
-						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
-						<select id="cunId2" name="cunId">
-									<option value="">-----------</option>
-									</select>
-							
-							<label>贫困户名: </label>
-							<input name="queryKey" value="${param.queryKey}" type="text"/>							
-							<input type="submit" class="button" value="查询"> 
-							
-						</td>
-						<td width="5px"></td>
-					</tr>
-					</c:if>
 				</tbody>
 			</table>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">

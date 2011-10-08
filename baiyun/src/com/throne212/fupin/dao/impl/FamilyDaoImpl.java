@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
@@ -18,11 +19,12 @@ import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
 import com.throne212.fupin.domain.Record;
+import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 //措施
-	public PageBean<CuoshiFamily> getAllCuoshiFamily(CuoshiFamily condition,
-			Integer pageIndex) {
+	public PageBean<CuoshiFamily> getAllCuoshiFamily(CuoshiFamily condition,Long zhenId,Long cunId,Integer pageIndex) {
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
@@ -38,6 +40,21 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if (condition!=null &&condition.getFamily()!=null&&condition.getFamily().getName()!=null&&!"".equals(condition.getFamily().getName())) {
 			hql+=" and family.name like '%"+condition.getFamily().getName()+"%'";
 		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		//地区筛选
+		if(cunId != null){
+			hql += " and family.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and family.cun.zhen.id="+zhenId;
+		}
+		
 		hql+=" order by id desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
@@ -100,7 +117,7 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 	}
 
 	public PageBean<ChengxiaoFamily> getAllChengxiaoFamily(
-			ChengxiaoFamily condition, Integer pageIndex) {
+			ChengxiaoFamily condition, Long zhenId,Long cunId, Integer pageIndex) {
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
@@ -116,6 +133,21 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if (condition!=null &&condition.getFamily()!=null&&condition.getFamily().getName()!=null&&!"".equals(condition.getFamily().getName())) {
 			hql+=" and family.name like '%"+condition.getFamily().getName()+"%'";
 		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		//地区筛选
+		if(cunId != null){
+			hql += " and family.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and family.cun.zhen.id="+zhenId;
+		}
+		
 		hql+=" order by id desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
@@ -125,7 +157,8 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		for (ChengxiaoFamily chengxiaoFamily : list) {
 			String hqlForLeaders = "from Leader l where l.family=? ";
 			List<Leader> listLeader=this.getHibernateTemplate().find(hqlForLeaders, chengxiaoFamily.getFamily());
-			chengxiaoFamily.getFamily().setLeaderList(listLeader);
+			if(chengxiaoFamily.getFamily() != null)
+				chengxiaoFamily.getFamily().setLeaderList(listLeader);
 		}
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
@@ -169,7 +202,7 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 
 	
 	
-	public PageBean<Reason> getAllReason(Reason condition, Integer pageIndex) {
+	public PageBean<Reason> getAllReason(Reason condition,Long zhenId,Long cunId, Integer pageIndex) {
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
@@ -183,6 +216,21 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if (condition!=null &&condition.getFamily()!=null&&condition.getFamily().getName()!=null&&!"".equals(condition.getFamily().getName())) {
 			hql+=" and family.name like '%"+condition.getFamily().getName()+"%'";
 		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		//地区筛选
+		if(cunId != null){
+			hql += " and family.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and family.cun.zhen.id="+zhenId;
+		}
+		
 		hql+=" order by id desc";
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
 		logger.debug("查询总数为：" + count);
@@ -282,7 +330,7 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
-	public PageBean<Record> getAllRecord(Record condition, Integer pageIndex,Date fromDate,Date toDate) {
+	public PageBean<Record> getAllRecord(Record condition, Integer pageIndex,Date fromDate,Date toDate,Long zhenId,Long cunId) {
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
@@ -301,6 +349,20 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		}
 		if (toDate!=null) {
 			hql+=" and recordDate < "+Util.getNextDate(toDate);
+		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		//地区筛选
+		if(cunId != null){
+			hql += " and family.cun.id="+cunId;
+		}else if(zhenId != null){
+			hql += " and family.cun.zhen.id="+zhenId;
 		}
 		
 		hql+=" order by id desc";

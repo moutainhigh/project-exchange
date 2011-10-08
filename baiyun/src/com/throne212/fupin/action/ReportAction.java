@@ -16,6 +16,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dataobject.Report1Stat;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ProjectCunStat;
 import com.throne212.fupin.domain.ProjectShStat;
@@ -114,6 +115,45 @@ public class ReportAction extends BaseAction {
 		// reportBiz.fillReport(r);
 
 		return "report_edit1";
+	}
+
+	public String showReport1() {
+		String[] cunId = (String[]) ActionContext.getContext().getParameters().get("cunId");
+		if (r == null) {// 默认条件打开，定向到当前的年得月份
+			Calendar c = GregorianCalendar.getInstance();
+			Integer year = c.get(Calendar.YEAR);
+			String type = "month";
+			String time = (c.get(Calendar.MONTH)) + "";
+			r = reportBiz.getReport("1", year, type, time, Long.parseLong(cunId[0]));
+			if (r == null) {
+				r = new Report1();
+				r.setYear(year);
+				r.setTime(time);
+				r.setType(type);
+			}
+		} else if (r != null && r.getId() == null) {// 按条件搜索
+			Integer year = r.getYear();
+			String type = r.getType();
+			String time = r.getTime();
+			Report report = reportBiz.getReport("1", year, type, time, Long.parseLong(cunId[0]));
+			if (report != null)
+				r = report;
+			else {
+				r = new Report1();
+				r.setYear(year);
+				r.setType(type);
+				r.setTime(time);
+			}
+		}
+
+		// 最大的月份和季度
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
+
+		// 填充灰色项目
+		// reportBiz.fillReport(r);
+
+		return "show_report1";
 	}
 
 	public String tmpSaveReport1() {
@@ -317,32 +357,56 @@ public class ReportAction extends BaseAction {
 		return "report_export";
 	}
 
+	private List<Report3> r3List;
+
 	// report3
 	public String viewReport3() {
+		
+		String result = "report_edit3";
+
+		// baiyun是看全部的
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+
 		if (r3 == null) {// 默认条件打开，定向到当前的年得月份
 			Calendar c = GregorianCalendar.getInstance();
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
 			String time = (c.get(Calendar.MONTH)) + "";
-			r3 = (Report3) reportBiz.getReport("3", year, type, time);
-			if (r3 == null) {
-				r3 = new Report3();
-				r3.setYear(year);
-				r3.setTime(time);
-				r3.setType(type);
+			if (user instanceof AreaWorkOrg) {
+				r3List = reportBiz.getReport3(year, type, time);
+				if(r3List!=null && r3List.size() > 0){
+					r3 = r3List.get(0);
+				}
+				result = "report_edit3_list";
+			} else {
+				r3 = (Report3) reportBiz.getReport("3", year, type, time);
+				if (r3 == null) {
+					r3 = new Report3();
+					r3.setYear(year);
+					r3.setTime(time);
+					r3.setType(type);
+				}
 			}
 		} else if (r3 != null && r3.getId() == null) {// 按条件搜索
 			Integer year = r3.getYear();
 			String type = r3.getType();
 			String time = r3.getTime();
-			Report report = reportBiz.getReport("3", year, type, time);
-			if (report != null)
-				r3 = (Report3) report;
-			else {
-				r3 = new Report3();
-				r3.setYear(year);
-				r3.setType(type);
-				r3.setTime(time);
+			if (user instanceof AreaWorkOrg) {
+				r3List = reportBiz.getReport3(year, type, time);
+				if(r3List!=null && r3List.size() > 0){
+					r3 = r3List.get(0);
+				}
+				result = "report_edit3_list";
+			} else {
+				Report report = reportBiz.getReport("3", year, type, time);
+				if (report != null)
+					r3 = (Report3) report;
+				else {
+					r3 = new Report3();
+					r3.setYear(year);
+					r3.setType(type);
+					r3.setTime(time);
+				}
 			}
 		}
 
@@ -350,7 +414,7 @@ public class ReportAction extends BaseAction {
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
-		return "report_edit3";
+		return result;
 	}
 
 	private Report3 r3;
@@ -426,7 +490,7 @@ public class ReportAction extends BaseAction {
 			year = now.get(Calendar.YEAR);
 			month = now.get(Calendar.MONTH) + 1;
 		}
-		pageBean = reportBiz.getProStat(ProjectCunStat.class,year, month, pageIndex);
+		pageBean = reportBiz.getProStat(ProjectCunStat.class, year, month, pageIndex);
 		return "pro_cun_stat";
 	}
 
@@ -436,7 +500,7 @@ public class ReportAction extends BaseAction {
 			year = now.get(Calendar.YEAR);
 			month = now.get(Calendar.MONTH) + 1;
 		}
-		pageBean = reportBiz.getProStat(ProjectZdStat.class,year, month, pageIndex);
+		pageBean = reportBiz.getProStat(ProjectZdStat.class, year, month, pageIndex);
 		return "pro_zd_stat";
 	}
 
@@ -446,7 +510,7 @@ public class ReportAction extends BaseAction {
 			year = now.get(Calendar.YEAR);
 			month = now.get(Calendar.MONTH) + 1;
 		}
-		pageBean = reportBiz.getProStat(ProjectShStat.class,year, month, pageIndex);
+		pageBean = reportBiz.getProStat(ProjectShStat.class, year, month, pageIndex);
 		return "pro_sh_stat";
 	}
 
@@ -544,6 +608,14 @@ public class ReportAction extends BaseAction {
 
 	public void setMonth(Integer month) {
 		this.month = month;
+	}
+
+	public List<Report3> getR3List() {
+		return r3List;
+	}
+
+	public void setR3List(List<Report3> r3List) {
+		this.r3List = r3List;
 	}
 
 }

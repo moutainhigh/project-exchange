@@ -47,6 +47,15 @@
 			//var p = $('#test').datagrid('getPager');
 			$('#test').datagrid('loadData',data);
 			//$('#test').datagrid('reload');
+			$('.datagrid-cell').each(function(){
+				if($(this).html().indexOf('Y') > -1){
+					var arr = $(this).html().split("-");
+					var cunId = arr[1];
+					var year = arr[2];
+					var time = arr[3];
+					$(this).html('<a href="javascript:void();" onclick="winOpen(\'${appPath}report_showReport1.action?cunId='+cunId+'&r.year='+year+'&r.type=month&r.time='+time+'\',700,600);">Y</a>'); 
+				}
+			});
 		});
 		</script>
 		<style>

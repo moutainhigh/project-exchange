@@ -90,7 +90,7 @@
 						</td>
 						<td width="" class="tables_headercell">
 							时间：
-							<select name="cunStat.month" id="time">
+							<select name="cunStat.month" id="time" style="width: 80px;">
 								<option value=""></option>
 							</select>
 						</td>

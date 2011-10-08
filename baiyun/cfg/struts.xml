@@ -265,6 +265,8 @@
 			<result name="pro_cun_stat">/main/report/pro_cun_stat.jsp</result>
 			<result name="pro_zd_stat">/main/report/pro_zd_stat.jsp</result>
 			<result name="pro_sh_stat">/main/report/pro_sh_stat.jsp</result>
+			<result name="show_report1">/main/report/show_report1.jsp</result>
+			<result name="report_edit3_list">/main/report/edit3_list.jsp</result>
 		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">

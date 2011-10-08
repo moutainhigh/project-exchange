@@ -58,6 +58,7 @@
 			<property name="contactPost" length="100"></property>
 			<property name="contactEmail" length="100"></property>
 			<property name="pinyin"></property>
+			<property name="typeName" column="type_name"></property>
 			<!-- 直属区县 -->
 			<many-to-one name="area" column="belong_to_area_id" lazy="false"></many-to-one>
 		</subclass>

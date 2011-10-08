@@ -102,7 +102,33 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 		Report3 r = list.get(0);
 		r.setItems(this.getHibernateTemplate().find("from Report3Item where r.id=" + r.getId()));
+		
+		if(r.getItems() == null || r.getItems().size()==0){
+			hql = "from ProjectCun where cun.zhen.id=" + zhen.getId();
+			List<ProjectCun> pcList = this.getHibernateTemplate().find(hql);
+			for (ProjectCun pc : pcList) {
+				Report3Item r3i = new Report3Item();
+				r3i.setProCun(pc);
+				r3i.setR(r);
+				this.saveOrUpdate(r3i);
+			}
+
+			r.setItems(this.getHibernateTemplate().find("from Report3Item where r.id=" + r.getId()));
+		}
+		
 		return r;
+	}
+	public List<Report3> getReport3(Integer year, String type, String time) {
+		String hql = "from Report3 where year=? and type=?";
+		if (!"year".equals(type)) {
+			hql += " and time='" + time + "'";
+		}
+		List<Report3> list = this.getHibernateTemplate().find(hql, new Object[] { year, type });
+		for(Report3 r : list){
+			logger.debug("r3.zhen.name=" + r.getZhen().getName());
+			r.setItems(this.getHibernateTemplate().find("from Report3Item where r.id=" + r.getId()));
+		}
+		return list;
 	}
 
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile) {
@@ -331,13 +357,14 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		for (Cun c : cunList) {
 			Report1Stat s = new Report1Stat();
 			s.setCun(c.getName());
-			s.setOrg(c.getOrg().getOrgName());
+			if(c.getOrg() != null)
+				s.setOrg(c.getOrg().getOrgName());
 			s.setZhen(c.getZhen().getName());
 			for (int i = 7; i <= 12; i++) {// 7到12月
 				String hql = "select count(*) from Report1 r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=2011";
 				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
 				if (count > 0)
-					s.setOk(i, "Y");
+					s.setOk(i, "Y-" + c.getId() + "-2011-" + i);
 			}
 			list.add(s);
 		}

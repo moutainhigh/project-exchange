@@ -45,25 +45,31 @@
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">企业负责人</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.fuzeren}" name="proSh.fuzeren"/>
+							<input type="text" id="" size="20" value="${proSh.fuzeren}" name="proSh.fuzeren"/>
 					    </td>
 					</tr>	
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">职务</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.zhiwu}" name="proSh.zhiwu"/>
+							<input type="text" id="" size="20" value="${proSh.zhiwu}" name="proSh.zhiwu"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">区工商联职务</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.gongshangZhiwu}" name="proSh.gongshangZhiwu"/>
+							<input type="text" id="" size="20" value="${proSh.gongshangZhiwu}" name="proSh.gongshangZhiwu"/>
+					    </td>
+					</tr>
+					<tr>
+					    <td height="30" align="right" class="tables_leftcell" colspan="2">落实负责人</td>
+					    <td class="tables_contentcell">
+							<input type="text" id="" size="20" value="${proSh.luoshi}" name="proSh.luoshi"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">捐赠金额（万元）</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.juanMoney}" name="proSh.juanMoney"/>
+							<input type="text" id="" size="20" value="${proSh.juanMoney}" name="proSh.juanMoney"/>
 					    </td>
 					</tr>
 					<tr>
@@ -76,13 +82,13 @@
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">受捐赠单位负责人</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.shouFuzeren}" name="proSh.shouFuzeren"/>
+							<input type="text" id="" size="20" value="${proSh.shouFuzeren}" name="proSh.shouFuzeren"/>
 					    </td>
 					</tr>	
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">职务</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.shouZhiwu}" name="proSh.shouZhiwu"/>
+							<input type="text" id="" size="20" value="${proSh.shouZhiwu}" name="proSh.shouZhiwu"/>
 					    </td>
 					</tr>
 					<tr>
@@ -95,26 +101,26 @@
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">项目金额（万元）</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.money}" name="proSh.money"/>
+							<input type="text" id="" size="20" value="${proSh.money}" name="proSh.money"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" rowspan="3">项目用地性质</td>
 					    <td height="30" align="right" class="tables_leftcell">现状</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.yongdi1}" name="proSh.yongdi1"/>
+							<input type="text" id="" size="20" value="${proSh.yongdi1}" name="proSh.yongdi1"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell">用地现状</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.yongdi2}" name="proSh.yongdi2"/>
+							<input type="text" id="" size="20" value="${proSh.yongdi2}" name="proSh.yongdi2"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell">规划性质</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="pro_name" size="20" value="${proSh.yongdi3}" name="proSh.yongdi3"/>
+							<input type="text" id="" size="20" value="${proSh.yongdi3}" name="proSh.yongdi3"/>
 					    </td>
 					</tr>
 					<tr>

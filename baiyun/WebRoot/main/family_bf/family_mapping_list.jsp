@@ -21,6 +21,45 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		
+		$(function(){
+			selectArea(2);
+		});
+		var paramZhenId = '${param.zhenId}';
+		function selectArea(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#zhenId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(paramZhenId);
+								selectZhen(paramZhenId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		var paramCunId = '${param.cunId}';
+		function selectZhen(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#cunId2').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramCunId!=''){
+							setTimeout(function(){
+								$('#cunId2').val(paramCunId);
+							},1);
+						}
+					}
+				});
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -39,6 +78,16 @@
 							您当前所处页面：户帮扶维护 >> 规划到户
 						</td>
 						<td align="right">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
+			 			<span class="STYLE1">镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+					</c:if>
 							<label>贫困户名（模糊查询）: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 						
@@ -226,7 +275,9 @@
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
+							<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 							<a href="#" onclick="winOpen('${appPath}family_bf_editFamilyMapping.action?family.id=${f.id}',550,600);">修改帮扶方式</a>
+							</c:if>
 						</td>
 					</tr>
 					</c:forEach>

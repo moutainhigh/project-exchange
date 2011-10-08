@@ -29,8 +29,14 @@
 			
 			var str = '';
 			for(var i=1;i<=12;i++){
-				str += '<option value="'+i+'">第'+i+'月</option>';
-			}
+					if($('#year').val()==2011 || year == '2011'){
+						if(i<=7)
+							continue;
+						str += '<option value="'+i+'">第'+i+'月</option>';
+					}else{
+						str += '<option value="'+i+'">第'+i+'月</option>';
+					}
+				}
 			$('#time').html(str);
 			
 			if(year != ''){
@@ -86,7 +92,7 @@
 						</td>
 						<td width="" class="tables_headercell">
 							时间：
-							<select name="shStat.month" id="time">
+							<select name="shStat.month" id="time" style="width: 80px;">
 								<option value=""></option>
 							</select>
 						</td>

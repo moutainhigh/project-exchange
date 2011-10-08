@@ -13,20 +13,20 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.Cun;
-import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.CuoshiFamily;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.LeaderHelp;
 import com.throne212.fupin.domain.Org;
-import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicFamily;
 import com.throne212.fupin.domain.Reason;
 import com.throne212.fupin.domain.Recheck;
 import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class FamilyBFAction extends BaseAction {
 	private FamilyBFBiz familyBFBiz;
@@ -37,28 +37,34 @@ public class FamilyBFAction extends BaseAction {
 	private Reason reason;
 	private Record record;
 	private Cun cun;
+	
+	private Long zhenId;
+	private Long cunId;
+
 	// 户帮扶措施列表
 	public String cuoshiFamilyList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		
-		if (user instanceof Admin) {
-			pageBean = familyBFBiz.getAllCuoshiFamily(cuoshi, pageIndex);
-			return "cuoshifamily_list";
-		} 
-		Org org = (Org) user;
-		if (org.getCun()==null) {
-			this.setMsg("尚未指定帮扶村，不能进行操作");
+
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
+			pageBean = familyBFBiz.getAllCuoshiFamily(cuoshi,zhenId,cunId, pageIndex);
 			return "cuoshifamily_list";
 		}
-		pageBean = familyBFBiz.getAllCuoshiFamilyByCunId(cuoshi,org.getCun().getId(), pageIndex);
+
+		if (user instanceof Org) {
+			Org org = (Org) user;
+			if (org.getCun() == null) {
+				this.setMsg("尚未指定帮扶村，不能进行操作");
+				return "cuoshifamily_list";
+			}
+			pageBean = familyBFBiz.getAllCuoshiFamilyByCunId(cuoshi, org.getCun().getId(), pageIndex);
+		}
 		addLeaderData();
 		return "cuoshifamily_list";
 	}
-	
-	
-	
+
 	// 增加或修改户帮扶措施
 	private Long leaderId;
+
 	public String saveOrUpdateCuoshiFamily() {
 		if (cuoshi == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
@@ -73,14 +79,14 @@ public class FamilyBFAction extends BaseAction {
 			if (user instanceof Admin) {
 				this.setMsg("超级管理员无权进行此操作！");
 				return "cuoshifamily_edit";
-			} 
-			Family family=null;
-			if (cuoshi.getFamily()!=null&&cuoshi.getFamily().getId()!=null) {
-				family=familyBFBiz.getEntityById(Family.class, cuoshi.getFamily().getId());
+			}
+			Family family = null;
+			if (cuoshi.getFamily() != null && cuoshi.getFamily().getId() != null) {
+				family = familyBFBiz.getEntityById(Family.class, cuoshi.getFamily().getId());
 				cuoshi.setFamily(family);
 			}
-			if (family!=null&&leaderId!=null) {
-				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
+			if (family != null && leaderId != null) {
+				Leader leader = familyBFBiz.getEntityById(Leader.class, leaderId);
 				leader.setFamily(family);
 			}
 			cuoshi.setFamily(family);
@@ -94,13 +100,13 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return "cuoshifamily_edit";
 	}
-	
+
 	// 确定提交
 	public String confirmCuoshi() {
 		if (cuoshi.getId() != null) {
 			cuoshi = familyBFBiz.getEntityById(CuoshiFamily.class, cuoshi.getId());
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
-			//自动为审核通过
+			// 自动为审核通过
 			cuoshi.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(cuoshi);
 			this.setMsg("提交成功！");
@@ -108,6 +114,7 @@ public class FamilyBFAction extends BaseAction {
 		return cuoshiFamilyList();
 
 	}
+
 	// 删除措施
 	public String deleteCuoshiFamily() {
 		String[] cuoshiFamilyIds = (String[]) ActionContext.getContext().getParameters().get("cuoshiFamily_ids");
@@ -120,24 +127,25 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return cuoshiFamilyList();
 	}
-	
+
 	// 户帮扶成效列表
 	public String chengxiaoFamilyList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		
-		if (user instanceof Admin) {
-			pageBean = familyBFBiz.getAllChengxiaoFamily(chengxiao, pageIndex);
+
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
+			pageBean = familyBFBiz.getAllChengxiaoFamily(chengxiao,zhenId,cunId, pageIndex);
 			return "chengxiaofamily_list";
-		} 
+		}
 		Org org = (Org) user;
-		if (org.getCun()==null) {
+		if (org.getCun() == null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
 			return "reason_list";
 		}
-		pageBean = familyBFBiz.getAllChengxiaoFamilyByCunId(chengxiao,org.getCun().getId(), pageIndex);
+		pageBean = familyBFBiz.getAllChengxiaoFamilyByCunId(chengxiao, org.getCun().getId(), pageIndex);
 		addLeaderData();
 		return "chengxiaofamily_list";
 	}
+
 	// 增加或修改户帮扶成效
 	public String saveOrUpdateChengxiaoFamily() {
 		if (chengxiao == null) {
@@ -153,14 +161,14 @@ public class FamilyBFAction extends BaseAction {
 			if (user instanceof Admin) {
 				this.setMsg("超级管理员无权进行此操作！");
 				return "chengxiaofamily_edit";
-			} 
-			Family family=null;
-			if (chengxiao.getFamily()!=null&&chengxiao.getFamily().getId()!=null) {
-				family=familyBFBiz.getEntityById(Family.class, chengxiao.getFamily().getId());
+			}
+			Family family = null;
+			if (chengxiao.getFamily() != null && chengxiao.getFamily().getId() != null) {
+				family = familyBFBiz.getEntityById(Family.class, chengxiao.getFamily().getId());
 				chengxiao.setFamily(family);
 			}
-			if (family!=null&&leaderId!=null) {
-				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
+			if (family != null && leaderId != null) {
+				Leader leader = familyBFBiz.getEntityById(Leader.class, leaderId);
 				leader.setFamily(family);
 			}
 			chengxiao.setFamily(family);
@@ -174,18 +182,20 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return "chengxiaofamily_edit";
 	}
+
 	// 确定提交
 	public String confirmChengxiao() {
 		if (chengxiao.getId() != null) {
 			chengxiao = familyBFBiz.getEntityById(ChengxiaoFamily.class, chengxiao.getId());
 			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
-			//自动为审核通过
+			// 自动为审核通过
 			chengxiao.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(chengxiao);
 			this.setMsg("提交成功！");
 		}
 		return chengxiaoFamilyList();
 	}
+
 	// 删除成效
 	public String deleteChengxiaoFamily() {
 		String[] chengxiaoFamilyIds = (String[]) ActionContext.getContext().getParameters().get("chengxiaoFamily_ids");
@@ -198,26 +208,27 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return chengxiaoFamilyList();
 	}
-	
+
 	// 贫困原因列表
 	public String reasonList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		
-		if (user instanceof Admin) {
-			pageBean = familyBFBiz.getAllReason(reason, pageIndex);
+
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
+			pageBean = familyBFBiz.getAllReason(reason, zhenId,cunId,pageIndex);
 			return "reason_list";
-		} 
+		}
 		Org org = (Org) user;
-		if (org.getCun()==null) {
+		if (org.getCun() == null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
 			return "reason_list";
 		}
-		pageBean = familyBFBiz.getAllReasonByCunId(reason,org.getCun().getId(), pageIndex);
-		//添加干部数据
+		pageBean = familyBFBiz.getAllReasonByCunId(reason, org.getCun().getId(), pageIndex);
+		// 添加干部数据
 		addLeaderData();
 		return "reason_list";
 	}
-	//增加或修改贫困原因
+
+	// 增加或修改贫困原因
 	public String saveOrUpdateReason() {
 		if (reason == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
@@ -232,16 +243,16 @@ public class FamilyBFAction extends BaseAction {
 			if (user instanceof Admin) {
 				this.setMsg("超级管理员无权进行此操作！");
 				return "reason_edit";
-			} 
-			Family family=null;
-			if (reason.getFamily()!=null&&reason.getFamily().getId()!=null) {
-				family=familyBFBiz.getEntityById(Family.class, reason.getFamily().getId());
+			}
+			Family family = null;
+			if (reason.getFamily() != null && reason.getFamily().getId() != null) {
+				family = familyBFBiz.getEntityById(Family.class, reason.getFamily().getId());
 				reason.setFamily(family);
 			}
-//			if (family!=null&&leaderId!=null) {
-//				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
-//				leader.setFamily(family);
-//			}
+			// if (family!=null&&leaderId!=null) {
+			// Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
+			// leader.setFamily(family);
+			// }
 			reason.setFamily(family);
 			reason.setStatus(WebConstants.SHENHE_STATUS_UNCOMMIT);
 			reason = familyBFBiz.saveOrUpdateReason(reason);
@@ -253,18 +264,20 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return "reason_edit";
 	}
+
 	// 确定提交
 	public String confirmReason() {
 		if (reason.getId() != null) {
 			reason = familyBFBiz.getEntityById(Reason.class, reason.getId());
 			reason.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
-			//自动为审核通过
+			// 自动为审核通过
 			reason.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(reason);
 			this.setMsg("提交成功！");
 		}
 		return reasonList();
 	}
+
 	// 删除原因
 	public String deleteReason() {
 		String[] reasonIds = (String[]) ActionContext.getContext().getParameters().get("reason_ids");
@@ -277,10 +290,7 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return reasonList();
 	}
-	
-	
-	
-	
+
 	// 帮扶图片信息列表
 	public String picFamilyList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -291,10 +301,10 @@ public class FamilyBFAction extends BaseAction {
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
 			List<Cun> list = familyBFBiz.getEntitiesByColumn(Cun.class, "org", org);
-			if (list != null && list.size()>0) {
+			if (list != null && list.size() > 0) {
 				cun = list.get(0);
 			}
-		} 
+		}
 		if (cun == null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作!");
 			return "pic_list";
@@ -305,6 +315,7 @@ public class FamilyBFAction extends BaseAction {
 	}
 
 	private PicFamily pic;
+
 	public String saveOrUpdatePicFamily() {
 		if (pic == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
@@ -319,23 +330,23 @@ public class FamilyBFAction extends BaseAction {
 			} else if (user instanceof Org) {
 				Org org = (Org) user;
 				List<Family> list = familyBFBiz.getEntitiesByColumn(Family.class, "cun.org", org);
-				if (list != null && list.size()>0) {
+				if (list != null && list.size() > 0) {
 					family = list.get(0);
 				}
-			} 
+			}
 			if (family == null) {
 				this.setMsg("尚未指定帮扶村，不能进行操作!");
 				return "pic_edit";
 			}
-			//设置户
-			if(pic.getFamily()!=null && pic.getFamily().getId()!=null)
+			// 设置户
+			if (pic.getFamily() != null && pic.getFamily().getId() != null)
 				family = orgBiz.getEntityById(Family.class, pic.getFamily().getId());
 			pic.setFamily(family);
 			String image = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
 			if (image != null) {
 				pic.setPath(image);
 				ActionContext.getContext().getSession().remove(WebConstants.SESS_IMAGE);
-			}else{
+			} else {
 				this.setMsg("图片未能上传，请先上传图片，再确认操作");
 				return "pic_edit";
 			}
@@ -350,7 +361,8 @@ public class FamilyBFAction extends BaseAction {
 		return "pic_edit";
 
 	}
-	public String viewPic(){
+
+	public String viewPic() {
 		pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
 		return "show_pic";
 	}
@@ -360,7 +372,7 @@ public class FamilyBFAction extends BaseAction {
 		if (pic.getId() != null) {
 			pic = familyBFBiz.getEntityById(PicFamily.class, pic.getId());
 			pic.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
-			//自动为审核通过
+			// 自动为审核通过
 			pic.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(pic);
 			this.setMsg("提交成功！");
@@ -380,32 +392,35 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return picFamilyList();
 	}
+
 	// 贫困户帮扶记录列表
 	private Date fromDate;
 	private Date toDate;
+
 	public String recordList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if (fromDate!=null&&toDate!=null) {
-			if (fromDate.getTime()>toDate.getTime()) {
+		if (fromDate != null && toDate != null) {
+			if (fromDate.getTime() > toDate.getTime()) {
 				this.setMsg("起始时间必须小于结束时间！");
 				return "record_list";
 			}
 		}
-		
-		if (user instanceof Admin) {
-			pageBean = familyBFBiz.getAllRecord(record, pageIndex,fromDate,toDate);
+
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
+			pageBean = familyBFBiz.getAllRecord(record, pageIndex, fromDate, toDate,zhenId,cunId);
 			return "record_list";
-		} 
+		}
 		Org org = (Org) user;
-		if (org.getCun()==null) {
+		if (org.getCun() == null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
 			return "reason_list";
 		}
-		pageBean = familyBFBiz.getAllRecordByCunId(record,org.getCun().getId(), pageIndex,fromDate,toDate);
+		pageBean = familyBFBiz.getAllRecordByCunId(record, org.getCun().getId(), pageIndex, fromDate, toDate);
 		addLeaderData();
 		return "record_list";
 	}
-	//增加或修改帮扶记录
+
+	// 增加或修改帮扶记录
 	public String saveOrUpdateRecord() {
 		if (record == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
@@ -416,14 +431,14 @@ public class FamilyBFAction extends BaseAction {
 			if (user instanceof Admin) {
 				this.setMsg("超级管理员无权进行此操作！");
 				return "record_edit";
-			} 
-			Family family=null;
-			if (record.getFamily()!=null&&record.getFamily().getId()!=null) {
-				family=familyBFBiz.getEntityById(Family.class, record.getFamily().getId());
+			}
+			Family family = null;
+			if (record.getFamily() != null && record.getFamily().getId() != null) {
+				family = familyBFBiz.getEntityById(Family.class, record.getFamily().getId());
 				record.setFamily(family);
 			}
-			if (family!=null&&leaderId!=null) {
-				Leader leader =familyBFBiz.getEntityById(Leader.class, leaderId);
+			if (family != null && leaderId != null) {
+				Leader leader = familyBFBiz.getEntityById(Leader.class, leaderId);
 				leader.setFamily(family);
 			}
 			record.setFamily(family);
@@ -437,18 +452,20 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return "record_edit";
 	}
+
 	// 确定提交
 	public String confirmRecord() {
 		if (record.getId() != null) {
 			record = familyBFBiz.getEntityById(Record.class, record.getId());
 			record.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
-			//自动为审核通过
+			// 自动为审核通过
 			record.setStatus(WebConstants.SHENHE_STATUS_PASS);
 			familyBFBiz.saveOrUpdateEntity(record);
 			this.setMsg("提交成功！");
 		}
 		return recordList();
 	}
+
 	// 删除记录
 	public String deleteRecord() {
 		String[] recordIds = (String[]) ActionContext.getContext().getParameters().get("record_ids");
@@ -461,111 +478,111 @@ public class FamilyBFAction extends BaseAction {
 		}
 		return recordList();
 	}
-	
-	
-	
-	//规划到户
+
+	// 规划到户
 	private OrgBiz orgBiz;
 	private Family family;
 	private String queryKey;
-	public String familyMappingList(){
-		
+
+	public String familyMappingList() {
+
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if (user instanceof Admin) {
-			pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
+			pageBean = orgBiz.getAllFamily(queryKey,pageIndex,2L,zhenId,cunId);
 		} else if (user instanceof Org) {
-			pageBean = orgBiz.getAllFamily((Org) user,queryKey, pageIndex);
-		} 
-		//添加干部数据
+			pageBean = orgBiz.getAllFamily((Org) user, queryKey, pageIndex);
+		}
+		// 添加干部数据
 		addLeaderData();
 		return "family_mapping_list";
 	}
-	//添加干部数据
-	private void addLeaderData(){
-		if(pageBean.getResultList() != null && pageBean.getResultList().size()>0){
-			//清除垃圾数据
+
+	// 添加干部数据
+	private void addLeaderData() {
+		if (pageBean.getResultList() != null && pageBean.getResultList().size() > 0) {
+			// 清除垃圾数据
 			orgBiz.deleteNonLeaderData();
-			for(Object o : pageBean.getResultList()){
+			for (Object o : pageBean.getResultList()) {
 				Family f = null;
-				if(o instanceof Family)
+				if (o instanceof Family)
 					f = (Family) o;
-				else if(o instanceof Reason)
+				else if (o instanceof Reason)
 					f = ((Reason) o).getFamily();
-				else if(o instanceof CuoshiFamily)
+				else if (o instanceof CuoshiFamily)
 					f = ((CuoshiFamily) o).getFamily();
-				else if(o instanceof Record)
+				else if (o instanceof Record)
 					f = ((Record) o).getFamily();
-				else if(o instanceof ChengxiaoFamily)
+				else if (o instanceof ChengxiaoFamily)
 					f = ((ChengxiaoFamily) o).getFamily();
-				
+
 				SortedSet sortSet = new TreeSet();
-				
+
 				List leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", f);
-				if(leaderList != null && leaderList.size()>0)
+				if (leaderList != null && leaderList.size() > 0)
 					sortSet.addAll(leaderList);
-				
-				//通过映射表获取
+
+				// 通过映射表获取
 				List<LeaderHelp> leaderHelperList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", f);
-				for(LeaderHelp lh : leaderHelperList){
+				for (LeaderHelp lh : leaderHelperList) {
 					sortSet.add(lh.getLeader());
 				}
-				
+
 				f.setLeaderList(new ArrayList<Leader>(sortSet));
 			}
 		}
 	}
-	
+
 	private List leaderList;
-	public String editFamilyMapping(){
+
+	public String editFamilyMapping() {
 		family = familyBFBiz.getEntityById(Family.class, family.getId());
 		List list = orgBiz.getEntitiesByColumn(Leader.class, "family", family);
 		family.setLeaderList(list);
-		
-		//获取领导列表
+
+		// 获取领导列表
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Org) {
 			leaderList = orgBiz.getEntitiesByColumn(Leader.class, "org", user);
-		} 
+		}
 		Family f = family;
 		SortedSet sortSet = new TreeSet();
 		List leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", f);
-		if(leaderList != null && leaderList.size()>0)
+		if (leaderList != null && leaderList.size() > 0)
 			sortSet.addAll(leaderList);
-		//通过映射表获取
+		// 通过映射表获取
 		List<LeaderHelp> leaderHelperList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", f);
-		for(LeaderHelp lh : leaderHelperList)
+		for (LeaderHelp lh : leaderHelperList)
 			sortSet.add(lh.getLeader());
 		f.setLeaderList(new ArrayList<Leader>(sortSet));
-		
+
 		return "family_mapping_edit";
 	}
-	
-	public String saveFamilyMapping(){
+
+	public String saveFamilyMapping() {
 		String[] ids = (String[]) ActionContext.getContext().getParameters().get("leaderIds");
-		//清楚原有的帮扶
+		// 清楚原有的帮扶
 		family = orgBiz.getEntityById(Family.class, family.getId());
 		List<Leader> leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", family);
-		if(leaderList!=null && leaderList.size()>0)
-			for(Leader l : leaderList){
+		if (leaderList != null && leaderList.size() > 0)
+			for (Leader l : leaderList) {
 				l.setFamily(null);
 				orgBiz.saveOrUpdateEntity(l);
 			}
 		List<LeaderHelp> leaderHelperList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", family);
-		if(leaderHelperList!=null && leaderHelperList.size()>0)
-			for(LeaderHelp lh : leaderHelperList){
+		if (leaderHelperList != null && leaderHelperList.size() > 0)
+			for (LeaderHelp lh : leaderHelperList) {
 				orgBiz.deleteEntity(LeaderHelp.class, lh.getId());
 			}
-		
-		
-		if(ids != null && ids.length > 0){
-			for(String id : ids){
+
+		if (ids != null && ids.length > 0) {
+			for (String id : ids) {
 				Leader leader = orgBiz.getEntityById(Leader.class, Long.parseLong(id));
 				leader.setFamily(family);
 				orgBiz.saveOrUpdateEntity(leader);
-				
-				//保存映射
+
+				// 保存映射
 				List<LeaderHelp> lhList = familyBFBiz.getEntitiesByTwoColumn(LeaderHelp.class, "leader", leader, "family", family);
-				if(lhList == null || lhList.size()==0){
+				if (lhList == null || lhList.size() == 0) {
 					LeaderHelp lh = new LeaderHelp();
 					lh.setFamily(family);
 					lh.setLeader(leader);
@@ -577,101 +594,103 @@ public class FamilyBFAction extends BaseAction {
 		this.setMsg("帮扶方式保存成功");
 		return "family_mapping_edit";
 	}
-	
-	
-	//修改申请
+
+	// 修改申请
 	private String updateReason;
 	private Long currId;
-	public String updateApplyChengxiao(){
+
+	public String updateApplyChengxiao() {
 		Recheck r = new Recheck();
 		r.setCreateDate(new Date());
 		r.setModule("户帮扶成效");
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Org){
+		if (user instanceof Org) {
 			r.setOrg((Org) user);
 		}
 		r.setReason(updateReason);
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
-		
-		//修改状态
+
+		// 修改状态
 		chengxiao = familyBFBiz.getEntityById(ChengxiaoFamily.class, currId);
 		chengxiao.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 		familyBFBiz.saveOrUpdateEntity(chengxiao);
-		cuoshi=null;
-		
+		cuoshi = null;
+
 		this.setMsg("提交修改申请成功");
 		return chengxiaoFamilyList();
 	}
-	public String updateApplyCuoshi(){
+
+	public String updateApplyCuoshi() {
 		Recheck r = new Recheck();
 		r.setCreateDate(new Date());
 		r.setModule("户帮扶措施");
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Org){
+		if (user instanceof Org) {
 			r.setOrg((Org) user);
 		}
 		r.setReason(updateReason);
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
-		
-		//修改状态
+
+		// 修改状态
 		cuoshi = familyBFBiz.getEntityById(CuoshiFamily.class, currId);
 		cuoshi.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 		familyBFBiz.saveOrUpdateEntity(cuoshi);
-		cuoshi=null;
-		
+		cuoshi = null;
+
 		this.setMsg("提交修改申请成功");
 		return cuoshiFamilyList();
 	}
-	public String updateApplyReason(){
+
+	public String updateApplyReason() {
 		Recheck r = new Recheck();
 		r.setCreateDate(new Date());
 		r.setModule("户贫困原因");
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Org){
+		if (user instanceof Org) {
 			r.setOrg((Org) user);
 		}
 		r.setReason(updateReason);
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
-		
-		//修改状态
+
+		// 修改状态
 		reason = familyBFBiz.getEntityById(Reason.class, currId);
 		reason.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 		familyBFBiz.saveOrUpdateEntity(reason);
-		cuoshi=null;
-		
+		cuoshi = null;
+
 		this.setMsg("提交修改申请成功");
 		return reasonList();
 	}
-	public String updateApplyRecord(){
+
+	public String updateApplyRecord() {
 		Recheck r = new Recheck();
 		r.setCreateDate(new Date());
 		r.setModule("户帮扶内容");
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Org){
+		if (user instanceof Org) {
 			r.setOrg((Org) user);
 		}
 		r.setReason(updateReason);
 		r.setRecordId(currId);
 		r.setState("待审核");
 		familyBFBiz.saveOrUpdateEntity(r);
-		
-		//修改状态
+
+		// 修改状态
 		record = familyBFBiz.getEntityById(Record.class, currId);
 		record.setStatus(WebConstants.SHENHE_STATUS_PROCECING);
 		familyBFBiz.saveOrUpdateEntity(record);
-		cuoshi=null;
-		
+		cuoshi = null;
+
 		this.setMsg("提交修改申请成功");
 		return recordList();
 	}
-	
-	
+
 	public String getUpdateReason() {
 		return updateReason;
 	}
@@ -691,16 +710,18 @@ public class FamilyBFAction extends BaseAction {
 	public PageBean getPageBean() {
 		return pageBean;
 	}
+
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
+
 	public Integer getPageIndex() {
 		return pageIndex;
 	}
+
 	public void setPageIndex(Integer pageIndex) {
 		this.pageIndex = pageIndex;
 	}
-
 
 	public CuoshiFamily getCuoshi() {
 		return cuoshi;
@@ -813,7 +834,21 @@ public class FamilyBFAction extends BaseAction {
 	public void setLeaderList(List leaderList) {
 		this.leaderList = leaderList;
 	}
-	
-	
+
+	public Long getZhenId() {
+		return zhenId;
+	}
+
+	public void setZhenId(Long zhenId) {
+		this.zhenId = zhenId;
+	}
+
+	public Long getCunId() {
+		return cunId;
+	}
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
+	}
 
 }

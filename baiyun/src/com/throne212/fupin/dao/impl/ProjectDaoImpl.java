@@ -68,7 +68,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 		
 		
 		if (user instanceof Org) {
-			hql = "from ProjectCun where org.id=" + user.getId();
+			hql = "from ProjectCun where org.id=" + user.getId() + " and id=" + proId;
 			List<ProjectCun> list = this.getHibernateTemplate().find(hql);
 			if (list != null && list.size() > 0){
 				ProjectCun proCun = list.get(0);
@@ -76,7 +76,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				cunStat.setProject(proCun);
 				cunStat.setMonth(month);
 				cunStat.setYear(year);
-				cunStat.setProject(param.getProject());
+				//cunStat.setProject(param.getProject());
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
@@ -100,7 +100,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 			return statList.get(0);
 		
 		if (user instanceof Org) {
-			hql = "from ProjectZhongdian where org.id=" + user.getId();
+			hql = "from ProjectZhongdian where org.id=" + user.getId() + " and id=" + proId;;
 			List<ProjectZhongdian> list = this.getHibernateTemplate().find(hql);
 			if (list != null && list.size() > 0){
 				ProjectZhongdian proCun = list.get(0);
@@ -108,7 +108,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				cunStat.setProject(proCun);
 				cunStat.setMonth(month);
 				cunStat.setYear(year);
-				cunStat.setProject(param.getProject());
+				//cunStat.setProject(param.getProject());
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
@@ -130,7 +130,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 			return statList.get(0);
 		
 		if (user instanceof Org) {
-			hql = "from ProjectShehui where org.id=" + user.getId();
+			hql = "from ProjectShehui where org.id=" + user.getId() + " and id=" + proId;;
 			List<ProjectShehui> list = this.getHibernateTemplate().find(hql);
 			if (list != null && list.size() > 0){
 				ProjectShehui proCun = list.get(0);
@@ -138,7 +138,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				cunStat.setProject(proCun);
 				cunStat.setMonth(month);
 				cunStat.setYear(year);
-				cunStat.setProject(param.getProject());
+				//cunStat.setProject(param.getProject());
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
