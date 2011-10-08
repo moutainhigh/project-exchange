@@ -4,7 +4,6 @@
 	        </div>
 	        <div id="divwin0">
 	          <ul>
-	            
 	            <li class="listTitle">
 	              <h3>Video Tools</h3>
 	            </li>
@@ -50,16 +49,14 @@
 	            <li><a class="" href="/free-audio-converter/free-audio-converter.html">Free Audio Converter</a></li>
 	            <li><a class="" href="/wma-mp3-converter/wma-mp3-converter.html">Free WMA MP3 Converter</a></li>
 	            <li><a class="" href="/video-to-audio-converter/video-to-audio-converter.html">Free Video to Audio Converter</a></li>
-	           <li><a class="" href="/free-cd-ripper/free-cd-ripper.html">Free CD Ripper</a></li>
+	           	<li><a class="" href="/free-cd-ripper/free-cd-ripper.html">Free CD Ripper</a></li>
 	            <li><a class="nav-more" href="/products-a-tools.html">&gt;&gt; Learn More</a></li>
                   
-				  <li class="listTitle">
-				 <h3>Our Awards</h3>
-				 </li>
-				 
-	         <li><img width="90" height="70" border="0" src="images/Editor%27s-Pick.gif"></li>
-             <li><img width="90" height="70" border="0" src="images/adward-softpedia.jpg"></li>
-			 
+				<li class="listTitle">
+					<h3>Our Awards</h3>
+				</li>
+	         	<li><img width="90" height="70" border="0" src="/images/Editor%27s-Pick.gif"></li>
+             	<li><img width="90" height="70" border="0" src="/images/adward-softpedia.jpg"></li>
 	          </ul>
 	        </div>
 	      </div>

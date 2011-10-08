@@ -1,5 +1,5 @@
 	  <div id="header">
-	    <h1 onclick="location.href='${appPath}index.html'" title="eahoosoft" id="logo">eahoosoft</h1>
+	    <h1 onclick="location.href='${appPath}index.html'" title="dvdvideomedia" id="logo">DVDVideoMedia</h1>
 	    <div id="mainNav">
 	      <div class="mainNavTop">
 			<a href="/free-video-converter/free-video-converter.html">Free Video Converter</a>|

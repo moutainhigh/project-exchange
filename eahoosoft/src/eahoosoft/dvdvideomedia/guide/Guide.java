@@ -23,7 +23,7 @@ public class Guide {
 		//GuideHtml.main(null);
 		
 		Configuration cfg = new Configuration();
-		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR_DID));
+		cfg.setDirectoryForTemplateLoading(new File(All.SAMPLE_DIR_DVD));
 		cfg.setEncoding(Locale.US, "UTF8");
 		
 		Template template = cfg.getTemplate("guide.ftl");		
@@ -74,9 +74,32 @@ public class Guide {
 			
 			String content = g.getContent();
 			content = content.replaceAll("http://www.eahoosoft.com/", "/");
-			content = content.replaceAll("eahoosoft", "dvdvideomedia");
+			content = content.replaceAll("eahoosoft-video-converter/eahoosoft-video-converter.html", "free-video-converter/free-video-converter.html");
+			content = content.replaceAll("eahoosoft", "free");
 			content = content.replaceAll("Eahoosoft", "DVDVideoMedia Free");
+			content = content.replaceAll("Free Trial", "Download");
+			String reg = "<div class=\"buyNowBig_below\">.*\n.*\n.*</div>";
+			content = content.replaceAll(reg, "");
+			//System.out.println(content);
 			g.setContent(content);
+			
+			String keyword = g.getKeywords();
+			keyword = keyword.replaceAll("eahoosoft", "free");
+			keyword = keyword.replaceAll("Eahoosoft", "DVDVideoMedia Free");
+			g.setKeywords(keyword);
+			
+			String desc = g.getDescription();
+			desc = desc.replaceAll("eahoosoft", "free");
+			desc = desc.replaceAll("Eahoosoft", "DVDVideoMedia Free");
+			g.setDescription(desc);
+			
+			String name = g.getName();
+			name = name.replaceAll("Eahoosoft", "DVDVideoMedia Free");
+			g.setName(name);
+			
+			String title = g.getTitle();
+			title = title.replaceAll("Eahoosoft", "DVDVideoMedia Free");
+			g.setTitle(title);
 			
 			map.put("g", g);
 			PrintWriter pw = new PrintWriter(new FileOutputStream(All.SOFT_DVD_DIR+"guide\\"+g.getFileName()));		
