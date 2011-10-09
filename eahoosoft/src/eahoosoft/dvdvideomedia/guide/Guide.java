@@ -81,6 +81,11 @@ public class Guide {
 			String reg = "<div class=\"buyNowBig_below\">.*\n.*\n.*</div>";
 			content = content.replaceAll(reg, "");
 			//System.out.println(content);
+			content = content.replaceAll("VideoConverter.exe", "dvdvideomedia-free-video-converter.exe");
+			content = content.replaceAll("VideotoFlash.exe", "dvdvideomedia-free-video-to-flash-converter.exe");
+			content = content.replaceAll("AudioConverter.exe", "dvdvideomedia-free-audio-converter.exe");
+			content = content.replaceAll("Videotoipad.exe", "dvdvideomedia-free-ipad-video-converter.exe");
+			content = content.replaceAll("DVDRipper.exe", "dvdvideomedia-free-dvd-ripper.exe");
 			g.setContent(content);
 			
 			String keyword = g.getKeywords();
