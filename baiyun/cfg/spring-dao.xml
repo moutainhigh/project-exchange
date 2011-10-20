@@ -58,4 +58,7 @@
 	<bean id="projectDao" class="com.throne212.fupin.dao.impl.ProjectDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="baoSongDao" class="com.throne212.fupin.dao.impl.BaoSongDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

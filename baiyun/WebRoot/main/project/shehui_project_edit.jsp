@@ -18,6 +18,16 @@
 					$("#orgId").attr("disabled",true);
 				}
 			});
+			function selectOrg(orgId){
+				$.getJSON("${appPath}ajax/getOrgInfo?time="+new Date().getTime(), {'orgId':orgId}, function(json){
+					if(json && json['org']){
+						var org = json['org'];
+						$('#fuze').val(org['fuze']);
+						$('#zhiwu').val(org['zhiwu']);
+						$('#gongshangZhiwu').val(org['gongshangZhiwu']);
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -33,7 +43,7 @@
 							捐赠企业名称
 						</td>
 						<td class="tables_contentcell">
-							<select id="orgId" name="proSh.org.id" msg="捐赠企业名称为必选项！" datatype="Require">
+							<select id="orgId" name="proSh.org.id" msg="捐赠企业名称为必选项！" datatype="Require" onchange="selectOrg(this.value)">
 								<option value=""></option>
 								<c:forEach items="${allOrgList}" var="f">
 								<option value="${f.id}" <c:if test="${proSh.org.id==f.id}">selected="selected"</c:if>>${f.orgName}</option>
@@ -45,31 +55,31 @@
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">企业负责人</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.fuzeren}" name="proSh.fuzeren"/>
+							<input type="text" size="20" value="${proSh.fuzeren}" name="proSh.fuzeren" id="fuze"/>
 					    </td>
 					</tr>	
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">职务</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.zhiwu}" name="proSh.zhiwu"/>
+							<input type="text" size="20" value="${proSh.zhiwu}" name="proSh.zhiwu" id="zhiwu"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">区工商联职务</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.gongshangZhiwu}" name="proSh.gongshangZhiwu"/>
+							<input type="text"  size="20" value="${proSh.gongshangZhiwu}" name="proSh.gongshangZhiwu" id="gongshangZhiwu"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">落实负责人</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.luoshi}" name="proSh.luoshi"/>
+							<input type="text"  size="20" value="${proSh.luoshi}" name="proSh.luoshi"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">捐赠金额（万元）</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.juanMoney}" name="proSh.juanMoney"/>
+							<input type="text"  size="20" value="${proSh.juanMoney}" name="proSh.juanMoney"/>
 					    </td>
 					</tr>
 					<tr>
@@ -82,13 +92,13 @@
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">受捐赠单位负责人</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.shouFuzeren}" name="proSh.shouFuzeren"/>
+							<input type="text"  size="20" value="${proSh.shouFuzeren}" name="proSh.shouFuzeren"/>
 					    </td>
 					</tr>	
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">职务</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.shouZhiwu}" name="proSh.shouZhiwu"/>
+							<input type="text"  size="20" value="${proSh.shouZhiwu}" name="proSh.shouZhiwu"/>
 					    </td>
 					</tr>
 					<tr>
@@ -101,26 +111,26 @@
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" colspan="2">项目金额（万元）</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.money}" name="proSh.money"/>
+							<input type="text"  size="20" value="${proSh.money}" name="proSh.money"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell" rowspan="3">项目用地性质</td>
 					    <td height="30" align="right" class="tables_leftcell">现状</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.yongdi1}" name="proSh.yongdi1"/>
+							<input type="text"  size="20" value="${proSh.yongdi1}" name="proSh.yongdi1"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell">用地现状</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.yongdi2}" name="proSh.yongdi2"/>
+							<input type="text"  size="20" value="${proSh.yongdi2}" name="proSh.yongdi2"/>
 					    </td>
 					</tr>
 					<tr>
 					    <td height="30" align="right" class="tables_leftcell">规划性质</td>
 					    <td class="tables_contentcell">
-							<input type="text" id="" size="20" value="${proSh.yongdi3}" name="proSh.yongdi3"/>
+							<input type="text"  size="20" value="${proSh.yongdi3}" name="proSh.yongdi3"/>
 					    </td>
 					</tr>
 					<tr>

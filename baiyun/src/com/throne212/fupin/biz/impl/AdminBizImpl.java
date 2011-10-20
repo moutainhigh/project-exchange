@@ -8,6 +8,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.dao.UserDao;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.WorkTeam;
 import com.throne212.fupin.domain.ZhenWorkOrg;
@@ -101,6 +102,38 @@ public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
 			pageIndex = page.intValue();
 		}
 		return userDao.getZhenWorkOrgList(pageIndex);
+	}
+	
+	//村级
+	public PageBean<CunWorkOrg> getCunWorkOrgBean(Integer page,Long areaWorkOrgId){
+		int pageIndex = 1;
+		if (page != null) {
+			pageIndex = page.intValue();
+		}
+		return userDao.getCunWorkOrgList(pageIndex, areaWorkOrgId);
+		
+		
+	}
+	public CunWorkOrg saveOrUpdateCunWorkOrg(CunWorkOrg zhenWorkOrg){
+
+		if (zhenWorkOrg.getId() == null) {
+			zhenWorkOrg.setCreateDate(new Date());
+			userDao.saveOrUpdate(zhenWorkOrg);
+			logger.info("添加成功");
+		} else {
+			userDao.saveOrUpdate(zhenWorkOrg);
+			logger.info("更新成功");
+		}
+		return zhenWorkOrg;
+		
+	}
+	
+	public PageBean<CunWorkOrg> getCunWorkOrgBean(Integer page){
+		int pageIndex = 1;
+		if (page != null) {
+			pageIndex = page.intValue();
+		}
+		return userDao.getCunWorkOrgList(pageIndex);
 	}
 	
 	public List<Cun> getCunListByLike(String pinyin){

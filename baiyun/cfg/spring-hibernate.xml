@@ -45,6 +45,7 @@
 				<value>contactBiz</value>
 				<value>statBiz</value>
 				<value>projectBiz</value>
+				<value>baoSongBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

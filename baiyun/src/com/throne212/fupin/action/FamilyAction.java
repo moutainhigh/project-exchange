@@ -14,6 +14,7 @@ import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class FamilyAction extends BaseAction {
 
@@ -54,7 +55,7 @@ public class FamilyAction extends BaseAction {
 
 	public String familyList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if(user instanceof Admin || user instanceof ShiWorkOrg || user instanceof AreaWorkOrg ){
+		if(user instanceof Admin || user instanceof ShiWorkOrg || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg){
 			areaId = 2L;
 			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,areaId,zhenId,cunId);
 		}else

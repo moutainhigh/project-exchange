@@ -150,6 +150,9 @@ function images_update(){
 	if(window.quanxian=='5')
 	{
 		//帮扶单位类
+		<c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
+		menuArray[menuArray.length]="0,首页,${appPath}remind.action";
+		</c:if>
 	    menuArray[menuArray.length]="0,基础数据,";
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
 	    menuArray[menuArray.length]="1,单位信息,${appPath}org_editOrg.action";
@@ -180,6 +183,11 @@ function images_update(){
 		menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}pro_proZdList.action";
 	    </c:if>
 	    
+	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
+	    menuArray[menuArray.length]="0,信息报送";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
+	    </c:if>
+	    
 	    //镇管理员类
 	    <c:if test="${userObj.roleType=='镇级管理员'}">
 		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
@@ -201,6 +209,8 @@ function images_update(){
 	    <c:if test="${userObj.zhen.name=='钟落潭镇'}">
 	    menuArray[menuArray.length]="1,白云区工商联企业帮扶钟落潭镇项目进度表,${appPath}report_projectShStat.action";
 	    </c:if>
+	    menuArray[menuArray.length]="0,信息报送";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
 	    </c:if>
 	    
 	    //县级管理员
@@ -222,8 +232,17 @@ function images_update(){
 		menuArray[menuArray.length]="0,镇帮扶信息,";
 	    menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}report_projectZdStat.action";
 	    menuArray[menuArray.length]="1,白云区工商联企业帮扶钟落潭镇项目进度表,${appPath}report_projectShStat.action";
+	    menuArray[menuArray.length]="0,信息报送";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
 	    </c:if>
 	    
+	    //村级管理员
+	    <c:if test="${userObj.roleType=='村级管理员'}">
+	    menuArray[menuArray.length]="0,村委会审核意见,";
+	    menuArray[menuArray.length]="1,“结对帮扶低收入户”工作落实情况统计表,${appPath}report_viewReport1.action";
+	    menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表,${appPath}pro_cunStatForCunRemark.action";
+	    //menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}pro_proZdList.action";
+	    </c:if>
 	
 		//社会企业
 		<c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName=='社会企业'}">
@@ -231,13 +250,18 @@ function images_update(){
 		menuArray[menuArray.length]="0,帮扶钟落潭镇,";
 		menuArray[menuArray.length]="1,项目进度,${appPath}report_projectZdStat.action";
 		menuArray[menuArray.length]="1,白云区工商联企业帮扶钟落潭镇项目进度表,${appPath}pro_proShList.action";
+		menuArray[menuArray.length]="0,信息报送";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
 		</c:if>
 		
 		
 		menuArray[menuArray.length]="0,辅助功能,";
 	    menuArray[menuArray.length]="1,密码修改,${appPath}main/password/password_edit.jsp";
 		<c:if test="${userObj.roleType=='县级管理员'}">
-		menuArray[menuArray.length]="1,报表修改申请解锁,${appPath}report_reportList.action";
+		menuArray[menuArray.length]="1,报表修改申请解锁,";
+		menuArray[menuArray.length]="2,户帮扶统计表修改申请解锁,${appPath}report_reportList.action";
+		menuArray[menuArray.length]="2,村帮扶统计表修改申请解锁,${appPath}pro_proCunStatLockList.action";
+		//menuArray[menuArray.length]="1,重点镇帮扶统计表修改申请解锁,${appPath}pro_zdStatLockList.action";
 		menuArray[menuArray.length]="1,修改申请审核,${appPath}recheck_listRecheck.action";
 		</c:if>
 		
@@ -249,12 +273,18 @@ function images_update(){
 	    menuArray[menuArray.length]="2,重点帮扶钟落潭镇项目,${appPath}pro_proZdList.action";
 	    menuArray[menuArray.length]="1,基础数据维护,";
 	    menuArray[menuArray.length]="2,地区信息维护,${appPath}diqu_diquList.action";
+	    menuArray[menuArray.length]="2,村级账号管理,${appPath}admin_cunWorkOrgList.action";
 	    menuArray[menuArray.length]="2,镇级账号管理,${appPath}admin_zhenWorkOrgList.action";
 	    menuArray[menuArray.length]="2,区县级账号管理,${appPath}admin_areaWorkOrgList.action";
 	    menuArray[menuArray.length]="1,帮扶单位管理,";
 	    menuArray[menuArray.length]="2,单位管理员账号,${appPath}manager_managerList.action";
 	    menuArray[menuArray.length]="2,单位的村帮扶指定,${appPath}manager_managerMappingList.action";
 	    </c:if>
+	    
+	    <c:if test="${userObj.roleType=='超级管理员'}">
+	    menuArray[menuArray.length]="0,信息报送";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
+		</c:if>
 	    
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 

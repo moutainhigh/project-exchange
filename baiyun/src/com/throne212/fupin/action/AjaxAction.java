@@ -53,6 +53,15 @@ public class AjaxAction extends BaseAction {
 
 	private List list;
 
+	// 根据org id获取org
+	private Long orgId;
+	private Org org;
+
+	public String getOrgInfo() {
+		org = adminBiz.getEntityById(Org.class, orgId);
+		return "org";
+	}
+
 	// private List listTree;//用于显示树形通讯组
 
 	// 获取所有市
@@ -505,15 +514,16 @@ public class AjaxAction extends BaseAction {
 		list = adminBiz.getEntitiesByColumn(Org.class, "cun.id", cunId);
 		return "org_list";
 	}
-	
-	public String loadReport1Stat(){
+
+	public String loadReport1Stat() {
 		List<Report1Stat> list = reportBiz.getReport1Stat();
 		Map<String, Object> mapJson = new Hashtable<String, Object>();
 		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
 		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
 		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
-		//ActionContext actionContext = ActionContext.getContext();
-		//actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		// ActionContext actionContext = ActionContext.getContext();
+		// actionContext.getValueStack().set("jsonObject", jsonObject);//
+		// 将转换出来的jsonObject保存起，传到页面上去
 		try {
 			ServletActionContext.getResponse().getWriter().print(jsonObject.toString());
 		} catch (IOException e) {
@@ -650,6 +660,22 @@ public class AjaxAction extends BaseAction {
 
 	public void setReportBiz(ReportBiz reportBiz) {
 		this.reportBiz = reportBiz;
+	}
+
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public void setOrg(Org org) {
+		this.org = org;
+	}
+
+	public Org getOrg() {
+		return org;
 	}
 
 }

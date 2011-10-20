@@ -27,10 +27,13 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		this.getHibernateTemplate().delete(entity);
 	}
 
-	public <T> void deleteById(Class<T> clazz, Long id) {
+	public <T> int deleteById(Class<T> clazz, Long id) {
 		T e = this.getEntityById(clazz, id);
-		if (e != null)
+		if (e != null){
 			this.getHibernateTemplate().delete(e);
+			return 1;
+		}
+		return 0; 
 	}
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value) {

@@ -27,7 +27,13 @@
 		});
 		var paramZhenId = '${param.zhenId}';
 		function selectArea(val){
-			if(val){
+			if(!document.getElementById('zhenId')){
+				var zhenId = '';
+				<c:if test="${userObj.roleType=='镇级管理员'}">
+				zhenId = '${userObj.zhen.id}';
+				</c:if>
+				selectZhen(zhenId);
+			}else if(val){
 				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#zhenId').html('<option value=""></option>');
@@ -83,6 +89,12 @@
 			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
 									<option value="">----------</option>
 								 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+					</c:if>
+							<c:if test="${userObj.roleType=='镇级管理员'}">
 						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
 						<select id="cunId2" name="cunId">
 									<option value="">-----------</option>

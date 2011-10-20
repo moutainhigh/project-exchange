@@ -38,7 +38,7 @@ public interface BaseDao {
 
 	public <T> void delete(T entity);
 
-	public <T> void deleteById(Class<T> clazz, Long id);
+	public <T> int deleteById(Class<T> clazz, Long id);
 
 	public void clear();
 

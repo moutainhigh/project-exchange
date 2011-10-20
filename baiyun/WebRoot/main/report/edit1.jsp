@@ -37,7 +37,7 @@
 			}			
 			//加锁，禁止修改
 			if(lock == '1' || lock == '2' || type=='year' || type=='season'){
-				$('input[type="text"]').attr("readonly",true);
+				$('input[type="text"]').not('.cun_remark').attr("readonly",true);
 			}	
 			//自动地区数据灰化
 			$('.auto_readonly').css('background','#EBEBE4');
@@ -113,6 +113,18 @@
 				f.action = '${appPath}report_excelReport1.action';
 				f.submit();
 		}
+		function shenhe(){
+			var f = document.forms[0];
+			$('#rId').val('${r.id}');
+			f.action = '${appPath}report_shenhe.action';
+			f.submit();
+		}
+		function tuihui(){
+			var f = document.forms[0];
+			$('#rId').val('${r.id}');
+			f.action = '${appPath}report_tuihui.action';
+			f.submit();
+		}
 		</script>
 		<style>
 .tables_search {
@@ -163,6 +175,7 @@
 	</head>
 	<body>
 		<form method="get" action="${appPath}report_saveReport1.action" name="searchForm">
+			<input type="hidden" name="r.id" id="rId"/>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
@@ -202,7 +215,7 @@
 						</td>
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
-							<c:if test="${empty r.type || r.type=='month'}">
+							<c:if test="${userObj.roleType=='帮扶单位管理员' && (empty r.type || r.type=='month')}">
 								<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
 								<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
 								<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
@@ -210,6 +223,10 @@
 								<c:if test="${not empty r.lock && r.lock==1}">
 								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
 								</c:if>
+							</c:if>
+							<c:if test="${userObj.roleType=='村级管理员'}">
+								<input type="button" value="审核通过" class="button" name="审核通过" onclick="shenhe();">
+								<input type="button" value="退回修改" class="button" name="退回修改" onclick="tuihui();">
 							</c:if>
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">
 						</td>
@@ -225,7 +242,7 @@
 									帮扶单位
 									</td>
 									<td class="tables_contentcell" width="50%">
-									${userObj.orgName }
+									${r.org.orgName }&nbsp;
 									</td>
 								</tr>
 								<tr>
@@ -233,7 +250,7 @@
 									贫困村
 									</td>
 									<td class="tables_contentcell">
-									${userObj.cun.name }
+									${r.cun.name }&nbsp;
 									</td>
 								</tr>
 								<tr>
@@ -485,6 +502,14 @@
 									</td>
 									<td class="tables_contentcell">
 									<input type="text" name="r.item27" value="${r.item27}"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="tables_contentcell" colspan="3">
+									村委会审核意见
+									</td>
+									<td class="tables_contentcell">
+									<input class="cun_remark" type="text" name="cunRemark" value="${r.cunRemark}" readonly="readonly"/>
 									</td>
 								</tr>
 							</table>							

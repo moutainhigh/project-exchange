@@ -49,6 +49,41 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
 	}
+	public PageBean<ChengxiaoCun> getAllChengxiaoCun(ChengxiaoCun condition, Long zhenId, Long cunId, Integer pageIndex) {
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<ChengxiaoCun> page = new PageBean<ChengxiaoCun>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from ChengxiaoCun t where 1=1";
+		if (condition!=null&&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
+			hql+=" and status='"+condition.getStatus()+"'";
+		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		if(cunId != null){
+			hql += " and cun.id=" + cunId;
+		}else if(zhenId != null){
+			hql += " and cun.zhen.id=" + zhenId;
+		}
+		
+		hql+=" order by id desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<ChengxiaoCun> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
 
 	public PageBean<ChengxiaoCun> getAllChengxiaoCunByCunId(ChengxiaoCun condition, Long cunId, Integer pageIndex) {
 		PageBean<ChengxiaoCun> page = new PageBean<ChengxiaoCun>();
@@ -93,6 +128,45 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		hql+=" order by id desc";
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<CuoshiCun> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	public PageBean<CuoshiCun> getAllCuoshiCun(CuoshiCun condition, Long zhenId, Long cunId, Integer pageIndex) {
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<CuoshiCun> page = new PageBean<CuoshiCun>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from CuoshiCun t where 1=1";
+		if (condition!=null &&condition.getType()!=null&&!"".equals(condition.getType())) {
+			hql+=" and type='"+condition.getType()+"'";
+		}
+		if (condition!=null &&condition.getStatus()!=null&&!"".equals(condition.getStatus())) {
+			hql+=" and status='"+condition.getStatus()+"'";
+		}
+		
+		//如果是镇管理员
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}
+		
+		if(cunId != null){
+			hql += " and cun.id=" + cunId;
+		}else if(zhenId != null){
+			hql += " and cun.zhen.id=" + zhenId;
 		}
 		
 		hql+=" order by id desc";

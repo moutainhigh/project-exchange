@@ -5,6 +5,7 @@ import java.util.List;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
@@ -22,6 +23,11 @@ public interface AdminBiz extends BaseBiz {
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgBean(Integer page,Long areaWorkOrgId);
 	public ZhenWorkOrg saveOrUpdateZhenWorkOrg(ZhenWorkOrg zhenWorkOrg);
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgBean(Integer page);
+	
+	//村级账号管理
+	public PageBean<CunWorkOrg> getCunWorkOrgBean(Integer page,Long areaWorkOrgId);
+	public CunWorkOrg saveOrUpdateCunWorkOrg(CunWorkOrg zhenWorkOrg);
+	public PageBean<CunWorkOrg> getCunWorkOrgBean(Integer page);
 	
 	//根据拼音找村
 	public List<Cun> getCunListByLike(String pinyin);

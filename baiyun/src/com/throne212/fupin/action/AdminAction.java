@@ -10,7 +10,8 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
-import com.throne212.fupin.domain.MyEntity;
+import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.Permission;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
@@ -203,6 +204,71 @@ public class AdminAction extends BaseAction {
 		return zhenWorkOrgList();
 	}
 	
+	// 村级账号管理
+	private CunWorkOrg cunWorkOrg;
+
+	// 村级账号列表
+	public String cunWorkOrgList() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof Admin || user instanceof AreaWorkOrg) {
+			pageBean = adminBiz.getCunWorkOrgBean(pageIndex);
+			return "cunWorkOrg_list";
+		} else if (user instanceof ZhenWorkOrg) {
+			pageBean = adminBiz.getCunWorkOrgBean(pageIndex, user.getId());
+		}
+		return "cunWorkOrg_list";
+	}
+
+	// 保存或修改村级账号
+	public String saveOrUpdateCunWorkOrg() {
+
+		if (cunWorkOrg == null) {
+			this.setMsg("保存失败，请检查数据是否录入完整");
+			return "cunWorkOrg_edit";
+		}
+		if (cunWorkOrg != null && !Util.isEmpty(cunWorkOrg.getLoginName())) {// 添加或更新
+			if (cunWorkOrg.getCun().getId() == null) {
+				this.setMsg("请选择所属村！");
+				return "cunWorkOrg_edit";
+			}
+			if (cunWorkOrg.getId() == null) {
+				CunWorkOrg cunOrg = adminBiz.getEntityByUnique(CunWorkOrg.class, "loginName", cunWorkOrg.getLoginName());
+				if (cunOrg != null) {
+					this.setMsg("用户名已经被使用，请更名");
+					return "cunWorkOrg_edit";
+				}
+			}
+			List<ZhenWorkOrg> list = adminBiz.getAll(ZhenWorkOrg.class);
+			if(list != null && list.size() > 0){
+				cunWorkOrg.setZhenWorkOrg(list.get(0));
+			}
+			Cun cun = adminBiz.getEntityById(Cun.class, cunWorkOrg.getCun().getId());
+			cunWorkOrg.setCun(cun);
+			cunWorkOrg = adminBiz.saveOrUpdateCunWorkOrg(cunWorkOrg);
+			this.setMsg("保存成功");
+			this.setSucc("Y");
+			cunWorkOrg = null;
+		} else if (cunWorkOrg != null && cunWorkOrg.getId() != null) {// 查看详情
+			cunWorkOrg = adminBiz.getEntityById(CunWorkOrg.class, cunWorkOrg.getId());
+			return "cunWorkOrg_edit";
+		}
+		return "cunWorkOrg_edit";
+
+	}
+
+	// 删除村级账号
+	public String deleteCunWorkOrg() {
+		String[] cunWrokOrgIds = (String[]) ActionContext.getContext().getParameters().get("cunWorkOrg_ids");
+		if (cunWrokOrgIds != null && cunWrokOrgIds.length > 0) {
+			for (String idStr : cunWrokOrgIds) {
+				Long id = Long.parseLong(idStr);
+				adminBiz.deleteEntity(CunWorkOrg.class, id);
+			}
+			this.setMsg("删除村级账号成功");
+		}
+		return cunWorkOrgList();
+	}
+	
 	
 	//权限
 	List list = null;
@@ -302,6 +368,14 @@ public class AdminAction extends BaseAction {
 
 	public void setPer(Permission per) {
 		this.per = per;
+	}
+
+	public CunWorkOrg getCunWorkOrg() {
+		return cunWorkOrg;
+	}
+
+	public void setCunWorkOrg(CunWorkOrg cunWorkOrg) {
+		this.cunWorkOrg = cunWorkOrg;
 	}
 
 }

@@ -66,7 +66,7 @@
 							序号
 						</td>
 						<td width="" class="tables_headercell" colspan="2">
-							对口帮扶单位
+							对口帮扶对象
 						</td>
 						<td width="" class="tables_headercell" rowspan="2">
 							项目名称

@@ -105,6 +105,46 @@
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
+							企业负责人：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.fuze }" id="bz" name="org.fuze">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							职务：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.zhiwu }" id="bz" name="org.zhiwu">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							区工商联职务：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.gongshangZhiwu }" id="bz" name="org.gongshangZhiwu">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							联系地址：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.address }" id="bz" name="org.address">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							联系电话：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.tel }" id="bz" name="org.tel">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
 							说明：
 						</td>
 						<td class="tables_contentcell">

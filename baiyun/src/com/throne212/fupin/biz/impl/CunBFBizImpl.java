@@ -17,6 +17,11 @@ public class CunBFBizImpl extends BaseBizImpl implements CunBFBiz {
 		return cunDao.getAllChengxiaoCun(condition,pageIndex);
 		
 	}
+	public PageBean<ChengxiaoCun> getAllChengxiaoCun(ChengxiaoCun condition,Long zhenId, Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return cunDao.getAllChengxiaoCun(condition, zhenId, cunId,pageIndex);
+	}
 
 	public PageBean<ChengxiaoCun> getAllChengxiaoCunByCunId(ChengxiaoCun condition, Long cunId, Integer pageIndex) {
 		if(pageIndex == null || pageIndex < 1)
@@ -28,6 +33,12 @@ public class CunBFBizImpl extends BaseBizImpl implements CunBFBiz {
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
 		return cunDao.getAllCuoshiCun(condition,pageIndex);
+	}
+	
+	public PageBean<CuoshiCun> getAllCuoshiCun(CuoshiCun condition, Long zhenId,Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return cunDao.getAllCuoshiCun(condition,zhenId,cunId, pageIndex);
 	}
 
 	public PageBean<CuoshiCun> getAllCuoshiCunByCunId(CuoshiCun condition, Long cunId, Integer pageIndex) {

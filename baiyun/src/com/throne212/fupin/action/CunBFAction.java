@@ -31,12 +31,15 @@ public class CunBFAction extends BaseAction {
 	private ChengxiaoCun chengxiao;
 	private PicCun pic;
 	private Cun cun;
+	
+	private Long zhenId;
+	private Long cunId;
 	// 村帮扶措施列表
 	public String cuoshiCunList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
 		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
-			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi, pageIndex);
+			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi,zhenId, cunId, pageIndex);
 			return "cuoshicun_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
@@ -143,7 +146,7 @@ public class CunBFAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
 		if (user instanceof Admin || user instanceof AreaWorkOrg || user instanceof ZhenWorkOrg) {
-			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao, pageIndex);
+			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao,zhenId, cunId, pageIndex);
 			return "chengxiaocun_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
@@ -473,6 +476,22 @@ public class CunBFAction extends BaseAction {
 
 	public void setCurrId(Long currId) {
 		this.currId = currId;
+	}
+
+	public Long getZhenId() {
+		return zhenId;
+	}
+
+	public void setZhenId(Long zhenId) {
+		this.zhenId = zhenId;
+	}
+
+	public Long getCunId() {
+		return cunId;
+	}
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
 	}
 	
 	

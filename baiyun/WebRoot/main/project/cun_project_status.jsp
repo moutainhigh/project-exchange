@@ -18,6 +18,7 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		var lock = '${cunStat.lock}';
 		var year = '${cunStat.year}';
 		var time = '${cunStat.month}';
 		var half = '${cunStat.half}';
@@ -53,15 +54,48 @@
 					$('input[name="cunStat.half"]').eq(i-1).attr("checked",true);
 				}, 1);
 			}
+			
+			//加锁，禁止修改
+			if(lock == '1' || lock == '2'){
+				//alert('wewewe');
+				$('input[type="text"]').not('.cun_remark').attr("readonly",true);
+				$('textarea').attr("readonly",true);
+			}	
 		});
 		function query(){
 			var f = document.forms[0];
 			f.action = "${appPath}pro_cunStat.action";
 			f.submit();
 		}
-		function save(){
+		function tmpSave(){
 			var f = document.forms[0];
-			f.action = "${appPath}pro_saveProCunStat.action";
+			f.action = "${appPath}pro_tmpSaveProCunStat.action";
+			f.submit();
+		}
+		function save(){
+			if(confirm('报表提交后不允许修改，是否提交')){
+				var f = document.forms[0];
+				f.action = "${appPath}pro_saveProCunStat.action";
+				f.submit();
+			}
+		}
+		function unlockReport(){
+			if(confirm('确定需要解锁吗？')){
+				var f = document.forms[0];
+				f.action = '${appPath}pro_requstUnlockProCunStat.action';
+				f.submit();
+			}
+		}
+		function shenhe(){
+			var f = document.forms[0];
+			$('#statId').val('${cunStat.id}');
+			f.action = '${appPath}pro_shenheProCunStat.action';
+			f.submit();
+		}
+		function tuihui(){
+			var f = document.forms[0];
+			$('#statId').val('${cunStat.id}');
+			f.action = '${appPath}pro_tuihuiProCunStat.action';
 			f.submit();
 		}
 		</script>
@@ -71,13 +105,14 @@
 	height: 40px;
 	background-color: #418FD0;
 }
+	textarea {	width:90%;}
 </style>
 	</head>
 	<body>
 		<form method="get" action="${appPath}pro_saveProCunStat.action" name="searchForm">
-			<input type="hidden" name="cunStat.id" value="${cunStat.id}">
+			<input type="hidden" name="cunStat.id" value="${cunStat.id}" id="statId">
 			<input type="hidden" name="cunStat.project.id" value="${cunStat.project.id}">
-			<c:if test="${userObj.isDiv=='Y'}">
+			<input type="hidden" name="cunStat.cunRemark" value="${cunStat.cunRemark}">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
@@ -103,9 +138,20 @@
 						-->
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
-							<input type="button" value="保存" class="button" name="保存" onclick="save();">
+							<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+								<c:if test="${empty cunStat.lock || cunStat.lock==0 || cunStat.lock==3}">
+								<input type="button" value="保存" class="button" name="保存" onclick="save();">
+								<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSave();">
+								</c:if>
+								<c:if test="${not empty cunStat.lock && cunStat.lock==1}">
+								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+								</c:if>
+							</c:if>
+							<c:if test="${userObj.roleType=='村级管理员'}">
+								<input type="button" value="审核通过" class="button" name="审核通过" onclick="shenhe();">
+								<input type="button" value="退回修改" class="button" name="退回修改" onclick="tuihui();">
+							</c:if>
 						</td>
-						 
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_contentcell" rowspan="2">
@@ -155,7 +201,7 @@
 							帮扶资金到位情况（万元）
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.money }" name="cunStat.money"/>
+							&nbsp; <input value="${cunStat.money }" name="cunStat.money" type="text"/>
 						</td>
 					</tr>
 					<tr align="center">
@@ -163,7 +209,8 @@
 							项目进展情况
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.complete }" name="cunStat.complete"/>
+							&nbsp; 
+							<textarea rows="5" name="cunStat.complete">${cunStat.complete }</textarea>
 						</td>
 					</tr>
 					<tr align="center">
@@ -171,7 +218,8 @@
 							存在问题
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.problem }" name="cunStat.problem"/>
+							&nbsp;
+							<textarea rows="5" name="cunStat.problem">${cunStat.problem }</textarea>
 						</td>
 					</tr>
 					<tr align="center">
@@ -179,12 +227,21 @@
 							下一步推进措施
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.content }" name="cunStat.content"/>
+							&nbsp; 
+							<textarea rows="5" name="cunStat.content">${cunStat.content }</textarea>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							村委会审核意见
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+							<input class="cun_remark" type="text" name="cunRemark" value="${cunStat.cunRemark}" readonly="readonly"/>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			</c:if>
 		</form>
 	</body>
 </html>

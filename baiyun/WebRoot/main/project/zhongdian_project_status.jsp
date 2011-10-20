@@ -68,6 +68,7 @@
 	height: 40px;
 	background-color: #418FD0;
 }
+		textarea {	width:90%;}
 </style>
 	</head>
 	<body>
@@ -128,12 +129,14 @@
 							&nbsp; <input value="${zdStat.money }" name="zdStat.money"/>
 						</td>
 					</tr>
+					
 					<tr align="center">
 						<td width="" class="tables_contentcell" colspan="2">
 							项目进展情况
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${zdStat.complete }" name="zdStat.complete"/>
+							&nbsp; 
+							<textarea rows="5" name="zdStat.complete">${zdStat.complete }</textarea>
 						</td>
 					</tr>
 					<tr align="center">
@@ -141,7 +144,8 @@
 							存在问题
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${zdStat.problem }" name="zdStat.problem"/>
+							&nbsp;
+							<textarea rows="5" name="zdStat.problem">${zdStat.problem }</textarea>
 						</td>
 					</tr>
 					<tr align="center">
@@ -149,7 +153,8 @@
 							下一步推进措施
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${zdStat.content }" name="zdStat.content"/>
+							&nbsp; 
+							<textarea rows="5" name="zdStat.content">${zdStat.content }</textarea>
 						</td>
 					</tr>
 				</tbody>

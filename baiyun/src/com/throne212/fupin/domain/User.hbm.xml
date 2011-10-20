@@ -40,6 +40,14 @@
 			<many-to-one name="zhen" column="zhen_id" lazy="false"></many-to-one>
 			<many-to-one name="areaWorkOrg" column="areaWorkOrg_id" lazy="false"></many-to-one>
 		</subclass>
+		<subclass discriminator-value="cunworkorg" extends="User" name="CunWorkOrg">
+			<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
+			<many-to-one name="zhenWorkOrg" column="zhenWorkOrg_id" lazy="false"></many-to-one>
+			<property name="tel"></property>
+			<property name="fuze"></property>
+			<property name="zhiwu"></property>
+			<property name="address"></property>
+		</subclass>
 		
 		<subclass discriminator-value="org" extends="User" name="Org">
 			<many-to-one name="cun" lazy="false"></many-to-one>
@@ -59,6 +67,11 @@
 			<property name="contactEmail" length="100"></property>
 			<property name="pinyin"></property>
 			<property name="typeName" column="type_name"></property>
+			<property name="fuze"></property>
+			<property name="gongshangZhiwu"></property>
+			<property name="tel"></property>
+			<property name="address"></property>
+			<property name="zhiwu"></property>
 			<!-- 直属区县 -->
 			<many-to-one name="area" column="belong_to_area_id" lazy="false"></many-to-one>
 		</subclass>

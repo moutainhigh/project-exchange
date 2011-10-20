@@ -48,8 +48,8 @@ public class BaseBizImpl implements BaseBiz {
 			return false;
 	}
 
-	public <T> void deleteEntity(Class<T> clazz, Long id) {
-		baseDao.deleteById(clazz, id);
+	public <T> int deleteEntity(Class<T> clazz, Long id) {
+		return baseDao.deleteById(clazz, id);
 	}
 
 	public <T> T getEntityByUnique(Class<T> clazz, String colName, Object value) {

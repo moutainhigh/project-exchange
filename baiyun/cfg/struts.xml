@@ -106,6 +106,8 @@
 			<result name="areaWorkOrg_edit">/main/admin/area_account_edit.jsp</result>
 			<result name="zhenWorkOrg_list">/main/admin/zhen_account_list.jsp</result>
 			<result name="zhenWorkOrg_edit">/main/admin/zhen_account_edit.jsp</result>
+			<result name="cunWorkOrg_list">/main/admin/cun_account_list.jsp</result>
+			<result name="cunWorkOrg_edit">/main/admin/cun_account_edit.jsp</result>
 			<result name="per_list">/main/admin/per_list.jsp</result>
 			<result name="per_edit">/main/admin/per_edit.jsp</result>
 		</action>
@@ -283,6 +285,7 @@
 			<result name="pro_sh_list">/main/project/shehui_project_list.jsp</result>
 			<result name="pro_sh_edit">/main/project/shehui_project_edit.jsp</result>
 			<result name="sh_stat">/main/project/shehui_project_status.jsp</result>
+			<result name="cun_stat_lock_list">/main/project/cun_project_stat_lock_list.jsp</result>
 		</action>
 		<!-- 通讯组管理 -->
 		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">
@@ -294,6 +297,21 @@
 			<result name="edit_contact">/main/sms_contact/contact_edit.jsp</result>
 			<result name="query_contact">/main/sms_contact/contact_list.jsp</result>
 			<result name="choose_contacts">/main/sms/choose_contact.jsp</result>
+		</action>
+		<!-- 报送信息 -->
+		<action name="baosong_*" method="{1}" class="com.throne212.fupin.action.BaoSongAction">
+			<result name="baosong_edit">/main/baosong/baosong_edit.jsp</result>
+			<result name="baosong_list">/main/baosong/baosong_list.jsp</result>
+		</action>
+		<!-- 报送信息上传附件 -->
+		<action name="BaoSongAttachUploadAction" class="com.throne212.fupin.action.BaoSongAttachUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/main/baosong/upload/success.jsp</result>
+			<result name="error">/main/baosong/upload/fail.jsp</result>
+		</action>
+		<!-- 提醒 -->
+		<action name="remind" class="com.throne212.fupin.action.RemindAction">
+			<result name="success">/main/remind/remind_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
@@ -394,6 +412,16 @@
 				<param name="includeProperties">  
 					list\[\d+\]\.id,
 					list\[\d+\]\.orgName
+				</param>
+			</result>
+			<result name="org" type="json">
+				<param name="includeProperties">  
+					org\.id,
+					org\.fuze,
+					org\.zhiwu,
+					org\.gongshangZhiwu,
+					org\.address,
+					org\.tel
 				</param>
 			</result>
 		</action>		

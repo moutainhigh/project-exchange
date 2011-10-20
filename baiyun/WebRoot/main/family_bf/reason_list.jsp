@@ -81,7 +81,13 @@ function displayAction(sid) {
 		});
 		var paramZhenId = '${param.zhenId}';
 		function selectArea(val){
-			if(val){
+			if(!document.getElementById('zhenId')){
+				var zhenId = '';
+				<c:if test="${userObj.roleType=='镇级管理员'}">
+				zhenId = '${userObj.zhen.id}';
+				</c:if>
+				selectZhen(zhenId);
+			}else if(val){
 				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
 					if(json && json['list'] && json['list'].length){
 						$('#zhenId').html('<option value=""></option>');
@@ -159,6 +165,12 @@ function displayAction(sid) {
 									<option value="">-----------</option>
 									</select>
 					</c:if>
+					<c:if test="${userObj.roleType=='镇级管理员'}">
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+					</c:if>
 	
 			<label>审核状态: </label>
 	<select name="reason.status" size="1">
@@ -170,7 +182,7 @@ function displayAction(sid) {
 	</select>
 	
 	<label>贫困户姓名: </label>
-	<input type="text" style="width: 90px;" value="" name="reason.family.name" id="textfield"> 
+	<input type="text" style="width: 90px;" value="${param['reason.family.name']}" name="reason.family.name" id="textfield"> 
 
 		<input type="submit" class="button" value="查询" name="查询">
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">

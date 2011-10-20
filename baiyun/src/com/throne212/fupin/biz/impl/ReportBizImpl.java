@@ -19,8 +19,10 @@ import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.dao.ReportDao;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report3;
 import com.throne212.fupin.domain.Report3Item;
 import com.throne212.fupin.domain.User;
@@ -65,6 +67,12 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			report.setType(r.getType());
 			report.setTime(r.getTime());
 			report.setLock(1);// 1表示已经锁定
+			
+			if(r.getId() == null && r.getType().equals("1")){
+				Report1 r1 = (Report1) r;
+				r1.setCunRemark("未审核");
+			}
+			
 			reportDao.saveOrUpdate(report);
 
 			// 如果是月份的报表，则生成季度和年份的报表
@@ -186,6 +194,16 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		if (user instanceof Org) {
 			Org org = (Org) user;
 			Cun cun = org.getCun();
+			Report report = reportDao.getReport(reportType, org, cun, year, type, time);
+			if (report.getId() != null)
+				return report;
+		} else if(user instanceof CunWorkOrg){
+			CunWorkOrg c = (CunWorkOrg) user;
+			Cun cun = c.getCun();
+			Org org = cun.getOrg();
+			if(org == null){
+				return null;
+			}
 			Report report = reportDao.getReport(reportType, org, cun, year, type, time);
 			if (report.getId() != null)
 				return report;

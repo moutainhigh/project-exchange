@@ -43,6 +43,7 @@
 	<mapping resource="com/throne212/fupin/domain/Project.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/ProjectStat.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/Report3Item.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/BaoSong.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

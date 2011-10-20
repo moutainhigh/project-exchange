@@ -37,6 +37,28 @@ public class ReportAction extends BaseAction {
 	// excel导出文件
 	private InputStream downloadFile;
 
+	//村委会审核通过
+	public String shenhe(){
+		if(r!=null && r.getId() != null){
+			Report1 r1 = reportBiz.getEntityById(Report1.class, r.getId());
+			r1.setCunRemark("已审核");
+			reportBiz.saveOrUpdateEntity(r1);
+			this.setMsg("已审核");
+		}
+		return viewReport1();
+	}
+	//村委会审核退回
+	public String tuihui(){
+		if(r!=null && r.getId() != null){
+			Report1 r1 = reportBiz.getEntityById(Report1.class, r.getId());
+			r1.setCunRemark("退回修改");
+			r1.setLock(0);//解锁
+			reportBiz.saveOrUpdateEntity(r1);
+			this.setMsg("退回修改，并自动解锁");
+		}
+		return viewReport1();
+	}
+	
 	// 导出Excel
 	public String excelReport1() {
 		if (r == null) {
@@ -92,7 +114,7 @@ public class ReportAction extends BaseAction {
 				r.setTime(time);
 				r.setType(type);
 			}
-		} else if (r != null && r.getId() == null) {// 按条件搜索
+		} else if (r != null) {// 按条件搜索
 			Integer year = r.getYear();
 			String type = r.getType();
 			String time = r.getTime();
@@ -304,6 +326,11 @@ public class ReportAction extends BaseAction {
 			for (String idStr : ids) {
 				Report report = reportBiz.getEntityById(Report.class, Long.parseLong(idStr));
 				report.setLock(0);// 0表示已经解锁
+				if(report instanceof Report1){
+					Report1 r1 = (Report1) report;
+					r1.setCunRemark("未审核");
+					report = r1;
+				}
 				reportBiz.saveOrUpdateEntity(report);
 			}
 			this.setMsg("成功解锁" + ids.length + "个报表");

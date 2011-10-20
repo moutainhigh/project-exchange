@@ -16,6 +16,8 @@ import com.throne212.fupin.domain.ProjectShStat;
 import com.throne212.fupin.domain.ProjectShehui;
 import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.ProjectZhongdian;
+import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.Report1;
 
 public class ProjectAction extends BaseAction {
 
@@ -96,11 +98,112 @@ public class ProjectAction extends BaseAction {
 			this.setMsg("不能保存，还未指定村帮扶项目");
 			return cunStat();
 		}
+		cunStat.setLock(1);
 		projectBiz.saveOrUpdateEntity(cunStat);
-		this.setMsg("保存成功");
+		this.setMsg("保存并提交成功");
 		this.setSucc("Y");
 		return cunStat();
 	}
+
+	public String tmpSaveProCunStat() {
+		if (cunStat == null || cunStat.getId() == null || cunStat.getProject() == null || cunStat.getProject().getId() == null) {
+			this.setMsg("不能保存，还未指定村帮扶项目");
+			return cunStat();
+		}
+		cunStat.setLock(3);
+		projectBiz.saveOrUpdateEntity(cunStat);
+		this.setMsg("暂时保存成功");
+		this.setSucc("Y");
+		return cunStat();
+	}
+
+	public String requstUnlockProCunStat() {
+		if (cunStat == null || cunStat.getId() == null || cunStat.getProject() == null || cunStat.getProject().getId() == null) {
+			this.setMsg("不能解锁，还未指定村帮扶项目");
+			return cunStat();
+		}
+		cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
+		cunStat.setLock(2);
+		projectBiz.saveOrUpdateEntity(cunStat);
+		this.setMsg("已发出解锁请求");
+		this.setSucc("Y");
+		return cunStat();
+	}
+
+	// 解锁列表
+	private List<ProjectCunStat> proCunStatList;
+
+	public String proCunStatLockList() {
+		proCunStatList = projectBiz.getEntitiesByColumn(ProjectCunStat.class, "lock", 2);
+		return "cun_stat_lock_list";
+	}
+
+	public String unlockProCunStat() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String idStr : ids) {
+				ProjectCunStat s = projectBiz.getEntityById(ProjectCunStat.class, Long.parseLong(idStr));
+				s.setLock(0);// 0表示已经解锁
+				s.setCunRemark("未审核");
+				projectBiz.saveOrUpdateEntity(s);
+			}
+			this.setMsg("成功解锁" + ids.length + "个报表");
+		}
+		return proCunStatLockList();
+	}
+	
+	//cun remark
+	public String cunStatForCunRemark() {
+		if(cunStat == null){
+			cunStat = new ProjectCunStat();
+			Calendar now = GregorianCalendar.getInstance();
+			cunStat.setYear(now.get(Calendar.YEAR));
+			cunStat.setMonth(now.get(Calendar.MONTH) + 1);
+			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
+			if (cunStatInDB != null)
+				cunStat = cunStatInDB;
+			else {
+				this.setMsg("本单位还没有指定村帮扶项目，请联系管理员先指定");
+			}
+		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {
+			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
+			if (cunStatInDB != null)
+				cunStat = cunStatInDB;
+			else {
+				this.setMsg("该月暂时还没有进度数据");
+			}
+		}
+		return "cun_stat";
+	}
+	public String shenheProCunStat() {
+		if (cunStat == null || cunStat.getId() == null || cunStat.getProject() == null || cunStat.getProject().getId() == null) {
+			this.setMsg("不能操作，还未指定村帮扶项目");
+			return cunStat();
+		}
+		cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
+		cunStat.setCunRemark("已审核");
+		projectBiz.saveOrUpdateEntity(cunStat);
+		this.setMsg("已审核");
+		this.setSucc("Y");
+		return cunStat();
+	}
+
+	public String tuihuiProCunStat() {
+		if (cunStat == null || cunStat.getId() == null || cunStat.getProject() == null || cunStat.getProject().getId() == null) {
+			this.setMsg("不能操作，还未指定村帮扶项目");
+			return cunStat();
+		}
+		cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
+		cunStat.setLock(0);
+		cunStat.setCunRemark("退回修改");
+		projectBiz.saveOrUpdateEntity(cunStat);
+		this.setMsg("退回修改");
+		this.setSucc("Y");
+		return cunStat();
+	}
+	
+	
+	
 
 	// 重点项目管理
 	private ProjectZhongdian proZd;
@@ -333,6 +436,14 @@ public class ProjectAction extends BaseAction {
 
 	public void setShStat(ProjectShStat shStat) {
 		this.shStat = shStat;
+	}
+
+	public List<ProjectCunStat> getProCunStatList() {
+		return proCunStatList;
+	}
+
+	public void setProCunStatList(List<ProjectCunStat> proCunStatList) {
+		this.proCunStatList = proCunStatList;
 	}
 
 }

@@ -9,10 +9,12 @@ public interface CunDao extends BaseDao {
 	//村帮扶措施
 	public PageBean<CuoshiCun> getAllCuoshiCunByCunId(CuoshiCun condition,Long cunId,Integer pageIndex);
 	public PageBean<CuoshiCun> getAllCuoshiCun(CuoshiCun condition,Integer pageIndex);
+	public PageBean<CuoshiCun> getAllCuoshiCun(CuoshiCun condition,Long zhenId,Long cunId,Integer pageIndex);
 
 	//村帮扶成效
 	public PageBean<ChengxiaoCun> getAllChengxiaoCunByCunId(ChengxiaoCun condition,Long cunId,Integer pageIndex);
 	public PageBean<ChengxiaoCun> getAllChengxiaoCun(ChengxiaoCun condition,Integer pageIndex);
+	public PageBean<ChengxiaoCun> getAllChengxiaoCun(ChengxiaoCun condition,Long zhenId,Long cunId,Integer pageIndex);
 	
 	//村图片管理
 	public PageBean<PicCun> getAllPicCunByCunId(PicCun condition,Long CunId,Integer pageIndex);

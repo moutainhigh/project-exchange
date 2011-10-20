@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ProjectDao;
+import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Project;
 import com.throne212.fupin.domain.ProjectCun;
@@ -51,14 +52,25 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 	public ProjectCunStat getCunStat(ProjectCunStat param) {
 		Integer year = param.getYear();
 		Integer month = param.getMonth();
-		Long proId = param.getProject().getId();
+		Long proId = param.getProject()==null?null:param.getProject().getId();
+//		Long cunId = (param.getProject()!=null&&param.getProject().getCun()!=null)?param.getProject().getCun().getId():null;
 
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		
-		String hql = "from ProjectCunStat s where year=? and month=? and s.project.id=" + proId;
+		String hql = "from ProjectCunStat s where year=? and month=?";
+		
+		if(proId != null){
+			hql += " and s.project.id=" + proId;
+		}
+//		if(cunId != null){
+//			hql += " and s.project.cun.id=" + cunId;
+//		}
 		
 		if (user instanceof Org) {
 			hql += " and s.project.org.id=" + user.getId();
+		}else if(user instanceof CunWorkOrg){
+			CunWorkOrg c = (CunWorkOrg) user;
+			hql += " and s.project.cun.id=" + c.getCun().getId();
 		}
 
 		List<ProjectCunStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month });
@@ -80,7 +92,21 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
-		}	
+		}else if(user instanceof CunWorkOrg){
+			CunWorkOrg c = (CunWorkOrg) user;
+			hql = "from ProjectCun where cun.id=" + c.getCun().getId() + " and id=" + proId;
+			List<ProjectCun> list = this.getHibernateTemplate().find(hql);
+			if (list != null && list.size() > 0){
+				ProjectCun proCun = list.get(0);
+				ProjectCunStat cunStat = new ProjectCunStat();
+				cunStat.setProject(proCun);
+				cunStat.setMonth(month);
+				cunStat.setYear(year);
+				//cunStat.setProject(param.getProject());
+				this.saveOrUpdate(cunStat);
+				return cunStat;
+			}	
+		}
 		
 		return null;
 

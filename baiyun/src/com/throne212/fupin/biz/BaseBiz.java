@@ -17,7 +17,7 @@ public interface BaseBiz {
 
 	public <T> boolean checkUnique(Class<T> clazz, String colName, Object value);
 
-	public <T> void deleteEntity(Class<T> clazz, Long id);
+	public <T> int deleteEntity(Class<T> clazz, Long id);
 
 	public <T> List<T> getAllLike(Class<T> clazz,String colName,String likeValue);
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value);

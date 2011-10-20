@@ -75,8 +75,12 @@ public class LoginAction extends BaseAction {
 		} else if (user instanceof Org) {
 			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../org_editOrg.action");
-			checkOrgCun((Org) user);
-			fillOrgHelpType((Org) user);
+			Org org = (Org) user;
+			if(org.getZhengfu()){
+				ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../remind.action");
+			}
+			checkOrgCun(org);
+			fillOrgHelpType(org);
 		}
 
 		// 保留cookie

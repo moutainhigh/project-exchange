@@ -211,21 +211,18 @@
 							<c:forEach items="${r3List}" var="r" varStatus="s">
 							<table id="data_table" cellspacing="0" cellpadding="0" border="0" class="tables_table" style="margin: 5px 10px;width:85%;" align="center">
 								<tr>
-									<td align="center" class="tables_headercell" colspan="8">${r.zhen.name }</td>
-								</tr>
-								<tr>
-									<td align="center" class="tables_headercell" colspan="4">资金下拨</td>
-									<td align="center" class="tables_headercell" colspan="3">资金支出</td>
-									<td align="center" class="tables_headercell" colspan="1" rowspan="2">备注</td>
+									<td align="center" class="tables_headercell" colspan="9">${r.zhen.name }</td>
 								</tr>
 								<tr>
 									<td align="center" class="tables_headercell" colspan="1">帮扶单位</td>
 									<td align="center" class="tables_headercell" colspan="1">被帮扶村</td>
-									<td align="center" class="tables_headercell" colspan="1">项目资金（万元）</td>
+									<td align="center" class="tables_headercell" colspan="1">总金额（万元）</td>
+									<td align="center" class="tables_headercell" colspan="1">到帐金额（万元）</td>
 									<td align="center" class="tables_headercell" colspan="1">到账时间</td>
 									<td align="center" class="tables_headercell" colspan="1">项目名称</td>
-									<td align="center" class="tables_headercell" colspan="1">项目资金（万元）</td>
+									<td align="center" class="tables_headercell" colspan="1">核拨资金（万元）</td>
 									<td align="center" class="tables_headercell" colspan="1">下拨时间</td>
+									<td align="center" class="tables_headercell" colspan="1">备注</td>
 								</tr>
 								<c:forEach items="${r.items}" var="f" varStatus="s">
 								<tr>
@@ -235,6 +232,9 @@
 									</td>
 									<td class="tables_contentcell">
 									&nbsp;${f.proCun.cun.name}
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;<input name="r.items[${s.count-1}].proCun.money" type="text" value="${f.proCun.money}"/>
 									</td>
 									<td class="tables_contentcell">
 									&nbsp;<input name="r.items[${s.count-1}].reachMoney" type="text" value="${f.reachMoney}"/>

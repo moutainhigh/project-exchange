@@ -11,6 +11,11 @@ public class ProjectStat extends MyEntity {
 	private String problem;// 存在问题及拟解决措施
 	private String money;// 资金到位
 	
+	//锁定
+	private Integer lock;//0代表未锁/已解锁，1代表锁定，2代表请求解锁, 3代表暂存
+	
+	private String cunRemark;
+	
 	public String getComplete() {
 		return complete;
 	}
@@ -57,6 +62,22 @@ public class ProjectStat extends MyEntity {
 
 	public void setHalf(String half) {
 		this.half = half;
+	}
+
+	public String getCunRemark() {
+		return cunRemark;
+	}
+
+	public void setCunRemark(String cunRemark) {
+		this.cunRemark = cunRemark;
+	}
+
+	public Integer getLock() {
+		return lock;
+	}
+
+	public void setLock(Integer lock) {
+		this.lock = lock;
 	}
 
 }

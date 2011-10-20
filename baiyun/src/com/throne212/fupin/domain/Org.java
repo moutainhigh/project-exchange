@@ -40,6 +40,13 @@ public class Org extends User {
 	private boolean helpCun;
 	private boolean helpZhen;
 	
+	//新加字段
+	private String fuze;
+	private String zhiwu;
+	private String tel;
+	private String address;
+	private String gongshangZhiwu;
+	
 	public Cun getCun() {
 		return cun;
 	}
@@ -183,6 +190,36 @@ public class Org extends User {
 	}
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+	public String getFuze() {
+		return fuze;
+	}
+	public void setFuze(String fuze) {
+		this.fuze = fuze;
+	}
+	public String getZhiwu() {
+		return zhiwu;
+	}
+	public void setZhiwu(String zhiwu) {
+		this.zhiwu = zhiwu;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGongshangZhiwu() {
+		return gongshangZhiwu;
+	}
+	public void setGongshangZhiwu(String gongshangZhiwu) {
+		this.gongshangZhiwu = gongshangZhiwu;
 	}
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="BaoSong" table="fp_baosong">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="date" column="bao_date"></property>
+		<property name="title"></property>
+		<property name="content"></property>
+		<property name="status"></property>
+		<property name="attatch1"></property>
+		<property name="attatch2"></property>
+		<property name="attatch3"></property>
+		<property name="attatch4"></property>
+		<property name="attatch5"></property>
+		<many-to-one name="user" column="user_id" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>
