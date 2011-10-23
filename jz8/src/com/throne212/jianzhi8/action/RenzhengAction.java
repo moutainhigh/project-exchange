@@ -51,6 +51,11 @@ public class RenzhengAction extends ActionSupport {
 	private Integer navIndex;
 
 	public String renzheng() {
+		
+		String actionName = ActionContext.getContext().getName();
+		if(!"".equals(actionName) && actionName.contains("/") && !"renzheng".equals(actionName)){
+			return "404";
+		}
 
 		navIndex = 3;
 

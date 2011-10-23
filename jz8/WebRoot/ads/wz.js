@@ -1,0 +1,1 @@
+/*document.writeln("<LI><A href=\"http:\/\/www.zhuanmoney.com\/91625\/index.ftl\"  target=\"_blank\"><SPAN>ÍøÂç¼æÖ°<\/SPAN><\/A> <\/LI>")*/

@@ -1,0 +1,1 @@
+document.writeln("<a href=\'http:\/\/www.jiajiao114.com\/xueyuan/\' target='_blank'><img src=\'http:\/\/www.jianzhi8.com\/comcity/\ads\/images\/jiajiao114.gif\' alt='家教信息' width=188 height=50><\/a>")

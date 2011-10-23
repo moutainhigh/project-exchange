@@ -8,9 +8,9 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="php,asp,aspx,action,xls,dhtml,htm,html,do,"></constant>
+	<constant name="struts.action.extension" value="action,dhtml,htm,html,do,"></constant>
 	<constant name="struts.i18n.encoding" value="gbk"/>
-	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
+	<constant name="struts.enable.SlashesInActionNames" value="false"></constant>
 	<constant name="struts.multipart.maxSize" value="5242880" /><!-- 附件大小最大为5M -->
 	
     <package name="struts2" extends="struts-default" namespace="/">
@@ -43,8 +43,28 @@
     	<action name="search" method="s" class="com.throne212.jianzhi8.action.SearchAction">
     		<result name="search">/search.jsp</result>
     	</action>
-    	<action name="index" class="com.throne212.jianzhi8.action.IndexAction">
+    	<action name="index" method="index" class="com.throne212.jianzhi8.action.IndexAction">
     		<result name="success">/index.jsp</result>
+    	</action>
+    	<action name="jianzhi*" method="jianzhi" class="com.throne212.jianzhi8.action.ListAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_jianzhi">/list_jianzhi.jsp</result>
+    	</action>
+    	<action name="job*" method="job" class="com.throne212.jianzhi8.action.ListAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_job">/list_job.jsp</result>
+    	</action>
+    	<action name="shixi*" method="shixi" class="com.throne212.jianzhi8.action.ListAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_shixi">/list_shixi.jsp</result>
+    	</action>
+    	<action name="rencai*" method="rencai" class="com.throne212.jianzhi8.action.RencaiAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_rencai">/list_rencai.jsp</result>
+    	</action>
+    	<action name="renzheng*" method="renzheng" class="com.throne212.jianzhi8.action.RenzhengAction">
+        	<param name="listType">{1}</param>
+    		<result name="list_renzheng">/list_renzheng.jsp</result>
     	</action>
     </package>
     

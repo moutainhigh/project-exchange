@@ -1,0 +1,1 @@
+document.writeln("<a href=\'ad.jsp \' target='_blank'><img src=\'\/ads\/none_ad.gif\'><\/a>")

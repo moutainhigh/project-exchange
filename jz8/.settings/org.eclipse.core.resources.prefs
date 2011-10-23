@@ -1,0 +1,9 @@
+#Thu Sep 22 23:27:18 CST 2011
+eclipse.preferences.version=1
+encoding//WebRoot/list_jianzhi.jsp=GBK
+encoding//WebRoot/view_job.jsp=GBK
+encoding//src/com/throne212/jianzhi8/domain/Content.hbm.xml=GBK
+encoding//src/com/throne212/jianzhi8/domain/Region.hbm.xml=GBK
+encoding//src/com/throne212/jianzhi8/domain/Type.hbm.xml=GBK
+encoding//src/com/throne212/jianzhi8/domain/User.hbm.xml=GBK
+encoding/<project>=GBK

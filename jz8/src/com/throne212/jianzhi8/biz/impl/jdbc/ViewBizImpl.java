@@ -89,7 +89,7 @@ public class ViewBizImpl implements ViewBiz {
 			sql += " and ct_type_id like ?";
 			params = new Object[] { cityCode, kind, "%" + typeId + "%", startIndex };
 		}
-		sql += " order by ct_ispay desc, ct_isyz desc, ct_update desc";
+		sql += " order by ct_ispay desc, ct_isyz desc, ct_enddate desc";
 		sql += " limit ?,30";
 
 		logger.debug("sql:" + sql);
@@ -126,7 +126,7 @@ public class ViewBizImpl implements ViewBiz {
 		sql = "select ct_no,ct_title,left(ct_content,45) as sim_con,ct_update,ct_type_name,ct_type_id,ct_isyz,ct_ispay,ct_enddate,u.user_file_name as user_file,ct_class";
 		sql += " from content_tab left outer join user_tab u on u.user_id=ct_user_id";
 		sql += " where ct_ischeck != '0' and ct_city_id=? and ct_type_id like ?";
-		sql += " order by ct_ispay desc, ct_isyz desc, ct_update desc";
+		sql += " order by ct_ispay desc, ct_isyz desc, ct_enddate desc";
 		sql += " limit ?,30";
 
 		logger.debug("sql:" + sql);
@@ -168,7 +168,7 @@ public class ViewBizImpl implements ViewBiz {
 		sql += " where ct_ischeck != '0' and ct_city_id=? and (ct_title like ? or ct_content like ?)";
 		if (kind != null)
 			sql += " and ct_kind='" + kind + "'";
-		sql += " order by ct_ispay desc, ct_isyz desc, ct_update desc";
+		sql += " order by ct_ispay desc, ct_isyz desc, ct_enddate desc";
 		sql += " limit ?,30";
 
 		logger.debug("sql:" + sql);
@@ -224,7 +224,7 @@ public class ViewBizImpl implements ViewBiz {
 			sql += " and ct_type_id like ?";
 			params = new Object[] { cityCode, "%" + typeId + "%", startIndex };
 		}
-		sql += " order by ct_ispay desc, ct_isyz desc, ct_update desc";
+		sql += " order by ct_ispay desc, ct_isyz desc, ct_enddate desc";
 		sql += " limit ?,30";
 
 		logger.debug("sql:" + sql);

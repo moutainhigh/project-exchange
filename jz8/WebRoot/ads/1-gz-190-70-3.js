@@ -1,0 +1,1 @@
+document.writeln("<a href=\'http:\/\/www.zhubajie.com\/task\/?mod=user&com=register&welcome=911638\' target='_blank'><img src=\'\/ads\/images/zbj.gif\' width='188' height='50'><\/a>")

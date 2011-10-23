@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="content_tab" catalog="jianzhi8" class="Content"></table>
+	<table name="link_tab" catalog="jianzhi8" class="Link"></table>
+	<table name="region_tab" catalog="jianzhi8" class="Region"></table>
+	<table name="type_tab" catalog="jianzhi8" class="Type"></table>
+	<table name="user_tab" catalog="jianzhi8" class="User"></table>
+</hibernate-reverse-engineering>

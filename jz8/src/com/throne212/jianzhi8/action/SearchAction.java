@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.throne212.jianzhi8.biz.ViewBiz;
 import com.throne212.jianzhi8.common.Consts;
+import com.throne212.jianzhi8.common.Keywords;
 import com.throne212.jianzhi8.common.PageBean;
 import com.throne212.jianzhi8.dao.RegionDAO;
 import com.throne212.jianzhi8.dao.TypeDAO;
@@ -45,6 +46,8 @@ public class SearchAction extends ActionSupport {
 	private Region city;
 
 	private PageBean bean;
+	
+	private String[] words;
 
 	public String s() {
 
@@ -57,6 +60,12 @@ public class SearchAction extends ActionSupport {
 			String[] arr = key.split("-");
 			key = arr[0];
 			pageIndex = Integer.parseInt(arr[1]);
+		}
+		
+		//提出地区和兼职信息
+		if(key != null){
+			key = key.replaceAll(city.getSimpleName(), "");
+			key = key.replaceAll("兼职", "");
 		}
 
 		// 全局搜索
@@ -77,6 +86,10 @@ public class SearchAction extends ActionSupport {
 			province = (Region) regionDAO.findByCityName(proName).get(0);
 			cityList = regionDAO.getCityListByProvince(province);
 		}
+		
+		//关键字
+		String keywords = Keywords.strkeywords;
+		words = keywords.split(",");
 		
 		return "search";
 	}
@@ -150,6 +163,14 @@ public class SearchAction extends ActionSupport {
 
 	public void setKey(String key) {
 		this.key = key;
+	}
+
+	public String[] getWords() {
+		return words;
+	}
+
+	public void setWords(String[] words) {
+		this.words = words;
 	}
 
 }

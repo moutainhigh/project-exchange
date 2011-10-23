@@ -1,0 +1,20 @@
+document.writeln("<script type=\"text\/javascript\"><!--");
+document.writeln("google_ad_client = \"pub-5637832140118238\";");
+document.writeln("google_alternate_color = \"FFFFFF\";");
+document.writeln("google_ad_width = 160;");
+document.writeln("google_ad_height = 600;");
+document.writeln("google_ad_format = \"160x600_as\";");
+document.writeln("google_ad_type = \"text\";");
+document.writeln("\/\/2007-09-09: 160*600");
+document.writeln("google_ad_channel = \"6197096706\";");
+document.writeln("google_color_border = \"ffffff\";");
+document.writeln("google_color_bg = \"FFFFFF\";");
+document.writeln("google_color_link = \"0033CC\";");
+document.writeln("google_color_text = \"555555\";");
+document.writeln("google_color_url = \"555555\";");
+document.writeln("google_ui_features = \"rc:6\";");
+document.writeln("\/\/-->");
+document.writeln("<\/script>");
+document.writeln("<script type=\"text\/javascript\"");
+document.writeln("  src=\"http:\/\/pagead2.googlesyndication.com\/pagead\/show_ads.js\">");
+document.writeln("<\/script>")

@@ -1,0 +1,20 @@
+document.writeln("<script type=\"text\/javascript\"><!--");
+document.writeln("  google_ad_client = \"pub-5637832140118238\";");
+document.writeln("  google_ad_format = \"js_sdo\";");
+document.writeln("  google_cts_mode =\"rs\";");
+document.writeln("  google_num_cts = \"16\";");
+document.writeln("  google_cts_font_size = \"12\";");
+document.writeln("  google_color_link = \"0033cc\";");
+document.writeln("  google_searchbox_width = 215;");
+document.writeln("  google_searchbox_height = 26;");
+document.writeln("  google_link_target = 2;");
+document.writeln("  google_ad_channel = \"7412547695\";");
+document.writeln("  google_logo_pos = \"left\";");
+document.writeln("  google_rs_pos = \"below\";");
+document.writeln("  google_ad_height = 50;");
+document.writeln("  google_ad_width = 920;");
+document.writeln("\/\/-->");
+document.writeln("<\/script>");
+document.writeln("<script type=\"text\/javascript\"");
+document.writeln("  src=\"http:\/\/pagead2.googlesyndication.com\/pagead\/show_sdo.js\">");
+document.writeln("<\/script>")

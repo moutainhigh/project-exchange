@@ -59,6 +59,11 @@ public class ListAction extends ActionSupport {
 
 	public String jianzhi() {
 
+		String actionName = ActionContext.getContext().getName();
+		if(!"".equals(actionName) && actionName.contains("/") && !"jianzhi".equals(actionName)){
+			return "404";
+		}
+		
 		// 获取城市
 		String cityId = (String) ActionContext.getContext().getSession().get(Consts.SESS_CITY_ID);
 		city = regionDAO.findById(cityId);
@@ -113,6 +118,11 @@ public class ListAction extends ActionSupport {
 	}
 
 	public String job() {
+		
+		String actionName = ActionContext.getContext().getName();
+		if(!"".equals(actionName) && actionName.contains("/") && !"job".equals(actionName)){
+			return "404";
+		}
 
 		// 获取城市
 		String cityId = (String) ActionContext.getContext().getSession().get(Consts.SESS_CITY_ID);
@@ -159,6 +169,11 @@ public class ListAction extends ActionSupport {
 	}
 
 	public String shixi() {
+		
+		String actionName = ActionContext.getContext().getName();
+		if(!"".equals(actionName) && actionName.contains("/") && !"shixi".equals(actionName)){
+			return "404";
+		}
 
 		// 获取城市
 		String cityId = (String) ActionContext.getContext().getSession().get(Consts.SESS_CITY_ID);

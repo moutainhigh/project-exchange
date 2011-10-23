@@ -1,0 +1,1 @@
+document.writeln("<a href=\'http:\/\/usb.id666.com/\' target='_blank'><img src=\'\/ads\/images\/gz-190-70-1.gif\' width=188 height=50><\/a>") 

@@ -1,0 +1,1 @@
+document.writeln("<a href=\'http:\/\/www.jianzhi8.com\/ads2\/876421.html\' target='_blank'><img src=\'http:\/\/www.jianzhi8.com\/comcity/\ads\/images\/whzk.gif\' alt='武汉大学自考,硕士招生报名' width=188 height=50><\/a>")

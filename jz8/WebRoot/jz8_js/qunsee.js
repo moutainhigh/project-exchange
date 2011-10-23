@@ -1,0 +1,13 @@
+qs_pid = 99008170;
+qs_cid = 8218;
+qs_link_color = "#3333FF";
+qs_max_ads_num = 12;
+qs_frame = "0";
+qs_link_style = 0;
+qs_link_effect = 0;
+qs_title_text = "";
+qs_ads_area_list = [];
+qs_allow_popup = 1;
+qs_widget = "";
+qs_srv = "4";
+document.write('<scr'+'ipt type="text/jav'+'ascript" src="http://web.qunsee.com/script/intext.js"></scr'+'ipt>');

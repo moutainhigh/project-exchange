@@ -1,0 +1,1 @@
+document.writeln("<a href=\'http:\/\/bj.jianzhi8.com\/a591402.html\' target='_blank'><img src=\'\/ads\/images\/wlj.jpg\' width=188 height=50><\/a>")

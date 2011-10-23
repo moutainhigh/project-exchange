@@ -1,0 +1,273 @@
+ .vlayout {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: center top; PADDING-LEFT: 0px; MARGIN: 0px auto; WIDTH: 960px; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #ffffff
+          }
+
+ .v_content{width:550;overflow-x:visible;overflow-y:visible;background-color:#f6f6f6 ; border-bottom: 0px double; border-left: 0px double; border-right: 0px double; border-top: 0px double; color: #000000; PADDING-LEFT: 8px; font-size:13px;font-family:Arial, Helvetica, sans-serif;}
+
+#v_main {FLOAT: left; WIDTH: 730px;}
+
+#v_main #companyinfo .comppic {
+	FLOAT: right
+}
+#v_main #companyinfo TABLE {
+	BORDER-BOTTOM: #efefef 1px solid; BORDER-LEFT: #efefef 1px solid; WIDTH: 480px; FONT-SIZE: 14px; BORDER-TOP: #efefef 1px solid; BORDER-RIGHT: #efefef 1px solid
+}
+#v_main #companyinfo TABLE TBODY TR TD {
+	BORDER-BOTTOM: #efefef 1px solid; BORDER-LEFT: #efefef 1px solid; PADDING-BOTTOM: 9px; PADDING-LEFT: 9px; PADDING-RIGHT: 9px; BORDER-TOP: #efefef 1px solid; BORDER-RIGHT: #efefef 1px solid; PADDING-TOP: 9px
+}
+#v_main #companyinfo TABLE TBODY TR TD:first-child {
+	TEXT-ALIGN: center
+}
+#v_main #companyinfo TABLE TBODY TR TD.nowrap {
+	WHITE-SPACE: nowrap
+}
+#v_main #companyinfo TABLE {
+	MARGIN-BOTTOM: 25px
+}
+#v_main .compinfo .compcon {
+	MARGIN-BOTTOM: 25px
+}
+
+ #v_sidebar {  float:right; OVERFLOW: hidden;  WIDTH: 160px; border-bottom:1px solid #BFBFBF;border-right:1px solid #BFBFBF;border-left:1px solid #BFBFBF;
+}
+ #v_sidebar .vinfo3{  padding:5px;
+}
+
+#v_sidebar h3{ CLEAR: both;TEXT-ALIGN: left;color:#666;background-color:#f6f6f6 ; padding-left:5px;line-height:20px; font-size:12px; border-top:1px solid #BFBFBF; margin-left:0px;}
+
+#v_sidebarBox {
+	MARGIN: 0px
+}
+
+
+.compmess {
+	MARGIN-BOTTOM: 25px; MARGIN-LEFT: 10px;
+}
+.compmess P {
+	 MARGIN-BOTTOM: 10px;line-height:150%;
+}
+.compmess P A {
+	BORDER-BOTTOM: #333333 1px dotted; COLOR: #000000
+}
+.compmess .more {
+	MARGIN-BOTTOM: 0px; FLOAT: left
+}
+.compmess DIV P {
+	MARGIN: 0px; FLOAT: left; COLOR: #999999;
+}
+.compmess DIV UL {
+	FLOAT: left
+}
+.compmess DIV UL LI {
+	FLOAT: left; MARGIN-RIGHT: 20px
+}
+.compmess DIV UL LI SPAN {
+	LINE-HEIGHT: 16px; WIDTH: 16px; ZOOM: 1; DISPLAY: inline-block; BACKGROUND: url(/template_1/css/job_company/images/ncomp.png) no-repeat; HEIGHT: 16px; VERTICAL-ALIGN: bottom; MARGIN-RIGHT: 2px; disply: block
+}
+.compmess DIV UL LI SPAN.addthis_org_cn {
+	WIDTH: auto
+}
+.compmess DIV UL LI SPAN.one {
+	BACKGROUND-POSITION: -23px 0px
+}
+.compmess DIV UL LI SPAN.two {
+	BACKGROUND-POSITION: -23px -23px
+}
+.compmess DIV UL LI SPAN.three {
+	BACKGROUND-POSITION: -23px -43px
+}
+.compmess H2 {
+	BORDER-BOTTOM: #cccccc 1px solid; POSITION: relative; PADDING-BOTTOM: 2px; MARGIN-BOTTOM: 10px; OVERFLOW: hidden
+}
+.compmess H2 SPAN {
+	POSITION: absolute; BOTTOM: 0px; BACKGROUND: #ffffff; TOP: 0px; RIGHT: 0px; LEFT: 0px
+}
+
+.bc-hd {
+	DISPLAY: none
+}
+.modAA {
+
+}
+.modAA-h2 {
+	BORDER-BOTTOM: #cccccc 1px solid; LINE-HEIGHT: 28px; PADDING-LEFT: 20px; MARGIN-BOTTOM: 10px; BACKGROUND:  #f1f1f1 no-repeat 10px center; FONT-SIZE: 15px
+}
+.modAA-h2-companyName {
+	COLOR: #999999; MARGIN-LEFT: 10px; FONT-WEIGHT: lighter
+}
+.clear {
+	DISPLAY: block; HEIGHT: 0px; CLEAR: both; OVERFLOW: hidden
+}
+
+.cleartop {
+	CLEAR: both
+}
+.clearleft {
+	CLEAR: left
+}
+.clearright {
+	CLEAR: right
+}
+.clearfix {
+	ZOOM: 1
+}
+.clearn {
+	ZOOM: 1
+}
+.clearfix:after {
+	LINE-HEIGHT: 0px; DISPLAY: block; VISIBILITY: hidden; CLEAR: both; CONTENT: 'clear'
+}
+.clearn:after {
+	LINE-HEIGHT: 0px; DISPLAY: block; VISIBILITY: hidden; CLEAR: both; CONTENT: 'clear'
+}
+
+.jobName {
+	margin-top:8px;MARGIN-BOTTOM: 10px;
+}
+.jobName-h1 {
+	FONT-FAMILY: "Î¢ÈíÑÅºÚ", "ºÚÌå"; COLOR: #000000; FONT-SIZE: 22px;FONT-WEIGHT: lighter;padding-left:10px;
+}
+.jobName-companyName {
+	MARGIN-top: 2px; FONT-SIZE: 14px; FONT-WEIGHT: bold;padding-left:10px;
+}
+.jobName-recruitment {
+	MARGIN-BOTTOM: 5px; BORDER-TOP: #cccccc 1px dotted; PADDING-TOP: 5px
+}
+.jobName-recruitment LI {
+	FLOAT: left; MARGIN-RIGHT: 8px
+}
+.jobName-recruitment-liLast {
+	TEXT-OVERFLOW: ellipsis; OVERFLOW: hidden; MARGIN-RIGHT: 0px
+}
+
+.tabbox {
+	MARGIN-BOTTOM: 10px;
+}
+.tabbox {
+	BACKGROUND: url(/myimages/newfront.png) repeat-x 0px -221px; HEIGHT: 35px; CLEAR: both
+}
+.tabbox .tabcnt LI {
+	TEXT-ALIGN: center; LINE-HEIGHT: 33px; MARGIN: 0px 0px -10px 10px; WIDTH: 104px; BACKGROUND: url(/myimages/newfront.png) no-repeat -110px -96px; FLOAT: left; HEIGHT: 33px
+}
+.tabbox .tabcnt LI.ui-tabs-selected {
+	TEXT-ALIGN: center; LINE-HEIGHT: 33px; MARGIN: 0px 0px -10px 10px; WIDTH: 104px; BACKGROUND: url(/myimages/newfront.png) no-repeat 0px -96px; FLOAT: left; HEIGHT: 33px
+}
+.tabbox LI.ui-tabs-selected A {
+	FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.tabbox LI.ui-tabs-selected A:hover {
+	TEXT-DECORATION: none
+}
+.tabbox .tabcnt LI A {
+	DISPLAY: block; COLOR: #000000; FONT-SIZE: 14px; TEXT-DECORATION: none
+}
+.tabbox .compoper {
+	MARGIN-TOP: 0px; FLOAT: right
+}
+.tabbox .compoper LI {
+	FLOAT: left; MARGIN-LEFT: 10px;MARGIN-TOP: 10px;
+}
+.tabbox .compoper LI SPAN {
+	LINE-HEIGHT: 16px; WIDTH: 16px; ZOOM: 1; DISPLAY: inline-block; BACKGROUND: url(/myimages/ncomp.png) no-repeat; HEIGHT: 16px; VERTICAL-ALIGN: bottom; MARGIN-RIGHT: 2px; disply: block
+}
+.tabbox .compoper LI SPAN.one {
+	BACKGROUND-POSITION: 0px -44px
+}
+.tabbox .compoper LI SPAN.two {
+	BACKGROUND-POSITION: 0px -24px
+}
+.tabbox .compoper LI SPAN.three {
+	BACKGROUND-POSITION: 0px 0px
+}
+
+.jobInfo {
+	MARGIN-BOTTOM: 10px
+}
+.jobInfo-table {
+	WIDTH: 690px; BORDER-COLLAPSE: collapse; MARGIN-BOTTOM: 10px; TABLE-LAYOUT: fixed; FONT-SIZE: 14px
+}
+.jobInfo-table TD {
+	BORDER-BOTTOM: #efefef 1px solid; BORDER-LEFT: #efefef 1px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; FONT-SIZE: 12px; BORDER-TOP: #efefef 1px solid; BORDER-RIGHT: #efefef 1px solid; PADDING-TOP: 5px
+}
+.jobInfo-table A {
+	BORDER-BOTTOM: #999999 1px dotted; COLOR: #000000
+}
+.jobInfo-table A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+.box {
+	MARGIN-BOTTOM: 2px; MARGIN-LEFT: 10px
+}
+.graycol {
+	TEXT-ALIGN: center; WIDTH: 100px; BACKGROUND: #f8f8f8; COLOR: #666666
+}
+.grayef {
+	COLOR: #cdcdcd
+}
+.jobdisc-cnt {
+	MARGIN-BOTTOM: 10px;padding-left:5px;
+}
+.jobdisc-cnt A {
+	BORDER-BOTTOM: #333333 1px dotted; COLOR: #000000
+}
+
+.jobdisc-share {
+
+}
+.jobdisc-share SPAN {
+	MARGIN-RIGHT: 5px;MARGIN-BOTTOM: 10px;
+}
+.applyJobButton {
+	TEXT-INDENT: -600px; WIDTH: 127px; BACKGROUND: url(/template_1/css/job_company/images/button.png) no-repeat; HEIGHT: 35px; OVERFLOW: hidden
+}
+.applyJobButton:hover {
+	BACKGROUND-POSITION: 0px bottom
+}
+.grayC {
+	COLOR: #cccccc
+}
+.gray9 {
+	COLOR: #999999
+}
+.gray6 {
+	COLOR: #666666
+}
+.gray3 {
+	COLOR: #333333
+}
+.black {
+	COLOR: #000000
+}
+.red {
+	COLOR: #ff0000
+}
+a.inurl_key:link {COLOR: #000000; TEXT-DECORATION: underline}
+a.inurl_key:visited {COLOR: #000000; TEXT-DECORATION: none}
+a.inurl_key:hover {COLOR: #000000; TEXT-DECORATION: none}
+a.inurl_key:active {COLOR: #000000; TEXT-DECORATION: none}
+
+.new_listing {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; PADDING-BOTTOM: 2px; MARGIN-bottom: 5px; OVERFLOW: hidden; BORDER-LEFT: #dddddd 1px solid;  PADDING-TOP: 2px; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: auto
+}
+.new_listing UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px;MARGIN-right: 5px;  OVERFLOW: hidden; WIDTH: 340px; LINE-HEIGHT: 20px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.list_bg {
+	CLEAR: both; PADDING-RIGHT: 7px; MARGIN-TOP: -3px; PADDING-LEFT: 7px; FONT-SIZE: 12px; BACKGROUND: #f6f6f6; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 0px; PADDING-TOP: 8px; HEIGHT: 20px
+}
+.seo_footer_listing {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; PADDING-BOTTOM: 2px; MARGIN: 5px auto; OVERFLOW: hidden; BORDER-LEFT: #dddddd 1px solid;  PADDING-TOP: 2px; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: auto
+}
+.seo_footer_listing UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px; OVERFLOW: hidden; WIDTH: 140px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.seo_footer_listing UL LI.ad {
+	FLOAT: left; MARGIN-LEFT: 0px; OVERFLOW: hidden;  LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+
+.seo_footer_listing2 {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; PADDING-BOTTOM: 2px; MARGIN: 5px auto; OVERFLOW: hidden; BORDER-LEFT: #dddddd 1px solid;  PADDING-TOP: 2px; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: auto
+}
+.seo_footer_listing2 UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px; OVERFLOW: hidden; WIDTH: 60px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}

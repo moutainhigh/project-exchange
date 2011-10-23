@@ -85,8 +85,12 @@ public class IndexAction extends ActionSupport {
 	
 	private Integer navIndex;
 
-	@Override
-	public String execute() throws Exception {
+	public String index() throws Exception {
+		
+		String actionName = ActionContext.getContext().getName();
+		if(!"".equals(actionName) && !"index".equals(actionName)){
+			return "404";
+		}
 		
 		//导航的索引值
 		navIndex = 0;

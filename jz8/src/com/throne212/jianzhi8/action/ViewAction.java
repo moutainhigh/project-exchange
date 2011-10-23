@@ -69,6 +69,9 @@ public class ViewAction extends ActionSupport {
 	private List<Content> moreList;
 
 	public String a() {
+		
+		//String path = ActionContext.getContext().get`
+		
 		if (ctNo == null)
 			return "404";
 		logger.debug("view action ing... ct_no=" + ctNo);

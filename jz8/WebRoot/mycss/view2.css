@@ -1,0 +1,566 @@
+
+A:focus {
+	-moz-outline-style: none
+}
+A {
+
+}
+AREA {
+
+}
+
+.topctrl {
+	BACKGROUND: #fff; HEIGHT: 48px
+}
+.topctrl .yxtip {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; FLOAT: left; WIDTH: 230px; TEXT-INDENT: 10px; LINE-HEIGHT: 48px
+}
+.topbtn {
+	DISPLAY: inline-block; FLOAT: right; MARGIN-LEFT: -230px; WIDTH: 100%; PADDING-TOP: 10px; TEXT-ALIGN: left
+}
+.topbtn .btn_bigsq {
+	MARGIN-RIGHT: 20px
+}
+.topbtn .inn {
+	MARGIN-LEFT: 230px
+}
+
+
+#v_main {FLOAT: left; WIDTH: 730px;}
+.box {
+	CLEAR: both; DISPLAY: inline-block; BACKGROUND: #fff; MARGIN: 0px auto; TEXT-ALIGN: left;
+}
+.boxsin {
+	BORDER-TOP: #ccc 1px solid; DISPLAY: inline-block; ; MIN-HEIGHT: expression(onresize=document.documentElement.clientHeight-95+"px"); BACKGROUND: #fff; MARGIN: 0px auto; TEXT-ALIGN: left
+}
+.notopbor {
+	BORDER-TOP-STYLE: none
+}
+.single {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none;
+}
+.box:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; LINE-HEIGHT: 0; HEIGHT: 0px; content: "."
+}
+tabblk:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; LINE-HEIGHT: 0; HEIGHT: 0px; content: "."
+}
+.con:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; LINE-HEIGHT: 0; HEIGHT: 0px; content: "."
+}
+.jobinfo UL:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; LINE-HEIGHT: 0; HEIGHT: 0px; content: "."
+}
+.top:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; LINE-HEIGHT: 0; HEIGHT: 0px; content: "."
+}
+.article DD:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; LINE-HEIGHT: 0; HEIGHT: 0px; content: "."
+}
+.side {
+	BORDER-RIGHT: #e1e1e1 1px solid; FLOAT: left; WIDTH: 230px
+}
+.side .tit {
+	PADDING-LEFT: 5px; BACKGROUND: #f0f0f0; BORDER-BOTTOM: #fff 1px solid; HEIGHT: 27px
+}
+.side .tit A {
+	MARGIN: 0px 6px
+}
+.side UL {
+	BACKGROUND: #fff; MARGIN-BOTTOM: 3px; OVERFLOW: auto
+}
+.side LI {
+	PADDING-RIGHT: 0px; BORDER-TOP: #fff 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: normal; BACKGROUND: #fff; PADDING-BOTTOM: 3px; CURSOR: default; PADDING-TOP: 1px; BORDER-BOTTOM: #fff 1px solid; FONT-FAMILY: "宋体"; WHITE-SPACE: nowrap
+}
+.side LI.hov {
+	BORDER-TOP: #d6fefe 1px solid; FONT-SIZE: 12px; BACKGROUND: url(/myimages/sidelibg.gif); BORDER-BOTTOM: #d6fefe 1px solid
+}
+.side LI.on {
+	BORDER-TOP: #60d0d2 1px solid; FONT-SIZE: 12px; BACKGROUND: url(/myimages/sidelibgon.gif); BORDER-BOTTOM: #60d0d2 1px solid
+}
+.side H2 {
+	COLOR: #03c
+}
+.side .time {
+	MARGIN-TOP: -18px; FLOAT: right; COLOR: #000
+}
+.side .compname {
+	PADDING-LEFT: 23px
+}
+.side .gray {
+	DISPLAY: block; PADDING-LEFT: 23px; COLOR: #666
+}
+.viewblk {
+	FLOAT: right; MARGIN-LEFT: -231px; WIDTH: 100%
+}
+.innercon {
+	MARGIN-LEFT: 231px
+}
+.top {
+	CLEAR: both; PADDING-RIGHT: 0px; DISPLAY: inline-block; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.comptit {
+	PADDING-LEFT: 0px; FLOAT: left;WIDTH: 100%;MARGIN-BOTTOM: 0px;
+}
+.complogo {
+	BORDER-RIGHT: #e1e1e1 1px solid; BORDER-TOP: #e1e1e1 1px solid; FLOAT: left; MARGIN: 15px 0px 0px 20px; BORDER-LEFT: #e1e1e1 1px solid; BORDER-BOTTOM: #e1e1e1 1px solid
+}
+.comptit H1 {
+	FONT-SIZE: 20px; MARGIN-BOTTOM: 10px; COLOR: #000000; WORD-BREAK: break-all
+}
+.comptit H1 .rednote {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #f00
+}
+
+.comptit DL {
+	CLEAR: both; DISPLAY: block;height:16px;
+}
+.comptit DT {
+	FLOAT: left
+}
+.comptit DD {
+	FLOAT: left
+}
+
+#comptit_right {
+	 WIDTH: 728px;BORDER-RIGHT: #e4e4e4 1px solid; MARGIN-TOP: 0px; FLOAT: right;PADDING-right: 0px; OVERFLOW: hidden; BORDER-LEFT: #e4e4e4 1px solid;  PADDING-TOP: 0px; BORDER-BOTTOM: #e4e4e4 1px solid
+}
+
+
+
+.tabblk {
+	CLEAR: both; DISPLAY: inline-block; BACKGROUND: url(/myimages/tabbg.gif) repeat-x 0px 10px; MARGIN: 0px 0px 0px;BORDER: #e1e1e1 0px solid;
+}
+
+.tabblk2 {
+	CLEAR: both; DISPLAY: inline-block; BACKGROUND: url(/myimages/tabbg.gif) repeat-x 0px 0px; MARGIN: 0px 0px 0px;BORDER: #e1e1e1 1px solid;
+}
+.tab {
+	FLOAT: left;
+}
+.tab_on {
+	FLOAT: left; WIDTH: 103px; CURSOR: pointer; COLOR: #001999; MARGIN-RIGHT: 0px; TEXT-ALIGN: center
+}
+.tab_off {
+	FLOAT: left; WIDTH: 103px; CURSOR: pointer; COLOR: #001999; MARGIN-RIGHT: 0px; TEXT-ALIGN: center
+}
+.tab_on {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px solid; FONT-WEIGHT: bold; BACKGROUND: #f6f6f6; BORDER-LEFT: #ccc 1px solid; LINE-HEIGHT: 32px; BORDER-BOTTOM: #ccc 1px
+}
+.tab_off {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px; MARGIN-TOP: 0px; BACKGROUND: url(/myimages/taboff.jpg) left bottom; BORDER-LEFT: #ccc 1px solid; LINE-HEIGHT: 24px; BORDER-BOTTOM: #ccc 1px; HEIGHT: 24px
+}
+
+.tab_right {
+	FLOAT: left; WIDTH: 103px; CURSOR: pointer; COLOR: #001999; MARGIN-RIGHT: 0px; TEXT-ALIGN: center
+}
+
+.tab_right {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px; MARGIN-TOP: 0px; BACKGROUND: url(/myimages/taboff.jpg) left bottom; BORDER-LEFT: #ccc 1px solid; LINE-HEIGHT: 24px; BORDER-BOTTOM: #ccc 1px; HEIGHT: 24px
+}
+
+.userctrl2 {
+	PADDING-RIGHT: 12px; FLOAT: right; MARGIN-LEFT: -250px; WIDTH: 100%; TEXT-ALIGN: right
+}
+.ctrlcon {
+	MARGIN-LEFT: 320px; LINE-HEIGHT: 20px; WHITE-SPACE: nowrap;padding-top:14px;
+}
+.ctrlcon UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px; OVERFLOW: hidden; WIDTH: 40px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.ctrlcon UL LI.ad1 {
+	FLOAT: left; MARGIN-LEFT: 0px; OVERFLOW: hidden; WIDTH: 200px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.ctrlcon UL LI.ad2 {
+	FLOAT: left; MARGIN-LEFT: 0px; OVERFLOW: hidden; WIDTH: 80px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.ctrlcon UL LI.ad3 {
+	 WIDTH: 50px; LINE-HEIGHT: 0px;
+}
+
+.userctrl2 A {
+	MARGIN: 0px 0px;
+}
+.userctrl2 .applydiv A {
+	MARGIN: 0px
+}
+
+.single .tabblk {
+	BACKGROUND-POSITION: 0px 33px
+}
+.single .userctrl2 {
+	TEXT-ALIGN: center
+}
+
+.single .tabblk2 {
+	BACKGROUND-POSITION: 0px 33px
+}
+.single .userctrl3 {
+	TEXT-ALIGN: left
+}
+.userctrl3 {
+	PADDING-RIGHT: 12px; FLOAT: right; MARGIN-LEFT: -250px; WIDTH: 100%;
+}
+.ctrlcon2 {
+	MARGIN-LEFT: 20px; LINE-HEIGHT: 15px; WHITE-SPACE: nowrap;padding-top:0px;
+}
+.userctrl3 A {
+	MARGIN: 0px 0px;
+}
+.userctrl3 .applydiv A {
+	MARGIN: 0px
+}
+
+
+.single .tab_on {
+	MARGIN-TOP: 1px
+}
+.single .tab_off {
+	MARGIN-TOP: 10px
+}
+.btmctrl {
+	CLEAR: both; MARGIN-BOTTOM: 20px; PADDING-BOTTOM: 130px; MARGIN-LEFT: 250px; TEXT-ALIGN: center
+}
+.btmctrl A {
+	MARGIN: 0px 5px
+}
+.con {
+	WIDTH: 745px;CLEAR: both; PADDING-RIGHT: 0px; DISPLAY: inline-block; PADDING-LEFT: 0px; MARGIN-BOTTOM: 3px; PADDING-BOTTOM: 0px; OVERFLOW: auto; PADDING-TOP: 0px
+
+}
+
+@media Unknown
+{
+.con {
+	DISPLAY: block
+}
+.box {
+	DISPLAY: block
+}
+    }
+
+
+.info2 {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 5px;width:400px; margin-BOTTOM: 3px; PADDING-TOP: 10px;word-wrap: break-word; word-break: break-all;
+}
+
+.info2 UL {
+	PADDING-RIGHT: 10px; DISPLAY: inline-block; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;BORDER-top: #e4e4e4 0px solid;
+}
+.info2 LI {
+	FLOAT: left; MARGIN: 3px 0px; WIDTH: 190px;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;height:21px;
+}
+
+.info2 LI EM {
+	FONT-WEIGHT: none; FLOAT: left; FONT-STYLE: normal;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+
+.info2 LI.clr {
+	WIDTH: 100%;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+.info2 LI.clr EM{
+	 FLOAT: left; FONT-STYLE: normal;padding-top:0px;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+
+
+
+
+
+
+
+.infoblk {
+	FLOAT: left; WIDTH: 98%; MARGIN-RIGHT: -220px; PADDING-TOP: 0px
+}
+.jobinfo {
+	FLOAT: left;WIDTH: 742px;
+}
+.biginfoblk {
+	PADDING-TOP: 6px
+}
+.biginfoblk .jobinfo {
+	MARGIN-RIGHT: 0px
+}
+.infoblk2 {
+	FLOAT: left; WIDTH: 100%; MARGIN-RIGHT: -220px; PADDING-TOP: 0px;
+}
+
+.jobinfo .info {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 5px; margin-BOTTOM: 3px; PADDING-TOP: 10px;word-wrap: break-word; word-break: break-all;
+}
+
+.jobinfo UL {
+	PADDING-RIGHT: 10px; DISPLAY: inline-block; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;BORDER-top: #e4e4e4 0px solid;
+}
+.jobinfo LI {
+	FLOAT: left; MARGIN: 3px 0px; WIDTH: 160px;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+.jobinfo LI.clr {
+	WIDTH: 50%;height:20px;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+.jobinfo LI.clr EM{
+	 FLOAT: left; FONT-STYLE: normal;padding-top:0px;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+.jobinfo LI EM {
+	FONT-WEIGHT: none; FLOAT: left; FONT-STYLE: normal;font:12px Verdana, Arial, "宋体", SimSun ,serif, sans-serif;
+}
+.jobinfo DT {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; BACKGROUND: #f6f6f6; PADDING-BOTTOM: 0px; MARGIN: 15px 0px 5px; LINE-HEIGHT: 28px; PADDING-TOP: 0px
+}
+.jobinfo DD {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 5px; LINE-HEIGHT: 200%; PADDING-TOP: 5px
+}
+.compinfo {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.compinfo DL {
+	PADDING-TOP: 10px
+}
+.compinfo DT {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; BACKGROUND: #d7f1fc; PADDING-BOTTOM: 0px; MARGIN: 15px 0px 5px; LINE-HEIGHT: 28px; PADDING-TOP: 0px
+}
+.compinfo DD {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 5px; LINE-HEIGHT: 200%; PADDING-TOP: 5px
+}
+.totop {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: #edf6ff; LINE-HEIGHT: 17px; HEIGHT: 17px; TEXT-ALIGN: center
+}
+.tablistbox {
+	MARGIN: 0px 10px 0px 20px
+}
+.totop A {
+	TEXT-DECORATION: none
+}
+.blog {
+	CLEAR: left; MARGIN-TOP: 20px; FLOAT: right; WIDTH: 186px; MARGIN-RIGHT: 20px; _margin-right: 10px
+}
+.blog A {
+	TEXT-DECORATION: none
+}
+.blogname {
+	BACKGROUND: url(images/blogbg.gif) no-repeat; MARGIN: 5px 0px; WIDTH: 186px; HEIGHT: 55px
+}
+.blogname A {
+	PADDING-RIGHT: 5px; DISPLAY: block; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 10px; WIDTH: auto; COLOR: #000; PADDING-TOP: 10px; HEIGHT: 100%; TEXT-ALIGN: center; TEXT-DECORATION: none; _width: 100%
+}
+.blogtit {
+	DISPLAY: block; MARGIN: 10px 10px 0px
+}
+.conner {
+	BORDER-RIGHT: #dceefa 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #dceefa 1px solid; PADDING-LEFT: 10px; BACKGROUND: url(images/topmi5.gif) #ddeefa repeat-x; PADDING-BOTTOM: 0px; BORDER-LEFT: #dceefa 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dceefa 1px solid
+}
+.conner H3 {
+	FONT-SIZE: 14px
+}
+.media {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 5px
+}
+.article {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 5px
+}
+.conner LI {
+	PADDING-LEFT: 16px; MARGIN-BOTTOM: 3px
+}
+.media LI {
+	BACKGROUND: url(images/movieli.gif) no-repeat 0px 2px
+}
+.article DL {
+	LINE-HEIGHT: 150%
+}
+.article DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 8px 0px 3px; PADDING-TOP: 0px
+}
+.article DT A {
+	FONT-WEIGHT: bold; FONT-FAMILY: "宋体"
+}
+.article EM {
+	MARGIN-TOP: -18px; DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 10px; FLOAT: right; FONT-STYLE: normal
+}
+.article EM A {
+	TEXT-DECORATION: underline
+}
+.article DD {
+	DISPLAY: inline-block; PADDING-BOTTOM: 5px
+}
+#footer {
+	PADDING-RIGHT: 10px; MARGIN-TOP: 0px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.foot {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 800px; LINE-HEIGHT: 25px; PADDING-TOP: 0px; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.norst H2 {
+	MARGIN-TOP: 40px
+}
+.jy {
+	PADDING-LEFT: 72px; FONT-WEIGHT: bold
+}
+.btnblk {
+	TEXT-ALIGN: right
+}
+.none {
+	DISPLAY: none
+}
+#v_pfm{ BORDER-RIGHT: #aaccee 1px solid; BORDER-bottom: #aaccee 1px solid; BORDER-left: #aaccee 1px solid;}
+.v_title5{
+	padding-top:0px;padding-left:5px;BORDER-RIGHT: #aaccee 1px solid;BACKGROUND: url(/myimages/page_title_bg.png);height:25px
+}
+
+ .v_content{width:550;overflow-x:visible;overflow-y:visible;background-color:#f6f6f6 ; border-bottom: 0px double; border-left: 0px double; border-right: 0px double; border-top: 0px double; color: #000000; PADDING-LEFT: 8px; font-size:13px;font-family:Arial, Helvetica, sans-serif;}
+
+
+      .vinfo1  {  MARGIN: 2px 8px 2px;WIDTH: 350px;}
+      .vinfo1 LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 2px;WIDTH: 330px;
+       }
+
+
+    .vinfo2 {CLEAR: both;
+         PADDING: 5px; PADDING-BOTTOM:  10px; LIST-STYLE-TYPE: none
+        }
+      .vinfo2 LI {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 0px;  FLOAT: left;   PADDING-TOP: 2px; WIDTH: 350px;
+      }
+
+
+
+       .vinfo3 {CLEAR: both;
+        PADDING-RIGHT: 0px; PADDING-LEFT: 0px;color:#555; PADDING-BOTTOM: 10px; MARGIN: 5px 5px 10px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+        }
+      .vinfo3 LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px;  FLOAT: left;  TEXT-INDENT: 10px;PADDING-BOTTOM: 5px; WIDTH: 100px;  PADDING-TOP: 0px
+      }
+
+       .vinfo4 {CLEAR: both;
+        PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; MARGIN: 0px 8px 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+        }
+      .vinfo4 LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px;  FLOAT: left;  PADDING-BOTTOM: 1px; PADDING-TOP: 2px; WIDTH: 66px;
+      }
+      .comm_textarea {
+	BACKGROUND: url(/myimages/v_logo.gif) no-repeat center top; BORDER: #bbbbbb 1px solid;
+        }
+      .jb_red {font-size: 9pt; color: #a20000; text-decoration: none; cursor: hand}
+
+div.sample_popup { z-index: +1; }
+div.menu_form_header{
+cursor:move;
+}
+div.sample_popup div.menu_form_header
+{
+border: #718af3 1px solid;
+border-bottom: 0px;
+cursor: default;
+width: 280px;
+height: 20px;
+line-height: 19px;
+vertical-align: middle;
+ background:#e3e8fb;
+text-decoration: none;
+font-family: "Times New Roman", Serif;
+font-weight: 900;
+font-size: 13px;
+color: #B44806;
+}
+div.sample_popup div.menu_form_body
+{
+border: 1px solid #718af3 ;
+width: 280px;
+background:#e3e8fb;
+}
+div.sample_popup img.menu_form_exit
+{
+float: right;
+margin: 4px 5px 0px 0px;
+cursor: pointer;
+}
+div.sample_popup table
+{
+border-collapse: collapse;
+width: 100%;
+}
+div.sample_popup th
+{
+width: 1%;
+padding: 0px 5px 1px 0px;
+text-align: left;
+font-family: "Times New Roman", Serif;
+font-weight: 900;
+font-size: 13px;
+color: #004060;
+}
+div.sample_popup td
+{
+width: 99%;
+padding: 0px 0px 1px 0px;
+}
+div.sample_popup form
+{
+margin: 0px;
+padding: 8px 10px 10px 10px;
+}
+div.sample_popup input.field
+{
+border: 1px solid #808080;
+width: 95%;
+font-family: Arial, Sans-Serif;
+font-size: 12px;
+}
+div.sample_popup input.btn
+{
+margin-top: 2px;
+border: 1px solid #808080;
+background-color: #DDFFDD;
+font-family: Verdana, Sans-Serif;
+font-size: 11px;
+}
+.c {border:0px solid #7ABEFF;CLEAR: both}
+ #v_sidebar {  float:right; OVERFLOW: hidden;  WIDTH: 200px; border-bottom:0px solid #BFBFBF;border-right:0px solid #BFBFBF;border-left:0px solid #BFBFBF;
+}
+#v_sidebar h3{ CLEAR: both;TEXT-ALIGN: left;color:#666;background-color:#f6f6f6 ; padding-left:5px;line-height:20px; font-size:12px; border-top:1px solid #BFBFBF; margin-left:0px;}
+#v_sidebarBox {
+	MARGIN-top: 5px;border-right:1px solid #BFBFBF;border-left:1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;
+}
+
+        #user_main {FLOAT: left; WIDTH: 350px;margin-bottom:50px;}
+       .user_content{width:350;overflow-x:visible;overflow-y:visible;background-color:#f6f6f6 ; border-bottom: 0px double; border-left: 0px double; border-right: 0px double; border-top: 0px double; color: #000000; PADDING-LEFT: 8px; font-size:13px;font-family:Arial, Helvetica, sans-serif;}
+       #user_sidebar{ margin-top:0px;margin-bottom:50px;width:550px;padding-top:0px;float:right; overflow:hidden; border-left:1px solid #e4e4e4; border-right:1px solid #e4e4e4;  border-bottom:1px solid #e4e4e4;}
+	#user_sidebarBox{ margin:0px;}
+        #user_sidebarBox h3{background:#f6f6f6 repeat-x left top; TEXT-ALIGN: left; line-height:24px; font-size:12px; border-right:0px solid #e4e4e4;border-left:0px solid #e4e4e4; border-top:1px solid #e4e4e4; padding-left:12px;}
+        #user_sidebar div ul{ margin:0px 0;}
+	#user_sidebar div li{background:url(/jz8_images/li_green.gif) no-repeat 5px 8px; padding-right:15px;padding-left:15px;padding-top:2px;border-bottom:#cccccc 1px dotted;overflow:hidden}
+#adViewContent{ float:right; margin:5px;}
+
+        a.ad_title:link {COLOR: #0033cc; FONT-SIZE: 14px;TEXT-DECORATION: underline}
+        a.ad_title:visited {COLOR: #0033cc; FONT-SIZE: 14px;TEXT-DECORATION: underline}
+        a.ad_title:hover {COLOR: #f60; TEXT-DECORATION: none}
+        a.ad_title:active {COLOR: #f60; TEXT-DECORATION: none}
+
+.seo_footer_listing {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; PADDING-BOTTOM: 2px; MARGIN: 5px auto; OVERFLOW: hidden; BORDER-LEFT: #dddddd 1px solid;  PADDING-TOP: 2px; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: auto
+}
+.seo_footer_listing UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px; OVERFLOW: hidden; WIDTH: 140px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.seo_footer_listing UL LI.ad {
+	FLOAT: left; MARGIN-LEFT: 0px; OVERFLOW: hidden;  LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+
+.seo_footer_listing2 {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; PADDING-BOTTOM: 2px; MARGIN: 5px auto; OVERFLOW: hidden; BORDER-LEFT: #dddddd 1px solid;  PADDING-TOP: 2px; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: auto
+}
+.seo_footer_listing2 UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px; OVERFLOW: hidden; WIDTH: 60px; LINE-HEIGHT: 24px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+
+.list_bg {
+	CLEAR: both; PADDING-RIGHT: 7px; MARGIN-TOP: -3px; PADDING-LEFT: 7px; FONT-SIZE: 12px; BACKGROUND: #f6f6f6; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 0px; PADDING-TOP: 8px; HEIGHT: 20px
+}
+
+.new_listing {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; PADDING-BOTTOM: 2px; MARGIN: 5px auto; OVERFLOW: hidden; BORDER-LEFT: #dddddd 1px solid;  PADDING-TOP: 2px; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: auto
+}
+.new_listing UL LI {
+	FLOAT: left; MARGIN-LEFT: 5px;MARGIN-right: 5px;  OVERFLOW: hidden; WIDTH: 340px; LINE-HEIGHT: 20px; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+
+
+.tdrap{ overflow:hidden; text-overflow:ellipsis;width:155px; }

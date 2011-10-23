@@ -29,7 +29,6 @@ public class DomainInterceptor extends AbstractInterceptor {
 			logger.debug("region id: " + regId);
 			ActionContext.getContext().getSession().put(Consts.SESS_CITY_ID, regId);
 		}
-		
 		return actionInvocation.invoke();
 	}
 
