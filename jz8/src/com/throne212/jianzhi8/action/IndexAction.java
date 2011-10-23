@@ -1,6 +1,7 @@
 package com.throne212.jianzhi8.action;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,10 @@ import com.throne212.jianzhi8.domain.User;
 
 public class IndexAction extends ActionSupport {
 
-	private Logger logger = Logger.getLogger(this.getClass());
+	private static Logger logger = Logger.getLogger(IndexAction.class);
+	
+	private static String[] typeCodes = new String[]{"K02","K01","K24","K16","K04","K27"};
+	
 	private ViewBiz viewBiz;
 	private TypeDAO typeDAO;
 	private UserDAO userDAO;
@@ -114,19 +118,25 @@ public class IndexAction extends ActionSupport {
 		latestList = contentDAO.findLatestContent(city.getCityCode(), null, "1", 20, false);
 		
 		//其他信息列表
-		items[0][0] = contentDAO.findLatestContent(city.getCityCode(), "K02", "1", 6, true);
-		items[1][0] = contentDAO.findLatestContent(city.getCityCode(), "K01", "1", 6, true);
-		items[2][0] = contentDAO.findLatestContent(city.getCityCode(), "K24", "1", 6, true);
-		items[3][0] = contentDAO.findLatestContent(city.getCityCode(), "K16", "1", 6, true);
-		items[4][0] = contentDAO.findLatestContent(city.getCityCode(), "K04", "1", 6, true);
-		items[5][0] = contentDAO.findLatestContent(city.getCityCode(), "K27", "1", 6, true);
+//		items[0][0] = contentDAO.findLatestContent(city.getCityCode(), "K02", "1", 6, true);
+//		items[1][0] = contentDAO.findLatestContent(city.getCityCode(), "K01", "1", 6, true);
+//		items[2][0] = contentDAO.findLatestContent(city.getCityCode(), "K24", "1", 6, true);
+//		items[3][0] = contentDAO.findLatestContent(city.getCityCode(), "K16", "1", 6, true);
+//		items[4][0] = contentDAO.findLatestContent(city.getCityCode(), "K04", "1", 6, true);
+//		items[5][0] = contentDAO.findLatestContent(city.getCityCode(), "K27", "1", 6, true);
+		//采用一次方法调用, enhance in 11-10-20
+		contentDAO.fillLatestContent(city.getCityCode(),"1",6,true,typeCodes,items);
 		
-		items[0][1] = typeDAO.findByTypeIds("K02");
-		items[1][1] = typeDAO.findByTypeIds("K01");
-		items[2][1] = typeDAO.findByTypeIds("K24");
-		items[3][1] = typeDAO.findByTypeIds("K16");
-		items[4][1] = typeDAO.findByTypeIds("K04");
-		items[5][1] = typeDAO.findByTypeIds("K27");
+//		items[0][1] = typeDAO.findByTypeIds("K02");
+//		items[1][1] = typeDAO.findByTypeIds("K01");
+//		items[2][1] = typeDAO.findByTypeIds("K24");
+//		items[3][1] = typeDAO.findByTypeIds("K16");
+//		items[4][1] = typeDAO.findByTypeIds("K04");
+//		items[5][1] = typeDAO.findByTypeIds("K27");
+		//直接在缓存中读取类型信息
+		Map<String, String> typeMap = (Map<String, String>) ActionContext.getContext().getApplication().get(Consts.TYPE_MAP);
+		for(int i=0;i<typeCodes.length;i++)	
+			items[i][1] = typeCodes[i];
 		
 		latestRencaiList = contentDAO.findLatestContent(city.getCityCode(), null, "0", 10, false);
 		

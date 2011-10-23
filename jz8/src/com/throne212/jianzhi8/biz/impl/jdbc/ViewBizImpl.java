@@ -178,6 +178,22 @@ public class ViewBizImpl implements ViewBiz {
 		bean.setResultList(list);
 		bean.setPageIndex(pageIndex);
 		bean.setRowPerPage(30);
+		
+		//如果搜索如果少于10条记录的，直接在后面追加上最新的信息，补足 30 条
+		if(len > 0 && len < 10){
+			logger.info("搜索["+key+"],不足10条，补["+(30 - len)+"]最新发布的信息");
+			sql = "select ct_no,ct_title,left(ct_content,45) as sim_con,ct_update,ct_type_name,ct_type_id,ct_isyz,ct_ispay,ct_enddate,u.user_file_name as user_file,ct_class";
+			sql += " from content_tab left outer join user_tab u on u.user_id=ct_user_id";
+			sql += " where ct_ischeck != '0' and ct_city_id=?";
+			if (kind != null)
+				sql += " and ct_kind='" + kind + "'";
+			sql += " order by ct_ispay desc, ct_isyz desc, ct_enddate desc";
+			sql += " limit 0,?";
+			params = new Object[] { cityCode, 30 - len };
+			List<ContentDO> otherList = jdbcTemplate.query(sql, params, new ContentListRowMapper());
+			list.addAll(otherList);
+			bean.setResultList(list);
+		}
 
 		return bean;
 	}

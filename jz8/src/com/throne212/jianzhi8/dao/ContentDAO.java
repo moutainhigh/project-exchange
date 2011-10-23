@@ -111,6 +111,26 @@ public class ContentDAO extends HibernateDaoSupport {
 		});
 
 	}
+	
+	//一次性填充所有的其他分类的信息列表，only for index
+	public void fillLatestContent(final String cityId, final String kind, final int rows, boolean isHot, final String[] typeCodes, Object[][] items) {
+		for(int i=0;i<typeCodes.length;i++){
+			String typeCode = typeCodes[i];
+			String hql = "from Content c where c.ctCityId=? and c.ctKind='"+kind+"' and ctIscheck='1' and ctIsclose='0' and c.ctTypeId like '%" + typeCode + "%'";
+			hql += " order by ctIspay desc, ctIsyz desc, ctEnddate desc, ctLooknum desc";
+			final String exeHql = hql;
+			logger.debug("last " + rows + " list hql = " + hql);
+			List list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
+				public Object doInHibernate(Session s) throws HibernateException, SQLException {
+					Query q = s.createQuery(exeHql);
+					q.setParameter(0, cityId);
+					q.setMaxResults(rows);
+					return q.list();
+				}
+			});
+			items[i][0] = list;
+		}
+	}
 
 	public void save(Content transientInstance) {
 		log.debug("saving Content instance");

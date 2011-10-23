@@ -52,6 +52,15 @@
 				});
 			}
 		});
+		//²¹×ãµÄ£¬¸ô¿ªÏß
+		$(function(){
+			var len = '${bean.totalRow}';
+			if(len != ''){
+				len = parseInt(len);
+				if(len > 0 && len < 10)
+					$('#listTbl').find('tr').eq(len*2 - 1).css({'border-bottom':'2px inset #CCCCCC','height':'12px'});
+			}
+		});
 </script>
 	</head>
 

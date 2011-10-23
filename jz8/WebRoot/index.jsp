@@ -210,7 +210,7 @@
 						<c:forEach items="${items }" var="item">
 						<DIV class=ccontlist>
 							<H4>
-								<A href="http://${city.cityId}.jianzhi8.com/jianzhi/${item[1].id.typeCode}">${city.simpleName}${item[1].id.typeName}</A>
+								<A href="http://${city.cityId}.jianzhi8.com/jianzhi/${item[1]}">${city.simpleName}${typemap[item[1]]}</A>
 							</H4>
 							<UL class=ulls>
 								<c:forEach items="${item[0]}" var="c">
