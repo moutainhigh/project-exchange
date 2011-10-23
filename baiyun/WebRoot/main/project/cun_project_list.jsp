@@ -147,8 +147,11 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp;
-								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+								<c:if test="${userObj.roleType=='县级管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_editCunPro.action?proCun.id=${f.id }',450,400);" >修改</a>
+								</c:if>
+								<c:if test="${userObj.roleType=='村级管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_cunStat.action?cunStat.project.id=${f.id}&time='+new Date().getTime(),750,400);" >审核</a>
 								</c:if>
 								<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_cunStat.action?cunStat.project.id=${f.id}&time='+new Date().getTime(),750,400);" >填报</a>

@@ -20,6 +20,8 @@ public class BaoSongAction extends BaseAction {
 
 	private PageBean pageBean;
 	private Integer pageIndex;
+	
+	private String status;
 
 	private BaoSong baoSong;
 
@@ -34,7 +36,7 @@ public class BaoSongAction extends BaseAction {
 	// actions
 	public String baoSongList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		pageBean = baoSongBiz.getBaoSongList(pageIndex == null ? 1 : pageIndex, user);
+		pageBean = baoSongBiz.getBaoSongList(pageIndex == null ? 1 : pageIndex, user, status);
 		return "baosong_list";
 	}
 
@@ -76,20 +78,17 @@ public class BaoSongAction extends BaseAction {
 
 	// 发送
 	public String sendBaoSong() {
-		if (baoSong.getId() != null) {
+		// 先保存
+		this.saveBaoSong();
 
-			// 先保存
-			this.saveBaoSong();
-
-			// 再发送
-			baoSong = baoSongBiz.getEntityById(BaoSong.class, baoSong.getId());
-			int s = baoSong.getStatus();
-			baoSong.setStatus(s == 4 ? 1 : s + 1);
-			baoSong.setDate(new Date());
-			baoSongBiz.saveOrUpdateEntity(baoSong);
-			this.setMsg("发送报送信息成功");
-			this.setSucc("Y");
-		}
+		// 再发送
+		baoSong = baoSongBiz.getEntityById(BaoSong.class, baoSong.getId());
+		int s = baoSong.getStatus();
+		baoSong.setStatus(s == 4 ? 1 : s + 1);
+		baoSong.setDate(new Date());
+		baoSongBiz.saveOrUpdateEntity(baoSong);
+		this.setMsg("发送报送信息成功");
+		this.setSucc("Y");
 		return "baosong_edit";
 	}
 
@@ -118,6 +117,19 @@ public class BaoSongAction extends BaseAction {
 		}
 		return baoSongList();
 	}
+	
+	//删除附件
+	private String fileName;
+	public String deleteAttatch(){
+		if(!Util.isEmpty(fileName)){
+			BaoSong b = baoSongBiz.getEntityByUnique(BaoSong.class, "attatch1", fileName);
+			if(b != null){
+				b.setAttatch1(null);
+				baoSongBiz.saveOrUpdateEntity(b);
+			}
+		}
+		return "upload";
+	}
 
 	public PageBean getPageBean() {
 		return pageBean;
@@ -141,6 +153,22 @@ public class BaoSongAction extends BaseAction {
 
 	public void setBaoSong(BaoSong baoSong) {
 		this.baoSong = baoSong;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

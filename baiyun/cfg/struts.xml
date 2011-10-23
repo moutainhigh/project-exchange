@@ -302,6 +302,7 @@
 		<action name="baosong_*" method="{1}" class="com.throne212.fupin.action.BaoSongAction">
 			<result name="baosong_edit">/main/baosong/baosong_edit.jsp</result>
 			<result name="baosong_list">/main/baosong/baosong_list.jsp</result>
+			<result name="upload">/main/baosong/upload/upload.jsp</result>
 		</action>
 		<!-- 报送信息上传附件 -->
 		<action name="BaoSongAttachUploadAction" class="com.throne212.fupin.action.BaoSongAttachUploadAction">

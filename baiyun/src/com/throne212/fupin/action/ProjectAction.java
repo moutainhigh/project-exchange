@@ -72,7 +72,9 @@ public class ProjectAction extends BaseAction {
 	private ProjectCunStat cunStat;
 
 	public String cunStat() {
-		if (cunStat.getYear() == null || cunStat.getMonth() == null) {
+		if(cunStat != null && cunStat.getId()!=null){
+			cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
+		} else if (cunStat.getYear() == null || cunStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			cunStat.setYear(now.get(Calendar.YEAR));
 			cunStat.setMonth(now.get(Calendar.MONTH) + 1);
@@ -89,6 +91,9 @@ public class ProjectAction extends BaseAction {
 			else {
 				this.setMsg("该月暂时还没有进度数据");
 			}
+		}
+		if(cunStat != null && Util.isEmpty(cunStat.getCunRemark())){
+			cunStat.setCunRemark("未审核");
 		}
 		return "cun_stat";
 	}
@@ -124,6 +129,7 @@ public class ProjectAction extends BaseAction {
 		}
 		cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
 		cunStat.setLock(2);
+		cunStat.setCunRemark("未审核");
 		projectBiz.saveOrUpdateEntity(cunStat);
 		this.setMsg("已发出解锁请求");
 		this.setSucc("Y");
@@ -154,25 +160,26 @@ public class ProjectAction extends BaseAction {
 	
 	//cun remark
 	public String cunStatForCunRemark() {
-		if(cunStat == null){
-			cunStat = new ProjectCunStat();
-			Calendar now = GregorianCalendar.getInstance();
-			cunStat.setYear(now.get(Calendar.YEAR));
-			cunStat.setMonth(now.get(Calendar.MONTH) + 1);
-			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
-			if (cunStatInDB != null)
-				cunStat = cunStatInDB;
-			else {
-				this.setMsg("本单位还没有指定村帮扶项目，请联系管理员先指定");
-			}
-		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {
-			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
-			if (cunStatInDB != null)
-				cunStat = cunStatInDB;
-			else {
-				this.setMsg("该月暂时还没有进度数据");
-			}
-		}
+//		if(cunStat == null){
+//			cunStat = new ProjectCunStat();
+//			Calendar now = GregorianCalendar.getInstance();
+//			cunStat.setYear(now.get(Calendar.YEAR));
+//			cunStat.setMonth(now.get(Calendar.MONTH) + 1);
+//			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
+//			if (cunStatInDB != null)
+//				cunStat = cunStatInDB;
+//			else {
+//				this.setMsg("本单位还没有指定村帮扶项目，请联系管理员先指定");
+//			}
+//		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {
+//			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
+//			if (cunStatInDB != null)
+//				cunStat = cunStatInDB;
+//			else {
+//				this.setMsg("该月暂时还没有进度数据");
+//			}
+//		}
+		cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
 		return "cun_stat";
 	}
 	public String shenheProCunStat() {

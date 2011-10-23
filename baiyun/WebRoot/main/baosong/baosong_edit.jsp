@@ -3,6 +3,9 @@
 <%@page import="com.throne212.fupin.domain.Person"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%
+	session.setAttribute("sess_attach",null);//清除上一次的附件
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -61,7 +64,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">附件上传</td>
+		<td height="200" align="right" class="tables_leftcell">附件上传</td>
 		<td class="tables_contentcell">&nbsp;
 		<c:if test="${empty baoSong.attatch1}">
 		<iframe src="${appPath}main/baosong/upload/upload.jsp" width="100%" height="90%" frameborder="0"></iframe>

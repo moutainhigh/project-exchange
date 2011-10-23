@@ -59,6 +59,9 @@ public class AjaxAction extends BaseAction {
 
 	public String getOrgInfo() {
 		org = adminBiz.getEntityById(Org.class, orgId);
+		if(!"社会企业".equals(org.getTypeName())){
+			org = null;
+		}
 		return "org";
 	}
 

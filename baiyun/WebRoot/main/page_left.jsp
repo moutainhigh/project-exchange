@@ -185,7 +185,7 @@ function images_update(){
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
 	    menuArray[menuArray.length]="0,信息报送";
-		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action?status=待办";
 	    </c:if>
 	    
 	    //镇管理员类
@@ -240,7 +240,7 @@ function images_update(){
 	    <c:if test="${userObj.roleType=='村级管理员'}">
 	    menuArray[menuArray.length]="0,村委会审核意见,";
 	    menuArray[menuArray.length]="1,“结对帮扶低收入户”工作落实情况统计表,${appPath}report_viewReport1.action";
-	    menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表,${appPath}pro_cunStatForCunRemark.action";
+	    menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表,${appPath}pro_proCunList.action";
 	    //menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}pro_proZdList.action";
 	    </c:if>
 	

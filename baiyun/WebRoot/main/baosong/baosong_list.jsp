@@ -27,6 +27,18 @@
 				document.forms[0].submit();
 			}
 		}
+		function queryBaoSong(){
+			$('form').attr("action","${appPath}baosong_baoSongList.action");
+			$('form').submit();
+		}
+		var status = "${param['status']}";
+		$(function(){
+			if(status != ''){
+				setTimeout(function(){
+					$("#baosongStatus").val(status);
+				},1);
+			}
+		});
 		</script>
 		<style>
 .tables_search {
@@ -46,6 +58,11 @@
 						</td>
 						<td align="right">
 							<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员'}">
+							<select name="status" onchange="queryBaoSong();" id="baosongStatus">
+								<option value=""></option>
+								<option value="待办">待办</option>
+								<option value="已办">已办</option>
+							</select>
 							<input type="button" onclick="winOpen('${appPath}main/baosong/baosong_edit.jsp',500,500);" class="button" value="新增">
 							<input type="button" class="button" value="删除" onclick="deleteInfo();">
 							</c:if>  
@@ -107,7 +124,7 @@
 								&nbsp; 
 								<c:if test="${(userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员') && f.status==1}">待办</c:if>
 								<c:if test="${(userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员') && f.status==2}">已办</c:if>
-								<c:if test="${(userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员') && f.status==4}">退回</c:if>
+								<c:if test="${(userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员') && f.status==4}">待办</c:if>
 								<c:if test="${(userObj.roleType=='县级管理员') && f.status==2}">待办</c:if>
 								<c:if test="${(userObj.roleType=='县级管理员') && f.status==3}">已办</c:if>
 								<c:if test="${(userObj.roleType=='超级管理员')}">

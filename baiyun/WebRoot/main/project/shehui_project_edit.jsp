@@ -25,6 +25,10 @@
 						$('#fuze').val(org['fuze']);
 						$('#zhiwu').val(org['zhiwu']);
 						$('#gongshangZhiwu').val(org['gongshangZhiwu']);
+					}else{
+						$('#fuze').val('');
+						$('#zhiwu').val('');
+						$('#gongshangZhiwu').val('');
 					}
 				});
 			}

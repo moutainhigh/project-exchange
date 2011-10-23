@@ -17,9 +17,9 @@ public class BaoSongBizImpl extends BaseBizImpl implements BaoSongBiz {
 	public void setBaoSongDao(BaoSongDao baoSongDao) {
 		this.baoSongDao = baoSongDao;
 	}
-	
-	public PageBean<BaoSong> getBaoSongList(int pageIndex, User user){
-		return baoSongDao.getBaoSongList(pageIndex, user);
+
+	public PageBean<BaoSong> getBaoSongList(int pageIndex, User user, String status) {
+		return baoSongDao.getBaoSongList(pageIndex, user, status);
 	}
 
 }

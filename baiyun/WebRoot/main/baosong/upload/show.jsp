@@ -23,6 +23,9 @@
     <tr>
     	<td colspan="2">点<a href="${appPath}main/baosong/upload/upload.jsp">这里</a>,上传新附件</td>
     </tr>
+    <tr>
+    	<td colspan="2">点<a href="${appPath}baosong_deleteAttatch.action?fileName=${param['fileName']}">这里</a>,删除已有附件</td>
+    </tr>
 	</table>
 </form>
 </body>
