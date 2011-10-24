@@ -42,8 +42,26 @@
 					},1);
 				}
 			});
-			
+			var typeName = '${org.typeName}';
+			$(function(){
+				if(typeName!=''){
+					selectTypeName(typeName);
+				}
+			});
+			function selectTypeName(val){
+				if(val == '社会企业'){
+					$(".read_only").css('background-color','white');
+					$(".read_only").attr('readonly',false);
+				}else{
+					$(".read_only").css('background-color','gray');
+					$(".read_only").attr('readonly',true);
+					$(".read_only").val('');
+				}
+			}
 		</script>
+		<style>
+		.read_only{background-color: gray;}
+		</style>
 	</head>
 	<body>
 		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}manager_saveManager.action" name="">
@@ -96,7 +114,7 @@
 							类型名称：
 						</td>
 						<td class="tables_contentcell">
-							<select id="typeName" name="org.typeName">
+							<select id="typeName" name="org.typeName" onchange="selectTypeName(this.value);">
 								<option></option>
 								<option value="政府机关单位">政府机关单位</option>
 								<option value="社会企业">社会企业</option>
@@ -108,7 +126,7 @@
 							企业负责人：
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${org.fuze }" id="bz" name="org.fuze">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.fuze }" id="bz" name="org.fuze" readonly="readonly" class="read_only">
 						</td>
 					</tr>
 					<tr>
@@ -116,7 +134,7 @@
 							职务：
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${org.zhiwu }" id="bz" name="org.zhiwu">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.zhiwu }" id="bz" name="org.zhiwu" readonly="readonly" class="read_only">
 						</td>
 					</tr>
 					<tr>
@@ -124,7 +142,7 @@
 							区工商联职务：
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${org.gongshangZhiwu }" id="bz" name="org.gongshangZhiwu">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.gongshangZhiwu }" id="bz" name="org.gongshangZhiwu" readonly="readonly" class="read_only">
 						</td>
 					</tr>
 					<tr>
@@ -132,7 +150,7 @@
 							联系地址：
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${org.address }" id="bz" name="org.address">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.address }" id="bz" name="org.address" readonly="readonly" class="read_only">
 						</td>
 					</tr>
 					<tr>
@@ -140,7 +158,7 @@
 							联系电话：
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${org.tel }" id="bz" name="org.tel">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${org.tel }" id="bz" name="org.tel" readonly="readonly" class="read_only">
 						</td>
 					</tr>
 					<tr>

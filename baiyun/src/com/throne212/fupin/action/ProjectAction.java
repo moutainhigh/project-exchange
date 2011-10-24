@@ -263,7 +263,9 @@ public class ProjectAction extends BaseAction {
 	private ProjectZdStat zdStat;
 
 	public String zdStat() {
-		if (zdStat == null || zdStat.getYear() == null || zdStat.getMonth() == null) {
+		if(zdStat != null && zdStat.getId()!=null){
+			zdStat = projectBiz.getEntityById(ProjectZdStat.class, zdStat.getId());
+		} else if (zdStat == null || zdStat.getYear() == null || zdStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			zdStat.setYear(now.get(Calendar.YEAR));
 			zdStat.setMonth(now.get(Calendar.MONTH) + 1);
@@ -281,6 +283,9 @@ public class ProjectAction extends BaseAction {
 				this.setMsg("该月暂时还没有进度数据");
 			}
 		}
+		if(zdStat != null && Util.isEmpty(zdStat.getCunRemark())){
+			zdStat.setCunRemark("未审核");
+		}
 		return "zd_stat";
 	}
 
@@ -289,11 +294,94 @@ public class ProjectAction extends BaseAction {
 			this.setMsg("不能保存，还未指定重点镇帮扶项目");
 			return zdStat();
 		}
+		zdStat.setLock(1);
 		projectBiz.saveOrUpdateEntity(zdStat);
 		this.setMsg("保存成功");
 		this.setSucc("Y");
 		return zdStat();
 	}
+	
+	public String tmpSaveProZdStat() {
+		if (zdStat == null || zdStat.getId() == null || zdStat.getProject() == null || zdStat.getProject().getId() == null) {
+			this.setMsg("不能保存，还未指定重点镇帮扶项目");
+			return zdStat();
+		}
+		zdStat.setLock(3);
+		projectBiz.saveOrUpdateEntity(zdStat);
+		this.setMsg("暂时保存成功");
+		this.setSucc("Y");
+		return zdStat();
+	}
+
+	public String requstUnlockProZdStat() {
+		if (zdStat == null || zdStat.getId() == null || zdStat.getProject() == null || zdStat.getProject().getId() == null) {
+			this.setMsg("不能保存，还未指定重点镇帮扶项目");
+			return zdStat();
+		}
+		zdStat = projectBiz.getEntityById(ProjectZdStat.class, zdStat.getId());
+		zdStat.setLock(2);
+		zdStat.setCunRemark("未审核");
+		projectBiz.saveOrUpdateEntity(zdStat);
+		this.setMsg("已发出解锁请求");
+		this.setSucc("Y");
+		return zdStat();
+	}
+
+	// 解锁列表
+	private List<ProjectZdStat> proZdStatList;
+
+	public String proZdStatLockList() {
+		proZdStatList = projectBiz.getEntitiesByColumn(ProjectZdStat.class, "lock", 2);
+		return "zd_stat_lock_list";
+	}
+
+	public String unlockProZdStat() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String idStr : ids) {
+				ProjectZdStat s = projectBiz.getEntityById(ProjectZdStat.class, Long.parseLong(idStr));
+				s.setLock(0);// 0表示已经解锁
+				s.setCunRemark("未审核");
+				projectBiz.saveOrUpdateEntity(s);
+			}
+			this.setMsg("成功解锁" + ids.length + "个报表");
+		}
+		return proZdStatLockList();
+	}
+	
+	//cun remark
+	public String zdStatForCunRemark() {
+		zdStat = projectBiz.getEntityById(ProjectZdStat.class, zdStat.getId());
+		return "cun_stat";
+	}
+	public String shenheProZdStat() {
+		if (zdStat == null || zdStat.getId() == null || zdStat.getProject() == null || zdStat.getProject().getId() == null) {
+			this.setMsg("不能保存，还未指定重点镇帮扶项目");
+			return zdStat();
+		}
+		zdStat = projectBiz.getEntityById(ProjectZdStat.class, zdStat.getId());
+		zdStat.setCunRemark("已审核");
+		projectBiz.saveOrUpdateEntity(zdStat);
+		this.setMsg("已审核");
+		this.setSucc("Y");
+		return zdStat();
+	}
+
+	public String tuihuiProZdStat() {
+		if (zdStat == null || zdStat.getId() == null || zdStat.getProject() == null || zdStat.getProject().getId() == null) {
+			this.setMsg("不能保存，还未指定重点镇帮扶项目");
+			return zdStat();
+		}
+		zdStat = projectBiz.getEntityById(ProjectZdStat.class, zdStat.getId());
+		zdStat.setLock(0);
+		zdStat.setCunRemark("退回修改");
+		projectBiz.saveOrUpdateEntity(zdStat);
+		this.setMsg("退回修改");
+		this.setSucc("Y");
+		return zdStat();
+	}
+	
+	
 
 	// 社会资金管理
 	private ProjectShehui proSh;
@@ -451,6 +539,14 @@ public class ProjectAction extends BaseAction {
 
 	public void setProCunStatList(List<ProjectCunStat> proCunStatList) {
 		this.proCunStatList = proCunStatList;
+	}
+
+	public List<ProjectZdStat> getProZdStatList() {
+		return proZdStatList;
+	}
+
+	public void setProZdStatList(List<ProjectZdStat> proZdStatList) {
+		this.proZdStatList = proZdStatList;
 	}
 
 }

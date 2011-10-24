@@ -156,14 +156,14 @@ function images_update(){
 	    menuArray[menuArray.length]="0,基础数据,";
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
 	    menuArray[menuArray.length]="1,单位信息,${appPath}org_editOrg.action";
-		menuArray[menuArray.length]="1,派出驻村干部,${appPath}org_leaderList.action";
+		menuArray[menuArray.length]="1,结对帮扶干部,${appPath}org_leaderList.action";
 		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
-		menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
+		//menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
 	    </c:if>
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
 	    menuArray[menuArray.length]="0,帮户,";
-	    menuArray[menuArray.length]="1,规划到户,${appPath}family_bf_familyMappingList.action";
+	    menuArray[menuArray.length]="1,结对帮扶,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}family_bf_cuoshiFamilyList.action";
         menuArray[menuArray.length]="1,到户记录,${appPath}family_bf_recordList.action";
@@ -191,9 +191,9 @@ function images_update(){
 	    //镇管理员类
 	    <c:if test="${userObj.roleType=='镇级管理员'}">
 		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
-		menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
+		//menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
 		menuArray[menuArray.length]="0,户帮扶信息,";
-		menuArray[menuArray.length]="1,规划到户,${appPath}family_bf_familyMappingList.action";
+		menuArray[menuArray.length]="1,结对帮扶,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}family_bf_cuoshiFamilyList.action";
         menuArray[menuArray.length]="1,到户记录,${appPath}family_bf_recordList.action";
@@ -218,7 +218,7 @@ function images_update(){
 		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
 		menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
 		menuArray[menuArray.length]="0,户帮扶信息,";
-		menuArray[menuArray.length]="1,规划到户,${appPath}family_bf_familyMappingList.action";
+		menuArray[menuArray.length]="1,结对帮扶,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
         menuArray[menuArray.length]="1,帮扶措施,${appPath}family_bf_cuoshiFamilyList.action";
         menuArray[menuArray.length]="1,到户记录,${appPath}family_bf_recordList.action";
@@ -241,7 +241,7 @@ function images_update(){
 	    menuArray[menuArray.length]="0,村委会审核意见,";
 	    menuArray[menuArray.length]="1,“结对帮扶低收入户”工作落实情况统计表,${appPath}report_viewReport1.action";
 	    menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表,${appPath}pro_proCunList.action";
-	    //menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}pro_proZdList.action";
+	    menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}pro_proZdList.action";
 	    </c:if>
 	
 		//社会企业
@@ -261,7 +261,7 @@ function images_update(){
 		menuArray[menuArray.length]="1,报表修改申请解锁,";
 		menuArray[menuArray.length]="2,户帮扶统计表修改申请解锁,${appPath}report_reportList.action";
 		menuArray[menuArray.length]="2,村帮扶统计表修改申请解锁,${appPath}pro_proCunStatLockList.action";
-		//menuArray[menuArray.length]="1,重点镇帮扶统计表修改申请解锁,${appPath}pro_zdStatLockList.action";
+		menuArray[menuArray.length]="2,重点镇帮扶统计表修改申请解锁,${appPath}pro_proZdStatLockList.action";
 		menuArray[menuArray.length]="1,修改申请审核,${appPath}recheck_listRecheck.action";
 		</c:if>
 		

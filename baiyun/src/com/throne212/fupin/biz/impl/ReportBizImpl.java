@@ -68,9 +68,14 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			report.setTime(r.getTime());
 			report.setLock(1);// 1表示已经锁定
 			
-			if(r.getId() == null && r.getType().equals("1")){
-				Report1 r1 = (Report1) r;
-				r1.setCunRemark("未审核");
+			
+			if(reportType.equals("1")){
+				Report1 r1 = (Report1) report;
+				if(r1.getId() == null){//新的报表
+					r1.setCunRemark("未审核");
+				}else if("退回修改".equals(r1.getCunRemark())){//退回的报表再修改
+					r1.setCunRemark("未审核");
+				}
 			}
 			
 			reportDao.saveOrUpdate(report);

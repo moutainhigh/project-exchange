@@ -53,7 +53,7 @@
 					var cunId = arr[1];
 					var year = arr[2];
 					var time = arr[3];
-					$(this).html('<a href="javascript:void();" onclick="winOpen(\'${appPath}report_showReport1.action?cunId='+cunId+'&r.year='+year+'&r.type=month&r.time='+time+'\',700,600);">Y</a>'); 
+					$(this).html('<a href="javascript:void();" onclick="winOpen(\'${appPath}report_showReport1.action?cunId='+cunId+'&r.year='+year+'&r.type=month&r.time='+time+'\',700,600);" style="text-decoration:underline;">Y</a>'); 
 				}
 			});
 		});

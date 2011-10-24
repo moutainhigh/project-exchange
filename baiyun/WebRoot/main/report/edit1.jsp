@@ -261,7 +261,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item1" value="${r.item1}" />
+									<input type="text" name="r.item1" value="${r.item1}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -269,7 +269,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item2" value="${r.item2}" />
+									<input type="text" name="r.item2" value="${r.item2}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -277,7 +277,7 @@
 									有劳动能力人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item3" value="${r.item3}" />
+									<input type="text" name="r.item3" value="${r.item3}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -288,7 +288,7 @@
 									是否安排就业
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item4" value="${r.item4}" />
+									<input type="text" name="r.item4" value="${r.item4}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -296,7 +296,7 @@
 									是否纳入低保
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item5" value="${r.item5}" />
+									<input type="text" name="r.item5" value="${r.item5}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -304,7 +304,7 @@
 									是否购买社保
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item6" value="${r.item6}" />
+									<input type="text" name="r.item6" value="${r.item6}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -312,7 +312,7 @@
 									是否帮助就学
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item7" value="${r.item7}" />
+									<input type="text" name="r.item7" value="${r.item7}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -320,7 +320,7 @@
 									是否参加新农合
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item8" value="${r.item8}" />
+									<input type="text" name="r.item8" value="${r.item8}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -328,15 +328,15 @@
 									其他
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item9" value="${r.item9}" />
+									<input type="text" name="r.item9" value="${r.item9}" msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
 									<td class="tables_contentcell" colspan="3">
-									累计投入帮扶资金
+									累计投入帮扶资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item10" value="${r.item10}"/>
+									<input type="text" name="r.item10" value="${r.item10}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -347,7 +347,7 @@
 									帮扶单位领导到村次数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item11" value="${r.item11}"/>
+									<input type="text" name="r.item11" value="${r.item11}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -355,7 +355,7 @@
 									帮扶单位结对干部到户次数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item12" value="${r.item12}"/>
+									<input type="text" name="r.item12" value="${r.item12}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -369,7 +369,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item13" value="${r.item13}"/>
+									<input type="text" name="r.item13" value="${r.item13}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -377,7 +377,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item14" value="${r.item14}"/>
+									<input type="text" name="r.item14" value="${r.item14}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -388,7 +388,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item15" value="${r.item15}"/>
+									<input type="text" name="r.item15" value="${r.item15}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -396,7 +396,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item16" value="${r.item16}"/>
+									<input type="text" name="r.item16" value="${r.item16}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -407,7 +407,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item17" value="${r.item17}"/>
+									<input type="text" name="r.item17" value="${r.item17}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -415,7 +415,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item18" value="${r.item18}"/>
+									<input type="text" name="r.item18" value="${r.item18}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -426,7 +426,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item19" value="${r.item19}"/>
+									<input type="text" name="r.item19" value="${r.item19}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -434,7 +434,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item20" value="${r.item20}"/>
+									<input type="text" name="r.item20" value="${r.item20}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -445,7 +445,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item21" value="${r.item21}"/>
+									<input type="text" name="r.item21" value="${r.item21}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -453,7 +453,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item22" value="${r.item22}"/>
+									<input type="text" name="r.item22" value="${r.item22}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -464,7 +464,7 @@
 									户数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item23" value="${r.item23}"/>
+									<input type="text" name="r.item23" value="${r.item23}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -472,7 +472,7 @@
 									人数
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item24" value="${r.item24}"/>
+									<input type="text" name="r.item24" value="${r.item24}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								
@@ -484,7 +484,7 @@
 									帮扶前人均纯收入（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item25" value="${r.item25}"/>
+									<input type="text" name="r.item25" value="${r.item25}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								<tr>
@@ -492,7 +492,7 @@
 									帮扶后累计人均增加收入（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item26" value="${r.item26}"/>
+									<input type="text" name="r.item26" value="${r.item26}"  msg="填入项目只能为数字" require="true" datatype="Number"/>
 									</td>
 								</tr>
 								
@@ -501,7 +501,7 @@
 									备注
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item27" value="${r.item27}"/>
+									<input type="text" name="r.item27" value="${r.item27}" />
 									</td>
 								</tr>
 								<tr>
@@ -515,13 +515,6 @@
 							</table>							
 						</td>
 					</tr>
-					<c:if test="${empty r.id || r.lock==0}">
-					<tr>
-						<td align="center" class="tables_contentcell" colspan="4">&nbsp;
-						<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
-						</td>
-					</tr>
-					</c:if>	
 				</tbody>
 			</table>
 		</form>

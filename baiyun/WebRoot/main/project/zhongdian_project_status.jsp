@@ -18,6 +18,7 @@
 				$('input[type="checkbox"]').attr('checked',false);
 			}
 		}
+		var lock = '${zdStat.lock}';
 		var year = '${zdStat.year}';
 		var time = '${zdStat.month}';
 		var half = '${zdStat.half}';
@@ -50,15 +51,48 @@
 					$('input[name="zdStat.half"]').eq(i-1).attr("checked",true);
 				}, 1);
 			}
+			//加锁，禁止修改
+			if(lock == '1' || lock == '2'){
+				//alert('wewewe');
+				$('input[type="text"]').not('.cun_remark').attr("readonly",true);
+				$('textarea').attr("readonly",true);
+			}	
 		});
 		function query(){
 			var f = document.forms[0];
 			f.action = "${appPath}pro_zdStat.action";
 			f.submit();
 		}
-		function save(){
+		
+		function tmpSave(){
 			var f = document.forms[0];
-			f.action = "${appPath}pro_saveProZdStat.action";
+			f.action = "${appPath}pro_tmpSaveProZdStat.action";
+			f.submit();
+		}
+		function save(){
+			if(confirm('报表提交后不允许修改，是否提交')){
+				var f = document.forms[0];
+				f.action = "${appPath}pro_saveProZdStat.action";
+				f.submit();
+			}
+		}
+		function unlockReport(){
+			if(confirm('确定需要解锁吗？')){
+				var f = document.forms[0];
+				f.action = '${appPath}pro_requstUnlockProZdStat.action';
+				f.submit();
+			}
+		}
+		function shenhe(){
+			var f = document.forms[0];
+			$('#statId').val('${zdStat.id}');
+			f.action = '${appPath}pro_shenheProZdStat.action';
+			f.submit();
+		}
+		function tuihui(){
+			var f = document.forms[0];
+			$('#statId').val('${zdStat.id}');
+			f.action = '${appPath}pro_tuihuiProZdStat.action';
 			f.submit();
 		}
 		</script>
@@ -94,7 +128,19 @@
 						</td>
 						<td width="" class="tables_headercell">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
-							<input type="button" value="保存" class="button" name="保存" onclick="save();">
+							<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+								<c:if test="${empty zdStat.lock || zdStat.lock==0 || zdStat.lock==3}">
+								<input type="button" value="保存" class="button" name="保存" onclick="save();">
+								<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSave();">
+								</c:if>
+								<c:if test="${not empty zdStat.lock && zdStat.lock==1}">
+								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
+								</c:if>
+							</c:if>
+							<c:if test="${userObj.roleType=='村级管理员'}">
+								<input type="button" value="审核通过" class="button" name="审核通过" onclick="shenhe();">
+								<input type="button" value="退回修改" class="button" name="退回修改" onclick="tuihui();">
+							</c:if>
 						</td>
 					</tr>
 					<tr align="center">
@@ -126,7 +172,7 @@
 							帮扶资金到位情况（万元）
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${zdStat.money }" name="zdStat.money"/>
+							&nbsp; <input type="text" value="${zdStat.money }" name="zdStat.money"/>
 						</td>
 					</tr>
 					
@@ -155,6 +201,15 @@
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
 							&nbsp; 
 							<textarea rows="5" name="zdStat.content">${zdStat.content }</textarea>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							村委会审核意见
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+							<input class="cun_remark" type="text" name="cunRemark" value="${zdStat.cunRemark}" readonly="readonly"/>
 						</td>
 					</tr>
 				</tbody>

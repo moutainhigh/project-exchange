@@ -135,8 +135,11 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell" rowspan="4">
 								&nbsp;
-								<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+								<c:if test="${userObj.roleType=='县级管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_editZdPro.action?proZd.id=${f.id }',700,400);" >修改</a>
+								</c:if>
+								<c:if test="${userObj.roleType=='村级管理员'}">
+								<a href="#" onclick="winOpen('${appPath}pro_zdStat.action?zdStat.project.id=${f.id}&time='+new Date().getTime(),750,400);" >审核</a>
 								</c:if>
 								<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 								<a href="#" onclick="winOpen('${appPath}pro_zdStat.action?zdStat.project.id=${f.id}&time='+new Date().getTime(),750,400);" >填报</a>

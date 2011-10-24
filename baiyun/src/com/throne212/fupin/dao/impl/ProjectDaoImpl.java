@@ -36,7 +36,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 			hql += " and org.id=" + user.getId();
 		}else if (user instanceof CunWorkOrg) {
 			CunWorkOrg c = (CunWorkOrg) user;
-			hql += " and cun.id=" + c.getCun().getId();
+			hql += " and org.cun.id=" + c.getCun().getId();
 		}
 
 		hql += " order by id desc";
@@ -121,7 +121,16 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 		Long proId = param.getProject().getId();
 
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		String hql = "from ProjectZdStat s where year=? and month=? and s.project.id=" + proId + " and s.project.org.id=" + user.getId();
+		String hql = "from ProjectZdStat s where year=? and month=?";
+		if(proId != null){
+			hql += " and s.project.id=" + proId;
+		}
+		if (user instanceof Org) {
+			hql += " and s.project.org.id=" + user.getId();
+		}else if(user instanceof CunWorkOrg){
+			CunWorkOrg c = (CunWorkOrg) user;
+			hql += " and s.project.org.cun.id=" + c.getCun().getId();
+		}
 
 		List<ProjectZdStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month });
 
@@ -141,7 +150,21 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 				this.saveOrUpdate(cunStat);
 				return cunStat;
 			}				
-		}	
+		}else if(user instanceof CunWorkOrg){
+			CunWorkOrg c = (CunWorkOrg) user;
+			hql = "from ProjectZhongdian where org.cun.id=" + c.getCun().getId() + " and id=" + proId;
+			List<ProjectZhongdian> list = this.getHibernateTemplate().find(hql);
+			if (list != null && list.size() > 0){
+				ProjectZhongdian proCun = list.get(0);
+				ProjectZdStat zdStat = new ProjectZdStat();
+				zdStat.setProject(proCun);
+				zdStat.setMonth(month);
+				zdStat.setYear(year);
+				//cunStat.setProject(param.getProject());
+				this.saveOrUpdate(zdStat);
+				return zdStat;
+			}	
+		}
 		
 		return null;
 	}

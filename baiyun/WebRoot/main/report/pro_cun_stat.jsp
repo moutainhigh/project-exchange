@@ -118,6 +118,9 @@
 						<td width="" class="tables_headercell">
 							下一步推进措施
 						</td>
+						<td width="" class="tables_headercell">
+							村委会审核
+						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
@@ -148,10 +151,13 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.content }
 							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.cunRemark }
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="9">
+						<td height="25" align="right" class="tables_contentcell" colspan="10">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

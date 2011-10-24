@@ -127,6 +127,54 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<hr/>
+			<h2 style="background-color: yellow;">“重点帮扶钟落潭镇”项目落实情况统计表 - 审核退回提醒</h2>
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+				<tbody>
+					<tr align="center">
+						<td height="28" width="" class="tables_headercell">
+							编号
+						</td>
+						<td width="" class="tables_headercell">
+							项目名称
+						</td>
+						<td width="" class="tables_headercell">
+							年度
+						</td>
+						<td width="" class="tables_headercell">
+							月份
+						</td>
+						<td width="" class="tables_headercell">
+							状态
+						</td>
+						<td width="" class="tables_headercell">
+							操作
+						</td>
+					</tr>
+					<c:forEach items="${report3List}" var="f">
+						<tr>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.id }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.project.name}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.year}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.month}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.cunRemark}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								<a href="${appPath}pro_zdStat.action?zdStat.id=${f.id}">填报修改</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</form>
 	</body>
 </html>

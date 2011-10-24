@@ -66,11 +66,16 @@
 	<tr>
 		<td height="200" align="right" class="tables_leftcell">附件上传</td>
 		<td class="tables_contentcell">&nbsp;
-		<c:if test="${empty baoSong.attatch1}">
-		<iframe src="${appPath}main/baosong/upload/upload.jsp" width="100%" height="90%" frameborder="0"></iframe>
+		<c:if test="${baoSong.status > 1}">
+		附件：${baoSong.attatch1}
 		</c:if>
-		<c:if test="${not empty baoSong.attatch1}">
-		<iframe src="${appPath}main/baosong/upload/show.jsp?fileName=${baoSong.attatch1}" width="100%" height="90%" frameborder="0"></iframe>
+		<c:if test="${baoSong.status <= 1}">
+			<c:if test="${empty baoSong.attatch1}">
+			<iframe src="${appPath}main/baosong/upload/upload.jsp" width="100%" height="90%" frameborder="0"></iframe>
+			</c:if>
+			<c:if test="${not empty baoSong.attatch1}">
+			<iframe src="${appPath}main/baosong/upload/show.jsp?fileName=${baoSong.attatch1}" width="100%" height="90%" frameborder="0"></iframe>
+			</c:if>
 		</c:if>
 		</td>
 	</tr>

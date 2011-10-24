@@ -10,6 +10,14 @@ public class Cuoshi extends MyEntity {
 	private String reason;//原因
 	
 	public String getShortContent(){
+		//整理content
+		if(content==null){
+			content = this.segment3;
+			if(content == null){
+				content = this.segment4;
+			}
+		}
+		
 		String shortContent;
 		if(this.getContent() == null){
 			return "";

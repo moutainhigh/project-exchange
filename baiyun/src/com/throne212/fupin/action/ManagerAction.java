@@ -45,6 +45,14 @@ public class ManagerAction extends BaseAction {
 			orgInDB.setPassword(org.getPassword());
 			orgInDB.setRemark(org.getRemark());
 			orgInDB.setOrgName(org.getOrgName());
+			orgInDB.setTypeName(org.getTypeName());
+			if("社会企业".equals(org.getTypeName())){
+				orgInDB.setFuze(org.getFuze());
+				orgInDB.setZhiwu(org.getZhiwu());
+				orgInDB.setGongshangZhiwu(org.getGongshangZhiwu());
+				orgInDB.setTel(org.getTel());
+				orgInDB.setAddress(org.getAddress());
+			}
 			if(org.getArea()!=null && org.getArea().getId()!=null)
 				orgInDB.setArea(org.getArea());
 			if(!Util.isEmpty(org.getOrgName())){
