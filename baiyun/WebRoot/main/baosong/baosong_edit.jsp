@@ -69,7 +69,7 @@
 		<c:if test="${baoSong.status > 1}">
 		附件：${baoSong.attatch1}
 		</c:if>
-		<c:if test="${baoSong.status <= 1}">
+		<c:if test="${empty baoSong || baoSong.status <= 1}">
 			<c:if test="${empty baoSong.attatch1}">
 			<iframe src="${appPath}main/baosong/upload/upload.jsp" width="100%" height="90%" frameborder="0"></iframe>
 			</c:if>

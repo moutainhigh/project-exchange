@@ -1,0 +1,1 @@
+update fp_user set `type_name`='政府机关单位' where user_type='org'
