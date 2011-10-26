@@ -157,7 +157,7 @@ function images_update(){
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
 	    menuArray[menuArray.length]="1,单位信息,${appPath}org_editOrg.action";
 		menuArray[menuArray.length]="1,结对帮扶干部,${appPath}org_leaderList.action";
-		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
+		menuArray[menuArray.length]="1,低收入户信息,${appPath}family_familyList.action";
 		//menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
 	    </c:if>
 	    
@@ -190,7 +190,7 @@ function images_update(){
 	    
 	    //镇管理员类
 	    <c:if test="${userObj.roleType=='镇级管理员'}">
-		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
+		menuArray[menuArray.length]="1,低收入户信息,${appPath}family_familyList.action";
 		//menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
 		menuArray[menuArray.length]="0,户帮扶信息,";
 		menuArray[menuArray.length]="1,结对帮扶,${appPath}family_bf_familyMappingList.action";
@@ -215,8 +215,8 @@ function images_update(){
 	    
 	    //县级管理员
 	    <c:if test="${userObj.roleType=='县级管理员'}">
-		menuArray[menuArray.length]="1,贫困户信息,${appPath}family_familyList.action";
-		menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
+		menuArray[menuArray.length]="1,低收入户信息,${appPath}family_familyList.action";
+		menuArray[menuArray.length]="1,低收入村信息,${appPath}cun_cunList.action";
 		menuArray[menuArray.length]="0,户帮扶信息,";
 		menuArray[menuArray.length]="1,结对帮扶,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";
