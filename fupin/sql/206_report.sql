@@ -16,7 +16,9 @@ select distinct
 		(select o.contactTel
 			from fp_user o 
 			where o.id=c.org and o.user_type='org') as '联系电话',
-r.item1 as '规划投入资金（元）',
+		(select rm.item1
+			from fp_report rm
+			where rm.type='month' and rm.time=9 and rm.cun_id=r.cun_id and rm.report_type=2 order by rm.id desc limit 1) as '规划投入资金（元）',
 r.item2 as '已投入帮扶资金',
 r.item3 as '用于帮扶到户资金(元)',
 r.item4 as '用于帮扶到村资金(元)',
@@ -65,8 +67,6 @@ select distinct
 		(select o.contactTel
 			from fp_user o 
 			where o.id=c.org and o.user_type='org') as '联系电话',
-r.item1 as '贫困户户数(户) ',
-r.item2 as '贫困户人数(人) ',
 r.item3 as '1低保对象(户) ',
 r.item4 as '1低保对象(人) ',
 r.item5 as '1低收入困难家庭(户) ',
@@ -164,7 +164,9 @@ select distinct
 		(select o.contactTel
 			from fp_user o 
 			where o.id=c.org and o.user_type='org') as '联系电话',
-r.item1 as '规划投入资金（元）',
+		(select rm.item1
+			from fp_report rm
+			where rm.type='month' and rm.time=9 and rm.cun_id=r.cun_id and rm.report_type=2 order by rm.id desc limit 1) as '规划投入资金（元）',
 r.item2 as '已投入帮扶资金',
 r.item3 as '用于帮扶到户资金(元)',
 r.item4 as '用于帮扶到村资金(元)',
@@ -215,8 +217,6 @@ select distinct
 		(select o.contactTel
 			from fp_user o 
 			where o.id=c.org and o.user_type='org') as '联系电话',
-r.item1 as '贫困户户数(户) ',
-r.item2 as '贫困户人数(人) ',
 r.item3 as '1低保对象(户) ',
 r.item4 as '1低保对象(人) ',
 r.item5 as '1低收入困难家庭(户) ',

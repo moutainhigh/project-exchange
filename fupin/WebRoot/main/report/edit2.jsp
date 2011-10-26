@@ -260,7 +260,7 @@
 									4
 									</td>
 									<td class="tables_contentcell" colspan="2">
-									规划投入资金（元）
+									两年规划投入资金（元）
 									</td>
 									<td class="tables_contentcell">
 									<input type="text" name="r.item1" id="item1" value="${r.item1}"/>
@@ -268,7 +268,7 @@
 								</tr>
 								<tr>
 									<td class="tables_contentcell" colspan="2">
-									已投入帮扶资金
+									本月（季）投入帮扶资金（元）
 									</td>
 									<td class="tables_contentcell">
 									<input type="text" name="r.item2" id="item2" value="${r.item2}"/>
@@ -276,7 +276,7 @@
 								</tr>
 								<tr>
 									<td class="tables_contentcell" rowspan="2">
-									已投入帮扶资金（元）
+									本月（季）投入帮扶资金（元）
 									</td>
 									<td class="tables_contentcell">
 									用于帮扶到户资金(元)
@@ -295,7 +295,7 @@
 								</tr>
 								<tr>
 									<td class="tables_contentcell" rowspan="5">
-									已投入帮扶资金构成
+									本月（季）投入帮扶资金构成
 									</td>
 									<td class="tables_contentcell">
 									财政专项(元)
@@ -347,8 +347,10 @@
 									3.已投入帮扶资金= 用于帮扶到户资金 + 用于帮扶到村资金
 									<br/>
 									4.已投入帮扶资金= 财政专项 + 信贷资金 + 单位自筹 + 社会募捐 + 社会引资
-									 <br/>
+									<br/>
 									5.社会引资包括内引和外引。内引指国内引资；外引指国外及港澳台引资。引进外资按人民币汇率折算。
+									<br/>
+									6.慰问、捐赠等形式的物资可折价成资金计入。
 									</td>
 								</tr>								
 							</table>							

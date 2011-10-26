@@ -83,10 +83,10 @@
 		<td class="tables_contentcell">&nbsp;${cun.zhen.area.name}${cun.zhen.name}${cun.name}</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">总户数</td>
+		<td height="30" align="right" class="tables_leftcell">总户数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.familyNum }" name="cun.familyNum"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">总人口数</td>
+		<td height="30" align="right" class="tables_leftcell">总人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.personNum }" name="cun.personNum"/></td>
 	</tr>
 	<!--  
@@ -98,10 +98,10 @@
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.needBanPerson }" name="cun.needBanPerson"/></td>
 	</tr>-->
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">劳动力总人数</td>
+		<td height="30" align="right" class="tables_leftcell">劳动力总人数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.labor }" name="cun.labor"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">外出务工人数</td>
+		<td height="30" align="right" class="tables_leftcell">外出务工人数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.outLabor }" name="cun.outLabor"/></td>
 	</tr>
 	<!--  
@@ -113,74 +113,74 @@
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.transNum }" name="cun.transNum"/></td>
 	</tr>-->
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">贫困户数</td>
+		<td height="30" align="right" class="tables_leftcell">贫困户数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum }" name="cun.poorFamilyNum"/>
 		<br/><span style="color:gray;">(由以下四项自动统计)</span>
 		</td>
 
-		<td height="30" align="right" class="tables_leftcell">贫困人口数</td>
+		<td height="30" align="right" class="tables_leftcell">贫困人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum }" name="cun.poorPersonNum"/>
 		<br/><span style="color:gray;">(由以下四项自动统计)</span>
 		</td>
 	</tr>
 	<!-- 新增字段 -->
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户户数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户户数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum1 }" name="cun.poorFamilyNum1" onblur="calFamilyNum();"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户人口数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum1 }" name="cun.poorPersonNum1" onblur="calPersonNum();"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户户数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户户数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum2 }" name="cun.poorFamilyNum2" onblur="calFamilyNum();"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户人口数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum2 }" name="cun.poorPersonNum2" onblur="calPersonNum();"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭户数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭户数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum3 }" name="cun.poorFamilyNum3" onblur="calFamilyNum();"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭人口数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum3 }" name="cun.poorPersonNum3" onblur="calPersonNum();"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭户数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum4 }" name="cun.poorFamilyNum4" onblur="calFamilyNum();"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum4 }" name="cun.poorPersonNum4" onblur="calPersonNum();"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通电自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dian }" name="cun.dian"/></td>
-		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.pureWater }" name="cun.pureWater"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电话自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通电话自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tel }" name="cun.tel"/></td>
-		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tv }" name="cun.tv"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通路灯自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通路灯自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.light }" name="cun.light"/></td>
-		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目</td>
+		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目（条）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.ying }" name="cun.ying"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">耕地总面积</td>
+		<td height="30" align="right" class="tables_leftcell">耕地总面积（亩）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.mianji }" name="cun.mianji"/></td>
 
-		<td height="30" align="right" class="tables_leftcell">山地总面积</td>
+		<td height="30" align="right" class="tables_leftcell">山地总面积（亩）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.house }" name="cun.house"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">危房数</td>
+		<td height="30" align="right" class="tables_leftcell">危房数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.weiHouse }" name="cun.weiHouse"/></td>
-		<td height="30" align="right" class="tables_leftcell">村集体经济收入</td>
+		<td height="30" align="right" class="tables_leftcell">村集体经济收入（元）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为金额！" require="false" datatype="Double" type="text" value="${cun.income }" name="cun.income"/><font>元</font></td>
 	</tr>
 	<tr>
