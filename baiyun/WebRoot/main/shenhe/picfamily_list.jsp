@@ -73,7 +73,7 @@ var msg = '${msg}';
 		<input type="checkbox" onclick="checkAll(this);"></td>
 		<td width="" class="tables_headercell">编号</td>
 		<td width="" class="tables_headercell">年度</td>
-		<td class="tables_headercell">贫困户名</td>
+		<td class="tables_headercell">低收入户名</td>
 		<td width="" class="tables_headercell">上传时间</td>
 		<td width="" class="tables_headercell">类型</td>
 		<td width="" class="tables_headercell">审核状态</td>

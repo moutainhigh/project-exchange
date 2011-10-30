@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<c:if test="${userObj.isDiv!='Y'}">
 <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 	<tbody><tr>
-	<td height="30" width="15%" align="right" class="tables_leftcell">贫困村名称</td>
+	<td height="30" width="15%" align="right" class="tables_leftcell">低收入村名称</td>
     <td class="tables_contentcell">
 	<input type="text" datatype="Require" disabled="disabled" size="20" id="pkcmc" value="${userObj.cun.name }" name="chengxiao.cun.name"><font color="#666666">不能更改，系统自动提取</font>
     </td>

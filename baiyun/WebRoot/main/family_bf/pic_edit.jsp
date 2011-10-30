@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${appPath}js/jquery.autocomplete.js"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
-			//获取贫困户
+			//获取低收入户
  			var currFamily = '${pic.family.id}';
 			$(function(){
 				if(currFamily != ''){
@@ -87,11 +87,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<input type="button" onclick="self.close();" class="ewButton" value="关闭" name="关闭">
 </td></tr>
 <tr>
-    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="right" width="15%" class="tables_leftcell">低收入户名称</td>
     <td class="tables_contentcell">
     <input name="pic.family.id" id="familyId" value="${pic.family.id}" type="hidden"/>
     <input id="familyName" value="${pic.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的低收入户</font>
     </td>
   </tr>
   <tr>
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td height="30" align="right" class="tables_leftcell">干部名称</td>
     <td class="tables_contentcell">
-    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
+    <input type="text" msg="干部名称不能为空，或该低收入户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
     </td>
   </tr>
 <tr>

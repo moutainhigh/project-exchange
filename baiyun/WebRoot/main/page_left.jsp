@@ -70,7 +70,7 @@ body {
  </td></tr><tr id="mytree_tab_30" style="display: none;"><td width="15"></td><td>    <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_30" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.5.1.html" onclick="mytree.clickNode(30)" target="mainFrame">5.1.单位信息维护</a> 
  </td></tr><tr id="mytree_tab_31"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_31" class=""><img src="page_left_data/tree_end.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.5.2.html" onclick="mytree.clickNode(31)" target="mainFrame">5.2.帮扶干部</a> 
  </td></tr></tbody></table></td></tr><tr id="mytree_tab_32"><td width="15" height="22"></td><td id="mytree_tdId_32" class=""><img src="page_left_data/tree_t_mid.gif" id="mytree_img_32" onclick="mytree.switchTab(32)" style="" title="伸缩菜单" align="absmiddle">6.村帮扶维护 
- </td></tr><tr id="mytree_tab_33" style="display: none;"><td width="15"></td><td>    <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_33" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.1.html" onclick="mytree.clickNode(33)" target="mainFrame">6.1.贫困村档案</a> 
+ </td></tr><tr id="mytree_tab_33" style="display: none;"><td width="15"></td><td>    <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_33" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.1.html" onclick="mytree.clickNode(33)" target="mainFrame">6.1.低收入村档案</a> 
  </td></tr><tr id="mytree_tab_34"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_34" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.2.html" onclick="mytree.clickNode(34)" target="mainFrame">6.2.帮扶措施</a> 
  </td></tr><tr id="mytree_tab_35"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_35" class=""><img src="page_left_data/tree_end.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.6.3.html" onclick="mytree.clickNode(35)" target="mainFrame">6.3.帮扶成效</a> 
  </td></tr></tbody></table></td></tr><tr id="mytree_tab_36"><td width="15" height="22"></td><td id="mytree_tdId_36" class=""><img src="page_left_data/tree_t_mid.gif" id="mytree_img_36" onclick="mytree.switchTab(36)" style="" title="伸缩菜单" align="absmiddle">7.户帮扶维护 
@@ -79,7 +79,7 @@ body {
  </td></tr><tr id="mytree_tab_39"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_39" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.3.html" onclick="mytree.clickNode(39)" target="mainFrame">7.3.帮扶措施</a> 
  </td></tr><tr id="mytree_tab_40"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_40" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.4.html" onclick="mytree.clickNode(40)" target="mainFrame">7.4.扶持内容</a> 
  </td></tr><tr id="mytree_tab_41"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_41" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.5.html" onclick="mytree.clickNode(41)" target="mainFrame">7.5.帮扶成效</a> 
- </td></tr><tr id="mytree_tab_42"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_42" class=""><img src="page_left_data/tree_end.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.6.html" onclick="mytree.clickNode(42)" target="mainFrame">7.6.贫困户档案</a> 
+ </td></tr><tr id="mytree_tab_42"><td width="15" background="page_left_data/tree_bg.gif" height="22"></td><td id="mytree_tdId_42" class=""><img src="page_left_data/tree_end.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.7.6.html" onclick="mytree.clickNode(42)" target="mainFrame">7.6.低收入户档案</a> 
  </td></tr></tbody></table></td></tr><tr id="mytree_tab_43"><td width="15" height="22"></td><td id="mytree_tdId_43" class=""><img src="page_left_data/tree_t_end.gif" id="mytree_img_43" onclick="mytree.switchTab(43)" style="" title="伸缩菜单" align="absmiddle">8.报表管理 
  </td></tr><tr id="mytree_tab_44" style="display: none;"><td width="15"></td><td>    <table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="15" height="22"></td><td id="mytree_tdId_44" class=""><img src="page_left_data/tree_mid.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.1.html" onclick="mytree.clickNode(44)" target="mainFrame">8.1.季度报表</a> 
  </td></tr><tr id="mytree_tab_45"><td width="15" height="22"></td><td id="mytree_tdId_45" class=""><img src="page_left_data/tree_end.gif" align="absmiddle"><a href="http://210.76.65.67:6792/fpxmadmin/5/help/help2.8.2.html" onclick="mytree.clickNode(45)" target="mainFrame">8.2.年度报表</a> 
@@ -158,7 +158,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,单位信息,${appPath}org_editOrg.action";
 		menuArray[menuArray.length]="1,结对帮扶干部,${appPath}org_leaderList.action";
 		menuArray[menuArray.length]="1,低收入户信息,${appPath}family_familyList.action";
-		//menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
+		//menuArray[menuArray.length]="1,低收入村信息,${appPath}cun_cunList.action";
 	    </c:if>
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
@@ -191,7 +191,7 @@ function images_update(){
 	    //镇管理员类
 	    <c:if test="${userObj.roleType=='镇级管理员'}">
 		menuArray[menuArray.length]="1,低收入户信息,${appPath}family_familyList.action";
-		//menuArray[menuArray.length]="1,贫困村信息,${appPath}cun_cunList.action";
+		//menuArray[menuArray.length]="1,低收入村信息,${appPath}cun_cunList.action";
 		menuArray[menuArray.length]="0,户帮扶信息,";
 		menuArray[menuArray.length]="1,结对帮扶,${appPath}family_bf_familyMappingList.action";
         menuArray[menuArray.length]="1,贫困原因,${appPath}family_bf_reasonList.action";

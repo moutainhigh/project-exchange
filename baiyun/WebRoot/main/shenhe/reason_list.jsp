@@ -123,7 +123,7 @@ function pass(){
 						年度
 					</td>
 					<td width="8%" class="tables_headercell">
-						贫困户名称
+						低收入户名称
 					</td>
 					<td width="19%" class="tables_headercell">
 						干部名称

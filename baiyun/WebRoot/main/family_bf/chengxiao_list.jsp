@@ -204,7 +204,7 @@ function displayAction(sid) {
 			<ul type="square">
 			 <li>
 			 <span>
-               贫困户姓名：<input type="text" style="width: 90px;" value="${param['chengxiao.family.name'] }" name="chengxiao.family.name" id="familyName"> 
+               低收入户姓名：<input type="text" style="width: 90px;" value="${param['chengxiao.family.name'] }" name="chengxiao.family.name" id="familyName"> 
 <input type="submit" id="a11" value="查询" name="a11" class="button">
 &nbsp;&nbsp;|&nbsp;&nbsp;
 <input type="button" onclick="self.location.href='${appPath}family_bf_chengxiaoFamilyList.action'" id="b11" title="清除条件并重新查询" value="清除条件，返回全部" name="b11" class="button">
@@ -256,7 +256,7 @@ function displayAction(sid) {
 						年度
 					</td>
 					<td class="tables_headercell">
-						贫困户名称
+						低收入户名称
 					</td>
 					<td class="tables_headercell">
 						干部名称

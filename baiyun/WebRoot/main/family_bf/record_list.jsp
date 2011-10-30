@@ -189,7 +189,7 @@ function displayAction(sid) {
 		<option value="审核不通过">审核不通过</option>
 	</select>
 	
-	<label>贫困户姓名: </label>
+	<label>低收入户姓名: </label>
 	<input type="text" style="width: 90px;" value="${param['record.family.name']}" name="record.family.name" id="textfield"> 
 
 		<input type="submit" class="button" value="查询" name="查询">
@@ -239,7 +239,7 @@ function displayAction(sid) {
 						到户时间
 					</td>
 					<td class="tables_headercell">
-						贫困户名称
+						低收入户名称
 					</td>
 					<td class="tables_headercell">
 						干部名称

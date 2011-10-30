@@ -102,7 +102,7 @@ var msg = '${msg}';
 		<td width="" class="tables_headercell">编号</td>
 		<td width="" class="tables_headercell">类型</td>
 		<td width="" class="tables_headercell">时间</td>
-		<td class="tables_headercell">贫困村名</td>
+		<td class="tables_headercell">低收入村名</td>
 		<td class="tables_headercell">帮扶措施</td>
 		<td width="" class="tables_headercell">审核状态</td>
 		<td width="" class="tables_headercell">审核</td>

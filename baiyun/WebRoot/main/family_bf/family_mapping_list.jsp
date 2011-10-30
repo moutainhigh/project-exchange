@@ -81,7 +81,7 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：户帮扶维护 >> 规划到户
+							您当前所处页面：户帮扶维护 >> 结对帮扶
 						</td>
 						<td align="right">
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
@@ -100,7 +100,7 @@
 									<option value="">-----------</option>
 									</select>
 					</c:if>
-							<label>贫困户名（模糊查询）: </label>
+							<label>低收入户名（模糊查询）: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 						
 							<input type="submit" class="button" value="查询"> 
@@ -120,7 +120,7 @@
 							编号
 						</td>
 						<td width="" class="tables_headercell">
-							贫困户名称
+							低收入户名称
 						</td>
 						<td width="" class="tables_headercell">
 							类型

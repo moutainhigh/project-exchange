@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>编辑前台贫困户查看帐号</title>
+		<title>编辑前台低收入户查看帐号</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>

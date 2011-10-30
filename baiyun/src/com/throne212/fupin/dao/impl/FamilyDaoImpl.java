@@ -374,7 +374,8 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		for (Record record : list) {
 			String hqlForLeaders = "from Leader l where l.family=? ";
 			List<Leader> listLeader=this.getHibernateTemplate().find(hqlForLeaders, record.getFamily());
-			record.getFamily().setLeaderList(listLeader);
+			if(record != null && record.getFamily()!=null)
+				record.getFamily().setLeaderList(listLeader);
 		}
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目

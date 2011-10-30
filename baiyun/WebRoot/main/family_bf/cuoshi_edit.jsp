@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <jsp:include page="../../msg.jsp"></jsp:include>
 //获取干部
  var currLeader = '${leaderId}';
- //获取贫困户
+ //获取低收入户
  var currFamily = '${cuoshi.family.id}';
 			$(function(){
 				var year = '${cuoshi.year}';
@@ -89,11 +89,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <c:if test="${userObj.isDiv!='Y'}">
   <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody><tr>
-    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="right" width="15%" class="tables_leftcell">低收入户名称</td>
     <td class="tables_contentcell">
     <input name="cuoshi.family.id" id="familyId" value="${cuoshi.family.id}" type="hidden"/>
     <input id="familyName" value="${cuoshi.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的低收入户</font>
     </td>
   </tr>
   <tr>
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td height="30" align="right" class="tables_leftcell">干部名称</td>
     <td class="tables_contentcell">
-    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
+    <input type="text" msg="干部名称不能为空，或该低收入户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
     </td>
   </tr>  
 	<tr>
@@ -159,11 +159,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</select> <font size="4" color="#cc0033">*</font>默认是当前年度，可不选择</td>
   </tr>
   <tr>
-    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="right" width="15%" class="tables_leftcell">低收入户名称</td>
     <td class="tables_contentcell" colspan="3">
     <input name="cuoshi.family.id" id="familyId" value="${cuoshi.family.id}" type="hidden"/>
     <input id="familyName" value="${cuoshi.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的低收入户</font>
     </td>
   </tr>
   <tr>
@@ -179,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
 		<td class="tables_contentcell" colspan="4">
 		规划帮扶措施：要求有二年总体帮扶及年度实施计划
-    总体帮扶规划：根据贫困户致贫的原因以及本人的发展意愿。主要是通过技能培训，推荐就业，实现脱贫。
+    总体帮扶规划：根据低收入户致贫的原因以及本人的发展意愿。主要是通过技能培训，推荐就业，实现脱贫。
 		</td>
   </tr>
   <tr>

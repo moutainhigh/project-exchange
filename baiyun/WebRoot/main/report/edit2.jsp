@@ -249,7 +249,7 @@
 								</tr>
 								<tr>
 									<td class="tables_contentcell" colspan="3">
-									贫困村
+									低收入村
 									</td>
 									<td class="tables_contentcell">
 									${userObj.cun.name }

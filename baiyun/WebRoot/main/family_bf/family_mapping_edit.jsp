@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>贫困户帮扶方式</title>
+		<title>低收入户帮扶方式</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.datepick.css" />
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
@@ -66,7 +66,7 @@ z-index:2;
 			<input type="hidden" value="${family.id}" name="family.id" id="">
 			<table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody><tr>
-    <td height="30" align="center" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="center" width="15%" class="tables_leftcell">低收入户名称</td>
     <td colspan="2" class="tables_contentcell">${family.name }
 	</td>
   </tr>

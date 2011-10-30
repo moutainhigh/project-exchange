@@ -95,7 +95,7 @@ var msg = '${msg}';
 		<input type="checkbox" onclick="checkAll(this);">
 		<td width="20%" class="tables_headercell">编号</td>
 		<td width="20%" class="tables_headercell">时间</td>
-		<td class="tables_headercell">贫困村名</td>
+		<td class="tables_headercell">低收入村名</td>
 		<td class="tables_headercell">帮扶成效</td>
 		<td width="20%" class="tables_headercell">审核状态</td>
 		

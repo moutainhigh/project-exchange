@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>编辑贫困村资料</title>
+		<title>编辑低收入村资料</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
@@ -113,7 +113,7 @@
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.transNum }" name="cun.transNum"/></td>
 	</tr>-->
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">贫困户数</td>
+		<td height="30" align="right" class="tables_leftcell">低收入户数</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorFamilyNum }" name="cun.poorFamilyNum"/>
 		<br/><span style="color:gray;">(由以下四项自动统计)</span>
 		</td>
@@ -184,14 +184,14 @@
 		<td class="tables_contentcell">&nbsp;<input msg="必须为金额！" require="false" datatype="Double" type="text" value="${cun.income }" name="cun.income"/><font>元</font></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">贫困村简介</td>
+		<td height="30" align="right" class="tables_leftcell">低收入村简介</td>
 		<td height="30" class="tables_contentcell" colspan="3">
 			<textarea rows="5" cols="45" id="textarea" name="cun.remark">${cun.remark }</textarea>
 		</td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">
-			贫困村发展村集体项目计划
+			低收入村发展村集体项目计划
 		</td>
 		<td height="30" class="tables_contentcell" colspan="3">
 			<textarea rows="5" cols="45" id="jxjsxm" name="cun.item">${cun.item }</textarea>

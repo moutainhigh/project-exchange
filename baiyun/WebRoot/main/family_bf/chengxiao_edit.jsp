@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <jsp:include page="../../msg.jsp"></jsp:include>
 //获取干部
  var currLeader = '${leaderId}';
- //获取贫困户
+ //获取低收入户
  var currFamily = '${chengxiao.family.id}';
 			$(function(){
 				var year = '${chengxiao.year}';
@@ -87,11 +87,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <c:if test="${userObj.isDiv!='Y'}">
   <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody><tr>
-    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="right" width="15%" class="tables_leftcell">低收入户名称</td>
     <td class="tables_contentcell">
     <input name="chengxiao.family.id" id="familyId" value="${chengxiao.family.id}" type="hidden"/>
     <input id="familyName" value="${chengxiao.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的低收入户</font>
     </td>
   </tr>
   <tr>
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td height="30" align="right" class="tables_leftcell">干部名称</td>
     <td class="tables_contentcell">
-    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
+    <input type="text" msg="干部名称不能为空，或该低收入户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
     </td>
   </tr>  
 	<tr>
@@ -144,11 +144,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody>
   	<tr>
-    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="right" width="15%" class="tables_leftcell">低收入户名称</td>
     <td class="tables_contentcell">
     <input name="chengxiao.family.id" id="familyId" value="${chengxiao.family.id}" type="hidden"/>
     <input id="familyName" value="${chengxiao.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的低收入户</font>
     </td>
   </tr>
 	<tr>
@@ -171,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
   <tr>
 		<td class="tables_contentcell" colspan="2">
-		通过我单位干部对该贫困户的帮扶，现阶段有以下成效：<br/>
+		通过我单位干部对该低收入户的帮扶，现阶段有以下成效：<br/>
 		<textarea rows="" cols="" name="chengxiao.content">${chengxiao.content }</textarea>
 		</td>
   </tr>

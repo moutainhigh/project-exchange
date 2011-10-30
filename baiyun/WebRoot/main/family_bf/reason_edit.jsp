@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <jsp:include page="../../msg.jsp"></jsp:include>
 			//获取干部
  			var currLeader = '${leaderId}';
- 			//获取贫困户
+ 			//获取低收入户
  			var currFamily = '${reason.family.id}';
 			$(function(){
 				var year = '${reason.year}';
@@ -79,12 +79,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
   <tbody><tr>
-    <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
+    <td height="30" align="right" width="15%" class="tables_leftcell">低收入户名称</td>
     <td class="tables_contentcell">
     <input name="reason.family.id" id="familyId" value="${reason.family.id}" type="hidden"/>
     <input id="familyName" value="${reason.family.name}"/>
-    <!--<select id="family" name="reason.family.id" size="1" msg="贫困户不能为空!" datatype="Require" onchange="selectFamily(this.value);"></select>-->
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <!--<select id="family" name="reason.family.id" size="1" msg="低收入户不能为空!" datatype="Require" onchange="selectFamily(this.value);"></select>-->
+    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的低收入户</font>
     
     
     </td>
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tr>
     <td height="30" align="right" class="tables_leftcell">干部名称</td>
     <td class="tables_contentcell">
-    <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
+    <input type="text" msg="干部名称不能为空，或该低收入户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>
     </td>
   </tr>  
 	<tr>

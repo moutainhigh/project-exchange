@@ -22,7 +22,7 @@
 			}
 		}
 		function deleteInfo(){
-			if(confirm('本操作就导致贫困户的相关资料被删除并不可恢复，您确定删除吗？') && $('input:checked').length>0){
+			if(confirm('本操作就导致低收入户的相关资料被删除并不可恢复，您确定删除吗？') && $('input:checked').length>0){
 				document.forms[0].action = '${appPath}family_deleteFamily.action';
 				document.forms[0].submit();
 			}
@@ -97,7 +97,7 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：贫困户资料维护
+							您当前所处页面：低收入户信息
 						</td>
 						<td align="right">
 						
@@ -118,7 +118,7 @@
 									</select>
 					</c:if>
 							<c:if test="${userObj.roleType!='超级管理员' && userObj.roleType!='市级管理员'}">
-							<label>贫困户名: </label>
+							<label>低收入户名: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>							
 							<input type="button" class="button" value="查询" onclick="query();" > 
 							</c:if>

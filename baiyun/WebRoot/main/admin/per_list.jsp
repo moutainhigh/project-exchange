@@ -43,7 +43,7 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：设置前台贫困户查看权限
+							您当前所处页面：设置前台低收入户查看权限
 						</td>
 						<td align="right">
 							<input type="button" onclick="winOpen('${appPath}main/admin/per_edit.jsp',450,220);" class="button" value="新增">

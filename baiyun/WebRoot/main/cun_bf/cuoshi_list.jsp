@@ -201,7 +201,7 @@ var msg = '${msg}';
 		<td height="28" width="6%" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
 		<td width="" class="tables_headercell">编号</td>
-		<td class="tables_headercell">贫困村名</td>
+		<td class="tables_headercell">低收入村名</td>
 		<td width="" class="tables_headercell">帮扶措施</td>
 		<td width="" class="tables_headercell">状态</td>
 		<td width="" class="tables_headercell">操作</td>

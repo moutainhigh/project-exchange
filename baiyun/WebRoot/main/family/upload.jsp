@@ -22,7 +22,7 @@
 <form name="form1" method="post" action="${appPath}ExcelUploadAction.action" enctype="multipart/form-data" >
   <table width="360" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
 	<tr bgcolor="#CCCCCC"> 
-      <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">Excel上传贫困户资料</th>
+      <th height="20" align="left" valign="middle" bgcolor="#CCCCCC" class="trYello">Excel上传低收入户资料</th>
     </tr>
     <tr align="center" valign="middle"> 
       <td height="33" align="left" id="upid">请选择Excel文件: 

@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>贫困户资料</title>
+		<title>低收入户资料</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
@@ -27,7 +27,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">贫困村名称</td>
+		<td height="30" align="right" class="tables_leftcell">低收入村名称</td>
 		<td colspan="2" class="tables_contentcell">
 			&nbsp;${f.cun.zhen.area.name}${f.cun.zhen.name }${f.cun.name }
 		</td>

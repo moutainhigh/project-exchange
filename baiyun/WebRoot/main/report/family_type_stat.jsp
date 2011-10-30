@@ -129,7 +129,7 @@
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：贫困户类型统计
+							您当前所处页面：低收入户类型统计
 						</td>
 						<td align="right">
 						&nbsp;
@@ -174,7 +174,7 @@
 							村名
 						</td>
 						<td class="tables_headercell" colspan="4">
-							贫困户类型
+							低收入户类型
 						</td>
 						<td class="tables_headercell" rowspan="2">
 							合计

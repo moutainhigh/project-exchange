@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>编辑贫困户资料</title>
+		<title>编辑低收入户资料</title>
 		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="${appPath}css/jquery.datepick.css" />
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
@@ -65,7 +65,7 @@
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
-						<td colspan="3" align="center" class="tables_leftcell">贫困村名称</td>
+						<td colspan="3" align="center" class="tables_leftcell">低收入村名称</td>
 						<td colspan="15" class="tables_contentcell">
 							<c:choose>
 								<c:when test="${userObj.roleType=='帮扶单位管理员' && not empty userObj.cun}">
