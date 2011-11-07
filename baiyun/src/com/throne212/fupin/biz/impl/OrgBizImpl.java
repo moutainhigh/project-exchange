@@ -57,6 +57,14 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			orgInDB.setSegment1(org.getSegment1());
 			orgInDB.setSegment2(org.getSegment2());
 			orgInDB.setSegment3(org.getSegment3());
+			orgInDB.setSegment4(org.getSegment4());
+			orgInDB.setSegment5(org.getSegment5());
+			orgInDB.setOrgTel(org.getOrgTel());
+			orgInDB.setChargePersonName(org.getChargePersonName());
+			orgInDB.setChargeDuty(org.getChargeDuty());
+			orgInDB.setContactMobile(org.getContactMobile());
+			orgInDB.setContactDuty(org.getContactDuty());
+			orgInDB.setContactTel(org.getContactTel());
 			baseDao.saveOrUpdate(orgInDB);
 			logger.info("更新扶贫单位【" + org.getOrgName() + "】成功");
 			return orgInDB;
