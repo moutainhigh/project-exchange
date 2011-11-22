@@ -558,9 +558,10 @@ public class FamilyBFAction extends BaseAction {
 		return "family_mapping_edit";
 	}
 
+	private Date startDate;
 	public String saveFamilyMapping() {
 		String[] ids = (String[]) ActionContext.getContext().getParameters().get("leaderIds");
-		// 清楚原有的帮扶
+		// 清除原有的帮扶
 		family = orgBiz.getEntityById(Family.class, family.getId());
 		List<Leader> leaderList = orgBiz.getEntitiesByColumn(Leader.class, "family", family);
 		if (leaderList != null && leaderList.size() > 0)
@@ -578,6 +579,7 @@ public class FamilyBFAction extends BaseAction {
 			for (String id : ids) {
 				Leader leader = orgBiz.getEntityById(Leader.class, Long.parseLong(id));
 				leader.setFamily(family);
+				leader.setStartDate(startDate);
 				orgBiz.saveOrUpdateEntity(leader);
 
 				// 保存映射
@@ -849,6 +851,14 @@ public class FamilyBFAction extends BaseAction {
 
 	public void setCunId(Long cunId) {
 		this.cunId = cunId;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 }

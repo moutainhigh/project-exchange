@@ -1,5 +1,9 @@
 package com.throne212.fupin.domain;
 
+import java.util.Date;
+
+import com.throne212.fupin.common.Util;
+
 public class Leader extends MyEntity implements Comparable<Leader>{
 	
 	private Org org;
@@ -10,6 +14,7 @@ public class Leader extends MyEntity implements Comparable<Leader>{
 	private String position;
 	private String email;
 	private String tel;
+	private Date startDate;
 	
 	public Org getOrg() {
 		return org;
@@ -66,5 +71,16 @@ public class Leader extends MyEntity implements Comparable<Leader>{
 			return 1;
 		return (int) (this.getId()-o.getId());
 	}
-
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public String getStartDateTxt() {
+		if(startDate != null){
+			return Util.getDate(startDate);
+		}
+		return null;
+	}
 }

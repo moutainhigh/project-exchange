@@ -21,6 +21,7 @@
 			arr[${status.count-1}]='${l.id}';
 			</c:forEach>
 			$(function(){
+				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 				$('input[type="checkbox"]').each(function(){
 					for(var i=0;i<arr.length;i++){
 						if($(this).val() == arr[i]){
@@ -103,6 +104,13 @@ z-index:2;
 	</c:forEach>
     </tbody></table> 
     </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td height="30" align="center" width="15%" class="tables_leftcell">结对帮扶起始日期</td>
+    <td colspan="2" class="tables_contentcell">
+   		<input type="text"  value="" name="startDate" id="startDate" class="datetime" />
     </td>
   </tr>
 

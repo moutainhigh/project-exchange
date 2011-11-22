@@ -235,7 +235,7 @@
 							姓名
 						</td>
 						<td width="" class="tables_headercell">
-							分管领导（联系人）
+							联系电话
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
@@ -277,13 +277,16 @@
 							</c:if>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.segment1 }
+							&nbsp;
+							<c:if test="${not empty f.leaderList }">
+							${f.leaderList[0].startDateTxt }
+							</c:if>
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.segment2 }
+							&nbsp;${f.cun.org.chargePersonName }
 						</td>
 						<td align="center" class="tables_contentcell">
-							&nbsp;${f.cun.org.segment3 }
+							&nbsp;${f.cun.org.orgTel }
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;

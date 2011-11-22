@@ -14,6 +14,7 @@
 		<property name="email"></property>
 		<property name="position"></property>
 		<property name="tel"></property>
+		<property name="startDate"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>

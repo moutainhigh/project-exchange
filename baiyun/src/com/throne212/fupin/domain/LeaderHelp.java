@@ -1,5 +1,7 @@
 package com.throne212.fupin.domain;
 
+import java.util.Date;
+
 //干部所帮扶的贫困户映射中间表，通过这个映射找到干部帮扶的多个贫困户
 public class LeaderHelp extends MyEntity{
 	
