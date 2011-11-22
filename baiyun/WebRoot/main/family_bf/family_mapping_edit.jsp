@@ -108,9 +108,9 @@ z-index:2;
   </tr>
   
   <tr>
-    <td height="30" align="center" width="15%" class="tables_leftcell">结对帮扶起始日期</td>
+    <td height="30" align="center" width="15%" class="tables_leftcell">结对起始日期</td>
     <td colspan="2" class="tables_contentcell">
-   		<input type="text"  value="" name="startDate" id="startDate" class="datetime" />
+   		<input type="text"  value="<fmt:formatDate value="${startDate }" pattern="yyyy-MM-dd"/>" name="startDate" id="startDate" class="datetime" />
     </td>
   </tr>
 

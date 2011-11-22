@@ -1,5 +1,6 @@
 package com.throne212.fupin.action;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -538,6 +539,10 @@ public class FamilyBFAction extends BaseAction {
 		family = familyBFBiz.getEntityById(Family.class, family.getId());
 		List list = orgBiz.getEntitiesByColumn(Leader.class, "family", family);
 		family.setLeaderList(list);
+		if(list != null && list.size() > 0){
+			Leader l = (Leader) list.get(0);
+			startDate = l.getStartDate();
+		}
 
 		// 获取领导列表
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -560,6 +565,14 @@ public class FamilyBFAction extends BaseAction {
 
 	private Date startDate;
 	public String saveFamilyMapping() {
+		String[] s = (String[]) ActionContext.getContext().getParameters().get("startDate");
+		if(s != null && s.length > 0){
+			try {
+				startDate = Util.getDateByTxt(s[0]);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		String[] ids = (String[]) ActionContext.getContext().getParameters().get("leaderIds");
 		// 清除原有的帮扶
 		family = orgBiz.getEntityById(Family.class, family.getId());
