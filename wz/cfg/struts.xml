@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.action.extension" value="action,dhtml,htm,html,do,"></constant>
+	<constant name="struts.i18n.encoding" value="gbk"/>
+	<constant name="struts.enable.SlashesInActionNames" value="false"></constant>
+	<constant name="struts.multipart.maxSize" value="5242880" />
+	
+    <package name="struts2" extends="struts-default" namespace="/">
+    	<interceptors>
+            <interceptor name="domain" class="com.throne212.wz.filter.DomainInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="domain" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authStack"/>
+        <default-action-ref name="index" />
+        <global-results>
+        	<result name="404">/404.html</result>
+        </global-results>
+    </package>
+    
+</struts>
