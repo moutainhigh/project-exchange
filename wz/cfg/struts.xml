@@ -8,7 +8,7 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
-	<constant name="struts.action.extension" value="action,dhtml,htm,html,do,"></constant>
+	<constant name="struts.action.extension" value="htm,do,"></constant>
 	<constant name="struts.i18n.encoding" value="gbk"/>
 	<constant name="struts.enable.SlashesInActionNames" value="false"></constant>
 	<constant name="struts.multipart.maxSize" value="5242880" />
@@ -25,12 +25,21 @@
         	</result>
         	<result name="fail">/login.jsp</result>
         </action>
+        <action name="logout" class="com.throne212.wz.action.LogoutAction">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">index</param>
+        		<param name="namespace">/</param>  
+        	</result>
+        </action>
         <action name="reg" class="com.throne212.wz.action.RegAction">
         	<result name="success" type="redirectAction">
         		<param name="actionName">index</param>
         		<param name="namespace">/userinfo</param>  
         	</result>
         	<result name="fail">/Register/reg.jsp</result>
+        </action>
+        <action name="index" class="com.throne212.wz.action.IndexAction">
+        	<result name="index">/index.jsp</result>
         </action>
     </package>
     
@@ -43,9 +52,12 @@
             </interceptor-stack>
         </interceptors>
 	    <default-interceptor-ref name="authStack"/>
-    	<default-action-ref name="index" />
-    	<action name="index" class="com.throne212.wz.action.UserInfoAction">
-        	<result name="success">/userinfo/index.jsp</result>
+	    <default-action-ref name="index" />
+	    <global-results>
+        	<result name="login">/login.jsp</result>
+        </global-results>
+    	<action name="*" method="{1}"  class="com.throne212.wz.action.UserInfoAction">
+        	<result name="index">/userinfo/UserInfo.jsp</result>
         </action>
     </package>
     

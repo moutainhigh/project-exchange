@@ -14,15 +14,15 @@
 			var repassword = $('#repassword').val();
 			var nick = $('#nick').val();
 			var rand = $('#rand').val();
-			var kind = $('#userKind').val();
+			//var kind = $('#userKind').val();
 			if (username == '' || password == '' || rand == '' || nick == '') {
 				alert('请输入账号、昵称、密码、邮箱，以及验证码!');
 				return;
 			}
-			if(kind==null || kind == ''){
+			/*if(kind==null || kind == ''){
 				alert('请选择您的用户类型!');
 				return;
-			}
+			}*/
 			if(password != repassword){
 				alert('两次密码输入不一致!');
 				return;
@@ -63,6 +63,7 @@
 			<div class="regInfos border_l1">
 				<jsp:include page="../msg.jsp"></jsp:include>
 				<div class="regblock">
+					<!-- 
 		          <div class="reginfo">
 		            <label class="label"><span class="msg">* </span>用户类型:</label>
 		            &nbsp;&nbsp;&nbsp;&nbsp;
@@ -74,6 +75,7 @@
 		          <div class="form-tip loading">
 		            <p>用户类型。</p>
 		          </div>
+		           -->
 		        </div>
 		        <div class="regblock">
 		          <div class="reginfo">

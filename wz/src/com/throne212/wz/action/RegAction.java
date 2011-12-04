@@ -45,6 +45,8 @@ public class RegAction extends BaseAcion {
 			return "fail";
 		}
 		ActionContext.getContext().getSession().put(Consts.SESS_USER_OBJ, user);
+		ActionContext.getContext().getSession().put(Consts.SESS_RAND, null);
+		this.setMsg("×¢²á³É¹¦");
 		return "success";
 	}
 

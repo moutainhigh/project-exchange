@@ -1,27 +1,40 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<div class="fl w200 hide pad_r10 bsr_gray">
-  <p class="yahei ft18 blue fb bdb_gray mar_t3 pad_b10"> åŸºæœ¬ä¿¡æ¯</p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei">ç”¨æˆ·åï¼š</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mar_t3 pad_l10">${sessionScope.userObj.loginName}</span>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei">æ˜µç§°ï¼š</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mar_t3 pad_l10">${sessionScope.userObj.nickName}</span>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei">ç”¨æˆ·ç±»åž‹ï¼š</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mar_t3 pad_l10">${sessionScope.userObj.typeTxt}</span>
-  <br/>
-  <br/>
-  <br/>
-  <p class="yahei ft18 blue fb bdb_gray mar_t3 pad_b10"> åŸºæœ¬è®¾ç½®</p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei fr"><a href="${appPath}/userInfo/UserInfoEdit.jsp">ä¿®æ”¹èµ„æ–™</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahe"><a href="${appPath}/userInfo/UserPwd.jsp"> ä¿®æ”¹å¯†ç </a></p>
-  <br/>
-  <br/>
-  <br/>
-  <p class="yahei ft18 blue fb bdb_gray mar_t3 pad_b10"> æŽ§åˆ¶é¢æ¿</p>
-    <p class="dot1 mar_t10 ft14 fb yellow_ef yahei fr"><a href="${appPath}/projectOutsourceInfo/ProjectOutsourceManage.jsp">é¡¹ç›®ç®¡ç†</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei"><a href="${appPath}/customerAccountInfo/CustomerAccountManage.jsp">è´¦æˆ·ç®¡ç†</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei fr"><a href="${appPath}/RequestInfoAction_requestList.action">è½¯ä»¶æ±‚è´­</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei"><a href="${appPath}/SupplyInfoAction_supplyList.action">è½¯ä»¶ä¾›åº”</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei fr"><a href="${appPath}/InvestmentAction_allInvestmentOfCust.action">æŠ•èµ„åˆä½œ</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei"><a href="${appPath}/SolutionAction_allSolutionOfCust.action">è§£å†³æ–¹æ¡ˆ</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei fr"><a href="${appPath}/RecruitInfoAction_recruitList.action">ä¼ä¸šæ‹›è˜</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei"><a href="${appPath}/JobInfoAction_myJobInfoList.action">ä¸ªäººæ±‚èŒ</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei fr"><a href="${appPath}/LogoutAction.action">é€€å‡ºç™»å½•</a></p>
-  <p class="dot1 mar_t10 ft14 fb yellow_ef yahei"><a href="${appPath}/userInfo/UserInfo.jsp">è¿”å›žä¸­å¿ƒ</a></p>
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<div id="sidebar">
+  <ul>
+    <li id="main_menu1" class="current"> <a href="${appPath}/userinfo/index"><span class="icon donateicon">ÎÒµÄÊ×Ò³</span></a> </li>
+    <li id="main_menu2"> <a href="${appPath}/userinfo/publishList"><span class="icon gatheringicon">·¢²¼ÈÎÎñ</span></a> </li>
+    <li id="main_menu3"> <a href="${appPath}/userinfo/wantList"><span class="icon wegicon">¾ºÆ¸ÈÎÎñ</span></a> </li>
+    <li id="main_menu4"> <a href="?action=zonelist"><span class="icon txicon">ÎÒµÄÈÎÎñ</span></a> </li>
+    <li id="main_menu5"> <a href="?action=createsite"><span class="icon renticon">²ÆÎñÐÅÏ¢</span></a> </li>
+    <li id="main_menu7"> <a href="?action=stats"><span class="icon crediticon">Êý¾Ý±¨±í</span></a> </li>
+    <li id="main_menu8"> <a href="?action=order"><span class="icon aacollecticon">¶©µ¥²éÑ¯</span></a> </li>
+    <li id="main_menu9"> <a href="?action=paylist"><span class="icon cashgifticon">Ó¶½ð½áËã</span></a> </li>
+    <li id="main_menu10"> <a href="?action=userinfo"><span class="icon lotteryicon">ÕÊºÅÐÅÏ¢</span></a> </li>
+    <li id="main_menu11"> <a href="?action=userinfo&amp;actiontype=pw"><span class="icon escoreicon">ÐÞ¸ÄÃÜÂë</span></a> </li>
+    <li id="main_menu12"> <a href="?action=pm&amp;actiontype=inbox"><span class="icon mobileicon">ÏµÍ³ÉèÖÃ</span></a> </li>
+  </ul>
 </div>
+<!-- 
+<div id="sidebar">
+  <div class="head">
+    <h1></h1>
+    <div>ÓÉ 7794.comÌá¹©µÄ¹ã¸æ·þÎñ</div>
+  </div>
+  <ul>
+    <li id="main_menu1" class="current"> <a href="?action=index"><span class="icon donateicon">ÎÒµÄÊ×Ò³</span></a> </li>
+    <li id="main_menu2"> <a href="?action=planlist"><span class="icon gatheringicon">»ñÈ¡¹ã¸æ</span></a> </li>
+    <li id="main_menu3"> <a href="?action=adslist"><span class="icon wegicon">ÂÖ²¥¹ã¸æ</span></a> </li>
+    <li id="main_menu4"> <a href="?action=zonelist"><span class="icon txicon">¹ã¸æ¹ÜÀí</span></a> </li>
+    <li id="main_menu5"> <a href="?action=createsite"><span class="icon renticon">ÐÂÔöÍøÕ¾</span></a> </li>
+    <li id="main_menu6"> <a href="?action=sitelist"><span class="icon gameicon">ÍøÕ¾ÁÐ±í</span></a> </li>
+    <li id="main_menu7"> <a href="?action=stats"><span class="icon crediticon">Êý¾Ý±¨±í</span></a> </li>
+    <li id="main_menu8"> <a href="?action=order"><span class="icon aacollecticon">¶©µ¥²éÑ¯</span></a> </li>
+    <li id="main_menu9"> <a href="?action=paylist"><span class="icon cashgifticon">Ó¶½ð½áËã</span></a> </li>
+    <li id="main_menu10"> <a href="?action=userinfo"><span class="icon lotteryicon">ÕÊºÅÐÅÏ¢</span></a> </li>
+    <li id="main_menu11"> <a href="?action=userinfo&amp;actiontype=pw"><span class="icon escoreicon">ÐÞ¸ÄÃÜÂë</span></a> </li>
+    <li id="main_menu12"> <a href="?action=pm&amp;actiontype=inbox"><span class="icon mobileicon">ÏµÍ³ÏûÏ¢</span></a> </li>
+    <li id="main_menu13"> <a href="?action=pm&amp;actiontype=outbox"><span class="icon insuranceicon">ÎÊÌâ×ÉÑ¯</span></a> </li>
+    <li id="main_menu14"> <a href="?action=pm&amp;actiontype=new"><span class="icon hotelicon">ÔÚÏßÌáÎÊ</span></a> </li>
+  </ul>
+</div>
+ -->

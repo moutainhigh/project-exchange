@@ -141,23 +141,13 @@
 	padding:#F7F7F7;
 	padding:0;
 	color:#666;
+	padding: 10px 0px;
 }
 
 .pic-imgnews img{
 	border:1px solid #989a99;
 }
 
-.pic-imgnews ul{
-	position:absolute;
-	height:14px;
-	line-height:14px;
-	overflow:hidden;
-	right:2px;
-	font-family:Arial;
-	font-size:10px;
-	color:#fff;
-	top: 243px;
-}
 
 .pic-imgnews li{ float:left; background:#424648; padding:0 5px; border-left:1px solid #fff; cursor:pointer;}
 

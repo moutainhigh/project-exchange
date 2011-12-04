@@ -37,6 +37,7 @@ public class LoginAction extends BaseAcion {
 			return "fail";
 		}
 		ActionContext.getContext().getSession().put(Consts.SESS_USER_OBJ, user);
+		ActionContext.getContext().getSession().put(Consts.SESS_RAND, null);
 		return "success";
 	}
 

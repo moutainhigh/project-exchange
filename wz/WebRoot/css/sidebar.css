@@ -1,0 +1,59 @@
+@charset "utf-8";
+#sidebar{ float:left; width:160px; padding-bottom:100px;padding-top: 10px;background: url(../images/s-bg.jpg) repeat-y;}
+#sidebar ul{width:160px;}
+#sidebar li{height:51px;position:relative;width:100%;background:url(../images/sidebar-bg.png) no-repeat 0 49px;float:left;}
+#sidebar li a{display:block;width:100%;color:#07679c;height:52px;position:absolute;top:-2px;line-height:50px; text-decoration:none;}
+#sidebar li a .icon{font-size:14px;padding:14px 0 14px 50px;margin-left:6px;background:url(../images/sidebar-icon.jpg?t=20100810) no-repeat;}
+#sidebar li a:hover{text-decoration:none;background:url(../images/sidebar-bg.png) no-repeat 0 -10px #dde8eb;}
+#sidebar li.current a{text-decoration:none;background:url(../images/sidebar-bg.png) no-repeat 0 -67px #f8feff;color:#00a1d0;font-weight:bold;}
+#sidebar li.current a:hover{text-decoration:none;background:url(../images/sidebar-bg.png) no-repeat 0 -10px #dde8eb;}
+#sidebar li a .wegicon{background-position:0 -610px;}
+#sidebar li.current a .wegicon{background-position:-300px -610px;}
+#sidebar li a:hover .wegicon{background-position:-150px -610px;}
+#sidebar li a .txicon{background-position:0 -560px;}
+#sidebar li.current a .txicon{background-position:-300px -560px;}
+#sidebar li a:hover .txicon{background-position:-150px -560px;}
+#sidebar li a .gatheringicon{background-position:0 -711px;}
+#sidebar li.current a .gatheringicon{background-position:-300px -711px;}
+#sidebar li a:hover .gatheringicon{background-position:-150px -711px;}
+#sidebar li a .escoreicon{background-position:0 -660px;}
+#sidebar li.current a .escoreicon{background-position:-300px -660px;}
+#sidebar li a:hover .escoreicon{background-position:-150px -660px;}
+#sidebar li a .paymenticon{background-position:0 -762px;}
+#sidebar li.current a .paymenticon{background-position:-300px -762px;}
+#sidebar li a:hover .paymenticon{background-position:-150px -762px;}
+#sidebar li a .cashgifticon{background-position:0 -356px;}
+#sidebar li.current a .cashgifticon{background-position:-300px -356px;}
+#sidebar li a:hover .cashgifticon{background-position:-150px -356px;}
+#sidebar li a .crediticon{background-position:0 -509px;}
+#sidebar li.current a .crediticon{background-position:-300px -509px;}
+#sidebar li a:hover .crediticon{background-position:-150px -509px;}
+#sidebar li a .renticon{background-position:0 -458px;}
+#sidebar li.current a .renticon{background-position:-300px -458px;}
+#sidebar li a:hover .renticon{background-position:-150px -458px;}
+#sidebar li a .aacollecticon{background-position:0 -407px;}
+#sidebar li.current a .aacollecticon{background-position:-300px -407px;}
+#sidebar li a:hover .aacollecticon{background-position:-150px -407px;}
+#sidebar li a .donateicon{background-position:0 -153px;}
+#sidebar li.current a .donateicon{background-position:-300px -153px;}
+#sidebar li a:hover .donateicon{background-position:-150px -153px;}
+#sidebar li a .mobileicon{background-position:0 -51px;}
+#sidebar li.current a .mobileicon{background-position:-300px -51px;}
+#sidebar li a:hover .mobileicon{background-position:-150px -51px;}
+#sidebar li a .flighticon{background-position:0 -1px;}
+#sidebar li.current a .flighticon{background-position:-300px -1px;}
+#sidebar li a:hover .flighticon{background-position:-150px -1px;}
+#sidebar li a .hotelicon{background-position:0 -256px;}
+#sidebar li.current a .hotelicon{background-position:-300px -256px;}
+#sidebar li a:hover .hotelicon{background-position:-150px -256px;}
+#sidebar li a .gameicon{background-position:0 -103px;}
+#sidebar li.current a .gameicon{background-position:-300px -103px;}
+#sidebar li a:hover .gameicon{background-position:-150px -103px;}
+#sidebar li a .lotteryicon{background-position:0 -205px;}
+#sidebar li.current a .lotteryicon{background-position:-300px -205px;}
+#sidebar li a:hover .lotteryicon{background-position:-150px -205px;}
+#sidebar li a .insuranceicon{background-position:0 -307px;}
+#sidebar li.current a .insuranceicon{background-position:-300px -307px;}
+#sidebar li a:hover .insuranceicon{background-position:-150px -307px;}
+
+#banner1{background:url("../images/banner-jiaofei.jpg") no-repeat scroll right center transparent; height: 180px; width:730px;}
