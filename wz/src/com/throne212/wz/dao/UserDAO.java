@@ -3,11 +3,16 @@ package com.throne212.wz.dao;
 
 import java.sql.Timestamp;
 import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.hibernate.LockMode;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.throne212.wz.domain.User;
 
@@ -20,6 +25,7 @@ import com.throne212.wz.domain.User;
   * @author MyEclipse Persistence Tools 
  */
 
+@Repository("userDAO")
 public class UserDAO extends HibernateDaoSupport  {
 	     private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
 		//property constants
@@ -50,7 +56,10 @@ public class UserDAO extends HibernateDaoSupport  {
 	public static final String USER_SUCCESS = "userSuccess";
 	public static final String USER_FAILURE = "userFailure";
 
-
+	@Resource(name = "sessionFactory")
+	public void setBaseDaoSessionFactory(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
 	protected void initDao() {
 		//do nothing

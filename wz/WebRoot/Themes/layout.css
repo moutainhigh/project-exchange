@@ -1,0 +1,183 @@
+﻿.section_search{
+	clear:both;
+	border: 2px solid #fff7dd;
+	background-color: #FFFCF2;
+}
+.section_search .ptitle{
+	height:30px;
+	padding:0;
+	font-size:12px;
+	overflow:hidden;
+	color:#f1640c;
+	font-weight: bold;
+	background: url(images/section_search_bg.gif) repeat-x right top;
+}
+
+
+/******** 标签叶 ********/
+
+.tlboxtitle {
+	display: block;
+	font-weight: normal;
+	font-size: 12px;
+	margin-top: 1px;
+}
+
+.tlboxtitle li {
+	width: 86px;
+	float: left;
+	text-align: center;
+	background: url(images/label.gif) no-repeat -86px 0;
+	height: 27px;
+	padding-top: 2px;
+}
+
+.tlboxtitle li a{
+	color:#333;
+}
+
+.tlboxtitle li.current{
+	background: url(images/label.gif) no-repeat 0 0;
+}
+
+.tlboxtitle li.current a{
+	color:#FFFFFF;
+	font-weight: bold;
+}
+
+/*----- 广告位 -----*/
+.recommendshop {
+	overflow:hidden;
+}
+.recommendshop li {
+	line-height:140%;
+	background:url(images/dot.gif) 0 12px no-repeat;
+	border-bottom: 1px dotted #ccc;
+	padding: 4px 0 4px 10px;
+}
+
+/*----- 评论列表 -----*/
+.recommendlist{
+	overflow:hidden;
+}
+.recommendlist dl{
+	width:210px;
+	margin: 5px 0 5px 0;
+	height: 45px;
+}
+.recommendlist dt{
+	float:left;
+	width:45px;
+}
+.recommendlist dt img{
+	width:40px;
+	height:40px;
+	border:2px solid #f0f0f0;
+}
+.recommendlist dd{
+	float:left;
+	width:155px;
+	padding:0 0 0 6px;
+}
+.recommendlist dd b{
+	display:block;
+	width:155px;
+	padding:1px 0 3px 0;
+	font-weight:normal;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.recommendlist dd p{
+	width:155px;
+	color:#333;
+	line-height:20px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+/*---- 家居小贴士 ----*/
+.index_tips{
+	margin:0;
+}
+.index_tips .pic{
+	height:105px;
+	padding:0;
+	margin-bottom:7px;
+	border-bottom: 1px dotted #ccc;
+}
+.index_tips .pic img{ border:1px solid #ddd; float:left; margin-right:8px;}
+.index_tips .pic b{ color:#cc0000;}
+
+
+/*---- 服务导航 ----*/
+.service_guide p{
+    line-height: 200%;
+}
+
+.search_area02{
+	background: url(images/search_bg_icon.gif) no-repeat 40px 0;
+	height: 37px;
+	padding: 10px 0 0 200px;
+}
+
+.search_area02 .inputxt01 {
+	height: 22px;
+	padding: 2px 0 0 2px;
+	border: 1px solid #9b9f9f;
+}
+
+.search_area02 .inputxt02 {
+	height: 26px;
+	padding: 0 0 0 2px;
+	border: 1px solid #9b9f9f;
+}
+
+/* ----- 图片切换----- */
+
+.pic-imgnews{
+	position:relative;
+	padding:#F7F7F7;
+	padding:0;
+	color:#666;
+}
+
+.pic-imgnews img{
+	border:1px solid #989a99;
+}
+
+.pic-imgnews ul{
+	position:absolute;
+	height:14px;
+	line-height:14px;
+	overflow:hidden;
+	right:2px;
+	font-family:Arial;
+	font-size:10px;
+	color:#fff;
+	top: 243px;
+}
+
+.pic-imgnews li{ float:left; background:#424648; padding:0 5px; border-left:1px solid #fff; cursor:pointer;}
+
+.pic-imgnews .current{ background:#DB1924;}
+
+/* ----- 供需关系 ----- */
+
+.shotcut{
+	
+}
+
+.shotcut .buy{ background: url(images/img-buy.jpg) no-repeat 0 0; height: 25px; padding: 35px 0 0 60px; color:#333333;
+}
+.shotcut .sell{ background: url(images/img-sell.jpg) no-repeat 0 0; height: 25px; padding: 35px 0 0 60px; color:#333333;
+}
+
+/* ----- 项目推荐 ----- */
+.projects_list li{ float: left; width: 350px; line-height: 240%;}
+
+/* ----- 友情链接 ----- */
+.friendlink{ padding:8px 10px;}
+
+.friendlink a{ margin-right:10px;}

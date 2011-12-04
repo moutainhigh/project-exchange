@@ -1,0 +1,161 @@
+/******** 清除标签基本样式 *********/
+
+.banner-register{
+	background:url(../../Themes/images/banner-rank.jpg) no-repeat 0 0;
+	height: 121px;
+	border-bottom: 5px solid #103b57;
+	width: 980px;
+}
+
+.sborder{border:0; margin:6px 8px 13px; height:auto;}
+
+
+.sborder .ptitle{background:none;}
+.regist{ padding-bottom:75px;}
+.regist h1{ height:35px; padding:0 10px 0 0;background:none;}
+.regist h1 .icon{float:left; background:url(images/icon-sborder.gif) 5px 8px no-repeat;
+padding:8px 0 0 25px; font-size:14px; font-weight:bold;color:#2D69A4;}
+.regist .cando{
+	float:left;
+	width:380px;
+	overflow:hidden;
+	margin-top:2px;
+}
+
+.msg{color:#ff0000;}
+.regInfos{
+	float:right;
+	width:570px;
+	color:#666;
+	overflow: hidden;
+}
+.regInfos .textbox{ width:195px; height:24px; border:1px solid #ddd;font-family:Arial; font-weight:bold; font-size:14px;
+ line-height:24px; padding:0 5px;color:#444;}
+ .regInfos select{height:24px; border:1px solid #ddd;line-height:24px;color:#444;}
+.regInfos .regblock {
+	margin:20px 0 20px 0;
+	position: relative;
+	font-size:13px;
+}
+.regInfos .label {
+	width: 100px;
+	float: left;
+	padding-top: 5px;
+	text-align: right;
+	padding-right: 5px;
+	font-family:Arial;
+}
+.regInfos .reginfo {width: 35em;margin: 0;}
+.regInfos .form-tip {
+	position: absolute;
+	width: 248px;
+	left:330px;
+	top: 5px;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	font-size:12px;
+	padding-left:22px;
+	line-height:1.5em;
+	color:#999;
+	background-position:left 1px;
+	word-break:break-all;
+}
+.regInfos .ok{background-image: url(images/tgreen.gif); height:18px;}
+.regInfos .error{background-image: url(images/tred.gif); height:18px; color:#E43C51;}
+.regInfos .loading{background-image: url(images/loading.gif);height:21px; }
+.regInfos .imageError{left:387px; background-image: url(images/tred.gif); height:18px; color:#E43C51;}
+
+.regInfos .com{}
+.regInfos .comlist{ position:absolute; left:89px;_left:92px; top:27px; border:1px solid #ccc; cursor:default; border-top:0; width:205px; background:#fff;font-size:12px;}
+
+.regInfos .comlist li{ height:21px; overflow:hidden; clear:both;  font-size:14px; font-weight:bold; padding:2px 5px 1px ;color:#444;width:195px; }
+.regInfos .comlist .current{ background:#0A4378; text-decoration:none;color:#fff;}
+.regInfos .comlist li span{color:#999; font-style:normal; font-size:12px;}
+.regInfos .comlist .current span{color:#fff;}
+.regInfos .comlist li em{color:#999; font-style:normal; float:right; margin-top:-21px; padding-right:5px; font-size:12px;}
+.regInfos .comlist .current em{color:#fff;}
+.regInfos .comlist p{ text-align:right; padding-right:5px;}
+
+.regInfos .regSubmit{
+	padding:0 0 0 80px;
+}
+.regInfos .regSubmit .btnReg{ margin:0 0 8px; background:url(images/btn-reg.gif) no-repeat;
+border:0; width:226px; height:34px; font-size:16px; font-weight:bold; cursor:pointer; text-align:left; padding-left:90px;}
+.regInfos .regSubmit label{
+	display: block;
+	width:125px;
+	float:left;
+}
+.regInfos .regSubmit span{
+	display: block;
+	width:200px;
+	float:left;
+}
+.regInfos .regSubmit span.error{background-repeat: no-repeat;  padding-left:22px; margin-left:11px;}
+.regSubmit .btnRound1,.regSubmit .btnRound2,.btns .btnRound1,.btns .btnRound2{ font-size:14px; font-weight:bold; cursor:pointer; height:29px; text-align:center;border:0;line-height:29px; margin-top:8px;}
+.regSubmit .btnRound1,.btns .btnRound1{ background:url(images/btn-round1.gif) no-repeat; width:88px;}
+.regSubmit .btnRound2,.btns .btnRound2{background:url(images/btn-round2.gif) no-repeat;width:124px;}
+
+.headlist{width:380px; }
+.headlist p{ font-size:12px; text-align:right; margin-top:8px;}
+.headlist img,.uploadhead img{ border:1px solid #ddd; padding:1px;}
+.uploadhead{width:380px; font-size:12px;}
+/********* 邮箱激活验证 **********/
+.mailverify{font-size:14px; color:#000; padding-left:20px;}
+.mailverify table td{ padding:10px 0; }
+.mailverify a:link,.mailverify a:visited{ text-decoration:underline;}
+.mailverify a:hover{ text-decoration:none;}
+.mailverify .tomailbox{ background:url(images/btn_bg.gif) repeat-x; height:23px; color:#fff;
+ font-weight:bold; border:1px solid #DB6C00; cursor:pointer; padding:0 10px;}
+.mailverify .textbox{ margin:0 ;}
+.mailverify .tip{color:#666;  font-size:12px;}
+.mailverify .tip .red{color:#ff0000;}
+
+/********* 800邻推荐 ********/
+.recommend{width:832px; margin:20px auto 20px auto ; font-size: 12px;}
+.recommend h1{color:#0177af; line-height:120%;}
+.recommend dl{clear:both;  border-bottom:1px solid #ddd; padding:20px  0  0;}
+.recommend dl.noborder{border:0;}
+.recommend dt{ background:url(images/rec-bgicon.gif) no-repeat; width:64px; height:24px;
+float:left;  padding:40px 20px 0 0; text-align:center;}
+.recommend dt a:link, .recommend dt a:visited {color:#fff; font-weight:bold;}
+
+.recommend dd{float:left;width:720px;}
+.recommend dd ul{ margin-top:3px;}
+.recommend dd ul img{ border:1px solid #ddd; padding:1px;}
+.recommend .clearer{float:none; clear:both; height:0; overflow:hidden;}
+
+.recommend dd .list01{}
+.recommend dd .list01 li,.store li{float:left; width:104px; margin:8px 28px 0px 10px; text-align:center; line-height:18px;}
+.recommend dd .list01 li img,.store li img{ *margin-bottom:5px;}
+.recommend dd .list01 li em{font-style:normal;color:#ff0000;}
+
+.store li{width:109px;margin:8px 23px 8px 10px;}
+.btns{ text-align:center; margin-top:20px; margin-bottom:15px;}
+
+.banner-tips{
+	background:url(images/banner-tip.jpg) no-repeat 0 0;
+	height: 392px;
+	padding: 40px 460px 0 120px;
+	width: 400px;
+}
+
+.banner-tips h1{
+    font-family: 微软雅黑;
+	font-size: 24px;
+	color: #168862;
+}
+.banner-tips h2{
+    font-family: 微软雅黑;
+	font-size: 18px;
+	color: #2d6179;
+}
+
+.tblist3{margin:10px 0;}
+.tblist3 tr{margin-bottom:5px;}
+.tblist3 td{padding:5px; border-bottom:1px dotted #ddd;}
+
+.tblist4 td{border-bottom:none;}
+
+.title4 { background: url(images/bg-title.gif) no-repeat 0 0; height: 28px;}
+.w670{width:670px;}

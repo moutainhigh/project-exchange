@@ -6,6 +6,6 @@ public interface UserBiz {
 
 	public User login(String username,String password);
 	
-	public User reg(String username,String password);
+	public User reg(User user);
 	
 }

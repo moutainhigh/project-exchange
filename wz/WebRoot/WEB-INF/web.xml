@@ -33,7 +33,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- error page -->
+	<!-- error page 
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.html</location>
@@ -42,6 +42,16 @@
 		<error-code>500</error-code>
 		<location>/500.html</location>
 	</error-page>
+	-->
+	<!-- rand -->
+	<servlet>
+		<servlet-name>RandServlet</servlet-name>
+		<servlet-class>com.throne212.wz.servlet.RandServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RandServlet</servlet-name>
+		<url-pattern>/rand.servlet</url-pattern>
+	</servlet-mapping>
 	
 	<!-- struts2 sessiongs end -->
 	<welcome-file-list>

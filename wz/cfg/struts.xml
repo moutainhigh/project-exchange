@@ -14,18 +14,39 @@
 	<constant name="struts.multipart.maxSize" value="5242880" />
 	
     <package name="struts2" extends="struts-default" namespace="/">
-    	<interceptors>
+        <default-action-ref name="index" />
+        <global-results>
+        	<result name="404">/404.html</result>
+        </global-results>
+        <action name="login" class="com.throne212.wz.action.LoginAction">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">index</param>
+        		<param name="namespace">/userinfo</param>  
+        	</result>
+        	<result name="fail">/login.jsp</result>
+        </action>
+        <action name="reg" class="com.throne212.wz.action.RegAction">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">index</param>
+        		<param name="namespace">/userinfo</param>  
+        	</result>
+        	<result name="fail">/Register/reg.jsp</result>
+        </action>
+    </package>
+    
+    <package name="struts2-userinfo" extends="struts-default" namespace="/userinfo">
+	    <interceptors>
             <interceptor name="domain" class="com.throne212.wz.filter.DomainInterceptor"/>
             <interceptor-stack name="authStack">
             	<interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="domain" />
             </interceptor-stack>
         </interceptors>
-        <default-interceptor-ref name="authStack"/>
-        <default-action-ref name="index" />
-        <global-results>
-        	<result name="404">/404.html</result>
-        </global-results>
+	    <default-interceptor-ref name="authStack"/>
+    	<default-action-ref name="index" />
+    	<action name="index" class="com.throne212.wz.action.UserInfoAction">
+        	<result name="success">/userinfo/index.jsp</result>
+        </action>
     </package>
     
 </struts>
