@@ -22,7 +22,7 @@ public class CommonListener implements ServletContextListener {
 		ApplicationContext ac = (ApplicationContext) e.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 		
 		ServletContext app = e.getServletContext();
-		app.setAttribute(Consts.APP_PATH, app.getContextPath());
+		app.setAttribute(Consts.APP_PATH, app.getContextPath().equals("/")?"":app.getContextPath());
 		app.setAttribute(Consts.APP_TITLE, "网上兼职,网络兼职 - 兼职吧网赚中心");
 		logger.info("this system title is : " + app.getAttribute(Consts.APP_TITLE)+" and appPath is " + app.getAttribute(Consts.APP_PATH));		
 		

@@ -55,7 +55,6 @@
 	        <div class="clearfix"></div>
 	</div>
 	<!-- end头部附属栏框架 -->         
-
 	<!-- begin头部框架 -->
 	<div class="header prel">
 	  <div class="head_part01 hide">
@@ -67,18 +66,18 @@
 	      <div class="main_tab">
 	        <ul>
 	          <li><a href="${appPath }/">站点首页</a></li>
-	          <li><a href="${appPath }/provide_list">我是商家</a></li>
-	          <li><a href="${appPath }/request_list">我是威客</a></li>
-	          <li><a href="${appPath }/info_list">行业资讯</a></li>
-	          <li><a href="${appPath }/plat_list">推广平台</a></li>
-	          <li><a href="${appPath }/bbs_list">论坛大全</a></li>
+	          <li><a href="#">我是商家</a></li>
+	          <li><a href="#">我是威客</a></li>
+	          <li><a href="#">行业资讯</a></li>
+	          <li><a href="#">推广平台</a></li>
+	          <li><a href="#">论坛大全</a></li>
 	        </ul>
 	      </div>
 	    </div>
 	    <div class="fr" style="padding:5px;">
-	    	<input class="button07 fr mar_l30" type="submit" value="发任务" />
+	    	<input class="button07 fr mar_l30" type="button" value="发任务" />
 	    	<br/>
-	    	<input class="button07 fr mar_l30" type="submit" value="接任务" />
+	    	<input class="button07 fr mar_l30" type="button" value="接任务" />
 	    </div>
 	    <div class="clear"></div>
 	  </div>

@@ -58,6 +58,8 @@
         </global-results>
     	<action name="*" method="{1}"  class="com.throne212.wz.action.UserInfoAction">
         	<result name="index">/userinfo/UserInfo.jsp</result>
+        	<result name="change_pwd">/userinfo/UserPwd.jsp</result>
+        	<result name="account_info">/userinfo/UserInfoEdit.jsp</result>
         </action>
     </package>
     

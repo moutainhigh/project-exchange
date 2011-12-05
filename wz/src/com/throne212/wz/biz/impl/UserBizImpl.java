@@ -1,7 +1,5 @@
 package com.throne212.wz.biz.impl;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +21,9 @@ public class UserBizImpl implements UserBiz{
 		this.userDAO = userDAO;
 	}
 
-
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
-
 
 	public User login(String username, String password) {
 		List<User> userList = userDAO.findByUserId(username);
@@ -40,7 +36,6 @@ public class UserBizImpl implements UserBiz{
 		}else
 			return user;
 	}
-
 
 	public User reg(User user) {
 		List<User> userList = userDAO.findByUserId(user.getUserId());
@@ -55,4 +50,29 @@ public class UserBizImpl implements UserBiz{
 		return user;
 	}
 	
+	public boolean changePwd(String userId, String oldPwd, String newPwd) {
+		List<User> userList = userDAO.findByUserId(userId);
+		if(userList != null && userList.size() > 0){
+			User user = userList.get(0);
+			if (user.getUserPassword().equals(oldPwd)) {
+				user.setUserPassword(newPwd);
+				userDAO.save(user);
+				return true;
+			}
+		}
+		return false;
+	}
+	public User changeUserInfo(String userId, String nickName, String email, String qq, String tel) {
+		List<User> userList = userDAO.findByUserId(userId);
+		if(userList != null && userList.size() > 0){
+			User user = userList.get(0);
+			user.setUserEmail(email);
+			user.setUserQq(qq);
+			user.setUserPhone(tel);
+			user.setUserName(nickName);
+			userDAO.save(user);
+			return user;
+		}
+		return null;
+	}
 }

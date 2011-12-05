@@ -9,6 +9,11 @@
     <link href="${appPath}/Themes/basic.css" type="text/css" rel="stylesheet" />
     <link href="${appPath}/Register/Themes/layout.css" type="text/css" rel="stylesheet" />
     <link href="${appPath}/css/sidebar.css" type="text/css" rel="stylesheet" />
+    <script src="${appPath}/js/jquery-1.4.2.min.js"></script>
+    <script src="${appPath}/js/userinfo.js"></script>
+    <script>
+    	var leftMenuItemLoc = "${appPath}/userinfo/index";
+    </script>
 </head>
 <body>
 	<jsp:include page="../common/head.jsp"></jsp:include>
@@ -41,8 +46,9 @@
 	    	</div>
 	  		<div class="clear"></div>
 		</div>
-		<!-- end正文框架 -->
-		<jsp:include page="../common/foot.jsp"></jsp:include>
+	</div>
+	<!-- end正文框架 -->
+	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>
 

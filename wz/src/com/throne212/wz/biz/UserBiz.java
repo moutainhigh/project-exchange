@@ -8,4 +8,8 @@ public interface UserBiz {
 	
 	public User reg(User user);
 	
+	public boolean changePwd(String userId, String oldPwd, String newPwd);
+	
+	public User changeUserInfo(String userId,String nickname, String email, String qq, String tel);
+	
 }
