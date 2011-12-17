@@ -84,13 +84,16 @@
 								${f.org.orgName}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 								<a href="#" onclick="winOpen('${appPath}manager_viewMapping.action?cun.id=${f.id}',450,120);">新增/修改帮扶单位</a>
 								<c:if test="${not empty f.org}">
 								<br/><a href="${appPath}manager_cancelMapping.action?cun.id=${f.id}">取消帮扶</a>
 								</c:if>
+								</c:if>
 								<c:if test="${(userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员') && not empty f.org}">
 								<br/><a href="${appPath}login.action?username=${f.org.loginName}&password=${f.org.password}&needRand=N">登录</a>
 								</c:if>
+								&nbsp;
 							</td>
 						</tr>
 					</c:forEach>

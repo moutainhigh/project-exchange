@@ -107,6 +107,16 @@ public class User extends MyEntity implements Serializable {
 		}
 		return false;
 	}
+	
+	public boolean getComplete(){
+		if(this instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) this;
+			if("增城市".equals(a.getArea().getName()) || "从化市".equals(a.getArea().getName())){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public String getLoginName() {
 		return loginName;

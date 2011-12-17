@@ -1,9 +1,7 @@
 package com.throne212.fupin.dao.impl;
 
-import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,10 +46,18 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 		} else if (user instanceof WorkTeam) {// 工作组
 			q = (SQLQuery) s.getNamedQuery("family_type_team");
 			nameParams.put("loginName", user.getLoginName());
+		} else if (user instanceof AreaWorkOrg && !"Y".equals(((AreaWorkOrg) user).getIsWorkGroup()) && 
+				(((AreaWorkOrg) user).getArea().getName().equals("从化市") || ((AreaWorkOrg) user).getArea().getName().equals("增城市"))) {// 区县管理员-ch & zc
+			q = (SQLQuery) s.getNamedQuery("family_type_area_zc_ch");
+			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
 		} else if (user instanceof AreaWorkOrg && !"Y".equals(((AreaWorkOrg) user).getIsWorkGroup())) {// 区县管理员
 			q = (SQLQuery) s.getNamedQuery("family_type_area");
 			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
-		} else if (user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())) {// 工作队，增城和从化
+		} else if (user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup()) && 
+				(((AreaWorkOrg) user).getArea().getName().equals("从化市") || ((AreaWorkOrg) user).getArea().getName().equals("增城市"))) {// 工作队，增城和从化
+			q = (SQLQuery) s.getNamedQuery("family_type_group_zc_ch");
+			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
+		} else if (user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())) {// 工作队
 			q = (SQLQuery) s.getNamedQuery("family_type_group");
 			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
 		} else if (user instanceof Admin || user instanceof ShiWorkOrg) {// 市级管理员或超级管理员
@@ -94,6 +100,7 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 		// 开始执行
 		List list = q.list();
 		List<FamilyTypeStatDO> rstList = new ArrayList<FamilyTypeStatDO>();
+		int[] sumArr = new int[9];
 		for (Object obj : list) {
 			Object[] values = (Object[]) obj;
 			String cunName = (String) values[0];
@@ -102,6 +109,16 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 			BigInteger type3 = (BigInteger) values[3];
 			BigInteger type4 = (BigInteger) values[4];
 			BigInteger sum = (BigInteger) values[5];
+			//arr
+			sumArr[0] += type1.intValue();
+			sumArr[1] += type2.intValue();
+			sumArr[2] += type3.intValue();
+			sumArr[3] += type4.intValue();
+			sumArr[4] += sum.intValue();
+			sumArr[5] += type1.intValue() + type2.intValue();
+			sumArr[6] += type3.intValue() + type4.intValue();
+			sumArr[7] += type1.intValue() + type3.intValue();
+			sumArr[8] += type2.intValue() + type4.intValue();
 			rstList.add(new FamilyTypeStatDO(cunName, type1.longValue(), type2.longValue(), type3.longValue(), type4.longValue(), sum.longValue()));
 		}
 		logger.debug("查询数据条数：" + list.size());
@@ -110,13 +127,13 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 		page.setResultList(rstList);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
-
+		page.setTotal(sumArr);
 		return page;
 
 	}
 
 
-	public List<FamilyTypeStatDO> getFamilyTypeByUser(User user, Long cunId, Long zhenId, Long areaId) {
+	public PageBean<FamilyTypeStatDO> getFamilyTypeByUser(User user, Long cunId, Long zhenId, Long areaId) {
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 
 		SQLQuery q = null;
@@ -132,10 +149,18 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 		} else if (user instanceof WorkTeam) {// 工作组
 			q = (SQLQuery) s.getNamedQuery("family_type_team");
 			nameParams.put("loginName", user.getLoginName());
+		} else if (user instanceof AreaWorkOrg && !"Y".equals(((AreaWorkOrg) user).getIsWorkGroup()) && 
+				(((AreaWorkOrg) user).getArea().getName().equals("从化市") || ((AreaWorkOrg) user).getArea().getName().equals("增城市"))) {// 区县管理员-ch & zc
+			q = (SQLQuery) s.getNamedQuery("family_type_area_zc_ch");
+			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
 		} else if (user instanceof AreaWorkOrg && !"Y".equals(((AreaWorkOrg) user).getIsWorkGroup())) {// 区县管理员
 			q = (SQLQuery) s.getNamedQuery("family_type_area");
 			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
-		} else if (user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())) {// 工作队，增城和从化
+		} else if (user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup()) && 
+				(((AreaWorkOrg) user).getArea().getName().equals("从化市") || ((AreaWorkOrg) user).getArea().getName().equals("增城市"))) {// 工作队，增城和从化
+			q = (SQLQuery) s.getNamedQuery("family_type_group_zc_ch");
+			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
+		} else if (user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())) {// 工作队
 			q = (SQLQuery) s.getNamedQuery("family_type_group");
 			nameParams.put("areaId", ((AreaWorkOrg) user).getArea().getId());
 		} else if (user instanceof Admin || user instanceof ShiWorkOrg) {// 市级管理员或超级管理员
@@ -170,6 +195,7 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 		// 开始执行
 		List list = q.list();
 		List<FamilyTypeStatDO> rstList = new ArrayList<FamilyTypeStatDO>();
+		int[] sumArr = new int[9];
 		for (Object obj : list) {
 			Object[] values = (Object[]) obj;
 			String cunName = (String) values[0];
@@ -178,11 +204,24 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 			BigInteger type3 = (BigInteger) values[3];
 			BigInteger type4 = (BigInteger) values[4];
 			BigInteger sum = (BigInteger) values[5];
+			//arr
+			sumArr[0] += type1.intValue();
+			sumArr[1] += type2.intValue();
+			sumArr[2] += type3.intValue();
+			sumArr[3] += type4.intValue();
+			sumArr[4] += sum.intValue();
+			sumArr[5] += type1.intValue() + type2.intValue();
+			sumArr[6] += type3.intValue() + type4.intValue();
+			sumArr[7] += type1.intValue() + type3.intValue();
+			sumArr[8] += type2.intValue() + type4.intValue();
 			rstList.add(new FamilyTypeStatDO(cunName, type1.longValue(), type2.longValue(), type3.longValue(), type4.longValue(), sum.longValue()));
 		}
 		logger.debug("查询数据条数：" + list.size());
 
-		return rstList;
+		PageBean<FamilyTypeStatDO> pageBean = new PageBean<FamilyTypeStatDO>();
+		pageBean.setResultList(rstList);
+		pageBean.setTotal(sumArr);
+		return pageBean;
 	}
 	
 }

@@ -48,8 +48,10 @@
 							<label>管理登录名/单位名称（模糊查询）: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>
 							<input type="submit" class="button" value="查询"> 
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 							<input type="button" onclick="winOpen('${appPath}main/manager/manager_edit.jsp',450,220);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
+							</c:if>
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -98,10 +100,10 @@
 								&nbsp; ${f.remark}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}manager_viewManager.action?org.id=${f.id}',450,220);">修改</a>
 								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
-								<a href="${appPath}login.action?username=${f.loginName}&password=${f.password}&needRand=N">登录</a>
+								<a href="#" onclick="winOpen('${appPath}manager_viewManager.action?org.id=${f.id}',450,220);">修改</a>
 								</c:if>
+								<a href="${appPath}login.action?username=${f.loginName}&password=${f.password}&needRand=N">登录</a>
 							</td>
 						</tr>
 					</c:forEach>

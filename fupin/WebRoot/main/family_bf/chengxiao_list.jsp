@@ -241,6 +241,7 @@ function displayAction(sid) {
 					 <c:if test="${f.status=='未提交'}">
 					<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}family_bf_confirmChengxiao.action?chengxiao.id=${f.id}';}" >确认后提交</a>
 					</c:if>
+					&nbsp;<a href="#" onclick="winOpen('${appPath}viewContent.action?type=chengxiao&id=${f.id}',400,400)">内容详情</a>
 		</td>
 				</tr>
 					</c:forEach>

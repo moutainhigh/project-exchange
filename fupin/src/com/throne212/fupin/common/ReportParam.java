@@ -9,6 +9,10 @@ public class ReportParam {
 	private String name;// 报表名称，表1、2或表3
 	
 	private String month;//月份
+	
+	private String month2;//月份
+	
+	private String areaName;//area name
 
 	public String getIs206() {
 		return is206;
@@ -40,6 +44,22 @@ public class ReportParam {
 
 	public void setMonth(String month) {
 		this.month = month;
+	}
+
+	public String getAreaName() {
+		return areaName;
+	}
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
+
+	public String getMonth2() {
+		return month2;
+	}
+
+	public void setMonth2(String month2) {
+		this.month2 = month2;
 	}
 
 }

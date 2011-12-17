@@ -61,7 +61,7 @@
 			});
 		</script>
 		<style>
-		textarea{width:99%;height:80%;}
+		textarea{width:99%;height:250px;}
 		
 		</style>
 	</head>

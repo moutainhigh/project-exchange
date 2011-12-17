@@ -91,10 +91,10 @@
 								${f.zhen.area.name}${f.zhen.name}${f.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${userObj.isDiv=='Y' || userObj.roleType=='超级管理员'}">
-								<a href="#" onclick="winOpen('${appPath}cun_editCun.action?cun.id=${f.id}',750,650);">资料完善</a>
+								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
+								<a href="#" onclick="winOpen('${appPath}cun_editCun.action?cun.id=${f.id}',950,700);">资料完善</a>
 								</c:if>
-								<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${f.id}',750,650);">查看</a>
+								<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${f.id}',950,700);">查看</a>
 							</td>
 						</tr>
 					</c:forEach>

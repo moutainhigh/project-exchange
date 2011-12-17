@@ -6,6 +6,7 @@ public class Zhen extends Diqu {
 	private ShiWorkOrg shiWorkOrg;// 扶持它的市扶贫办
 	private AreaWorkOrg areaWorkOrg;// 扶持它的县扶贫办
 	private Area area;// 所属区县
+	private String isNS;//N为北部镇，S为南部镇
 	
 	private List<Cun> cunList;
 
@@ -39,6 +40,14 @@ public class Zhen extends Diqu {
 
 	public void setCunList(List<Cun> cunList) {
 		this.cunList = cunList;
+	}
+
+	public String getIsNS() {
+		return isNS;
+	}
+
+	public void setIsNS(String isNS) {
+		this.isNS = isNS;
 	}
 
 }

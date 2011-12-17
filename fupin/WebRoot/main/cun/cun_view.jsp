@@ -111,16 +111,16 @@
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困村简介</td>
-		<td height="30" class="tables_contentcell" colspan="3">
-			<textarea readonly="true" rows="5" cols="45" id="textarea" name="pkcjj">${c.remark }</textarea>
+		<td height="30" class="tables_contentcell" colspan="3" width="120">
+			${c.remark }
 		</td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">
 			贫困村发展村集体项目计划
 		</td>
-		<td height="30" class="tables_contentcell" colspan="3">
-			<textarea readonly="true" rows="5" cols="45" id="jxjsxm" name="jxjsxm">${c.item }</textarea>
+		<td height="30" class="tables_contentcell" colspan="3" width="120">
+			${c.item }
 		</td>
 	</tr>
 

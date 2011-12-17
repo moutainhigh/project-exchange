@@ -124,15 +124,12 @@
 							<input name="queryKey" value="${param.queryKey}" type="text"/>							
 							<input type="button" class="button" value="查询" onclick="query();" > 
 							</c:if>
-							
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.isDiv=='Y'}">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 							</c:if>
-							
-							<c:if test="${userObj.isDiv=='Y' || userObj.roleType=='超级管理员'}">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
 							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1150,700);" class="button" value="逐户录入">
 							</c:if>
-							
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
 							</c:if>
@@ -140,8 +137,9 @@
 							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="批量导入">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload3.jsp',350,180);" class="button" value="批量导入2">
 							</c:if>
-							
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
 							<input type="button" onclick="download();" value="完整导出Excel" class="button">
+							</c:if>
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -224,7 +222,7 @@
 								${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${userObj.isDiv=='Y' || userObj.roleType=='超级管理员'}">
+								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
 								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',1150,700);">修改</a>
 								</c:if>
 								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',1150,700);">查看</a>

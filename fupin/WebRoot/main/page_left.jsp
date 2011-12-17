@@ -167,10 +167,10 @@ function images_update(){
 		menuArray[menuArray.length]="1,帮扶干部,${appPath}org_leaderList.action";
 		</c:if>
 		<c:if test="${userObj.roleType=='县级管理员' && userObj.isDiv!='Y'}">
-		menuArray[menuArray.length]="0,镇帮扶维护";
-        menuArray[menuArray.length]="1,帮扶措施,${appPath}zhen_bf_cuoshiZhenList.action";
-		menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";
-		menuArray[menuArray.length]="1,镇图片管理,${appPath}zhen_bf_picZhenList.action";
+		//menuArray[menuArray.length]="0,镇帮扶维护";
+        //menuArray[menuArray.length]="1,帮扶措施,${appPath}zhen_bf_cuoshiZhenList.action";
+		//menuArray[menuArray.length]="1,帮扶成效,${appPath}zhen_bf_chengxiaoZhenList.action";
+		//menuArray[menuArray.length]="1,镇图片管理,${appPath}zhen_bf_picZhenList.action";
 		</c:if>
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,村帮扶维护";

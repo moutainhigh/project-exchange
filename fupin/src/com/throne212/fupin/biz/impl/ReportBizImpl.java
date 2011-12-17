@@ -12,6 +12,7 @@ import jxl.write.WritableWorkbook;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ReportBiz;
+import com.throne212.fupin.common.PinyinToolkit;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
@@ -341,9 +342,10 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "excel" + File.separator + "export";
-		String fileName = "report-" + reportParam.getDiqu() + "-" + reportParam.getIs206() + "_" + reportParam.getName();
-		String sourceFile = path + File.separator + fileName + ".xls";
-		String targetFile = path + File.separator + fileName + "_" + Util.getDate(new Date()) + ".xls";
+		String srcFileName = "report_" + reportParam.getName();
+		String tgtFileName = "report-" + PinyinToolkit.cn2Pinyin(reportParam.getAreaName()) + "-" + reportParam.getIs206() + "_" + reportParam.getName();
+		String sourceFile = path + File.separator + srcFileName + ".xls";
+		String targetFile = path + File.separator + tgtFileName + "_" + Util.getDate(new Date()) + ".xls";
 
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
 	}

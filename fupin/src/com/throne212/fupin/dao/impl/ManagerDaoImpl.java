@@ -99,6 +99,13 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		}else if(user instanceof AreaWorkOrg){
 			hql += " and c.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			if(areaOrg.getArea().getName().equals("增城市") || areaOrg.getArea().getName().equals("从化市")){
+				if("Y".equals(areaOrg.getIsWorkGroup())){
+					hql += " and c.zhen.isNS='N'";
+				}else{
+					hql += " and c.zhen.isNS='S'";
+				}
+			}
 			param = new Object[]{areaOrg.getArea()};
 		}else if(user instanceof WorkTeam){
 			hql += " and c.team=?";
@@ -144,6 +151,13 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		}else if(user instanceof AreaWorkOrg){
 			hql += " and c.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			if(areaOrg.getArea().getName().equals("增城市") || areaOrg.getArea().getName().equals("从化市")){
+				if("Y".equals(areaOrg.getIsWorkGroup())){
+					hql += " and c.zhen.isNS='N'";
+				}else{
+					hql += " and c.zhen.isNS='S'";
+				}
+			}
 			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
 		}else if(user instanceof WorkTeam){
 			hql += " and c.team=?";
@@ -210,6 +224,13 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			hql += " and f.cun.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
 			param = new Object[]{areaOrg.getArea()};
+			if(areaOrg.getArea().getName().equals("增城市") || areaOrg.getArea().getName().equals("从化市")){
+				if("Y".equals(areaOrg.getIsWorkGroup())){
+					hql += " and f.cun.zhen.isNS='N'";
+				}else{
+					hql += " and f.cun.zhen.isNS='S'";
+				}
+			}
 		}else if(user instanceof WorkTeam){
 			hql += " and f.cun.team=?";
 			WorkTeam team = (WorkTeam) user;
@@ -219,7 +240,7 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		//统计各种分类的个数
 		fillTypeCount(hql,param,page);
 		
-		hql += " order by type,id";
+		hql += " order by type";
 		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,param).get(0);
 		logger.debug("查询总数为：" + count);
@@ -378,6 +399,13 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		}else if(user instanceof AreaWorkOrg){
 			hql += " and f.cun.zhen.area=?";
 			AreaWorkOrg areaOrg = (AreaWorkOrg) user;
+			if(areaOrg.getArea().getName().equals("增城市") || areaOrg.getArea().getName().equals("从化市")){
+				if("Y".equals(areaOrg.getIsWorkGroup())){
+					hql += " and f.cun.zhen.isNS='N'";
+				}else{
+					hql += " and f.cun.zhen.isNS='S'";
+				}
+			}
 			param = new Object[]{areaOrg.getArea(),"%"+name+"%"};
 		}else if(user instanceof WorkTeam){
 			hql += " and f.cun.team=?";

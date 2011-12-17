@@ -288,6 +288,10 @@
 			<result name="query_contact">/main/sms_contact/contact_list.jsp</result>
 			<result name="choose_contacts">/main/sms/choose_contact.jsp</result>
 		</action>
+		<!-- 内容详情 -->
+		<action name="viewContent" class="com.throne212.fupin.action.ViewContentAction">
+			<result name="success">/main/view/content.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

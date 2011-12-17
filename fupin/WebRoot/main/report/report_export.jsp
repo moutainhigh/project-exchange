@@ -23,11 +23,13 @@
 			var m = now.getMonth() + 1;
 			for(var i=1;i<=m;i++){
 				$('#month').append("<option value=\""+i+"\">"+i+"</option>");
+				$('#month2').append("<option value=\""+i+"\">"+i+"</option>");
 			}
 			setTimeout(function(){
 				if(m == 1)
 					m = 13;
 				$('#month').val(m-1);
+				$('#month2').val(m-1);
 			},100);
 		});
 		</script>
@@ -40,7 +42,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}report_unlock.action" name="searchForm">
+		<form method="get" action="${appPath}report_export.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
@@ -63,22 +65,27 @@
 					</tr>
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
-							206
+							区、县级市
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							<input type="radio" name="reportParam.is206" value="206" checked="checked"/>是
-							&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="reportParam.is206" value="not206"/>否
+							<select name="reportParam.areaName">
+								<option value="从化市">从化市</option>
+								<option value="增城市">增城市</option>
+								<option value="南沙区">南沙区</option>
+								<option value="罗岗区">罗岗区</option>
+								<option value="白云区">白云区</option>
+							</select>
 						</td>
 					</tr>
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
-							地区
+							类型
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							<select name="reportParam.diqu">
-								<option value="conghua">从化</option>
-								<option value="zengcheng">增城</option>
+							<select name="reportParam.is206">
+								<option value="">全部</option>
+								<option value="206">北部贫困镇</option>
+								<option value="not206">南部贫困镇</option>
 							</select>
 						</td>
 					</tr>
@@ -88,6 +95,12 @@
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
 							<select name="reportParam.month" id="month">
+								
+							</select>
+							&nbsp;
+							至
+							&nbsp;
+							<select name="reportParam.month2" id="month2">
 								
 							</select>
 						</td>

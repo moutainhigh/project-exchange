@@ -148,9 +148,9 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		sql.append("left outer join fp_diqu z on z.id=c.zhen_id ");
 		sql.append("left outer join fp_diqu a on a.id=z.area_id ");
 		if ("3".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time="+reportParam.getMonth()+" and r.report_type=2 and r.type='month' ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=2 and r.type='month' ");
 		if ("12".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time="+reportParam.getMonth()+" and r.report_type=1 and r.type='month' ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=1 and r.type='month' ");
 		sql.append("where c.diqu_type='cun' ");
 		sql.append("and z.diqu_type='zhen' ");
 		sql.append("and a.diqu_type='area' ");
@@ -166,7 +166,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("z.name = '流溪河林场' ");
 			sql.append(") ");
 			sql.append("and c.name != '塘田村' and c.name != '安山村' ");
-		} else {
+		} else if ("not206".equals(reportParam.getIs206())){
 			sql.append("and ((z.name != '温泉镇' and   ");
 			sql.append("z.name != '吕田镇' and   ");
 			sql.append("z.name != '良口镇' and   ");
@@ -178,11 +178,12 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("z.name != '流溪河林场' ");
 			sql.append(") or c.name = '塘田村' or c.name = '安山村') ");
 		}
-		if ("conghua".equals(reportParam.getDiqu())) {
-			sql.append("and a.name='从化市' ");
-		} else {
-			sql.append("and a.name='增城市' ");
-		}
+//		if ("conghua".equals(reportParam.getDiqu())) {
+//			sql.append("and a.name='从化市' ");
+//		} else {
+//			sql.append("and a.name='增城市' ");
+//		}
+		sql.append("and a.name='"+reportParam.getAreaName()+"' ");
 		sql.append("group by a.name,z.name,c.name ");
 
 		logger.info("报表导出sql：\n" + sql);

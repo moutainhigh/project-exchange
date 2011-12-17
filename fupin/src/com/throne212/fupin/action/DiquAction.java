@@ -32,6 +32,9 @@ public class DiquAction extends BaseAction {
 	private Long shiId;
 	private Long areaId;
 	private Long zhenId;
+	
+	//zhen type
+	private String isNS;
 
 	public String saveDiqu() {
 		if (diqu == null) {
@@ -63,7 +66,7 @@ public class DiquAction extends BaseAction {
 				}
 			}
 
-			diqu = diquBiz.saveDiqu(diqu);
+			diqu = diquBiz.saveDiqu(diqu, isNS);
 			this.setMsg("保存成功");
 			this.setSucc("Y");
 			diqu = null;
@@ -156,5 +159,13 @@ public class DiquAction extends BaseAction {
 
 	public void setZhenId(Long zhenId) {
 		this.zhenId = zhenId;
+	}
+
+	public String getIsNS() {
+		return isNS;
+	}
+
+	public void setIsNS(String isNS) {
+		this.isNS = isNS;
 	}
 }

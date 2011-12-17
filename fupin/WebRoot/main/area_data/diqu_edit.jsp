@@ -84,6 +84,13 @@
 					$('#areaId').show();
 					$('#zhenId').show();
 				}
+				
+				//show zhen type
+				if('Zhen' == val){
+					$("nsTr").show();
+				}else{
+					$("nsTr").hide();
+				}
 			}
 		</script>
 	</head>
@@ -124,6 +131,18 @@
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>
+					<tr id="nsTr">
+						<td height="30" align="right" class="tables_leftcell">
+						镇的类型
+						</td>
+						<td class="tables_contentcell">
+							<select id="isNs" name="isNS">
+								<option value=""></option>
+								<option value="N">北部镇</option>
+								<option value="S">南部镇</option>
+							</select>
+						</td>
+					</tr>
 					</c:if>
 					<c:if test="${not empty diqu.id}">
 					<tr>
@@ -132,6 +151,20 @@
 						</td>
 						<td class="tables_contentcell">
 							${diqu.type }
+						</td>
+					</tr>
+					</c:if>
+					<c:if test="${not empty diqu.id && diqu.type=='镇'}">
+					<tr id="nsTr">
+						<td height="30" align="right" class="tables_leftcell">
+						镇的类型
+						</td>
+						<td class="tables_contentcell">
+							<select id="isNs" name="isNS">
+								<option value=""></option>
+								<option value="N" <c:if test="${diqu.isNS=='N' }">selected="selected"</c:if>>北部镇</option>
+								<option value="S" <c:if test="${diqu.isNS=='S' }">selected="selected"</c:if>>南部镇</option>
+							</select>
 						</td>
 					</tr>
 					</c:if>

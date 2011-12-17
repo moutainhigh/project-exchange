@@ -95,7 +95,7 @@
 												&nbsp;
 											</td>
 											<td height="36">
-												<input id="password" type="password" name="password" onkeypress="formKeyPress(event);" />
+												<input id="password" type="password" name="password"/>
 											</td>
 										</tr>
 										<tr>
@@ -103,8 +103,8 @@
 												&nbsp;
 											</td>
 											<td height="34">
-												<input name="rand" type="text" class="kuang" size="5" />
-												<img src="${appPath}rand.servlet" alt="验证码" id="yanzheng" />
+												<input name="rand" type="text" class="kuang" size="5" onkeypress="formKeyPress(event);" />
+												<img src="${appPath}rand.servlet" alt="验证码" id="yanzheng"/>
 											</td>
 										</tr>
 										<tr>

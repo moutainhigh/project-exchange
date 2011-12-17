@@ -210,45 +210,83 @@
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f" varStatus="varStatus">
-						<tr>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${varStatus.count}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.cunName}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type1}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type2}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type3}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type4}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.sum}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type1 + f.type2}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type3 + f.type4}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type1 + f.type3}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.type2 + f.type4}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.rate}
-							</td>
-						</tr>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${varStatus.count}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.cunName}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type1}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type2}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type3}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type4}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.sum}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type1 + f.type2}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type3 + f.type4}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type1 + f.type3}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.type2 + f.type4}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${f.rate}
+						</td>
+					</tr>
 					</c:forEach>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							合计
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[0]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[2]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[3]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[4]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[5]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[6]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[7]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[8]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${rate }
+						</td>
+					</tr>
 					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="12">
 							<jsp:include page="../../pager.jsp"></jsp:include>

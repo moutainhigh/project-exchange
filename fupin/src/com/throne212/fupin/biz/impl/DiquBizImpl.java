@@ -7,6 +7,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.dao.DiquDao;
 import com.throne212.fupin.domain.Diqu;
+import com.throne212.fupin.domain.Zhen;
 
 
 public class DiquBizImpl extends BaseBizImpl implements DiquBiz {
@@ -21,7 +22,7 @@ public class DiquBizImpl extends BaseBizImpl implements DiquBiz {
 		this.diquDao = diquDao;
 	}
 
-	public Diqu saveDiqu(Diqu diqu){
+	public Diqu saveDiqu(Diqu diqu, String isNS){
 		if (diqu.getId() == null) {
 			diqu.setCreateDate(new Date());
 			baseDao.saveOrUpdate(diqu);
@@ -29,6 +30,9 @@ public class DiquBizImpl extends BaseBizImpl implements DiquBiz {
 		} else {
 			Diqu diquInDB = baseDao.getEntityById(Diqu.class, diqu.getId());
 			diquInDB.setName(diqu.getName());
+			if(diquInDB instanceof Zhen){
+				((Zhen)diquInDB).setIsNS(isNS);
+			}
 			baseDao.saveOrUpdate(diquInDB);
 			logger.info("更新地区【" + diqu.getName()+ "】成功");
 		}

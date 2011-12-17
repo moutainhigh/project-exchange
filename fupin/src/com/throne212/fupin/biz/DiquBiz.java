@@ -9,6 +9,6 @@ public interface DiquBiz extends BaseBiz {
 	
 	public PageBean getAllDiqu(String type,String name,Integer pageIndex);
 	
-	public Diqu saveDiqu(Diqu diqu);
+	public Diqu saveDiqu(Diqu diqu, String isNS);
 	
 }

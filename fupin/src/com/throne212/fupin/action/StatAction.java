@@ -3,6 +3,8 @@ package com.throne212.fupin.action;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.StatBiz;
 import com.throne212.fupin.common.FamilyTypeStatDO;
@@ -26,6 +28,13 @@ public class StatAction extends BaseAction {
 	public String familyTypeList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		pageBean = statBiz.getFamilyTypeByUser(user, cunId, zhenId, areaId, pageIndex);
+		int[] sumArr = (int[]) pageBean.getTotal();
+		int type1Sum = sumArr[0];
+		int type3Sum = sumArr[2];
+		int sum = sumArr[4];
+		double rate = (type1Sum + type3Sum) / (1.0 * sum);
+		rate = ((int) (rate * 10000)) / 100.0;
+		ServletActionContext.getRequest().setAttribute("rate", rate + "%");
 		return "family_type_stat";
 	}
 	
