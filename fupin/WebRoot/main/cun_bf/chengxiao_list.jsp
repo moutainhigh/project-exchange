@@ -90,7 +90,11 @@ var msg = '${msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
 	<td>您当前所处页面：村帮扶维护&gt;&gt;帮扶成效 </td>
-	<td><a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${userObj.cun.id}',750,650);" style="color:white;">村详细资料</a></td>
+	<td>
+	<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${userObj.cun.id}',750,650);" style="color:white;">村详细资料</a>
+	</c:if>
+	</td>
 	<td align="right">
 
 	
@@ -116,12 +120,12 @@ var msg = '${msg}';
 	<tbody><tr align="center">
 		<td height="28" width="6%" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
-		<td width="20%" class="tables_headercell">编号</td>
-		<td width="20%" class="tables_headercell">时间</td>
+		<td width="5%" class="tables_headercell">编号</td>
+		<td width="5%" class="tables_headercell">时间</td>
 		<td class="tables_headercell">贫困村名</td>
 		<td class="tables_headercell">帮扶成效</td>
-		<td width="20%" class="tables_headercell">状态</td>
-		<td width="10%" class="tables_headercell">操作</td>
+		<td width="10%" class="tables_headercell">状态</td>
+		<td width="20%" class="tables_headercell">操作</td>
 	</tr>
 	<c:forEach items="${pageBean.resultList}" var="f">
 		<tr>

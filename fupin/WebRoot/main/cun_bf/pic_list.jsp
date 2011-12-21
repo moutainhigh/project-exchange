@@ -47,7 +47,11 @@ var msg = '${requestScope.msg}';
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
 	<td>您当前所处页面：村帮扶维护&gt;&gt;村图片管理 </td>
-	<td><a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${userObj.cun.id}',750,650);" style="color:white;">村详细资料</a></td>
+	<td>
+	<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	<a href="#" onclick="winOpen('${appPath}cun_viewCun.action?cun.id=${userObj.cun.id}',750,650);" style="color:white;">村详细资料</a>
+	</c:if>
+	</td>
 	<td align="right">
 	
 

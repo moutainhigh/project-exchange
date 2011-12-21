@@ -68,13 +68,18 @@
 							区、县级市
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
+							<c:if test="${userObj.roleType=='县级管理员'}">
+							${userObj.area.name }
+							</c:if>
+							<c:if test="${userObj.roleType!='县级管理员'}">
 							<select name="reportParam.areaName">
 								<option value="从化市">从化市</option>
 								<option value="增城市">增城市</option>
 								<option value="南沙区">南沙区</option>
-								<option value="罗岗区">罗岗区</option>
+								<option value="萝岗区">萝岗区</option>
 								<option value="白云区">白云区</option>
 							</select>
+							</c:if>
 						</td>
 					</tr>
 					<tr>

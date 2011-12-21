@@ -18,6 +18,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
@@ -338,6 +339,12 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 	}
 
 	public String getExcelReportFilePath(ReportParam reportParam) throws Exception {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof AreaWorkOrg) {
+			String areaName = ((AreaWorkOrg)user).getArea().getName();
+			reportParam.setAreaName(areaName);
+		}
+		
 		// 文件拷贝
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));

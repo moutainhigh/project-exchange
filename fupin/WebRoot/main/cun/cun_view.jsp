@@ -29,82 +29,82 @@
 		<td class="tables_contentcell">&nbsp;${c.zhen.area.name}${c.zhen.name}${c.name}</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">户数</td>
+		<td height="30" align="right" class="tables_leftcell">户数（户）</td>
 		<td class="tables_contentcell">&nbsp;${c.familyNum }</td>
 
-		<td height="30" align="right" class="tables_leftcell">人口数</td>
+		<td height="30" align="right" class="tables_leftcell">人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.personNum }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">劳动力总人数</td>
+		<td height="30" align="right" class="tables_leftcell">劳动力总人数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.labor }</td>
 
-		<td height="30" align="right" class="tables_leftcell">外出务工人数</td>
+		<td height="30" align="right" class="tables_leftcell">外出务工人数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.outLabor }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">贫困户数</td>
+		<td height="30" align="right" class="tables_leftcell">贫困户数（户）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum }</td>
 
-		<td height="30" align="right" class="tables_leftcell">贫困人口数</td>
+		<td height="30" align="right" class="tables_leftcell">贫困人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum }</td>
 	</tr>
 	<!-- 新增字段 -->
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户户数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户户数（户）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum1 }</td>
 
-		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户人口数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力的低保户人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum1 }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户户数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户户数（户）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum2 }</td>
 
-		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户人口数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力的低保户人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum2 }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭户数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭户数（户）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum3 }</td>
 
-		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭人口数</td>
+		<td height="30" align="right" class="tables_leftcell">有劳动能力低收入困难家庭人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum3 }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorFamilyNum4 }</td>
 
-		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数</td>
+		<td height="30" align="right" class="tables_leftcell">无劳动能力低收入困难家庭人口数（人）</td>
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum4 }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通电自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;${cun.dian }</td>
-		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;${cun.pureWater }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电话自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通电话自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;${cun.tel }</td>
-		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;${cun.tv }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通路灯自然村数</td>
+		<td height="30" align="right" class="tables_leftcell">通路灯自然村数（条）</td>
 		<td class="tables_contentcell">&nbsp;${cun.light }</td>
-		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目</td>
+		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目（条）</td>
 		<td class="tables_contentcell">&nbsp;${cun.ying }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">耕地总面积</td>
+		<td height="30" align="right" class="tables_leftcell">耕地总面积（亩）</td>
 		<td class="tables_contentcell">&nbsp;${cun.mianji }</td>
 
-		<td height="30" align="right" class="tables_leftcell">山地总面积</td>
+		<td height="30" align="right" class="tables_leftcell">山地总面积（亩）</td>
 		<td class="tables_contentcell">&nbsp;${cun.house }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">危房数</td>
+		<td height="30" align="right" class="tables_leftcell">危房数（户）</td>
 		<td class="tables_contentcell">&nbsp;${cun.weiHouse }</td>
 		<td height="30" align="right" class="tables_leftcell">村集体经济收入</td>
 		<td class="tables_contentcell">&nbsp;${cun.income }<font>元</font></td>
@@ -112,7 +112,7 @@
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困村简介</td>
 		<td height="30" class="tables_contentcell" colspan="3" width="120">
-			${c.remark }
+			${c.remark }&nbsp;
 		</td>
 	</tr>
 	<tr>
@@ -120,7 +120,7 @@
 			贫困村发展村集体项目计划
 		</td>
 		<td height="30" class="tables_contentcell" colspan="3" width="120">
-			${c.item }
+			${c.item }&nbsp;
 		</td>
 	</tr>
 

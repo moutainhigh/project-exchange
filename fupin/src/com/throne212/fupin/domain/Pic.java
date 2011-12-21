@@ -45,6 +45,11 @@ public class Pic extends MyEntity {
 		this.remark = remark;
 	}
 	
-	
+	public String getShortContent(){
+		return remark;
+	}
+	public String getContent(){
+		return remark;
+	}
 
 }

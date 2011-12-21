@@ -177,7 +177,7 @@
 							贫困户类型
 						</td>
 						<td class="tables_headercell" rowspan="2">
-							合计
+							当前页合计
 						</td>
 						<td class="tables_headercell" rowspan="2">
 							低保户
@@ -251,40 +251,78 @@
 					</c:forEach>
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
-							合计
+							当前页合计
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
 							&nbsp; 
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[0]}
+							&nbsp; ${pageBean.total[0][0]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[1]}
+							&nbsp; ${pageBean.total[0][1]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[2]}
+							&nbsp; ${pageBean.total[0][2]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[3]}
+							&nbsp; ${pageBean.total[0][3]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[4]}
+							&nbsp; ${pageBean.total[0][4]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[5]}
+							&nbsp; ${pageBean.total[0][5]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[6]}
+							&nbsp; ${pageBean.total[0][6]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[7]}
+							&nbsp; ${pageBean.total[0][7]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; ${pageBean.total[8]}
+							&nbsp; ${pageBean.total[0][8]}
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
 							&nbsp; ${rate }
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							总计
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][0]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][1]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][2]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][3]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][4]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][5]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][6]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][7]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${pageBean.total[1][8]}
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; ${rate2 }
 						</td>
 					</tr>
 					<tr>

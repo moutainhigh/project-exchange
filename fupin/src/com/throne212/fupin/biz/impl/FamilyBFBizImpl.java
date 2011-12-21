@@ -178,7 +178,31 @@ private FamilyDao familyDao;
 		return record;
 	}
 
-	
+	public PageBean<CuoshiFamily> getAllCuoshiFamily(CuoshiFamily condition,Long areaId, Long zhenId,Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllCuoshiFamily(condition,areaId,zhenId,cunId, pageIndex);
+	}
+	public PageBean<ChengxiaoFamily> getAllChengxiaoFamily(ChengxiaoFamily condition,Long areaId, Long zhenId,Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllChengxiaoFamily(condition,areaId,zhenId,cunId, pageIndex);
+	}
+	public PageBean<Reason> getAllReason(Reason condition,Long areaId, Long zhenId,Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllReason(condition,areaId,zhenId,cunId, pageIndex);
+	}
+	public PageBean<Record> getAllRecord(Record condition,Long areaId, Long zhenId,Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllRecord(condition,areaId,zhenId,cunId, pageIndex);
+	}
+	public PageBean<PicFamily> getAllPicFamily(PicFamily condition,Long areaId, Long zhenId,Long cunId,Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return familyDao.getAllPicFamily(condition,areaId,zhenId,cunId, pageIndex);
+	}
 	
 	
 }

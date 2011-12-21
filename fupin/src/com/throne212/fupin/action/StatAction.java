@@ -2,6 +2,7 @@ package com.throne212.fupin.action;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -28,13 +29,21 @@ public class StatAction extends BaseAction {
 	public String familyTypeList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		pageBean = statBiz.getFamilyTypeByUser(user, cunId, zhenId, areaId, pageIndex);
-		int[] sumArr = (int[]) pageBean.getTotal();
-		int type1Sum = sumArr[0];
-		int type3Sum = sumArr[2];
-		int sum = sumArr[4];
+		//统计当前页合计的百分比
+		int[][] sumArr = (int[][]) pageBean.getTotal();
+		int type1Sum = sumArr[0][0];
+		int type3Sum = sumArr[0][2];
+		int sum = sumArr[0][4];
 		double rate = (type1Sum + type3Sum) / (1.0 * sum);
 		rate = ((int) (rate * 10000)) / 100.0;
 		ServletActionContext.getRequest().setAttribute("rate", rate + "%");
+		//统计总计的百分比
+		type1Sum = sumArr[1][0];
+		type3Sum = sumArr[1][2];
+		sum = sumArr[1][4];
+		rate = (type1Sum + type3Sum) / (1.0 * sum);
+		rate = ((int) (rate * 10000)) / 100.0;
+		ServletActionContext.getRequest().setAttribute("rate2", rate + "%");
 		return "family_type_stat";
 	}
 	

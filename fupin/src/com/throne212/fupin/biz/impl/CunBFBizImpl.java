@@ -91,5 +91,22 @@ public class CunBFBizImpl extends BaseBizImpl implements CunBFBiz {
 	public void setCunDao(CunDao cunDao) {
 		this.cunDao = cunDao;
 	}
+	
+	public PageBean<CuoshiCun> getAllCuoshiCun(CuoshiCun condition,Long areaId, Long zhenId,Long cunId, Integer pageIndex) {
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return cunDao.getAllCuoshiCun(condition,areaId,zhenId,cunId, pageIndex);
+	}
 
+	public PageBean<ChengxiaoCun> getAllChengxiaoCun(ChengxiaoCun condition,Long areaId,Long zhenId,Long cunId,Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return cunDao.getAllChengxiaoCun(condition,areaId,zhenId,cunId, pageIndex);
+	}
+	
+	public PageBean<PicCun> getAllPicCun(PicCun condition,Long areaId ,Long zhenId, Long cunId, Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return cunDao.getAllPicCun(condition,areaId,zhenId,cunId, pageIndex);
+	}
 }

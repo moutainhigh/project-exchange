@@ -13,6 +13,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiCun;
@@ -44,7 +45,11 @@ public class FamilyBFAction extends BaseAction {
 		if (user instanceof Admin) {
 			pageBean = familyBFBiz.getAllCuoshiFamily(cuoshi, pageIndex);
 			return "cuoshifamily_list";
-		} 
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			pageBean = familyBFBiz.getAllCuoshiFamily(cuoshi,a.getArea().getId(),null,null,pageIndex);
+			return "cuoshifamily_list";
+		}
 		Org org = (Org) user;
 		if (org.getCun()==null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
@@ -128,7 +133,11 @@ public class FamilyBFAction extends BaseAction {
 		if (user instanceof Admin) {
 			pageBean = familyBFBiz.getAllChengxiaoFamily(chengxiao, pageIndex);
 			return "chengxiaofamily_list";
-		} 
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			pageBean = familyBFBiz.getAllChengxiaoFamily(chengxiao,a.getArea().getId(),null,null,pageIndex);
+			return "chengxiaofamily_list";
+		}
 		Org org = (Org) user;
 		if (org.getCun()==null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
@@ -206,7 +215,11 @@ public class FamilyBFAction extends BaseAction {
 		if (user instanceof Admin) {
 			pageBean = familyBFBiz.getAllReason(reason, pageIndex);
 			return "reason_list";
-		} 
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			pageBean = familyBFBiz.getAllReason(reason,a.getArea().getId(),null,null,pageIndex);
+			return "reason_list";
+		}
 		Org org = (Org) user;
 		if (org.getCun()==null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
@@ -287,6 +300,10 @@ public class FamilyBFAction extends BaseAction {
 		Cun cun = null;
 		if (user instanceof Admin) {
 			this.setMsg("超级管理员无权进行此操作！");
+			return "pic_list";
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			pageBean = familyBFBiz.getAllPicFamily(pic,a.getArea().getId(),null,null,pageIndex);
 			return "pic_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
@@ -395,7 +412,11 @@ public class FamilyBFAction extends BaseAction {
 		if (user instanceof Admin) {
 			pageBean = familyBFBiz.getAllRecord(record, pageIndex,fromDate,toDate);
 			return "record_list";
-		} 
+		} else if (user instanceof AreaWorkOrg) {
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			pageBean = familyBFBiz.getAllRecord(record,a.getArea().getId(),null,null,pageIndex);
+			return "record_list";
+		}
 		Org org = (Org) user;
 		if (org.getCun()==null) {
 			this.setMsg("尚未指定帮扶村，不能进行操作");
@@ -477,6 +498,9 @@ public class FamilyBFAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
 			pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,a.getArea().getId(),null,null);
 		} else if (user instanceof Org) {
 			pageBean = orgBiz.getAllFamily((Org) user,queryKey, pageIndex);
 		} 

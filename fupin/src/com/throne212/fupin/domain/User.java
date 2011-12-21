@@ -108,6 +108,7 @@ public class User extends MyEntity implements Serializable {
 		return false;
 	}
 	
+	//判断是否已经填写好
 	public boolean getComplete(){
 		if(this instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) this;

@@ -95,12 +95,36 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 		page.setTotalRow(count);
 
 		// 填充数据
+		
+		//统计总计
+		List list = q.list();
+		int[][] sumArr = new int[2][9];
+		for (Object obj : list) {
+			Object[] values = (Object[]) obj;
+			BigInteger type1 = (BigInteger) values[1];
+			BigInteger type2 = (BigInteger) values[2];
+			BigInteger type3 = (BigInteger) values[3];
+			BigInteger type4 = (BigInteger) values[4];
+			BigInteger sum = (BigInteger) values[5];
+			//arr
+			sumArr[1][0] += type1.intValue();
+			sumArr[1][1] += type2.intValue();
+			sumArr[1][2] += type3.intValue();
+			sumArr[1][3] += type4.intValue();
+			sumArr[1][4] += sum.intValue();
+			sumArr[1][5] += type1.intValue() + type2.intValue();
+			sumArr[1][6] += type3.intValue() + type4.intValue();
+			sumArr[1][7] += type1.intValue() + type3.intValue();
+			sumArr[1][8] += type2.intValue() + type4.intValue();
+		}
+		logger.debug("查询总条数：" + list.size());
+		
+		//填充当前页
 		q.setFirstResult(startIndex);
 		q.setMaxResults(WebConstants.PAGE_SIZE);
 		// 开始执行
-		List list = q.list();
+		list = q.list();
 		List<FamilyTypeStatDO> rstList = new ArrayList<FamilyTypeStatDO>();
-		int[] sumArr = new int[9];
 		for (Object obj : list) {
 			Object[] values = (Object[]) obj;
 			String cunName = (String) values[0];
@@ -110,19 +134,19 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 			BigInteger type4 = (BigInteger) values[4];
 			BigInteger sum = (BigInteger) values[5];
 			//arr
-			sumArr[0] += type1.intValue();
-			sumArr[1] += type2.intValue();
-			sumArr[2] += type3.intValue();
-			sumArr[3] += type4.intValue();
-			sumArr[4] += sum.intValue();
-			sumArr[5] += type1.intValue() + type2.intValue();
-			sumArr[6] += type3.intValue() + type4.intValue();
-			sumArr[7] += type1.intValue() + type3.intValue();
-			sumArr[8] += type2.intValue() + type4.intValue();
+			sumArr[0][0] += type1.intValue();
+			sumArr[0][1] += type2.intValue();
+			sumArr[0][2] += type3.intValue();
+			sumArr[0][3] += type4.intValue();
+			sumArr[0][4] += sum.intValue();
+			sumArr[0][5] += type1.intValue() + type2.intValue();
+			sumArr[0][6] += type3.intValue() + type4.intValue();
+			sumArr[0][7] += type1.intValue() + type3.intValue();
+			sumArr[0][8] += type2.intValue() + type4.intValue();
 			rstList.add(new FamilyTypeStatDO(cunName, type1.longValue(), type2.longValue(), type3.longValue(), type4.longValue(), sum.longValue()));
 		}
 		logger.debug("查询数据条数：" + list.size());
-
+		
 		// 设置page数据
 		page.setResultList(rstList);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目

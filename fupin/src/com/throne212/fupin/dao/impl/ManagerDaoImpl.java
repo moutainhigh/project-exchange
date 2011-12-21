@@ -113,6 +113,8 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 			param = new Object[]{team};
 		}
 		
+		logger.debug("hql=" + hql);
+		
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql , param).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
