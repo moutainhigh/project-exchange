@@ -31,13 +31,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from Org t where 1=1";
 		
-		//白云区的自能看自己辖区的单位
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof AreaWorkOrg){
 			AreaWorkOrg baiyun = (AreaWorkOrg) user;
-			if("Y".equals(baiyun.getIsDiv())){
-				hql += " and area.id="+baiyun.getArea().getId();
-			}
+			hql += " and cun.zhen.area.id="+baiyun.getArea().getId();
 		}
 		logger.debug("from manager hql=" + hql);
 		
@@ -57,13 +54,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
 		String hql = "from Org t where loginName like ? or orgName like ?";
 		
-		//白云区的自能看自己辖区的单位
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof AreaWorkOrg){
 			AreaWorkOrg baiyun = (AreaWorkOrg) user;
-			if("Y".equals(baiyun.getIsDiv())){
-				hql += " and area.id="+baiyun.getArea().getId();
-			}
+			hql += " and cun.zhen.area.id="+baiyun.getArea().getId();
 		}
 		
 		String value = "%"+name+"%";

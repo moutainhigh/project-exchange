@@ -249,6 +249,7 @@
 						</td>
 					</tr>
 					</c:forEach>
+					<!-- 
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
 							当前页合计
@@ -287,6 +288,8 @@
 							&nbsp; ${rate }
 						</td>
 					</tr>
+					 -->
+					<c:if test="${pageBean.isLastPage}">
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
 							总计
@@ -325,6 +328,7 @@
 							&nbsp; ${rate2 }
 						</td>
 					</tr>
+					</c:if>
 					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="12">
 							<jsp:include page="../../pager.jsp"></jsp:include>

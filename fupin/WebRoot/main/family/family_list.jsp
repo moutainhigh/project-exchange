@@ -129,8 +129,6 @@
 							</c:if>
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
 							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1150,700);" class="button" value="逐户录入">
-							</c:if>
-							<c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
 							</c:if>
 							<c:if test="${userObj.roleType=='超级管理员'}">

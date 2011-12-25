@@ -350,7 +350,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "excel" + File.separator + "export";
 		String srcFileName = "report_" + reportParam.getName();
-		String tgtFileName = "report-" + PinyinToolkit.cn2Pinyin(reportParam.getAreaName()) + "-" + reportParam.getIs206() + "_" + reportParam.getName();
+		String tgtFileName = "report-" + PinyinToolkit.cn2Pinyin(reportParam.getAreaName()) + "_" + reportParam.getName();
 		String sourceFile = path + File.separator + srcFileName + ".xls";
 		String targetFile = path + File.separator + tgtFileName + "_" + Util.getDate(new Date()) + ".xls";
 

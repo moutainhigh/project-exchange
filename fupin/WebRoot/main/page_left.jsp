@@ -257,28 +257,6 @@ function images_update(){
 	    menuArray[menuArray.length]="1,咨询信息回复,${appPath}zixun_zixunListPass.action";
 	    </c:if>
 	    
-	    //白云区的项目管理
-	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="0,项目管理,";
-	    menuArray[menuArray.length]="1,村项目管理,${appPath}pro_proCunList.action";
-	    </c:if>
-	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,村项目进度报表,${appPath}pro_cunStat.action";
-	    </c:if>
-	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目,${appPath}pro_proZdList.action";
-	    </c:if>
-	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,重点帮扶钟落潭镇项目进度报表,${appPath}pro_zdStat.action";
-	    </c:if>
-	    <c:if test="${userObj.roleType=='超级管理员' || userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,社会企业扶贫项目,${appPath}pro_proShList.action";
-	    </c:if>
-	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.isDiv=='Y'}">
-	    menuArray[menuArray.length]="1,社会企业扶贫项目进度报表,${appPath}pro_shStat.action";
-	    </c:if>
-	    
-	    
 	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
 	    menuArray[menuArray.length]="0,短信服务,";
 	    menuArray[menuArray.length]="1,短信发送,${appPath}sms_getAllSMS.action";

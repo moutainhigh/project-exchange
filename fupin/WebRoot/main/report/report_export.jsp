@@ -31,6 +31,25 @@
 				$('#month').val(m-1);
 				$('#month2').val(m-1);
 			},100);
+			
+			
+			//zc or ch
+			<c:if test="${userObj.roleType=='县级管理员' && (userObj.area.name == '增城市' || userObj.area.name == '从化市') && userObj.isWorkGroup=='Y'}">
+			setTimeout(function(){
+				$("#is206").html('<option value="206">北部贫困镇</option>');
+			},1);
+			</c:if>
+			
+			<c:if test="${userObj.roleType=='县级管理员' && (userObj.area.name == '增城市' || userObj.area.name == '从化市') && userObj.isWorkGroup!='Y'}">
+			setTimeout(function(){
+				$("#is206").html('<option value="not206">南部贫困镇</option>');
+			},1);
+			</c:if>
+			
+			<c:if test="${userObj.roleType=='县级管理员' && userObj.area.name != '增城市' && userObj.area.name != '从化市'}">
+			$("#is206").attr("disabled",true);
+			</c:if>
+			
 		});
 		</script>
 		<style>
@@ -87,7 +106,7 @@
 							类型
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							<select name="reportParam.is206">
+							<select name="reportParam.is206" id="is206">
 								<option value="">全部</option>
 								<option value="206">北部贫困镇</option>
 								<option value="not206">南部贫困镇</option>

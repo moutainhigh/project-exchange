@@ -1,5 +1,6 @@
 package com.throne212.fupin.action;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -296,7 +297,7 @@ public class ReportAction extends BaseAction {
 			filePath = reportBiz.getExcelReportFilePath(reportParam);
 			if (filePath != null) {
 				downloadFile = new FileInputStream(filePath);
-				this.setMsg("report-" + reportParam.getDiqu() + "_" + reportParam.getIs206() + "_" + reportParam.getName());
+				this.setMsg(filePath.substring(filePath.lastIndexOf(File.separator),filePath.lastIndexOf(".")));
 				return "excel";
 			} else {
 				this.setMsg("报表文件生成失败，数据不完整或参数错误，请联系管理员");
