@@ -8,5 +8,6 @@
 		</id>
 		<many-to-one name="family" column="family_id" lazy="false"></many-to-one>
 		<many-to-one name="leader" column="leader_id" lazy="false"></many-to-one>
+		<property name="startDate"></property>
 	</class>
 </hibernate-mapping>

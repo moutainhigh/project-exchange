@@ -287,7 +287,7 @@ function displayAction(sid) {
 					<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}family_bf_confirmRecord.action?record.id=${f.id}';}" >确认后提交</a>
 					</c:if>
 					</c:if>
-					&nbsp;
+					&nbsp;<a href="#" onclick="winOpen('${appPath}viewContent.action?type=record&id=${f.id}',400,400)">内容详情</a>
 					</td>
 				</tr>
 					</c:forEach>

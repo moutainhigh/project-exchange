@@ -59,7 +59,7 @@
 						<td align="right">
 							<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员'}">
 							<select name="status" onchange="queryBaoSong();" id="baosongStatus">
-								<option value=""></option>
+								<option value="">全部</option>
 								<option value="待办">待办</option>
 								<option value="已办">已办</option>
 							</select>

@@ -529,6 +529,7 @@ public class FamilyBFAction extends BaseAction {
 				}
 
 				f.setLeaderList(new ArrayList<Leader>(sortSet));
+				f.setLeaderHelpList(leaderHelperList);
 			}
 		}
 	}
@@ -542,6 +543,11 @@ public class FamilyBFAction extends BaseAction {
 		if(list != null && list.size() > 0){
 			Leader l = (Leader) list.get(0);
 			startDate = l.getStartDate();
+		}
+		List<LeaderHelp> lhList = orgBiz.getEntitiesByColumn(LeaderHelp.class, "family", family);
+		if(lhList != null && lhList.size()>0){
+			LeaderHelp lh = lhList.get(0);
+			startDate = lh.getStartDate();
 		}
 
 		// 获取领导列表
@@ -601,6 +607,7 @@ public class FamilyBFAction extends BaseAction {
 					LeaderHelp lh = new LeaderHelp();
 					lh.setFamily(family);
 					lh.setLeader(leader);
+					lh.setStartDate(startDate);
 					orgBiz.saveOrUpdateEntity(lh);
 				}
 			}

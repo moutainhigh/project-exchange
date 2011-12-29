@@ -16,19 +16,24 @@ public class Record extends MyEntity {
 	private String s4;
 	
 	public String getShortContent(){
-		if(content == null)
+		if(s1 == null)
 			return null;
 		String shortContent;
-		if (this.getContent().length()>16) {
-			shortContent=this.getContent().substring(0, 16);
+		if (s1.length()>16) {
+			shortContent=s1.substring(0, 16);
 		}else {
-			shortContent=this.getContent();
+			shortContent=s1;
 		}
 		return shortContent;
 	}
 	
 	public String getContent() {
-		return content;
+		StringBuffer sb = new StringBuffer();
+		sb.append(s1);
+		sb.append(s2);
+		sb.append(s3);
+		sb.append(s4);
+		return sb.toString();
 	}
 	public void setContent(String content) {
 		this.content = content;

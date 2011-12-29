@@ -185,7 +185,7 @@ function images_update(){
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员' && userObj.typeName!='社会企业'}">
 	    menuArray[menuArray.length]="0,信息报送";
-		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action?status=待办";
+		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";
 	    </c:if>
 	    
 	    //镇管理员类

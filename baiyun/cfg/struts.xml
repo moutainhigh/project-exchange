@@ -315,6 +315,10 @@
 		<action name="remind" class="com.throne212.fupin.action.RemindAction">
 			<result name="success">/main/remind/remind_list.jsp</result>
 		</action>
+		<!-- 内容详情 -->
+		<action name="viewContent" class="com.throne212.fupin.action.ViewContentAction">
+			<result name="success">/main/view/content.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

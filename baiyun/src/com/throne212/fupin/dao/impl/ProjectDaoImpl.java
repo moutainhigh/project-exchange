@@ -33,10 +33,15 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Org) {
-			hql += " and org.id=" + user.getId();
+			Org org = (Org) user;
+			if(org.getCun() != null){
+				hql += " and cun.id=" + org.getCun().getId();
+			}else{
+				hql += " and org.id=" + user.getId();
+			}
 		}else if (user instanceof CunWorkOrg) {
 			CunWorkOrg c = (CunWorkOrg) user;
-			hql += " and org.cun.id=" + c.getCun().getId();
+			hql += " and cun.id=" + c.getCun().getId();
 		}
 
 		hql += " order by id desc";

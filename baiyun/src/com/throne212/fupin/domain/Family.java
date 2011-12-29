@@ -53,6 +53,7 @@ public class Family extends MyEntity {
 	private Person person10;
 
 	private List<Leader> leaderList;
+	private List<LeaderHelp> leaderHelpList;
 	
 	public int getPersonNum(){
 		int sum = 0;
@@ -421,6 +422,14 @@ public class Family extends MyEntity {
 
 	public void setWeifang(String weifang) {
 		this.weifang = weifang;
+	}
+
+	public List<LeaderHelp> getLeaderHelpList() {
+		return leaderHelpList;
+	}
+
+	public void setLeaderHelpList(List<LeaderHelp> leaderHelpList) {
+		this.leaderHelpList = leaderHelpList;
 	}
 
 }

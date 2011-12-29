@@ -33,7 +33,7 @@
 			        {field:'zhen',title:'镇',width:100,align:'center'},
 			        {field:'cun',title:'村',width:100,align:'center'},
 			        {field:'org',title:'单位',width:300,align:'center'},
-			        {field:'ok7',title:'7月',width:50,align:'center'},
+			        //{field:'ok7',title:'7月',width:50,align:'center'},
 			        {field:'ok8',title:'8月',width:50,align:'center'},
 			        {field:'ok9',title:'9月',width:50,align:'center'},
 			        {field:'ok10',title:'10月',width:50,align:'center'},

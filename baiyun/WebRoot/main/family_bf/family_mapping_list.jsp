@@ -278,8 +278,8 @@
 						</td>
 						<td align="center" class="tables_contentcell">
 							&nbsp;
-							<c:if test="${not empty f.leaderList }">
-							${f.leaderList[0].startDateTxt }
+							<c:if test="${not empty f.leaderHelpList }">
+							${f.leaderHelpList[0].startDateTxt }
 							</c:if>
 						</td>
 						<td align="center" class="tables_contentcell">

@@ -10,21 +10,13 @@ public class Cuoshi extends MyEntity {
 	private String reason;//原因
 	
 	public String getShortContent(){
-		//整理content
-		if(content==null){
-			content = this.segment3;
-			if(content == null){
-				content = this.segment4;
-			}
-		}
-		
 		String shortContent;
 		if(this.getContent() == null){
 			return "";
-		}else if (this.getContent().length()>16) {
-			shortContent=this.getContent().substring(0, 16);
+		}else if (content.length()>16) {
+			shortContent=content.substring(0, 16);
 		}else {
-			shortContent=this.getContent();
+			shortContent=content;
 		}
 		return shortContent;
 	}
@@ -42,6 +34,13 @@ public class Cuoshi extends MyEntity {
 		this.season = season;
 	}
 	public String getContent() {
+		//整理content
+		if(content==null){
+			content = this.segment3;
+			if(content == null){
+				content = this.segment4;
+			}
+		}
 		return content;
 	}
 	public void setContent(String content) {

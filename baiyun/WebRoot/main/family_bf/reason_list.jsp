@@ -257,6 +257,7 @@ function displayAction(sid) {
 					
 					 </c:if>
 					 &nbsp;
+					 <a href="#" onclick="winOpen('${appPath}viewContent.action?type=reason&id=${f.id}',400,400)">内容详情</a>
 		</td>
 				</tr>
 					</c:forEach>
