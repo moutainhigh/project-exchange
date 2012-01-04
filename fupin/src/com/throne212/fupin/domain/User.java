@@ -112,7 +112,11 @@ public class User extends MyEntity implements Serializable {
 	public boolean getComplete(){
 		if(this instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) this;
-			if("增城市".equals(a.getArea().getName()) || "从化市".equals(a.getArea().getName())){
+			if("增城市".equals(a.getArea().getName()) 
+					|| "从化市".equals(a.getArea().getName())
+					|| "南沙区".equals(a.getArea().getName())
+					|| "萝岗区".equals(a.getArea().getName())
+					|| "白云区".equals(a.getArea().getName())){
 				return true;
 			}
 		}

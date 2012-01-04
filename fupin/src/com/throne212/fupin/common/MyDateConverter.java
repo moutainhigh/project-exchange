@@ -10,8 +10,8 @@ import com.opensymphony.xwork2.conversion.impl.DefaultTypeConverter;
 public class MyDateConverter extends DefaultTypeConverter {
 
 	private static final DateFormat[] ACCEPT_DATE_FORMATS = {
-	new SimpleDateFormat("yyyy-MM"),
 	new SimpleDateFormat("yyyy-MM-dd"),
+	new SimpleDateFormat("yyyy-MM"),
 	new SimpleDateFormat("yyyy/MM/dd"), 
 	new SimpleDateFormat("dd/MM/yyyy"),
 	new SimpleDateFormat("yyyMMdd") }; // 支持转换的日期格�?
@@ -35,7 +35,8 @@ public class MyDateConverter extends DefaultTypeConverter {
 
 				try {
 
-					return format.parse(dateString);// 遍历日期支持格式，进行转�?
+					date = format.parse(dateString);// 遍历日期支持格式，进行转�?
+					return date;
 
 				} catch (Exception e) {
 

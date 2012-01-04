@@ -78,6 +78,100 @@ var msg = '${msg}';
 	}
 }	
 
+
+		var userAreaId = '';
+		var userZhenId = '';
+		//原生的地区信息
+		<c:if test="${userObj.roleType=='镇级管理员'}">
+		userZhenId = '${userObj.zhen.id}';
+		userAreaId = '${userObj.zhen.area.id}';
+		</c:if>
+		<c:if test="${userObj.roleType=='县级管理员'}">
+		userAreaId = '${userObj.area.id}';
+		</c:if>
+		<c:if test="${userObj.roleType=='扶贫工作组'}">
+		userZhenId = '${userObj.zhen.id}';
+		userAreaId = '${userObj.zhen.area.id}';
+		</c:if>
+		<c:if test="${userObj.roleType=='县级管理员' && userObj.isWorkGroup=='Y'}">
+		userAreaId = '${userObj.area.id}';
+		</c:if>
+		
+		$(function(){
+			$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
+				if(json && json['list'] && json['list'].length){
+					$('#shiId').html('');
+					for(var i=0;i<json['list'].length;i++)
+						$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+					selectShi($('#shiId').val());
+				}
+			});
+		});
+		var paramAreaId = '${param.areaId}';
+		function selectShi(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#areaId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramAreaId!=''){
+							setTimeout(function(){
+								$('#areaId').val(paramAreaId);
+								selectArea(paramAreaId);
+							},1);
+						}else if(userAreaId!=''){
+							setTimeout(function(){
+								$('#areaId').val(userAreaId);
+								selectArea(userAreaId);
+								$('#areaId').attr("disabled",true);
+							},1);
+						} 
+					}
+				});
+			}
+		}
+		var paramZhenId = '${param.zhenId}';
+		function selectArea(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#zhenId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(paramZhenId);
+								selectZhen(paramZhenId);
+							},1);
+						}else if(userZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(userZhenId);
+								selectZhen(userZhenId);
+								$('#zhenId').attr("disabled",true);
+							},1);
+						} 
+					}
+				});
+			}
+		}
+		var paramCunId = '${param.cunId}';
+		function selectZhen(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#cunId2').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramCunId!=''){
+							setTimeout(function(){
+								$('#cunId2').val(paramCunId);
+							},1);
+						}
+					}
+				});
+			}
+		}
 </script>
 </head><body>
 
@@ -109,7 +203,24 @@ var msg = '${msg}';
 	</c:if>
 	</td>
 	<td align="right">
-
+	<c:if test="${userObj.roleType!='帮扶单位管理员'}">
+		                   <select id="shiId" name="shiId" onchange="selectShi(this.value);">
+							<option value="">-----------</option>
+						</select>
+						<span class="STYLE1">区/县：</span>
+						<select id="areaId" name="areaId" onchange="selectArea(this.value);">
+									<option value="">----------</option>
+								  </select>
+			 			<span class="STYLE1">镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+						</select>			
+						&nbsp;
+	</c:if>
 	<label>措施类型: </label>
 	<select   size="1" name="cuoshi.type">
 		<option value=""></option>
@@ -173,15 +284,18 @@ var msg = '${msg}';
 			${f.status }
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
-		<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
-		<a href="#" onclick="winOpen('${appPath}cun_bf_saveOrUpdateCuoshiCun.action?cuoshi.id=${f.id}',600,390);">修改</a>
-		</c:if>
-		&nbsp;<c:if test="${f.status=='审核通过'}">
-		<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
-		</c:if>
 		
-		<c:if test="${f.status=='未提交'}">
-		<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}cun_bf_confirmCuoshi.action?cuoshi.id=${f.id}';}" >确认后提交</a>
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
+			<c:if test="${f.status=='未提交'||f.status=='审核不通过'}">
+			<a href="#" onclick="winOpen('${appPath}cun_bf_saveOrUpdateCuoshiCun.action?cuoshi.id=${f.id}',600,390);">修改</a>
+			</c:if>
+			&nbsp;<c:if test="${f.status=='审核通过'}">
+			<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
+			</c:if>
+			
+			<c:if test="${f.status=='未提交'}">
+			<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}cun_bf_confirmCuoshi.action?cuoshi.id=${f.id}';}" >确认后提交</a>
+			</c:if>
 		</c:if>
 		&nbsp;<a href="#" onclick="winOpen('${appPath}viewContent.action?type=cuoshi&id=${f.id}',600,400)">内容详情</a>
 		</td>

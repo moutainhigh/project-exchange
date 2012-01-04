@@ -31,16 +31,23 @@ public class CunBFAction extends BaseAction {
 	private ChengxiaoCun chengxiao;
 	private PicCun pic;
 	private Cun cun;
+	
+	//查询参数
+	private Long cunId;
+	private Long zhenId;
+	private Long areaId;
+	
 	// 村帮扶措施列表
 	public String cuoshiCunList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
 		if (user instanceof Admin) {
-			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi,pageIndex);
+			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi,areaId, zhenId, cunId, pageIndex);
 			return "cuoshicun_list";
 		} else if(user instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) user;
-			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi,a.getArea().getId(), null, null, pageIndex);
+			areaId = a.getArea().getId();
+			pageBean = cunBFBiz.getAllCuoshiCun(cuoshi,areaId, zhenId, cunId, pageIndex);
 			return "cuoshicun_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
@@ -157,11 +164,12 @@ public class CunBFAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
 		if (user instanceof Admin) {
-			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao,pageIndex);
+			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao, areaId, zhenId, cunId, pageIndex);
 			return "chengxiaocun_list";
 		} else if(user instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) user;
-			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao,a.getArea().getId(), null, null, pageIndex);
+			areaId = a.getArea().getId();
+			pageBean = cunBFBiz.getAllChengxiaoCun(chengxiao, areaId, zhenId, cunId, pageIndex);
 			return "chengxiaocun_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
@@ -496,9 +504,28 @@ public class CunBFAction extends BaseAction {
 	public void setCurrId(Long currId) {
 		this.currId = currId;
 	}
-	
-	
-	
-	
 
+	public Long getCunId() {
+		return cunId;
+	}
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
+	}
+
+	public Long getZhenId() {
+		return zhenId;
+	}
+
+	public void setZhenId(Long zhenId) {
+		this.zhenId = zhenId;
+	}
+
+	public Long getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(Long areaId) {
+		this.areaId = areaId;
+	}
 }

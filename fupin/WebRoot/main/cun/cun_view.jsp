@@ -111,7 +111,7 @@
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">贫困村简介</td>
-		<td height="30" class="tables_contentcell" colspan="3" width="120">
+		<td height="30" class="tables_contentcell" colspan="3" width="50%">
 			${c.remark }&nbsp;
 		</td>
 	</tr>
@@ -119,7 +119,7 @@
 		<td height="30" align="right" class="tables_leftcell">
 			贫困村发展村集体项目计划
 		</td>
-		<td height="30" class="tables_contentcell" colspan="3" width="120">
+		<td height="30" class="tables_contentcell" colspan="3" width="50%">
 			${c.item }&nbsp;
 		</td>
 	</tr>

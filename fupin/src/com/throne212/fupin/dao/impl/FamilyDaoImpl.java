@@ -12,6 +12,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ChengxiaoFamily;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiFamily;
@@ -403,6 +404,15 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and family.cun.zhen.isNS='N'";
+				}else{
+					hql += " and family.cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		//地区筛选
@@ -458,6 +468,15 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and family.cun.zhen.isNS='N'";
+				}else{
+					hql += " and family.cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		//地区筛选
@@ -513,6 +532,15 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and family.cun.zhen.isNS='N'";
+				}else{
+					hql += " and family.cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		//地区筛选
@@ -565,6 +593,15 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and family.cun.zhen.isNS='N'";
+				}else{
+					hql += " and family.cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		//地区筛选
@@ -614,6 +651,15 @@ public class FamilyDaoImpl extends BaseDaoImpl implements FamilyDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and family.cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and family.cun.zhen.isNS='N'";
+				}else{
+					hql += " and family.cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		//地区筛选

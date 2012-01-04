@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.sun.faces.config.WebConfiguration;
 import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
@@ -24,6 +25,7 @@ public class ReportAction extends BaseAction {
 	private Report r;
 	private Integer maxMonth;
 	private Integer maxSeason;
+	private Integer maxYear;
 
 	// excel导出文件
 	private InputStream downloadFile;
@@ -76,6 +78,10 @@ public class ReportAction extends BaseAction {
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
 			String time = (c.get(Calendar.MONTH)) + "";
+			if("0".equals(time)){
+				year--;
+				time = "12";
+			}
 			r = reportBiz.getReport("1", year, type, time);
 			if (r == null) {
 				r = new Report1();
@@ -87,6 +93,10 @@ public class ReportAction extends BaseAction {
 			Integer year = r.getYear();
 			String type = r.getType();
 			String time = r.getTime();
+			if(("month".equals(type) || "season".equals(type)) && Util.isEmpty(time)){//如果时间为空，则采用默认的时间
+				r = null;
+				return viewReport1();
+			}
 			Report report = reportBiz.getReport("1", year, type, time);
 			if (report != null)
 				r = report;
@@ -99,6 +109,7 @@ public class ReportAction extends BaseAction {
 		}
 
 		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
@@ -161,6 +172,10 @@ public class ReportAction extends BaseAction {
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
 			String time = (c.get(Calendar.MONTH)) + "";
+			if("0".equals(time)){
+				year--;
+				time = "12";
+			}
 			r = reportBiz.getReport("2", year, type, time);
 			if (r == null) {
 				r = new Report2();
@@ -172,6 +187,10 @@ public class ReportAction extends BaseAction {
 			Integer year = r.getYear();
 			String type = r.getType();
 			String time = r.getTime();
+			if(("month".equals(type) || "season".equals(type)) && Util.isEmpty(time)){//如果时间为空，则采用默认的时间
+				r = null;
+				return viewReport2();
+			}
 			Report report = reportBiz.getReport("2", year, type, time);
 			if (report != null)
 				r = report;
@@ -184,6 +203,7 @@ public class ReportAction extends BaseAction {
 		}
 
 		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
@@ -292,6 +312,10 @@ public class ReportAction extends BaseAction {
 	public String export() {
 		if (reportParam == null)
 			return "report_export";
+		if(Util.isEmpty(reportParam.getMonth()) || Util.isEmpty(reportParam.getMonth2())){
+			this.setMsg("月份不可为空");
+			return "report_export"; 
+		}
 		String filePath = null;
 		try {
 			filePath = reportBiz.getExcelReportFilePath(reportParam);
@@ -363,6 +387,14 @@ public class ReportAction extends BaseAction {
 
 	public void setReportParam(ReportParam reportParam) {
 		this.reportParam = reportParam;
+	}
+
+	public Integer getMaxYear() {
+		return maxYear;
+	}
+
+	public void setMaxYear(Integer maxYear) {
+		this.maxYear = maxYear;
 	}
 
 }

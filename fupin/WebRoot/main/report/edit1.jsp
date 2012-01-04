@@ -18,11 +18,18 @@
 		var type = '${r.type}';
 		var time = '${r.time}';
 		var lock = '${r.lock}';
+		var maxYear = '${maxYear}';
 		var maxMonth = '${maxMonth}';
 		var maxSeason = '${maxSeason}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
 		maxMonth = maxMonth==''?12:parseInt(maxMonth);
 		maxSeason = maxSeason==''?4:parseInt(maxSeason);
 		$(function(){
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
 			if(year != ''){
 				setTimeout(function(){ 
 				    $('#year').val(year);
@@ -42,12 +49,18 @@
 			$('.auto_readonly').css('background','#EBEBE4');
 		});
 		function chooseType(type){
+			if(!type){
+				type = $('#reportType').val();
+			}
 			if('year' == type){
 				$('#time').attr('disabled',true);
 			}else if('season' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=maxSeason;i++){
+				var ms = maxSeason;
+				if(currYear > $('#year').val())
+					ms = 4;
+				for(var i=1;i<=ms;i++){
 					if(($('#year').val()==2011 || year == '2011') && i==1){
 						continue;
 					}else{
@@ -64,7 +77,10 @@
 				//2011年，去掉月度报表的第1 2 3 4 5月，改为第3-5月。5月份之后的月份正常显示。
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=maxMonth;i++){
+				var ms = maxMonth;
+				if(currYear > $('#year').val())
+					ms = 12;
+				for(var i=1;i<=ms;i++){
 					if($('#year').val()==2011 || year == '2011'){
 						if(i<=4)
 							continue;
@@ -109,6 +125,11 @@
 			f.submit();
 		}
 		function saveReport(){
+			//所有项目都不得为空
+			if($('input[type="text"][value=""]').length > 0){
+				alert('填报项目必须全部填写，如无则填0');
+				return false;
+			}
 			//自动提取不得为空
 			var autoPass = true;
 			$('input[readonly=true]').each(function(){
@@ -218,9 +239,8 @@
 					<tr align="center">
 						<td width="" class="tables_headercell">
 							年度：
-							<select name="r.year" id="year">
+							<select name="r.year" id="year" onchange="chooseType();" style="width: 60px;">
 								<option value=""></option>
-								<option value="2011">2011</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
@@ -547,15 +567,18 @@
 									上年村级集体经济收入(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item30" value="${r.item30}" readonly="readonly" class="auto_readonly"/>
+									<input type="text" name="r.item30" value="${r.item30}" readonly="readonly" class="auto_readonly"/>元
 									</td>
 								</tr>
 								<tr>
-									<td class="tables_contentcell" colspan="3">
-									预计今年村级集体经济收入(元)
+									<td class="tables_contentcell" colspan="1">
+									预计
+									</td>
+									<td class="tables_contentcell" colspan="2">
+									今年村级集体经济收入(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item31" value="${r.item31}"/>
+									<input type="text" name="r.item31" value="${r.item31}"/>元
 									</td>
 								</tr>
 								<tr>

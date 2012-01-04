@@ -12,6 +12,8 @@ public class ReportParam {
 	
 	private String month2;//月份
 	
+	private String year;//年度
+	
 	private String areaName;//area name
 
 	public String getIs206() {
@@ -60,6 +62,14 @@ public class ReportParam {
 
 	public void setMonth2(String month2) {
 		this.month2 = month2;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
 	}
 
 }

@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ChengxiaoCun;
 import com.throne212.fupin.domain.ChengxiaoZhen;
 import com.throne212.fupin.domain.CuoshiCun;
@@ -187,6 +188,15 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and cun.zhen.isNS='N'";
+				}else{
+					hql += " and cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		if(cunId != null){
@@ -225,6 +235,15 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and cun.zhen.isNS='N'";
+				}else{
+					hql += " and cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		if(cunId != null){
@@ -263,6 +282,15 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		if(user instanceof ZhenWorkOrg){
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		}else if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if(a.getArea().getName().equals("从化市") || a.getArea().getName().equals("增城市")){
+				if("Y".equals(a.getIsWorkGroup())){
+					hql += " and cun.zhen.isNS='N'";
+				}else{
+					hql += " and cun.zhen.isNS='S'";
+				}
+			}
 		}
 		
 		if(cunId != null){

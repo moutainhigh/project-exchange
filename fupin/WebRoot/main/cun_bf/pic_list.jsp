@@ -110,8 +110,10 @@ var msg = '${requestScope.msg}';
 		</td>
 		<td height="25" align="center" class="tables_contentcell">
 		<a rel="facebox" href="${appPath}cun_bf_viewPic.action?pic.id=${f.id}">查看</a>
+		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		<c:if test="${f.status=='未提交'}">
 		<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}cun_bf_confirmPic.action?pic.id=${f.id}';}" >确认后提交</a>
+		</c:if>
 		</c:if>
 		</td>
 		

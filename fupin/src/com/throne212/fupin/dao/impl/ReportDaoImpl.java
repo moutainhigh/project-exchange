@@ -5,10 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
-import jxl.Cell;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.Number;
@@ -148,9 +146,9 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		sql.append("left outer join fp_diqu z on z.id=c.zhen_id ");
 		sql.append("left outer join fp_diqu a on a.id=z.area_id ");
 		if ("3".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=2 and r.type='month' ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=2 and r.type='month' and r.year=" + reportParam.getYear()+" ");
 		if ("12".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=1 and r.type='month' ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=1 and r.type='month' and r.year=" + reportParam.getYear()+" ");
 		sql.append("where c.diqu_type='cun' ");
 		sql.append("and z.diqu_type='zhen' ");
 		sql.append("and a.diqu_type='area' ");

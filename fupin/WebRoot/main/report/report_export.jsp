@@ -20,18 +20,13 @@
 		}
 		$(function(){
 			var now = new Date();
-			var m = now.getMonth() + 1;
-			for(var i=1;i<=m;i++){
-				$('#month').append("<option value=\""+i+"\">"+i+"</option>");
-				$('#month2').append("<option value=\""+i+"\">"+i+"</option>");
+			var maxYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
 			}
-			setTimeout(function(){
-				if(m == 1)
-					m = 13;
-				$('#month').val(m-1);
-				$('#month2').val(m-1);
-			},100);
 			
+			//修改月份的限制
+			changeMonth();
 			
 			//zc or ch
 			<c:if test="${userObj.roleType=='县级管理员' && (userObj.area.name == '增城市' || userObj.area.name == '从化市') && userObj.isWorkGroup=='Y'}">
@@ -51,6 +46,25 @@
 			</c:if>
 			
 		});
+		function changeMonth(){
+			var now = new Date();
+			var m = now.getMonth()+1;
+			var y = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+			if($("#year").val() < y)
+				m = 12 + 1;
+			$('#month').html('');
+			$('#month2').html('');
+			for(var i=1;i<m;i++){
+				$('#month').append("<option value=\""+i+"\">"+i+"</option>");
+				$('#month2').append("<option value=\""+i+"\">"+i+"</option>");
+			}
+			setTimeout(function(){
+				if(m > 1){
+					$('#month').val(m-1);
+					$('#month2').val(m-1);
+				}
+			},100);
+		}
 		</script>
 		<style>
 .tables_search {
@@ -111,6 +125,14 @@
 								<option value="206">北部贫困镇</option>
 								<option value="not206">南部贫困镇</option>
 							</select>
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							年度
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							<select name="reportParam.year" id="year" onchange="changeMonth();" style="width: 60px;"></select>
 						</td>
 					</tr>
 					<tr>
