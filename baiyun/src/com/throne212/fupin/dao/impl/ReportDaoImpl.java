@@ -342,7 +342,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		return null;
 	}
 
-	public List<Report1Stat> getReport1Stat() {
+	public List<Report1Stat> getReport1Stat(int year) {
 		List<Report1Stat> list = new ArrayList<Report1Stat>();
 		List<Cun> cunList = null;
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -353,6 +353,11 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			cunList = this.getEntitiesByColumn(Cun.class, "zhen.id", z.getZhen().getId());
 		}
+		
+		int min = 1;
+		int max = 12;
+		if(year == 2011)
+			min = 8;
 
 		for (Cun c : cunList) {
 			Report1Stat s = new Report1Stat();
@@ -360,11 +365,11 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			if(c.getOrg() != null)
 				s.setOrg(c.getOrg().getOrgName());
 			s.setZhen(c.getZhen().getName());
-			for (int i = 7; i <= 12; i++) {// 7到12月
-				String hql = "select count(*) from Report1 r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=2011";
+			for (int i = min; i <= max; i++) {// 7到12月
+				String hql = "select count(*) from Report1 r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
 				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
 				if (count > 0)
-					s.setOk(i, "Y-" + c.getId() + "-2011-" + i);
+					s.setOk(i, "Y-" + c.getId() + "-" + year + "-" + i);
 			}
 			list.add(s);
 		}

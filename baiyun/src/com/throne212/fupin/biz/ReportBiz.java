@@ -25,7 +25,7 @@ public interface ReportBiz extends BaseBiz {
 
 	public String getExcelReportFilePath(ReportParam reportParam) throws Exception;
 
-	public List<Report1Stat> getReport1Stat();
+	public List<Report1Stat> getReport1Stat(int year);
 
 	// 汇总查询
 	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex);

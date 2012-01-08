@@ -410,8 +410,8 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
 	}
 
-	public List<Report1Stat> getReport1Stat() {
-		return reportDao.getReport1Stat();
+	public List<Report1Stat> getReport1Stat(int year) {
+		return reportDao.getReport1Stat(year);
 	}
 
 	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex) {

@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.AreaWorkOrg;
@@ -33,6 +34,7 @@ public class ReportAction extends BaseAction {
 	private Report r;
 	private Integer maxMonth;
 	private Integer maxSeason;
+	private Integer maxYear;
 
 	// excel导出文件
 	private InputStream downloadFile;
@@ -107,6 +109,10 @@ public class ReportAction extends BaseAction {
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
 			String time = (c.get(Calendar.MONTH)) + "";
+			if("0".equals(time)){
+				year--;
+				time = "12";
+			}
 			r = reportBiz.getReport("1", year, type, time);
 			if (r == null) {
 				r = new Report1();
@@ -118,6 +124,10 @@ public class ReportAction extends BaseAction {
 			Integer year = r.getYear();
 			String type = r.getType();
 			String time = r.getTime();
+			if(("month".equals(type) || "season".equals(type)) && Util.isEmpty(time)){//如果时间为空，则采用默认的时间
+				r = null;
+				return viewReport1();
+			}
 			Report report = reportBiz.getReport("1", year, type, time);
 			if (report != null)
 				r = report;
@@ -130,6 +140,7 @@ public class ReportAction extends BaseAction {
 		}
 
 		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
@@ -493,7 +504,15 @@ public class ReportAction extends BaseAction {
 
 	// 工作落实情况统计表
 	public String report1Stat() {
-		List<Report1Stat> list = reportBiz.getReport1Stat();
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+		}
+		List<Report1Stat> list = reportBiz.getReport1Stat(year);
 		Map<String, Object> mapJson = new Hashtable<String, Object>();
 		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
 		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
@@ -501,6 +520,8 @@ public class ReportAction extends BaseAction {
 		ActionContext actionContext = ActionContext.getContext();
 		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
 		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		return "report1_stat";
 	}
 
@@ -643,6 +664,12 @@ public class ReportAction extends BaseAction {
 
 	public void setR3List(List<Report3> r3List) {
 		this.r3List = r3List;
+	}
+	public Integer getMaxYear() {
+		return maxYear;
+	}
+	public void setMaxYear(Integer maxYear) {
+		this.maxYear = maxYear;
 	}
 
 }

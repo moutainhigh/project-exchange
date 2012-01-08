@@ -19,11 +19,18 @@
 		var type = '${r.type}';
 		var time = '${r.time}';
 		var lock = '${r.lock}';
+		var maxYear = '${maxYear}';
 		var maxMonth = '${maxMonth}';
 		var maxSeason = '${maxSeason}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
 		maxMonth = maxMonth==''?12:parseInt(maxMonth);
 		maxSeason = maxSeason==''?4:parseInt(maxSeason);
 		$(function(){
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
 			if(year != ''){
 				setTimeout(function(){ 
 				    $('#year').val(year);
@@ -43,12 +50,18 @@
 			$('.auto_readonly').css('background','#EBEBE4');
 		});
 		function chooseType(type){
+			if(!type){
+				type = $('#reportType').val();
+			}
 			if('year' == type){
 				$('#time').attr('disabled',true);
 			}else if('season' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=maxSeason;i++){
+				var ms = maxSeason;
+				if(currYear > $('#year').val())
+					ms = 4;
+				for(var i=1;i<=ms;i++){
 					if(($('#year').val()==2011 || year == '2011') && i<=2){
 						continue;
 					}else{
@@ -65,7 +78,10 @@
 				//2011年，去掉月度报表的第1 -7月，8月份之后的月份正常显示。
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=maxMonth;i++){
+				var ms = maxMonth;
+				if(currYear > $('#year').val())
+					ms = 12;
+				for(var i=1;i<=ms;i++){
 					if($('#year').val()==2011 || year == '2011'){
 						if(i<=7)
 							continue;
@@ -193,9 +209,8 @@
 					<tr align="center">
 						<td width="" class="tables_headercell">
 							年度：
-							<select name="r.year" id="year">
+							<select name="r.year" id="year" onchange="chooseType();" style="width: 60px;">
 								<option value=""></option>
-								<option value="2011">2011</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">

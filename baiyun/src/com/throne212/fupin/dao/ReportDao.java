@@ -20,7 +20,7 @@ public interface ReportDao extends BaseDao {
 
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile);
 	
-	public List<Report1Stat> getReport1Stat();
+	public List<Report1Stat> getReport1Stat(int year);
 	
 	public PageBean getProStat(Class statClass, Integer year,Integer month,Integer pageIndex);
 

@@ -33,7 +33,15 @@
 			        {field:'zhen',title:'镇',width:100,align:'center'},
 			        {field:'cun',title:'村',width:100,align:'center'},
 			        {field:'org',title:'单位',width:300,align:'center'},
-			        //{field:'ok7',title:'7月',width:50,align:'center'},
+			        <c:if test="${year>2011}">
+			        {field:'ok1',title:'1月',width:50,align:'center'},
+			        {field:'ok2',title:'2月',width:50,align:'center'},
+			        {field:'ok3',title:'3月',width:50,align:'center'},
+			        {field:'ok4',title:'4月',width:50,align:'center'},
+			        {field:'ok5',title:'5月',width:50,align:'center'},
+			        {field:'ok6',title:'6月',width:50,align:'center'},
+			        {field:'ok7',title:'7月',width:50,align:'center'},
+			        </c:if>
 			        {field:'ok8',title:'8月',width:50,align:'center'},
 			        {field:'ok9',title:'9月',width:50,align:'center'},
 			        {field:'ok10',title:'10月',width:50,align:'center'},
@@ -57,6 +65,22 @@
 				}
 			});
 		});
+		
+		var year = '${year}';
+		var maxYear = '${maxYear}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
+		$(function(){
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
+			if(year != ''){
+				setTimeout(function(){ 
+				    $('#year').val(year);
+				},1);
+			}
+		});
 		</script>
 		<style>
 .tables_search {
@@ -75,6 +99,13 @@
 					</td>
 					<td align="right">
 					&nbsp;
+					<form action="${appPath}report_report1Stat.action" method="post">
+					年度：
+							<select name="year" id="year" style="width: 60px;">
+							</select>
+					&nbsp;
+					<input type="submit" value="统计" class="button"/>
+					</form>
 					</td>
 					<td width="5px"></td>
 				</tr>
