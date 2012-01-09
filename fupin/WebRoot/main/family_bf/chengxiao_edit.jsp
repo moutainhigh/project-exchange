@@ -27,8 +27,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(function(){
 				var year = '${chengxiao.year}';
 				if(year != ''){
-					$('#year').val(year);
+					setTimeout(function(){
+						$('#year').val(currYear);
+					}, 1);
+				}else{
+					var now = new Date();
+					var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+					setTimeout(function(){
+						$('#year').val(currYear);
+					}, 1);
 				}
+				
 				if(currFamily != ''){
 					selectFamily(currFamily);
 				}
@@ -107,14 +116,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>  
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">帮扶年度</td>
-		<td class="tables_contentcell"><select name="chengxiao.year">
+		<td class="tables_contentcell"><select name="chengxiao.year" id="year">
 			
 			<%--<c:if test="${not empty chengxiao.year}">
 		<option value="${chengxiao.year} " selected="selected">${chengxiao.year}</option>
 		</c:if> --%>
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i<year+2;i++){
+			for(int i=2011;i<year+2;i++){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	

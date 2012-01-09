@@ -21,6 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var year = '${chengxiao.year}';
 				if(year != ''){
 					$('#year').val(year);
+				}else{
+					var now = new Date();
+					var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+					setTimeout(function(){
+						$('#year').val(currYear);
+					}, 1);
 				}
 			});
 		</script>
@@ -58,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		--%>
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i<year+2;i++){
+			for(int i=2011;i<year+2;i++){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	

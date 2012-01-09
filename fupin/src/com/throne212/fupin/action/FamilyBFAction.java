@@ -306,11 +306,12 @@ public class FamilyBFAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
 		if (user instanceof Admin) {
-			this.setMsg("超级管理员无权进行此操作！");
+			pageBean = familyBFBiz.getAllPicFamily(pic,areaId,zhenId,cunId,pageIndex);
 			return "pic_list";
 		} else if (user instanceof AreaWorkOrg) {
 			AreaWorkOrg a = (AreaWorkOrg) user;
-			pageBean = familyBFBiz.getAllPicFamily(pic,a.getArea().getId(),null,null,pageIndex);
+			areaId = a.getArea().getId();
+			pageBean = familyBFBiz.getAllPicFamily(pic,areaId,zhenId,cunId,pageIndex);
 			return "pic_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
@@ -506,10 +507,11 @@ public class FamilyBFAction extends BaseAction {
 		
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
-			pageBean = orgBiz.getAllFamily(queryKey, pageIndex);
+			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,areaId,zhenId,cunId);
 		}else if(user instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) user;
-			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,a.getArea().getId(),null,null);
+			areaId = a.getArea().getId();
+			pageBean = orgBiz.getAllFamily(queryKey, pageIndex,areaId,zhenId,cunId);
 		} else if (user instanceof Org) {
 			pageBean = orgBiz.getAllFamily((Org) user,queryKey, pageIndex);
 		} 

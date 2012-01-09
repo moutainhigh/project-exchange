@@ -15,12 +15,8 @@ import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.PicCun;
-import com.throne212.fupin.domain.PicZhen;
 import com.throne212.fupin.domain.Recheck;
-import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
-import com.throne212.fupin.domain.Zhen;
-import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class CunBFAction extends BaseAction {
 	private CunBFBiz cunBFBiz;
@@ -298,11 +294,12 @@ public class CunBFAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		Cun cun = null;
 		if (user instanceof Admin) {
-			this.setMsg("超级管理员无权进行此操作！");
+			pageBean = cunBFBiz.getAllPicCun(pic,areaId, zhenId, cunId, pageIndex);
 			return "pic_list";
 		} else if(user instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) user;
-			pageBean = cunBFBiz.getAllPicCun(pic,a.getArea().getId(), null, null, pageIndex);
+			areaId = a.getArea().getId();
+			pageBean = cunBFBiz.getAllPicCun(pic,areaId, zhenId, cunId, pageIndex);
 			return "pic_list";
 		} else if (user instanceof Org) {
 			Org org = (Org) user;
