@@ -21,13 +21,20 @@
 		var type = '${r3.type}';
 		var time = '${r3.time}';
 		var lock = '${r3.lock}';
+		var maxYear = '${maxYear}';
 		var maxMonth = '${maxMonth}';
 		var maxSeason = '${maxSeason}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
 		maxMonth = maxMonth==''?12:parseInt(maxMonth);
 		maxSeason = maxSeason==''?4:parseInt(maxSeason);
 		$(function(){
 			$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 		
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
 			if(year != ''){
 				setTimeout(function(){ 
 				    $('#year').val(year);
@@ -45,12 +52,18 @@
 			}
 		});
 		function chooseType(type){
+			if(!type){
+				type = $('#reportType').val();
+			}
 			if('year' == type){
 				$('#time').attr('disabled',true);
 			}else if('season' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=maxSeason;i++){
+				var ms = maxSeason;
+				if(currYear > $('#year').val())
+					ms = 4;
+				for(var i=1;i<=ms;i++){
 					if(($('#year').val()==2011 || year == '2011') && i==1){
 						continue;
 					}else{
@@ -66,7 +79,9 @@
 			}else if('month' == type){
 				$('#time').attr('disabled',false);
 				var str = '';
-				for(var i=1;i<=maxMonth;i++){
+				if(currYear > $('#year').val())
+					ms = 12;
+				for(var i=1;i<=ms;i++){
 					if($('#year').val()==2011 || year == '2011'){
 						if(i<=7)
 							continue;
@@ -181,9 +196,8 @@
 					<tr align="center">
 						<td width="" class="tables_headercell" colspan="2">
 							年度：
-							<select name="r3.year" id="year">
+							<select name="r3.year" id="year" onchange="chooseType();" style="width: 60px;">
 								<option value=""></option>
-								<option value="2011">2011</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell" colspan="2">
@@ -209,7 +223,7 @@
 					<tr>
 						<td class="tables_contentcell" colspan="8" align="center">
 							<c:forEach items="${r3List}" var="r" varStatus="s">
-							<table id="data_table" cellspacing="0" cellpadding="0" border="0" class="tables_table" style="margin: 5px 10px;width:85%;" align="center">
+							<table id="data_table" cellspacing="0" cellpadding="0" border="0" class="tables_table" style="margin: 5px 10px;width:95%;" align="center">
 								<tr>
 									<td align="center" class="tables_headercell" colspan="9">${r.zhen.name }</td>
 								</tr>

@@ -17,6 +17,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CunWorkOrg;
@@ -413,6 +414,11 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 	public List<Report1Stat> getReport1Stat(int year) {
 		return reportDao.getReport1Stat(year);
 	}
+	
+	public List<ProCunStat> getProCunStat(int year) {
+		return reportDao.getProCunStat(year);
+	}
+	
 
 	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex) {
 		return reportDao.getProStat(statClass, year, month, pageIndex);

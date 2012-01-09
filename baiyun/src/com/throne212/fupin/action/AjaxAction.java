@@ -519,7 +519,7 @@ public class AjaxAction extends BaseAction {
 	}
 
 	public String loadReport1Stat() {
-		List<Report1Stat> list = reportBiz.getReport1Stat();
+		List<Report1Stat> list = reportBiz.getReport1Stat(2011);
 		Map<String, Object> mapJson = new Hashtable<String, Object>();
 		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
 		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows

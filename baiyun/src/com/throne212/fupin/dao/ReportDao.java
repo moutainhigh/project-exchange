@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
@@ -21,6 +22,8 @@ public interface ReportDao extends BaseDao {
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile);
 	
 	public List<Report1Stat> getReport1Stat(int year);
+	public List<ProCunStat> getProCunStat(int year);
+	
 	
 	public PageBean getProStat(Class statClass, Integer year,Integer month,Integer pageIndex);
 

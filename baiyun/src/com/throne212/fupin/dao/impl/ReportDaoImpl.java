@@ -21,13 +21,13 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ProjectCun;
 import com.throne212.fupin.domain.ProjectCunStat;
-import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
@@ -367,6 +367,41 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			s.setZhen(c.getZhen().getName());
 			for (int i = min; i <= max; i++) {// 7到12月
 				String hql = "select count(*) from Report1 r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
+				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
+				if (count > 0)
+					s.setOk(i, "Y-" + c.getId() + "-" + year + "-" + i);
+			}
+			list.add(s);
+		}
+
+		return list;
+	}
+	
+	public List<ProCunStat> getProCunStat(int year) {
+		List<ProCunStat> list = new ArrayList<ProCunStat>();
+		List<Cun> cunList = null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof AreaWorkOrg) {// 白云区
+			cunList = this.getAll(Cun.class, "zhen.id", "asc");
+
+		} else if (user instanceof ZhenWorkOrg) {// 镇
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			cunList = this.getEntitiesByColumn(Cun.class, "zhen.id", z.getZhen().getId());
+		}
+		
+		int min = 1;
+		int max = 12;
+		if(year == 2011)
+			min = 8;
+
+		for (Cun c : cunList) {
+			ProCunStat s = new ProCunStat();
+			s.setCun(c.getName());
+			if(c.getOrg() != null)
+				s.setOrg(c.getOrg().getOrgName());
+			s.setZhen(c.getZhen().getName());
+			for (int i = min; i <= max; i++) {// 7到12月
+				String hql = "select count(*) from " + ProjectCun.class.getName() + " r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
 				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
 				if (count > 0)
 					s.setOk(i, "Y-" + c.getId() + "-" + year + "-" + i);

@@ -16,6 +16,7 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Org;
@@ -410,6 +411,10 @@ public class ReportAction extends BaseAction {
 			Integer year = c.get(Calendar.YEAR);
 			String type = "month";
 			String time = (c.get(Calendar.MONTH)) + "";
+			if("0".equals(time)){
+				year--;
+				time = "12";
+			}
 			if (user instanceof AreaWorkOrg) {
 				r3List = reportBiz.getReport3(year, type, time);
 				if(r3List!=null && r3List.size() > 0){
@@ -449,6 +454,7 @@ public class ReportAction extends BaseAction {
 		}
 
 		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
@@ -537,8 +543,13 @@ public class ReportAction extends BaseAction {
 			Calendar now = GregorianCalendar.getInstance();
 			year = now.get(Calendar.YEAR);
 			month = now.get(Calendar.MONTH) + 1;
+			if(1 == month){
+				year--;
+				month = 12;
+			}
 		}
 		pageBean = reportBiz.getProStat(ProjectCunStat.class, year, month, pageIndex);
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		return "pro_cun_stat";
 	}
 
@@ -547,8 +558,13 @@ public class ReportAction extends BaseAction {
 			Calendar now = GregorianCalendar.getInstance();
 			year = now.get(Calendar.YEAR);
 			month = now.get(Calendar.MONTH) + 1;
+			if(1 == month){
+				year--;
+				month = 12;
+			}
 		}
 		pageBean = reportBiz.getProStat(ProjectZdStat.class, year, month, pageIndex);
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		return "pro_zd_stat";
 	}
 
@@ -557,9 +573,38 @@ public class ReportAction extends BaseAction {
 			Calendar now = GregorianCalendar.getInstance();
 			year = now.get(Calendar.YEAR);
 			month = now.get(Calendar.MONTH) + 1;
+			if(1 == month){
+				year--;
+				month = 12;
+			}
 		}
 		pageBean = reportBiz.getProStat(ProjectShStat.class, year, month, pageIndex);
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		return "pro_sh_stat";
+	}
+	
+	
+	// 村项目落实情况统计表
+	public String proCunStat() {
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+		}
+		List<ProCunStat> list = reportBiz.getProCunStat(year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		return "report1_stat";
 	}
 
 	public Report getR() {

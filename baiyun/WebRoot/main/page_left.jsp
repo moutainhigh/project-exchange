@@ -228,6 +228,7 @@ function images_update(){
 		menuArray[menuArray.length]="1,帮扶措施,${appPath}cun_bf_cuoshiCunList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}cun_bf_chengxiaoCunList.action";
 		menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表,${appPath}report_projectCunStat.action";
+		menuArray[menuArray.length]="1,村项目工作情况统计表,${appPath}report_proCunStat.action";
 		menuArray[menuArray.length]="1,对口帮扶低收入村项目建设及资金下拨明细表,${appPath}report_viewReport3.action";
 		menuArray[menuArray.length]="0,镇帮扶信息,";
 	    menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}report_projectZdStat.action";

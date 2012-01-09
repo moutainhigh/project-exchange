@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report3;
@@ -26,6 +27,7 @@ public interface ReportBiz extends BaseBiz {
 	public String getExcelReportFilePath(ReportParam reportParam) throws Exception;
 
 	public List<Report1Stat> getReport1Stat(int year);
+	public List<ProCunStat> getProCunStat(int year);
 
 	// 汇总查询
 	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex);

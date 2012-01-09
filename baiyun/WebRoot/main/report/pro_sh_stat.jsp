@@ -14,6 +14,10 @@
 		if(msg != ''){
 			alert(msg);
 		}
+		var maxYear = '${maxYear}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
 		var year = '${year}';
 		var time = '${month}';
 		$(function(){
@@ -22,6 +26,10 @@
 				str += '<option value="'+i+'">第'+i+'月</option>';
 			}
 			$('#time').html(str);
+			
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
 			
 			if(year != ''){
 				setTimeout(function(){ 
@@ -71,7 +79,6 @@
 							年度：
 							<select name="year" id="year">
 								<option value=""></option>
-								<option value="2011">2011</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">

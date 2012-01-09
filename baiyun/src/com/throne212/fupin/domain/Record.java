@@ -16,13 +16,14 @@ public class Record extends MyEntity {
 	private String s4;
 	
 	public String getShortContent(){
-		if(s1 == null)
+		String c = getContent();
+		if(c == null)
 			return null;
 		String shortContent;
-		if (s1.length()>16) {
-			shortContent=s1.substring(0, 16);
+		if (c.length()>16) {
+			shortContent=c.substring(0, 16);
 		}else {
-			shortContent=s1;
+			shortContent=c;
 		}
 		return shortContent;
 	}
