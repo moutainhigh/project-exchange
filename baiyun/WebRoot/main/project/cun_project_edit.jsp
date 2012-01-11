@@ -77,8 +77,9 @@
 							帮扶村
 						</td>
 						<td class="tables_contentcell">
-							<select id="zhenId" onchange="selectZhen(this.value);"></select>镇
-							<select id="cunId" name="proCun.cun.id" msg="村为必选项！" datatype="Require" onchange="selectCun(this.value);"></select>村
+							<select id="zhenId" onchange="selectZhen(this.value);" style="width: 100px;"></select>镇
+							&nbsp;&nbsp;
+							<select id="cunId" name="proCun.cun.id" msg="村为必选项！" datatype="Require" onchange="selectCun(this.value);" style="width: 100px;"></select>村
 							<font size="4" color="#cc0033">*</font>
 						</td>
 					</tr>

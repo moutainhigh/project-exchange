@@ -18,6 +18,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.Report1Stat;
+import com.throne212.fupin.dataobject.Report3Stat;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ProjectCunStat;
@@ -434,6 +435,10 @@ public class ReportAction extends BaseAction {
 			Integer year = r3.getYear();
 			String type = r3.getType();
 			String time = r3.getTime();
+			if(("month".equals(type) || "season".equals(type)) && Util.isEmpty(time)){//如果时间为空，则采用默认的时间
+				r3 = null;
+				return viewReport3();
+			}
 			if (user instanceof AreaWorkOrg) {
 				r3List = reportBiz.getReport3(year, type, time);
 				if(r3List!=null && r3List.size() > 0){
@@ -530,6 +535,30 @@ public class ReportAction extends BaseAction {
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		return "report1_stat";
 	}
+	
+	// 资金到位统计表
+	public String report3Stat() {
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+		}
+		List<Report3Stat> list = reportBiz.getReport3Stat(year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		return "report3_stat";
+	}
+	
 
 	// 汇总查询
 	private PageBean pageBean;

@@ -18,7 +18,9 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.dao.ReportDao;
 import com.throne212.fupin.dataobject.ProCunStat;
+import com.throne212.fupin.dataobject.ProZdStat;
 import com.throne212.fupin.dataobject.Report1Stat;
+import com.throne212.fupin.dataobject.Report3Stat;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.Org;
@@ -415,8 +417,16 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		return reportDao.getReport1Stat(year);
 	}
 	
+	public List<Report3Stat> getReport3Stat(int year) {
+		return reportDao.getReport3Stat(year);
+	}
+	
 	public List<ProCunStat> getProCunStat(int year) {
 		return reportDao.getProCunStat(year);
+	}
+	
+	public List<ProZdStat> getProZdStat(int year) {
+		return reportDao.getProZdStat(year);
 	}
 	
 

@@ -32,16 +32,23 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 		String hql = "from " + clazz.getSimpleName() + " where 1=1";
 
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if (user instanceof Org) {
-			Org org = (Org) user;
-			if(org.getCun() != null){
-				hql += " and cun.id=" + org.getCun().getId();
-			}else{
-				hql += " and org.id=" + user.getId();
+		if(clazz.getName().equals(ProjectCun.class)){
+			if (user instanceof Org) {
+				Org org = (Org) user;
+				if(org.getCun() != null){
+					hql += " and cun.id=" + org.getCun().getId();
+				}else{
+					hql += " and org.id=" + user.getId();
+				}
+			}else if (user instanceof CunWorkOrg) {
+				CunWorkOrg c = (CunWorkOrg) user;
+				hql += " and cun.id=" + c.getCun().getId();
 			}
-		}else if (user instanceof CunWorkOrg) {
-			CunWorkOrg c = (CunWorkOrg) user;
-			hql += " and cun.id=" + c.getCun().getId();
+		}else{
+			if (user instanceof Org) {
+				Org org = (Org) user;
+				hql += " and org.id=" + org.getId();
+			}
 		}
 
 		hql += " order by id desc";

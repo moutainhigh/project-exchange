@@ -22,12 +22,16 @@ import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ReportDao;
 import com.throne212.fupin.dataobject.ProCunStat;
+import com.throne212.fupin.dataobject.ProZdStat;
 import com.throne212.fupin.dataobject.Report1Stat;
+import com.throne212.fupin.dataobject.Report3Stat;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ProjectCun;
 import com.throne212.fupin.domain.ProjectCunStat;
+import com.throne212.fupin.domain.ProjectZdStat;
+import com.throne212.fupin.domain.ProjectZhongdian;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
@@ -377,6 +381,38 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		return list;
 	}
 	
+	public List<Report3Stat> getReport3Stat(int year) {
+		List<Report3Stat> list = new ArrayList<Report3Stat>();
+		List<Zhen> zhenList = null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (user instanceof AreaWorkOrg) {// 白云区
+			zhenList = this.getAll(Zhen.class);
+
+		} else if (user instanceof ZhenWorkOrg) {// 镇
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			zhenList = this.getEntitiesByColumn(Zhen.class, "zhen.id", z.getZhen().getId());
+		}
+		
+		int min = 1;
+		int max = 12;
+		if(year == 2011)
+			min = 8;
+
+		for (Zhen z : zhenList) {
+			Report3Stat s = new Report3Stat();
+			s.setZhen(z.getName());
+			for (int i = min; i <= max; i++) {// 7到12月
+				String hql = "select count(*) from Report3 r where r.zhen.id=" + z.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
+				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
+				if (count > 0)
+					s.setOk(i, "Y-" + z.getId() + "-" + year + "-" + i);
+			}
+			list.add(s);
+		}
+
+		return list;
+	}
+	
 	public List<ProCunStat> getProCunStat(int year) {
 		List<ProCunStat> list = new ArrayList<ProCunStat>();
 		List<Cun> cunList = null;
@@ -401,10 +437,35 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				s.setOrg(c.getOrg().getOrgName());
 			s.setZhen(c.getZhen().getName());
 			for (int i = min; i <= max; i++) {// 7到12月
-				String hql = "select count(*) from " + ProjectCun.class.getName() + " r where r.cun.id=" + c.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
+				String hql = "select count(*) from " + ProjectCunStat.class.getName() + " r where r.project.cun.id=" + c.getId() + " and r.month=" + i + " and r.year=" + year;
 				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
 				if (count > 0)
 					s.setOk(i, "Y-" + c.getId() + "-" + year + "-" + i);
+			}
+			list.add(s);
+		}
+
+		return list;
+	}
+	
+	public List<ProZdStat> getProZdStat(int year) {
+		List<ProZdStat> list = new ArrayList<ProZdStat>();
+		List<ProjectZhongdian> zdList = this.getAll(ProjectZhongdian.class);
+		
+		int min = 1;
+		int max = 12;
+		if(year == 2011)
+			min = 8;
+
+		for (ProjectZhongdian z : zdList) {
+			ProZdStat s = new ProZdStat();
+			s.setOrg(z.getOrg().getOrgName());
+			s.setName(z.getName());
+			for (int i = min; i <= max; i++) {// 7到12月
+				String hql = "select count(*) from " + ProjectZdStat.class.getName() + " r where r.project.id=" + z.getId() + " and r.month=" + i + " and r.year=" + year + " order by r.project.org.id";
+				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
+				if (count > 0)
+					s.setOk(i, "Y-" + z.getId() + "-" + year + "-" + i);
 			}
 			list.add(s);
 		}

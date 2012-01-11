@@ -263,6 +263,7 @@
 			<result name="report_edit3">/main/report/edit3.jsp</result>
 			<result name="report_list">/main/report/report_list.jsp</result>
 			<result name="report1_stat">/main/report/report1_stat.jsp</result>
+			<result name="report3_stat">/main/report/report3_stat.jsp</result>
 			<result name="report_export">/main/report/report_export.jsp</result>
 			<result name="pro_cun_stat">/main/report/pro_cun_stat.jsp</result>
 			<result name="pro_zd_stat">/main/report/pro_zd_stat.jsp</result>
@@ -279,9 +280,11 @@
 			<result name="pro_cun_list">/main/project/cun_project_list.jsp</result>
 			<result name="pro_cun_edit">/main/project/cun_project_edit.jsp</result>
 			<result name="cun_stat">/main/project/cun_project_status.jsp</result>
+			<result name="pro_cun_stat_complete">/main/project/cun_project_stat_complete.jsp</result>
 			<result name="pro_zd_list">/main/project/zhongdian_project_list.jsp</result>
 			<result name="pro_zd_edit">/main/project/zhongdian_project_edit.jsp</result>
 			<result name="zd_stat">/main/project/zhongdian_project_status.jsp</result>
+			<result name="pro_zd_stat_complete">/main/project/zd_project_stat_complete.jsp</result>
 			<result name="pro_sh_list">/main/project/shehui_project_list.jsp</result>
 			<result name="pro_sh_edit">/main/project/shehui_project_edit.jsp</result>
 			<result name="sh_stat">/main/project/shehui_project_status.jsp</result>

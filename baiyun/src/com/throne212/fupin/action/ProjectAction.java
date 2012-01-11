@@ -2,12 +2,19 @@ package com.throne212.fupin.action;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ProjectBiz;
+import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.dataobject.ProCunStat;
+import com.throne212.fupin.dataobject.ProZdStat;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Project;
 import com.throne212.fupin.domain.ProjectCun;
@@ -16,8 +23,6 @@ import com.throne212.fupin.domain.ProjectShStat;
 import com.throne212.fupin.domain.ProjectShehui;
 import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.ProjectZhongdian;
-import com.throne212.fupin.domain.Report;
-import com.throne212.fupin.domain.Report1;
 
 public class ProjectAction extends BaseAction {
 
@@ -27,8 +32,12 @@ public class ProjectAction extends BaseAction {
 	private PageBean<? extends Project> pageBean;
 
 	private Integer pageIndex;
+	
+	private Integer maxYear;
+	private Integer maxMonth;
 
 	private ProjectBiz projectBiz;
+	private ReportBiz reportBiz;
 
 	public String proCunList() {
 		pageBean = projectBiz.getProjectCunList(pageIndex);
@@ -72,19 +81,24 @@ public class ProjectAction extends BaseAction {
 	private ProjectCunStat cunStat;
 
 	public String cunStat() {
-		if(cunStat != null && cunStat.getId()!=null){
-			cunStat = projectBiz.getEntityById(ProjectCunStat.class, cunStat.getId());
-		} else if (cunStat.getYear() == null || cunStat.getMonth() == null) {
+		if (cunStat.getYear() == null || cunStat.getMonth() == null) {//默认打开的
 			Calendar now = GregorianCalendar.getInstance();
-			cunStat.setYear(now.get(Calendar.YEAR));
-			cunStat.setMonth(now.get(Calendar.MONTH) + 1);
+			Integer year = now.get(Calendar.YEAR);
+			Integer month = now.get(Calendar.MONTH);
+			if(month == 0){
+				year--;
+				month = 12;
+			}
+			cunStat.setYear(year);
+			cunStat.setMonth(month);
+			
 			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
 			if (cunStatInDB != null)
 				cunStat = cunStatInDB;
 			else {
 				this.setMsg("本单位还没有指定村帮扶项目，请联系管理员先指定");
 			}
-		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {
+		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {//指定年份和月份查询的
 			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
 			if (cunStatInDB != null)
 				cunStat = cunStatInDB;
@@ -95,12 +109,44 @@ public class ProjectAction extends BaseAction {
 		if(cunStat != null && Util.isEmpty(cunStat.getCunRemark())){
 			cunStat.setCunRemark("未审核");
 		}
+		
+		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		return "cun_stat";
+	}
+	
+	// 项目完成情况
+	private Integer year;
+	public String proCunStatComplete() {
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+		}
+		List<ProCunStat> list = reportBiz.getProCunStat(year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		return "pro_cun_stat_complete";
 	}
 
 	public String saveProCunStat() {
 		if (cunStat == null || cunStat.getId() == null || cunStat.getProject() == null || cunStat.getProject().getId() == null) {
 			this.setMsg("不能保存，还未指定村帮扶项目");
+			return cunStat();
+		}
+		if(cunStat.getYear() == null || cunStat.getMonth() == null){
+			this.setMsg("年份或月份参数缺失");
 			return cunStat();
 		}
 		cunStat.setLock(1);
@@ -113,6 +159,10 @@ public class ProjectAction extends BaseAction {
 	public String tmpSaveProCunStat() {
 		if (cunStat == null || cunStat.getId() == null || cunStat.getProject() == null || cunStat.getProject().getId() == null) {
 			this.setMsg("不能保存，还未指定村帮扶项目");
+			return cunStat();
+		}
+		if(cunStat.getYear() == null || cunStat.getMonth() == null){
+			this.setMsg("年份或月份参数缺失");
 			return cunStat();
 		}
 		cunStat.setLock(3);
@@ -263,12 +313,16 @@ public class ProjectAction extends BaseAction {
 	private ProjectZdStat zdStat;
 
 	public String zdStat() {
-		if(zdStat != null && zdStat.getId()!=null){
-			zdStat = projectBiz.getEntityById(ProjectZdStat.class, zdStat.getId());
-		} else if (zdStat == null || zdStat.getYear() == null || zdStat.getMonth() == null) {
+		if (zdStat == null || zdStat.getYear() == null || zdStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
-			zdStat.setYear(now.get(Calendar.YEAR));
-			zdStat.setMonth(now.get(Calendar.MONTH) + 1);
+			Integer year = now.get(Calendar.YEAR);
+			Integer month = now.get(Calendar.MONTH);
+			if(month == 0){
+				year--;
+				month = 12;
+			}
+			zdStat.setYear(year);
+			zdStat.setMonth(month);
 			ProjectZdStat zdStatInDB = projectBiz.getZdStat(zdStat);
 			if (zdStatInDB != null)
 				zdStat = zdStatInDB;
@@ -286,7 +340,32 @@ public class ProjectAction extends BaseAction {
 		if(zdStat != null && Util.isEmpty(zdStat.getCunRemark())){
 			zdStat.setCunRemark("未审核");
 		}
+		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		return "zd_stat";
+	}
+	
+	public String proZdStatComplete() {
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+		}
+		List<ProZdStat> list = reportBiz.getProZdStat(year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		return "pro_zd_stat_complete";
 	}
 
 	public String saveProZdStat() {
@@ -547,6 +626,39 @@ public class ProjectAction extends BaseAction {
 
 	public void setProZdStatList(List<ProjectZdStat> proZdStatList) {
 		this.proZdStatList = proZdStatList;
+		
+	}
+
+	public Integer getMaxYear() {
+		return maxYear;
+	}
+
+	public void setMaxYear(Integer maxYear) {
+		this.maxYear = maxYear;
+	}
+
+	public Integer getMaxMonth() {
+		return maxMonth;
+	}
+
+	public void setMaxMonth(Integer maxMonth) {
+		this.maxMonth = maxMonth;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public ReportBiz getReportBiz() {
+		return reportBiz;
+	}
+
+	public void setReportBiz(ReportBiz reportBiz) {
+		this.reportBiz = reportBiz;
 	}
 
 }

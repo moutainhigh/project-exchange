@@ -22,27 +22,21 @@
 		var year = '${zdStat.year}';
 		var time = '${zdStat.month}';
 		var half = '${zdStat.half}';
+		var maxYear = '${maxYear}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
+		
+		var maxMonth = '${maxMonth}';
+		maxMonth = maxMonth==''?12:parseInt(maxMonth);
 		$(function(){
-			var str = '';
-			for(var i=1;i<=12;i++){
-					if($('#year').val()==2011 || year == '2011'){
-						if(i<=7)
-							continue;
-						str += '<option value="'+i+'">第'+i+'月</option>';
-					}else{
-						str += '<option value="'+i+'">第'+i+'月</option>';
-					}
-				}
-			$('#time').html(str);
-			
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
 			if(year != ''){
 				setTimeout(function(){ 
 				  $('#year').val(year);
-				},1);
-			}
-			if(time != ''){
-				setTimeout(function(){ 
-				  $('#time').val(time);
+				  chooseYear(year);
 				},1);
 			}
 			if(half != ''){
@@ -58,6 +52,28 @@
 				$('textarea').attr("readonly",true);
 			}	
 		});
+		function chooseYear(year){
+			$('#time').attr('disabled',false);
+			var str = '';
+			var ms = maxMonth;
+			if(currYear > $('#year').val())
+				ms = 12;
+			for(var i=1;i<=ms;i++){
+				if($('#year').val()==2011 || year == '2011'){
+					if(i<=7)
+						continue;
+					str += '<option value="'+i+'">第'+i+'月</option>';
+				}else{
+					str += '<option value="'+i+'">第'+i+'月</option>';
+				}
+			}
+			$('#time').html(str);
+			if(time != ''){
+				setTimeout(function(){ 
+				  $('#time').val(time);
+				},1);
+			}
+		}
 		function query(){
 			var f = document.forms[0];
 			f.action = "${appPath}pro_zdStat.action";
@@ -115,9 +131,8 @@
 					<tr align="center">
 						<td width="" class="tables_headercell">
 							年度：
-							<select name="zdStat.year" id="year">
+							<select name="zdStat.year" id="year" onchange="chooseYear(this.value);">
 								<option value=""></option>
-								<option value="2011">2011</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
