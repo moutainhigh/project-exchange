@@ -224,6 +224,7 @@ function images_update(){
         menuArray[menuArray.length]="1,到户记录,${appPath}family_bf_recordList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}family_bf_chengxiaoFamilyList.action";
 		menuArray[menuArray.length]="1,帮扶低收入户工作情况 - 统计,${appPath}report_report1Stat.action";
+		menuArray[menuArray.length]="1,“结对帮费低收入户”工作落实统计汇总表,${appPath}report_sumReport1.action";
 		menuArray[menuArray.length]="0,村帮扶信息,";
 		menuArray[menuArray.length]="1,帮扶措施,${appPath}cun_bf_cuoshiCunList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}cun_bf_chengxiaoCunList.action";

@@ -509,4 +509,31 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 		return bean;
 	}
+	
+	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month){
+		String hql = "from Report1 r where year=" + year + " and type='month' and time=" + month;
+		if(cunId != null){
+			hql += " and r.cun.id=" + cunId;
+		}else if(zhenId !=  null){
+			hql += " and r.cun.zhen.id=" + zhenId;
+		}
+		hql += " order by r.cun.zhen.id";
+		logger.info("sum report1 hql = " + hql);
+		
+		return this.getHibernateTemplate().find(hql);
+	}
+	
+	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month){
+		String hql = "select sum(item1),sum(item2),sum(item3),sum(item10),sum(item11),sum(item12),sum(item13),sum(item14),sum(item15),sum(item16),sum(item17),sum(item18),sum(item19),sum(item20),sum(item21),sum(item22),sum(item23),sum(item24),sum(item25),sum(item26) from Report1 r where year=" + year + " and type='month' and time=" + month;
+		if(cunId != null){
+			hql += " and r.cun.id=" + cunId;
+		}else if(zhenId !=  null){
+			hql += " and r.cun.zhen.id=" + zhenId;
+		}
+		hql += " order by r.cun.zhen.id";
+		logger.info("sum report1 hql = " + hql);
+		
+		List list = this.getHibernateTemplate().find(hql);
+		return list.toArray();
+	}
 }

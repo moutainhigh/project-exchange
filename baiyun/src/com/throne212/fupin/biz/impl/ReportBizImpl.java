@@ -412,6 +412,13 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
 	}
+	
+	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month){
+		return reportDao.sumReport1(zhenId,cunId,year,month);		
+	}
+	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month){
+		return reportDao.sumReport1Num(zhenId,cunId,year,month);
+	}
 
 	public List<Report1Stat> getReport1Stat(int year) {
 		return reportDao.getReport1Stat(year);

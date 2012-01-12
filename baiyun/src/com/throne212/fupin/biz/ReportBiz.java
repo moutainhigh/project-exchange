@@ -9,6 +9,7 @@ import com.throne212.fupin.dataobject.ProZdStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.dataobject.Report3Stat;
 import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report3;
 
 public interface ReportBiz extends BaseBiz {
@@ -32,6 +33,9 @@ public interface ReportBiz extends BaseBiz {
 	public List<Report3Stat> getReport3Stat(int year);
 	public List<ProCunStat> getProCunStat(int year);
 	public List<ProZdStat> getProZdStat(int year);
+	
+	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month);
+	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month);
 
 	// 汇总查询
 	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex);

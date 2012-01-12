@@ -45,6 +45,7 @@
 			//加锁，禁止修改
 			if(lock == '1' || lock == '2' || type=='year' || type=='season'){
 				$('input[type="text"]').not('.cun_remark').attr("readonly",true);
+				$('.yesno').attr("disabled",true);
 			}	
 			//自动地区数据灰化
 			$('.auto_readonly').css('background','#EBEBE4');
@@ -303,7 +304,11 @@
 									是否安排就业
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item4" value="${r.item4}" msg="填入项目只能为数字" require="true" datatype="Number"/>
+									<!-- <input type="text" name="r.item4" value="${r.item4}" msg="填入项目只能为数字" require="true" datatype="Number"/> -->
+									<select name="r.item4" class="yesno">
+										<option value="0" <c:if test="${(empty r.item4) || (r.item4=='0')}">selected="selected"</c:if>>否</option>
+										<option value="1" <c:if test="${(not empty r.item4) && (r.item4!='0')}">selected="selected"</c:if>>是</option>
+									</select>
 									</td>
 								</tr>
 								<tr>
@@ -311,7 +316,11 @@
 									是否纳入低保
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item5" value="${r.item5}" msg="填入项目只能为数字" require="true" datatype="Number"/>
+									<!-- <input type="text" name="r.item5" value="${r.item5}" msg="填入项目只能为数字" require="true" datatype="Number"/> -->
+									<select name="r.item5" class="yesno">
+										<option value="0" <c:if test="${(empty r.item5) || (r.item5=='0')}">selected="selected"</c:if>>否</option>
+										<option value="1" <c:if test="${(not empty r.item5) && (r.item5!='0')}">selected="selected"</c:if>>是</option>
+									</select>
 									</td>
 								</tr>
 								<tr>
@@ -319,7 +328,11 @@
 									是否购买社保
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item6" value="${r.item6}" msg="填入项目只能为数字" require="true" datatype="Number"/>
+									<!-- <input type="text" name="r.item6" value="${r.item6}" msg="填入项目只能为数字" require="true" datatype="Number"/> -->
+									<select name="r.item6" class="yesno">
+										<option value="0" <c:if test="${(empty r.item6) || (r.item6=='0')}">selected="selected"</c:if>>否</option>
+										<option value="1" <c:if test="${(not empty r.item6) && (r.item6!='0')}">selected="selected"</c:if>>是</option>
+									</select>
 									</td>
 								</tr>
 								<tr>
@@ -327,7 +340,11 @@
 									是否帮助就学
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item7" value="${r.item7}" msg="填入项目只能为数字" require="true" datatype="Number"/>
+									<!-- <input type="text" name="r.item7" value="${r.item7}" msg="填入项目只能为数字" require="true" datatype="Number"/> -->
+									<select name="r.item7" class="yesno">
+										<option value="0" <c:if test="${(empty r.item7) || (r.item7=='0')}">selected="selected"</c:if>>否</option>
+										<option value="1" <c:if test="${(not empty r.item7) && (r.item7!='0')}">selected="selected"</c:if>>是</option>
+									</select>
 									</td>
 								</tr>
 								<tr>
@@ -335,7 +352,11 @@
 									是否参加新农合
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item8" value="${r.item8}" msg="填入项目只能为数字" require="true" datatype="Number"/>
+									<!-- <input type="text" name="r.item8" value="${r.item8}" msg="填入项目只能为数字" require="true" datatype="Number"/> -->
+									<select name="r.item8" class="yesno">
+										<option value="0" <c:if test="${(empty r.item8) || (r.item8=='0')}">selected="selected"</c:if>>否</option>
+										<option value="1" <c:if test="${(not empty r.item8) && (r.item8!='0')}">selected="selected"</c:if>>是</option>
+									</select>
 									</td>
 								</tr>
 								<tr>

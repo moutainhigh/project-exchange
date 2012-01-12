@@ -151,6 +151,33 @@ public class ReportAction extends BaseAction {
 
 		return "report_edit1";
 	}
+	
+	private Long cunId;
+	private Long zhenId;
+	private List<Report1> report1List;
+	private Object[] heji;
+	//汇总
+	public String sumReport1() {
+		
+		if(year == null || month == null){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			month = c.get(Calendar.MONTH);
+			if(month == 0){
+				year--;
+				month = 12;
+			}
+		}
+		
+		report1List = reportBiz.sumReport1(zhenId, cunId, year, month);
+		heji = (Object[]) reportBiz.sumReport1Num(zhenId, cunId, year, month)[0];
+
+		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+
+		return "report1_sum";
+	}
 
 	public String showReport1() {
 		String[] cunId = (String[]) ActionContext.getContext().getParameters().get("cunId");
@@ -744,6 +771,30 @@ public class ReportAction extends BaseAction {
 	}
 	public void setMaxYear(Integer maxYear) {
 		this.maxYear = maxYear;
+	}
+	public List<Report1> getReport1List() {
+		return report1List;
+	}
+	public void setReport1List(List<Report1> report1List) {
+		this.report1List = report1List;
+	}
+	public Long getCunId() {
+		return cunId;
+	}
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
+	}
+	public Long getZhenId() {
+		return zhenId;
+	}
+	public void setZhenId(Long zhenId) {
+		this.zhenId = zhenId;
+	}
+	public Object[] getHeji() {
+		return heji;
+	}
+	public void setHeji(Object[] heji) {
+		this.heji = heji;
 	}
 
 }
