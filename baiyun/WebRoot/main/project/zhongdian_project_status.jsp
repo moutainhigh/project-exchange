@@ -81,11 +81,25 @@
 		}
 		
 		function tmpSave(){
+			var rate = $('#rate').val();
+			if(rate != ''){
+				if(!/^\d+$/.test(rate) || parseInt(rate)>100 || parseInt(rate)<0){
+					alert('总体进度只能是数字，0-100之间');
+					return;
+				}
+			}
 			var f = document.forms[0];
 			f.action = "${appPath}pro_tmpSaveProZdStat.action";
 			f.submit();
 		}
 		function save(){
+			var rate = $('#rate').val();
+			if(rate != ''){
+				if(!/^\d+$/.test(rate) || parseInt(rate)>100 || parseInt(rate)<0){
+					alert('总体进度只能是数字，0-100之间');
+					return;
+				}
+			}
 			if(confirm('报表提交后不允许修改，是否提交')){
 				var f = document.forms[0];
 				f.action = "${appPath}pro_saveProZdStat.action";
@@ -225,6 +239,15 @@
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
 							&nbsp; 
 							<input class="cun_remark" type="text" name="cunRemark" value="${zdStat.cunRemark}" readonly="readonly"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							总体进度(%)
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+							<input value="${zdStat.rate }" name="zdStat.rate" id="rate" type="text"/>%
 						</td>
 					</tr>
 				</tbody>

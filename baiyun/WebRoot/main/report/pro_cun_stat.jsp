@@ -9,6 +9,7 @@
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
+		<script type="text/javascript" src="${appPath}chart/swfobject.js"></script>
 		<script language="javascript">
 		var msg = '${msg}';
 		if(msg != ''){
@@ -47,6 +48,14 @@
 			f.action = "${appPath}report_projectCunStat.action";
 			f.submit();
 		}
+		
+		$(function(){
+			var so = new SWFObject("${appPath}chart/${item.swf}", "ampie", "750", "${item.height}", "8", "#FFFFFF");
+			so.addVariable("path", "${appPath}chart/");
+			so.addVariable("chart_settings", encodeURIComponent("${item.setXml}"));
+			so.addVariable("chart_data", encodeURIComponent('${item.dataXml}'));
+			so.write("rate_chart");
+		});	
 		</script>
 		<style>
 .tables_search {
@@ -128,6 +137,9 @@
 						<td width="" class="tables_headercell">
 							村委会审核
 						</td>
+						<td width="" class="tables_headercell">
+							总体进度
+						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
@@ -161,13 +173,24 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.cunRemark }
 							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; <c:if test="${not empty f.rate }">${f.rate }%</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="10">
+						<td height="25" align="right" class="tables_contentcell" colspan="11">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>
+					<c:if test="${not empty item }">
+					<tr>
+						<td colspan="11" align="center" class="tables_contentcell">
+							<h2 style="margin-top: 50px;">项目完成进度表</h2>
+							<div id="rate_chart">您需要升级您浏览器的Flash播放器!</div>
+						</td>
+					</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</form>

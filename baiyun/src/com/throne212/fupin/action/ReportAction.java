@@ -12,6 +12,7 @@ import net.sf.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ReportBiz;
+import com.throne212.fupin.common.ChartItem;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
@@ -23,6 +24,7 @@ import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.ProjectCunStat;
 import com.throne212.fupin.domain.ProjectShStat;
+import com.throne212.fupin.domain.ProjectStat;
 import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
@@ -593,6 +595,8 @@ public class ReportAction extends BaseAction {
 
 	private Integer year;
 	private Integer month;
+	
+	private ChartItem item;
 
 	public String projectCunStat() {
 		if (year == null || month == null) {
@@ -606,6 +610,9 @@ public class ReportAction extends BaseAction {
 		}
 		pageBean = reportBiz.getProStat(ProjectCunStat.class, year, month, pageIndex);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		
+		buildChart(ProjectCunStat.class);
+		
 		return "pro_cun_stat";
 	}
 
@@ -621,6 +628,9 @@ public class ReportAction extends BaseAction {
 		}
 		pageBean = reportBiz.getProStat(ProjectZdStat.class, year, month, pageIndex);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		
+		buildChart(ProjectZdStat.class);
+		
 		return "pro_zd_stat";
 	}
 
@@ -636,7 +646,53 @@ public class ReportAction extends BaseAction {
 		}
 		pageBean = reportBiz.getProStat(ProjectShStat.class, year, month, pageIndex);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		
+		buildChart(ProjectShStat.class);
+		
 		return "pro_sh_stat";
+	}
+	
+	private void buildChart(Class clazz){
+		//图表
+		List<? extends ProjectStat> statList = reportBiz.getProStat(clazz, year, month);
+		if(statList != null && statList.size() > 0){
+			item = new ChartItem();
+			item.grid = new Object[statList.size()][2];
+			StringBuffer xmlData = new StringBuffer();
+			xmlData.append("<chart>");
+			StringBuffer seriesTag = new StringBuffer("<series>");
+			StringBuffer graphTag = new StringBuffer("<graphs><graph gid=\"0\">");
+			for (int i = 0; i < statList.size(); i++) {
+				ProjectStat s = statList.get(i);
+				String name = null;
+				if(s instanceof ProjectCunStat){
+					ProjectCunStat cs = (ProjectCunStat) s;
+					name = cs.getProject().getCun().getName() + " - " + cs.getProject().getName();
+				}else if(s instanceof ProjectShStat){
+					ProjectShStat cs = (ProjectShStat) s;
+					name = cs.getProject().getName();
+				}else if(s instanceof ProjectZdStat){
+					ProjectZdStat cs = (ProjectZdStat) s;
+					name = cs.getProject().getName();
+				}
+				Integer rate = statList.get(i).getRate();
+				item.grid[i][0] = name;
+				item.grid[i][1] = rate;
+				seriesTag.append("<value xid=\"" + i + "\">" + name + "</value>");
+				graphTag.append("<value xid=\"" + i + "\">" + rate + "</value>");
+			}
+			seriesTag.append("</series>");
+			graphTag.append("</graph></graphs>");
+			xmlData.append(seriesTag.toString());
+			xmlData.append(graphTag.toString());
+			xmlData.append("</chart>");
+			item.setDataXml(xmlData.toString());
+			item.setDivId("position_rate");
+			item.setSetXml("<settings><type>bar</type><background><alpha>100</alpha><border_color>FFFFFF</border_color><border_alpha>20</border_alpha></background><grid><category><dashed>1</dashed></category><value><dashed>1</dashed></value></grid><axes><category><width>1</width><color>0D8ECF</color></category><value><width>1</width><color>0D8ECF</color></value></axes><values><value><min>0</min></value></values><depth>15</depth><column><width>85</width><balloon_text>{value}</balloon_text><grow_time>3</grow_time></column><graphs><graph gid='0'><title></title><color>0D8ECF</color></graph></graphs></settings>");
+			item.setSwf("amcolumn.swf");
+			item.setTitle("完成进度表");
+			item.setHeight(50 * statList.size());
+		}
 	}
 	
 	
@@ -795,6 +851,12 @@ public class ReportAction extends BaseAction {
 	}
 	public void setHeji(Object[] heji) {
 		this.heji = heji;
+	}
+	public ChartItem getItem() {
+		return item;
+	}
+	public void setItem(ChartItem item) {
+		this.item = item;
 	}
 
 }

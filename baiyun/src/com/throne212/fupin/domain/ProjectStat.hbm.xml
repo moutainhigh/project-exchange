@@ -15,6 +15,7 @@
 		<property name="half"></property>
 		<property name="cunRemark" column="cun_remark"></property>
 		<property name="lock" column="is_lock"></property>
+		<property name="rate"></property>
 		<subclass discriminator-value="cun" extends="ProjectStat" name="ProjectCunStat">
 			<many-to-one name="project" column="pro_cun_id" lazy="false"></many-to-one>
 			<property name="content"></property>

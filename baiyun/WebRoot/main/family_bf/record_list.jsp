@@ -261,7 +261,7 @@ function displayAction(sid) {
 					</td>
 				<td height="25" align="center" class="tables_contentcell">	${f.id }</td>
 					<td height="25" align="center" class="tables_contentcell">
-						&nbsp;<fmt:formatDate value="${f.recordDate}" pattern="yyyy-MM-dd"/></td>
+						&nbsp;${f.year }</td>
 					<td height="25" align="center" class="tables_contentcell">
 						&nbsp;${f.family.name}</td>
 					<td height="25" align="center" class="tables_contentcell">

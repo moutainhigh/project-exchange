@@ -8,6 +8,7 @@ import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.ProZdStat;
 import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.dataobject.Report3Stat;
+import com.throne212.fupin.domain.ProjectCunStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report3;
@@ -39,4 +40,5 @@ public interface ReportBiz extends BaseBiz {
 
 	// 汇总查询
 	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex);
+	public List<ProjectCunStat> getProStat(Class statClass,Integer year,Integer month);
 }

@@ -510,6 +510,22 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		return bean;
 	}
 	
+	public List<ProjectCunStat> getProStat(Class statClass, Integer year, Integer month) {
+		String hql = "from " + statClass.getSimpleName() + " where year=? and month=?";
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(statClass.getName().equals(ProjectCunStat.class.getName()) && user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and project.cun.zhen.id=" + z.getZhen().getId();
+		} 
+		logger.debug("hql[" + year + "," + month + "]:" + hql);
+		if(statClass.getName().equals(ProjectCunStat.class.getName())){
+			hql += " order by project.cun.zhen.id,project.cun.id";
+		}
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List list = s.createQuery(hql).setParameter(0, year).setParameter(1, month).list();
+		return list;
+	}
+	
 	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month){
 		String hql = "from Report1 r where year=" + year + " and type='month' and time=" + month;
 		if(cunId != null){

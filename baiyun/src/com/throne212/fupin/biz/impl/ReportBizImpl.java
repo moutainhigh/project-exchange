@@ -24,6 +24,7 @@ import com.throne212.fupin.dataobject.Report3Stat;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CunWorkOrg;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.ProjectCunStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report3;
@@ -441,4 +442,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		return reportDao.getProStat(statClass, year, month, pageIndex);
 	}
 
+	public List<ProjectCunStat> getProStat(Class statClass,Integer year,Integer month){
+		return reportDao.getProStat(statClass, year, month);
+	}
 }

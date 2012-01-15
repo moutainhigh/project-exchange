@@ -10,6 +10,7 @@ import com.throne212.fupin.dataobject.Report1Stat;
 import com.throne212.fupin.dataobject.Report3Stat;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.ProjectCunStat;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report3;
@@ -33,5 +34,6 @@ public interface ReportDao extends BaseDao {
 	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month);
 	
 	public PageBean getProStat(Class statClass, Integer year,Integer month,Integer pageIndex);
+	public List<ProjectCunStat> getProStat(Class statClass,Integer year,Integer month);
 
 }

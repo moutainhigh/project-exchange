@@ -62,6 +62,13 @@
 			f.submit();
 		}
 		function save(){
+			var rate = $('#rate').val();
+			if(rate != ''){
+				if(!/^\d+$/.test(rate) || parseInt(rate)>100 || parseInt(rate)<0){
+					alert('总体进度只能是数字，0-100之间');
+					return;
+				}
+			}
 			var f = document.forms[0];
 			f.action = "${appPath}pro_saveProShStat.action";
 			f.submit();
@@ -234,7 +241,15 @@
 							&nbsp; <input value="${shStat.money }" name="shStat.money" class="datetime"/>
 						</td>
 					</tr>
-					
+					<tr align="center">
+						<td width="" class="tables_contentcell" colspan="2">
+							总体进度(%)
+						</td>
+						<td height="25" align="center" class="tables_contentcell" colspan="2">
+							&nbsp; 
+							<input value="${shStat.rate }" name="shStat.rate" id="rate" type="text"/>%
+						</td>
+					</tr>
 				</tbody>
 			</table>
 			</c:if>
