@@ -127,6 +127,9 @@
 						<td width="" class="tables_headercell">
 							下一步推进措施
 						</td>
+						<td width="" class="tables_headercell">
+							总体进度
+						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
@@ -151,10 +154,13 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.content }
 							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; <c:if test="${not empty f.rate }">${f.rate }%</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="9">
+						<td height="25" align="right" class="tables_contentcell" colspan="10">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

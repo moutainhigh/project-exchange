@@ -33,7 +33,14 @@ public class BaoSongDaoImpl extends BaseDaoImpl implements BaoSongDao {
 			} else
 				hql += " and (status=1 or status=2 or status=4)";
 		} else if (user instanceof AreaWorkOrg) {
-			hql += " and (status=2 or status=3)";
+			//hql += " and (status=2 or status=3)";
+			// 状态
+			if ("待办".equals(status)) {
+				hql += " and (status=2)";
+			} else if ("已办".equals(status)) {
+				hql += " and (status=3)";
+			} else
+				hql += " and (status=2 or status=3)";
 		} else if (user instanceof Admin) {
 
 		}

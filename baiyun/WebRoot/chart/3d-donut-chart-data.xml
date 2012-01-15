@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <slice title="已对接" pull_out="true">50</slice>
+  <slice title="对接中" pull_out="false">2</slice>
+</pie>

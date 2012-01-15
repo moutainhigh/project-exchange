@@ -57,7 +57,7 @@
 							您当前所处页面：信息报送
 						</td>
 						<td align="right">
-							<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员'}">
+							<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员' || userObj.roleType=='县级管理员'}">
 							<select name="status" onchange="queryBaoSong();" id="baosongStatus">
 								<option value="">全部</option>
 								<option value="待办">待办</option>

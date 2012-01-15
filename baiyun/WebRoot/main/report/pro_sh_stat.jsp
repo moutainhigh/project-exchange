@@ -148,6 +148,9 @@
 						<td width="" class="tables_headercell" rowspan="2">
 							预计完成时间
 						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							总体进度
+						</td>
 					</tr>
 					<tr align="center">
 						<td width="" class="tables_headercell" rowspan="1">
@@ -216,13 +219,13 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="16">
+						<td height="25" align="right" class="tables_contentcell" colspan="17">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>
 					<c:if test="${not empty item }">
 					<tr>
-						<td colspan="11" align="center" class="tables_contentcell">
+						<td colspan="17" align="center" class="tables_contentcell">
 							<h2 style="margin-top: 50px;">项目完成进度表</h2>
 							<div id="rate_chart">您需要升级您浏览器的Flash播放器!</div>
 						</td>

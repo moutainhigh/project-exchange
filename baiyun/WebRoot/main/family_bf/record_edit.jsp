@@ -70,14 +70,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});			
 			});
 
- 
+ 		function familyIdEmpty(){
+ 			if($('#familyId').val() == null || $('#familyId').val() == ''){
+ 				return true;
+ 			}
+ 			return false;
+ 		}
+ 		
+ 		function submitForm(){
+ 			if(familyIdEmpty()){
+ 				alert('贫困户不能为空');
+ 				return false;
+ 			}
+ 			return Validator.Validate(this);
+ 		}
  
 </script>
 <style>
 		textarea{width:99%;width:80%;}
 		</style>
 </head><body onload="">
-  <form onsubmit="return Validator.Validate(this)" method="post" action="${appPath}family_bf_saveOrUpdateRecord.action" name="dataForm">
+  <form onsubmit="return submitForm();" method="post" action="${appPath}family_bf_saveOrUpdateRecord.action" name="dataForm">
   <!--<input type="hidden" id="_gbids" name="_gbids" value=""/>-->
 <!--<input type="hidden" id="_hzid" name="_hzid" value=""/>-->
 <input type="hidden" value="${record.id}" name="record.id" id="">
