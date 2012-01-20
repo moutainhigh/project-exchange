@@ -675,6 +675,10 @@ public class ReportAction extends BaseAction {
 					ProjectZdStat cs = (ProjectZdStat) s;
 					name = cs.getProject().getName();
 				}
+				if(name != null){
+					name = name.replaceAll("\n", "");
+					name = name.replaceAll("\r", "");
+				}
 				Integer rate = statList.get(i).getRate();
 				item.grid[i][0] = name;
 				item.grid[i][1] = rate;

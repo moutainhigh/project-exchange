@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ReportDao;
 import com.throne212.fupin.dataobject.ProCunStat;
@@ -506,6 +507,20 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 		bean.setPageIndex(pageIndex);
 		bean.setRowPerPage(WebConstants.PAGE_SIZE);
+		
+		//计算合计
+		if(bean.getIsLastPage()){
+			String proMoney = (String) this.getHibernateTemplate().find("select sum(project.money) " + hql, new Object[]{year,month} ).get(0);
+			String money = (String) this.getHibernateTemplate().find("select sum(money) " + hql, new Object[]{year,month} ).get(0);
+			
+			Object[] arr = new Object[2];
+			if(!Util.isEmpty(proMoney))
+				arr[0] = ((int)(Double.parseDouble(proMoney) * 100)) / 100.0;
+			if(!Util.isEmpty(money))
+				arr[1] = ((int)(Double.parseDouble(money) * 100)) / 100.0;
+			bean.setTotal(arr);
+			
+		}
 
 		return bean;
 	}

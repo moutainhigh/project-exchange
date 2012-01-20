@@ -24,38 +24,58 @@
 		var year = '${shStat.year}';
 		var time = '${shStat.month}';
 		var half = '${shStat.half}';
+		
+		var maxYear = '${maxYear}';
+		var now = new Date();
+		var currYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+		maxYear = maxYear==''?currYear:parseInt(maxYear);
+		
+		var maxMonth = '${maxMonth}';
+		maxMonth = maxMonth==''?12:parseInt(maxMonth);
+		
 		$(function(){
 			$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
 			
-			var str = '';
-			for(var i=1;i<=12;i++){
-					if($('#year').val()==2011 || year == '2011'){
-						if(i<=7)
-							continue;
-						str += '<option value="'+i+'">第'+i+'月</option>';
-					}else{
-						str += '<option value="'+i+'">第'+i+'月</option>';
-					}
-				}
-			$('#time').html(str);
-			
+			for(var i=2011;i<=maxYear;i++){
+				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+			}
 			if(year != ''){
 				setTimeout(function(){ 
 				  $('#year').val(year);
+				  chooseYear(year);
 				},1);
 			}
+			
+			//加锁，禁止修改
+			if(lock == '1' || lock == '2'){
+				//alert('wewewe');
+				$('input[type="text"]').not('.cun_remark').attr("readonly",true);
+				$('textarea').attr("readonly",true);
+			}	
+			
+		});
+		function chooseYear(year){
+			$('#time').attr('disabled',false);
+			var str = '';
+			var ms = maxMonth;
+			if(currYear > $('#year').val())
+				ms = 12;
+			for(var i=1;i<=ms;i++){
+				if($('#year').val()==2011 || year == '2011'){
+					if(i<=7)
+						continue;
+					str += '<option value="'+i+'">第'+i+'月</option>';
+				}else{
+					str += '<option value="'+i+'">第'+i+'月</option>';
+				}
+			}
+			$('#time').html(str);
 			if(time != ''){
 				setTimeout(function(){ 
 				  $('#time').val(time);
 				},1);
 			}
-			if(half != ''){
-				setTimeout(function(){
-					var i = parseInt(half);
-					$('input[name="shStat.half"]').eq(i-1).attr("checked",true);
-				}, 1);
-			}
-		});
+		}
 		function query(){
 			var f = document.forms[0];
 			f.action = "${appPath}pro_shStat.action";
@@ -94,7 +114,6 @@
 							年度：
 							<select name="shStat.year" id="year">
 								<option value=""></option>
-								<option value="2011">2011</option>
 							</select>
 						</td>
 						<td width="" class="tables_headercell">

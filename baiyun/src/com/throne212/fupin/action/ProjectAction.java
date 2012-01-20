@@ -510,8 +510,15 @@ public class ProjectAction extends BaseAction {
 	public String shStat() {
 		if (shStat.getYear() == null || shStat.getMonth() == null) {
 			Calendar now = GregorianCalendar.getInstance();
-			shStat.setYear(now.get(Calendar.YEAR));
-			shStat.setMonth(now.get(Calendar.MONTH) + 1);
+			Integer year = now.get(Calendar.YEAR);
+			Integer month = now.get(Calendar.MONTH);
+			if(month == 0){
+				year--;
+				month = 12;
+			}
+			shStat.setYear(year);
+			shStat.setMonth(month);
+			
 			ProjectShStat shStatInDB = projectBiz.getShStat(shStat);
 			if (shStatInDB != null)
 				shStat = shStatInDB;
@@ -526,6 +533,10 @@ public class ProjectAction extends BaseAction {
 				this.setMsg("该月暂时还没有进度数据");
 			}
 		}
+		
+		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		return "sh_stat";
 	}
 

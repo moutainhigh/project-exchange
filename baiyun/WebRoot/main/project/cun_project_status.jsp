@@ -89,6 +89,10 @@
 					return;
 				}
 			}
+			if($("#money").val() == null || $("#money").val() == '' || !/^\d+$/.test($("#money").val())){
+				alert("帮扶资金到位情况为必填项，且只能为数字，如果没有则填0");
+				return;
+			}
 			var f = document.forms[0];
 			f.action = "${appPath}pro_tmpSaveProCunStat.action";
 			f.submit();
@@ -100,6 +104,10 @@
 					alert('总体进度只能是数字，0-100之间');
 					return;
 				}
+			}
+			if($("#money").val() == null || $("#money").val() == '' || !/^\d+$/.test($("#money").val())){
+				alert("帮扶资金到位情况为必填项，且只能为数字，如果没有则填0");
+				return;
 			}
 			if(confirm('报表提交后不允许修改，是否提交')){
 				var f = document.forms[0];
@@ -229,7 +237,7 @@
 							帮扶资金到位情况（万元）
 						</td>
 						<td height="25" align="center" class="tables_contentcell" colspan="2">
-							&nbsp; <input value="${cunStat.money }" name="cunStat.money" type="text"/>
+							&nbsp; <input value="${cunStat.money }" name="cunStat.money" type="text" id="money"/>
 						</td>
 					</tr>
 					<tr align="center">

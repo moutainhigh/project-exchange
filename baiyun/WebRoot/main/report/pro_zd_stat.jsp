@@ -159,6 +159,34 @@
 							</td>
 						</tr>
 					</c:forEach>
+					<c:if test="${pageBean.isLastPage }">
+						<tr>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 合计
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${pageBean.total[0] }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${pageBean.total[1] }
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp;
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp;
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 
+							</td>
+						</tr>
+					</c:if>
 					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="10">
 							<jsp:include page="../../pager.jsp"></jsp:include>
