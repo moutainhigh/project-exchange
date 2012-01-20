@@ -11,6 +11,8 @@ public class User extends MyEntity implements Serializable {
 
 	private String remark;
 	
+	private String isSA;
+	
 //	// 帮扶责任人信息
 //	private String name;// 名称
 //	private String tel;// 电话
@@ -147,6 +149,12 @@ public class User extends MyEntity implements Serializable {
 		this.remark = remark;
 	}
 
-	
+	public String getIsSA() {
+		return isSA;
+	}
+
+	public void setIsSA(String isSA) {
+		this.isSA = isSA;
+	}
 
 }

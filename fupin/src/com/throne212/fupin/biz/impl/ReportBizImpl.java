@@ -168,8 +168,8 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			Org org = (Org) user;
 			Cun cun = org.getCun();
 			Report report = reportDao.getReport(reportType, org, cun, year, type, time);
-			if (report.getId() != null)
-				return report;
+			//if (report.getId() != null)
+			return report;
 		}
 		return null;
 	}

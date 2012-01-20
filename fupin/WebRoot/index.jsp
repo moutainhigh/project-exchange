@@ -13,7 +13,7 @@
 		<frameset cols="5,*" frameborder="no" border="0" framespacing="0">
 		  	<frame src="l1.html" name="leftFrame1" scrolling="no" noresize="noresize" id="leftFrame1" title="leftFrame1" />
 			<frameset rows="30,*" frameborder="no" border="0" framespacing="0">
-				<frame src="main/head.jsp" name="prmptFrame" id="prmptFrame" title="prmptFrame" />
+				<frame src="main/head.jsp?time=<%=new Date().getTime()%>" name="prmptFrame" id="prmptFrame" title="prmptFrame" />
 				<frame src="main/main.jsp" name="mainFrame" id="mainFrame" title="mainFrame" />
 			</frameset>
 		</frameset>

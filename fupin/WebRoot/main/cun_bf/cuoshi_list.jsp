@@ -236,12 +236,16 @@ var msg = '${msg}';
 		<option value="审核通过">审核通过</option>
 		<option value="审核不通过">审核不通过</option>
 	</select>
+	
+	<c:if test="${userObj.roleType=='超级管理员'}">
+	<br/>
+	</c:if>
 
 		<input type="submit" class="button" value="查询">
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}"> 
 		<input type="button" onclick="winOpen('${appPath}cun_bf_editCunCuoshi.action',600,390);" class="button" value="新增">
-		</c:if>
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
+		</c:if>
 	</td>
 	<td width="5px" align="right"></td>
 	</tr>

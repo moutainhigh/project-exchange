@@ -217,7 +217,7 @@ function images_update(){
 		--%>
 		
 	    menuArray[menuArray.length]="0,密码修改,${appPath}main/password/password_edit.jsp";
-	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.roleType=='县级管理员'}">
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 	    menuArray[menuArray.length]="0,修改申请审核,${appPath}recheck_listRecheck.action";
 	    menuArray[menuArray.length]="0,基础数据维护,";
 	    <c:if test="${userObj.roleType=='超级管理员' || (userObj.roleType=='县级管理员' && userObj.isDiv=='Y')}">

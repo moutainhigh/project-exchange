@@ -22,11 +22,11 @@
 			<input type="hidden" value="${cun.id}" name="cun.id" id="">
 			<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" class="tables_table">
 	<tbody><tr>
-		<td height="30" align="right" class="tables_leftcell">所属镇</td>
-		<td class="tables_contentcell">&nbsp;${c.zhen.name }&nbsp;</td>
+		<td height="30" align="right" class="tables_leftcell" width="25%">所属镇</td>
+		<td class="tables_contentcell" width="25%">&nbsp;${c.zhen.name }&nbsp;</td>
 
-		<td height="30" align="right" class="tables_leftcell">村名</td>
-		<td class="tables_contentcell">&nbsp;${c.zhen.area.name}${c.zhen.name}${c.name}</td>
+		<td height="30" align="right" class="tables_leftcell" width="25%">村名</td>
+		<td class="tables_contentcell" width="25%">&nbsp;${c.zhen.area.name}${c.zhen.name}${c.name}</td>
 	</tr>
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">户数（户）</td>
@@ -79,21 +79,21 @@
 		<td class="tables_contentcell">&nbsp;${c.poorPersonNum4 }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通电自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.dian }</td>
-		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.pureWater }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电话自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通电话自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.tel }</td>
-		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.tv }</td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通路灯自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通路灯自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.light }</td>
-		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通硬底化道路的100人以上自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.ying }</td>
 	</tr>
 	<tr>

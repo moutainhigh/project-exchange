@@ -101,6 +101,14 @@
 				});
 			}
 		}
+		
+		
+		
+		function query(){
+			var f = document.forms[0];
+			f.action = "${appPath}family_familyList.action";
+			f.submit();
+		}
 		</script>
 		<style>
 .tables_search {
@@ -127,15 +135,22 @@
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || userObj.isDiv=='Y'}">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
 							</c:if>
-							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 							<input type="button" onclick="winOpen('${appPath}main/family/family_edit.jsp',1150,700);" class="button" value="逐户录入">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
 							</c:if>
+							
+							<c:if test="${userObj.roleType=='县级管理员'}">
+							<c:if test="${isWorkGroup!='Y'}">
+							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
+							</c:if>
+							</c:if>
+							
 							<c:if test="${userObj.roleType=='超级管理员'}">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload.jsp',350,180);" class="button" value="批量导入">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload3.jsp',350,180);" class="button" value="批量导入2">
 							</c:if>
-							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
+							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员')}">
 							<input type="button" onclick="download();" value="完整导出Excel" class="button">
 							</c:if>
 						</td>
@@ -163,7 +178,7 @@
 							
 							<label>贫困户名: </label>
 							<input name="queryKey" value="${param.queryKey}" type="text"/>							
-							<input type="submit" class="button" value="查询"> 
+							<input type="button" class="button" value="查询" onclick="query();"> 
 							
 						</td>
 						<td width="5px"></td>

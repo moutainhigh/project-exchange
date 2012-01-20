@@ -16,6 +16,7 @@ import jxl.write.WritableWorkbook;
 import org.hibernate.Session;
 
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.common.Util;
 import com.throne212.fupin.dao.ReportDao;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
@@ -26,6 +27,9 @@ import com.throne212.fupin.domain.Report2;
 public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 	public Report getReport(String reportType, Org org, Cun cun, Integer year, String type, String time) {
+		
+		Report report = null;
+		
 		Class clazz = null;
 		if ("1".equals(reportType)) {
 			clazz = Report1.class;
@@ -45,12 +49,26 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				r.setYear(year);
 				r.setTime(time);
 				r.setType(type);
-				return r;
+				
+				report = r;
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			}
+		}else{
+			report = list.get(0);
 		}
-		return list.get(0);
+		
+		//填入默认项目
+		if ("2".equals(reportType) && report != null && Util.isEmpty(report.getItem1()) && (report.getLock() == null || report.getLock() == 0)) {
+			hql = "from Report2 r where org=? and cun=? and type=? order by year desc,cast(time as int) desc";
+			Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+			Report2 oldReport2 = (Report2) s.createQuery(hql).setMaxResults(1).setParameter(0, org).setParameter(1, cun).setParameter(2, type).uniqueResult();
+			if(oldReport2 != null){
+				report.setItem1(oldReport2.getItem1());
+			}
+		}
+		
+		return report;
 	}
 
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile) {
@@ -146,9 +164,13 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		sql.append("left outer join fp_diqu z on z.id=c.zhen_id ");
 		sql.append("left outer join fp_diqu a on a.id=z.area_id ");
 		if ("3".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=2 and r.type='month' and r.year=" + reportParam.getYear()+" ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.report_type=2 and r.type='month' ");
 		if ("12".equals(reportParam.getName())) 
-			sql.append("left outer join fp_report r on r.cun_id=c.id and r.time>="+reportParam.getMonth()+" and r.time<="+reportParam.getMonth2()+" and r.report_type=1 and r.type='month' and r.year=" + reportParam.getYear()+" ");
+			sql.append("left outer join fp_report r on r.cun_id=c.id and r.report_type=1 and r.type='month' ");
+		 
+		sql.append("and STR_TO_DATE(CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+		sql.append("and STR_TO_DATE(CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");
+		
 		sql.append("where c.diqu_type='cun' ");
 		sql.append("and z.diqu_type='zhen' ");
 		sql.append("and a.diqu_type='area' ");

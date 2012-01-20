@@ -26,6 +26,9 @@ public class LoginAction extends BaseAction {
 	private String rand;// 验证码
 	private String needRand;// 需要验证码吗
 	private Boolean remember;//记住密码
+	
+	private String lastUser;//之前的账户
+	private String lastPwd;//之前的密码
 
 	private UserBiz userBiz;// 业务层的用户bean
 
@@ -52,6 +55,7 @@ public class LoginAction extends BaseAction {
 			this.setMsg("登录失败，请检查用户名和密码");
 			return "fail";
 		}
+		User oldUser = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		if (user instanceof Admin) {
 			logger.info("超级管理员登录成功：" + user.getLoginName());
@@ -71,10 +75,17 @@ public class LoginAction extends BaseAction {
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../cun_cunList.action");
 		} else if (user instanceof Org) {
 			logger.info("帮扶单位管理员登录成功：" + user.getLoginName());
+			if ("N".equals(needRand)) {
+				user.setIsSA("Y");//sa用单位账户登录的
+				lastUser = oldUser.getLoginName();
+				lastPwd = oldUser.getPassword();
+				ActionContext.getContext().getSession().put("last", "Y");
+				ActionContext.getContext().getSession().put("lastUser", lastUser);
+				ActionContext.getContext().getSession().put("lastPwd", lastPwd);
+			}
 			ActionContext.getContext().getSession().put(WebConstants.SESS_FORWARD_URL, "../org_editOrg.action");
 			checkOrgCun((Org) user);
 		}
-		
 		//保留cookie
 		HttpServletResponse response = ServletActionContext.getResponse();
 		if(remember != null && remember){
@@ -139,6 +150,22 @@ public class LoginAction extends BaseAction {
 
 	public void setRemember(Boolean remember) {
 		this.remember = remember;
+	}
+
+	public String getLastUser() {
+		return lastUser;
+	}
+
+	public void setLastUser(String lastUser) {
+		this.lastUser = lastUser;
+	}
+
+	public String getLastPwd() {
+		return lastPwd;
+	}
+
+	public void setLastPwd(String lastPwd) {
+		this.lastPwd = lastPwd;
 	}
 
 }

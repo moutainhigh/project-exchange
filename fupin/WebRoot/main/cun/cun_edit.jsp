@@ -153,21 +153,21 @@
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.poorPersonNum4 }" name="cun.poorPersonNum4" onblur="calPersonNum();"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通电自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.dian }" name="cun.dian"/></td>
-		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通洁净水自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.pureWater }" name="cun.pureWater"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通电话自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通电话自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tel }" name="cun.tel"/></td>
-		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通有线电视自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.tv }" name="cun.tv"/></td>
 	</tr>
 	<tr>
-		<td height="30" align="right" class="tables_leftcell">通路灯自然村数（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通路灯自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.light }" name="cun.light"/></td>
-		<td height="30" align="right" class="tables_leftcell">100人以上自然村通硬底化道路数目（条）</td>
+		<td height="30" align="right" class="tables_leftcell">通硬底化道路的100人以上自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.ying }" name="cun.ying"/></td>
 	</tr>
 	<tr>

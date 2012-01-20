@@ -239,8 +239,8 @@ function displayAction(sid) {
 		<input type="submit" class="button" value="查询" name="查询">
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		<input type="button" onclick="winOpen('${appPath}main/family_bf/chengxiao_edit.jsp',600,390);" class="button" value="新增">
-		</c:if>
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
+		</c:if>
 		
 		</td>
 		<td align="right" width="5px"></td>

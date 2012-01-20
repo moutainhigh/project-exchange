@@ -575,7 +575,7 @@
 									预计
 									</td>
 									<td class="tables_contentcell" colspan="2">
-									今年村级集体经济收入(元)
+									预计今年村级集体经济收入(元)
 									</td>
 									<td class="tables_contentcell">
 									<input type="text" name="r.item31" value="${r.item31}"/>元
@@ -814,13 +814,15 @@
 									<td class="tables_contentcell" colspan="4" style="color:gray;text-align: left;padding-left:30px;">
 									说明：
 									<br/>
+									你有项目未填写，如无内容可填写0
+									<!--  
 									1."预计本年脱贫户数"、"预计本年脱贫人数"、"预计今年村级集体经济收入"、"规划投入资金" 栏，每月填写时可根据实际情况作修改，以当前月最新数据为准。
 									<br/>
 									2.月度报表其余栏目填写本月内产生数据。
 									<br/>
 									3.季度报表由月度报表自动累计生成。
 									<br/>
-									4.灰色输入框为系统从"贫困村资料维护"中自动提取数据
+									4.灰色输入框为系统从"贫困村资料维护"中自动提取数据-->
 									</td>
 								</tr>
 							</table>							

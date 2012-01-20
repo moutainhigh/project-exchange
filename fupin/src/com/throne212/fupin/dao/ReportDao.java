@@ -1,7 +1,5 @@
 package com.throne212.fupin.dao;
 
-import java.util.Iterator;
-
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;

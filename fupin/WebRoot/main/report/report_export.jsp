@@ -23,10 +23,12 @@
 			var maxYear = now.getYear()<1970?now.getYear() + 1900:now.getYear();
 			for(var i=2011;i<=maxYear;i++){
 				$("#year").append('<option value="'+ i +'">'+ i +'</option>');
+				$("#year2").append('<option value="'+ i +'">'+ i +'</option>');
 			}
 			
 			//修改月份的限制
 			changeMonth();
+			changeMonth2();
 			
 			//zc or ch
 			<c:if test="${userObj.roleType=='县级管理员' && (userObj.area.name == '增城市' || userObj.area.name == '从化市') && userObj.isWorkGroup=='Y'}">
@@ -53,14 +55,27 @@
 			if($("#year").val() < y)
 				m = 12 + 1;
 			$('#month').html('');
-			$('#month2').html('');
 			for(var i=1;i<m;i++){
 				$('#month').append("<option value=\""+i+"\">"+i+"</option>");
-				$('#month2').append("<option value=\""+i+"\">"+i+"</option>");
 			}
 			setTimeout(function(){
 				if(m > 1){
 					$('#month').val(m-1);
+				}
+			},100);
+		}
+		function changeMonth2(){
+			var now = new Date();
+			var m = now.getMonth()+1;
+			var y = now.getYear()<1970?now.getYear() + 1900:now.getYear();
+			if($("#year2").val() < y)
+				m = 12 + 1;
+			$('#month2').html('');
+			for(var i=1;i<m;i++){
+				$('#month2').append("<option value=\""+i+"\">"+i+"</option>");
+			}
+			setTimeout(function(){
+				if(m > 1){
 					$('#month2').val(m-1);
 				}
 			},100);
@@ -129,26 +144,24 @@
 					</tr>
 					<tr>
 						<td height="25" align="center" class="tables_contentcell">
-							年度
+							年度月份
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
 							<select name="reportParam.year" id="year" onchange="changeMonth();" style="width: 60px;"></select>
-						</td>
-					</tr>
-					<tr>
-						<td height="25" align="center" class="tables_contentcell">
-							月份
-						</td>
-						<td height="25" align="center" class="tables_contentcell">
+							年
 							<select name="reportParam.month" id="month">
 								
 							</select>
+							月
 							&nbsp;
 							至
 							&nbsp;
+							<select name="reportParam.year2" id="year2" onchange="changeMonth2();" style="width: 60px;"></select>
+							年
 							<select name="reportParam.month2" id="month2">
 								
 							</select>
+							月
 						</td>
 					</tr>
 					<tr>

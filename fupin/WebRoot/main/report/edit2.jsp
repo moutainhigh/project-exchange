@@ -280,7 +280,7 @@
 									两年规划投入资金（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item1" id="item1" value="${r.item1}"/>
+									<input type="text" name="r.item1" id="item1" value="${r.item1}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -288,7 +288,7 @@
 									本月（季）投入帮扶资金（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item2" id="item2" value="${r.item2}"/>
+									<input type="text" name="r.item2" id="item2" value="${r.item2}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -299,7 +299,7 @@
 									用于帮扶到户资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item3" id="item3" value="${r.item3}"/>
+									<input type="text" name="r.item3" id="item3" value="${r.item3}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -307,7 +307,7 @@
 									用于帮扶到村资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item4" id="item4" value="${r.item4}"/>
+									<input type="text" name="r.item4" id="item4" value="${r.item4}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -318,7 +318,7 @@
 									财政专项(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item5" id="item5" value="${r.item5}"/>
+									<input type="text" name="r.item5" id="item5" value="${r.item5}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -326,7 +326,7 @@
 									信贷资金(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item6" id="item6" value="${r.item6}"/>
+									<input type="text" name="r.item6" id="item6" value="${r.item6}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -334,7 +334,7 @@
 									单位自筹(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item7" id="item7" value="${r.item7}"/>
+									<input type="text" name="r.item7" id="item7" value="${r.item7}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -342,7 +342,7 @@
 									社会募捐（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item8" id="item8" value="${r.item8}"/>
+									<input type="text" name="r.item8" id="item8" value="${r.item8}"/>元
 									</td>
 								</tr>
 								<tr>
@@ -350,14 +350,15 @@
 									社会引资（元）
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item9" id="item9" value="${r.item9}"/>
+									<input type="text" name="r.item9" id="item9" value="${r.item9}"/>元
 									</td>
 								</tr>
 								<tr>
 									<td class="tables_contentcell" colspan="4" style="color:gray;text-align: left;padding-left:30px;">
 									注意：
 									<br/>
-									1.规划投入资金指已列入帮扶规划中的全部资金。
+									你有项目未填写，如无内容可填写0
+									<!--  1.规划投入资金指已列入帮扶规划中的全部资金。
 									<br/>
 									2.已投入帮扶资金指已使用的帮扶资金。
 									<br/>
@@ -367,7 +368,7 @@
 									<br/>
 									5.社会引资包括内引和外引。内引指国内引资；外引指国外及港澳台引资。引进外资按人民币汇率折算。
 									<br/>
-									6.慰问、捐赠等形式的物资可折价成资金计入。
+									6.慰问、捐赠等形式的物资可折价成资金计入。-->
 									</td>
 								</tr>								
 							</table>							
