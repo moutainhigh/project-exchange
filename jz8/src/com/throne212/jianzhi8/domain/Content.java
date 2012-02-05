@@ -169,6 +169,21 @@ public class Content  implements java.io.Serializable {
     }
 
     public String getCtContent() {
+    	if(!"0".equals(ctLimitdate)){
+    		try {
+				int limit = Integer.parseInt(ctLimitdate);
+				//ct_update + ct_limitdate 
+				long now = System.currentTimeMillis();
+				long updateTime = ctUpdate.getTime();
+				long endTime = updateTime + limit * 24 * 60 * 60 * 1000;
+				if(now > endTime){
+					this.ctContent = "本条信息已过期";
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				this.ctContent = "信息读取错误";
+			}
+    	}
         return this.ctContent;
     }
     
