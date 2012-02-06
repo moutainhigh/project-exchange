@@ -80,11 +80,17 @@ public class DiquAction extends BaseAction {
 	public String deleteDiqu() {
 		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
 		if (ids != null && ids.length > 0) {
-			for (String idStr : ids) {
-				Long id = Long.parseLong(idStr);
-				diquBiz.deleteEntity(Diqu.class, id);
+			try {
+				for (String idStr : ids) {
+					Long id = Long.parseLong(idStr);
+					diquBiz.deleteEntity(Diqu.class, id);
+				}
+				this.setMsg("删除地区成功");
+				
+			} catch (RuntimeException e) {
+				logger.warn("delete diqu error", e);
+				this.setMsg("该对象存在关联数据，请先删除或取消关联后在操作");
 			}
-			this.setMsg("删除地区成功");
 		}
 		return diquList();
 	}
