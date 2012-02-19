@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				}).result(function(event, item) {
 					//location.href = item.url;
-					var familyId = item.substring(item.indexOf('(')+1,item.length-1);
+					var familyId = item.substring(item.lastIndexOf('(')+1,item.length-1);
 					$('#familyId').val(familyId);
 					selectFamily(familyId);
 				});			
@@ -118,14 +118,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<select class="ewButton" name="pic.year" id="year">
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i<year+2;i++){
+			for(int i=year;i>year-3;i--){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	
 			}
 			%>
-		
-		<option value="2">2年</option>
 		</select>
 	</td>
 </tr>

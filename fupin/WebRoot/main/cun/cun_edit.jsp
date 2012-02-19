@@ -180,7 +180,7 @@
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">危房数（户）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为数字！" require="false" datatype="Integer" type="text" value="${cun.weiHouse }" name="cun.weiHouse"/></td>
-		<td height="30" align="right" class="tables_leftcell">村集体经济收入（元）</td>
+		<td height="30" align="right" class="tables_leftcell">2010年村集体经济收入（元）</td>
 		<td class="tables_contentcell">&nbsp;<input msg="必须为金额！" require="false" datatype="Double" type="text" value="${cun.income }" name="cun.income"/><font>元</font></td>
 	</tr>
 	<tr>

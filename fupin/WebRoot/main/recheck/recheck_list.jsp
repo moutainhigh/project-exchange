@@ -32,6 +32,18 @@ var msg = '${msg}';
 				document.forms[0].submit();
 			}
 		}
+		function pass(){
+			if($('input:checked').length>0){
+				document.forms[0].action = '${appPath}recheck_pass.action';
+				document.forms[0].submit();
+			}
+		}
+		function nopass(){
+			if($('input:checked').length>0){
+				document.forms[0].action = '${appPath}recheck_nopass.action';
+				document.forms[0].submit();
+			}
+		}
 </script>
 </head><body>
 
@@ -49,6 +61,8 @@ var msg = '${msg}';
 
 		<input type="submit" class="button" value="查询"> 
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
+		<input type="button" onclick="pass();" class="button" value="审核通过">
+		<input type="button" onclick="nopass();" class="button" value="审核不通过">
 	</td>
 	<td width="5px" align="right"></td>
 	</tr>

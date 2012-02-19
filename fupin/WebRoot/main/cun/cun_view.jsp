@@ -81,7 +81,7 @@
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">通电自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.dian }</td>
-		<td height="30" align="right" class="tables_leftcell">通纯净水自然村数（个）</td>
+		<td height="30" align="right" class="tables_leftcell">通洁净水自然村数（个）</td>
 		<td class="tables_contentcell">&nbsp;${cun.pureWater }</td>
 	</tr>
 	<tr>
@@ -106,7 +106,7 @@
 	<tr>
 		<td height="30" align="right" class="tables_leftcell">危房数（户）</td>
 		<td class="tables_contentcell">&nbsp;${cun.weiHouse }</td>
-		<td height="30" align="right" class="tables_leftcell">村集体经济收入</td>
+		<td height="30" align="right" class="tables_leftcell">2010年村集体经济收入（元）</td>
 		<td class="tables_contentcell">&nbsp;${cun.income }<font>元</font></td>
 	</tr>
 	<tr>

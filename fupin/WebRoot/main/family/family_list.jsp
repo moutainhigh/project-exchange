@@ -141,7 +141,7 @@
 							</c:if>
 							
 							<c:if test="${userObj.roleType=='县级管理员'}">
-							<c:if test="${isWorkGroup!='Y'}">
+							<c:if test="${userObj.isWorkGroup!='Y'}">
 							<input type="button" onclick="winOpen('${appPath}main/family/upload2.jsp',350,180);" class="button" value="逐户导入">
 							</c:if>
 							</c:if>

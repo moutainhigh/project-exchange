@@ -564,7 +564,7 @@
 								</tr>
 								<tr>
 									<td class="tables_contentcell" colspan="3">
-									上年村级集体经济收入(元)
+									2010年村级集体经济收入(元)
 									</td>
 									<td class="tables_contentcell">
 									<input type="text" name="r.item30" value="${r.item30}" readonly="readonly" class="auto_readonly"/>元

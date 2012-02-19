@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				}).result(function(event, item) {
 					//location.href = item.url;
-					var familyId = item.substring(item.indexOf('(')+1,item.length-1);
+					var familyId = item.substring(item.lastIndexOf('(')+1,item.length-1);
 					$('#familyId').val(familyId);
 					selectFamily(familyId);
 				});			

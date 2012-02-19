@@ -52,7 +52,7 @@ public class RecheckAction extends BaseAction {
 		}
 		return list();
 	}
-
+	
 	// 重审的审核
 	private Long recordId;
 
@@ -137,6 +137,33 @@ public class RecheckAction extends BaseAction {
 			}
 			this.setSucc("Y");
 			this.setMsg("删除成功");
+		}
+		return listRecheck();
+	}
+	
+	public String pass() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String id : ids) {
+				recheck = new Recheck();
+				recheck.setId(Long.parseLong(id));
+				passRecheck();
+			}
+			this.setSucc("Y");
+			this.setMsg("批量审核通过成功");
+		}
+		return listRecheck();
+	}
+	public String nopass() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String id : ids) {
+				recheck = new Recheck();
+				recheck.setId(Long.parseLong(id));
+				unpassRecheck();
+			}
+			this.setSucc("Y");
+			this.setMsg("批量审核不通过成功");
 		}
 		return listRecheck();
 	}

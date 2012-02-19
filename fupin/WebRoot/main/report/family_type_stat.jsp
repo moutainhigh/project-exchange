@@ -177,7 +177,7 @@
 							贫困户类型
 						</td>
 						<td class="tables_headercell" rowspan="2">
-							当前页合计
+							贫困户总户数
 						</td>
 						<td class="tables_headercell" rowspan="2">
 							低保户
