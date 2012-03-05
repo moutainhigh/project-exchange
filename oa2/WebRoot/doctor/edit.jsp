@@ -17,6 +17,10 @@
 				alert(msg);
 				self.location.href = '${appPath}/doctor.do?method=listDoctor';
 			}
+			var mymsg = '${requestScope.mymsg}';
+			if(mymsg != ''){
+				alert(mymsg);
+			}
 			var docId = '${doc.id}';
 			function saveForm(){
 				if(docId!=''){
@@ -99,6 +103,21 @@
 				$('#chufaExpr').append(str+'\r\n');
 				discover('lightBox2');
 			}
+			//打开window居中
+			function    winOpen(Url,width,height,id)   
+   			{   
+   
+   				ow    =    width;   
+   				oh    =    height;   
+   				var    xposition=0;     
+   				var    yposition=0;   
+   				if    ((parseInt(navigator.appVersion)    >=    4    ))   
+       			{   
+           			xposition    =    (screen.width    -    width)    /    2;   
+           			yposition    =    (screen.height    -    height-25)    /    2;   
+       			}   
+       			window.open(Url,id,"width    ="+ow+",height="+oh+",scrollbars= yes,modal=yes,resizable=no,left="+xposition+",top="+yposition    );   
+   			}
 		</script>
 	</head>
 	<body>
@@ -357,16 +376,99 @@
 					</td>
 				</tr>
 			</table>
+			<c:if test="${not empty doc}">
+			<hr/>
+			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
+				<tr class="list_td_title">					
+					<td align="center" colspan="3">
+						&nbsp;变更注册记录
+					</td>
+					<td align="center" width="10%">
+						&nbsp;<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=change&id=${doc.id}',300,300);">添加记录</a>
+					</td>
+				</tr>
+				<tr class="list_td_title">
+					<td>序号</td>
+					<td>日期</td>
+					<td>地点变更</td>
+					<td>操作</td>
+				</tr>
+				<c:forEach items="${crList }" var="r" varStatus="status">
+				<tr class="list_td_context">
+					<td>${status.count }</td>
+					<td>&nbsp;<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/></td>
+					<td>&nbsp;${r.content }</td>
+					<td>
+						<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=change&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
+						<a href="#" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+			<hr/>
+			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
+				<tr class="list_td_title">					
+					<td align="center" colspan="3">
+						&nbsp;培训记录
+					</td>
+					<td align="center" width="10%">
+						&nbsp;<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=training&id=${doc.id}',300,300);">添加记录</a>
+					</td>
+				</tr>
+				<tr class="list_td_title">
+					<td>序号</td>
+					<td>日期</td>
+					<td>培训内容</td>
+					<td>操作</td>
+				</tr>
+				<c:forEach items="${tnList }" var="r" varStatus="status">
+				<tr class="list_td_context">
+					<td>${status.count }</td>
+					<td>&nbsp;<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/></td>
+					<td>&nbsp;${r.content }</td>
+					<td>
+						<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=training&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
+						<a href="#" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+			<hr/>
+			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
+				<tr class="list_td_title">					
+					<td align="center" colspan="3">
+						&nbsp;考核记录
+					</td>
+					<td align="center" width="10%">
+						&nbsp;<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=kaohe&id=${doc.id}',300,300);">添加记录</a>
+					</td>
+				</tr>
+				<tr class="list_td_title">
+					<td>序号</td>
+					<td>日期</td>
+					<td>考核情况</td>
+					<td>操作</td>
+				</tr>
+				<c:forEach items="${khList }" var="r" varStatus="status">
+				<tr class="list_td_context">
+					<td>${status.count }</td>
+					<td>&nbsp;<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/></td>
+					<td>&nbsp;${r.content }</td>
+					<td>
+						<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=kaohe&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
+						<a href="#" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+			</c:if>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr>
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
 						<input type="button" name="" value="放 弃" onclick="self.location.href='${appPath}/doctor.do?method=listDoctor'">
 						<c:if test="${not empty doc.id}">
-						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}" target="_blank">打印-1</a>
-						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}&page=2" target="_blank">打印-2</a>
-						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}&page=3" target="_blank">打印-3</a>
-						<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}&page=4" target="_blank">打印-4</a>
+						&nbsp;<a href="${appPath}/doctor.do?method=getDoctorInfo&id=${doc.id}" target="_blank">打印</a>
 						</c:if>
 					</td>
 				</tr>

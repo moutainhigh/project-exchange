@@ -20,14 +20,19 @@ import com.throne212.oa.common.PageBean;
 import com.throne212.oa.common.Util;
 import com.throne212.oa.dao.DoctorDao;
 import com.throne212.oa.dao.DropdownListDao;
+import com.throne212.oa.dao.RecordDao;
 import com.throne212.oa.domain.DropdownList;
+import com.throne212.oa.domain.doctor.ChangeRecord;
 import com.throne212.oa.domain.doctor.Doctor;
-import com.throne212.oa.domain.muyingorg.Org;
+import com.throne212.oa.domain.doctor.KaoheRecord;
+import com.throne212.oa.domain.doctor.Record;
+import com.throne212.oa.domain.doctor.TrainingRecord;
 
 public class DoctorAction extends DispatchAction{
 	
 	private DoctorDao docDao = new DoctorDao();
 	private DropdownListDao dicDao = new DropdownListDao();
+	private RecordDao recDao = new RecordDao();
 
 	public ActionForward addDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Doctor doc = this.buildDoctorModel(request);
@@ -109,6 +114,13 @@ public class DoctorAction extends DispatchAction{
 	public ActionForward viewDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Doctor doc = docDao.getDoctorById(Long.parseLong(request.getParameter("id")));
 		request.setAttribute("doc", doc);
+		//记录
+		List crList = recDao.getRecords(ChangeRecord.class, doc.getId());
+		List tnList = recDao.getRecords(TrainingRecord.class, doc.getId());
+		List khList = recDao.getRecords(KaoheRecord.class, doc.getId());
+		request.setAttribute("crList", crList);
+		request.setAttribute("tnList", tnList);
+		request.setAttribute("khList", khList);
 		return mapping.findForward("edit");
 	}
 	//注销
@@ -200,26 +212,187 @@ public class DoctorAction extends DispatchAction{
 		String id = request.getParameter("id");
 		Doctor d = docDao.getDoctorById(Long.parseLong(id));
 		request.setAttribute("doc", d);
-		return mapping.findForward("print");
+		String page = request.getParameter("page");
+		
+		List crList = recDao.getRecords(ChangeRecord.class, d.getId(), 3);
+		List trList = recDao.getRecords(TrainingRecord.class, d.getId(), 6);
+		List krList = recDao.getRecords(KaoheRecord.class, d.getId(), 3);
+		request.setAttribute("crList", crList);
+		request.setAttribute("trList", trList);
+		request.setAttribute("krList", krList);
+		
+		return mapping.findForward("print_set");
+	}
+	public ActionForward printDoctorInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		Doctor d = docDao.getDoctorById(Long.parseLong(id));
+		request.setAttribute("doc", d);
+		String page = "";
+		
+		String printAction = request.getParameter("printAction");
+		if("cr".equals(printAction)){
+			page = "2";
+			String crId = request.getParameter("crId");
+			ChangeRecord cr = null;
+			if(crId == null || "".equals(crId))
+				cr = (ChangeRecord) recDao.getLastRecord(ChangeRecord.class, d.getId());
+			else
+				cr = (ChangeRecord) recDao.getRecordById(Long.valueOf(crId));
+			request.setAttribute("cr", cr);
+		}else if("tr".equals(printAction)){
+			String trId = request.getParameter("trId");
+			long rid = Long.valueOf(trId).longValue();
+			if(rid <= 3)
+				page = "2";
+			else if(rid >3)
+				page = "3";
+			TrainingRecord tr = null;
+			if(trId == null || "".equals(trId))
+				tr = (TrainingRecord) recDao.getLastRecord(TrainingRecord.class, d.getId());
+			else
+				tr = (TrainingRecord) recDao.getRecordById(Long.valueOf(trId));
+			request.setAttribute("tr", tr);
+		}else if("kr".equals(printAction)){
+			page = "3";
+			String krId = request.getParameter("krId");
+			KaoheRecord kr = null;
+			if(krId == null || "".equals(krId))
+				kr = (KaoheRecord) recDao.getLastRecord(KaoheRecord.class, d.getId());
+			else
+				kr = (KaoheRecord) recDao.getRecordById(Long.valueOf(krId));
+			request.setAttribute("kr", kr);
+		}
+		
+		if(page == null || "".equals(page))
+			return mapping.findForward("print");
+		else
+			return mapping.findForward("print" + page);
 	}
 	public ActionForward savePos(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String json = request.getParameter("json");
-		if(json!=null){
-			StringBuffer sb = new StringBuffer(json);
-			sb.deleteCharAt(sb.length()-2);
-			System.out.println("new json pos="+sb);
-			
-			String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
-			path = path.substring(0, path.indexOf("WEB-INF"));
-			path += "doctor/json.txt";
-			System.out.println("json saved path : " + path);
-			
-			FileOutputStream fos = new FileOutputStream(path);
-			fos.write(sb.toString().getBytes());
-			fos.flush();
-			fos.close();
-		}
+		if(json!=null)
+			saveJson(json, "");
+		String json2 = request.getParameter("json2");
+		if(json2!=null)
+			saveJson(json2, "2");
+		String json3 = request.getParameter("json3");
+		if(json3!=null)
+			saveJson(json3, "3");
+		String json4 = request.getParameter("json4");
+		if(json4!=null)
+			saveJson(json4, "4");
 		return null;
+	}
+	
+	private void saveJson(String json, String jsonNo) throws Exception{
+		StringBuffer sb = new StringBuffer(json);
+		sb.deleteCharAt(sb.length()-2);
+		System.out.println("new json pos="+sb);
+		
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "doctor/json"+jsonNo+".txt";
+		System.out.println("json saved path : " + path);
+		
+		FileOutputStream fos = new FileOutputStream(path);
+		fos.write(sb.toString().getBytes());
+		fos.flush();
+		fos.close();
+	}
+	
+	private Record r;
+	
+	//记录
+	public ActionForward editRecord(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String recType = request.getParameter("rec_type");
+		String recId = request.getParameter("rec_id");
+		if(recId != null && !"".equals(recId)){
+			r = recDao.getRecordById(Long.valueOf(recId));
+			request.setAttribute("r", r);
+		}
+		if("change".equals(recType)){
+			request.setAttribute("rec_name", "注册变更");
+		}else if("training".equals(recType)){
+			request.setAttribute("rec_name", "培训");
+		}else if("kaohe".equals(recType)){
+			request.setAttribute("rec_name", "考核");
+		}
+		return mapping.findForward("record");
+	}
+	
+	public ActionForward saveRecord(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String date = request.getParameter("r.date");
+		Date d = null;
+		String content = request.getParameter("r.content");
+		if(date == null || "".equals(date)){
+			request.setAttribute("msg", "日期不可为空");
+			return editRecord(mapping,form,request,response);
+		}
+		try {
+			d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("msg", "日期不可为空");
+			return editRecord(mapping,form,request,response);
+		}
+		if(content == null || "".equals(content)){
+			request.setAttribute("msg", "记录不可为空");
+			return editRecord(mapping,form,request,response);
+		}
+		String recId = request.getParameter("rec_id");
+		
+		String id = request.getParameter("id");
+		if(id == null || "".equals(id)){
+			request.setAttribute("msg", "医生id不可为空");
+			return editRecord(mapping,form,request,response);
+		}
+		Long docId = Long.valueOf(id);
+		
+		
+		String recType = request.getParameter("rec_type");
+		if("change".equals(recType)){
+			request.setAttribute("rec_name", "注册变更");
+			if(recId != null && !"".equals(recId)){
+				r = recDao.getRecordById(Long.valueOf(recId));
+			}else{
+				r = new ChangeRecord();
+			}
+		}else if("training".equals(recType)){
+			request.setAttribute("rec_name", "培训");
+			if(recId != null && !"".equals(recId)){
+				r = recDao.getRecordById(Long.valueOf(recId));
+			}else{
+				r = new TrainingRecord();
+			}
+		}else if("kaohe".equals(recType)){
+			request.setAttribute("rec_name", "考核");
+			if(recId != null && !"".equals(recId)){
+				r = recDao.getRecordById(Long.valueOf(recId));
+			}else{
+				r = new KaoheRecord();
+			}
+		}else{
+			request.setAttribute("msg", "类型参数缺失");
+			return editRecord(mapping,form,request,response);
+		}
+
+		r.setContent(content);
+		r.setDate(d);
+		r.setDocId(docId);
+		recDao.saveRecord(r);
+		request.setAttribute("msg", "保存记录成功");
+		request.setAttribute("succ", "Y");
+		return editRecord(mapping,form,request,response);
+	}
+	
+	public ActionForward deleteRecord(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String recId = request.getParameter("rec_id");
+		if(recId != null && !"".equals(recId)){
+			int rst = recDao.deleteRecordById(Long.valueOf(recId));
+			if(rst > 0)
+				request.setAttribute("mymsg", "删除记录成功");
+		}
+		return viewDoctor(mapping, form, request, response);
 	}
 	
 	public static void main(String[] args) {
@@ -231,6 +404,12 @@ public class DoctorAction extends DispatchAction{
 			System.out.println(string);
 		}	
 		System.out.println(Boolean.valueOf(Boolean.parseBoolean("false")));
+	}
+	public Record getR() {
+		return r;
+	}
+	public void setR(Record r) {
+		this.r = r;
 	}
 
 }

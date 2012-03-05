@@ -40,16 +40,14 @@
 	<property name="hbm2ddl.auto">none</property>
 	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 	<mapping resource="com/throne212/oa/domain/doctor/Doctor.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/doctor/Record.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/person/Person.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/file/PersonFile.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/DropdownList.hbm.xml" />
-	<mapping
-		resource="com/throne212/oa/domain/report/WorkReport.hbm.xml" />
-	<mapping
-		resource="com/throne212/oa/domain/report/ReportFile.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/report/WorkReport.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/report/ReportFile.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/report/Year.hbm.xml" />
-	<mapping
-		resource="com/throne212/oa/domain/muyingworker/Worker.hbm.xml" />
+	<mapping resource="com/throne212/oa/domain/muyingworker/Worker.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/muyingorg/Org.hbm.xml" />
 	<mapping resource="com/throne212/oa/domain/birth/Birth.hbm.xml" />
 

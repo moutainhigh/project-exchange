@@ -21,6 +21,8 @@
     	<forward name="print2" path="/doctor/print2.jsp"></forward>
     	<forward name="print3" path="/doctor/print3.jsp"></forward>
     	<forward name="print4" path="/doctor/print4.jsp"></forward>
+    	<forward name="record" path="/doctor/record.jsp"></forward>
+    	<forward name="print_set" path="/doctor/print_set.jsp"></forward>
     </action>
     <!-- 人事档案 -->
     <action path="/person" type="com.throne212.oa.action.PersonAction" parameter="method">

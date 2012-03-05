@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.oa.domain.doctor">
+	<class name="Record" table="oa2_record">
+		<id column="id" name="id" type="long">
+			<generator class="native" />
+		</id>
+		<discriminator column="record_type" force="true" insert="true" not-null="true" />
+		<property name="content" length="1000"></property>
+		<property name="date"></property>
+		<property name="docId"></property>
+		<subclass name="ChangeRecord" discriminator-value="c" extends="Record"></subclass>
+		<subclass name="KaoheRecord" discriminator-value="k" extends="Record"></subclass>
+		<subclass name="TrainingRecord" discriminator-value="t" extends="Record"></subclass>
+	</class>
+</hibernate-mapping>
