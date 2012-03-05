@@ -8,7 +8,7 @@
 		</id>
 		<discriminator column="record_type" force="true" insert="true" not-null="true" />
 		<property name="content" length="1000"></property>
-		<property name="date"></property>
+		<property name="date" column="the_date"></property>
 		<property name="docId"></property>
 		<subclass name="ChangeRecord" discriminator-value="c" extends="Record"></subclass>
 		<subclass name="KaoheRecord" discriminator-value="k" extends="Record"></subclass>
