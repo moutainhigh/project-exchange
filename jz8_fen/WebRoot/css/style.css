@@ -1,0 +1,185 @@
+@charset "utf-8";
+/* CSS Document */
+
+#top{ background-image:url(../img/home2_r1_c3.jpg); height:31px; line-height:31px; background-repeat:repeat-x;}
+#top .top_con{ width:951px; margin:0 auto;}
+#top .top_con .top_l{ float:left;}
+#top .top_con .top_r{ float:right; width:340px;}
+#top .top_con .top_r span a{ margin-left:28px; color:#3E3C3D;}
+
+
+#mian{ width:953px; margin:0 auto; font-family:"SimSun";}
+#mian .current{color:#585858; font-size:13px; height:41px; line-height:41px;}
+#mian .current a{ color:#585858;}
+#mian .current a:hover{ color:#C00;}
+
+#mian .con_left{ width:677px; float:left;}
+#mian .con_left .con_left_subnav{ height:175px; border:1px solid #DCDCDC; background-color:#FEFCFD;}
+#mian .con_left .con_left_subnav ul{ margin:18px 0 0 22px;}
+#mian .con_left .con_left_subnav ul li{ width:120px; float:left; margin-right:40px; margin-bottom:12px; margin-bottom:10px!important; _margin-right:26px; _margin-left:4px;}
+#mian .con_left .con_left_subnav ul li a span{color:#EE5D2E}
+#mian .con_left .con_left_btm span{ color:#2778C9; font-size:13px;border:1px solid #DCDCDC; }
+#mian .con_left .con_left_l { border:1px solid #DCDCDC;height:760px; margin-top:10px;}
+#mian .con_left .con_left_btm strong{ position:absolute; left:280px; color:#8A8A8A; font-weight:normal; font-size:14px;}
+#mian .con_left .con_left_btm ul li{ position:relative; margin-bottom:14px; left:10px;}
+#mian .con_left a{color:#333;}
+#mian .con_left a:hover{ color:#C00;}
+#mian .con_left .con_left_cn{ float:left; width:333px;  margin-top:11px;}
+#mian .con_left .con_left_cn ul li{ color:#646464;}
+#mian .con_left .con_left_cn h3{padding-left:8px; background:url(../img/bar_r18_c19.jpg); height:32px; line-height:32px; background-repeat:repeat-x; margin-bottom:12px;}
+#mian .con_left .le1{ margin-right:7px;}
+#mian .con_left .con_left_btm .con{ border-top:1px solid #DCDCDC; }
+#mian .con_right{ width:269px; float:right;}
+
+#mian .con_right .con_right_con{border:1px solid #DCDCDC; margin-bottom:11px; font-size:13px;_font-size:12px;}
+#mian .con_right .con_right_con h3{ background-image:url(../img/bar_r9_c24.jpg); height:30px; line-height:30px; background-repeat:repeat-x; padding-left:13px; margin-bottom:10px;}
+#mian .con_right .con_right_con ul li{position:relative; left:13px; margin-bottom:4px;line-height:18px;}
+#mian .friendly_link{ color:#3E3E3E; font-size:13px; margin-top:11px;_font-size:12px; }
+#mian .friendly_link span{#5A5A5A; font-weight:bold;}
+#mian .friendly_link a{color:#3E3E3E;}
+#mian .friendly_link_sc{ height:23px; border-bottom:1px solid #CDCDCD;}
+/*#mian .friendly_link_sc a{ margin-right:17px;}*/
+#mian .friedly_link_jc{ border-bottom:1px solid #CDCDCD; line-height:32px;}
+/*#mian .friedly_link_jc a{ margin-right:31px; _margin-right:28px;}*/
+#mian .friedly_link_link{ line-height:31px;}
+#mian .friedly_link_link a{ margin-right:15px; _margin-right:15px;}
+#mian .brother_city_list{ line-height:32px;}
+#mian .type_list{ line-height:32px;}
+.copyright{text-align:center; line-height:20px; margin:0 auto; font-size:13px; padding-top:11px; border-top:2px solid #C4C4C4; margin-top:29px;}
+.copyright a,.copyright a:visited{ color:#3E3E3E;}
+
+
+/*招兼职列表页*/
+.con_top{ border:1px solid #DCDCDC; }
+.con_top_top p{ margin:10px 0 0 9px; line-height: 20px;}
+.con_top_top p span{ font-weight:bold; margin-right:17px;}
+.con_top_top p a,.con_top_top p a:visited{ margin-right:8px; color:#0D4FE4;}
+.con_top_bom{ height:46px; line-height:46px; border-top:1px solid #DCDCDC; margin-top:14px; background-color:#FAFAFA; _padding-top:6px; _height:40px; _line-height:40px;}
+.con_top_bom input{ vertical-align:middle;}
+.con_top_bom a{ margin-right:12px; font-size:13px;_font-size:12px; color:#000;}
+.con_top_bom .con_bk{ background-image:url(../img/lb_r2_c2.jpg); height:32px; width:220px; background-repeat:no-repeat; border:0; color:#999; padding-left:10px; line-height:32px;}
+.con_top_bom .con_ss{ background-image:url(../img/lb_r2_c3.jpg); width:65px; height:32px; background-repeat:no-repeat; line-height:32px; font-weight:bold; border:0; cursor:pointer;}
+.con_top_bom form{ margin-left:33px;}
+.con_top_bom span{  font-size:13px;_font-size:12px; margin-left:24px;}
+
+/*简历列页*/
+
+.con_top_bom a,.con_top_bom a:visited,.con_top_bom a:hover{color:#2446DB;}
+.con_top_bom .con_dl{ background-image:url(../img/bl_r4_c11.jpg); width:102px; height:28px; line-height:28px; text-align:center; background-repeat:no-repeat; border:0; cursor:pointer; color:#3051C5; margin:0 104px 0 34px;}
+.nr_bq_bg{ border:1px solid #E2E2E2; margin-top:13px; color:#525252;}
+.nr_bq_bg table tr{ height:35px;}
+.nr_bq_bg table tr td{ border-bottom:1px solid #F4F4F4;}
+.tb1{ background-color:#F7F7F7;}
+.nr_bq_bg .tb1 tr td{border-bottom:1px solid #E2E2E2;}
+.nr_bq_bg table tr a,.nr_bq_bg table tr a:visited{ color:#2046D5;}
+.tb_p{ padding-left:28px;}
+.tb_p a{ margin-right:8px;}
+.tb_p .te_nr a,.tb_p .te_nr a:visited{ color:#525252; font-size:13px; _font-size:12px; position:relative;}
+.tb_p .te_nn a,.tb_p p{ position:relative;}
+.tb_p .te_nn a,.tb_p .te_nn a:visited{ font-weight:normal; color:#535353; position: absolute; right:20px;}
+.con_fy{ height:37px; padding:6px 0 0 84px;}
+.con_fy .fy_d{ width:63px; height:25px;}
+.con_fy a{ display:block; width:27px; height:24px; border:1px solid #D2D2D2; line-height:24px; text-align:center; float:left; margin-right:9px;}
+.con_fy a:hover{ background-color:#F4F4F4;}
+.tb_bom { padding-top:13px;}
+.tb_jz{ margin-top:21px;}
+.tb_jz a{ font-size:13px; color:#595959;_font-size:12px; margin-right:15px;}
+.tb_jz span{ color:#585858; font-weight:bold; font-size:13px;_font-size:12px; }
+
+/*招兼职内容页*/
+.con_wlnr{ border-bottom:1px solid #EFEFEF;}
+.zj_con{ margin-top:20px;}
+.zj_con_l{ width:725px; float:left; position:relative;}
+.anniu{top:214px; left:420px; position:absolute;}
+.anniu2{top:786px; left:420px; position:absolute;}
+.zj_con_l h3{ font-size:24px; height:34px; border-bottom:1px solid #ECECEC; margin-bottom:12px; position:relative; line-height:34px;}
+.zj_con_l p,.con_ul li{ line-height:28px;}
+.zj_con_l h3 span{ font-size:13px;_font-size:12px; position: absolute; top:0px; right:0px; font-weight:normal; color:#5B5B5B; display:block;}
+.con_ubj,.con_zpx{ margin-bottom:15px;}
+.zj_con_sp{ margin-bottom:28px;}
+.zj_con_l ul li span,.zj_con_sp span{ color:#636363;}
+.zj_con_jc{ font-size:16px; color:#3C3C3C; font-weight:bold;}
+.zj_con_r{ width:198px; float:right; border:1px solid #D5D5D5; padding:12px 0 0 18px;}
+.jz_bj{ background-color:#F2F7FB; width:717px; height:22px; display:block; padding-left:8px; line-height:22px;}
+.con_bh li{ list-style-position:inside;}
+.con_ddl{ width:622px; margin:12px 0 18px 0; padding-left:9px;}
+.con_ds{ margin-top:18px; padding-left:9px;}
+.con_ckz{ margin-top:20px;}
+.con_xh{ margin-top:10px;}
+.con_xh li{ height:39px; width:708px; border-bottom:1px solid #EBEBEB; line-height:39px;}
+.con_xh li a{ margin-right:44px;}
+.con_xh li span{ color:#171717; margin-right:29px;}
+.zj_con_r h3{ font-size:13px;_font-size:12px;}
+.zj_con_r p{ font-size:13px;_font-size:12px; width:179px; line-height:22px; border-bottom:1px solid #F5F5F5; padding-bottom:12px;}
+.zj_con_r .zj_con_img{ text-align:center; margin:4px 0 18px 0; border:0;}
+.zj_con_rz span{ vertical-align:middle; margin-left:15px;}
+/*个人简历页*/
+.zj_con_gr { border:0;}
+.zj_con_gr .zj_con_img{border-top:1px solid #F5F5F5; padding-top:12px;}
+.con_gr_jl table{ width:670px; margin-bottom:10px;}
+.con_gr_jl table tr td{ height:28px; line-height:28px;}
+
+/*求职内容页*/
+.con_sjj{text-indent:2em; width:644px;}
+.con_p_con{ margin:12px 0 18px 0;}
+.zj_con_l table span{ color:#676767;}
+.con_gzsj{ margin:13px 0 0 30px;}
+.con_gzsj table tr td{ border:1px solid #DCDCDC; text-align:center;}
+
+
+.nav_top{ height:75px;}
+.nav_top .logo_a,.nav_top ul,.nav_top div,.nav_top p{ float:left; vertical-align:middle;}
+.nav_top .logo_a{ margin:15px 25px 0 6px;}
+.nav_top ul{ width:70px; text-align:center; margin-right:10px; font-family:14px; padding-top:22px;}
+.nav_top ul li{ padding-bottom:2px;}
+.nav_top ul li b{ font-size:20px; color:#F8662D;}
+.nav_top ul li a{ color:#0651EB;}
+.nav_top div{margin-top:25px; margin-left:30px;position:relative;  width:320Px; height:31px;}
+.nav_top div input{ width:69px; height:31px; background:url(../img/home_r3_c5_s1.jpg) no-repeat; border:none; vertical-align:middle; cursor: pointer;}
+.nav_top div .agg_a,.nav_top div .agg_a:visited{ width:80px; height:29px; line-height:29px; text-align:center; color:#8B8B8B; display:block; text-align:center; background:url(../img/agg_r2_c2.jpg) no-repeat right center; float:left; border:1px solid #CBCBCB; border-right:none; margin:0; padding:0; _margin:2px -3px 0 0;}
+.nav_top div .agg_a:hover{ text-decoration:none;}
+.nav_top div .sr_btn{ border:1px solid #CBCBCB; border-left:none; padding:0 3px; width:160px; height:29px; line-height:29px; font-size:16px; background:none; cursor:auto;}
+.nav_top div ul{ width:80px; border:1px solid #CBCBCB; border-top:none; position:absolute; left:0px; top:31px;_top:33px; padding:0; z-index:99; margin:0; vertical-align:top;}
+.nav_top div ul li{ height:24px; line-height:24px; padding:0; margin:0;}
+.nav_top div ul li a,.nav_top div ul li a:visited{ width:80px; height:24px; display:block; color:#8C8C8C; background:#fff;}
+.nav_top div ul li a:hover{ background:#499CE8; color:#BCFBFF; text-decoration:none;}
+.nav_top p{ width:169px;_width:160px; margin-top:20px;_margin-top:22px; height:31px; line-height:31px; text-align:center;}
+.nav_top p input{ width:117px; height:31px; text-align:center; line-height:31px; font-size:14px; color:#fff; background:url(../img/home_r4_c7_s1.jpg) no-repeat; border:none; font-weight:bold; margin-left:60px;}
+.nav_top p a{ color:#000;}
+.nav_botttom{ height:39px; background:url(../img/home_r2_c2.jpg) no-repeat; line-height:39px;}
+.nav_botttom ul li{ float:left; width:115px; text-align:center; font-weight:bold; font-size:14px; background:url(../img/right.jpg) no-repeat right center;}
+.nav_botttom ul li a,.nav_botttom ul li a:visited{ color:#fff; width:113px; height:39px; display:block;}
+.nav_botttom ul li a:hover,.nav_botttom ul li .now_a{ background:url(../img/home_r2_c4.jpg) no-repeat center center; text-decoration:none;}
+.nr_bq_top_y{ margin-top:12px;}
+.nr_bq_top_y h2{ height:32px; line-height:32px; background:url(../img/h2.jpg) repeat-x; position:relative;}
+.nr_bq_top_y h2 p{ right:60px; top:0px; position:absolute}
+.nr_bq_top_y h2 p a{ font-weight:normal;}
+.nr_bq_top_y h2 p input{ width:102px; height:28px; border:none; cursor:pointer; background:url(../img/bl_r4_c11.jpg) no-repeat; font-size:14px; font-weight:normal; color:#3850B4; margin-left:22px; padding-left:5px;}
+.nr_bq_top_y h2 p .diyi_btn{ background:url(../img/lb_r4_c9.jpg) no-repeat;}
+.nr_bq_top_y h2 div{ position:absolute; left:20px; top:-1px;_top:-2px; border-left:1px solid #CCCCCC; height:33px;}
+
+
+.nr_bq_top_y h2 div .now_aa,.nr_bq_top_y h2 div a:hover{ background:#fff; border-bottom:1px solid #fff; font-weight:bold; text-decoration:none;}
+.nr_bq_top_y h2 div a{ float:left; height:31px; padding:0 12px; background:#F7F7F7; border:1px solid #CDCDCD; border-left:none; font-size:14px; color:#444444; font-weight:normal;}
+
+.nr_bq_top_y table{ border-left:1px solid #E2E2E2; border-right:1px solid #E2E2E2; width:953px;}
+.nr_bq_top_y table tr{ width:953px;}
+.nr_bq_top_y table tr td{ height:37px; line-height:37px; border-bottom:1px solid #F4F4F4;}
+.nr_bq_top_y table tr td b{ font-weight:normal; font-size:13px;}
+.nr_bq_top_y table tr td .zj_b{ color:#A35407;}
+.nr_bq_top_y table tr td a{ color:#223DE2; font-size:14px;}
+.nr_bq_top_y table tr td img{ vertical-align:middle;}
+.nr_bq_top_y table tr td span{ font-size:13px; color:#6A6A6A; margin:0 4px;}
+.nr_bq_top_y table tr .td_1{ width:455px; padding-left:20px;}
+.nr_bq_top_y table tr .td_2{ width:256px;}
+.nr_bq_top_y table tr .td_3{ width:101px;}
+.nr_bq_top_y table tr .td_2 a{ font-size:13px;}
+.nr_bq_top_y table tr .td_4{ text-align:center; width:119px;}
+.nr_bq_top_y table tr .td_4,.nr_bq_top_y table tr .td_3{ font-size:13px;}
+.nr_bq_top_y table tr .td_top_left,.nr_bq_top_y table tr .td_top{ padding-left:20px; font-size:13px;}
+.nr_bq_top_y table tr .td_top_left a,.nr_bq_top_y table tr .td_top a{ font-size:14px; margin-right:8px;}
+.nr_bq_top_y h3{ height:38px; line-height:38px; border:1px solid #E2E2E2; border-top:none; padding-left:75px;}
+.nr_bq_top_y h3 a{ color:#2C3FE4; border:1px solid #CECECE; padding:4px 6px; font-weight:normal;}
+
+.ding{padding-left:20px;background: url("../img/lb_r6_c4.jpg") no-repeat scroll left top transparent;}
+.curr_sel{font-weight: 600; text-decoration: underline;}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+
+	<!-- content info -->
+	<rule>
+		<from>/a(\d+).html</from>
+		<to>view!a.action?ctNo=$1</to>
+	</rule>
+	
+	<rule>
+		<from>/b(\d+).html</from>
+		<to>view!b.action?ctNo=$1</to>
+	</rule>
+	
+	<!-- list info -->
+	<rule>
+		<from>^/jianzhi/((K\d+)*)((a\d+)*)((d\d+)*)((t\d+)*)((p\d+)*)((s.+)*)$</from>
+		<to>list!jianzhi.action?typeId=$2&amp;areaId=$4&amp;jobdate=$6&amp;unitype=$8&amp;pageNum=$10&amp;key=$12</to>
+	</rule>
+	<rule>
+		<from>^/job/((Q\d+)*)((a\d+)*)((t\d+)*)((p\d+)*)((s.+)*)$</from>
+		<to>list!job.action?typeId=$2&amp;areaId=$4&amp;unitype=$6&amp;pageNum=$8&amp;key=$10</to>
+	</rule>
+	<rule>
+		<from>^/rencai/((K\d+)*)((a\d+)*)((d\d+)*)((c\d+)*)((p\d+)*)((s.+)*)$</from>
+		<to>list!rencai.action?typeId=$2&amp;areaId=$4&amp;jobdate=$6&amp;ctClass=$8&amp;pageNum=$10&amp;key=$12</to>
+	</rule>
+	<rule>
+		<from>^/yanzheng/((p\d+)*)$</from>
+		<to>list!yanzheng.action?pageNum=$2</to>
+	</rule>
+	<rule>
+		<from>^/resume/((K\d+)*)((a\d+)*)((d\d+)*)((p\d+)*)((s.+)*)$</from>
+		<to>list!resume.action?typeId=$2&amp;areaId=$4&amp;jobdate=$6&amp;pageNum=$8&amp;key=$10</to>
+	</rule>
+	
+	<!-- search -->
+	<rule>
+		<from>^/s/((p\d+)*)((s.+)*)$</from>
+		<to>list!search.action?pageNum=$2&amp;key=$4</to>
+	</rule>
+
+</urlrewrite>

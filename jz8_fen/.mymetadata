@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="jz8_fen"
+  id="myeclipse.1330407348890"
+  context-root="/jz8_fen"
+  j2ee-spec="5.0"
+  archive="jz8_fen.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
