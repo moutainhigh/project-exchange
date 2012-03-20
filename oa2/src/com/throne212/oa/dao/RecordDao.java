@@ -40,7 +40,7 @@ public class RecordDao {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
-		list = s.createQuery("from " + clazz.getName() + " where docId=?").setParameter(0, docId).list();
+		list = s.createQuery("from " + clazz.getName() + " where docId=? order by id,pOrder").setParameter(0, docId).list();
 		
 		s.getTransaction().commit();
 		s.close();
@@ -54,7 +54,7 @@ public class RecordDao {
 		Session s = HibernateSessionFactory.getSession();
 		s.beginTransaction();
 		
-		list = s.createQuery("from " + clazz.getName() + " where docId=? order by date").setParameter(0, docId).setMaxResults(len).list();
+		list = s.createQuery("from " + clazz.getName() + " where docId=? order by id,pOrder").setParameter(0, docId).setMaxResults(len).list();
 		
 		s.getTransaction().commit();
 		s.close();

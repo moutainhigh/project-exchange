@@ -21,6 +21,9 @@
     	<forward name="print2" path="/doctor/print2.jsp"></forward>
     	<forward name="print3" path="/doctor/print3.jsp"></forward>
     	<forward name="print4" path="/doctor/print4.jsp"></forward>
+    	<forward name="print_op_1" path="/doctor/print_op_1.jsp"></forward>
+    	<forward name="print_op_2" path="/doctor/print_op_2.jsp"></forward>
+    	<forward name="print_op_3" path="/doctor/print_op_3.jsp"></forward>
     	<forward name="record" path="/doctor/record.jsp"></forward>
     	<forward name="print_set" path="/doctor/print_set.jsp"></forward>
     </action>

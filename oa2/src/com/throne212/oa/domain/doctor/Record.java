@@ -11,6 +11,8 @@ public class Record {
 	private String content;//情况
 	
 	private Long docId;//医生的id
+	
+	private Integer pOrder;//打印序号
 
 	public Long getId() {
 		return id;
@@ -42,6 +44,14 @@ public class Record {
 
 	public void setDocId(Long docId) {
 		this.docId = docId;
+	}
+
+	public Integer getpOrder() {
+		return pOrder;
+	}
+
+	public void setpOrder(Integer pOrder) {
+		this.pOrder = pOrder;
 	}
 
 }

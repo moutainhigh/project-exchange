@@ -189,7 +189,7 @@ function init(){
 }
 
 $(function(){
-	$.getJSON("${appPath}/doctor/json/json${op}.txt", function(json){
+	$.getJSON("${appPath}/doctor/json/json${param.op}.txt", function(json){
 		//alert("JSON Data: " + json.users[3].name);
 		//alert(json.length);
 		for(var i=1;i<=10;i++){
@@ -208,7 +208,7 @@ function savePos(){
 	});
 	str += ']';
 	//alert(str);
-	$.getJSON("${appPath}/doctor.do?method=savePos&json2="+str, function(json){
+	$.getJSON("${appPath}/doctor.do?method=savePos&op=${param.op}&json="+str, function(json){
 		alert('保留成功');
 	});
 }
@@ -227,6 +227,7 @@ function savePos(){
     <div style="z-index:1;width:1488px;height:1067px;">
     
     </div>
+<input   type=button   value=保留坐标   onclick= "savePos();"   class= "NOPRINT "> 
 		<div id="Layer1" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 2; left: 488px; top: 212px;">
 			<fmt:formatDate value = "${tr.date}" pattern = "yyyy-MM-dd"/>
 		</div>

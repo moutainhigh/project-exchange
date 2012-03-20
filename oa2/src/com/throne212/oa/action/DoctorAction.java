@@ -3,7 +3,9 @@ package com.throne212.oa.action;
 import java.io.FileOutputStream;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,7 @@ import com.throne212.oa.dao.DropdownListDao;
 import com.throne212.oa.dao.RecordDao;
 import com.throne212.oa.domain.DropdownList;
 import com.throne212.oa.domain.doctor.ChangeRecord;
+import com.throne212.oa.domain.doctor.Cun;
 import com.throne212.oa.domain.doctor.Doctor;
 import com.throne212.oa.domain.doctor.KaoheRecord;
 import com.throne212.oa.domain.doctor.Record;
@@ -228,9 +231,13 @@ public class DoctorAction extends DispatchAction{
 		Doctor d = docDao.getDoctorById(Long.parseLong(id));
 		request.setAttribute("doc", d);
 		String page = "";
+		String op = "";
 		
 		String printAction = request.getParameter("printAction");
-		if("cr".equals(printAction)){
+		if("doc".equals(printAction)){
+			page = "";
+			op = "11";
+		}else if("cr".equals(printAction)){
 			page = "2";
 			String crId = request.getParameter("crId");
 			ChangeRecord cr = null;
@@ -239,18 +246,26 @@ public class DoctorAction extends DispatchAction{
 			else
 				cr = (ChangeRecord) recDao.getRecordById(Long.valueOf(crId));
 			request.setAttribute("cr", cr);
+			op = "2" + cr.getpOrder();
 		}else if("tr".equals(printAction)){
 			String trId = request.getParameter("trId");
 			long rid = Long.valueOf(trId).longValue();
-			if(rid <= 3)
-				page = "2";
-			else if(rid >3)
-				page = "3";
 			TrainingRecord tr = null;
 			if(trId == null || "".equals(trId))
 				tr = (TrainingRecord) recDao.getLastRecord(TrainingRecord.class, d.getId());
 			else
 				tr = (TrainingRecord) recDao.getRecordById(Long.valueOf(trId));
+			page = "2";
+			op = "3" + tr.getpOrder();
+			List trList = recDao.getRecords(TrainingRecord.class, d.getId(), 6);
+			for(int i = 0; i < trList.size(); i++){
+				TrainingRecord trInList = (TrainingRecord) trList.get(i);
+				if(tr.getId().equals(trInList.getId())){
+					if((i+1) > 3){
+						page = "3";
+					}
+				}
+			}
 			request.setAttribute("tr", tr);
 		}else if("kr".equals(printAction)){
 			page = "3";
@@ -260,27 +275,72 @@ public class DoctorAction extends DispatchAction{
 				kr = (KaoheRecord) recDao.getLastRecord(KaoheRecord.class, d.getId());
 			else
 				kr = (KaoheRecord) recDao.getRecordById(Long.valueOf(krId));
+			op = "4" + kr.getpOrder();
 			request.setAttribute("kr", kr);
 		}
+		
+		request.setAttribute("op", op);
 		
 		if(page == null || "".equals(page))
 			return mapping.findForward("print");
 		else
 			return mapping.findForward("print" + page);
 	}
+	public ActionForward printOption(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String op = request.getParameter("op");
+		int num = Integer.parseInt(op);
+		String page = "1";
+		if(num >= 21 && num <= 23){
+			page = "2";
+			ChangeRecord cr = new ChangeRecord();
+			cr.setDate(new Date());
+			cr.setContent("记录内容");
+			request.setAttribute("cr", cr);
+		}else if(num >= 31 && num <= 33){
+			page = "2";
+			TrainingRecord tr = new TrainingRecord();
+			tr.setDate(new Date());
+			tr.setContent("记录内容");
+			request.setAttribute("tr", tr);
+		}else if(num >= 34 && num <= 36){
+			page = "3";
+			TrainingRecord tr = new TrainingRecord();
+			tr.setDate(new Date());
+			tr.setContent("记录内容");
+			request.setAttribute("tr", tr);
+		}else if(num >= 41 && num <= 43){
+			page = "3";
+			KaoheRecord kr = new KaoheRecord();
+			kr.setDate(new Date());
+			kr.setContent("记录内容");
+			request.setAttribute("kr", kr);
+		}else{
+			Doctor doc = new Doctor();
+			doc.setName("姓名");
+			doc.setGender(Boolean.valueOf(true));
+			doc.setBirthday(new Date());
+			doc.setIdNo("身份证号码...");
+			Cun c = new Cun();
+			c.setName("村名");
+			doc.setAreaCun(c);
+			doc.setZigeNo("资格号码");
+			doc.setShenpiOrg("审批机构");
+			Calendar time = GregorianCalendar.getInstance();
+			time.set(Calendar.YEAR, 1999);
+			time.set(Calendar.MONTH, 11);
+			time.set(Calendar.DAY_OF_MONTH, 31);
+			doc.setOkDate(new Date(time.getTimeInMillis()));
+			request.setAttribute("doc", doc);
+		}
+			
+		return mapping.findForward("print_op_" + page);
+	}
 	public ActionForward savePos(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String json = request.getParameter("json");
-		if(json!=null)
-			saveJson(json, "");
-		String json2 = request.getParameter("json2");
-		if(json2!=null)
-			saveJson(json2, "2");
-		String json3 = request.getParameter("json3");
-		if(json3!=null)
-			saveJson(json3, "3");
-		String json4 = request.getParameter("json4");
-		if(json4!=null)
-			saveJson(json4, "4");
+		String op = request.getParameter("op");
+		if(op != null && !"".equals(op)){
+			saveJson(json, op);
+		}
 		return null;
 	}
 	
@@ -291,7 +351,7 @@ public class DoctorAction extends DispatchAction{
 		
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
-		path += "doctor/json"+jsonNo+".txt";
+		path += "doctor/json/json"+jsonNo+".txt";
 		System.out.println("json saved path : " + path);
 		
 		FileOutputStream fos = new FileOutputStream(path);
@@ -324,6 +384,7 @@ public class DoctorAction extends DispatchAction{
 		String date = request.getParameter("r.date");
 		Date d = null;
 		String content = request.getParameter("r.content");
+		String pOrder = request.getParameter("pOrder");
 		if(date == null || "".equals(date)){
 			request.setAttribute("msg", "日期不可为空");
 			return editRecord(mapping,form,request,response);
@@ -379,6 +440,8 @@ public class DoctorAction extends DispatchAction{
 		r.setContent(content);
 		r.setDate(d);
 		r.setDocId(docId);
+		if(pOrder != null && !"".equals(pOrder))
+			r.setpOrder(Integer.valueOf(pOrder));
 		recDao.saveRecord(r);
 		request.setAttribute("msg", "保存记录成功");
 		request.setAttribute("succ", "Y");

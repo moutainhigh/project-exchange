@@ -54,6 +54,23 @@
 					</td>
 				</tr>
 				<tr class="list_td_context">
+					<td>´òÓ¡ÐòºÅ</td>
+					<td>
+						<select name="pOrder">
+							<option value=""></option>
+							<option value="0" <c:if test="${r.pOrder==0 }">selected="selected"</c:if>>0</option>
+							<option value="1" <c:if test="${r.pOrder==1 }">selected="selected"</c:if>>1</option>
+							<option value="2" <c:if test="${r.pOrder==2 }">selected="selected"</c:if>>2</option>
+							<option value="3" <c:if test="${r.pOrder==3 }">selected="selected"</c:if>>3</option>
+							<c:if test="${param.rec_type=='training' }">
+							<option value="4" <c:if test="${r.pOrder==4 }">selected="selected"</c:if>>4</option>
+							<option value="5" <c:if test="${r.pOrder==5 }">selected="selected"</c:if>>5</option>
+							<option value="6" <c:if test="${r.pOrder==6 }">selected="selected"</c:if>>6</option>
+							</c:if>
+						</select>
+					</td>
+				</tr>
+				<tr class="list_td_context">
 					<td>ÈÕÆÚ</td>
 					<td>
 						<input type="text" name="r.date" value="<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/>" id="rDate" class="datetime"/>

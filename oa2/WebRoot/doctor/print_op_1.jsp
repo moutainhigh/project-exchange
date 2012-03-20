@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="${appPath}/js/jquery.js"></script>
 		<style type="text/css">
 <!--
-body{background:url('${appPath}/doctor/back3.jpg') left top no-repeat;font-size:24px;font-weight:600;text-align: center;}
+body{background:url('${appPath}/doctor/back.jpg') left top no-repeat;font-size:24px;font-weight:600;text-align: center;}
 .style5 {
 	color: #FFDDBB;
 	font-size: 36px;
@@ -189,7 +189,7 @@ function init(){
 }
 
 $(function(){
-	$.getJSON("${appPath}/doctor/json/json${op}.txt", function(json){
+	$.getJSON("${appPath}/doctor/json/json${param.op}.txt", function(json){
 		//alert("JSON Data: " + json.users[3].name);
 		//alert(json.length);
 		for(var i=1;i<=10;i++){
@@ -208,7 +208,7 @@ function savePos(){
 	});
 	str += ']';
 	//alert(str);
-	$.getJSON("${appPath}/doctor.do?method=savePos&json2="+str, function(json){
+	$.getJSON("${appPath}/doctor.do?method=savePos&op=${param.op}&json="+str, function(json){
 		alert('保留成功');
 	});
 }
@@ -227,17 +227,37 @@ function savePos(){
     <div style="z-index:1;width:1488px;height:1067px;">
     
     </div>
+<input   type=button   value=保留坐标   onclick= "savePos();"   class= "NOPRINT "> 
 		<div id="Layer1" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 2; left: 488px; top: 212px;">
-			<fmt:formatDate value = "${tr.date}" pattern = "yyyy-MM-dd"/>
+			${doc.name}
 		</div>
 		<div id="Layer2" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 3; left: 430px; top: 182px;">
-			${tr.content }
+			<c:if test="${doc.gender==true}">男</c:if>
+			<c:if test="${doc.gender==false}">女</c:if>
 		</div>
 		<div id="Layer3" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
-			<fmt:formatDate value = "${kr.date}" pattern = "yyyy-MM-dd"/>
+			<fmt:formatDate value = "${doc.birthday}" pattern = "yyyy-MM-dd"/>
 		</div>
 		<div id="Layer4" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
-			${kr.content }
+			${doc.idNo}
+		</div>
+		<div id="Layer5" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			${doc.areaCun.name}
+		</div>
+		<div id="Layer6" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			${doc.zigeNo}
+		</div>
+		<div id="Layer7" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			${doc.shenpiOrg}
+		</div>
+		<div id="Layer8" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			<span><fmt:formatDate value = "${doc.okDate}" pattern = "yyyy"/></span>
+		</div>
+		<div id="Layer9" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			<span><fmt:formatDate value = "${doc.okDate}" pattern = "M"/></span>
+		</div>
+		<div id="Layer10" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
+			<span><fmt:formatDate value = "${doc.okDate}" pattern = "d"/></span>
 		</div>
 	</body>
 </html>

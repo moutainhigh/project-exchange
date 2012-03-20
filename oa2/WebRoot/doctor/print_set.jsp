@@ -72,7 +72,7 @@
 					</td>
 					<td>
 						<select name="trId">
-							<c:forEach items="${crList}" var="c" varStatus="status">
+							<c:forEach items="${trList}" var="c" varStatus="status">
 							<option value="${c.id}">(${status.count})${c.content} - <fmt:formatDate value = "${c.date}" pattern = "yyyy-MM-dd"/></option>
 							</c:forEach>
 						</select>
@@ -92,6 +92,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
+					&nbsp;<input type="button" onclick="printDoc('doc');" value="´òÓ¡-1¡¢2Ò³"/>
 					&nbsp;<input type="button" onclick="printDoc('cr');" value="´òÓ¡-×¢²á±ä¸ü¼ÇÂ¼"/>
 					&nbsp;<input type="button" onclick="printDoc('tr');" value="´òÓ¡-ÅàÑµ¼ÇÂ¼"/>
 					&nbsp;<input type="button" onclick="printDoc('kr');" value="´òÓ¡-¿¼ºË¼ÇÂ¼"/>

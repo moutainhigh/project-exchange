@@ -384,23 +384,23 @@
 						&nbsp;变更注册记录
 					</td>
 					<td align="center" width="10%">
-						&nbsp;<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=change&id=${doc.id}',300,300);">添加记录</a>
+						&nbsp;<a href="javascript:void(0);" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=change&id=${doc.id}',300,300);">添加记录</a>
 					</td>
 				</tr>
 				<tr class="list_td_title">
-					<td>序号</td>
+					<td>打印序号</td>
 					<td>日期</td>
 					<td>地点变更</td>
 					<td>操作</td>
 				</tr>
 				<c:forEach items="${crList }" var="r" varStatus="status">
 				<tr class="list_td_context">
-					<td>${status.count }</td>
+					<td>${r.pOrder }</td>
 					<td>&nbsp;<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/></td>
 					<td>&nbsp;${r.content }</td>
 					<td>
-						<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=change&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
-						<a href="#" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
+						<a href="javascript:void(0);" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=change&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
+						<a href="javascript:void(0);" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
 					</td>
 				</tr>
 				</c:forEach>
@@ -412,23 +412,23 @@
 						&nbsp;培训记录
 					</td>
 					<td align="center" width="10%">
-						&nbsp;<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=training&id=${doc.id}',300,300);">添加记录</a>
+						&nbsp;<a href="javascript:void(0);" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=training&id=${doc.id}',300,300);">添加记录</a>
 					</td>
 				</tr>
 				<tr class="list_td_title">
-					<td>序号</td>
+					<td>打印序号</td>
 					<td>日期</td>
 					<td>培训内容</td>
 					<td>操作</td>
 				</tr>
 				<c:forEach items="${tnList }" var="r" varStatus="status">
 				<tr class="list_td_context">
-					<td>${status.count }</td>
+					<td>${r.pOrder }</td>
 					<td>&nbsp;<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/></td>
 					<td>&nbsp;${r.content }</td>
 					<td>
-						<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=training&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
-						<a href="#" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
+						<a href="javascript:void(0);" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=training&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
+						<a href="javascript:void(0);" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
 					</td>
 				</tr>
 				</c:forEach>
@@ -440,23 +440,23 @@
 						&nbsp;考核记录
 					</td>
 					<td align="center" width="10%">
-						&nbsp;<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=kaohe&id=${doc.id}',300,300);">添加记录</a>
+						&nbsp;<a href="javascript:void(0);" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=kaohe&id=${doc.id}',300,300);">添加记录</a>
 					</td>
 				</tr>
 				<tr class="list_td_title">
-					<td>序号</td>
+					<td>打印序号</td>
 					<td>日期</td>
 					<td>考核情况</td>
 					<td>操作</td>
 				</tr>
 				<c:forEach items="${khList }" var="r" varStatus="status">
 				<tr class="list_td_context">
-					<td>${status.count }</td>
+					<td>${r.pOrder }</td>
 					<td>&nbsp;<fmt:formatDate value = "${r.date}" pattern = "yyyy-MM-dd"/></td>
 					<td>&nbsp;${r.content }</td>
 					<td>
-						<a href="#" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=kaohe&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
-						<a href="#" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
+						<a href="javascript:void(0);" onclick="winOpen('${appPath}/doctor.do?method=editRecord&rec_type=kaohe&rec_id=${r.id}&id=${doc.id}',300,300);">编辑</a>
+						<a href="javascript:void(0);" onclick="if(confirm('本操作不可恢复，确认删除吗？')){self.location.href='${appPath}/doctor.do?method=deleteRecord&rec_id=${r.id}&id=${doc.id}';}">删除</a>
 					</td>
 				</tr>
 				</c:forEach>

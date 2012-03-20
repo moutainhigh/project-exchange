@@ -10,6 +10,7 @@
 		<property name="content" length="1000"></property>
 		<property name="date" column="the_date"></property>
 		<property name="docId"></property>
+		<property name="pOrder" column="p_order"></property>
 		<subclass name="ChangeRecord" discriminator-value="c" extends="Record"></subclass>
 		<subclass name="KaoheRecord" discriminator-value="k" extends="Record"></subclass>
 		<subclass name="TrainingRecord" discriminator-value="t" extends="Record"></subclass>
