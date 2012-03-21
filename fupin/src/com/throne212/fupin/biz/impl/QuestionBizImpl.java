@@ -2,7 +2,6 @@ package com.throne212.fupin.biz.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.text.ParseException;
 import java.util.Date;
 
 import jxl.Sheet;
@@ -14,6 +13,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.dao.QuestionDao;
 import com.throne212.fupin.domain.Cun;
+import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
@@ -107,7 +107,80 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 	}
 
 	public String importQuestion2(String fileName) throws Exception{
-		return null;
+
+		StringBuffer sb = new StringBuffer();
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "upload";
+		FileInputStream fin = new FileInputStream(path + File.separator + fileName);
+
+		Workbook workbook = Workbook.getWorkbook(fin);
+		Sheet sheet = workbook.getSheet(0);
+		
+		String idNo = sheet.getCell(3, 57).getContents();
+		if(Util.isEmpty(idNo) || (idNo.trim().length()!=15 && idNo.trim().length()!=18)){
+			throw new RuntimeException("户主的身份证("+idNo+")为空或格式错误");
+		}
+		idNo = idNo.trim();
+		//检验,表二按照身份证号码
+		Family family = cunDao.getEntityByUniqueColumn(Family.class, "idNo", idNo);
+		if(family == null){
+			throw new RuntimeException("户主的身份证("+idNo+")不存在与系统中");
+		}
+		String orgName = sheet.getCell(3, 1).getContents();
+		
+		try {
+			
+			Question2 q2 = qDao.getEntityByUniqueColumn(Question2.class, "family", family);
+			if(q2 == null){
+				q2 = new Question2();
+				q2.setCreateDate(new Date());
+			}
+			q2.setFamily(family);
+			q2.setIdNo(idNo);
+			
+			Org org = cunDao.getEntityByUniqueColumn(Org.class, "orgName", orgName);
+			if(org == null)
+				org = family.getCun().getOrg();
+			q2.setOrg(org);
+			
+			int index = 1;
+			for(int i=4;i<=55;i++){
+				String col1 = sheet.getCell(0, i).getContents();
+				if(col1!=null && col1.matches("\\d{3}")){
+					String str = sheet.getCell(3,i).getContents();
+					double val = 0;
+					try {
+						val = Double.valueOf(str);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					q2.setItem(index++, val);
+				}
+			}
+			
+			//填表人和日期
+			Date date = null;
+			String writer = sheet.getCell(1,56).getContents();
+			String theStr = sheet.getCell(3,56).getContents();
+			try {
+				date = Util.getDateByTxtChina(theStr.replaceAll("\\s", "").trim());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			q2.setWriter(writer);
+			q2.setDate(date);
+			
+			this.saveOrUpdateEntity(q2);
+			sb.append("资料导入成功，户名:" + family.getName()+"("+idNo+")");
+			workbook.close();
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			throw new RuntimeException("导入失败，请检查数据及其格式是否完整和准确");
+		}
+
+		return sb.toString();
+	
 	}
 
 	public QuestionDao getqDao() {

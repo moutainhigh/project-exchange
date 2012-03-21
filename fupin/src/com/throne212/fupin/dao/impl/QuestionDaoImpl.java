@@ -2,6 +2,7 @@ package com.throne212.fupin.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.throne212.fupin.common.PageBean;
@@ -77,11 +78,11 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		String hql = "from Question2 q where 1=1";
 		
 		if(cunId != null){
-			hql += " and cun.id=" + cunId;
+			hql += " and family.cun.id=" + cunId;
 		}else if(zhenId != null){
-			hql += " and cun.zhen.id=" + zhenId;
+			hql += " and family.cun.zhen.id=" + zhenId;
 		}else if(areaId != null){
-			hql += " and cun.zhen.area.id=" + areaId;
+			hql += " and family.cun.zhen.area.id=" + areaId;
 		}
 		
 		Object[] params = new Object[]{};
@@ -92,11 +93,15 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		
 		hql+=" order by id desc";
 		logger.debug("hql="+hql);
-		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,params).get(0);
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Question2> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.length;i++){
+			q.setParameter(i, params[i]);
+		}
+		List<Question2> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		page.setResultList(list);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
