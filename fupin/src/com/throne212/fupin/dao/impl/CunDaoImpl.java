@@ -1,6 +1,5 @@
 package com.throne212.fupin.dao.impl;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -11,11 +10,9 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ChengxiaoCun;
-import com.throne212.fupin.domain.ChengxiaoZhen;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiCun;
-import com.throne212.fupin.domain.CuoshiZhen;
 import com.throne212.fupin.domain.PicCun;
-import com.throne212.fupin.domain.PicZhen;
 import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
@@ -313,4 +310,13 @@ public class CunDaoImpl extends BaseDaoImpl implements CunDao {
 		return page;
 	}
 
+	public Cun getCunByFullName(String fullName){
+		String hql = "from Cun c where (c.zhen.area.name||c.zhen.name||c.name)=?";
+		List<Cun> list = this.getHibernateTemplate().find(hql, fullName);
+		if(list != null && list.size()>0)
+			return list.get(0);
+		else
+			return null;
+	}
+	
 }

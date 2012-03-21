@@ -8,6 +8,8 @@
 		</id>
 		<many-to-one name="org" column="org_id" lazy="false"></many-to-one>
 		<many-to-one name="family" column="family_id" lazy="false"></many-to-one>
+		<property name="writer"></property>
+		<property name="date"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>

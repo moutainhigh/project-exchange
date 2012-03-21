@@ -1,5 +1,6 @@
 package com.throne212.fupin.domain;
 
+import java.lang.reflect.Method;
 import java.util.Date;
 
 public class Question extends MyEntity {
@@ -109,6 +110,31 @@ public class Question extends MyEntity {
 	private Double item98;
 	private Double item99;
 	private Double item100;
+	
+	public Double getItem(Integer i) {
+		if (i == null || i == 0)
+			return null;
+		try {
+			Method m = Question.class.getMethod("getItem"+i);
+			return (Double) m.invoke(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void setItem(Integer i, Double val) {
+		if (i == null || i == 0)
+			return;
+		try {
+			Method m = Question.class.getMethod("setItem"+i, Double.class);
+			m.invoke(this, val);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public String getWriter() {
 		return writer;
 	}

@@ -85,6 +85,16 @@ public class Util {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return dateFormat.format(date);
 	}
+	public static Date getDateByTxtChina(String dateTxt) throws ParseException {
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+			return dateFormat.parse(dateTxt);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static Date getDateByTxt(String dateTxt) throws ParseException {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

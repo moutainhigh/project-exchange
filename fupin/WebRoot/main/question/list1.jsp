@@ -89,7 +89,7 @@
 		
 		function query(){
 			var f = document.forms[0];
-			f.action = "${appPath}questionManagement_list1.action";
+			f.action = "${appPath}question_list1.action";
 			f.submit();
 		}
 		</script>
@@ -102,7 +102,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}family_familyList.action" name="searchForm">
+		<form method="get" action="${appPath}question_list1.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
@@ -128,7 +128,9 @@
 									</select>
 							
 							<input type="button" class="button" value="查询" onclick="query();"> 
-							
+							<c:if test="${isShow!='Y' }">
+							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question/upload1.jsp',400,200);"/>
+							</c:if>
 						</td>
 					</tr>
 				</tbody>
@@ -140,52 +142,45 @@
 							<input type="checkbox" onclick="checkAll(this);">
 						</td>
 						<td width="" class="tables_headercell">
-							户名
+							村名
 						</td>
 						<td width="" class="tables_headercell">
-							类型
+							帮扶单位
 						</td>
 						<td width="" class="tables_headercell">
-							性别
+							填表人
 						</td>
 						<td width="" class="tables_headercell">
-							编号
-						</td>
-						<td width="" class="tables_headercell">
-							所属地区
+							填表日期
 						</td>
 						<td width="" class="tables_headercell">
 							操作
 						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
-						<tr <c:if test="${f.type==5}">style="background: pink"</c:if>>
+						<tr>
 							<td height="25" align="center" class="tables_contentcell">
 								<input type="checkbox" value="${f.id}" name="ids">
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.name}
+								&nbsp;${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 								
-								${f.type}
+								${f.org.orgName}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
-								${f.gender }
+								${f.writer }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.id}
+								&nbsp; <fmt:formatDate value="${f.date}" pattern="yyyy-MM-dd"/>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-								${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
-								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',1150,700);">修改</a>
+								<c:if test="${isShow!='Y' }">
+								<a href="javascript:void(0);" onclick="if(confirm('确定删除吗？')){self.location.href='${appPath}question_deleteQuestion1.action?q1.id=${f.id}'}">删除</a>
 								</c:if>
-								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',1150,700);">查看</a>
+								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_show1.action?q1.id=${f.id}',800,600);">查看</a>
 							</td>
 						</tr>
 					</c:forEach>

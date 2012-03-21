@@ -2,6 +2,7 @@ package com.throne212.fupin.dao;
 
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.ChengxiaoCun;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.CuoshiCun;
 import com.throne212.fupin.domain.PicCun;
 import com.throne212.fupin.domain.PicFamily;
@@ -21,5 +22,7 @@ public interface CunDao extends BaseDao {
 	public PageBean<PicCun> getAllPicCunByCunId(PicCun condition,Long CunId,Integer pageIndex);
 	public PageBean<PicCun> getAllPicCun(PicCun condition,Integer pageIndex);
 	public PageBean<PicCun> getAllPicCun(PicCun condition,Long areaId ,Long zhenId, Long cunId, Integer pageIndex);
+	
+	public Cun getCunByFullName(String fullName);
 	
 }

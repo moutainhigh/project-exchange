@@ -220,6 +220,14 @@
 				<param name="actionName">family_uploadExcel3</param>
          		<param name="namespace">/</param> 
 			</result>
+			<result name="question1" type="chain">
+				<param name="actionName">question_uploadQuestion1</param>
+         		<param name="namespace">/</param> 
+			</result>
+			<result name="question2" type="chain">
+				<param name="actionName">question_uploadQuestion2</param>
+         		<param name="namespace">/</param> 
+			</result>
 		</action>
 		<!-- 业务咨询 -->
 		<action name="zixun_*" method="{1}" class="com.throne212.fupin.action.ZixunAction">
@@ -293,9 +301,13 @@
 			<result name="success">/main/view/content.jsp</result>
 		</action>
 		<!-- 调查表 -->
-		<action name="questionManagement_*" method="{1}" class="com.throne212.fupin.action.QuestionManagementAction">
-			<result name="list1">/main/question_manage/list1.jsp</result>
-			<result name="list2">/main/question_manage/list2.jsp</result>
+		<action name="question_*" method="{1}" class="com.throne212.fupin.action.QuestionAction">
+			<result name="list1">/main/question/list1.jsp</result>
+			<result name="list2">/main/question/list2.jsp</result>
+			<result name="upload1">/main/question/upload1.jsp</result>
+			<result name="upload2">/main/question/upload2.jsp</result>
+			<result name="show1">/main/question/show1.jsp</result>
+			<result name="show2">/main/question/show2.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

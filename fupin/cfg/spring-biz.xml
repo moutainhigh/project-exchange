@@ -74,4 +74,9 @@
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="projectDao" ref="projectDao"></property>
 	</bean>
+	<bean id="questionBiz" class="com.throne212.fupin.biz.impl.QuestionBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="qDao" ref="questionDao"></property>
+		<property name="cunDao" ref="cunDao"></property>
+	</bean>
 </beans>
