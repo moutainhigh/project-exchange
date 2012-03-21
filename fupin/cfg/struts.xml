@@ -292,6 +292,11 @@
 		<action name="viewContent" class="com.throne212.fupin.action.ViewContentAction">
 			<result name="success">/main/view/content.jsp</result>
 		</action>
+		<!-- 调查表 -->
+		<action name="questionManagement_*" method="{1}" class="com.throne212.fupin.action.QuestionManagementAction">
+			<result name="list1">/main/question_manage/list1.jsp</result>
+			<result name="list2">/main/question_manage/list2.jsp</result>
+		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">
         <action name="*" method="{1}" class="com.throne212.fupin.action.AjaxAction">

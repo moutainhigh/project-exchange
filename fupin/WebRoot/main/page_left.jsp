@@ -150,6 +150,12 @@ function images_update(){
 	if(window.quanxian=='5')
 	{
 	
+		<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
+	    menuArray[menuArray.length]="0,调查表资料维护,";
+	    menuArray[menuArray.length]="1,调查表(一),${appPath}questionManagement_list1.action";
+	    menuArray[menuArray.length]="1,调查表(二),${appPath}questionManagement_list2.action";
+	    </c:if>
+	
 		menuArray[menuArray.length]="0,报表维护,";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="1,报表导出,${appPath}report_export.action";
@@ -263,6 +269,7 @@ function images_update(){
 	    menuArray[menuArray.length]="1,通讯录组,${appPath}group_groupList.action";
 	    menuArray[menuArray.length]="1,通讯录,${appPath}contact_queryContact.action";
 	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
+	    
 	    
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
