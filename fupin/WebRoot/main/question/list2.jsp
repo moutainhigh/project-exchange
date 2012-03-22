@@ -135,10 +135,8 @@
 									</select>
 							<input type="text" name="familyName" value="${param.familyName }" style="width:100px;"/>
 							<input type="button" class="button" value="查询" onclick="query();"> 
-							<c:if test="${isShow!='Y' }">
 							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question/upload2.jsp',500,300);"/>
 							<input type="button" class="button" value="删除" onclick="deleteQuestion2();"> 
-							</c:if>
 						</td>
 					</tr>
 				</tbody>
@@ -185,9 +183,7 @@
 								&nbsp; <fmt:formatDate value="${f.date}" pattern="yyyy-MM-dd"/>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${isShow!='Y' }">
 								<a href="javascript:void(0);" onclick="if(confirm('确定删除吗？')){self.location.href='${appPath}question_deleteQuestion2.action?q2.id=${f.id}'}">删除</a>
-								</c:if>
 								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_show2.action?q2.id=${f.id}',800,600);">查看</a>
 							</td>
 						</tr>

@@ -155,8 +155,8 @@ function images_update(){
 	    menuArray[menuArray.length]="1,调查表(一),${appPath}question_list1.action";
 	    menuArray[menuArray.length]="1,调查表(二),${appPath}question_list2.action";
 	    menuArray[menuArray.length]="0,调查表统计,";
-	    menuArray[menuArray.length]="1,调查表(一),${appPath}question_list1.action?isShow=Y";
-	    menuArray[menuArray.length]="1,调查表(二),${appPath}question_list2.action?isShow=Y";
+	    menuArray[menuArray.length]="1,调查表(一)统计,${appPath}question_stat1.action";
+	    menuArray[menuArray.length]="1,调查表(二)统计,${appPath}question_stat2.action";
 	    </c:if>
 	
 		menuArray[menuArray.length]="0,报表维护,";

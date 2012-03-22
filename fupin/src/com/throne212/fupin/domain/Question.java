@@ -111,6 +111,10 @@ public class Question extends MyEntity {
 	private Double item99;
 	private Double item100;
 	
+	public Question() {
+		super();
+	}
+
 	public Double getItem(Integer i) {
 		if (i == null || i == 0)
 			return null;

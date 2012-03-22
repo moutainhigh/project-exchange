@@ -308,6 +308,8 @@
 			<result name="upload2">/main/question/upload2.jsp</result>
 			<result name="show1">/main/question/show1.jsp</result>
 			<result name="show2">/main/question/show2.jsp</result>
+			<result name="stat1">/main/question/stat1.jsp</result>
+			<result name="stat2">/main/question/stat2.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

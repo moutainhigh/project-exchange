@@ -1,15 +1,98 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="com.throne212.fupin.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>调查表（二）  ${q2.family.name }</title>
+		<link href="${appPath}main/main_data/manage.css" rel="stylesheet">
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
-		<script>
-			<jsp:include page="../../msg.jsp"></jsp:include>
+		<script src="${appPath}js/sel_style.js" language="javascript"></script>
+		<script src="${appPath}js/common.js" language="javascript"></script>
+		<script language="javascript">
+		var msg = '${msg}';
+		if(msg != ''){
+			alert(msg);
+		}
+		$(function(){
+			$.getJSON("${appPath}ajax/getAllShi?time="+new Date().getTime(), {}, function(json){
+				if(json && json['list'] && json['list'].length){
+					$('#shiId').html('');
+					for(var i=0;i<json['list'].length;i++)
+						$('#shiId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+					selectShi($('#shiId').val());
+				}
+			});
+		});
+		var paramAreaId = '${param.areaId}';
+		function selectShi(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllArea?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#areaId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#areaId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramAreaId!=''){
+							setTimeout(function(){
+								$('#areaId').val(paramAreaId);
+								selectArea(paramAreaId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		var paramZhenId = '${param.zhenId}';
+		function selectArea(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#zhenId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(paramZhenId);
+								selectZhen(paramZhenId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		var paramCunId = '${param.cunId}';
+		function selectZhen(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#cunId2').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramCunId!=''){
+							setTimeout(function(){
+								$('#cunId2').val(paramCunId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		
+		
+		
+		function stat(){
+			var f = document.forms[0];
+			f.action = "${appPath}question_stat2.action";
+			f.submit();
+		}
 		</script>
+		<style>
+.tables_search {
+	margin: 0px 0px 2px 0px;
+	height: 40px;
+	background-color: #418FD0;
+}
+</style>
 <style>
 tr
 	{mso-height-source:auto;
@@ -56,8 +139,6 @@ td
 	padding-right:1px;
 	padding-left:1px;
 	mso-ignore:padding;
-	color:black;
-	font-size:11.0pt;
 	font-weight:400;
 	font-style:normal;
 	text-decoration:none;
@@ -237,8 +318,43 @@ rt
 	display:none;}
 -->
 </style>
-</head>
-<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+	</head>
+	<body>
+		<c:set var="q2" value="${q.q }"></c:set>
+		<form method="get" action="${appPath}question_list2.action" name="searchForm">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
+				<tbody>
+					<tr>
+						<td>
+							您当前所处页面：调查表统计 >> 调查表（二）统计
+						</td>
+						<td align="right">
+							<span class="STYLE1">市：</span>
+			                   <select id="shiId" name="shiId" onchange="selectShi(this.value);">
+								<option value="">-----------</option>
+							 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区/县：</span>
+						<select id="areaId" name="areaId" onchange="selectArea(this.value);">
+									<option value="">----------</option>
+								  </select>
+			 			<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+							<input type="button" class="button" value="统计" onclick="stat();"> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+<c:if test="${not empty q2 && not empty q2.item1}">
+			
+			
+<div class=Section1 style='layout-grid:15.6pt; margin: 0 auto; width: 800px;'>
 <table border=0 cellpadding=0 cellspacing=0 width=620 style='border-collapse:
  collapse;table-layout:fixed;'>
  <col width=100 style='mso-width-source:userset;mso-width-alt:4096;width:96pt'>
@@ -251,16 +367,16 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
  </tr>
  <tr height=57 style='height:42.75pt'>
-  <td height=57 class=xl66 width=100 style='height:42.75pt;'>贫困村（盖章）<span
+  <td height=57 class=xl66 width=100 style='height:42.75pt;'><span
   style='mso-spacerun:yes'></span><ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl67 width=300><span
-  style='mso-spacerun:yes'>${q2.family.cun.zhen.area.name }${q2.family.cun.zhen.name }${q2.family.cun.name }</span><ruby><font
+  style='mso-spacerun:yes'></span><ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl66 width=100>帮扶单位（盖章）<ruby><font class="font7"><rt
+  <td class=xl66 width=100><ruby><font class="font7"><rt
   class=font7></rt></font></ruby></td>
   <td class=xl67 width=150><span
-  style='mso-spacerun:yes'>${q2.org.orgName }</span><ruby><font
+  style='mso-spacerun:yes'></span><ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
@@ -288,7 +404,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>代码<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'><fmt:formatNumber value="${q2.item1 }" pattern="#.##" type="number"/>　</td>
+  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'>1:${q.num1[0] },2:${q.num1[1] }　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -556,7 +672,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>代码<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'><fmt:formatNumber value="${q2.item29 }" pattern="#.##" type="number"/>　</td>
+  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'>1:${q.num29[0] },2:${q.num29[1] }　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -746,29 +862,6 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'><fmt:formatNumber value="${q2.item47 }" pattern="#.##" type="number"/>　</td>
  </tr>
- <tr height=38 style='height:28.5pt'>
-  <td height=38 class=xl73 width=128 style='height:28.5pt;border-top:none;
-  width:96pt'>填表人：<span
-  style='mso-spacerun:yes'></span><ruby><font
-  class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl75 width=317 style='border-top:none;border-left:none;width:238pt'>${q2.writer }　</td>
-  <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'><span
-  style='mso-spacerun:yes'>&nbsp;</span>填表时间：<ruby><font class="font7"><rt
-  class=font7></rt></font></ruby></td>
-  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'><fmt:formatDate value="${q2.date}" pattern="yyyy年MM月dd日"/><ruby><font
-  class="font7"><rt class=font7></rt></font></ruby></td>
- </tr>
- <tr height=36 style='height:27.0pt'>
-  <td height=36 class=xl79 width=128 style='height:27.0pt;border-top:none;
-  width:96pt'>贫困户<br>
-    （签名）<span
-  style='mso-spacerun:yes'></span><ruby><font
-  class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl80 style='border-top:none;border-left:none'>${q2.family.name }　</td>
-  <td class=xl81 width=95 style='border-top:none;border-left:none;width:71pt'>户主身份证号码<ruby><font
-  class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl82 width=80 style='border-top:none;border-left:none;width:60pt'>${q2.family.idNo }　</td>
- </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
   <td width=128 style='width:96pt'></td>
@@ -779,9 +872,10 @@ rt
  <![endif]>
 </table>
 
-		
-		<div style="text-align: center;">
-		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
-		</div>
+</div>
+</c:if>
+			
+			
+		</form>
 	</body>
 </html>

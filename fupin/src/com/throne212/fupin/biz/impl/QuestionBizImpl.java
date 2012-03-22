@@ -9,6 +9,7 @@ import jxl.Workbook;
 
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.dao.QuestionDao;
@@ -72,6 +73,9 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 				String col1 = sheet.getCell(0, i).getContents();
 				if(col1!=null && col1.matches("\\d{3}")){
 					String str = sheet.getCell(3,i).getContents();
+					if(Util.isEmpty(str)){
+						throw new RuntimeException("不允许留空");
+					}
 					double val = 0;
 					try {
 						val = Double.valueOf(str);
@@ -263,6 +267,9 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 					String col1 = sheet.getCell(0, i).getContents();
 					if(col1!=null && col1.matches("\\d{3}")){
 						String str = sheet.getCell(3,i).getContents();
+						if(Util.isEmpty(str)){
+							throw new RuntimeException("不允许留空");
+						}
 						double val = 0;
 						try {
 							val = Double.valueOf(str);
@@ -329,6 +336,15 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		return sb.toString();
 	
 	}
+	
+	public QuestionStatDO statQuestion1(Long areaId, Long zhenId){
+		return qDao.statQuestion1(areaId, zhenId);
+	}
+	
+	public QuestionStatDO statQuestion2(Long areaId, Long zhenId, Long cunId){
+		return qDao.statQuestion2(areaId, zhenId, cunId);
+	}
+
 
 	public QuestionDao getqDao() {
 		return qDao;

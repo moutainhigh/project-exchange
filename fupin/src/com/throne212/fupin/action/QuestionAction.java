@@ -3,6 +3,7 @@ package com.throne212.fupin.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
@@ -19,6 +20,7 @@ public class QuestionAction extends BaseAction {
 	
 	private Question1 q1;
 	private Question2 q2;
+	private QuestionStatDO q;
 	
 	private QuestionBiz questionBiz;
 	
@@ -70,6 +72,11 @@ public class QuestionAction extends BaseAction {
 		isShow = "Y";
 		return "show1";
 	}
+	public String stat1(){
+		if(areaId != null || zhenId != null)
+			q = questionBiz.statQuestion1(areaId, zhenId);
+		return "stat1";
+	}
 	
 	//二
 	public String list2(){
@@ -117,7 +124,11 @@ public class QuestionAction extends BaseAction {
 		isShow = "Y";
 		return "show2";
 	}
-	
+	public String stat2(){
+		if(areaId != null || zhenId != null || cunId != null)
+			q = questionBiz.statQuestion2(areaId, zhenId, cunId);
+		return "stat2";
+	}
 
 	public PageBean getPageBean() {
 		return pageBean;
@@ -195,6 +206,12 @@ public class QuestionAction extends BaseAction {
 	}
 	public void setIsShow(String isShow) {
 		this.isShow = isShow;
+	}
+	public QuestionStatDO getQ() {
+		return q;
+	}
+	public void setQ(QuestionStatDO q) {
+		this.q = q;
 	}
 	
 }
