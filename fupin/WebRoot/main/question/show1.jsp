@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<title>调查表（一）- ${q1.cun.name }</title>
+		<title>调查表（一）  ${q1.cun.name }</title>
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
@@ -341,7 +341,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item1 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item1 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:5;height:28.5pt'>
@@ -376,7 +376,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item2 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item2 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6;height:28.5pt'>
@@ -411,7 +411,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item3 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item3 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:7;height:28.5pt'>
@@ -445,7 +445,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item4 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item4 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:8;height:22.15pt'>
@@ -479,7 +479,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:22.15pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item5 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item5 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:9;height:18.75pt'>
@@ -548,7 +548,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item6 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item6 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:11;height:28.5pt'>
@@ -583,7 +583,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item7 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item7 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:12;height:28.5pt'>
@@ -618,7 +618,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item8 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item8 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:13;height:28.5pt'>
@@ -653,7 +653,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item9 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item9 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:14;height:42.75pt'>
@@ -688,7 +688,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item10 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item10 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:15;height:18.75pt'>
@@ -757,7 +757,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item11 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item11 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:17;height:28.5pt'>
@@ -792,7 +792,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item12 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item12 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:18;height:28.5pt'>
@@ -827,7 +827,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item13 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item13 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:19;height:18.75pt'>
@@ -895,7 +895,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item14 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item14 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:21;height:18.75pt'>
@@ -930,7 +930,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item15 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item15 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:22;height:18.75pt'>
@@ -965,7 +965,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item16 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item16 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:23;height:18.75pt'>
@@ -1000,7 +1000,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item17 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item17 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:24;height:18.75pt'>
@@ -1035,7 +1035,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item18 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item18 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:25;height:18.75pt'>
@@ -1070,7 +1070,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item19 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item19 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:26;height:18.75pt'>
@@ -1106,7 +1106,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item20 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item20 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:27;height:18.75pt'>
@@ -1140,7 +1140,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item21 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item21 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:28;height:18.75pt'>
@@ -1210,7 +1210,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item22 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item22 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:30;height:18.75pt'>
@@ -1246,7 +1246,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item23 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item23 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:31;height:42.75pt'>
@@ -1282,7 +1282,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item24 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item24 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:32;height:18.75pt'>
@@ -1316,7 +1316,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item25 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item25 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:33;height:42.75pt'>
@@ -1353,7 +1353,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item26 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item26 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:34;height:57.0pt'>
@@ -1390,7 +1390,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:57.0pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item27 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item27 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:35;height:42.75pt'>
@@ -1426,7 +1426,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item28 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item28 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:36;height:18.75pt'>
@@ -1461,7 +1461,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item29 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item29 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:37;height:18.75pt'>
@@ -1496,7 +1496,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item30 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item30 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:38;height:18.75pt'>
@@ -1532,7 +1532,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item31 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item31 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:39;height:18.75pt'>
@@ -1567,7 +1567,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item32 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item32 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:40;height:18.75pt'>
@@ -1602,7 +1602,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item33 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item33 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:41;height:71.25pt'>
@@ -1671,7 +1671,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item34 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item34 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:43;height:18.75pt'>
@@ -1705,7 +1705,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item35 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item35 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:44;height:18.75pt'>
@@ -1739,7 +1739,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item36 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item36 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:45;height:18.75pt'>
@@ -1842,7 +1842,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item37 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item37 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:48;height:18.75pt'>
@@ -1878,7 +1878,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item38 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item38 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:49;height:18.75pt'>
@@ -1912,7 +1912,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item39 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item39 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:50;height:18.75pt'>
@@ -1947,7 +1947,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item40 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item40 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:51;height:18.75pt'>
@@ -1983,7 +1983,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item41 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item41 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:52;height:18.75pt'>
@@ -2019,7 +2019,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item42 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item42 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:53;height:18.75pt'>
@@ -2055,7 +2055,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item43 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item43 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:54;height:18.75pt'>
@@ -2091,7 +2091,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item44 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item44 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:55;height:28.5pt'>
@@ -2127,7 +2127,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item45 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item45 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:56;height:18.75pt'>
@@ -2163,7 +2163,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item46 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item46 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:57;height:28.5pt'>
@@ -2199,7 +2199,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item47 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item47 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:58;height:28.5pt'>
@@ -2235,7 +2235,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item48 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item48 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:59;height:28.5pt'>
@@ -2305,7 +2305,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item49 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item49 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:61;height:28.5pt'>
@@ -2341,7 +2341,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item50 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item50 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:62;height:22.9pt'>
@@ -2375,7 +2375,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:22.9pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item51 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item51 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:63;height:18.75pt'>
@@ -2411,7 +2411,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item52 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item52 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:64;height:18.75pt'>
@@ -2445,7 +2445,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item53 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item53 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:65;height:18.75pt'>
@@ -2481,7 +2481,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item54 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item54 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:66;height:18.75pt'>
@@ -2550,7 +2550,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item55 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item55 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:68;height:18.75pt'>
@@ -2584,7 +2584,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item56 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item56 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:69;height:18.75pt'>
@@ -2621,7 +2621,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item57 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item57 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:70;height:28.5pt'>
@@ -2655,7 +2655,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item58 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item58 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:71;height:18.75pt'>
@@ -2689,7 +2689,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item59 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item59 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:72;height:18.75pt'>
@@ -2725,7 +2725,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item60 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item60 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:73;height:18.75pt'>
@@ -2796,7 +2796,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item61 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item61 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:75;height:18.75pt'>
@@ -2833,7 +2833,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item62 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item62 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:76;height:28.5pt'>
@@ -2869,7 +2869,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item63 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item63 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:77;height:18.75pt'>
@@ -2903,7 +2903,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item64 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item64 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:78;height:28.5pt'>
@@ -2940,7 +2940,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item65 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item65 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:79;height:18.75pt'>
@@ -3010,7 +3010,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item66 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item66 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:81;height:18.75pt'>
@@ -3044,7 +3044,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item67 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item67 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:82;height:18.75pt'>
@@ -3078,7 +3078,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item68 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item68 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:83;height:18.75pt'>
@@ -3113,7 +3113,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item69 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item69 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:84;height:18.75pt'>
@@ -3217,7 +3217,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item70 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item70 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:87;height:18.75pt'>
@@ -3251,7 +3251,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item71 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item71 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:88;height:18.75pt'>
@@ -3286,7 +3286,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item72 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item72 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:89;height:18.75pt'>
@@ -3356,7 +3356,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item73 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item73 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:91;height:18.75pt'>
@@ -3390,7 +3390,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item74 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item74 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:92;height:18.75pt'>
@@ -3425,7 +3425,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item75 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item75 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:93;height:18.75pt'>
@@ -3495,7 +3495,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item76 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item76 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:95;height:42.75pt'>
@@ -3531,7 +3531,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item77 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item77 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:96;height:18.75pt'>
@@ -3566,7 +3566,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item78 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item78 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:97;height:18.75pt'>
@@ -3636,7 +3636,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item79 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item79 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:99;height:28.5pt'>
@@ -3670,7 +3670,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item80 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item80 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:100;height:18.75pt'>
@@ -3705,7 +3705,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item81 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item81 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:101;height:18.75pt'>
@@ -3774,7 +3774,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item82 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item82 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:103;height:18.75pt'>
@@ -3808,7 +3808,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item83 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item83 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:104;height:18.75pt'>
@@ -3842,7 +3842,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item84 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item84 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:105;height:18.75pt'>
@@ -3876,7 +3876,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item85 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item85 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:106;height:18.75pt'>
@@ -3910,7 +3910,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item86 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item86 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:107;height:18.75pt'>
@@ -3944,7 +3944,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item87 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item87 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:108;height:18.75pt'>
@@ -3978,7 +3978,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item88 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item88 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:109;height:18.75pt'>
@@ -4012,7 +4012,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item89 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item89 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:110;height:18.75pt'>
@@ -4048,7 +4048,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item90 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item90 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:111;height:18.75pt'>
@@ -4082,7 +4082,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item91 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item91 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:112;height:18.75pt'>
@@ -4116,7 +4116,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item92 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item92 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:113;height:18.75pt'>
@@ -4150,7 +4150,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item93 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item93 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:114;height:18.75pt'>
@@ -4184,7 +4184,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item94 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item94 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:115;height:18.75pt'>
@@ -4218,7 +4218,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item95 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item95 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:116;height:18.75pt'>
@@ -4252,7 +4252,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item96 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item96 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:117;height:18.75pt'>
@@ -4321,7 +4321,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item97 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item97 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:119;height:42.75pt'>
@@ -4356,7 +4356,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item99 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item98 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:120;height:57.0pt'>
@@ -4391,7 +4391,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:57.0pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item99 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item99 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:121;height:28.5pt'>
@@ -4426,7 +4426,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>${q1.item100 }　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><fmt:formatNumber value="${q1.item100 }" pattern="#.##" type="number"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:122;height:29.45pt'>

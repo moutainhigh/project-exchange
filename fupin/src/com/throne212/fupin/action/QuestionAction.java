@@ -48,6 +48,18 @@ public class QuestionAction extends BaseAction {
 		if(q1!=null && q1.getId() != null){
 			questionBiz.deleteEntity(Question1.class, q1.getId());
 			this.setMsg("删除成功");
+		}else{
+			String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+			if(ids != null && ids.length > 0){
+				for(String idStr : ids){
+					Long id = Long.parseLong(idStr);
+					Question1 q = questionBiz.getEntityById(Question1.class, id);
+					if(q != null){
+						questionBiz.deleteEntity(Question1.class, id);
+						this.setMsg("删除成功");
+					}
+				}
+			}
 		}
 		return list1();
 	}
@@ -83,6 +95,18 @@ public class QuestionAction extends BaseAction {
 		if(q2!=null && q2.getId() != null){
 			questionBiz.deleteEntity(Question2.class, q2.getId());
 			this.setMsg("删除成功");
+		}else{
+			String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+			if(ids != null && ids.length > 0){
+				for(String idStr : ids){
+					Long id = Long.parseLong(idStr);
+					Question2 q = questionBiz.getEntityById(Question2.class, id);
+					if(q != null){
+						questionBiz.deleteEntity(Question2.class, id);
+						this.setMsg("删除成功");
+					}
+				}
+			}
 		}
 		return list2();
 	}

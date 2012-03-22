@@ -5,8 +5,6 @@ public class Question2 extends Question {
 	
 	private Family family;
 	
-	private String idNo;//填写的身份证号码
-	
 	private Org org;
 
 	public Org getOrg() {
@@ -25,12 +23,5 @@ public class Question2 extends Question {
 		this.family = family;
 	}
 
-	public String getIdNo() {
-		return idNo;
-	}
-
-	public void setIdNo(String idNo) {
-		this.idNo = idNo;
-	}
 	
 }

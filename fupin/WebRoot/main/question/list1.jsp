@@ -92,6 +92,13 @@
 			f.action = "${appPath}question_list1.action";
 			f.submit();
 		}
+		function deleteQuestion1(){
+			if(confirm('确定删除吗？')){
+				var f = document.forms[0];
+				f.action = "${appPath}question_deleteQuestion1.action";
+				f.submit();
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -129,7 +136,8 @@
 							
 							<input type="button" class="button" value="查询" onclick="query();"> 
 							<c:if test="${isShow!='Y' }">
-							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question/upload1.jsp',400,200);"/>
+							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question/upload1.jsp',500,300);"/>
+							<input type="button" class="button" value="删除" onclick="deleteQuestion1();"> 
 							</c:if>
 						</td>
 					</tr>
