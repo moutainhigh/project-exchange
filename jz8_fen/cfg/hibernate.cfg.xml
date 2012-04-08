@@ -9,6 +9,7 @@
 		<property name="hibernate.dialect">
 			org.hibernate.dialect.MySQLDialect
 		</property>
+		<!-- 
 		<property name="hibernate.cache.provider_class">
 			com.googlecode.hibernate.memcached.MemcachedCacheProvider
 		</property>
@@ -16,7 +17,9 @@
 		<property name="hibernate.memcached.servers">127.0.0.1:11211</property>
 		<property name="hibernate.cache.region_prefix">quality.cache.ehcache</property>
 		<property name="hibernate.cache.use_query_cache">true</property>
-		
+		 -->
+		 <property name="hibernate.cache.use_second_level_cache">false</property>
+		 <property name="hibernate.cache.use_query_cache">false</property>
 		<property name="hbm2ddl.auto">none</property>
 		
 		<mapping resource="com/throne212/jianzhi8/domain/User.hbm.xml" />

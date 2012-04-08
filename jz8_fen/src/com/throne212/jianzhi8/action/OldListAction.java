@@ -24,9 +24,9 @@ import com.throne212.jianzhi8.dao.jdbc.RegionDAOJDBC;
 import com.throne212.jianzhi8.domain.Region;
 
 @ParentPackage("basePackage")
-public class ListAction extends ActionSupport {
+public class OldListAction extends ActionSupport {
 	
-	private Logger logger = Logger.getLogger(this.getClass());
+private Logger logger = Logger.getLogger(this.getClass());
 	
 	//资源
 	@Resource
@@ -76,6 +76,7 @@ public class ListAction extends ActionSupport {
 	
 	//参数的处理
 	private void getParams(){
+		//ActionContext.getContext().getApplication().get(Consts.JOB_DATE_MAP);
 		//类型,typeId是大类
 		if(!Util.isEmpty(typeId) && (typeId.startsWith("k") || typeId.startsWith("q"))){
 			queryTypeId = typeId;
@@ -115,8 +116,8 @@ public class ListAction extends ActionSupport {
 				unitype = "中介";
 		}
 		// 获取关键词
-		if(!Util.isEmpty(key) && key.startsWith("s") && key.length()>1){
-			key = key.trim().substring(1);
+		if(!Util.isEmpty(key) && key.trim().length()>0){
+			key = key.trim();
 			saveJzWords(key);
 		}else{
 			key = "";
@@ -189,7 +190,7 @@ public class ListAction extends ActionSupport {
 		}else{
 			childTypeList = typeDAO.getTopAll();
 		}
-		return "list_jianzhi";
+		return "list_old_jianzhi";
 	}
 	
 	//招聘全职职位列表
@@ -207,7 +208,7 @@ public class ListAction extends ActionSupport {
 		}
 		//类别列表
 		typeList = jobTypeDAO.getTopAll();
-		return "list_job";
+		return "list_old_job";
 	}
 	
 	public String rencai(){
@@ -230,7 +231,7 @@ public class ListAction extends ActionSupport {
 				childTypeList = typeDAO.getTopAll();
 			}
 		}
-		return "list_rencai";
+		return "list_old_rencai";
 	}
 	
 	public String yanzheng(){
@@ -262,11 +263,12 @@ public class ListAction extends ActionSupport {
 				childTypeList = typeDAO.getTopAll();
 			}
 		}
-		return "list_resume";
+		return "list_old_resume";
 	}
 	
 	//综合搜索
 	public String search(){
+		testLog();
 		//获取参数
 		getParams();
 		//获取数据
@@ -277,6 +279,7 @@ public class ListAction extends ActionSupport {
 	
 	//老搜索
 	public String oldSearch(){
+		testLog();
 		if(!Util.isEmpty(pageNum)){
 			pageNum = pageNum.replaceAll("-", "p");
 		}

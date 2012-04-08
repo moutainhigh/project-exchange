@@ -187,8 +187,8 @@ public class HtmlBuildService {
 			cityList.add(c);
 		}
 		for(Region city : cityList){
-//			if(!city.getCityId().equals("cd"))
-//				continue;
+			if(!city.getCityId().equals("cd") && !city.getCityId().equals("bj"))
+				continue;
 			htmlConfig.setHtmlFilePath("html/" + city.getCityId() + "_index.html");
 //			if(city.getCityId().equals("")){
 //				System.out.println("############3");

@@ -43,7 +43,6 @@
 			<a href="/jianzhi/${Parameters["typeId"]}${Parameters["areaId"]}${Parameters["key"]}" style="color:black;font-weight:600;">È«²¿</a>
 			<#list jobdatemap.keySet() as k>
 			<a href="/jianzhi/${Parameters["typeId"]}${Parameters["areaId"]}d${k}${Parameters["key"]}" <#if jobdate?? && jobdate==k>class="curr_sel"</#if>>${jobdatemap.get(k)}</a>
-			${jobdatemap.get(1?int)}
 			</#list>
 			</p>
 		</div>

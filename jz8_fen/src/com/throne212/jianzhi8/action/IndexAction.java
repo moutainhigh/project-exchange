@@ -27,17 +27,19 @@ public class IndexAction extends ActionSupport {
 	
 	//bean参数
 	private Region city;
+	
+	private String cid;
 
 	public String execute(){
 		// 获取城市
-		String cityId = (String) ActionContext.getContext().getSession().get(Consts.SESS_CITY_ID);
-		String htmlFile = HtmlBuildService.getTemplatePath() + "html/"  + cityId + "_index.html";
+		cid = (String) ActionContext.getContext().getSession().get(Consts.SESS_CITY_ID);
+		String htmlFile = HtmlBuildService.getTemplatePath() + "html/"  + cid + "_index.html";
 		if(!new File(htmlFile).exists()){
 			logger.warn("index file not extist: " + htmlFile);
-			city = regionDAO.findById(cityId);
+			city = regionDAO.findById(cid);
 			htmlBuildService.indexBuildHtml(city);
 		}
-		return "html/" + cityId + "_index";
+		return "html";
 	}
 
 	public Region getCity() {
@@ -46,6 +48,14 @@ public class IndexAction extends ActionSupport {
 
 	public void setCity(Region city) {
 		this.city = city;
+	}
+
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
 	}
 	
 }

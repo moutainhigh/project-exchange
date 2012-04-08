@@ -8,40 +8,65 @@
 	<!-- content info -->
 	<rule>
 		<from>/a(\d+).html</from>
-		<to>view!a.action?ctNo=$1</to>
+		<to>view!a.do?ctNo=$1</to>
 	</rule>
 	
 	<rule>
 		<from>/b(\d+).html</from>
-		<to>view!b.action?ctNo=$1</to>
+		<to>view!b.do?ctNo=$1</to>
 	</rule>
 	
 	<!-- list info -->
+	
 	<rule>
-		<from>^/jianzhi/((K\d+)*)((a\d+)*)((d\d+)*)((t\d+)*)((p\d+)*)((s.+)*)$</from>
-		<to>list!jianzhi.action?typeId=$2&amp;areaId=$4&amp;jobdate=$6&amp;unitype=$8&amp;pageNum=$10&amp;key=$12</to>
+		<from>^/jz(\d*)(/{0,1})(k*)(\d*)(d*)(\d*)(t*)(\d*)(/{0,1})(p*)(\d*)/$</from>
+		<to>list!jianzhi.do?areaId=$1&amp;typeId=$3$4&amp;jobdate=$5$6&amp;unitype=$7$8&amp;pageNum=$11</to>
 	</rule>
 	<rule>
-		<from>^/job/((Q\d+)*)((a\d+)*)((t\d+)*)((p\d+)*)((s.+)*)$</from>
-		<to>list!job.action?typeId=$2&amp;areaId=$4&amp;unitype=$6&amp;pageNum=$8&amp;key=$10</to>
+		<from>^/zp(\d*)(/{0,1})(q*)(\d*)(t*)(\d*)(/{0,1})(p*)(\d*)/$</from>
+		<to>list!job.do?areaId=$1&amp;typeId=$3$4&amp;unitype=$5$6&amp;pageNum=$9</to>
 	</rule>
 	<rule>
-		<from>^/rencai/((K\d+)*)((a\d+)*)((d\d+)*)((c\d+)*)((p\d+)*)((s.+)*)$</from>
-		<to>list!rencai.action?typeId=$2&amp;areaId=$4&amp;jobdate=$6&amp;ctClass=$8&amp;pageNum=$10&amp;key=$12</to>
+		<from>^/rc(\d*)(/{0,1})([kq]*)(\d*)(d*)(\d*)(/{0,1})(p*)(\d*)/$</from>
+		<to>list!rencai.do?areaId=$1&amp;typeId=$3$4&amp;jobdate=$5$6&amp;pageNum=$9</to>
 	</rule>
 	<rule>
-		<from>^/yanzheng/((p\d+)*)$</from>
-		<to>list!yanzheng.action?pageNum=$2</to>
-	</rule>
-	<rule>
-		<from>^/resume/((K\d+)*)((a\d+)*)((d\d+)*)((p\d+)*)((s.+)*)$</from>
-		<to>list!resume.action?typeId=$2&amp;areaId=$4&amp;jobdate=$6&amp;pageNum=$8&amp;key=$10</to>
+		<from>^/rs(\d*)(/{0,1})([kq]*)(\d*)(/{0,1})(p*)(\d*)/$</from>
+		<to>list!resume.do?areaId=$1&amp;typeId=$3$4&amp;pageNum=$7</to>
 	</rule>
 	
-	<!-- search -->
+	<!-- old list info -->
 	<rule>
-		<from>^/s/((p\d+)*)((s.+)*)$</from>
-		<to>list!search.action?pageNum=$2&amp;key=$4</to>
+		<from>^/jianzhi(/{0,1})([^/]+)(/{0,1})(p*)(\d*)/$</from>
+		<to>oldlist!jianzhi.do?key=$2&amp;pageNum=$5</to>
 	</rule>
-
+	<rule>
+		<from>^/job/([^/]+)(/{0,1})(p*)(\d*)/$</from>
+		<to>oldlist!job.do?key=$1&amp;pageNum=$4</to>
+	</rule>
+	<rule>
+		<from>^/rencai/([^/]+)(/{0,1})(p*)(\d*)/$</from>
+		<to>oldlist!rencai.do?key=$1&amp;pageNum=$4</to>
+	</rule>
+	<rule>
+		<from>^/yanzheng(/{0,1})(p*)(\d*)/$</from>
+		<to>list!yanzheng.do?pageNum=$3</to>
+	</rule>
+	<rule>
+		<from>^/resume/([^/]+)(/{0,1})(p*)(\d*)/$</from>
+		<to>oldlist!resume.do?key=$1&amp;pageNum=$4</to>
+	</rule>
+	
+	<!-- old search 
+	<rule>
+		<from>^/s(k*)([01]{0,1})/([^-/]+)(-*)(\d*)(/{0,1})$</from>
+		<to>oldlist!oldSearch.do?ctClass=$1$2&amp;key=$3&amp;pageNum=$5</to>
+	</rule>
+	
+	search
+	<rule>
+		<from>^/sk/([^-/]+)(/{0,1})(p{0,1})(\d*)(/{0,1})$</from>
+		<to>oldlist!search.do?key=$1&amp;pageNum=$4</to>
+	</rule>
+ -->
 </urlrewrite>

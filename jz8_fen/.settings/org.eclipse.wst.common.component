@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/cfg"/>
-        <property name="context-root" value="/jz8_fen"/>
         <property name="java-output-path" value="/jz8_fen/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/jz8_fen"/>
     </wb-module>
 </project-modules>
