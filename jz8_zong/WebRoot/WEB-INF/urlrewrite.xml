@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+
+	<!-- content info -->
+	<rule>
+		<from>/a(\d+).html</from>
+		<to>view!a.do?ctNo=$1</to>
+	</rule>
+	
+	<rule>
+		<from>/b(\d+).html</from>
+		<to>view!b.do?ctNo=$1</to>
+	</rule>
+	
+</urlrewrite>
