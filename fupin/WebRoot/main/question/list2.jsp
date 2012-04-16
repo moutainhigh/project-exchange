@@ -185,6 +185,7 @@
 							<td height="25" align="center" class="tables_contentcell">
 								<a href="javascript:void(0);" onclick="if(confirm('确定删除吗？')){self.location.href='${appPath}question_deleteQuestion2.action?q2.id=${f.id}'}">删除</a>
 								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_show2.action?q2.id=${f.id}',800,600);">查看</a>
+								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_edit2.action?q2.id=${f.id}',800,600);">编辑</a>
 							</td>
 						</tr>
 					</c:forEach>

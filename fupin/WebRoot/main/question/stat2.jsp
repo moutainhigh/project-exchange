@@ -346,6 +346,7 @@ rt
 									<option value="">-----------</option>
 									</select>
 							<input type="button" class="button" value="统计" onclick="stat();"> 
+							<input type="button" class="button" value="导出" onclick="if($('#excel_table').length>0){exportExcel('excel_table');}">
 						</td>
 					</tr>
 				</tbody>
@@ -355,7 +356,7 @@ rt
 			
 			
 <div class=Section1 style='layout-grid:15.6pt; margin: 0 auto; width: 800px;'>
-<table border=0 cellpadding=0 cellspacing=0 width=620 style='border-collapse:
+<table id=excel_table border=0 cellpadding=0 cellspacing=0 width=620 style='border-collapse:
  collapse;table-layout:fixed;'>
  <col width=100 style='mso-width-source:userset;mso-width-alt:4096;width:96pt'>
  <col width=300 style='mso-width-source:userset;mso-width-alt:10144;width:238pt'>

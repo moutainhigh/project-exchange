@@ -232,10 +232,12 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				for (int i = 0; i < colSize; i++) {
 					try {
 						Object obj = rs.getObject(i + 1);
+						if(obj == null || "null".equals(obj))
+							obj = "";
 						if(i < 9)
-							sheet1.addCell(new Label(i, row, obj == null ? "" : obj.toString()));
+							sheet1.addCell(new Label(i, row, obj.toString()));
 						else{
-							sheet1.addCell(new Number(i, row, obj == null || "".equals(obj.toString()) ? 0 : Double.parseDouble(obj.toString())));
+							sheet1.addCell(new Number(i, row, "".equals(obj.toString()) ? 0 : Double.parseDouble(obj.toString())));
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

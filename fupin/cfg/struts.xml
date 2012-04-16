@@ -310,6 +310,8 @@
 			<result name="show2">/main/question/show2.jsp</result>
 			<result name="stat1">/main/question/stat1.jsp</result>
 			<result name="stat2">/main/question/stat2.jsp</result>
+			<result name="edit1">/main/question/edit1.jsp</result>
+			<result name="edit2">/main/question/edit2.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

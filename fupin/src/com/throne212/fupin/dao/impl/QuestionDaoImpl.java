@@ -1,6 +1,5 @@
 package com.throne212.fupin.dao.impl;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -99,6 +98,8 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		
 		for(Question1 q1 : list){
 			for(int i=1;i<=100;i++){
+				if(q1.getItem(i) == null)
+					continue;
 				//统计代码
 				if(i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
 						|| i==11 || i==12 || i==13 || i==24 || i==47 || i==76 || i==77 
@@ -145,6 +146,8 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		
 		for(Question2 q2 : list){
 			for(int i=1;i<=47;i++){
+				if(q2.getItem(i) == null)
+					continue;
 				//统计代码
 				if(i==1 || i==29){
 					q.addNum(i, q2.getItem(i));

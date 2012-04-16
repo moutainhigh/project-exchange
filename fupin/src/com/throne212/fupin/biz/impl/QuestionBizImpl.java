@@ -86,101 +86,101 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 				}
 			}
 			
-			//校验
-			//通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数
-			if(q1.getItem15()>q1.getItem14() || 
-					q1.getItem16()>q1.getItem14() || 
-					q1.getItem17()>q1.getItem14() || 
-					q1.getItem18()>q1.getItem14() || 
-					q1.getItem19()>q1.getItem14() || 
-					q1.getItem20()>q1.getItem14()){
-				throw new RuntimeException("通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数");
-			}
-			//帮扶资金总量
-			if(q1.getItem25()!=(q1.getItem26()+
-					q1.getItem27()+
-					q1.getItem28()+
-					q1.getItem29()+
-					q1.getItem30()+
-					q1.getItem31()+
-					q1.getItem32()+
-					q1.getItem33())){
-				throw new RuntimeException("帮扶资金总量与分量的总和不符");
-			}
-			//扶贫专项资金,支出资金数额≤到账资金数额,到账资金支出率=支出资金数额÷到账资金数额
-			if(q1.getItem35() > q1.getItem34()){
-				throw new RuntimeException("扶贫专项资金,支出资金数额≤到账资金数额");
-			}
-			double rate = (q1.getItem35()/q1.getItem34()) * 100;
-			if(((int)rate) != q1.getItem36().intValue()){
-				throw new RuntimeException("扶贫专项资金,到账资金支出率=支出资金数额÷到账资金数额");
-			}
-			
-			//贫困户总户/人数
-			if(q1.getItem40() + q1.getItem42() != q1.getItem37()){
-				throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
-			}
-			if(q1.getItem41() + q1.getItem43() != q1.getItem38()){
-				throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
-			}
-			
-			//当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数
-			rate = (q1.getItem45() / q1.getItem40()) * 100;
-			if(((int)rate) != q1.getItem46().intValue()){
-				throw new RuntimeException("当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数");
-			}
-			
-			//参加免费农技和就业培训累计人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
-			if(q1.getItem51() > q1.getItem49() - q1.getItem50()){
-				throw new RuntimeException("参加免费农技和就业培训累计人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
-			}
-			//贫困户劳动力培训率=参加免费农技和就业培训累计人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
-			rate = (q1.getItem51() / (q1.getItem49() - q1.getItem50())) * 100;
-			if(((int)rate) != q1.getItem52().intValue()){
-				throw new RuntimeException("贫困户劳动力培训率=参加免费农技和就业培训累计人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）");
-			}
-			
-			//务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
-			if(q1.getItem53() > q1.getItem49() - q1.getItem50()){
-				throw new RuntimeException("务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
-			}
-			//贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
-			rate = (q1.getItem53() / (q1.getItem49() - q1.getItem50())) * 100;
-			if(((int)rate) != q1.getItem54().intValue()){
-				throw new RuntimeException("贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）");
-			}
-			
-			//贫困户新农合参保率=当年贫困户参加新型农村合作医疗人数÷贫困户总人数
-			rate = (q1.getItem61() / q1.getItem38()) * 100;
-			if(((int)rate) != q1.getItem62().intValue()){
-				throw new RuntimeException("贫困户新农合参保率=当年贫困户参加新型农村合作医疗人数÷贫困户总人数");
-			}
-			
-			//贫困户60岁及以上的人新农保参保率=60岁及以上参加新农保人数÷贫困户60岁及以上人数
-			rate = (q1.getItem64() / q1.getItem39()) * 100;
-			if(((int)rate) != q1.getItem65().intValue()){
-				throw new RuntimeException("贫困户60岁及以上的人新农保参保率=60岁及以上参加新农保人数÷贫困户60岁及以上人数");
-			}
-			
-			//设施项目个数=文化室+卫生站+公厕+垃圾收集设施+室外公共文体场所+村容村貌整治改造+其他
-			if(q1.getItem82()!=(q1.getItem83()+
-					q1.getItem84()+
-					q1.getItem85()+
-					q1.getItem86()+
-					q1.getItem87()+
-					q1.getItem88()+
-					q1.getItem89())){
-				throw new RuntimeException("基础建设设施项目个数=文化室+卫生站+公厕+垃圾收集设施+室外公共文体场所+村容村貌整治改造+其他");
-			}
-			
-			//惠民活动=文娱体育+送医送药+科技下乡+慰问贫困户+其他
-			if(q1.getItem91()!=(q1.getItem92()+
-					q1.getItem93()+
-					q1.getItem94()+
-					q1.getItem95()+
-					q1.getItem96())){
-				throw new RuntimeException("惠民活动=文娱体育+送医送药+科技下乡+慰问贫困户+其他");
-			}
+//			//校验
+//			//通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数
+//			if(q1.getItem15()>q1.getItem14() || 
+//					q1.getItem16()>q1.getItem14() || 
+//					q1.getItem17()>q1.getItem14() || 
+//					q1.getItem18()>q1.getItem14() || 
+//					q1.getItem19()>q1.getItem14() || 
+//					q1.getItem20()>q1.getItem14()){
+//				throw new RuntimeException("通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数");
+//			}
+//			//帮扶资金总量
+//			if(q1.getItem25()!=(q1.getItem26()+
+//					q1.getItem27()+
+//					q1.getItem28()+
+//					q1.getItem29()+
+//					q1.getItem30()+
+//					q1.getItem31()+
+//					q1.getItem32()+
+//					q1.getItem33())){
+//				throw new RuntimeException("帮扶资金总量与分量的总和不符");
+//			}
+//			//扶贫专项资金,支出资金数额≤到账资金数额,到账资金支出率=支出资金数额÷到账资金数额
+//			if(q1.getItem35() > q1.getItem34()){
+//				throw new RuntimeException("扶贫专项资金,支出资金数额≤到账资金数额");
+//			}
+//			double rate = (q1.getItem35()/q1.getItem34()) * 100;
+//			if(((int)rate) != q1.getItem36().intValue()){
+//				throw new RuntimeException("扶贫专项资金,到账资金支出率=支出资金数额÷到账资金数额");
+//			}
+//			
+//			//贫困户总户/人数
+//			if(q1.getItem40() + q1.getItem42() != q1.getItem37()){
+//				throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
+//			}
+//			if(q1.getItem41() + q1.getItem43() != q1.getItem38()){
+//				throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
+//			}
+//			
+//			//当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数
+//			rate = (q1.getItem45() / q1.getItem40()) * 100;
+//			if(((int)rate) != q1.getItem46().intValue()){
+//				throw new RuntimeException("当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数");
+//			}
+//			
+//			//参加免费农技和就业培训累计人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
+//			if(q1.getItem51() > q1.getItem49() - q1.getItem50()){
+//				throw new RuntimeException("参加免费农技和就业培训累计人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
+//			}
+//			//贫困户劳动力培训率=参加免费农技和就业培训累计人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
+//			rate = (q1.getItem51() / (q1.getItem49() - q1.getItem50())) * 100;
+//			if(((int)rate) != q1.getItem52().intValue()){
+//				throw new RuntimeException("贫困户劳动力培训率=参加免费农技和就业培训累计人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）");
+//			}
+//			
+//			//务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
+//			if(q1.getItem53() > q1.getItem49() - q1.getItem50()){
+//				throw new RuntimeException("务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
+//			}
+//			//贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
+//			rate = (q1.getItem53() / (q1.getItem49() - q1.getItem50())) * 100;
+//			if(((int)rate) != q1.getItem54().intValue()){
+//				throw new RuntimeException("贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）");
+//			}
+//			
+//			//贫困户新农合参保率=当年贫困户参加新型农村合作医疗人数÷贫困户总人数
+//			rate = (q1.getItem61() / q1.getItem38()) * 100;
+//			if(((int)rate) != q1.getItem62().intValue()){
+//				throw new RuntimeException("贫困户新农合参保率=当年贫困户参加新型农村合作医疗人数÷贫困户总人数");
+//			}
+//			
+//			//贫困户60岁及以上的人新农保参保率=60岁及以上参加新农保人数÷贫困户60岁及以上人数
+//			rate = (q1.getItem64() / q1.getItem39()) * 100;
+//			if(((int)rate) != q1.getItem65().intValue()){
+//				throw new RuntimeException("贫困户60岁及以上的人新农保参保率=60岁及以上参加新农保人数÷贫困户60岁及以上人数");
+//			}
+//			
+//			//设施项目个数=文化室+卫生站+公厕+垃圾收集设施+室外公共文体场所+村容村貌整治改造+其他
+//			if(q1.getItem82()!=(q1.getItem83()+
+//					q1.getItem84()+
+//					q1.getItem85()+
+//					q1.getItem86()+
+//					q1.getItem87()+
+//					q1.getItem88()+
+//					q1.getItem89())){
+//				throw new RuntimeException("基础建设设施项目个数=文化室+卫生站+公厕+垃圾收集设施+室外公共文体场所+村容村貌整治改造+其他");
+//			}
+//			
+//			//惠民活动=文娱体育+送医送药+科技下乡+慰问贫困户+其他
+//			if(q1.getItem91()!=(q1.getItem92()+
+//					q1.getItem93()+
+//					q1.getItem94()+
+//					q1.getItem95()+
+//					q1.getItem96())){
+//				throw new RuntimeException("惠民活动=文娱体育+送医送药+科技下乡+慰问贫困户+其他");
+//			}
 			
 			
 			//填表人和日期
@@ -230,7 +230,7 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		
 			for(int j=0;j<sheets.length;j++){
 				Sheet sheet = workbook.getSheet(j);
-				if(sheet.getCell(0,0) == null)
+				if(sheet.getRows()<1 || sheet.getColumns()<1 || sheet.getCell(0,0) == null || "".equals(sheet.getCell(0,0).getContents()))
 					continue;
 				String title = sheet.getCell(0, 0).getContents();
 				if(title!=null && !title.contains("二")){
@@ -280,31 +280,31 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 					}
 				}
 				
-				//当年家庭人均年收入=（工资收入+家庭生产经营收入+其他稳定性收入+转移性收入-家庭生产经营支出）÷家庭成员人数
-				if(Math.floor(q2.getItem4())
-						!=Math.floor((q2.getItem5()+q2.getItem6()+q2.getItem10()+q2.getItem17()-q2.getItem24())/q2.getItem2())){
-					throw new RuntimeException("当年家庭人均年收入=（工资收入+家庭生产经营收入+其他稳定性收入+转移性收入-家庭生产经营支出）÷家庭成员人数," + sheet.getName());
-				}
-				
-				//家庭生产经营收入=农业生产经营收入+工业建筑业生产经营收入+其他行业生产经营收入
-				if(q2.getItem6() != (q2.getItem7()+q2.getItem8()+q2.getItem9())){
-					throw new RuntimeException("家庭生产经营收入=农业生产经营收入+工业建筑业生产经营收入+其他行业生产经营收入," + sheet.getName());
-				}
-				
-				//其他稳定性收入=财产性收入+退休养老金
-				if(q2.getItem10() != (q2.getItem11()+q2.getItem16())){
-					throw new RuntimeException("其他稳定性收入=财产性收入+退休养老金," + sheet.getName());
-				}
-				
-				//转移性收入=亲友赠送+慰问金+抚恤救灾救济金+低保金+农业生产补贴和临时补贴+其他转移性收入
-				if(q2.getItem17() != (q2.getItem18()+q2.getItem19()+q2.getItem20()+q2.getItem21()+q2.getItem22()+q2.getItem23())){
-					throw new RuntimeException("转移性收入=亲友赠送+慰问金+抚恤救灾救济金+低保金+农业生产补贴和临时补贴+其他转移性收入," + sheet.getName());
-				}
-				
-				//家庭生产经营支出=农业生产经营支出+工业建筑业生产经营支出+其他行业生产经营支出
-				if(q2.getItem24() != (q2.getItem25()+q2.getItem26()+q2.getItem27())){
-					throw new RuntimeException("家庭生产经营支出=农业生产经营支出+工业建筑业生产经营支出+其他行业生产经营支出," + sheet.getName());
-				}
+//				//当年家庭人均年收入=（工资收入+家庭生产经营收入+其他稳定性收入+转移性收入-家庭生产经营支出）÷家庭成员人数
+//				if(Math.floor(q2.getItem4())
+//						!=Math.floor((q2.getItem5()+q2.getItem6()+q2.getItem10()+q2.getItem17()-q2.getItem24())/q2.getItem2())){
+//					throw new RuntimeException("当年家庭人均年收入=（工资收入+家庭生产经营收入+其他稳定性收入+转移性收入-家庭生产经营支出）÷家庭成员人数," + sheet.getName());
+//				}
+//				
+//				//家庭生产经营收入=农业生产经营收入+工业建筑业生产经营收入+其他行业生产经营收入
+//				if(q2.getItem6() != (q2.getItem7()+q2.getItem8()+q2.getItem9())){
+//					throw new RuntimeException("家庭生产经营收入=农业生产经营收入+工业建筑业生产经营收入+其他行业生产经营收入," + sheet.getName());
+//				}
+//				
+//				//其他稳定性收入=财产性收入+退休养老金
+//				if(q2.getItem10() != (q2.getItem11()+q2.getItem16())){
+//					throw new RuntimeException("其他稳定性收入=财产性收入+退休养老金," + sheet.getName());
+//				}
+//				
+//				//转移性收入=亲友赠送+慰问金+抚恤救灾救济金+低保金+农业生产补贴和临时补贴+其他转移性收入
+//				if(q2.getItem17() != (q2.getItem18()+q2.getItem19()+q2.getItem20()+q2.getItem21()+q2.getItem22()+q2.getItem23())){
+//					throw new RuntimeException("转移性收入=亲友赠送+慰问金+抚恤救灾救济金+低保金+农业生产补贴和临时补贴+其他转移性收入," + sheet.getName());
+//				}
+//				
+//				//家庭生产经营支出=农业生产经营支出+工业建筑业生产经营支出+其他行业生产经营支出
+//				if(q2.getItem24() != (q2.getItem25()+q2.getItem26()+q2.getItem27())){
+//					throw new RuntimeException("家庭生产经营支出=农业生产经营支出+工业建筑业生产经营支出+其他行业生产经营支出," + sheet.getName());
+//				}
 				
 				//填表人和日期
 				Date date = null;

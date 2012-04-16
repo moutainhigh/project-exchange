@@ -77,6 +77,24 @@ public class QuestionAction extends BaseAction {
 			q = questionBiz.statQuestion1(areaId, zhenId);
 		return "stat1";
 	}
+	public String edit1(){
+		if(q1!=null && q1.getId() != null){
+			q1 = questionBiz.getEntityById(Question1.class, q1.getId());
+		}
+		return "edit1";
+	}
+	public String save1(){
+		if(q1!=null && q1.getId() != null){
+			Question1 q = questionBiz.getEntityById(Question1.class, q1.getId());
+			for(int i=1;i<=100;i++){
+				q.setItem(i, q1.getItem(i)==null?0:q1.getItem(i));
+			}
+			questionBiz.saveOrUpdateEntity(q);
+			this.setMsg("保存成功");
+			this.setSucc("Y");
+		}
+		return edit1();
+	}
 	
 	//二
 	public String list2(){
@@ -128,6 +146,24 @@ public class QuestionAction extends BaseAction {
 		if(areaId != null || zhenId != null || cunId != null)
 			q = questionBiz.statQuestion2(areaId, zhenId, cunId);
 		return "stat2";
+	}
+	public String edit2(){
+		if(q2!=null && q2.getId() != null){
+			q2 = questionBiz.getEntityById(Question2.class, q2.getId());
+		}
+		return "edit2";
+	}
+	public String save2(){
+		if(q2!=null && q2.getId() != null){
+			Question2 q = questionBiz.getEntityById(Question2.class, q2.getId());
+			for(int i=1;i<=47;i++){
+				q.setItem(i, q2.getItem(i)==null?0:q2.getItem(i));
+			}
+			questionBiz.saveOrUpdateEntity(q);
+			this.setMsg("保存成功");
+			this.setSucc("Y");
+		}
+		return edit2();
 	}
 
 	public PageBean getPageBean() {

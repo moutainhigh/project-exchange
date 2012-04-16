@@ -1,10 +1,12 @@
 package com.throne212.fupin.domain;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 
 //报表父类
 public class Report extends MyEntity{
+	
+	private static DecimalFormat df = new DecimalFormat("0.00");
 
 	private Org org;
 	private Cun cun;
@@ -158,6 +160,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem2() {
+		if(this instanceof Report2 && item2 != null && !"".equals(item2)){
+			try {
+				return df.format(Double.parseDouble(item2));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item2;
 	}
 
@@ -166,6 +175,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem3() {
+		if(this instanceof Report2 && item3 != null && !"".equals(item3)){
+			try {
+				return df.format(Double.parseDouble(item3));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item3;
 	}
 
@@ -174,6 +190,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem4() {
+		if(this instanceof Report2 && item4 != null && !"".equals(item4)){
+			try {
+				return df.format(Double.parseDouble(item4));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item4;
 	}
 
@@ -182,6 +205,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem5() {
+		if(this instanceof Report2 && item5 != null && !"".equals(item5)){
+			try {
+				return df.format(Double.parseDouble(item5));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item5;
 	}
 
@@ -190,6 +220,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem6() {
+		if(this instanceof Report2 && item6 != null && !"".equals(item6)){
+			try {
+				return df.format(Double.parseDouble(item6));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item6;
 	}
 
@@ -198,6 +235,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem7() {
+		if(this instanceof Report2 && item7 != null && !"".equals(item7)){
+			try {
+				return df.format(Double.parseDouble(item7));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item7;
 	}
 
@@ -206,6 +250,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem8() {
+		if(this instanceof Report2 && item8 != null && !"".equals(item8)){
+			try {
+				return df.format(Double.parseDouble(item8));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item8;
 	}
 
@@ -214,6 +265,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem9() {
+		if(this instanceof Report2 && item9 != null && !"".equals(item9)){
+			try {
+				return df.format(Double.parseDouble(item9));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item9;
 	}
 
@@ -222,6 +280,13 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem10() {
+		if(this instanceof Report2 && item10 != null && !"".equals(item10)){
+			try {
+				return df.format(Double.parseDouble(item10));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		return item10;
 	}
 

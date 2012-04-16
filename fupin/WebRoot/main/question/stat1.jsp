@@ -280,7 +280,8 @@ div.Section1
 									<option value="">----------</option>
 								 </select>
 							
-							<input type="button" class="button" value="统计" onclick="stat();"> 
+							<input type="button" class="button" value="统计" onclick="stat();">
+							<input type="button" class="button" value="导出" onclick="if($('#excel_table').length>0){exportExcel('excel_table');}">  
 						</td>
 					</tr>
 				</tbody>
@@ -291,7 +292,7 @@ div.Section1
 			
 <div class=Section1 style='layout-grid:15.6pt; margin: 0 auto; width: 800px;'>
 
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=741
+<table id=excel_table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=741
  style='width:556.0pt;margin-left:5.4pt;border-collapse:collapse;mso-yfti-tbllook:
  1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:58.9pt'>
