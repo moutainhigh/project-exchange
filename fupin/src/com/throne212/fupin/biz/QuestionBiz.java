@@ -11,14 +11,20 @@ public interface QuestionBiz extends BaseBiz {
 	public PageBean<Question1> listQuestion1(Long areaId, Long zhenId, Long cunId, Integer pageIndex);
 
 	public String importQuestion1(String fileName) throws Exception;
-	
+
 	public QuestionStatDO statQuestion1(Long areaId, Long zhenId);
+
+	public String getQ1ExcelReportFilePath(Question1 q1) throws Exception;
+	
+	public String getQ1StatExcelReportFilePath(Long areaId, Long zhenId) throws Exception;
 
 	// 调查表二
 	public PageBean<Question2> listQuestion2(Long areaId, Long zhenId, Long cunId, String familyName, Integer pageIndex);
 
 	public String importQuestion2(String fileName) throws Exception;
-	
+
 	public QuestionStatDO statQuestion2(Long areaId, Long zhenId, Long cunId);
+
+	public String getQ2ExcelReportFilePath(Question2 q2) throws Exception;
 
 }

@@ -1142,7 +1142,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item21" value="${q1.item21}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item21" value="<fmt:formatNumber value="${q1.item21 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:28;height:18.75pt'>
@@ -1318,7 +1318,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item25" value="${q1.item25}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item25" value="<fmt:formatNumber value="${q1.item25 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:33;height:42.75pt'>
@@ -1355,7 +1355,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item26" value="${q1.item26}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item26" value="<fmt:formatNumber value="${q1.item26 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:34;height:57.0pt'>
@@ -1392,7 +1392,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:57.0pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item27" value="${q1.item27}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item27" value="<fmt:formatNumber value="${q1.item27 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:35;height:42.75pt'>
@@ -1428,7 +1428,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item28" value="${q1.item28}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item28" value="<fmt:formatNumber value="${q1.item28 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:36;height:18.75pt'>
@@ -1463,7 +1463,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item29" value="${q1.item29}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item29" value="<fmt:formatNumber value="${q1.item29 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:37;height:18.75pt'>
@@ -1498,7 +1498,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item30" value="${q1.item30}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item30" value="<fmt:formatNumber value="${q1.item30 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:38;height:18.75pt'>
@@ -1534,7 +1534,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item31" value="${q1.item31}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item31" value="<fmt:formatNumber value="${q1.item31 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:39;height:18.75pt'>
@@ -1569,7 +1569,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item32" value="${q1.item32}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item32" value="<fmt:formatNumber value="${q1.item32 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:40;height:18.75pt'>
@@ -1604,7 +1604,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item33" value="${q1.item33}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item33" value="<fmt:formatNumber value="${q1.item33 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:41;height:71.25pt'>
@@ -1673,7 +1673,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item34" value="${q1.item34}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item34" value="<fmt:formatNumber value="${q1.item34 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:43;height:18.75pt'>
@@ -1707,7 +1707,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item35" value="${q1.item35}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item35" value="<fmt:formatNumber value="${q1.item35 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:44;height:18.75pt'>
@@ -2093,7 +2093,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item44" value="${q1.item44}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item44" value="<fmt:formatNumber value="${q1.item44 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:55;height:28.5pt'>
@@ -3115,7 +3115,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item69" value="${q1.item69}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item69" value="<fmt:formatNumber value="${q1.item69 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:84;height:18.75pt'>
@@ -3288,7 +3288,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item72" value="${q1.item72}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item72" value="<fmt:formatNumber value="${q1.item72 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:89;height:18.75pt'>
@@ -3427,7 +3427,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item75" value="${q1.item75}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item75" value="<fmt:formatNumber value="${q1.item75 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:93;height:18.75pt'>
@@ -3568,7 +3568,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item78" value="${q1.item78}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item78" value="<fmt:formatNumber value="${q1.item78 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:97;height:18.75pt'>
@@ -3707,7 +3707,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item81" value="${q1.item81}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item81" value="<fmt:formatNumber value="${q1.item81 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:101;height:18.75pt'>
@@ -4050,7 +4050,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item90" value="${q1.item90}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item90" value="<fmt:formatNumber value="${q1.item90 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:111;height:18.75pt'>

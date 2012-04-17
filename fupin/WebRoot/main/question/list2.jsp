@@ -151,6 +151,9 @@
 							村名
 						</td>
 						<td width="" class="tables_headercell">
+							帮扶单位
+						</td>
+						<td width="" class="tables_headercell">
 							户名
 						</td>
 						<td width="" class="tables_headercell">
@@ -170,6 +173,9 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp;${f.family.cun.zhen.area.name}${f.family.cun.zhen.name}${f.family.cun.name}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp;${f.org.orgName}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 								
@@ -193,7 +199,7 @@
 						<td height="25" align="right" class="tables_contentcell" colspan="3">
 							<span style="color:red;font-weight: bold;">${pageBean.total }</span>
 						</td>
-						<td height="25" align="right" class="tables_contentcell" colspan="4">
+						<td height="25" align="right" class="tables_contentcell" colspan="5">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

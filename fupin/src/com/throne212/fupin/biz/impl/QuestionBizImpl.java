@@ -6,18 +6,26 @@ import java.util.Date;
 
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.Number;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.dao.QuestionDao;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.Question;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
+import com.throne212.fupin.domain.Report;
 
 public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 	
@@ -335,6 +343,108 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		
 		return sb.toString();
 	
+	}
+	
+	public String getQ1ExcelReportFilePath(Question1 q1) throws Exception{
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "question";
+		String sourceFile = path + File.separator + "q1.xls";
+		String targetFile = path + File.separator + "q1_"+System.currentTimeMillis()+".xls";
+
+		// 打开excel文件
+		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+		WritableSheet sheet = workbook.getSheet(0);
+		
+		sheet.addCell(new Label(1, 1, q1.getCun().getZhen().getArea().getName() + q1.getCun().getZhen().getName() + q1.getCun().getName()));
+		sheet.addCell(new Label(3, 1, q1.getOrg().getOrgName()));
+		
+		int num = 1;
+		//从第5行开始
+		for(int i=4;i<122;i++){
+			if(!Util.isEmpty(sheet.getCell(0, i).getContents())){
+				sheet.addCell(new Number(3, i, q1.getItem(num++)));
+			}
+		}
+		
+		sheet.addCell(new Label(0, 122, "填表人："+q1.getWriter()+"          填报日期：  " + Util.getDate2(q1.getDate())));
+		
+		
+		// 关闭
+		workbook.write();
+		workbook.close();
+		rw.close();
+		return targetFile;
+
+	}
+	
+	public String getQ1StatExcelReportFilePath(Long areaId, Long zhenId) throws Exception{
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "question";
+		String sourceFile = path + File.separator + "q1.xls";
+		String targetFile = path + File.separator + "q1_stat_"+System.currentTimeMillis()+".xls";
+
+		// 打开excel文件
+		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+		WritableSheet sheet = workbook.getSheet(0);
+		
+		QuestionStatDO q = this.statQuestion1(areaId, zhenId);
+		
+		sheet.addCell(new Label(1, 1, ""));
+		sheet.addCell(new Label(3, 1, ""));
+		
+		
+		
+		sheet.addCell(new Label(0, 122, ""));
+		
+		
+		// 关闭
+		workbook.write();
+		workbook.close();
+		rw.close();
+		return targetFile;
+	}
+	
+	public String getQ2ExcelReportFilePath(Question2 q2) throws Exception{
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "question";
+		String sourceFile = path + File.separator + "q2.xls";
+		String targetFile = path + File.separator + "q2_"+System.currentTimeMillis()+".xls";
+
+		// 打开excel文件
+		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+		WritableSheet sheet = workbook.getSheet(0);
+		
+		Cun cun = q2.getFamily().getCun();
+		sheet.addCell(new Label(1, 1, cun.getZhen().getArea().getName() + cun.getZhen().getName() + cun.getName()));
+		sheet.addCell(new Label(3, 1, q2.getOrg().getOrgName()));
+		
+		int num = 1;
+		//从第5行开始
+		for(int i=4;i<56;i++){
+			if(!Util.isEmpty(sheet.getCell(0, i).getContents())){
+				sheet.addCell(new Number(3, i, q2.getItem(num++)));
+			}
+		}
+		
+		sheet.addCell(new Label(1, 56, q2.getWriter()));
+		sheet.addCell(new Label(3, 56, Util.getDate2(q2.getDate())));
+		sheet.addCell(new Label(1, 57, q2.getFamily().getName()));
+		sheet.addCell(new Label(3, 57, q2.getFamily().getIdNo()));
+		
+		// 关闭
+		workbook.write();
+		workbook.close();
+		rw.close();
+		return targetFile;
 	}
 	
 	public QuestionStatDO statQuestion1(Long areaId, Long zhenId){

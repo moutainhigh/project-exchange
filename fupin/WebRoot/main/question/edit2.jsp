@@ -253,7 +253,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
  </tr>
  <tr height=57 style='height:42.75pt'>
-  <td height=57 class=xl66 width=100 style='height:42.75pt;'>贫困村（盖章）<span
+  <td height=57 class=xl66 width=100 style='height:42.75pt;'>贫困村<br/>（盖章）<span
   style='mso-spacerun:yes'></span><ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl67 width=300><span
@@ -325,7 +325,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item4" value="${q2.item4}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item4" value="<fmt:formatNumber value="${q2.item4 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -334,7 +334,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item5" value="${q2.item5}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item5" value="<fmt:formatNumber value="${q2.item5 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -343,7 +343,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item6" value="${q2.item6}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item6" value="<fmt:formatNumber value="${q2.item6 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -352,7 +352,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item7" value="${q2.item7}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item7" value="<fmt:formatNumber value="${q2.item7 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -361,7 +361,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item8" value="${q2.item8}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item8" value="<fmt:formatNumber value="${q2.item8 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -370,7 +370,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item9" value="${q2.item9}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item9" value="<fmt:formatNumber value="${q2.item9 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -379,7 +379,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item10" value="${q2.item10}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item10" value="<fmt:formatNumber value="${q2.item10 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -388,7 +388,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item11" value="${q2.item11}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item11" value="<fmt:formatNumber value="${q2.item11 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -397,7 +397,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item12" value="${q2.item12}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item12" value="<fmt:formatNumber value="${q2.item12 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -406,7 +406,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item13" value="${q2.item13}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item13" value="<fmt:formatNumber value="${q2.item13 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -415,7 +415,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item14" value="${q2.item14}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item14" value="<fmt:formatNumber value="${q2.item14 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -424,7 +424,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item15" value="${q2.item15}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item15" value="<fmt:formatNumber value="${q2.item15 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -433,7 +433,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item16" value="${q2.item16}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item16" value="<fmt:formatNumber value="${q2.item16 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -442,7 +442,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item17" value="${q2.item17}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item17" value="<fmt:formatNumber value="${q2.item17 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -451,7 +451,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item18" value="${q2.item18}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item18" value="<fmt:formatNumber value="${q2.item18 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -460,7 +460,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item19" value="${q2.item19}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item19" value="<fmt:formatNumber value="${q2.item19 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -469,7 +469,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item20" value="${q2.item20}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item20" value="<fmt:formatNumber value="${q2.item20 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -478,7 +478,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item21" value="${q2.item21}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item21" value="<fmt:formatNumber value="${q2.item21 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -487,7 +487,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item22" value="${q2.item22}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item22" value="<fmt:formatNumber value="${q2.item22 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -496,7 +496,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item23" value="${q2.item23}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item23" value="<fmt:formatNumber value="${q2.item23 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -505,7 +505,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item24" value="${q2.item24}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item24" value="<fmt:formatNumber value="${q2.item24 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -514,7 +514,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item25" value="${q2.item25}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item25" value="<fmt:formatNumber value="${q2.item25 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -523,7 +523,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item26" value="${q2.item26}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item26" value="<fmt:formatNumber value="${q2.item26 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -532,7 +532,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>元<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item27" value="${q2.item27}"/>　</td>
+  <td class=xl76 width=80 style='border-top:none;border-left:none;width:60pt'><input type="text" name="q2.item27" value="<fmt:formatNumber value="${q2.item27 }" pattern="#.##" type="number"/>"/>　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl70 width=128 style='height:14.25pt;border-top:none;

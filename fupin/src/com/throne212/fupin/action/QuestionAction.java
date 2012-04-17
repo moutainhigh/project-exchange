@@ -1,5 +1,8 @@
 package com.throne212.fupin.action;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
@@ -17,6 +20,9 @@ public class QuestionAction extends BaseAction {
 	private Long zhenId;
 	private Long cunId;
 	private String familyName;
+	
+	// excel导出文件
+	private InputStream downloadFile;
 	
 	private Question1 q1;
 	private Question2 q2;
@@ -95,6 +101,48 @@ public class QuestionAction extends BaseAction {
 		}
 		return edit1();
 	}
+	public String exportQ1(){
+		if(q1 == null || q1.getId() == null || (q1 = questionBiz.getEntityById(Question1.class, q1.getId()))==null)
+			return show1();
+		String filePath = null;
+		try {
+			filePath = questionBiz.getQ1ExcelReportFilePath(q1);
+			if (filePath != null) {
+				downloadFile = new FileInputStream(filePath);
+				this.setMsg("q1");
+			} else {
+				this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+				return show1();
+			}
+		} catch (Exception e) {
+			logger.error("Excel文件生成失败，数据不完整或参数错误，请联系管理员", e);
+			this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+			return show1();
+		}
+		return "excel";
+	}
+	public String exportQ1Stat1(){
+		if(areaId == null && zhenId == null)
+			return stat1();
+		else{
+			String filePath = null;
+			try {
+				filePath = questionBiz.getQ1StatExcelReportFilePath(areaId, zhenId);
+				if (filePath != null) {
+					downloadFile = new FileInputStream(filePath);
+					this.setMsg("q1");
+				} else {
+					this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+					return stat1();
+				}
+			} catch (Exception e) {
+				logger.error("Excel文件生成失败，数据不完整或参数错误，请联系管理员", e);
+				this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+				return stat1();
+			}
+			return "excel";
+		}
+	}
 	
 	//二
 	public String list2(){
@@ -164,6 +212,26 @@ public class QuestionAction extends BaseAction {
 			this.setSucc("Y");
 		}
 		return edit2();
+	}
+	public String exportQ2(){
+		if(q2 == null || q2.getId() == null || (q2 = questionBiz.getEntityById(Question2.class, q2.getId()))==null)
+			return show2();
+		String filePath = null;
+		try {
+			filePath = questionBiz.getQ2ExcelReportFilePath(q2);
+			if (filePath != null) {
+				downloadFile = new FileInputStream(filePath);
+				this.setMsg("q2");
+			} else {
+				this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+				return show2();
+			}
+		} catch (Exception e) {
+			logger.error("Excel文件生成失败，数据不完整或参数错误，请联系管理员", e);
+			this.setMsg("Excel文件生成失败，数据不完整或参数错误，请联系管理员");
+			return show2();
+		}
+		return "excel";
 	}
 
 	public PageBean getPageBean() {
@@ -248,6 +316,12 @@ public class QuestionAction extends BaseAction {
 	}
 	public void setQ(QuestionStatDO q) {
 		this.q = q;
+	}
+	public InputStream getDownloadFile() {
+		return downloadFile;
+	}
+	public void setDownloadFile(InputStream downloadFile) {
+		this.downloadFile = downloadFile;
 	}
 	
 }

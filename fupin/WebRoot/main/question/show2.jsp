@@ -10,6 +10,9 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			function exportQ2(qid){
+				self.location.href = '${appPath}question_exportQ2.action?q2.id=' + '${q2.id}';
+			}
 		</script>
 <style>
 tr
@@ -252,7 +255,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
  </tr>
  <tr height=57 style='height:42.75pt'>
-  <td height=57 class=xl66 width=100 style='height:42.75pt;'>贫困村（盖章）<span
+  <td height=57 class=xl66 width=100 style='height:42.75pt;'>贫困村<br/>（盖章）<span
   style='mso-spacerun:yes'></span><ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl67 width=300><span
@@ -783,7 +786,7 @@ rt
 		
 		<div style="text-align: center;">
 		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
-		<input type="button" onclick="exportExcel('excel_table');" class="button" value="导出" name="导出">
+		<input type="button" onclick="exportQ2('${q2.id}');" class="button" value="导出" name="导出">
 		</div>
 	</body>
 </html>

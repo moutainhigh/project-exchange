@@ -10,6 +10,9 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			function exportQ1(qid){
+				self.location.href = '${appPath}question_exportQ1.action?q1.id=' + '${q1.id}';
+			}
 		</script>
 <style>
 <!--
@@ -4497,7 +4500,7 @@ div.Section1
 		
 		<div style="text-align: center;">
 		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
-		<input type="button" onclick="exportExcel('excel_table');" class="button" value="导出" name="导出">
+		<input type="button" onclick="exportQ1('${q1.id}');" class="button" value="导出" name="导出">
 		</div>
 	</body>
 </html>
