@@ -8,31 +8,42 @@ public class QuestionStatDO {
 
 	private Question q;
 	
-	private int[] num1 = {0,0};
+	private int[] num1 = {0,0,0,0};
 	
-	private int[] num2 = {0,0};
-	private int[] num3 = {0,0};
-	private int[] num6 = {0,0};
-	private int[] num7 = {0,0};
-	private int[] num8 = {0,0};
-	private int[] num9 = {0,0};
-	private int[] num10 = {0,0};
-	private int[] num11 = {0,0};
-	private int[] num12 = {0,0};
-	private int[] num13 = {0,0};
-	private int[] num24 = {0,0};
+	private int[] num2 = {0,0,0,0};
+	private int[] num3 = {0,0,0,0};
+	private int[] num6 = {0,0,0,0};
+	private int[] num7 = {0,0,0,0};
+	private int[] num8 = {0,0,0,0};
+	private int[] num9 = {0,0,0,0};
+	private int[] num10 = {0,0,0,0};
+	private int[] num11 = {0,0,0,0};
+	private int[] num12 = {0,0,0,0};
+	private int[] num13 = {0,0,0,0};
+	private int[] num24 = {0,0,0,0};
 	
-	private int[] num29 = {0,0};
+	private int[] num29 = {0,0,0,0};
 	
-	private int[] num47 = {0,0};
-	private int[] num76 = {0,0};
-	private int[] num77 = {0,0};
-	private int[] num97 = {0,0};
-	private int[] num98 = {0,0};
-	private int[] num99 = {0,0};
-	private int[] num100 = {0,0};
+	private int[] num47 = {0,0,0,0};
+	private int[] num76 = {0,0,0,0};
+	private int[] num77 = {0,0,0,0};
+	private int[] num97 = {0,0,0,0};
+	private int[] num98 = {0,0,0,0};
+	private int[] num99 = {0,0,0,0};
+	private int[] num100 = {0,0,0,0};
 	
 	
+	public int[] getNum(Integer i) {
+		if (i == null || i == 0)
+			return null;
+		try {
+			Method m = this.getClass().getMethod("getNum"+i);
+			return (int[]) m.invoke(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public QuestionStatDO() {
 		super();
@@ -48,6 +59,10 @@ public class QuestionStatDO {
 				oldVal[0] += 1;
 			else if(val == 2)
 				oldVal[1] += 1;
+			else if(val == 3)
+				oldVal[2] += 1;
+			else if(val == 4)
+				oldVal[3] += 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

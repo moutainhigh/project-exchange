@@ -67,6 +67,11 @@
 			f.action = "${appPath}question_stat1.action";
 			f.submit();
 		}
+		function exportQ1(){
+			var f = document.forms[0];
+			f.action = "${appPath}question_exportQ1Stat1.action";
+			f.submit();
+		}
 		</script>
 		<style>
 .tables_search {
@@ -281,7 +286,7 @@ div.Section1
 								 </select>
 							
 							<input type="button" class="button" value="统计" onclick="stat();">
-							<input type="button" class="button" value="导出" onclick="if($('#excel_table').length>0){exportExcel('excel_table');}">  
+							<input type="button" class="button" value="导出" onclick="exportQ1();">  
 						</td>
 					</tr>
 				</tbody>

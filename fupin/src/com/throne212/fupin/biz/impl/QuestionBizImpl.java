@@ -11,21 +11,19 @@ import jxl.write.Number;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.Util;
-import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.dao.QuestionDao;
+import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
-import com.throne212.fupin.domain.Question;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
-import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.Zhen;
 
 public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 	
@@ -385,7 +383,7 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "excel" + File.separator + "question";
-		String sourceFile = path + File.separator + "q1.xls";
+		String sourceFile = path + File.separator + "q1_stat.xls";
 		String targetFile = path + File.separator + "q1_stat_"+System.currentTimeMillis()+".xls";
 
 		// 打开excel文件
@@ -393,15 +391,38 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
 		WritableSheet sheet = workbook.getSheet(0);
 		
-		QuestionStatDO q = this.statQuestion1(areaId, zhenId);
+		QuestionStatDO q = qDao.statQuestion1(areaId, zhenId);
 		
-		sheet.addCell(new Label(1, 1, ""));
-		sheet.addCell(new Label(3, 1, ""));
+		String diqu = "";
+		if(areaId != null){
+			Area area = qDao.getEntityById(Area.class, areaId);
+			diqu += area==null?"":area.getName();
+		}
+		if(zhenId != null){
+			Zhen zhen = qDao.getEntityById(Zhen.class, zhenId);
+			diqu += zhen==null?"":zhen.getName();
+		}
 		
+		sheet.addCell(new Label(1, 1, diqu));
 		
-		
-		sheet.addCell(new Label(0, 122, ""));
-		
+		int i = 1;
+		//从第5行开始
+		for(int n=4;n<122;n++){
+			if(!Util.isEmpty(sheet.getCell(0, n).getContents())){
+				if(i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
+						|| i==11 || i==12 || i==13 || i==24 || i==47 || i==76 || i==77 
+						|| i==97 || i==98 || i==99 || i==100){
+					int[] num = q.getNum(i);
+					String codeStr = "";
+					if(num!=null)
+						codeStr = "1:" + num[0] + ",2:" + num[1];
+					sheet.addCell(new Label(3, n, codeStr));
+				}else{
+					sheet.addCell(new Number(3, n, q.getQ().getItem(i)));
+				}
+				i++;
+			}
+		}
 		
 		// 关闭
 		workbook.write();
@@ -439,6 +460,61 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		sheet.addCell(new Label(3, 56, Util.getDate2(q2.getDate())));
 		sheet.addCell(new Label(1, 57, q2.getFamily().getName()));
 		sheet.addCell(new Label(3, 57, q2.getFamily().getIdNo()));
+		
+		// 关闭
+		workbook.write();
+		workbook.close();
+		rw.close();
+		return targetFile;
+	}
+	
+	public String getQ2StatExcelReportFilePath(Long areaId, Long zhenId, Long cunId) throws Exception{
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "question";
+		String sourceFile = path + File.separator + "q2_stat.xls";
+		String targetFile = path + File.separator + "q2_stat_"+System.currentTimeMillis()+".xls";
+
+		// 打开excel文件
+		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+		WritableSheet sheet = workbook.getSheet(0);
+		
+		QuestionStatDO q = qDao.statQuestion2(areaId, zhenId,cunId);
+		
+		String diqu = "";
+		if(areaId != null){
+			Area area = qDao.getEntityById(Area.class, areaId);
+			diqu += area==null?"":area.getName();
+		}
+		if(zhenId != null){
+			Zhen zhen = qDao.getEntityById(Zhen.class, zhenId);
+			diqu += zhen==null?"":zhen.getName();
+		}
+		if(cunId != null){
+			Cun cun = qDao.getEntityById(Cun.class, cunId);
+			diqu += cun==null?"":cun.getName();
+		}
+		
+		sheet.addCell(new Label(1, 1, diqu));
+		
+		int i = 1;
+		//从第5行开始
+		for(int n=4;n<56;n++){
+			if(!Util.isEmpty(sheet.getCell(0, n).getContents())){
+				if(i==1 || i==29){
+					int[] num = q.getNum(i);
+					String codeStr = "";
+					if(num!=null)
+						codeStr = "1:" + num[0] + ",2:" + num[1] + ",3:" + num[2] + ",4:" + num[3];
+					sheet.addCell(new Label(3, n, codeStr));
+				}else{
+					sheet.addCell(new Number(3, n, q.getQ().getItem(i)));
+				}
+				i++;
+			}
+		}
 		
 		// 关闭
 		workbook.write();

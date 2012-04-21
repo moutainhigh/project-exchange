@@ -26,5 +26,7 @@ public interface QuestionBiz extends BaseBiz {
 	public QuestionStatDO statQuestion2(Long areaId, Long zhenId, Long cunId);
 
 	public String getQ2ExcelReportFilePath(Question2 q2) throws Exception;
+	
+	public String getQ2StatExcelReportFilePath(Long areaId, Long zhenId, Long cunId) throws Exception;
 
 }

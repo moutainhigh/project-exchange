@@ -85,6 +85,11 @@
 			f.action = "${appPath}question_stat2.action";
 			f.submit();
 		}
+		function exportQ2(){
+			var f = document.forms[0];
+			f.action = "${appPath}question_exportQ2Stat2.action";
+			f.submit();
+		}
 		</script>
 		<style>
 .tables_search {
@@ -346,7 +351,7 @@ rt
 									<option value="">-----------</option>
 									</select>
 							<input type="button" class="button" value="统计" onclick="stat();"> 
-							<input type="button" class="button" value="导出" onclick="if($('#excel_table').length>0){exportExcel('excel_table');}">
+							<input type="button" class="button" value="导出" onclick="exportQ2();">
 						</td>
 					</tr>
 				</tbody>
@@ -405,7 +410,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>代码<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'>1:${q.num1[0] },2:${q.num1[1] }　</td>
+  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'>1:${q.num1[0] },2:${q.num1[1]},3:${q.num1[2]},4:${q.num1[3] }　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
@@ -673,7 +678,7 @@ rt
   class="font7"><rt class=font7></rt></font></ruby></td>
   <td class=xl73 width=95 style='border-top:none;border-left:none;width:71pt'>代码<ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
-  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'>1:${q.num29[0] },2:${q.num29[1] }　</td>
+  <td class=xl75 width=80 style='border-top:none;border-left:none;width:60pt'>1:${q.num29[0] },2:${q.num29[1]},3:${q.num29[2]},4:${q.num29[3] }　</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 class=xl73 width=128 style='height:14.25pt;border-top:none;
