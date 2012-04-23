@@ -30,6 +30,7 @@ import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report3;
 import com.throne212.fupin.domain.Report3Item;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.Zhen;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
@@ -228,9 +229,15 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 	}
 
 	public Report getReport(String reportType, Integer year, String type, String time, Long cunId) {
-		Cun cun = reportDao.getEntityById(Cun.class, cunId);
-		Report report = reportDao.getReport(reportType, cun.getOrg(), cun, year, type, time);
-		return report;
+		if("3".equals(reportType)){
+			Zhen zhen = reportDao.getEntityById(Zhen.class, cunId);
+			Report report = reportDao.getReport3(zhen, year, type, time);
+			return report;
+		}else{
+			Cun cun = reportDao.getEntityById(Cun.class, cunId);
+			Report report = reportDao.getReport(reportType, cun.getOrg(), cun, year, type, time);
+			return report;
+		}
 	}
 
 	// 显示最新的cun的数据
@@ -414,7 +421,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
 	}
 	
-	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month){
+	public PageBean sumReport1(Long zhenId,Long cunId,int year,int month){
 		return reportDao.sumReport1(zhenId,cunId,year,month);		
 	}
 	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month){

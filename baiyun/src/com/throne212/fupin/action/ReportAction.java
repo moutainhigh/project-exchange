@@ -170,9 +170,9 @@ public class ReportAction extends BaseAction {
 				month = 12;
 			}
 		}
-		
-		report1List = reportBiz.sumReport1(zhenId, cunId, year, month);
-		heji = (Object[]) reportBiz.sumReport1Num(zhenId, cunId, year, month)[0];
+		PageBean bean = reportBiz.sumReport1(zhenId, cunId, year, month);
+		report1List = bean.getResultList();
+		heji = (Object[]) bean.getTotal();
 
 		// 最大的月份和季度
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
@@ -493,6 +493,47 @@ public class ReportAction extends BaseAction {
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
 		return result;
+	}
+	
+	public String showReport3() {
+		String[] zhenId = (String[]) ActionContext.getContext().getParameters().get("zhenId");
+		if (r == null) {// 默认条件打开，定向到当前的年得月份
+			Calendar c = GregorianCalendar.getInstance();
+			Integer year = c.get(Calendar.YEAR);
+			String type = "month";
+			String time = (c.get(Calendar.MONTH)) + "";
+			r = reportBiz.getReport("3",year,type,time,Long.parseLong(zhenId[0]));
+			if (r == null) {
+				r = new Report3();
+				r.setYear(year);
+				r.setTime(time);
+				r.setType(type);
+			}
+		} else if (r != null && r.getId() == null) {// 按条件搜索
+			Integer year = r.getYear();
+			String type = r.getType();
+			String time = r.getTime();
+			Report report = reportBiz.getReport("3",year,type,time,Long.parseLong(zhenId[0]));
+			if (report != null)
+				r = report;
+			else {
+				r = new Report3();
+				r.setYear(year);
+				r.setType(type);
+				r.setTime(time);
+			}
+		}
+		
+		r3 = (Report3) r;
+
+		// 最大的月份和季度
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
+
+		// 填充灰色项目
+		// reportBiz.fillReport(r);
+
+		return "show_report3";
 	}
 
 	private Report3 r3;

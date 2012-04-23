@@ -30,7 +30,7 @@ public interface ReportDao extends BaseDao {
 	public List<ProCunStat> getProCunStat(int year);
 	public List<ProZdStat> getProZdStat(int year);
 	
-	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month);
+	public PageBean sumReport1(Long zhenId,Long cunId,int year,int month);
 	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month);
 	
 	public PageBean getProStat(Class statClass, Integer year,Integer month,Integer pageIndex);

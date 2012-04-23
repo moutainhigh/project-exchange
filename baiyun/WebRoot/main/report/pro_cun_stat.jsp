@@ -155,13 +155,13 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.project.money }
 							</td>
-							<td height="25" align="center" class="tables_contentcell">
+							<td height="25" align="left" class="tables_contentcell" style="padding-left: 5px;">
 								&nbsp; ${f.project.content }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.money }
 							</td>
-							<td height="25" align="center" class="tables_contentcell">
+							<td height="25" align="left" class="tables_contentcell" style="padding-left: 5px;">
 								&nbsp; ${f.complete }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">

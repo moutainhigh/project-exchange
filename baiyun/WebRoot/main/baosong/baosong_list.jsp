@@ -58,11 +58,20 @@
 						</td>
 						<td align="right">
 							<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员' || userObj.roleType=='县级管理员'}">
-							<select name="status" onchange="queryBaoSong();" id="baosongStatus">
-								<option value="">全部</option>
+							<select name="status" id="baosongStatus">
+								<option value="">==不限==</option>
 								<option value="待办">待办</option>
 								<option value="已办">已办</option>
 							</select>
+							&nbsp;
+							<select name="orgId" id="orgId">
+								<option value="">==不限==</option>
+								<c:forEach items="${orgList }" var="o">
+								<option value="${o.id }" <c:if test="${o.id==param['orgId']}">selected="selected"</c:if>>${o.orgName }</option>
+								</c:forEach>
+							</select>
+							&nbsp;
+							<input type="button" class="button" value="查询" onclick="queryBaoSong();">
 							<input type="button" onclick="winOpen('${appPath}main/baosong/baosong_edit.jsp',500,500);" class="button" value="新增">
 							<input type="button" class="button" value="删除" onclick="deleteInfo();">
 							</c:if>  

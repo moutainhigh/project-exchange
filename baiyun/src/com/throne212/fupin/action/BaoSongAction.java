@@ -5,13 +5,11 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.BaoSongBiz;
-import com.throne212.fupin.biz.ContactBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.BaoSong;
-import com.throne212.fupin.domain.Contact;
-import com.throne212.fupin.domain.ContactGroup;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.User;
 
 public class BaoSongAction extends BaseAction {
@@ -20,8 +18,10 @@ public class BaoSongAction extends BaseAction {
 
 	private PageBean pageBean;
 	private Integer pageIndex;
+	private Long orgId;
 	
 	private String status;
+	private List<Org> orgList;
 
 	private BaoSong baoSong;
 
@@ -36,7 +36,11 @@ public class BaoSongAction extends BaseAction {
 	// actions
 	public String baoSongList() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		pageBean = baoSongBiz.getBaoSongList(pageIndex == null ? 1 : pageIndex, user, status);
+		//pageBean = baoSongBiz.getBaoSongList(pageIndex == null ? 1 : pageIndex, user, status);
+		pageBean = baoSongBiz.getBaoSongList(pageIndex == null ? 1 : pageIndex, user, status, orgId);
+		
+		orgList = baoSongBiz.getAll(Org.class);
+		
 		return "baosong_list";
 	}
 
@@ -169,6 +173,22 @@ public class BaoSongAction extends BaseAction {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public List<Org> getOrgList() {
+		return orgList;
+	}
+
+	public void setOrgList(List<Org> orgList) {
+		this.orgList = orgList;
 	}
 
 }

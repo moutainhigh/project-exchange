@@ -223,6 +223,7 @@
 									<td align="center" class="tables_headercell" colspan="2">到户情况</td>
 									<td align="center" class="tables_headercell" colspan="12">帮扶成效</td>
 									<td align="center" class="tables_headercell" colspan="2">受帮扶低收入户当年增收情况</td>
+									<td align="center" class="tables_headercell" rowspan="2">数据月份</td>
 								</tr>
 								<tr>
 									<td align="center" class="tables_headercell">户数</td>
@@ -246,7 +247,7 @@
 									<td align="center" class="tables_headercell">帮扶后累计人均增加收入（元）  </td>
 								</tr>
 								<c:forEach items="${report1List }" var="r" varStatus="status">
-								<tr>
+								<tr <c:if test="${r.year!=year || r.time!=month }">style="background-color: PINK;"</c:if>>
 									<td class="tables_contentcell">
 									${status.count }
 									</td>
@@ -316,6 +317,9 @@
 									<td class="tables_contentcell">
 									${r.item26 }
 									</td>
+									<td class="tables_contentcell">
+									${r.time }月
+									</td>
 								</tr>
 								</c:forEach>
 								<tr>
@@ -333,6 +337,9 @@
 									${i}
 									</td>
 									</c:forEach>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
 								</tr>
 							</table>
 						</td>

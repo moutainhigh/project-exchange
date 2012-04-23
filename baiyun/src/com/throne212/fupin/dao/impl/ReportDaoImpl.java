@@ -405,8 +405,12 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			for (int i = min; i <= max; i++) {// 7到12月
 				String hql = "select count(*) from Report3 r where r.zhen.id=" + z.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
 				Long count = (Long) this.getHibernateTemplate().find(hql).get(0);
-				if (count > 0)
-					s.setOk(i, "Y-" + z.getId() + "-" + year + "-" + i);
+				if (count > 0){
+					hql = "select count(*) from Report3Item where r.zhen.id=" + z.getId() + " and r.time=" + i + " and type='month' and r.year=" + year;
+					count = (Long) this.getHibernateTemplate().find(hql).get(0);
+					if (count > 0)
+						s.setOk(i, "Y-" + z.getId() + "-" + year + "-" + i);
+				}
 			}
 			list.add(s);
 		}
@@ -419,8 +423,8 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		List<Cun> cunList = null;
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof AreaWorkOrg) {// 白云区
-			cunList = this.getAll(Cun.class, "zhen.id", "asc");
-
+			//cunList = this.getAll(Cun.class, "zhen.id", "asc");
+			cunList = this.getHibernateTemplate().find("from Cun c where c in (select pc.cun from ProjectCun pc)");
 		} else if (user instanceof ZhenWorkOrg) {// 镇
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
 			cunList = this.getEntitiesByColumn(Cun.class, "zhen.id", z.getZhen().getId());
@@ -541,17 +545,67 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		return list;
 	}
 	
-	public List<Report1> sumReport1(Long zhenId,Long cunId,int year,int month){
-		String hql = "from Report1 r where year=" + year + " and type='month' and time=" + month;
-		if(cunId != null){
-			hql += " and r.cun.id=" + cunId;
-		}else if(zhenId !=  null){
-			hql += " and r.cun.zhen.id=" + zhenId;
-		}
-		hql += " order by r.cun.zhen.id";
-		logger.info("sum report1 hql = " + hql);
+	public PageBean sumReport1(Long zhenId,Long cunId,int year,int month){
+//		String hql = "from Report1 r where year=" + year + " and type='month' and time=" + month;
+//		if(cunId != null){
+//			hql += " and r.cun.id=" + cunId;
+//		}else if(zhenId !=  null){
+//			hql += " and r.cun.zhen.id=" + zhenId;
+//		}else{
+//			
+//		}
+//		hql += " order by r.cun.zhen.id";
+//		logger.info("sum report1 hql = " + hql);
 		
-		return this.getHibernateTemplate().find(hql);
+		PageBean bean = new PageBean();
+		
+		List<Report1> rList = new ArrayList<Report1>();
+		Integer[] sum = new Integer[20];
+		for(int i=0;i<sum.length;i++)
+			sum[i] = 0;
+		
+		//find all cun
+		String hql = "from Cun order by zhen.id";
+		List<Cun> cunList = this.getHibernateTemplate().find(hql);
+		for(Cun cun : cunList){
+			Report1 r1 = null;
+			hql = "from Report1 r where year=? and type='month' and time<=? and r.cun.id=" + cun.getId() + " order by r.time desc";
+			List<Report1> report1List = this.getHibernateTemplate().find(hql, new Object[]{year, String.valueOf(month)});
+			if(report1List != null && report1List.size() > 0){
+				r1 = report1List.get(0);
+				
+			}else{
+				report1List = this.getHibernateTemplate().find(hql, new Object[]{year-1, String.valueOf(month)});
+				if(report1List != null && report1List.size() > 0){
+					r1 = report1List.get(0);
+				}
+			}
+			if(r1 != null){
+				rList.add(r1);
+				int n = 0;
+				for(int i=1;i<=3;i++){
+					addItem(r1.getItem(i), sum, n++);
+				}
+				for(int i=10;i<=26;i++){
+					addItem(r1.getItem(i), sum, n++);
+				}
+			}
+		}
+		
+		bean.setResultList(rList);
+		bean.setTotal(sum);
+		
+		return bean;
+	}
+	
+	private void addItem(String item, Integer[] sum, int n){
+		if(!Util.isEmpty(item)){
+			try {
+				sum[n] += Integer.parseInt(item);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month){

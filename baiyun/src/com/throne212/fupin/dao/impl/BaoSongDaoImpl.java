@@ -58,5 +58,51 @@ public class BaoSongDaoImpl extends BaseDaoImpl implements BaoSongDao {
 		return page;
 
 	}
+	
+	public PageBean<BaoSong> getBaoSongList(int pageIndex, User user, String status, Long orgId) {
+		if (pageIndex == 0) {
+			pageIndex = 1;
+		}
+		PageBean<BaoSong> page = new PageBean<BaoSong>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from BaoSong t where 1=1";
+		if(orgId != null && orgId != 0){
+			hql += " and user.id=" + orgId;
+		}
+		if (user instanceof Org || user instanceof ZhenWorkOrg) {
+			hql += " and user.id=" + user.getId();
+			// 状态
+			if ("待办".equals(status)) {
+				hql += " and (status=1 or status=4)";
+			} else if ("已办".equals(status)) {
+				hql += " and (status=2)";
+			} else
+				hql += " and (status=1 or status=2 or status=4)";
+		} else if (user instanceof AreaWorkOrg) {
+			//hql += " and (status=2 or status=3)";
+			// 状态
+			if ("待办".equals(status)) {
+				hql += " and (status=2)";
+			} else if ("已办".equals(status)) {
+				hql += " and (status=3)";
+			} else
+				hql += " and (status=2 or status=3)";
+		} else if (user instanceof Admin) {
+
+		}
+
+		hql += " order by id desc";
+
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<BaoSong> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+
+	}
 
 }
