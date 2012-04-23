@@ -37,6 +37,9 @@ public class ProjectBizImpl extends BaseBizImpl implements ProjectBiz {
 	public ProjectCunStat getCunStat(ProjectCunStat param){
 		return projectDao.getCunStat(param);
 	}
+	public ProjectCunStat getCunStat(ProjectCunStat param, Long cunId){
+		return projectDao.getCunStat(param, cunId);
+	}
 	public ProjectZdStat getZdStat(ProjectZdStat param){
 		return projectDao.getZdStat(param);
 	}

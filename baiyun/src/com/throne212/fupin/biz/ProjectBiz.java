@@ -19,6 +19,7 @@ public interface ProjectBiz extends BaseBiz {
 	//进度
 	
 	public ProjectCunStat getCunStat(ProjectCunStat param);
+	public ProjectCunStat getCunStat(ProjectCunStat param,Long cunId);
 	public ProjectZdStat getZdStat(ProjectZdStat param);
 	public ProjectShStat getShStat(ProjectShStat param);
 

@@ -115,6 +115,42 @@ public class ProjectAction extends BaseAction {
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		return "cun_stat";
 	}
+	private Long cunId;
+	public String showCunStat() {
+		if (cunStat.getYear() == null || cunStat.getMonth() == null) {//默认打开的
+			Calendar now = GregorianCalendar.getInstance();
+			Integer year = now.get(Calendar.YEAR);
+			Integer month = now.get(Calendar.MONTH);
+			if(month == 0){
+				year--;
+				month = 12;
+			}
+			cunStat.setYear(year);
+			cunStat.setMonth(month);
+			
+			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat);
+			if (cunStatInDB != null)
+				cunStat = cunStatInDB;
+			else {
+				this.setMsg("本单位还没有指定村帮扶项目，请联系管理员先指定");
+			}
+		} else if (cunStat != null || cunStat.getYear() != null || cunStat.getMonth() != null) {//指定年份和月份查询的
+			ProjectCunStat cunStatInDB = projectBiz.getCunStat(cunStat, cunId);
+			if (cunStatInDB != null)
+				cunStat = cunStatInDB;
+			else {
+				this.setMsg("该月暂时还没有进度数据");
+			}
+		}
+		if(cunStat != null && Util.isEmpty(cunStat.getCunRemark())){
+			cunStat.setCunRemark("未审核");
+		}
+		
+		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		return "show_cun_stat";
+	}
 	
 	// 项目完成情况
 	private Integer year;
@@ -670,6 +706,14 @@ public class ProjectAction extends BaseAction {
 
 	public void setReportBiz(ReportBiz reportBiz) {
 		this.reportBiz = reportBiz;
+	}
+
+	public Long getCunId() {
+		return cunId;
+	}
+
+	public void setCunId(Long cunId) {
+		this.cunId = cunId;
 	}
 
 }

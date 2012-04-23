@@ -11,6 +11,7 @@ public interface ProjectDao extends BaseDao {
 	public <T extends Project> PageBean<T> getProjectList(Class<T> clazz,Integer pageIndex);
 	
 	public ProjectCunStat getCunStat(ProjectCunStat param);
+	public ProjectCunStat getCunStat(ProjectCunStat param, Long cunId);
 	public ProjectZdStat getZdStat(ProjectZdStat param);
 	public ProjectShStat getShStat(ProjectShStat param);
 }

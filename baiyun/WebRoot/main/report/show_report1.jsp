@@ -165,33 +165,6 @@
 		<form method="get" action="${appPath}report_saveReport1.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
-					<tr align="center">
-						<td width="" class="tables_headercell">
-							年度：
-							<select name="r.year" id="year">
-								<option value=""></option>
-								<option value="2011">2011</option>
-							</select>
-						</td>
-						<td width="" class="tables_headercell">
-							类型：
-							<select name="r.type" id="reportType" onchange="chooseType(this.value);">
-								<option value=""></option>
-								<option value="year">年度报表</option>
-								<option value="season">季度报表</option>
-								<option value="month">月度报表</option>
-							</select>
-						</td>
-						<td width="" class="tables_headercell">
-							时间：
-							<select name="r.time" id="time">
-								<option value=""></option>
-							</select>
-						</td>
-						<td width="" class="tables_headercell">
-						&nbsp;
-						</td>
-					</tr>
 					<tr>
 						<td class="tables_contentcell" colspan="4" align="center">
 							<table id="data_table" cellspacing="0" cellpadding="0" border="0" class="tables_table" style="margin: 5px 10px;width:85%;" align="center">

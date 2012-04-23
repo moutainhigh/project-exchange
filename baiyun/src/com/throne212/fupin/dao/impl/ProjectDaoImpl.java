@@ -127,6 +127,64 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 
 	}
 	
+	public ProjectCunStat getCunStat(ProjectCunStat param, Long cunId) {
+		Integer year = param.getYear();
+		Integer month = param.getMonth();
+		Long proId = param.getProject()==null?null:param.getProject().getId();
+//		Long cunId = (param.getProject()!=null&&param.getProject().getCun()!=null)?param.getProject().getCun().getId():null;
+
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		
+		String hql = "from ProjectCunStat s where year=? and month=?";
+		
+		if(proId != null){
+			hql += " and s.project.id=" + proId;
+		}
+//		if(cunId != null){
+//			hql += " and s.project.cun.id=" + cunId;
+//		}
+		
+		hql += " and s.project.cun.id=" + cunId;
+
+		List<ProjectCunStat> statList = this.getHibernateTemplate().find(hql, new Object[] { year, month });
+
+		if (statList != null && statList.size() > 0)
+			return statList.get(0);
+		
+		
+		if (user instanceof Org) {
+			hql = "from ProjectCun where org.id=" + user.getId() + " and id=" + proId;
+			List<ProjectCun> list = this.getHibernateTemplate().find(hql);
+			if (list != null && list.size() > 0){
+				ProjectCun proCun = list.get(0);
+				ProjectCunStat cunStat = new ProjectCunStat();
+				cunStat.setProject(proCun);
+				cunStat.setMonth(month);
+				cunStat.setYear(year);
+				//cunStat.setProject(param.getProject());
+				this.saveOrUpdate(cunStat);
+				return cunStat;
+			}				
+		}else if(user instanceof CunWorkOrg){
+			CunWorkOrg c = (CunWorkOrg) user;
+			hql = "from ProjectCun where cun.id=" + c.getCun().getId() + " and id=" + proId;
+			List<ProjectCun> list = this.getHibernateTemplate().find(hql);
+			if (list != null && list.size() > 0){
+				ProjectCun proCun = list.get(0);
+				ProjectCunStat cunStat = new ProjectCunStat();
+				cunStat.setProject(proCun);
+				cunStat.setMonth(month);
+				cunStat.setYear(year);
+				//cunStat.setProject(param.getProject());
+				this.saveOrUpdate(cunStat);
+				return cunStat;
+			}	
+		}
+		
+		return null;
+
+	}
+	
 	public ProjectZdStat getZdStat(ProjectZdStat param){
 		Integer year = param.getYear();
 		Integer month = param.getMonth();
