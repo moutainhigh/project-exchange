@@ -1,6 +1,5 @@
 package com.throne212.fupin.domain;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 //报表父类

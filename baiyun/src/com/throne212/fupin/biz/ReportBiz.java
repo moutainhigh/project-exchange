@@ -41,4 +41,8 @@ public interface ReportBiz extends BaseBiz {
 	// 汇总查询
 	public PageBean getProStat(Class statClass,Integer year,Integer month, Integer pageIndex);
 	public List<ProjectCunStat> getProStat(Class statClass,Integer year,Integer month);
+	
+	public PageBean getProCunStat(Integer year, Integer month);
+	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName);
+	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex, Long orgId, String proName);
 }

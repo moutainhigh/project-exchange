@@ -140,9 +140,12 @@
 						<td width="" class="tables_headercell">
 							总体进度
 						</td>
+						<td width="" class="tables_headercell">
+							数据月份
+						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f">
-						<tr>
+						<tr <c:if test="${f.year!=year || f.month!=month }">style="background-color: PINK;"</c:if>>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.project.org.cun.zhen.name }
 							</td>
@@ -175,6 +178,9 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; <c:if test="${not empty f.rate }">${f.rate }%</c:if>
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.month }
 							</td>
 						</tr>
 					</c:forEach>
@@ -213,16 +219,14 @@
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; 
 							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 
+							</td>
 						</tr>
 					</c:if>
-					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="11">
-							<jsp:include page="../../pager.jsp"></jsp:include>
-						</td>
-					</tr>
 					<c:if test="${not empty item }">
 					<tr>
-						<td colspan="11" align="center" class="tables_contentcell">
+						<td colspan="12" align="center" class="tables_contentcell">
 							<h2 style="margin-top: 50px;">项目完成进度表</h2>
 							<div id="rate_chart">您需要升级您浏览器的Flash播放器!</div>
 						</td>

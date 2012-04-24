@@ -178,7 +178,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}report_saveReport3.action" name="searchForm">
+		
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
@@ -193,6 +193,7 @@
 			</table>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
+				<form method="get" action="${appPath}report_viewReport3.action" name="searchForm">
 					<tr align="center">
 						<td width="" class="tables_headercell" colspan="2">
 							年度：
@@ -216,17 +217,25 @@
 							</select>
 						</td>
 						<td width="" class="tables_headercell" colspan="2">
+							帮扶单位:
+							<select name="orgId" id="orgId">
+								<option value="">==不限==</option>
+								<c:forEach items="${orgList }" var="o">
+								<option value="${o.id }" <c:if test="${o.id==param['orgId']}">selected="selected"</c:if>>${o.orgName }</option>
+								</c:forEach>
+							</select>
+							&nbsp;
+							项目名称：
+							<input type="text" style="width:100px;" name="proName" id="proName" value="${param.proName }"/>
+							&nbsp;
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">
 						</td>
 					</tr>
+					</form>
 					<tr>
 						<td class="tables_contentcell" colspan="8" align="center">
-							<c:forEach items="${r3List}" var="r" varStatus="s">
 							<table id="data_table" cellspacing="0" cellpadding="0" border="0" class="tables_table" style="margin: 5px 10px;width:95%;" align="center">
-								<tr>
-									<td align="center" class="tables_headercell" colspan="9">${r.zhen.name }</td>
-								</tr>
 								<tr>
 									<td align="center" class="tables_headercell" colspan="1">帮扶单位</td>
 									<td align="center" class="tables_headercell" colspan="1">被帮扶村</td>
@@ -237,9 +246,10 @@
 									<td align="center" class="tables_headercell" colspan="1">核拨资金（万元）</td>
 									<td align="center" class="tables_headercell" colspan="1">下拨时间</td>
 									<td align="center" class="tables_headercell" colspan="1">备注</td>
+									<td align="center" class="tables_headercell" colspan="1">数据月份</td>
 								</tr>
-								<c:forEach items="${r.items}" var="f" varStatus="s">
-								<tr>
+								<c:forEach items="${pageBean.resultList}" var="f" varStatus="s">
+								<tr <c:if test="${f.r.year!=r3.year || f.r.time!=r3.time }">style="background-color: PINK;"</c:if>>
 									<td class="tables_contentcell">
 									<input type="hidden" name="r.items[${s.count-1}].id" value="${f.id}"/>
 									&nbsp;${f.proCun.org.orgName}
@@ -268,14 +278,47 @@
 									<td class="tables_contentcell">
 									&nbsp;<input name="r.items[${s.count-1}].comment" type="text" value="${f.comment }"/>
 									</td>
+									<td class="tables_contentcell">
+									&nbsp;${f.r.time }
+									</td>
 								</tr>
 								</c:forEach>
+								<tr>
+									<td class="tables_contentcell">
+									合计
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;${pageBean.total[0] }
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;${pageBean.total[1] }
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+									<td class="tables_contentcell">
+									&nbsp;
+									</td>
+								</tr>
 							</table>			
-							</c:forEach>				
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</form>
 	</body>
 </html>

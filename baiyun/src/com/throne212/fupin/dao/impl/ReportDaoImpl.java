@@ -14,6 +14,7 @@ import jxl.write.Number;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -123,7 +124,84 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		
 		return r;
 	}
-	public List<Report3> getReport3(Integer year, String type, String time) {
+	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName) {
+		PageBean bean = new PageBean();
+		
+		double proMoney = 0;
+		double money = 0;
+		List<Report3Item> r3iList = new ArrayList<Report3Item>();
+		
+		String hql = "from ProjectCun where 1=1";
+		Object[] params = null;
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		} 
+		if(orgId != null)
+			hql += " and org.id=" + orgId;
+		if(!Util.isEmpty(proName)){
+			hql += " and name like ?";
+			params = new Object[]{"%"+proName+"%"};
+		}
+		hql += " order by cun.zhen.id,cun.id";
+		List<ProjectCun> pcList = this.getHibernateTemplate().find(hql, params);
+		if(pcList != null && pcList.size()>0){
+			for(ProjectCun pc : pcList){
+				hql = "from Report3Item where r.year=? and r.type=? and r.time<=? and proCun=? order by year desc,time desc";
+				List<Report3Item> tmpList = this.getHibernateTemplate().find(hql,new Object[]{year,type,time,pc});
+				Report3Item r3i = null;
+				if(tmpList != null && tmpList.size() > 0)
+					r3i = tmpList.get(0);
+				else{
+					tmpList = this.getHibernateTemplate().find(hql,new Object[]{year-1,type,String.valueOf(12),pc});
+					if(tmpList != null && tmpList.size() > 0)
+						r3i = tmpList.get(0);
+				}
+				if(r3i != null){
+					r3iList.add(r3i);
+					try {
+						if(r3i.getProCun().getMoney() != null)
+							proMoney += Double.parseDouble(r3i.getProCun().getMoney());
+					} catch (NumberFormatException e) {
+						//e.printStackTrace();
+					}
+					try {
+						if(r3i.getReachMoney() != null)
+							money += Double.parseDouble(r3i.getReachMoney());
+					} catch (NumberFormatException e) {
+						//e.printStackTrace();
+					}
+				}
+			}
+		}
+		bean.setResultList(r3iList);
+		
+		//计算合计
+		Object[] arr = new Object[2];
+		arr[0] = ((int)proMoney * 100) / 100.0;
+		arr[1] = ((int)money * 100) / 100.0;
+		bean.setTotal(arr);
+		
+		return bean;
+		
+		
+		
+		
+		
+//		String hql = "from Report3 where year=? and type=?";
+//		if (!"year".equals(type)) {
+//			hql += " and time='" + time + "'";
+//		}
+//		List<Report3> list = this.getHibernateTemplate().find(hql, new Object[] { year, type });
+//		for(Report3 r : list){
+//			logger.debug("r3.zhen.name=" + r.getZhen().getName());
+//			r.setItems(this.getHibernateTemplate().find("from Report3Item where r.id=" + r.getId()));
+//		}
+//		return list;
+	}
+	
+	public List getReport3(Integer year, String type, String time){
 		String hql = "from Report3 where year=? and type=?";
 		if (!"year".equals(type)) {
 			hql += " and time='" + time + "'";
@@ -477,6 +555,60 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 		return list;
 	}
+	
+	public PageBean getProCunStat(Integer year, Integer month) {
+		PageBean bean = new PageBean();
+		double proMoney = 0;
+		double money = 0;
+		
+		List<ProjectCunStat> pcsList = new ArrayList<ProjectCunStat>();
+		String hql = "from ProjectCun where 1=1";
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and cun.zhen.id=" + z.getZhen().getId();
+		} 
+		hql += " order by cun.zhen.id,cun.id";
+		List<ProjectCun> pcList = this.getHibernateTemplate().find(hql);
+		if(pcList != null && pcList.size()>0){
+			for(ProjectCun pc : pcList){
+				hql = "from ProjectCunStat where year=? and month<=? and project=? order by year desc,month desc";
+				List<ProjectCunStat> tmpList = this.getHibernateTemplate().find(hql,new Object[]{year,month,pc});
+				ProjectCunStat pcs = null;
+				if(tmpList != null && tmpList.size() > 0)
+					pcs = tmpList.get(0);
+				else{
+					tmpList = this.getHibernateTemplate().find(hql,new Object[]{year-1,12,pc});
+					if(tmpList != null && tmpList.size() > 0)
+						pcs = tmpList.get(0);
+				}
+				if(pcs != null){
+					pcsList.add(pcs);
+					try {
+						if(pcs.getProject().getMoney() != null)
+							proMoney += Double.parseDouble(pcs.getProject().getMoney());
+					} catch (NumberFormatException e) {
+						//e.printStackTrace();
+					}
+					try {
+						if(pcs.getMoney() != null)
+							money += Double.parseDouble(pcs.getMoney());
+					} catch (NumberFormatException e) {
+						//e.printStackTrace();
+					}
+				}
+			}
+		}
+		bean.setResultList(pcsList);
+		
+		//计算合计
+		Object[] arr = new Object[2];
+		arr[0] = ((int)proMoney * 100) / 100.0;
+		arr[1] = ((int)money * 100) / 100.0;
+		bean.setTotal(arr);
+
+		return bean;
+	}
 
 	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex) {
 		PageBean bean = new PageBean();
@@ -516,6 +648,74 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		if(bean.getIsLastPage()){
 			String proMoney = (String) this.getHibernateTemplate().find("select sum(project.money) " + hql, new Object[]{year,month} ).get(0);
 			String money = (String) this.getHibernateTemplate().find("select sum(money) " + hql, new Object[]{year,month} ).get(0);
+			
+			Object[] arr = new Object[2];
+			if(!Util.isEmpty(proMoney))
+				arr[0] = ((int)(Double.parseDouble(proMoney) * 100)) / 100.0;
+			if(!Util.isEmpty(money))
+				arr[1] = ((int)(Double.parseDouble(money) * 100)) / 100.0;
+			bean.setTotal(arr);
+			
+		}
+
+		return bean;
+	}
+	
+	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex, Long orgId, String proName) {
+		PageBean bean = new PageBean();
+
+		if (pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+
+		String hql = "from " + statClass.getSimpleName() + " where year="+year+" and month="+month;
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(statClass.getName().equals(ProjectCunStat.class.getName()) && user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			hql += " and project.cun.zhen.id=" + z.getZhen().getId();
+		} 
+		
+		Object[] params = null;
+		if(orgId != null)
+			hql += " and project.org.id=" + orgId;
+		if(!Util.isEmpty(proName)){
+			hql += " and project.name like ?";
+			params = new Object[]{"%"+proName+"%"};
+		}
+		
+		logger.debug("hql[" + year + "," + month + "]:" + hql);
+
+		String countHql = "select count(*) " + hql;
+		Long count = (Long) this.getHibernateTemplate().find(countHql, params).get(0);
+		bean.setTotalRow(count.intValue());
+
+		logger.debug("pro stat count : " + count);
+
+		if(statClass.getName().equals(ProjectCunStat.class.getName())){
+			hql += " order by project.cun.zhen.id,project.cun.id";
+		}
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		q.setMaxResults(WebConstants.PAGE_SIZE);
+		q.setFirstResult(startIndex);
+
+		if(params != null && params.length > 0){
+			int i = 0;
+			for(Object obj : params){
+				q.setParameter(i++, obj);
+			}
+		}
+		
+		bean.setResultList(q.list());
+
+		bean.setPageIndex(pageIndex);
+		bean.setRowPerPage(WebConstants.PAGE_SIZE);
+		
+		//计算合计
+		if(bean.getIsLastPage()){
+			String proMoney = (String) this.getHibernateTemplate().find("select sum(project.money) " + hql, params ).get(0);
+			String money = (String) this.getHibernateTemplate().find("select sum(money) " + hql, params ).get(0);
 			
 			Object[] arr = new Object[2];
 			if(!Util.isEmpty(proMoney))

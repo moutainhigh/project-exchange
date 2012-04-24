@@ -96,8 +96,18 @@
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
-							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
+							帮扶单位:
+							<select name="orgId" id="orgId">
+								<option value="">==不限==</option>
+								<c:forEach items="${orgList }" var="o">
+								<option value="${o.id }" <c:if test="${o.id==param['orgId']}">selected="selected"</c:if>>${o.orgName }</option>
+								</c:forEach>
+							</select>
 							&nbsp;
+							项目名称：
+							<input type="text" style="width:100px;" name="proName" id="proName" value="${param.proName }"/>
+							&nbsp;
+							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="exportExcel('data_table');">
 						</td>
 					</tr>

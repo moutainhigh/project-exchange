@@ -30,6 +30,7 @@ import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
 import com.throne212.fupin.domain.Report3;
+import com.throne212.fupin.domain.Report3Item;
 import com.throne212.fupin.domain.User;
 
 public class ReportAction extends BaseAction {
@@ -39,6 +40,8 @@ public class ReportAction extends BaseAction {
 	private Integer maxMonth;
 	private Integer maxSeason;
 	private Integer maxYear;
+	
+	private List<Org> orgList;
 
 	// excel导出文件
 	private InputStream downloadFile;
@@ -428,8 +431,13 @@ public class ReportAction extends BaseAction {
 
 	private List<Report3> r3List;
 
+	private Long orgId;
+	private String proName;
+	
 	// report3
 	public String viewReport3() {
+		
+		orgList = reportBiz.getAll(Org.class);
 		
 		String result = "report_edit3";
 
@@ -446,10 +454,11 @@ public class ReportAction extends BaseAction {
 				time = "12";
 			}
 			if (user instanceof AreaWorkOrg) {
-				r3List = reportBiz.getReport3(year, type, time);
-				if(r3List!=null && r3List.size() > 0){
-					r3 = r3List.get(0);
-				}
+				pageBean = reportBiz.getReport3(year,type,time,orgId,proName);
+				r3 = new Report3();
+				r3.setYear(year);
+				r3.setType(type);
+				r3.setTime(time);
 				result = "report_edit3_list";
 			} else {
 				r3 = (Report3) reportBiz.getReport("3", year, type, time);
@@ -469,10 +478,7 @@ public class ReportAction extends BaseAction {
 				return viewReport3();
 			}
 			if (user instanceof AreaWorkOrg) {
-				r3List = reportBiz.getReport3(year, type, time);
-				if(r3List!=null && r3List.size() > 0){
-					r3 = r3List.get(0);
-				}
+				pageBean = reportBiz.getReport3(year,type,time,orgId,proName);
 				result = "report_edit3_list";
 			} else {
 				Report report = reportBiz.getReport("3", year, type, time);
@@ -649,7 +655,7 @@ public class ReportAction extends BaseAction {
 				month = 12;
 			}
 		}
-		pageBean = reportBiz.getProStat(ProjectCunStat.class, year, month, pageIndex);
+		pageBean = reportBiz.getProCunStat(year, month);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		
 		buildChart(ProjectCunStat.class);
@@ -658,6 +664,7 @@ public class ReportAction extends BaseAction {
 	}
 
 	public String projectZdStat() {
+		orgList = reportBiz.getAll(Org.class);
 		if (year == null || month == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			year = now.get(Calendar.YEAR);
@@ -667,7 +674,7 @@ public class ReportAction extends BaseAction {
 				month = 12;
 			}
 		}
-		pageBean = reportBiz.getProStat(ProjectZdStat.class, year, month, pageIndex);
+		pageBean = reportBiz.getProStat(ProjectZdStat.class, year, month, pageIndex, orgId, proName);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		
 		buildChart(ProjectZdStat.class);
@@ -902,6 +909,24 @@ public class ReportAction extends BaseAction {
 	}
 	public void setItem(ChartItem item) {
 		this.item = item;
+	}
+	public Long getOrgId() {
+		return orgId;
+	}
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+	public List<Org> getOrgList() {
+		return orgList;
+	}
+	public void setOrgList(List<Org> orgList) {
+		this.orgList = orgList;
 	}
 
 }
