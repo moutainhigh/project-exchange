@@ -61,6 +61,25 @@ function gotoPage(pageIndex,url){
 	self.location.href = url;
 }
 
+function help(key){
+	//alert('key=[' + key + ']');
+	if(key.indexOf('：') > 0){
+		var key = key.split('：')[1];
+		key = key.trim();
+		if(key == null || key == '')
+			return false;
+		//alert('key=[' + key + ']');
+		key = key.replace(/\s/ig,'').replace(/>/ig,'');
+		$.ajax({
+		   type: "GET",
+		   url: "help/" + encodeURI(key) + ".txt",
+		   data: "",
+		   success: function(msg){
+		     alert( "===帮助信息===\n" + msg );
+		   }
+		}); 
+	}
+}
 
 //让消息框慢慢消退
 $(function(){
@@ -71,7 +90,15 @@ $(function(){
 		if(checkAll){
 			$("input[type='button']:last").after('<input type="button" class="button" value="Excel" onclick="exportExcel()">');
 		}
-	}catch(e){}
+		if($("td:contains('您当前所处页面')").length > 0){
+			var btn = $("input[type='button']:last");
+			if(btn == null || btn.length == 0)
+				btn = $("input[type='submit']:last");
+			btn.after('<input type="button" class="button" value="帮助" onclick="help(\'' + $("td:contains('您当前所处页面')").text().trim() + '\')">');
+		}
+	}catch(e){
+		//alert(e);
+	}
 });
 
 function exportExcel(tableid){
