@@ -293,6 +293,8 @@
 			<result name="cun_stat_lock_list">/main/project/cun_project_stat_lock_list.jsp</result>
 			<result name="zd_stat_lock_list">/main/project/zd_project_stat_lock_list.jsp</result>
 			<result name="show_cun_stat">/main/project/cun_project_status_show.jsp</result>
+			<result name="show_zd_stat">/main/project/zd_project_status_show.jsp</result>
+			
 		</action>
 		<!-- 通讯组管理 -->
 		<action name="group_*" method="{1}" class="com.throne212.fupin.action.ContactGroupAction">

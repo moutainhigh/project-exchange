@@ -51,6 +51,52 @@
 				$('input[type="text"]').attr("readonly",true);
 			}
 		});
+		
+		$(function(){
+			selectArea(2);
+		});
+		var paramZhenId = '${param.zhenId}';
+		function selectArea(val){
+			if(!document.getElementById('zhenId')){
+				var zhenId = '';
+				<c:if test="${userObj.roleType=='镇级管理员'}">
+				zhenId = '${userObj.zhen.id}';
+				</c:if>
+				selectZhen(zhenId);
+			}else if(val){
+				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#zhenId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(paramZhenId);
+								selectZhen(paramZhenId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		var paramCunId = '${param.cunId}';
+		function selectZhen(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#cunId2').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramCunId!=''){
+							setTimeout(function(){
+								$('#cunId2').val(paramCunId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		
 		function chooseType(type){
 			if(!type){
 				type = $('#reportType').val();
@@ -200,18 +246,10 @@
 							<select name="r3.year" id="year" onchange="chooseType();" style="width: 60px;">
 								<option value=""></option>
 							</select>
+							<input type="hidden" name="r3.type" value="month" id="reportType"/>
 						</td>
 						<td width="" class="tables_headercell" colspan="2">
-							类型：
-							<select name="r3.type" id="reportType" onchange="chooseType(this.value);">
-								<option value=""></option>
-								<option value="year">年度报表</option>
-								<option value="season">季度报表</option>
-								<option value="month">月度报表</option>
-							</select>
-						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							时间：
+							月份：
 							<select name="r3.time" id="time">
 								<option value=""></option>
 							</select>
@@ -225,6 +263,16 @@
 								</c:forEach>
 							</select>
 							&nbsp;
+							受帮扶单位:
+							<span class="STYLE1">镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+							<br/>
 							项目名称：
 							<input type="text" style="width:100px;" name="proName" id="proName" value="${param.proName }"/>
 							&nbsp;
@@ -279,7 +327,7 @@
 									&nbsp;<input name="r.items[${s.count-1}].comment" type="text" value="${f.comment }"/>
 									</td>
 									<td class="tables_contentcell">
-									&nbsp;${f.r.time }
+									&nbsp;${f.r.year }-${f.r.time }
 									</td>
 								</tr>
 								</c:forEach>

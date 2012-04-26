@@ -188,7 +188,7 @@ public class ProjectDaoImpl extends BaseDaoImpl implements ProjectDao {
 	public ProjectZdStat getZdStat(ProjectZdStat param){
 		Integer year = param.getYear();
 		Integer month = param.getMonth();
-		Long proId = param.getProject().getId();
+		Long proId = param.getProject()==null?null:param.getProject().getId();
 
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		String hql = "from ProjectZdStat s where year=? and month=?";

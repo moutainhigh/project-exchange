@@ -496,6 +496,42 @@ public class ProjectAction extends BaseAction {
 		return zdStat();
 	}
 	
+	public String showZdStat() {
+		if (zdStat.getYear() == null || zdStat.getMonth() == null) {//默认打开的
+			Calendar now = GregorianCalendar.getInstance();
+			Integer year = now.get(Calendar.YEAR);
+			Integer month = now.get(Calendar.MONTH);
+			if(month == 0){
+				year--;
+				month = 12;
+			}
+			zdStat.setYear(year);
+			zdStat.setMonth(month);
+			
+			ProjectZdStat zdStatInDB = projectBiz.getZdStat(zdStat);
+			if (zdStatInDB != null)
+				zdStat = zdStatInDB;
+			else {
+				this.setMsg("该月暂时还没有进度数据");
+			}
+		} else if (zdStat != null || zdStat.getYear() != null || zdStat.getMonth() != null) {//指定年份和月份查询的
+			ProjectZdStat zdStatInDB = projectBiz.getZdStat(zdStat);
+			if (zdStatInDB != null)
+				zdStat = zdStatInDB;
+			else {
+				this.setMsg("该月暂时还没有进度数据");
+			}
+		}
+		if(zdStat != null && Util.isEmpty(zdStat.getCunRemark())){
+			zdStat.setCunRemark("未审核");
+		}
+		
+		// 最大的月份和季度
+		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
+		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
+		return "show_zd_stat";
+	}
+	
 	
 
 	// 社会资金管理

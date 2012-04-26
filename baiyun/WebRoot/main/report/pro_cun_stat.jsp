@@ -50,6 +50,51 @@
 		}
 		
 		$(function(){
+			selectArea(2);
+		});
+		var paramZhenId = '${param.zhenId}';
+		function selectArea(val){
+			if(!document.getElementById('zhenId')){
+				var zhenId = '';
+				<c:if test="${userObj.roleType=='镇级管理员'}">
+				zhenId = '${userObj.zhen.id}';
+				</c:if>
+				selectZhen(zhenId);
+			}else if(val){
+				$.getJSON("${appPath}ajax/getAllZhen?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#zhenId').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#zhenId').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramZhenId!=''){
+							setTimeout(function(){
+								$('#zhenId').val(paramZhenId);
+								selectZhen(paramZhenId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		var paramCunId = '${param.cunId}';
+		function selectZhen(val){
+			if(val){
+				$.getJSON("${appPath}ajax/getAllCun?time="+new Date().getTime(), {'parentId':val}, function(json){
+					if(json && json['list'] && json['list'].length){
+						$('#cunId2').html('<option value=""></option>');
+						for(var i=0;i<json['list'].length;i++)
+							$('#cunId2').append('<option value="'+json['list'][i]['id']+'">'+json['list'][i]['name']+'</option>');
+						if(paramCunId!=''){
+							setTimeout(function(){
+								$('#cunId2').val(paramCunId);
+							},1);
+						}
+					}
+				});
+			}
+		}
+		
+		$(function(){
 			var so = new SWFObject("${appPath}chart/${item.swf}", "ampie", "750", "${item.height}", "8", "#FFFFFF");
 			so.addVariable("path", "${appPath}chart/");
 			so.addVariable("chart_settings", encodeURIComponent("${item.setXml}"));
@@ -97,6 +142,27 @@
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
+						<c:if test="${userObj.roleType=='县级管理员'}">
+							<span class="STYLE1">镇：</span>
+			 			<select id="zhenId" name="zhenId" onchange="selectZhen(this.value);">
+									<option value="">----------</option>
+								 </select>
+						<span class="STYLE1">&nbsp;村：</span>
+						<select id="cunId2" name="cunId">
+									<option value="">-----------</option>
+									</select>
+									</c:if>
+									<br/>
+									帮扶单位:
+							<select name="orgId" id="orgId">
+								<option value="">==不限==</option>
+								<c:forEach items="${orgList }" var="o">
+								<option value="${o.id }" <c:if test="${o.id==param['orgId']}">selected="selected"</c:if>>${o.orgName }</option>
+								</c:forEach>
+							</select>&nbsp;
+							项目名称：
+							<input type="text" style="width:100px;" name="proName" id="proName" value="${param.proName }"/>
+							&nbsp;
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							&nbsp;
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="exportExcel('data_table');">
@@ -180,7 +246,7 @@
 								&nbsp; <c:if test="${not empty f.rate }">${f.rate }%</c:if>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.month }
+								&nbsp; ${f.year }-${f.month }
 							</td>
 						</tr>
 					</c:forEach>

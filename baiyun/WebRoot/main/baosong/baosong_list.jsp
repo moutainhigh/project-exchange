@@ -58,12 +58,14 @@
 						</td>
 						<td align="right">
 							<c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='帮扶单位管理员' || userObj.roleType=='县级管理员'}">
+							状态：
 							<select name="status" id="baosongStatus">
 								<option value="">==不限==</option>
 								<option value="待办">待办</option>
 								<option value="已办">已办</option>
 							</select>
 							&nbsp;
+							报送单位:
 							<select name="orgId" id="orgId">
 								<option value="">==不限==</option>
 								<c:forEach items="${orgList }" var="o">

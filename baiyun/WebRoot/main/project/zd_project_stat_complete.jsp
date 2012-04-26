@@ -57,11 +57,11 @@
 			$('.datagrid-cell').each(function(){
 				if($(this).html().indexOf('Y') > -1){
 					var arr = $(this).html().split("-");
-					var cunId = arr[1];
+					var zId = arr[1];
 					var year = arr[2];
 					var time = arr[3];
-					//$(this).html('<a href="javascript:void();" onclick="winOpen(\'${appPath}report_showReport1.action?cunId='+cunId+'&r.year='+year+'&r.type=month&r.time='+time+'\',700,600);" style="text-decoration:underline;">Y</a>');
-					$(this).html('<a href="javascript:void();" onclick="#" style="text-decoration:underline;">Y</a>'); 
+					$(this).html('<a href="javascript:void();" onclick="winOpen(\'${appPath}pro_showZdStat.action?zdStat.project.id='+zId+'&zdStat.year='+year+'&zdStat.month='+time+'\',700,600);" style="text-decoration:underline;">Y</a>');
+					//$(this).html('<a href="javascript:void();" onclick="#" style="text-decoration:underline;">Y</a>'); 
 				}
 			});
 		});
@@ -95,7 +95,7 @@
 			<tbody>
 				<tr>
 					<td>
-						您当前所处页面：“对口帮扶低收入村”项目落实情况统计表-完成情况
+						您当前所处页面：“重点帮扶钟落潭镇”项目落实统计表—完成情况
 					</td>
 					<td align="right">
 					&nbsp;

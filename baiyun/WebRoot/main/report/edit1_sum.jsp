@@ -318,7 +318,7 @@
 									${r.item26 }
 									</td>
 									<td class="tables_contentcell">
-									${r.time }月
+									${r.year }-${r.time }
 									</td>
 								</tr>
 								</c:forEach>

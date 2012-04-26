@@ -455,10 +455,16 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 	public PageBean getProCunStat(Integer year, Integer month){
 		return reportDao.getProCunStat(year, month);
 	}
-	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName){
-		return reportDao.getReport3(year, type, time, orgId, proName);
+	public PageBean getProCunStat(Long zhenId, Long cunId, Integer year, Integer month,Long orgId, String proName){
+		return reportDao.getProCunStat(zhenId, cunId, year, month, orgId, proName);
+	}
+	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName, Long zhenId, Long cunId){
+		return reportDao.getReport3(year, type, time, orgId, proName, zhenId, cunId);
 	}
 	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex, Long orgId, String proName){
 		return reportDao.getProStat(statClass, year, month, pageIndex, orgId, proName);
+	}
+	public PageBean getProZdStat(Integer year, Integer month,Long orgId, String proName){
+		return reportDao.getProZdStat(year, month, orgId,  proName);
 	}
 }

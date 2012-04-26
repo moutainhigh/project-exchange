@@ -31,6 +31,7 @@ public interface ReportDao extends BaseDao {
 	public List<ProZdStat> getProZdStat(int year);
 	
 	public PageBean getProCunStat(Integer year, Integer month);
+	public PageBean getProCunStat(Long zhenId, Long cunId, Integer year, Integer month,Long orgId, String proName);
 	
 	public PageBean sumReport1(Long zhenId,Long cunId,int year,int month);
 	public Object[] sumReport1Num(Long zhenId,Long cunId,int year,int month);
@@ -38,7 +39,8 @@ public interface ReportDao extends BaseDao {
 	public PageBean getProStat(Class statClass, Integer year,Integer month,Integer pageIndex);
 	public List<ProjectCunStat> getProStat(Class statClass,Integer year,Integer month);
 	
-	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName);
+	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName, Long zhenId, Long cunId);
 	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex, Long orgId, String proName);
+	public PageBean getProZdStat(Integer year, Integer month,Long orgId, String proName);
 
 }

@@ -30,7 +30,6 @@ import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
 import com.throne212.fupin.domain.Report3;
-import com.throne212.fupin.domain.Report3Item;
 import com.throne212.fupin.domain.User;
 
 public class ReportAction extends BaseAction {
@@ -454,7 +453,7 @@ public class ReportAction extends BaseAction {
 				time = "12";
 			}
 			if (user instanceof AreaWorkOrg) {
-				pageBean = reportBiz.getReport3(year,type,time,orgId,proName);
+				pageBean = reportBiz.getReport3(year,type,time,orgId,proName, zhenId, cunId);
 				r3 = new Report3();
 				r3.setYear(year);
 				r3.setType(type);
@@ -478,7 +477,7 @@ public class ReportAction extends BaseAction {
 				return viewReport3();
 			}
 			if (user instanceof AreaWorkOrg) {
-				pageBean = reportBiz.getReport3(year,type,time,orgId,proName);
+				pageBean = reportBiz.getReport3(year,type,time,orgId,proName, zhenId, cunId);
 				result = "report_edit3_list";
 			} else {
 				Report report = reportBiz.getReport("3", year, type, time);
@@ -646,6 +645,7 @@ public class ReportAction extends BaseAction {
 	private ChartItem item;
 
 	public String projectCunStat() {
+		orgList = reportBiz.getAll(Org.class);
 		if (year == null || month == null) {
 			Calendar now = GregorianCalendar.getInstance();
 			year = now.get(Calendar.YEAR);
@@ -655,7 +655,7 @@ public class ReportAction extends BaseAction {
 				month = 12;
 			}
 		}
-		pageBean = reportBiz.getProCunStat(year, month);
+		pageBean = reportBiz.getProCunStat(zhenId, cunId, year, month, orgId, proName);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		
 		buildChart(ProjectCunStat.class);
@@ -674,7 +674,7 @@ public class ReportAction extends BaseAction {
 				month = 12;
 			}
 		}
-		pageBean = reportBiz.getProStat(ProjectZdStat.class, year, month, pageIndex, orgId, proName);
+		pageBean = reportBiz.getProZdStat(year, month, orgId, proName);
 		maxYear = GregorianCalendar.getInstance().get(Calendar.YEAR);
 		
 		buildChart(ProjectZdStat.class);

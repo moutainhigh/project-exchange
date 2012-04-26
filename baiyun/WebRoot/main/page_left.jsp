@@ -229,12 +229,12 @@ function images_update(){
 		menuArray[menuArray.length]="1,帮扶措施,${appPath}cun_bf_cuoshiCunList.action";
 		menuArray[menuArray.length]="1,帮扶成效,${appPath}cun_bf_chengxiaoCunList.action";
 		menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表,${appPath}report_projectCunStat.action";
-		menuArray[menuArray.length]="1,村项目填报情况 - 统计,${appPath}pro_proCunStatComplete.action";
+		menuArray[menuArray.length]="1,“对口帮扶低收入村”项目落实情况统计表填报情况,${appPath}pro_proCunStatComplete.action";
 		menuArray[menuArray.length]="1,对口帮扶低收入村项目建设及资金下拨明细表,${appPath}report_viewReport3.action";
 		menuArray[menuArray.length]="1,村项目资金下拨明细表 - 统计,${appPath}report_report3Stat.action";
 		menuArray[menuArray.length]="0,镇帮扶信息,";
 	    menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实情况统计表,${appPath}report_projectZdStat.action";
-	    menuArray[menuArray.length]="1,镇项目填报情况 - 统计,${appPath}pro_proZdStatComplete.action";
+	    menuArray[menuArray.length]="1,“重点帮扶钟落潭镇”项目落实统计表—完成情况,${appPath}pro_proZdStatComplete.action";
 	    menuArray[menuArray.length]="1,白云区工商联企业帮扶钟落潭镇项目进度表,${appPath}report_projectShStat.action";
 	    menuArray[menuArray.length]="0,信息报送";
 		menuArray[menuArray.length]="1,信息报送列表,${appPath}baosong_baoSongList.action";

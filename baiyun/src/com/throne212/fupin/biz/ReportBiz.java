@@ -43,6 +43,8 @@ public interface ReportBiz extends BaseBiz {
 	public List<ProjectCunStat> getProStat(Class statClass,Integer year,Integer month);
 	
 	public PageBean getProCunStat(Integer year, Integer month);
-	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName);
+	public PageBean getProCunStat(Long zhenId, Long cunId, Integer year, Integer month,Long orgId, String proName);
+	public PageBean getReport3(Integer year, String type, String time, Long orgId, String proName, Long zhenId, Long cunId);
 	public PageBean getProStat(Class statClass, Integer year, Integer month, Integer pageIndex, Long orgId, String proName);
+	public PageBean getProZdStat(Integer year, Integer month,Long orgId, String proName);
 }
