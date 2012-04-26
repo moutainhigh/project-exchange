@@ -269,6 +269,10 @@ function images_update(){
 		menuArray[menuArray.length]="1,修改申请审核,${appPath}recheck_listRecheck.action";
 		</c:if>
 		
+		<c:if test="${userObj.roleType=='镇级管理员'}">
+		menuArray[menuArray.length]="1,修改申请审核,${appPath}recheck_listRecheck.action";
+		</c:if>
+		
 		<c:if test="${userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="0,系统设置,";
 	    menuArray[menuArray.length]="1,项目管理,";

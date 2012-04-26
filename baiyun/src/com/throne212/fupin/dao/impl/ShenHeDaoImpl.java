@@ -26,6 +26,7 @@ import com.throne212.fupin.domain.Recheck;
 import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 	
@@ -304,6 +305,12 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 		if (recordId!=null) {
 			hql+=" and recordId="+recordId;
 		}
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			hql += " and org.cun.zhen.id=" + user.getId();
+		}
+		
 		hql+=" order by id desc";
 		logger.debug("hql="+hql);
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
