@@ -36,4 +36,5 @@ public interface ShenHeBiz extends BaseBiz {
 	//重审
 	public PageBean<Recheck> getAllRecheck(String module,String state,Integer pageIndex);
 	public PageBean<Recheck> getAllRecheck(Long recordId,Integer pageIndex);
+	public PageBean<Recheck> getAllRecheck(String module, Long recordId,Integer pageIndex);
 }

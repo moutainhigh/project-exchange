@@ -26,6 +26,7 @@ import com.throne212.fupin.domain.Recheck;
 import com.throne212.fupin.domain.Record;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.Zhen;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
@@ -306,9 +307,37 @@ public class ShenHeDaoImpl extends BaseDaoImpl implements ShenHeDao {
 			hql+=" and recordId="+recordId;
 		}
 		
+		hql+=" order by id desc";
+		logger.debug("hql="+hql);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		List<Recheck> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
+	}
+	
+	public PageBean<Recheck> getAllRecheck(String module, Long recordId,Integer pageIndex){
+		PageBean<Recheck> page = new PageBean<Recheck>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from Recheck t where 1=1";
+		if (recordId!=null) {
+			hql+=" and recordId="+recordId;
+		}
+		if(!Util.isEmpty(module))
+		hql += " and module='"+module+"'";
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if(user instanceof ZhenWorkOrg){
-			hql += " and org.cun.zhen.id=" + user.getId();
+			if(Util.isEmpty(module)){
+				page.setTotalRow(0);
+				page.setResultList(null);
+				return page;
+			}
+			Zhen zhen = ((ZhenWorkOrg)user).getZhen();
+			hql += " and org.id in (select org.id from Cun where zhen.id="+zhen.getId()+")";
 		}
 		
 		hql+=" order by id desc";

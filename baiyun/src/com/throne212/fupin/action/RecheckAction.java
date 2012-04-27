@@ -23,6 +23,7 @@ public class RecheckAction extends BaseAction {
 	private Integer pageIndex;
 	private String moduleType;
 	private String state;
+	private String module;
 
 	public String list() {
 		pageBean = shenHeBiz.getAllRecheck(moduleType, state, pageIndex);
@@ -55,9 +56,10 @@ public class RecheckAction extends BaseAction {
 
 	// 重审的审核
 	private Long recordId;
+	
 
 	public String listRecheck() {
-		pageBean = shenHeBiz.getAllRecheck(recordId, pageIndex);
+		pageBean = shenHeBiz.getAllRecheck(module, recordId, pageIndex);
 		return "recheck_list";
 	}
 
@@ -195,6 +197,14 @@ public class RecheckAction extends BaseAction {
 
 	public void setRecordId(Long recordId) {
 		this.recordId = recordId;
+	}
+
+	public String getModule() {
+		return module;
+	}
+
+	public void setModule(String module) {
+		this.module = module;
 	}
 
 }

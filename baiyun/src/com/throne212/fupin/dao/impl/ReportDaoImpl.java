@@ -477,7 +477,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 		} else if (user instanceof ZhenWorkOrg) {// 镇
 			ZhenWorkOrg z = (ZhenWorkOrg) user;
-			zhenList = this.getEntitiesByColumn(Zhen.class, "zhen.id", z.getZhen().getId());
+			zhenList = this.getEntitiesByColumn(Zhen.class, "id", z.getZhen().getId());
 		}
 		
 		int min = 1;

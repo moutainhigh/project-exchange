@@ -35,20 +35,37 @@ var msg = '${msg}';
 </script>
 </head><body>
 
-<form method="get" action="${appPath}recheck_listRecheck.action" name="searchForm" onsubmit="return Validator.Validate(this)">
+<form method="get" action="${appPath}recheck_listRecheck.action" name="searchForm">
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 	<tbody><tr>
 	<td>您当前所处页面：修改申请 </td>
 	<td>&nbsp;</td>
 	<td align="right">
+	<label>模块: </label>
+	<select name="module" id="module">
+		<c:if test="${userObj.roleType=='县级管理员'}">
+		<option value=""></option>
+		</c:if>
+		<option value="村措施" <c:if test="${param['module']=='村措施' }">selected="selected"</c:if>>村措施</option>
+		<option value="村成效" <c:if test="${param['module']=='村成效' }">selected="selected"</c:if>>村成效</option>
+		<option value="村图片" <c:if test="${param['module']=='村图片' }">selected="selected"</c:if>>村图片</option>
+		<option value="户贫困原因" <c:if test="${param['module']=='户贫困原因' }">selected="selected"</c:if>>户贫困原因</option>
+		<option value="户帮扶措施" <c:if test="${param['module']=='户帮扶措施' }">selected="selected"</c:if>>户帮扶措施</option>
+		<option value="户扶持内容" <c:if test="${param['module']=='户扶持内容' }">selected="selected"</c:if>>户扶持内容</option>
+		<option value="户帮扶成效" <c:if test="${param['module']=='户帮扶成效' }">selected="selected"</c:if>>户帮扶成效</option>
+		<option value="户图片" <c:if test="${param['module']=='户图片' }">selected="selected"</c:if>>户图片</option>
+	</select>
+	&nbsp;
 
 	<label>记录编号: </label>
 	<input type="text" name="recordId" value="${param.recordId}" dataType="Number" msg="修改记录编号必须为数字"/>
 
 
 		<input type="submit" class="button" value="查询"> 
+		<c:if test="${userObj.roleType=='县级管理员'}">
 		<input type="button" onclick="deleteInfo();" class="button" value="删除">
+		</c:if>
 	</td>
 	<td width="5px" align="right"></td>
 	</tr>

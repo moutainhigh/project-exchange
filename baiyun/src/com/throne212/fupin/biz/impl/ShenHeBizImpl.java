@@ -105,6 +105,10 @@ private ShenHeDao shenHeDao;
 			pageIndex = 1;
 		return shenHeDao.getAllRecheck(recordId, pageIndex);
 	}
-	
+	public PageBean<Recheck> getAllRecheck(String module, Long recordId,Integer pageIndex){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		return shenHeDao.getAllRecheck(module, recordId, pageIndex);
+	}
 
 }
