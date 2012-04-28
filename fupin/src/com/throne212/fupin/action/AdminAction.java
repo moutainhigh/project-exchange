@@ -1,5 +1,6 @@
 package com.throne212.fupin.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -10,7 +11,6 @@ import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.Admin;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
-import com.throne212.fupin.domain.MyEntity;
 import com.throne212.fupin.domain.Permission;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
@@ -84,18 +84,45 @@ public class AdminAction extends BaseAction {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		if (user instanceof Admin) {
 			pageBean = adminBiz.getAreaWorkOrgBean(pageIndex);
-			return "areaWorkOrg_list";
 		} else if (user instanceof ShiWorkOrg) {
 			pageBean = adminBiz.getAreaWorkOrgBean(pageIndex, user.getId());
+		}
+		if(pageBean != null && pageBean.getResultList() != null && pageBean.getResultList().size() > 0){
+			List<AreaWorkOrg> newList = new ArrayList<AreaWorkOrg>();
+			List<String> needList = new ArrayList<String>();
+			needList.add("nsqfpb_admin");
+			needList.add("zcfpb_admin");
+			needList.add("lgqfpb_admin");
+			needList.add("chfpb_admin");
+			needList.add("baiyun");
+			for(Object o : pageBean.getResultList()){
+				AreaWorkOrg areaWorkOrg = (AreaWorkOrg) o;
+				if(needList.contains(areaWorkOrg.getLoginName())){
+					newList.add(areaWorkOrg);
+				}
+			}
+			pageBean.setResultList(newList);
 		}
 		return "areaWorkOrg_list";
 	}
 
 	// 区县级账号管理
 	public String saveOrUpdateAreaWorkOrg() {
+		
+		String[] loginName2 = (String[]) ActionContext.getContext().getParameters().get("loginName2");
+		if(loginName2 != null && loginName2.length > 0){
+			String login = loginName2[0];
+			areaWorkOrg = adminBiz.getEntityByUnique(AreaWorkOrg.class, "loginName2", login);
+			if(areaWorkOrg == null){
+				this.setSucc("Y");
+				return "areaWorkOrg_edit";
+			}
+			return "areaWorkOrg_edit2";
+		}
 
 		if (areaWorkOrg == null) {
 			this.setMsg("保存失败，请检查数据是否录入完整");
+			this.setSucc("Y");
 			return "areaWorkOrg_edit";
 		}
 		if (areaWorkOrg != null && !Util.isEmpty(areaWorkOrg.getLoginName())) {// 添加或更新
@@ -124,6 +151,29 @@ public class AdminAction extends BaseAction {
 			return "areaWorkOrg_edit";
 		}
 		return "areaWorkOrg_edit";
+
+	}
+	
+	public String saveOrUpdateAreaWorkOrg2() {
+		if (areaWorkOrg == null) {
+			this.setMsg("保存失败，请检查数据是否录入完整");
+			this.setSucc("Y");
+			return "areaWorkOrg_edit2";
+		}
+		if (areaWorkOrg != null && !Util.isEmpty(areaWorkOrg.getLoginName())) {// 添加或更新
+			AreaWorkOrg areaOrg = adminBiz.getEntityByUnique(AreaWorkOrg.class, "loginName", areaWorkOrg.getLoginName());
+			if (areaOrg != null) {
+				areaOrg.setPassword2(areaWorkOrg.getPassword2());
+				areaWorkOrg = adminBiz.saveOrUpdateAreaWorkOrg(areaOrg);
+				this.setMsg("保存成功");
+				this.setSucc("Y");
+				return "areaWorkOrg_edit2";
+			}
+		} else if (areaWorkOrg != null && areaWorkOrg.getId() != null) {// 查看详情
+			areaWorkOrg = adminBiz.getEntityById(AreaWorkOrg.class, areaWorkOrg.getId());
+			return "areaWorkOrg_edit2";
+		}
+		return "areaWorkOrg_edit2";
 
 	}
 

@@ -45,9 +45,11 @@
 						<td>
 							您当前所处页面：基础数据维护 >> 区县级帐号管理
 						</td>
-						<td align="right">
+						<td align="right"><!-- 
 							<input type="button" onclick="winOpen('${appPath}main/admin/area_account_edit.jsp',450,220);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
+							 -->
+							 &nbsp;
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -56,8 +58,6 @@
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="6%" class="tables_headercell">
-							<input type="checkbox" onclick="checkAll(this);">
 						<td width="40%" class="tables_headercell">
 							帐号名
 						</td>
@@ -74,9 +74,6 @@
 					<c:forEach items="${pageBean.resultList}" var="f">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								<input type="checkbox" value="${f.id}" name="areaWorkOrg_ids" class="areaWorkOrg_ids">
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.loginName}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
@@ -91,10 +88,40 @@
 						</tr>
 					</c:forEach>
 					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; zcfpgzd
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 增城工作队
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 增城工作队
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateAreaWorkOrg.action?loginName2=zcfpgzd',450,220);">修改</a>
+						</td>
+					</tr>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; chfpgzd
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 从化工作队
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							&nbsp; 从化工作队
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateAreaWorkOrg.action?loginName2=chfpgzd',450,220);">修改</a>
+						</td>
+					</tr>
+					<!-- 
+					<tr>
 						<td height="25" align="right" class="tables_contentcell" colspan="5">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>
+					 -->
 				</tbody>
 			</table>
 		</form>

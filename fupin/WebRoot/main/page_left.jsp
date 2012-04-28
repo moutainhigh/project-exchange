@@ -233,17 +233,18 @@ function images_update(){
 	    menuArray[menuArray.length]="1,地区信息维护,${appPath}diqu_diquList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
-	    menuArray[menuArray.length]="1,市级账号管理,${appPath}admin_shiWorkOrgList.action";
+	    menuArray[menuArray.length]="1,一级账号管理,${appPath}admin_shiWorkOrgList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
-	    menuArray[menuArray.length]="1,区县级账号管理,${appPath}admin_areaWorkOrgList.action";
+	    menuArray[menuArray.length]="1,二级账号管理,${appPath}admin_areaWorkOrgList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
-	    menuArray[menuArray.length]="1,镇级账号管理,${appPath}admin_zhenWorkOrgList.action";
+	    menuArray[menuArray.length]="1,三级账号管理,";
+	    menuArray[menuArray.length]="2,镇级扶贫办账号管理,${appPath}admin_zhenWorkOrgList.action";
+	    menuArray[menuArray.length]="2,工作组管理,${appPath}team_teamList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenBFList.action";
-	    menuArray[menuArray.length]="1,工作组管理,${appPath}team_teamList.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,帮扶单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,${appPath}manager_managerList.action";

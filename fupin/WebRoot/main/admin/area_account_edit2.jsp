@@ -62,57 +62,27 @@
 		</script>
 	</head>
 	<body>
-		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}admin_saveOrUpdateAreaWorkOrg.action" name="">
+		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}admin_saveOrUpdateAreaWorkOrg2.action" name="">
 			<input type="hidden" value="${areaWorkOrg.id}" name="areaWorkOrg.id" id="">
 			<c:if test="${not empty areaWorkOrg.id}">
 			<input type="hidden" value="${areaWorkOrg.loginName}" name="areaWorkOrg.loginName" id="">
-			<input type="hidden" value="${areaWorkOrg.loginName2}" id="username2" name="areaWorkOrg.loginName2">
-			<input type="hidden" value="${areaWorkOrg.password2}" id="password2" name="areaWorkOrg.password2">
 			</c:if>
 			<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						所属市扶贫办
+							工作队帐号登录名
 						</td>
 						<td class="tables_contentcell">
-							<select id="shiworkorg" name="areaWorkOrg.shiWorkOrg.id" size="1" msg="必须选择一个市扶贫办！" datatype="Require" onchange="selectAreas(this.value);"></select>
-							<font size="4" color="#cc0033">*</font>
+							<input type="text" style="height: 22px;" size="20" value="${areaWorkOrg.loginName2}" id="username2" name="areaWorkOrg.loginName2" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
-						所属区县
+							工作队密码
 						</td>
 						<td class="tables_contentcell">
-							<select id="area" name="areaWorkOrg.area.id" size="1" msg="必须选择一个区县！" datatype="Require"></select>
-							<font size="4" color="#cc0033">*</font>
-						</td>
-					</tr>
-					<tr>
-						<td height="30" align="right" class="tables_leftcell">
-							帐号登录名
-						</td>
-						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" msg="用户名不能为空！" datatype="Require" size="20" value="${ areaWorkOrg.loginName}" id="username" name="areaWorkOrg.loginName" <c:if test="${not empty areaWorkOrg.id}"> disabled="disabled"</c:if>>
-							<font size="4" color="#cc0033">*</font>
-						</td>
-					</tr>
-					<tr>
-						<td height="30" align="right" class="tables_leftcell">
-							密码
-						</td>
-						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" msg="密码不能为空！" datatype="Require" size="20" value="${areaWorkOrg.password}" id="password" name="areaWorkOrg.password">
-							<font size="4" color="#cc0033">*</font>
-						</td>
-					</tr>
-					<tr>
-						<td height="30" align="right" class="tables_leftcell">
-							说明：
-						</td>
-						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" require="false" size="20" value="${areaWorkOrg.remark }" id="bz" name="areaWorkOrg.remark">
+							<input type="text" style="height: 22px;" size="20" value="${areaWorkOrg.password2}" id="password2" name="areaWorkOrg.password2">
 						</td>
 					</tr>
 					<tr>

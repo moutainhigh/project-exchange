@@ -104,6 +104,7 @@
 			<result name="shiWorkOrg_edit">/main/admin/shi_account_edit.jsp</result>
 			<result name="areaWorkOrg_list">/main/admin/area_account_list.jsp</result>
 			<result name="areaWorkOrg_edit">/main/admin/area_account_edit.jsp</result>
+			<result name="areaWorkOrg_edit2">/main/admin/area_account_edit2.jsp</result>
 			<result name="zhenWorkOrg_list">/main/admin/zhen_account_list.jsp</result>
 			<result name="zhenWorkOrg_edit">/main/admin/zhen_account_edit.jsp</result>
 			<result name="per_list">/main/admin/per_list.jsp</result>
