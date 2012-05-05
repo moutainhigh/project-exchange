@@ -8,6 +8,8 @@ public class User extends MyEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String loginName;// 登录名
 	private String password;// 密码
+	
+	private String isSA;
 
 	private String remark;
 
@@ -136,6 +138,14 @@ public class User extends MyEntity implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getIsSA() {
+		return isSA;
+	}
+
+	public void setIsSA(String isSA) {
+		this.isSA = isSA;
 	}
 
 }

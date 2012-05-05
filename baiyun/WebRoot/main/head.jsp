@@ -72,7 +72,10 @@ function getExplorInfo(){
 					&nbsp;  
 					&nbsp;<img src="${appPath}main/page_top_data/user.gif" width="15" align="absmiddle" height="15"/> 
               
-${userObj.loginNameTxt }（<span title="${userObj.roleName }">${userObj.roleName }</span>）</td>
+${userObj.loginNameTxt }（<span title="${userObj.roleName }">${userObj.roleName }</span>）
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<c:if test="${last == 'Y' && userObj.roleType=='帮扶单位管理员'}"><a href="${appPath}login.action?username=${lastUser}&password=${lastPwd}&needRand=N" target="_top" style="color: red;">返回baiyun管理员登录</a></c:if>
+</td>
     <td width="80"><!--<img src="${appPath}images/a1_qp.gif" width="12" height="11" /> 全屏-->&nbsp;</td>
   </tr>
 </table>
