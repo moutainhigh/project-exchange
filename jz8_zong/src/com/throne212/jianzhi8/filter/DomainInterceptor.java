@@ -19,7 +19,7 @@ public class DomainInterceptor extends AbstractInterceptor {
 	
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
-		logger.debug("into intercepter...");
+		//logger.debug("into intercepter...");
 		return actionInvocation.invoke();
 	}
 

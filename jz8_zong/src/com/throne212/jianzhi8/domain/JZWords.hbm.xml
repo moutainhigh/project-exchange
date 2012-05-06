@@ -6,7 +6,6 @@
 -->
 <hibernate-mapping package="com.throne212.jianzhi8.domain">
     <class name="JZWords" table="jzwords_tab" entity-name="JZWords">
-    	<cache usage="read-write"/>
         <id name="keyNo" type="java.lang.Integer">
             <column name="key_no" />
             <generator class="increment" />

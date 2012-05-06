@@ -6,7 +6,6 @@
 -->
 <hibernate-mapping package="com.throne212.jianzhi8.domain">
     <class name="Region" table="region_tab" entity-name="Region">
-    	<cache usage="read-write"/>
         <id name="cityId" type="java.lang.String">
             <column name="city_id" length="14" />
             <generator class="increment" />

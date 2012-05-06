@@ -6,7 +6,6 @@
 -->
 <hibernate-mapping package="com.throne212.jianzhi8.domain">
     <class name="Content" table="content_tab" entity-name="Content">
-    	<cache usage="read-write"/>
         <id name="ctNo" type="java.lang.Integer">
             <column name="CT_NO" />
             <generator class="increment" />

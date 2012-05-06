@@ -44,6 +44,7 @@
         <global-results>
         	<result name="404">/404.html</result>
         </global-results>
+        <!-- 首页 -->
         <action name="index" class="com.throne212.jianzhi8.action.IndexAction">
         	<result name="html">/WEB-INF/template/index.html</result>
         </action>

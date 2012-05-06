@@ -6,7 +6,6 @@
 -->
 <hibernate-mapping package="com.throne212.jianzhi8.domain">
     <class name="Link" table="link_tab" entity-name="Link">
-    	<cache usage="read-write"/>
         <id name="linkNo" type="java.lang.Integer">
             <column name="link_no" />
             <generator class="increment" />
