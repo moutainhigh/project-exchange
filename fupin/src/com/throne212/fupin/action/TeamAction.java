@@ -37,16 +37,20 @@ public class TeamAction extends BaseAction {
 		try {
 			if(team != null && team.getId() != null){
 				WorkTeam teamInDB = adminBiz.getEntityById(WorkTeam.class, team.getId());
-				
+				teamInDB.setRemark(team.getRemark());
+				teamInDB.setSegment1(team.getSegment1());
+				teamInDB.setPassword(team.getPassword());
+				adminBiz.saveOrUpdateEntity(teamInDB);
+				team = teamInDB;
 			}else if(team != null && team.getId() == null){//新建
 				adminBiz.saveOrUpdateEntity(team);
-				String[] cunIds = (String[]) ActionContext.getContext().getParameters().get("cunIds");
-				if(cunIds != null && cunIds.length > 0){
-					for(String id : cunIds){
-						Cun c = adminBiz.getEntityById(Cun.class, Long.valueOf(id));
-						c.setTeam(team);
-						adminBiz.saveOrUpdateEntity(c);
-					}
+			}
+			String[] cunIds = (String[]) ActionContext.getContext().getParameters().get("cunIds");
+			if(cunIds != null && cunIds.length > 0){
+				for(String id : cunIds){
+					Cun c = adminBiz.getEntityById(Cun.class, Long.valueOf(id));
+					c.setTeam(team);
+					adminBiz.saveOrUpdateEntity(c);
 				}
 			}
 			this.setMsg("保存成功");

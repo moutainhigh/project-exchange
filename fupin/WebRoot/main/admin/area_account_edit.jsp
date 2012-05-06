@@ -116,6 +116,14 @@
 						</td>
 					</tr>
 					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							备注：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${areaWorkOrg.segment1 }" id="bz" name="areaWorkOrg.segment1">
+						</td>
+					</tr>
+					<tr>
 						<td align="center" class="tables_contentcell" colspan="4">
 							<input type="submit" value="确认" class="button" name="确认">
 							<input type="button" onclick="self.close();" class="button" value="取消" name="取消">

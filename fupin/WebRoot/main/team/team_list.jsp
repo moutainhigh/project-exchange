@@ -72,6 +72,12 @@
 							帮扶的村名
 						</td>
 						<td class="tables_headercell">
+							说明
+						</td>
+						<td class="tables_headercell">
+							备注
+						</td>
+						<td class="tables_headercell">
 							操作
 						</td>
 					</tr>
@@ -91,6 +97,12 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.cunTxt}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.remark}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.segment1}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								<a href="#" onclick="winOpen('${appPath}team_viewTeam.action?team.id=${f.id}',450,220);">修改帮扶</a>

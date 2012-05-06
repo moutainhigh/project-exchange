@@ -58,7 +58,7 @@
 							说明
 						</td>
 						<td width="20%" class="tables_headercell">
-							角色
+							备注
 						</td>
 						<td width="14%" class="tables_headercell">
 							操作
@@ -76,7 +76,7 @@
 								&nbsp; ${f.remark}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.roleName}
+								&nbsp; ${f.segment1}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateShiWorkOrg.action?shiWorkOrg.id=${f.id}',450,220);">修改</a>

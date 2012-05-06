@@ -65,7 +65,7 @@
 							说明
 						</td>
 						<td width="20%" class="tables_headercell">
-							角色
+							备注
 						</td>
 						<td width="14%" class="tables_headercell">
 							操作
@@ -80,7 +80,7 @@
 								&nbsp; ${f.remark}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.roleName}
+								&nbsp; ${f.segment1}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateAreaWorkOrg.action?areaWorkOrg.id=${f.id}',450,220);">修改</a>
@@ -95,7 +95,7 @@
 							&nbsp; 增城工作队
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; 增城工作队
+							&nbsp; ${zcWorkOrg.segment2 }
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
 							<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateAreaWorkOrg.action?loginName2=zcfpgzd',450,220);">修改</a>
@@ -109,7 +109,7 @@
 							&nbsp; 从化工作队
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
-							&nbsp; 从化工作队
+							&nbsp; ${chWorkOrg.segment2 }
 						</td>
 						<td height="25" align="center" class="tables_contentcell">
 							<a href="#" onclick="winOpen('${appPath}admin_saveOrUpdateAreaWorkOrg.action?loginName2=chfpgzd',450,220);">修改</a>

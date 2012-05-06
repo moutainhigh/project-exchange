@@ -78,6 +78,9 @@ public class AdminAction extends BaseAction {
 	}
 
 	private AreaWorkOrg areaWorkOrg;
+	
+	private AreaWorkOrg zcWorkOrg;
+	private AreaWorkOrg chWorkOrg;
 
 	// 区县级账号列表
 	public String areaWorkOrgList() {
@@ -101,6 +104,8 @@ public class AdminAction extends BaseAction {
 					newList.add(areaWorkOrg);
 				}
 			}
+			zcWorkOrg = adminBiz.getEntityByUnique(AreaWorkOrg.class, "loginName2", "zcfpgzd");
+			chWorkOrg = adminBiz.getEntityByUnique(AreaWorkOrg.class, "loginName2", "chfpgzd");
 			pageBean.setResultList(newList);
 		}
 		return "areaWorkOrg_list";
@@ -164,6 +169,7 @@ public class AdminAction extends BaseAction {
 			AreaWorkOrg areaOrg = adminBiz.getEntityByUnique(AreaWorkOrg.class, "loginName", areaWorkOrg.getLoginName());
 			if (areaOrg != null) {
 				areaOrg.setPassword2(areaWorkOrg.getPassword2());
+				areaOrg.setSegment2(areaWorkOrg.getSegment2());
 				areaWorkOrg = adminBiz.saveOrUpdateAreaWorkOrg(areaOrg);
 				this.setMsg("保存成功");
 				this.setSucc("Y");
@@ -352,6 +358,22 @@ public class AdminAction extends BaseAction {
 
 	public void setPer(Permission per) {
 		this.per = per;
+	}
+
+	public AreaWorkOrg getZcWorkOrg() {
+		return zcWorkOrg;
+	}
+
+	public void setZcWorkOrg(AreaWorkOrg zcWorkOrg) {
+		this.zcWorkOrg = zcWorkOrg;
+	}
+
+	public AreaWorkOrg getChWorkOrg() {
+		return chWorkOrg;
+	}
+
+	public void setChWorkOrg(AreaWorkOrg chWorkOrg) {
+		this.chWorkOrg = chWorkOrg;
 	}
 
 }

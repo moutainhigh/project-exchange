@@ -33,6 +33,7 @@ public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
 			objInDB.setShi(shiWorkOrg.getShi());
 			objInDB.setPassword(shiWorkOrg.getPassword());
 			objInDB.setRemark(shiWorkOrg.getRemark());
+			objInDB.setSegment1(shiWorkOrg.getSegment1());
 			userDao.saveOrUpdate(objInDB);
 			logger.info("更新成功");
 		}
