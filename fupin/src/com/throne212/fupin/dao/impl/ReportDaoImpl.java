@@ -15,14 +15,17 @@ import jxl.write.WritableWorkbook;
 
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ReportDao;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
+import com.throne212.fupin.domain.User;
 
 public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
@@ -74,6 +77,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select distinct ");
+		sql.append("c.id as 'cun_id', ");
 		sql.append("a.name as '区（县）', ");
 		sql.append("z.name as '镇名称', ");
 		sql.append("c.name as '村名称', ");
@@ -225,13 +229,61 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
 			WritableSheet sheet1 = workbook.getSheet(0);
 			int row = 1;
-			if ("12".equals(reportParam.getName()))
+			if ("12".equals(reportParam.getName())){
 				row = 2;
+				//填充公共数据
+				User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+				if (user instanceof Org) {
+					Org org = (Org) user;
+					Cun cun = org.getCun();
+					cun = this.getEntityById(Cun.class, cun.getId());
+					//r.setItem1(cun.getPoorFamilyNum() == null ? "" : cun.getPoorFamilyNum() + "");
+					//r.setItem2(cun.getPoorPersonNum() == null ? "" : cun.getPoorPersonNum() + "");
+					//r.setItem3(cun.getPoorFamilyNum1() == null ? "" : cun.getPoorFamilyNum1() + "");
+					//r.setItem4(cun.getPoorPersonNum1() == null ? "" : cun.getPoorPersonNum1() + "");
+					//r.setItem5(cun.getPoorFamilyNum3() == null ? "" : cun.getPoorFamilyNum3() + "");
+					//r.setItem6(cun.getPoorPersonNum3() == null ? "" : cun.getPoorPersonNum3() + "");
+					//r.setItem7(cun.getPoorFamilyNum2() == null ? "" : cun.getPoorFamilyNum2() + "");
+					//r.setItem8(cun.getPoorPersonNum2() == null ? "" : cun.getPoorPersonNum2() + "");
+					//r.setItem9(cun.getPoorFamilyNum4() == null ? "" : cun.getPoorFamilyNum4() + "");
+					//r.setItem10(cun.getPoorPersonNum4() == null ? "" : cun.getPoorPersonNum4() + "");
+					//r.setItem11(cun.getWeiHouse() == null ? "" : cun.getWeiHouse() + "");
+					//r.setItem30(cun.getIncome() == null ? "" : cun.getIncome() + "");
+				}
+			}
 			while (rs.next()) {
 				//System.out.println(rs.getObject("帮扶单位")+":"+rs.getObject(56));
+				Long cunId = rs.getLong(1);//第一个是cun的id
+				Cun cun = this.getEntityById(Cun.class, cunId);
 				for (int i = 0; i < colSize; i++) {
 					try {
-						Object obj = rs.getObject(i + 1);
+						Object obj = rs.getObject(i + 2);
+						if(i+1 == 9){
+							obj = cun.getPoorFamilyNum() == null ? "" : cun.getPoorFamilyNum() + "";
+						}else if(i+1 == 10){
+							obj = cun.getPoorPersonNum() == null ? "" : cun.getPoorPersonNum() + "";
+						}else if(i+1 == 11){
+							obj = cun.getPoorFamilyNum1() == null ? "" : cun.getPoorFamilyNum1() + "";
+						}else if(i+1 == 12){
+							obj = cun.getPoorPersonNum1() == null ? "" : cun.getPoorPersonNum1() + "";
+						}else if(i+1 == 13){
+							obj = cun.getPoorFamilyNum3() == null ? "" : cun.getPoorFamilyNum3() + "";
+						}else if(i+1 == 14){
+							obj = cun.getPoorPersonNum3() == null ? "" : cun.getPoorPersonNum3() + "";
+						}else if(i+1 == 15){
+							obj = cun.getPoorFamilyNum2() == null ? "" : cun.getPoorFamilyNum2() + "";
+						}else if(i+1 == 16){
+							obj = cun.getPoorPersonNum2() == null ? "" : cun.getPoorPersonNum2() + "";
+						}else if(i+1 == 17){
+							obj = cun.getPoorFamilyNum4() == null ? "" : cun.getPoorFamilyNum4() + "";
+						}else if(i+1 == 18){
+							obj = cun.getPoorPersonNum4() == null ? "" : cun.getPoorPersonNum4() + "";
+						}else if(i+1 == 19){
+							obj = cun.getWeiHouse() == null ? "" : cun.getWeiHouse() + "";
+						}else if(i+1 == 38){
+							obj = cun.getIncome() == null ? "" : cun.getIncome() + "";
+						}
+						
 						if(obj == null || "null".equals(obj))
 							obj = "";
 						if(i < 9)
