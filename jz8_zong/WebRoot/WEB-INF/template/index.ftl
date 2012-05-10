@@ -2,14 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-		<title>兼职网|大学生兼职|周末兼职招聘信息 -兼职吧</title>
-		<meta name="keywords" content="兼职网,兼职招聘,大学生兼职,兼职,周末兼职">
-		<meta name="description" content="兼职网每天更新大量的兼职招聘信息;您可以免费浏览大学生兼职,周末兼职家教,传单派发,模特礼仪,网上兼职等信息;还可以在大学生兼职网免费发布信息。">
-		<link rel="Bookmark" href="http://www.jianzhi8.com/comcity/favicon.ico" />
-		<link rel="shortcut icon" href="http://www.jianzhi8.com/comcity/favicon.ico" type="image/x-icon" />
-		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+		<title>兼职网,免费找兼职工作,网上兼职,周末兼职招聘网-兼职吧</title>
+		<meta name="keywords" content="兼职网,兼职,兼职招聘,大学生兼职网,网上兼职,网络兼职,周末兼职,找兼职">
+		<meta name="author" content="兼职吧">
+		<meta name="description" content="兼职吧是中国最专业的兼职网站，提供最新兼职工作：网上兼职、大学生兼职、实习、家教、促销等周末兼职信息；且拥有大量的兼职人才信息，可免费为企业提供兼职招聘服务。">
+		<meta name="verify-v1" content="mKeLWrJn3a2oVhde26JP+THlXLaza2+cOfz7XMmkAUY=" />
+		<meta name="baidu_union_verify" content="284710b79c1b54c79cf18a7500cb520b">
+		<meta name="baidu-site-verification" content="yPTVvrzp8b7TlZy5" />
+		<meta name="msvalidate.01" content="3FC5C7517C8121BE9D69073BD2D44E9F" />
+		<link rel="Bookmark" href="/favicon.ico" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link href="/css/reset.css" rel="stylesheet" type="text/css" />
 		<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -63,55 +68,42 @@
         
         <div class="nav_add clearfix">
         	<span>热门城市：</span>
-            <a href="#" class="hot_Aa">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
-            <a href="#">广州</a>
+            <a href="http://.jianzhi8.com" target="_blank">北京</a>
+            <a href="http://.jianzhi8.com" target="_blank">上海</a>
+            <a href="http://.jianzhi8.com" target="_blank">天津</a>
+            <a href="http://.jianzhi8.com" target="_blank">重庆</a>
+            <a href="http://.jianzhi8.com" target="_blank">广州</a>
+            <a href="http://.jianzhi8.com" target="_blank">深圳</a>
+            <a href="http://.jianzhi8.com" target="_blank">福州</a>
+            <a href="http://.jianzhi8.com" target="_blank">杭州</a>
+            <a href="http://.jianzhi8.com" target="_blank">南京</a>
+            <a href="http://.jianzhi8.com" target="_blank">济南</a>
+            <a href="http://.jianzhi8.com" target="_blank">沈阳</a>
+            <a href="http://.jianzhi8.com" target="_blank">南昌</a>
+            <a href="http://.jianzhi8.com" target="_blank">成都</a>
+            <a href="http://.jianzhi8.com" target="_blank">西安</a>
+            <a href="http://.jianzhi8.com" target="_blank">武汉</a>
+            <a href="http://.jianzhi8.com" target="_blank">郑州</a>
+            <a href="http://.jianzhi8.com" target="_blank">石家庄</a>
+            <a href="http://.jianzhi8.com" target="_blank">太原</a>
+            <a href="http://.jianzhi8.com" target="_blank">呼和浩特</a>
+            <a href="http://.jianzhi8.com" target="_blank">长春</a>
 			<a href="javascript:void('0')" class="more_atop">更多</a>
             <div class="clearfix" style="display:none;">
             	<span>关闭</span>
                 <p>
-            	<a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
-                <a href="#">广州</a>
+	            <a href="http://.jianzhi8.com" target="_blank">哈尔滨</a>
+	            <a href="http://.jianzhi8.com" target="_blank">合肥</a>
+	            <a href="http://.jianzhi8.com" target="_blank">长沙</a>
+	            <a href="http://.jianzhi8.com" target="_blank">南宁</a>
+	            <a href="http://.jianzhi8.com" target="_blank">海口</a>
+	            <a href="http://.jianzhi8.com" target="_blank">昆明</a>
+	            <a href="http://.jianzhi8.com" target="_blank">贵阳</a>
+	            <a href="http://.jianzhi8.com" target="_blank">拉萨</a>
+	            <a href="http://.jianzhi8.com" target="_blank">兰州</a>
+	            <a href="http://.jianzhi8.com" target="_blank">银川</a>
+	            <a href="http://.jianzhi8.com" target="_blank">西宁</a>
+	            <a href="http://.jianzhi8.com" target="_blank">乌鲁木齐</a>
                 </p>
             </div>
             <script type="text/javascript">
@@ -175,22 +167,24 @@
                     <a href="#">高级搜索</a>
                     <a href="#">网站地图</a>
                 </p>
-                <p class="agg_p3">热门搜索：<a href="#">周末兼职</a><a href="#">周末兼职</a><a href="#">周末兼职</a><a href="#">周末兼职</a><a href="#">周末兼职</a><a href="#">周末兼职</a><a href="#">周末兼职</a><a href="#">周末兼职</a></p>
+                <p class="agg_p3">热门搜索：
+                <#list keysList as key>
+                <a href="/keyword-${key?url}">${key}</a>
+                </#list>
+                </p>
             </div>
             <div class="n_t_l_bottom clearfix">
             	<p>招聘会</p>
                 <ul>
-                	<li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
-                    <li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
-                    <li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
-                    <li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
+                	<#list zph4List as z>
+                	<li><a href="/zph/${z.zphNo}.html">${z.simpleTitle}</a><span>${z.zphUpdate?string('yyyy-MM-dd')}</span></li>
+                	</#list>
                 </ul>
                 <p>最新简历</p>
                 <ul>
-                	<li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
-                    <li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
-                    <li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
-                    <li><a href="#">王春喜发布了个人简历</a><span>2012-2-12</span></li>
+                	<#list rencaiList as u>
+                	<li><a title="${u.userName}" href="/jianli/${u.userNo}.html" target="_blank">${u.userName}的简历</a><span>${u.userUpdate?string('yyyy-MM-dd')}</span></li>
+                	</#list>
                 </ul>
             </div>
         </div>

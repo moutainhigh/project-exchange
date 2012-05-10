@@ -5,12 +5,10 @@ import java.io.File;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.throne212.jianzhi8.service.HtmlBuildService;
 
-@ParentPackage("basePackage")
 public class IndexAction extends ActionSupport {
 	
 	private Logger logger = Logger.getLogger(this.getClass());

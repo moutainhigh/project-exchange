@@ -3,7 +3,6 @@ package com.throne212.jianzhi8.action;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.views.freemarker.FreemarkerManager;
 import org.hibernate.SessionFactory;
 
@@ -17,7 +16,6 @@ import com.throne212.jianzhi8.domain.Type;
 import com.throne212.jianzhi8.listener.CommonListener;
 import com.throne212.jianzhi8.service.HtmlBuildService;
 
-@ParentPackage("adminPackage")
 public class AdminAction extends ActionSupport {
 	
 	@Resource
@@ -41,7 +39,7 @@ public class AdminAction extends ActionSupport {
 			e.printStackTrace();
 			msg = "出现，异常：" + e.getMessage();
 		}
-		return "result";
+		return null;
 	}
 	
 	// 刷新所有缓存

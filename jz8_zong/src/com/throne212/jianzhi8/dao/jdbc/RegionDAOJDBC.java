@@ -1,0 +1,142 @@
+package com.throne212.jianzhi8.dao.jdbc;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import com.throne212.jianzhi8.domain.Region;
+
+@Repository("regionDAOJDBC")
+public class RegionDAOJDBC {
+
+	private JdbcTemplate jdbcTemplate;
+	
+	private static List<Region> hotList;
+	
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public List<Region> getAllCities(){
+		List<Region> list = new ArrayList<Region>();
+		String sql = "select * from region_tab limit 0,4 union select * from region_tab where length(city_code) = 4 and parent_id is not null and grade=0";
+		list = jdbcTemplate.query(sql, new RowMapper<Region>(){
+			public Region mapRow(ResultSet rs, int i) throws SQLException {
+				Region city = new Region();
+				city.setCityCode(rs.getString("city_code"));
+				city.setCityId(rs.getString("city_id"));
+				city.setCityName(rs.getString("city_name"));
+				city.setGrade(rs.getInt("grade"));
+				city.setParentCode(rs.getString("parent_id"));
+				return city;
+			}});
+		return list;
+	}
+	public List<Region> getHotCities(){
+		if(hotList != null && hotList.size() > 0)
+			return hotList;
+		List<Region> list = new ArrayList<Region>();
+		String sql = "select * from region_tab limit 0,4 union select * from region_tab where length(city_code) = 4 and right(city_code,2)='01' and parent_id is not null and grade=0 or city_name='广东,深圳' ";
+		list = jdbcTemplate.query(sql, new RowMapper<Region>(){
+			public Region mapRow(ResultSet rs, int i) throws SQLException {
+				Region city = new Region();
+				city.setCityCode(rs.getString("city_code"));
+				city.setCityId(rs.getString("city_id"));
+				city.setCityName(rs.getString("city_name"));
+				city.setGrade(rs.getInt("grade"));
+				city.setParentCode(rs.getString("parent_id"));
+				return city;
+			}});
+		hotList = list;
+		return list;
+	}
+	
+	public List<Region> getHot_Cities(){
+		List<Region> list = new ArrayList<Region>();
+				Region city = new Region();
+//				city.setCityCode("0100");
+				city.setCityId("bj");
+				city.setCityName("北京");
+				list.add(city);
+				city = new Region();
+				city.setCityId("suzhou");
+				city.setCityName("苏州");
+				list.add(city);
+				city = new Region();
+				city.setCityId("sh");
+				city.setCityName("上海");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("fz");
+				city.setCityName("福州");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("tj");
+				city.setCityName("天津");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("xa");
+				city.setCityName("西安");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("cq");
+				city.setCityName("重庆");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("gz");
+				city.setCityName("广州");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("cs");
+				city.setCityName("长沙");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("sz");
+				city.setCityName("深圳");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("nc");
+				city.setCityName("南昌");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("cd");
+				city.setCityName("成都");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("heb");
+				city.setCityName("哈尔滨");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("hz");
+				city.setCityName("杭州");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("zz");
+				city.setCityName("郑州");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("nj");
+				city.setCityName("南京");				
+				list.add(city);
+				city = new Region();
+				city.setCityId("dl");
+				city.setCityName("大连");				
+				list.add(city);
+				
+		return list;
+	}
+	
+	
+	
+	
+}

@@ -48,10 +48,10 @@
         <action name="index" class="com.throne212.jianzhi8.action.IndexAction">
         	<result name="html">/WEB-INF/template/index.html</result>
         </action>
+        <!-- 搜素 -->
+        <action name="search" class="com.throne212.jianzhi8.action.SearchAction"></action>
     </package>
-    <package name="adminPackage" extends="basePackage" namespace="/admin/">
-    	<global-results>
-        	<result name="result" type="freemarker">/WEB-INF/template/admin/result.ftl</result>
-        </global-results>
+    <package name="adminPackage" extends="struts-default" namespace="/admin/">
+        <action name="admin" class="com.throne212.jianzhi8.action.AdminAction"></action>
     </package>
 </struts>

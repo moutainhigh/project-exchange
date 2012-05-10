@@ -17,6 +17,7 @@
 		<mapping resource="com/throne212/jianzhi8/domain/Content.hbm.xml" />
 		<mapping resource="com/throne212/jianzhi8/domain/JobType.hbm.xml" />
 		<mapping resource="com/throne212/jianzhi8/domain/JZWords.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/InfoZph.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
 
