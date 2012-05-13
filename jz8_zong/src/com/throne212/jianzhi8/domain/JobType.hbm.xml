@@ -6,7 +6,6 @@
 -->
 <hibernate-mapping package="com.throne212.jianzhi8.domain">
     <class name="JobType" table="job_type_tab" entity-name="JobType">
-    	<cache usage="read-write"/>
         <id name="typeCode" type="java.lang.String">
             <column name="TYPE_CODE" length="6" />
             <generator class="assigned" />

@@ -117,6 +117,16 @@ public class InfoZphDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	
+	public List findNew6ZPH() {
+		try {
+			String queryString = "from InfoZph as model order by zphUpdate desc";
+			Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+			return s.createQuery(queryString).setMaxResults(6).list();
+		} catch (RuntimeException re) {
+			throw re;
+		}
+	}
 
 	public List findByZphTitle(Object zphTitle) {
 		return findByProperty(ZPH_TITLE, zphTitle);

@@ -3,6 +3,7 @@ package com.throne212.jianzhi8.dao;
 // default package
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,6 +21,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.throne212.jianzhi8.domain.Content;
+import com.throne212.jianzhi8.domain.JobType;
+import com.throne212.jianzhi8.domain.Type;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -78,6 +81,39 @@ public class ContentDAO extends HibernateDaoSupport {
 
 	protected void initDao() {
 		// do nothing
+	}
+	
+	//总站首页用的几个城市的数据,
+	public List<Content> findIndexLatestCityContent(String cityCode, int rows) {
+		List<Object> params = new ArrayList<Object>();
+		String hql = "from Content c where ctIscheck='1' and ctIsclose='0'";
+		if(cityCode != null && !"0000".equals(cityCode)){
+			hql += " and ctCityId=?";
+			params.add(cityCode);
+		}
+		hql += " order by ctEnddate desc";
+		logger.debug("last " + rows + " list hql = " + hql);
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.size();i++)
+			q.setParameter(i, params.get(i));
+		q.setMaxResults(rows);
+		List<Content> list = q.list();
+		//添加类型数据
+		for(Content c : list){
+			String typeId = c.getCtTypeId();
+			hql = "from Type where upper(typeCode)=?";
+			List<Type> typeList = this.getHibernateTemplate().find(hql, c.getCtTypeId().toUpperCase());
+			if(typeList == null || typeList.size() == 0){
+				hql = "from JobType where upper(typeCode)=?";
+				List<JobType> jobtypeList = this.getHibernateTemplate().find(hql, c.getCtTypeId().toUpperCase());
+				if(jobtypeList != null && jobtypeList.size() > 0)
+					c.setType(jobtypeList.get(0));
+			}else{
+				c.setType(typeList.get(0));
+			}
+		}
+		return list;
 	}
 
 	public List<Content> findLatestContent(final String cityId, final String typeCode, final String kind, final int rows, boolean isHot) {

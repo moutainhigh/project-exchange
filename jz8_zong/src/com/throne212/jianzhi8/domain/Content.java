@@ -57,6 +57,8 @@ public class Content  implements java.io.Serializable {
      private String ctUserName;
      private String ctIsyz;
 
+     //用于表示，而不存储
+     private TypeIntf type;
 
     // Constructors
 
@@ -474,13 +476,14 @@ public class Content  implements java.io.Serializable {
     public void setCtIsyz(String ctIsyz) {
         this.ctIsyz = ctIsyz;
     }
-   
 
+	public TypeIntf getType() {
+		return type;
+	}
 
-
-
-
-
+	public void setType(TypeIntf type) {
+		this.type = type;
+	}
 
 
 }

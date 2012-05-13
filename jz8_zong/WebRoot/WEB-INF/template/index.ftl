@@ -47,7 +47,7 @@
             <ul class="ag_ul">
             	<li><b>全国</b></li>
                 <li>
-                	   <SCRIPT language=JavaScript	src='http://css.jianzhi8.com/fenzhan/js/city.js' type=text/javascript></SCRIPT>
+                	   <SCRIPT language=JavaScript	src="http://css.jianzhi8.com/fenzhan/js/city.js" type=text/javascript></SCRIPT>
                 </li>
             </ul>
         <a href="#" class="index_a">广告图width:695px; height:70px; </a>            
@@ -55,8 +55,8 @@
         
         <div class="nav_botttom clearfix">
         	<ul class="clearfix">
-            	<li><A href="/">首页</A></li>
-                <li><A href="/jianzhi/" class="now_a">兼职招聘</A></li>
+            	<li><A href="/" class="now_a">首页</A></li>
+                <li><A href="/jianzhi/">兼职招聘</A></li>
                 <li><A href="/job/">全职招聘</A></li> 
                 <li><A href="/rencai/">个人求职</A></li>
                 <li><A href="/resume/">简历中心</A></li>
@@ -223,222 +223,61 @@
 				  $('.add_ul').hide();
 				  $('.add_ul:eq(' + $('.zw_leibie1 h2 > a').index(this) + ')').show();
 			  });
-		  })						
+			$('.zw_leibie1 h2 > a').eq(0).addClass('now_a');
+			$('.zw_leibie1 ul').eq(0).show();
+		 })						
 		 </script>
     	<h2 class="clearfix">
         	<span>职位类别</span>
-            <a href="#" class="now_a">计算机/网络</a>
-            <a href="#">学生兼职</a>
-            <a href="#">营销类</a>
-            <a href="#">翻译类</a>
-            <a href="#">会计类</a>
-            <a href="#">编辑类</a>
-            <a href="#">家教类</a>
-            <a href="#">家政类</a>
-            <a href="#">问卷调查</a>
-            <a href="#">模特礼仪</a>
+        	<#list indexTypeList as t>
+            <a href="/${t.typeId}/" target="_blank">${t.typeName}</a>
+            </#list>
         </h2>
         <a href="#" class="po_aa">更多</a>
-        <ul class="clearfix add_ul" style="display:;">
-        	<li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
+        <#list indexTypeList as t>
         <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
+        	<#list t.childTypes as ct>
+        	<li><a href="/${ct.typeId}/" target="_blank">${ct.typeName}</a>(${ct.count})</li>
+        	</#list>
         </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
-        <ul class="clearfix add_ul" style="display:none;">
-        	<li><a href="#">网页设计</a>(2331)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-            <li><a href="#">网页设计</a>(233)</li>
-        </ul>
+        </#list>
     </div>
     
-    
     <div class="zw_leibie2 zw_leibie_zhiwei">
+    	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.zw_leibie_zhiwei h2 > a').mouseover(function(){
+				  $('.zw_leibie_zhiwei h2 > a').removeClass('now_Aaa');
+				  $(this).addClass('now_Aaa');
+				  $('.zw_leibie_zhiwei ul').hide();
+				  $('.zw_leibie_zhiwei ul:eq(' + $('.zw_leibie_zhiwei h2 > a').index(this) + ')').show();
+			  });
+			$('.zw_leibie_zhiwei h2 > a').eq(0).addClass('now_Aaa');
+			$('.zw_leibie_zhiwei ul').eq(0).show();
+		 })						
+		 </script>
     	<h2 class="clearfix">
         	<span>最新职位</span>
             <a href="#" class="now_Aaa">全国</a>
-            <a href="#">北京</a>
-            <a href="#">上海</a>
-            <a href="#">天津</a>
-            <a href="#">重庆</a>
-            <a href="#">深圳</a>
-            <a href="#">广州</a>
-            <a href="#">珠海</a>
-            <a href="#">武汉</a>
-            <a href="#">长沙</a>
-            <a href="#">杭州</a>
+            <a href="http://bj.jianzhi8.com">北京</a>
+            <a href="http://sh.jianzhi8.com">上海</a>
+            <a href="http://tj.jianzhi8.com">天津</a>
+            <a href="http://cq.jianzhi8.com">重庆</a>
+            <a href="http://sz.jianzhi8.com">深圳</a>
+            <a href="http://gz.jianzhi8.com">广州</a>
+            <a href="http://zh.jianzhi8.com">珠海</a>
+            <a href="http://wh.jianzhi8.com">武汉</a>
+            <a href="http://cs.jianzhi8.com">长沙</a>
+            <a href="http://hz.jianzhi8.com">杭州</a>
         </h2>
         <a href="#" class="po_aa">更多</a>
-        <ul class="clearfix">
-        	<li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
-            <li><a href="#">诚招学生兼职服务员可日结<span>学生兼职</span></a></li>
+        <#list cityContentList as cList>
+        <ul class="clearfix" style="display:none;">
+        	<#list cList as c>
+        	<li><a href="http://www.jianzhi8.com/a${c.ctNo}.html" target="_blank">${c.ctTitle}<span><#if c.type?exists>${c.type.typeName}</#if></span></a></li>
+        	</#list>
         </ul>
+        </#list>
     </div>
 	
     <h5 class="gg_h5"><a href="#"><img src="img/new_index_r2_c2.jpg" /></a></h5>
@@ -447,38 +286,96 @@
     	<h2><span>兼职攻略</span></h2>
         <div class="jz_div_main clearfix">
         	<ul>
-            	<li><b>职业指导</b></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
+            	<li><b>最新动态</b></li>
+            	<#list zph6List as z>
+                <li><a href="/zph/${z.zphNo}.html" target="_blank"><#if z.zphTitle?length lt 18>${z.zphTitle}<#else>${z.zphTitle[0..17]}</#if></a></li>
+                </#list>
             </ul>
             <ul>
             	<li><b>职业指导</b></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
+            	<#list zph6List as z>
+                <li><a href="/zhidao/${z.zphNo}.html" target="_blank"><#if z.zphTitle?length lt 18>${z.zphTitle}<#else>${z.zphTitle[0..17]}</#if></a></li>
+                </#list>
             </ul>
             <ul>
-            	<li><b>职业指导</b></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
-                <li><a href="#">2011年北京市粮食局公开招聘公告</a></li>
+            	<li><b>毕业指导</b></li>
+            	<#list zph6List as z>
+                <li><a href="/zhidao/${z.zphNo}.html" target="_blank"><#if z.zphTitle?length lt 18>${z.zphTitle}<#else>${z.zphTitle[0..17]}</#if></a></li>
+                </#list>
             </ul>
         </div>
     </div>
     
     <div class="freied">
     	<h2>友情链接</h2>
-        <p><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a><a href="#">广州兼职</a></p>
+        <p>
+        <A href="http://bj.jianzhi8.com" target=_blank>北京兼职网</A>	
+		<A href="http://sh.jianzhi8.com" target=_blank>上海兼职网</A>	 
+		<A href="http://edu.21cn.com" target=_blank>21CN教育</A>	 
+		<A href="http://www.jobui.com" target=_blank>找工作</A> 
+		<A href="http://www.jianzhi8.com" target=_blank>兼职</A>      
+		<a href="http://www.vikecn.com/"  target="_blank">威客中国</a>      
+		<a href="http://www.21rcw.com"  target="_blank">人才测评</a>    
+		<a href="http://www.job592.com"  target="_blank">592找工作网</a>    
+		<a href="http://www.guolairen.com"  target="_blank">招聘网</a>    
+		<a href="http://www.witkeysky.com/"  target="_blank">威客</a> 
+		<a href="http://www.job256.com/"  target="_blank">姑苏人才网</a> 
+		<A href="http://www.jianzhi8.com/" target="_blank">兼职网</A> 
+		<A href="http://www.shjob.cn/" target="_blank">上海招聘网</A>  
+		<a href="http://www.jinti.com/"  target="_blank">今题网</a>  
+		<a href="http://www.beniao.com/" target="_blank">笨鸟职场网</a> 
+		<a href="http://www.mingong123.com"  target="_blank">民工网</a> 
+		<a href="http://www.hr33.com/"  target="_blank">深圳人才网</a> 
+		<A href="http://www.2345.com/" target=_blank>2345网址导航</A>  
+		<a href="http://www.jianzhi8.com/">兼职招聘网</a> 
+		<a href="http://www.51tie.com/" target="_blank">51同城网</a> 
+		<a href="http://www.hbrc.com/" target="_blank">石家庄招聘网</a>  
+		<a href="http://www.jobtransport.cn/" target="_blank">物流招聘网</a>
+		<a href="http://www.fzsjob.com/" target="_blank">福州人才网</a>    
+		<a href="http://www.guangzhoujob.com/" target="_blank">广州招聘网</a>      
+		<a href="http://www.hao123.cn/"  target="_blank">123网址大全</a>      
+		<a href="http://www.jobeast.com/" target="_blank">中国外语人才网</a>   
+		<a href="http://www.i2345.cn/"  target="_blank">网址导航</a>  
+		<a href="http://www.57616.com/" target="_blank">57616网址大全</a>    
+		<A href="http://job.cq.qq.com/" target=_blank>重庆招聘</A>  
+		<a href="http://www.zhaopinhui.biz/" target="_blank">上海招聘会</a>    
+		<a href="http://www.54yjs.cn/"  target="_blank">我是应届生</a>
+		<a href="http://www.xzjob.net/"  target="_blank">徐州招聘</a>
+		<a href="http://www.025zp.com/"  target="_blank">南京人才网</a>   
+		<a href="http://www.hunt007.com/"  target="_blank">找工易招聘网</a> 
+		<a href="http://www.sxsoft.com/"  target="_blank">软件项目交易网</a> 
+		<a href="http://www.eduschool.com.cn/"  target="_blank">英豪教育学院</a> 
+		<a href="http://www.hbdxs.com" target="_blank">河北大学生网</a> 
+		<a href="http://www.examw.com" target="_blank">中华考试网</a> 
+		<a href="http://www.7880.com" target="_blank">破釜沉舟</a>  
+		<a href="http://www.hnz.com.cn/">湖南人才网</a> 
+		<a href="http://www.yjbys.com" target="_blank">应届毕业生求职</a> 
+		<a href="http://www.zph.com.cn/" target="_blank">招聘会</a> 
+		<a href="http://www.020job.com/" target="_blank">广州人才网</a> 
+		<a href="http://www.baicai.com/" target="_blank">招聘</a> 
+		<A href="http://www.jianzhi8.com/xuesheng/" >大学生兼职网</A> 
+		<a href="http://www.job001.cn/" target="_blank">广东人才网</a> 
+		<a href="http://www.ygjj.com/" target="_blank">上海家教</a>   
+		<a href="http://www.kvov.com/" target="_blank">KVOV信息发布网</a>  
+		<a href="http://www.qd8.com.cn/" target="_blank">快点８分类信息网</a>   
+		<a href="http://www.0797rs.com/" target="_blank">赣州人才网</a>   
+		<a href="http://shanghai.edeng.cn/" target="_blank">上海分类信息</a>  
+		<a href="http://www.5ajob.com/" target="_blank">农业人才网</a>
+		<a href="http://www.yaojobs.com/" target="_blank">医药英才网</a>   
+		<a href="http://www.jianzhi8.com/">找兼职</a>  
+		<a href="http://www.0579com.com/" target="_blank">义乌人才网</a> 
+		<a href="http://www.jianzhuhr.cn/" target="_blank">中国建筑英才网</a> 
+		<a href="http://www.eduease.com/" target="_blank">家教网</a> 
+		<a href="http://www.caihao.com/" target="_blank">徐州招聘</a> 
+		<a href="http://www.job1998.com/" target="_blank">天津招聘</a> 
+		<a href="http://www.wtojob.com/" target="_blank">世贸人才网</a>      
+		<a href="http://www.xjhr.com/" target="_blank">新疆人才网</a>      
+		<a href="http://www.sh91.com/" target="_blank">上海人才网</a>      
+		<a href="http://www.kuyiso.com/" target="_blank">分类信息</a>      
+		<a href="http://www.hbsc.cn" target="_blank">石家庄人才网</a>      
+		<a href="http://www.chinakaoyan.com" target="_blank">考研网</a>   
+		<a href="/link.jsp"   target="_blank" >更多链接...</a>
+        </p>
     </div>
 
 <div class="copyright">

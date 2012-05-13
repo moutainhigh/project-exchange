@@ -2,7 +2,11 @@ package com.throne212.jianzhi8.dao;
 
 // default package
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -43,6 +47,45 @@ public class TypeDAO extends HibernateDaoSupport {
 
 	protected void initDao() {
 		// do nothing
+	}
+	
+	private static Map<String, Integer> sortMap = new HashMap<String, Integer>();
+	static{
+		int i = 1;
+		sortMap.put("计算机网络", i++);
+		sortMap.put("学生兼职", i++);
+		sortMap.put("促销员", i++);
+		sortMap.put("翻译", i++);
+		sortMap.put("财务会计", i++);
+		sortMap.put("编辑", i++);
+		sortMap.put("家教", i++);
+		sortMap.put("家政", i++);
+		sortMap.put("问卷派发", i++);
+		sortMap.put("礼仪", i++);
+	}
+	public List<Type> getIndexTypes(){
+		try {
+			String hql = "from Type where typeName in ('计算机网络','学生兼职','促销员','翻译','财务会计','编辑','家教','家政','问卷派发','礼仪')";
+			List<Type> list = getHibernateTemplate().find(hql);
+			Collections.sort(list, new Comparator<Type>(){
+				public int compare(Type t1, Type t2) {
+					return sortMap.get(t1.getTypeName()) - sortMap.get(t2.getTypeName());
+				}
+			});
+			for(Type t : list){
+				hql = "from Type where parentTypeCode=?";
+				List<Type> childTypeList = this.getHibernateTemplate().find(hql,t.getTypeCode());
+				t.setChildTypes(childTypeList);
+				hql = "select count(*) from Content where ctTypeId=? and ctKind='1' and ctClass='0'";
+				List countList = this.getHibernateTemplate().find(hql,t.getTypeCode());
+				Long count = (Long) countList.get(0);
+				t.setCount(count.intValue());
+			}
+			return list;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
 	}
 	
 	public Type getParentTypeByTypeId(String typeId) {

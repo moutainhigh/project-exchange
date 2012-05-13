@@ -1,4 +1,7 @@
 package com.throne212.jianzhi8.domain;
+
+import java.util.List;
+
 // default package
 
 
@@ -22,6 +25,8 @@ public class Type  implements java.io.Serializable, TypeIntf {
     private String typeId;
     private String parentTypeCode;
 
+    private List<Type> childTypes;//用作数据读取，不做关系存储
+    private int count;//已经有的数量
 
     // Constructors
 
@@ -67,6 +72,26 @@ public class Type  implements java.io.Serializable, TypeIntf {
 
 	public String getTypeId() {
 		return typeId;
+	}
+
+
+	public List<Type> getChildTypes() {
+		return childTypes;
+	}
+
+
+	public void setChildTypes(List<Type> childTypes) {
+		this.childTypes = childTypes;
+	}
+
+
+	public int getCount() {
+		return count;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

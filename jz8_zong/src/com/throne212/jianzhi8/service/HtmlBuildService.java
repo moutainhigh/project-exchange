@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -22,13 +25,18 @@ import org.springframework.transaction.annotation.Transactional;
 import com.throne212.jianzhi8.biz.impl.jdbc.ViewBizImpl;
 import com.throne212.jianzhi8.common.HtmlConfig;
 import com.throne212.jianzhi8.common.Keywords;
+import com.throne212.jianzhi8.dao.ContentDAO;
 import com.throne212.jianzhi8.dao.GonggaoDAO;
 import com.throne212.jianzhi8.dao.InfoZphDAO;
 import com.throne212.jianzhi8.dao.LinkDAO;
+import com.throne212.jianzhi8.dao.RegionDAO;
+import com.throne212.jianzhi8.dao.TypeDAO;
 import com.throne212.jianzhi8.dao.jdbc.RegionDAOJDBC;
+import com.throne212.jianzhi8.domain.Content;
 import com.throne212.jianzhi8.domain.Gonggao;
 import com.throne212.jianzhi8.domain.InfoZph;
 import com.throne212.jianzhi8.domain.Region;
+import com.throne212.jianzhi8.domain.Type;
 import com.throne212.jianzhi8.domain.User;
 
 import freemarker.template.Configuration;
@@ -56,25 +64,27 @@ public class HtmlBuildService {
 
 	@Resource
 	private FreemarkerManager freemarkerManager;
-	
 	@Resource
 	private ServletContext servletContext;
-	
 	@Resource
 	private LinkDAO linkDAO;
-	
 	@Resource
 	private RegionDAOJDBC regionDAOJDBC;
-	
 	@Resource
 	private InfoZphDAO infoZphDAO;
-	
 	@Resource
 	private GonggaoDAO gonggaoDAO;
-	
+	@Resource
+	private TypeDAO typeDAO;
+	@Resource
+	private ContentDAO contentDAO;
+	@Resource
+	private RegionDAO regionDAO;
 	@Resource
 	private ViewBizImpl viewBiz;
 	
+	//首页各大城市编号，及排序
+	private static String[] cityCodesArr = {"0000", "0100", "0200", "0300", "0400", "0501", "0502", "0503", "0701", "1401", "2201"};
 	
 	public void buildHtml(String templateFilePath, String htmlFilePath, Map<String, Object> data) {
 		try {
@@ -115,6 +125,19 @@ public class HtmlBuildService {
 		//6条最新信息（公告）
 		List<Gonggao> gg6List = gonggaoDAO.findNew6Gonggao();
 		map.put("gg6List", gg6List);
+		//兼职类别
+		List<Type> indexTypeList = typeDAO.getIndexTypes();
+		map.put("indexTypeList", indexTypeList);
+		//各大城市最新信息
+		List<List<Content>> cityContentList = new ArrayList();
+		for(String cityCode : cityCodesArr){
+			List<Content> contentList = contentDAO.findIndexLatestCityContent(cityCode,39);
+			cityContentList.add(contentList);
+		}
+		map.put("cityContentList", cityContentList);
+		//最新动态（招聘会动态）
+		List<InfoZph> zph6List = infoZphDAO.findNew6ZPH();
+		map.put("zph6List", zph6List);
 		return map;
 	}
 	
