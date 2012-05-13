@@ -65,5 +65,4 @@
 	<bean id="freemarkerManager" class="org.apache.struts2.views.freemarker.FreemarkerManager" />
 	
 
-
 </beans>

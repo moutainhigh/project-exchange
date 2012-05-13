@@ -183,7 +183,7 @@
                 <p>最新简历</p>
                 <ul>
                 	<#list rencaiList as u>
-                	<li><a title="${u.userName}" href="/jianli/${u.userNo}.html" target="_blank">${u.userName}的简历</a><span>${u.userUpdate?string('yyyy-MM-dd')}</span></li>
+                	<li><a title="${u.userName}" href="/jianli/${u.userNo}.html" target="_blank">${u.userName}的简历</a><span>${u.userLastdate?string('yyyy-MM-dd')}</span></li>
                 	</#list>
                 </ul>
             </div>
@@ -197,12 +197,9 @@
             <div>
             	<h1>最新讯息</h1>
                 <ul>
-                	<li><a href="#">兼职吧推荐企业用户优惠活动</a></li>
-                    <li><a href="#">兼职吧推荐企业用户优惠活动</a></li>
-                    <li><a href="#">兼职吧推荐企业用户优惠活动</a></li>
-                    <li><a href="#">兼职吧推荐企业用户优惠活动</a></li>
-                    <li><a href="#">兼职吧推荐企业用户优惠活动</a></li>
-                    <li><a href="#">兼职吧推荐企业用户优惠活动</a></li>
+                	<#list gg6List as g>
+                	<li><a href="/gonggao/${g.gaoNo}.html" target="_blank">${g.gaoTitle}</a></li>
+                	</#list>
                 </ul>
             </div>
         </div>

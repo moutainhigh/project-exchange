@@ -3,4 +3,5 @@
 
 <hibernate-reverse-engineering>
 	<table name="link_tab" catalog="jz8" class="Link"></table>
+	<table name="gonggao_tab" catalog="jz8" class="Gonggao"></table>
 </hibernate-reverse-engineering>

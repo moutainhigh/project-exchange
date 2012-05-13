@@ -22,9 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.throne212.jianzhi8.biz.impl.jdbc.ViewBizImpl;
 import com.throne212.jianzhi8.common.HtmlConfig;
 import com.throne212.jianzhi8.common.Keywords;
+import com.throne212.jianzhi8.dao.GonggaoDAO;
 import com.throne212.jianzhi8.dao.InfoZphDAO;
 import com.throne212.jianzhi8.dao.LinkDAO;
 import com.throne212.jianzhi8.dao.jdbc.RegionDAOJDBC;
+import com.throne212.jianzhi8.domain.Gonggao;
 import com.throne212.jianzhi8.domain.InfoZph;
 import com.throne212.jianzhi8.domain.Region;
 import com.throne212.jianzhi8.domain.User;
@@ -68,6 +70,9 @@ public class HtmlBuildService {
 	private InfoZphDAO infoZphDAO;
 	
 	@Resource
+	private GonggaoDAO gonggaoDAO;
+	
+	@Resource
 	private ViewBizImpl viewBiz;
 	
 	
@@ -75,6 +80,7 @@ public class HtmlBuildService {
 		try {
 			Configuration configuration = freemarkerManager.getConfiguration(servletContext);
 			configuration.setDirectoryForTemplateLoading(new File(getTemplatePath()));
+			configuration.setClassicCompatible(true);
 			Template template = configuration.getTemplate(templateFilePath);
 			//File htmlFile = new File(servletContext.getRealPath("html/" + htmlFilePath));
 			File htmlFile = new File(getTemplatePath() + htmlFilePath);
@@ -106,6 +112,9 @@ public class HtmlBuildService {
 		//4条简历列表
 		List<User> rencaiList = viewBiz.indexRencaiUpdateListContent();
 		map.put("rencaiList", rencaiList);
+		//6条最新信息（公告）
+		List<Gonggao> gg6List = gonggaoDAO.findNew6Gonggao();
+		map.put("gg6List", gg6List);
 		return map;
 	}
 	

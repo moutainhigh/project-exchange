@@ -598,11 +598,13 @@ public class ViewBizImpl{
 		return list;
 	}
 	
+	//Ê×Ò³¼òÀú4Ìõ
 	public List<User> indexRencaiUpdateListContent() {
-		String sql = "select user_no,user_name,user_isyz ";
+		String sql = "select user_no,user_name,user_isyz,user_lastdate ";
 		sql += " from user_tab";
-		sql += " where user_ischeck='1' and user_city_id=? and user_kind='0'";
+		sql += " where user_ischeck='1' and user_kind='0'";
 		sql += " order by user_lastdate desc";
+		sql += " limit 4";
 		logger.debug("index list sql:" + sql);
 		jdbcTemplate.setMaxRows(7);
 		List<User> list = jdbcTemplate.query(sql, new RowMapper(){
@@ -611,6 +613,7 @@ public class ViewBizImpl{
 				u.setUserNo(rs.getInt("user_no"));
 				u.setUserName(rs.getString("user_name"));
 				u.setUserIsyz(rs.getString("USER_ISYZ"));
+				u.setUserLastdate(rs.getTimestamp("user_lastdate"));
 				return u;
 			}
 		});
