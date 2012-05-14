@@ -19,6 +19,8 @@
 		<mapping resource="com/throne212/jianzhi8/domain/JZWords.hbm.xml" />
 		<mapping resource="com/throne212/jianzhi8/domain/InfoZph.hbm.xml" />
 		<mapping resource="com/throne212/jianzhi8/domain/Gonggao.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/QitaType.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Qita.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
 

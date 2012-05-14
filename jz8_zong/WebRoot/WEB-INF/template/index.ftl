@@ -43,11 +43,11 @@
 	<!--导航区域-->
 	<div class="nav">
     	<div class="nav_top clearfix">
-        	<a href="/" class="logo_a"><img src="img/home_r2_c2_s1.jpg" /></a>
+        	<a href="/" class="logo_a"><img src="/img/home_r2_c2_s1.jpg" /></a>
             <ul class="ag_ul">
             	<li><b>全国</b></li>
                 <li>
-                	   <SCRIPT language=JavaScript	src="http://css.jianzhi8.com/fenzhan/js/city.js" type=text/javascript></SCRIPT>
+                	   <SCRIPT language="JavaScript"	src="http://css.jianzhi8.com/fenzhan/js/city.js" type="text/javascript"></SCRIPT>
                 </li>
             </ul>
         <a href="#" class="index_a">广告图width:695px; height:70px; </a>            
@@ -293,14 +293,14 @@
             </ul>
             <ul>
             	<li><b>职业指导</b></li>
-            	<#list zph6List as z>
-                <li><a href="/zhidao/${z.zphNo}.html" target="_blank"><#if z.zphTitle?length lt 18>${z.zphTitle}<#else>${z.zphTitle[0..17]}</#if></a></li>
+            	<#list zyzd6List as z>
+                <li><a href="/zhidao/${z.qitaNo}.html" target="_blank"><#if z.qitaTitle?length lt 18>${z.qitaTitle}<#else>${z.qitaTitle[0..17]}</#if></a></li>
                 </#list>
             </ul>
             <ul>
             	<li><b>毕业指导</b></li>
-            	<#list zph6List as z>
-                <li><a href="/zhidao/${z.zphNo}.html" target="_blank"><#if z.zphTitle?length lt 18>${z.zphTitle}<#else>${z.zphTitle[0..17]}</#if></a></li>
+            	<#list byzd6List as z>
+                <li><a href="/lunwen/${z.qitaNo}.html" target="_blank"><#if z.qitaTitle?length lt 18>${z.qitaTitle}<#else>${z.qitaTitle[0..17]}</#if></a></li>
                 </#list>
             </ul>
         </div>

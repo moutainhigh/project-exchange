@@ -40,16 +40,19 @@
             </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="authStack"/>
-        <default-action-ref name="index"></default-action-ref>
         <global-results>
         	<result name="404">/404.html</result>
         </global-results>
         <!-- 首页 -->
-        <action name="index" class="com.throne212.jianzhi8.action.IndexAction">
+        <action name="default" class="com.throne212.jianzhi8.action.IndexAction">
         	<result name="html">/WEB-INF/template/index.html</result>
         </action>
         <!-- 搜素 -->
         <action name="search" class="com.throne212.jianzhi8.action.SearchAction"></action>
+        <!-- 兼职,求职,全职无条件列表页 -->
+        <action name="list" class="com.throne212.jianzhi8.action.ComListAction"></action>
+        <!-- 兼职,求职,全职多条件筛选列表页，也是默认页面 -->
+        <action name="index" class="com.throne212.jianzhi8.action.ComListAction"></action>
     </package>
     <package name="adminPackage" extends="struts-default" namespace="/admin/">
         <action name="admin" class="com.throne212.jianzhi8.action.AdminAction"></action>

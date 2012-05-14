@@ -1,2 +1,2 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<jsp:forward page="/index.do"></jsp:forward>
+<jsp:forward page="/default.do"></jsp:forward>

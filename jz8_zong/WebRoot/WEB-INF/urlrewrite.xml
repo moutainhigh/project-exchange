@@ -12,8 +12,16 @@
 	</rule>
 	
 	<rule>
-		<from>/b(\d+).html</from>
-		<to>view!b.do?ctNo=$1</to>
+		<from>/resume/(\d+).html</from>
+		<to >view!b.do?ctNo=$1</to>
 	</rule>
 	
+	<!-- list info -->
+	
+	<rule>
+		<from>^/jianzhi/$</from>
+		<to>list!jianzhi.do</to>
+	</rule>
+
+
 </urlrewrite>

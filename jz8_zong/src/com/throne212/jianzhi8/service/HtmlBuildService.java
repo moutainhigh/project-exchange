@@ -6,13 +6,11 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -29,12 +27,14 @@ import com.throne212.jianzhi8.dao.ContentDAO;
 import com.throne212.jianzhi8.dao.GonggaoDAO;
 import com.throne212.jianzhi8.dao.InfoZphDAO;
 import com.throne212.jianzhi8.dao.LinkDAO;
+import com.throne212.jianzhi8.dao.QitaDAO;
 import com.throne212.jianzhi8.dao.RegionDAO;
 import com.throne212.jianzhi8.dao.TypeDAO;
 import com.throne212.jianzhi8.dao.jdbc.RegionDAOJDBC;
 import com.throne212.jianzhi8.domain.Content;
 import com.throne212.jianzhi8.domain.Gonggao;
 import com.throne212.jianzhi8.domain.InfoZph;
+import com.throne212.jianzhi8.domain.Qita;
 import com.throne212.jianzhi8.domain.Region;
 import com.throne212.jianzhi8.domain.Type;
 import com.throne212.jianzhi8.domain.User;
@@ -78,6 +78,8 @@ public class HtmlBuildService {
 	private TypeDAO typeDAO;
 	@Resource
 	private ContentDAO contentDAO;
+	@Resource
+	private QitaDAO qitaDAO;
 	@Resource
 	private RegionDAO regionDAO;
 	@Resource
@@ -138,6 +140,12 @@ public class HtmlBuildService {
 		//最新动态（招聘会动态）
 		List<InfoZph> zph6List = infoZphDAO.findNew6ZPH();
 		map.put("zph6List", zph6List);
+		//职业指导
+		List<Qita> zyzd6List = qitaDAO.getLastQita(6, "B");
+		map.put("zyzd6List", zyzd6List);
+		//毕业指导
+		List<Qita> byzd6List = qitaDAO.getLastQita(6, "C");
+		map.put("byzd6List", byzd6List);
 		return map;
 	}
 	

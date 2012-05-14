@@ -6,7 +6,7 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
   	<display-name>兼职吧</display-name>
-	<description>兼职吧网站-分站程序</description>
+	<description>兼职吧网站-总站程序</description>
 	
 	<!-- Spring settings -->
 	<context-param>

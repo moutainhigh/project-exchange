@@ -4,4 +4,6 @@
 <hibernate-reverse-engineering>
 	<table name="link_tab" catalog="jz8" class="Link"></table>
 	<table name="gonggao_tab" catalog="jz8" class="Gonggao"></table>
+	<table name="qita_tab" catalog="jz8" class="Qita"></table>
+	<table name="qita_type_tab" catalog="jz8" class="QitaType"></table>
 </hibernate-reverse-engineering>

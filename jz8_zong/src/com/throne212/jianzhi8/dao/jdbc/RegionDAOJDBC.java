@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +19,17 @@ public class RegionDAOJDBC {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	private static List<Region> hotList;
-	
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	private static List<Region> ALL_CITIES = null;
+	private static List<Region> HOT_CITIES = null;
+	
 	public List<Region> getAllCities(){
+		if(ALL_CITIES != null)
+			return ALL_CITIES;
 		List<Region> list = new ArrayList<Region>();
 		String sql = "select * from region_tab limit 0,4 union select * from region_tab where length(city_code) = 4 and parent_id is not null and grade=0";
 		list = jdbcTemplate.query(sql, new RowMapper<Region>(){
@@ -40,11 +42,12 @@ public class RegionDAOJDBC {
 				city.setParentCode(rs.getString("parent_id"));
 				return city;
 			}});
+		ALL_CITIES = list;
 		return list;
 	}
 	public List<Region> getHotCities(){
-		if(hotList != null && hotList.size() > 0)
-			return hotList;
+		if(HOT_CITIES != null && HOT_CITIES.size() > 0)
+			return HOT_CITIES;
 		List<Region> list = new ArrayList<Region>();
 		String sql = "select * from region_tab limit 0,4 union select * from region_tab where length(city_code) = 4 and right(city_code,2)='01' and parent_id is not null and grade=0 or city_name='¹ã¶«,ÉîÛÚ' ";
 		list = jdbcTemplate.query(sql, new RowMapper<Region>(){
@@ -57,7 +60,7 @@ public class RegionDAOJDBC {
 				city.setParentCode(rs.getString("parent_id"));
 				return city;
 			}});
-		hotList = list;
+		HOT_CITIES = list;
 		return list;
 	}
 	
@@ -136,6 +139,21 @@ public class RegionDAOJDBC {
 		return list;
 	}
 	
+	
+	public List<Region> getAllCityandAreas(){
+		String sql = "select * from city_tab";
+		List<Region> list = jdbcTemplate.query(sql, new RowMapper<Region>(){
+			public Region mapRow(ResultSet rs, int i) throws SQLException {
+				Region city = new Region();
+				city.setCityCode(rs.getString("city_code"));
+				city.setCityId(rs.getString("city_id"));
+				city.setCityName(rs.getString("city_name"));
+				city.setGrade(rs.getInt("grade"));
+				city.setParentCode(rs.getString("parent_id"));
+				return city;
+			}});
+		return list;
+	}
 	
 	
 	
