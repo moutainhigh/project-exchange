@@ -949,14 +949,33 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				for(int i=1;i<=3;i++){
 					addItem(r1.getItem(i), sum, n++);
 				}
-				for(int i=10;i<=26;i++){
+				for(int i=10;i<=24;i++){
 					addItem(r1.getItem(i), sum, n++);
+				}
+				for(int i=25;i<=26;i++){
+					String item2 = r1.getItem(2);
+					String itemi = r1.getItem(i);
+					if(!Util.isEmpty(item2) && !Util.isEmpty(itemi)){//人数*人均收入
+						try {
+							sum[n++] += (Integer.parseInt(item2) * Integer.parseInt(itemi));
+						} catch (NumberFormatException e) {
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 		}
 		
 		bean.setResultList(rList);
 		bean.setTotal(sum);
+	
+		//再除以总人数得到平均收入
+		if(sum[18] > 0){
+			sum[18] /= sum[1];
+		}
+		if(sum[19] > 0){
+			sum[19] /= sum[1];
+		}
 		
 		return bean;
 	}

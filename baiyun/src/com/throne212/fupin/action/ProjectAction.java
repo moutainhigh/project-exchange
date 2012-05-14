@@ -13,6 +13,7 @@ import com.throne212.fupin.biz.ProjectBiz;
 import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dataobject.ProCunStat;
 import com.throne212.fupin.dataobject.ProZdStat;
 import com.throne212.fupin.domain.Org;
@@ -23,6 +24,10 @@ import com.throne212.fupin.domain.ProjectShStat;
 import com.throne212.fupin.domain.ProjectShehui;
 import com.throne212.fupin.domain.ProjectZdStat;
 import com.throne212.fupin.domain.ProjectZhongdian;
+import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ProjectAction extends BaseAction {
 
@@ -226,7 +231,14 @@ public class ProjectAction extends BaseAction {
 	private List<ProjectCunStat> proCunStatList;
 
 	public String proCunStatLockList() {
-		proCunStatList = projectBiz.getEntitiesByColumn(ProjectCunStat.class, "lock", 2);
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			Zhen zhen = z.getZhen();
+			proCunStatList = projectBiz.getEntitiesByTwoColumn(ProjectCunStat.class, "lock", 2, "project.cun.zhen.id", zhen.getId());
+		}else{
+			proCunStatList = projectBiz.getEntitiesByColumn(ProjectCunStat.class, "lock", 2);
+		}
 		return "cun_stat_lock_list";
 	}
 
@@ -446,6 +458,13 @@ public class ProjectAction extends BaseAction {
 	private List<ProjectZdStat> proZdStatList;
 
 	public String proZdStatLockList() {
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			Zhen zhen = z.getZhen();
+			if(!zhen.getName().equals("钟落潭镇"))
+				return "zd_stat_lock_list";
+		}
 		proZdStatList = projectBiz.getEntitiesByColumn(ProjectZdStat.class, "lock", 2);
 		return "zd_stat_lock_list";
 	}

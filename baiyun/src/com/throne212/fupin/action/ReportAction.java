@@ -31,6 +31,8 @@ import com.throne212.fupin.domain.Report1;
 import com.throne212.fupin.domain.Report2;
 import com.throne212.fupin.domain.Report3;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class ReportAction extends BaseAction {
 
@@ -360,7 +362,14 @@ public class ReportAction extends BaseAction {
 	private List<Report> reportList;
 
 	public String reportList() {
-		reportList = reportBiz.getEntitiesByColumn(Report.class, "lock", 2);
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof ZhenWorkOrg){
+			ZhenWorkOrg z = (ZhenWorkOrg) user;
+			Zhen zhen = z.getZhen();
+			reportList = reportBiz.getEntitiesByTwoColumn(Report.class, "lock", 2, "cun.zhen.id", zhen.getId());
+		}else{
+			reportList = reportBiz.getEntitiesByColumn(Report.class, "lock", 2);
+		}
 		return "report_list";
 	}
 

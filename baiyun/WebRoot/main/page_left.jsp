@@ -264,7 +264,7 @@ function images_update(){
 		
 		menuArray[menuArray.length]="0,辅助功能,";
 	    menuArray[menuArray.length]="1,密码修改,${appPath}main/password/password_edit.jsp";
-		<c:if test="${userObj.roleType=='县级管理员'}">
+		<c:if test="${userObj.roleType=='县级管理员' || userObj.roleType=='镇级管理员'}">
 		menuArray[menuArray.length]="1,报表修改申请解锁,";
 		menuArray[menuArray.length]="2,户帮扶统计表修改申请解锁,${appPath}report_reportList.action";
 		menuArray[menuArray.length]="2,村帮扶统计表修改申请解锁,${appPath}pro_proCunStatLockList.action";
