@@ -17,8 +17,8 @@
 					$('.filter_city a').slice(16).hide();
 					$('.filter_city').append('<a href="javascript:void(0);" onclick="$(\'.filter_city a\').show();$(this).hide()">更多..</a>');
 				}
-				if($('.filter_type a').length > 10){
-					$('.filter_type a').slice(10).hide();
+				if($('.filter_type a').length > 8){
+					$('.filter_type a').slice(8).hide();
 					$('.filter_type').append('<a href="javascript:void(0);" onclick="$(\'.filter_type a\').show();$(this).hide()">更多..</a>');
 				}
 			});
@@ -63,8 +63,8 @@
         <div class="nav_botttom clearfix">
         	<ul class="clearfix">
             	<li><A href="/">首页</A></li>
-                <li><A href="/jianzhi/" class="now_a">兼职招聘</A></li>
-                <li><A href="/job/">全职招聘</A></li> 
+                <li><A href="/jianzhi/">兼职招聘</A></li>
+                <li><A href="/job/" class="now_a">全职招聘</A></li> 
                 <li><A href="/rencai/">个人求职</A></li>
                 <li><A href="/resume/">简历中心</A></li>
                 <li><A href="/qiuzhizhidao/">求职指导</A></li>
@@ -74,24 +74,24 @@
         </div>
     </div>
 	<!--当前位置区域-->
-	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 兼职招聘 </div>
+	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 全职招聘</div>
 	
 	<div class="con_top">
 		<div class="con_top_top">
         			<p class="gs_wx "><strong>提示：</strong> 来自 广州 的用户您好！ 我们推荐您进入 <a href="#">广州兼职招聘</a> 频道</p>
         			<p class="jz_zw filter_city">
         			<span>全部城市：</span>
-        			<a href="/<#if currParentCityId?? || currTypeId??><#if currParentCityId??>${currParentCityId}/</#if><#if currTypeId??>${currTypeId}/</#if><#else>jianzhi/</#if>" style="color:black;font-weight:600;">${currParentCityName}</a>
+        			<a href="/<#if currParentCityId?? || currJobTypeId??><#if currParentCityId??>zp${currParentCityId}/</#if><#if currJobTypeId??>zp${currJobTypeId}/</#if><#else>job/</#if>" style="color:black;font-weight:600;">${currParentCityName}</a>
 					<#list fillCityList as c>
-					<a href="/${c.cityId}/<#if currTypeId??>${currTypeId}/</#if>" <#if currCityId?? && currCityId==c.cityId>class="curr_sel"</#if>>${c.simpleName}</a>
+					<a href="/zp${c.cityId}/<#if currJobTypeId??>zp${currJobTypeId}/</#if>" <#if currCityId?? && currCityId==c.cityId>class="curr_sel"</#if>>${c.simpleName}</a>
 					</#list>
         			</p>
 
 			<p class="jz_zw filter_type">
 			<span>职位类别：</span>
-			<a href="/<#if currCityId?? || currTypeId??><#if currCityId??>${currCityId}/</#if><#if currTypeId?? && currTypeId.length() gt 3>${currParentTypeId}/</#if><#else>jianzhi/</#if>" style="color:black;font-weight:600;">${currParentTypeName}</a>
-			<#list fillTypeList as t>
-			<a href="/<#if currCityId?? >${currCityId}/</#if>${t.typeId}/" <#if currTypeId?? && currTypeId==t.typeId>class="curr_sel"</#if>>${t.typeName}</a>
+			<a href="/<#if currCityId?? || currJobTypeId??><#if currCityId??>zp${currCityId}/</#if><#if currJobTypeId?? && currJobTypeId.length() gt 3>zp${currParentJobTypeId}/</#if><#else>job/</#if>" style="color:black;font-weight:600;">${currParentJobTypeName}</a>
+			<#list fillJobTypeList as t>
+			<a href="/<#if currCityId?? >zp${currCityId}/</#if>zp${t.typeId}/" <#if currJobTypeId?? && currJobTypeId==t.typeId>class="curr_sel"</#if>>${t.typeName}</a>
 			</#list>
 			</p>
 
@@ -102,10 +102,10 @@
 <div class="nr_bq_top nr_bq_top_y">
 	<h2>
     	<div class="clearfix"> 
-    	<a href="/<#if currCityId?? || currTypeId??><#if currCityId??>${currCityId}/</#if><#if currTypeId??>${currTypeId}/</#if><#else>jianzhi/</#if>" <#if currUnitype==null>class="now_aa" </#if>id="tag1" style="color:#444;">全部</a>
-        <a href="/<#if currCityId?? >${currCityId}/</#if><#if currTypeId?? >${currTypeId}/</#if>t1/" <#if currUnitype=='t1'>class="now_aa" </#if>id="tag2" style="color:#444;">公司直招</a>
-        <a href="/<#if currCityId?? >${currCityId}/</#if><#if currTypeId?? >${currTypeId}/</#if>t2/" <#if currUnitype=='t2'>class="now_aa" </#if>id="tag3" style="color:#444;">职介招聘</a>
-        <a href="/<#if currCityId?? >${currCityId}/</#if><#if currTypeId?? >${currTypeId}/</#if>t3/" <#if currUnitype=='t3'>class="now_aa" </#if>id="tag4" style="color:#444;">认证企业</a>
+    	<a href="/<#if currCityId?? || currJobTypeId??><#if currCityId??>zp${currCityId}/</#if><#if currJobTypeId??>zp${currJobTypeId}/</#if><#else>job/</#if>" <#if currUnitype==null>class="now_aa" </#if>id="tag1" style="color:#444;">全部</a>
+        <a href="/<#if currCityId?? >zp${currCityId}/</#if><#if currJobTypeId?? >zp${currJobTypeId}/</#if>t1/" <#if currUnitype=='t1'>class="now_aa" </#if>id="tag2" style="color:#444;">兼职求职</a>
+        <a href="/<#if currCityId?? >zp${currCityId}/</#if><#if currJobTypeId?? >zp${currJobTypeId}/</#if>t2/" <#if currUnitype=='t2'>class="now_aa" </#if>id="tag3" style="color:#444;">全职求职</a>
+        <a href="/<#if currCityId?? >zp${currCityId}/</#if><#if currJobTypeId?? >zp${currJobTypeId}/</#if>t3/" <#if currUnitype=='t3'>class="now_aa" </#if>id="tag3" style="color:#444;">认证企业</a>
         </div>
         <p><span>公司</span> <strong> 薪金</strong>时间</p>
     </h2>
@@ -114,20 +114,17 @@
         	<tr>
             	<td colspan="4" id='afs_list_top' class="td_top"></td>
             </tr>
-            <SCRIPT language=JavaScript	src="http://css.jianzhi8.com/fenzhan/ads/${currTypeId}ding.js" type=text/javascript></SCRIPT>                   
+            <SCRIPT language=JavaScript	src="http://css.jianzhi8.com/fenzhan/ads/${currJobTypeId}ding.js" type=text/javascript></SCRIPT>                   
             <#list bean.resultList as c>
-             <tr class="info">
+            <tr>
             	<td class="td_1">
             	<#if c.cityId=='3500'>
             	<a href="http://www.jianzhi8.com/a${c.ctNo}.html" target="_blank">${c.title}</a>
             	<#else>
             	<a href="/a${c.ctNo}.html" target="_blank">${c.title}</a>
             	</#if>
-            	<#if c.ding><b><img src="http://css.jianzhi8.com/fenzhan/img/lb_r6_c4.jpg" /></b></#if>
-            	<#if areaId=='' &&c.cityName!=''><span><a href="/${c.cityCode}/<#if typeCode!='' >${typeCode}/</#if>" class="titlehui">${c.cityName}</a></span></#if>
-            	</td>
-                <td class="td_2"><#if c.userId=='admin'||c.companyName==''>未填写<#else><a href="http://www.jianzhi8.com/user/${c.userId?url}" target="_blank"><#if c.companyName?length lt 19>${c.companyName}<#else>${c.companyName[0..18]}</#if></a><#if c.isYz=='1'><span><img src="http://css.jianzhi8.com/fenzhan/img/lb_r7_c7.jpg" /></span></#if></#if>
-                </td>
+            	<span>${c.area!''}</span><#if c.ding><b><img src="http://css.jianzhi8.com/fenzhan/img/lb_r6_c4.jpg" /></b></#if></td>
+                <td class="td_2"><#if c.userId=='admin'||c.companyName==''>未填写<#else><a href="http://www.jianzhi8.com/user/${c.userId?url}" target="_blank">${c.companyName}</a><#if c.isYz=='1'><span><img src="http://css.jianzhi8.com/fenzhan/img/lb_r7_c7.jpg" /></span></#if></#if></td>
                 <td class="td_3"><#if (c.salary)?length lt 10>${c.salary}<#else>${c.salary[0..8]}</#if></td>
                 <td class="td_4">${c.date?string('MM-dd')}</td>
             </tr>
@@ -140,23 +137,23 @@
     
     <h3 class="clearfix">
     <p id="page">
-	<#if currCityId??||currTypeId??||currUnitype??>
+	<#if currCityId??||currJobTypeId??||currUnitype??>
 		<#if !bean.isFirstPage>
-<a href="/<#if currCityId?? >${currCityId}/</#if><#if currTypeId?? >${currTypeId}/</#if><#if currUnitype?? >${currUnitype}/</#if>" class="n">首页</a>
-<a href="/<#if currCityId?? >${currCityId}/</#if><#if currTypeId?? >${currTypeId}/</#if><#if currUnitype?? >${currUnitype}</#if>p${bean.prePageIndex}/" class="n">&lt;上页</a>
+<a href="/<#if currCityId?? >zp${currCityId}/</#if><#if currJobTypeId?? >zp${currJobTypeId}/</#if><#if currUnitype?? >zp${currUnitype}/</#if>" class="n">首页</a>
+<a href="/<#if currCityId?? >zp${currCityId}/</#if><#if currJobTypeId?? >zp${currJobTypeId}/</#if><#if currUnitype?? >${currUnitype}</#if>p${bean.prePageIndex}/" class="n">&lt;上页</a>
 		</#if>
-${bean.getPaper('/'+currCityId+'/'+ currTypeId + '/'+ currUnitype +'',2)}
+${bean.getPaper('/'+currCityId+'/'+ currJobTypeId + '/'+ currUnitype +'',2,'zp')}
 		<#if bean.isnext>		
-<a href="/<#if currCityId?? >${currCityId}/</#if><#if currTypeId?? >${currTypeId}/</#if><#if currUnitype?? >${currUnitype}</#if>p${bean.pageIndex+1}/" class="n">下页&gt;</a>
+<a href="/<#if currCityId?? >zp${currCityId}/</#if><#if currJobTypeId?? >zp${currJobTypeId}/</#if><#if currUnitype?? >${currUnitype}</#if>p${bean.pageIndex+1}/" class="n">下页&gt;</a>
 		</#if>
 	<#else>		
 		<#if !bean.isFirstPage>
-<a href="/jianzhi/" class="n">首页</a>
-<a href="/jianzhi/<#if bean.prePageIndex!='1'>p${bean.prePageIndex}/</#if>" class="n">&lt;上页</a>
+<a href="/job/" class="n">首页</a>
+<a href="/job/<#if bean.prePageIndex!='1'>p${bean.prePageIndex}/</#if>" class="n">&lt;上页</a>
 		</#if>
-${bean.getPaper('/jianzhi/',2)}
+${bean.getPaper('/job/',2,'zp')}
 		<#if bean.isnext>
-<a href="/jianzhi/p${bean.pageIndex+1}/" class="n">下页&gt;</a>
+<a href="/job/p${bean.pageIndex+1}/" class="n">下页&gt;</a>
 		</#if>	
 	</#if>	
 		</p>

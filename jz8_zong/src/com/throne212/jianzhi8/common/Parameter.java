@@ -24,14 +24,14 @@ public final class Parameter {
 	public static HashMap<String, String> jianzhimap;
 	public static HashMap<String, String> jobmap;
 	public static HashMap<String, String> citymap;
-	public static HashMap<String, Type> typemap_py=null;
-	public static HashMap<String, Type> typemap=null;
-	public static HashMap<String, JobType> jobtypemap=null;
-	public static HashMap<String, JobType> jobtypemap_py=null;
-	public static HashMap<String, Region> citymap_py=null;
+	public static HashMap<String, Type> typemap_py=new HashMap<String, Type>();
+	public static HashMap<String, Type> typemap=new HashMap<String, Type>();
+	public static HashMap<String, JobType> jobtypemap=new HashMap<String, JobType>();
+	public static HashMap<String, JobType> jobtypemap_py=new HashMap<String, JobType>();
+	public static HashMap<String, Region> citymap_py=new HashMap<String, Region>();
 	public static HashMap<String, String> citymap_simplename=new HashMap<String, String>();
 	public static HashMap<String, String> citymap_name=new HashMap<String, String>();
-	public static HashMap<String, Region> citymap_bh;
+	public static HashMap<String, Region> citymap_bh=new HashMap<String, Region>();
 	
 	  static {
 		  jianzhimap = new HashMap<String, String>();

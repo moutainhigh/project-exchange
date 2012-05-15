@@ -102,6 +102,8 @@ public class PageBean<T> {
 	 * 不计算总页数，只显示下nextnum页。
 	 */
 	public String getPaper(String href,int nextnum){
+		if(href != null)
+			href = href.replaceAll("/{2,}", "/").trim();
 		StringBuffer sb = new StringBuffer();
 		for (int i = pageIndex - 5; i < pageIndex; i++) {
 			if (i < 1)
@@ -116,6 +118,13 @@ public class PageBean<T> {
 		}
 		//System.out.print(this.isnext+"   "+nextnum);
 		return sb.toString();
+	}
+	public String getPaper(String href,int nextnum, String prefix){//需要加上前缀
+		if(Util.isEmpty(href))
+			return getPaper(href, nextnum);
+		href = href.replaceAll("/{2,}", "/").trim();
+		href = href.replaceAll("/", "/" + prefix);
+		return getPaper(href, nextnum);
 	}
 	
 	

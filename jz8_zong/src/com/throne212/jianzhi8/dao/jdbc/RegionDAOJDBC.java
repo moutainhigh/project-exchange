@@ -141,7 +141,7 @@ public class RegionDAOJDBC {
 	
 	
 	public List<Region> getAllCityandAreas(){
-		String sql = "select * from city_tab";
+		String sql = "select * from region_tab";
 		List<Region> list = jdbcTemplate.query(sql, new RowMapper<Region>(){
 			public Region mapRow(ResultSet rs, int i) throws SQLException {
 				Region city = new Region();
@@ -154,7 +154,5 @@ public class RegionDAOJDBC {
 			}});
 		return list;
 	}
-	
-	
 	
 }

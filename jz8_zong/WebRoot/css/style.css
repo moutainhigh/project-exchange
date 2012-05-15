@@ -49,10 +49,10 @@
 /*招兼职列表页*/
 .con_top{ border:1px solid #DCDCDC; }
 .con_top_top p{ padding:5px 8px;}
-.con_top_top p span{ font-weight:bold; margin-right:17px; float:left; display:block;}
+.con_top_top p span{ font-weight:bold; margin-right:10px; float:left; display:block;}
 .con_top_top p strong{ font-weight:normal; float:left; display:block;}
 .con_top_top p b{ font-weight:normal; float:left; width:830px;}
-.con_top_top p a,.con_top_top p a:visited{ margin-right:13px; color:#0D4FE4;}
+.con_top_top p a,.con_top_top p a:visited{ margin-right:12px; color:#0D4FE4;}
 .con_top_bom{ height:46px; line-height:46px; border-top:1px solid #DCDCDC; margin-top:14px; background-color:#FAFAFA; _padding-top:6px; _height:40px; _line-height:40px;}
 .con_top_bom input{ vertical-align:middle;}
 .con_top_bom a{ margin-right:16px; font-size:13px;_font-size:12px; color:#000;}
@@ -375,21 +375,5 @@ A.hot:hover {TEXT-DECORATION: underline}
 .about_right p{ text-indent:2em; width:730px; margin:0 auto; line-height:40px;}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*selected options*/
+.curr_sel{font-weight: 600;}

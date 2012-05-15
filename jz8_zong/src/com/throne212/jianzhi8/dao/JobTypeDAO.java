@@ -13,7 +13,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.throne212.jianzhi8.domain.JobType;
-import com.throne212.jianzhi8.domain.Type;
 
 /**
  * A data access object (DAO) providing persistence and search support for Type
@@ -40,6 +39,17 @@ public class JobTypeDAO extends HibernateDaoSupport {
 
 	protected void initDao() {
 		// do nothing
+	}
+	
+	public JobType findById(String typeCode) {
+		log.debug("getting JobType instance with id: " + typeCode);
+		try {
+			JobType instance = (JobType) getHibernateTemplate().get("JobType", typeCode);
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
 	}
 
 	
@@ -103,6 +113,17 @@ public class JobTypeDAO extends HibernateDaoSupport {
 			return null;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByProperty(String propertyName, Object value) {
+		log.debug("finding JobType instance with property: " + propertyName + ", value: " + value);
+		try {
+			String queryString = "from JobType as model where model." + propertyName + "= ?";
+			return getHibernateTemplate().find(queryString, value);
+		} catch (RuntimeException re) {
+			log.error("find by property name failed", re);
 			throw re;
 		}
 	}

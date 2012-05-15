@@ -19,8 +19,20 @@
 	<!-- list info -->
 	
 	<rule>
-		<from>^/jianzhi/$</from>
-		<to>list!jianzhi.do</to>
+		<from>^/jianzhi/(.*)$</from>
+		<to>list!jianzhi.do?paramPageNum=$1</to>
+	</rule>
+	<rule>
+		<from>^/rencai/(.*)$</from>
+		<to>list!rencai.do?paramPageNum=$1</to>
+	</rule>
+	<rule>
+		<from>^/job/(.*)$</from>
+		<to>list!job.do?paramPageNum=$1</to>
+	</rule>
+	<rule>
+		<from>^/resume/(.*)$</from>
+		<to>list!resume.do?paramPageNum=$1</to>
 	</rule>
 
 

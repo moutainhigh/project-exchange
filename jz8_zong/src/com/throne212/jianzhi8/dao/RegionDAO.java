@@ -53,6 +53,11 @@ public class RegionDAO extends HibernateDaoSupport  {
 		return this.getHibernateTemplate().find(hql, new Object[]{city.getCityCode()});
 	}
 	
+	public List<Region> getSubCityList(String cityCode){
+		String hql = "from Region c where c.parentCode=?";
+		return this.getHibernateTemplate().find(hql, new Object[]{cityCode});
+	}
+	
 	protected void initDao() {
 		//do nothing
 	}

@@ -20,6 +20,7 @@ import com.throne212.jianzhi8.dao.JobTypeDAO;
 import com.throne212.jianzhi8.dao.RegionDAO;
 import com.throne212.jianzhi8.dao.TypeDAO;
 import com.throne212.jianzhi8.dao.jdbc.RegionDAOJDBC;
+import com.throne212.jianzhi8.domain.JobType;
 import com.throne212.jianzhi8.domain.Region;
 import com.throne212.jianzhi8.domain.Type;
 
@@ -43,6 +44,7 @@ public class ComListAction extends ActionSupport {
 	// 页面所要的列表
 	private List<Region> fillCityList;// 城市或者地区列表
 	private List<Type> fillTypeList;// 兼职类型列表
+	private List<JobType> fillJobTypeList;// 兼职类型列表
 
 	// 传递过来的参数
 	private String paramTypeId;// xuesheng,wangluojianzhi
@@ -57,11 +59,23 @@ public class ComListAction extends ActionSupport {
 	private String currTypeName;// 当前选中的类型的名字
 	private String currParentTypeId;// 当前选中的type的父id,xuesheng,wangluojianzhi
 	private String currParentTypeName;// 当前选中的类型的的父名字
+	private String currJobTypeId;// 当前选中的jobtypeid,xuesheng,wangluojianzhi
+	private String currJobTypeName;// 当前选中的job类型的名字
+	private String currParentJobTypeId;// 当前选中的jobtype的父id,xuesheng,wangluojianzhi
+	private String currParentJobTypeName;// 当前选中的job类型的的父名字
 	private String currCityId;// 当前选中的cityid,bj,haidian
 	private String currCityName;// 当前选中的城市的名字
 	private String currParentCityId;// 当前选中的城市的父id,cityid,bj,haidian
 	private String currParentCityName;// 当前选中的城市的的父名字
 	private String currUnitype;// 信息类型
+	private String currClass;//c0,c1
+	
+	//用于查询用的filed
+	private String queryCityCode;//city的code，例如1201
+	private String queryTypeCode;//type的code，例如k01
+	private String queryJobTypeCode;//jobtype的code，例如q01
+	private String queryUnitype;//中介，直聘
+	private String queryClass;//0,1
 
 	// 数据
 	private Integer pageIndex;
@@ -71,24 +85,44 @@ public class ComListAction extends ActionSupport {
 		try {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			String path = request.getServletPath();
+			logger.debug("request path=" + path);
 			if (path != null) {
 				if (path.contains("/")) {
 					path = path.replaceAll("//", "/");
 					if (!path.endsWith("/"))
 						path = path + "/";
 					String[] strpath = path.split("/");
+					String[] str = new String[3];
 					if (strpath.length == 2) { // 一级目录的时候
-						String str1 = strpath[1];
-						return parseParam(str1);
+						str[0] = strpath[1];
 					} else if (strpath.length == 3) {// 二级目录的时候
-						String str1 = strpath[1];
-						String str2 = strpath[2];
-						return parseParam(str1,str2);
+						str[0] = strpath[1];
+						str[1] = strpath[2];
 					} else if (strpath.length == 4) {// 三级目录的时候
-						String str1 = strpath[1];
-						String str2 = strpath[2];
-						String str3 = strpath[3];
-						return parseParam(str1,str2,str3);
+						str[0] = strpath[1];
+						str[1] = strpath[2];
+						str[2] = strpath[3];
+					} else{
+						return "404";
+					}
+					//分解参数
+					for(String s : str){
+						if(s == null)
+							break;
+						if(s.startsWith("rc") || s.startsWith("zp"))
+							s = s.substring(2);
+						parseType(s);
+						parseJobType(s);
+						parseCityId(s);
+						parseOther(s);
+					}
+					//根据标识调用不同的列表方法
+					if(str[0].startsWith("zp")){//全职
+						return job();
+					}else if(str[0].startsWith("rc")){//求职
+						return rencai();
+					}else{//兼职
+						return jianzhi();
 					}
 				}
 			}
@@ -97,70 +131,59 @@ public class ComListAction extends ActionSupport {
 		}
 		return "404";
 	}
-
+	
 	// 分解参数
-	private String parseParam(String str1){
-		return "404";
-	}
-	private String parseParam(String str1, String str2){
-		if(str1.startsWith("zp")){
-			str1 = str1.substring(2);
-			str2 = str2.substring(2);
-			//先找城市
-			if(Parameter.typemap_py.get(str1) != null){
-				
-			}
-			return job();
-		}else if(str1.startsWith("rc")){
-			
-			return qiuzhi();
-		}else{
-			//先找城市
-			if(Parameter.citymap_py.get(str1) != null){
-				paramCityId = Parameter.citymap_py.get(str1).getCityId();
-				if(Parameter.typemap_py.get(str2) != null){
-					
-				}
-			}
-			return jianzhi();
+	private boolean parseType(String str){//获取兼职类型
+		Type t = Parameter.typemap_py.get(str);
+		if(t != null){
+			paramTypeId = t.getTypeId();
+			return true;
 		}
+		return false;
 	}
-	private String parseParam(String str1, String str2, String str3){
-		if(str1.startsWith("zp")){
-			paramCityId = str1;
-			paramJobTypeId = str2;
-			parseOther(str3);
-			return job();
-		}else if(str1.startsWith("rc")){
-			paramCityId = str1;
-			paramTypeId = str2;
-			parseOther(str3);
-			return qiuzhi();
-		}else{
-			paramCityId = str1;
-			paramTypeId = str2;
-			parseOther(str3);
-			return jianzhi();
+	private boolean parseJobType(String str){//获取全职类型
+		JobType t = Parameter.jobtypemap_py.get(str);
+		if(t != null){
+			paramJobTypeId = t.getTypeId();
+			return true;
 		}
+		return false;
 	}
-	private void parseOther(String str){
+	private boolean parseCityId(String str){//获取城市id
+		Region c = Parameter.citymap_py.get(str);
+		if(c != null){
+			paramCityId = c.getCityId();
+			return true;
+		}
+		return false;
+	}
+	private boolean parseOther(String str){
+		boolean succ = false;
 		//找出t参数
 		Pattern p = Pattern.compile("t\\d");
 		Matcher m = p.matcher(str);
-		if(m.find())
+		if(m.find()){
 			paramUnitype = m.group();
+			succ = true;
+		}
 		//找出p参数
 		p = Pattern.compile("p\\d");
 		m = p.matcher(str);
-		if(m.find())
+		if(m.find()){
 			paramPageNum = m.group();
+			succ = true;
+		}
 		//找出c参数
 		p = Pattern.compile("c\\d");
 		m = p.matcher(str);
-		if(m.find())
+		if(m.find()){
 			paramClass = m.group();
+			succ = true;
+		}
+		return succ;
 	}
 	
+	//测试代码
 	public static void main(String[] args) {
 		String str = "t1p2";
 		Pattern p = Pattern.compile("p\\d");
@@ -173,40 +196,173 @@ public class ComListAction extends ActionSupport {
 	// 参数的处理
 	private void getParams() {
 		// 页码
-		if (!Util.isEmpty(paramPageNum) && paramPageNum.length() > 1)
-			pageIndex = Integer.parseInt(paramPageNum.substring(1));
-		else
+		if (!Util.isEmpty(paramPageNum) && paramPageNum.length() > 1){
+			String pageNum = paramPageNum.replaceAll("\\D", "").trim();
+			pageIndex = Integer.parseInt(pageNum);
+		}else{
 			pageIndex = 1;
-
+		}
+		//获取城市的code和处理curr
+		if(!Util.isEmpty(paramCityId)){
+			Region r = regionDAO.findById(paramCityId);
+			if(r != null){
+				queryCityCode = r.getCityCode();
+				currCityId = r.getCityId();
+				currCityName = r.getSimpleName();
+				if(r.getGrade() == 0){//城市
+					currParentCityId = r.getCityId();
+					currParentCityName = r.getSimpleName();
+				}else{//区县
+					List<Region> prList = regionDAO.findByProperty("cityCode", r.getParentCode());
+					if(prList != null && prList.size() > 0){
+						Region pr = prList.get(0);
+						currParentCityId = pr.getCityId();
+						currParentCityName = pr.getSimpleName();
+					}
+				}
+			}
+		}
+		//获取type的code和处理curr
+		if(!Util.isEmpty(paramTypeId)){
+			List<Type> tList = typeDAO.findByProperty("typeId", paramTypeId);
+			if(tList != null && tList.size() > 0){
+				Type t = tList.get(0);
+				queryTypeCode = t.getTypeCode();
+				currTypeId = t.getTypeId();
+				currTypeName = t.getTypeName();
+				if(!Util.isEmpty(t.getParentTypeCode())){
+					Type pt = typeDAO.findById(t.getParentTypeCode());
+					currParentTypeId = pt.getTypeId();
+					currParentTypeName = pt.getTypeName();
+				}else{
+					currParentTypeId = t.getTypeId();
+					currParentTypeName = t.getTypeName();
+				}
+			}
+		}
+		//获取jobtype的code和处理curr
+		if(!Util.isEmpty(paramJobTypeId)){
+			List<JobType> tList = jobTypeDAO.findByProperty("typeId", paramJobTypeId);
+			if(tList != null && tList.size() > 0){
+				JobType t = tList.get(0);
+				queryJobTypeCode = t.getTypeCode();
+				currJobTypeId = t.getTypeId();
+				currJobTypeName = t.getTypeName();
+				if(!Util.isEmpty(t.getParentTypeCode())){
+					JobType pt = jobTypeDAO.findById(t.getParentTypeCode());
+					currParentJobTypeId = pt.getTypeId();
+					currParentJobTypeName = pt.getTypeName();
+				}else{
+					currParentJobTypeId = t.getTypeId();
+					currParentJobTypeName = t.getTypeName();
+				}
+			}
+		}
+		//获取unitype的实际值
+		currUnitype = paramUnitype;
+		if("t1".equals(paramUnitype)){
+			queryUnitype = "直聘";
+		}else if("t2".equals(paramUnitype)){
+			queryUnitype = "中介";
+		}
+		//兼职/全职
+		currClass = paramClass;
+		if(currClass != null && currClass.length() > 1){
+			queryClass = currClass.substring(1);
+		}
 	}
+	
 
 	// 招聘兼职职位列表
 	public String jianzhi() {
 		// 处理参数
 		getParams();
 		// 获取数据
-		bean = viewBiz.listJianzhi(null, null, null, false, pageIndex);
+		if("t3".equals(paramUnitype)){
+			bean = viewBiz.listJianzhi(queryCityCode, queryTypeCode, queryUnitype, true, pageIndex);
+		}else{
+			bean = viewBiz.listJianzhi(queryCityCode, queryTypeCode, queryUnitype, false, pageIndex);
+		}
 		// 填充选项
-		fillCityList = regionDAOJDBC.getAllCities();
-		fillTypeList = typeDAO.getTopAll();
+		if(!Util.isEmpty(currParentCityId)){
+			Region city = regionDAO.findById(currParentCityId);
+			fillCityList = regionDAO.getSubCityList(city.getCityCode());
+		}else
+			fillCityList = regionDAOJDBC.getAllCities();
+		if(!Util.isEmpty(currParentTypeId)){
+			List<Type> tList = typeDAO.findByProperty("typeId", currParentTypeId);
+			if(tList != null && tList.size() > 0)
+				fillTypeList = typeDAO.getTopAll(tList.get(0).getTypeCode());
+		}else
+			fillTypeList = typeDAO.getTopAll();
 		// 处理已经选中的项目
-		currCityName = "全国";
-		currTypeName = "全部";
+		if(Util.isEmpty(currCityName))
+			currCityName = "全国";
+		if(Util.isEmpty(currTypeName))
+			currTypeName = "全部";
 		return "list_jianzhi";
 	}
 	
 	// 招聘全职职位列表
 	public String job() {
+		// 处理参数
+		getParams();
+		// 获取数据
+		if("t3".equals(paramUnitype)){
+			bean = viewBiz.listJob(queryCityCode, queryJobTypeCode, queryUnitype, true, pageIndex);
+		}else{
+			bean = viewBiz.listJob(queryCityCode, queryJobTypeCode, queryUnitype, false, pageIndex);
+		}
+		// 填充选项
+		if(!Util.isEmpty(currParentCityId)){
+			Region city = regionDAO.findById(currParentCityId);
+			fillCityList = regionDAO.getSubCityList(city.getCityCode());
+		}else
+			fillCityList = regionDAOJDBC.getAllCities();
+		if(!Util.isEmpty(currParentJobTypeId)){
+			List<JobType> tList = jobTypeDAO.findByProperty("typeId", currParentJobTypeId);
+			if(tList != null && tList.size() > 0)
+				fillJobTypeList = jobTypeDAO.getTopAll(tList.get(0).getTypeCode());
+		}else
+			fillJobTypeList = jobTypeDAO.getTopAll();
+		// 处理已经选中的项目
+		if(Util.isEmpty(currCityName))
+			currCityName = "全国";
+		if(Util.isEmpty(currTypeName))
+			currTypeName = "全部";
 		return "list_job";
 	}
 	
 	// 求职列表
-	public String qiuzhi() {
-		return "list_qiuzhi";
+	public String rencai() {
+		// 处理参数
+		getParams();
+		// 获取数据
+		bean = viewBiz.listRencai(queryCityCode, queryTypeCode, queryClass, pageIndex);
+		// 填充选项
+		if(!Util.isEmpty(currParentCityId)){
+			Region city = regionDAO.findById(currParentCityId);
+			fillCityList = regionDAO.getSubCityList(city.getCityCode());
+		}else
+			fillCityList = regionDAOJDBC.getAllCities();
+		if(!Util.isEmpty(currParentTypeId)){
+			List<Type> tList = typeDAO.findByProperty("typeId", currParentTypeId);
+			if(tList != null && tList.size() > 0)
+				fillTypeList = typeDAO.getTopAll(tList.get(0).getTypeCode());
+		}else
+			fillTypeList = typeDAO.getTopAll();
+		// 处理已经选中的项目
+		if(Util.isEmpty(currCityName))
+			currCityName = "全国";
+		if(Util.isEmpty(currTypeName))
+			currTypeName = "全部";
+		return "list_rencai";
 	}
 	
 	// 简历列表
 	public String resume() {
+		getParams();
+		bean = viewBiz.listResume(pageIndex);
 		return "list_resume";
 	}
 
@@ -394,6 +550,110 @@ public class ComListAction extends ActionSupport {
 
 	public void setCurrUnitype(String currUnitype) {
 		this.currUnitype = currUnitype;
+	}
+
+	public String getParamJobTypeId() {
+		return paramJobTypeId;
+	}
+
+	public void setParamJobTypeId(String paramJobTypeId) {
+		this.paramJobTypeId = paramJobTypeId;
+	}
+
+	public String getParamClass() {
+		return paramClass;
+	}
+
+	public void setParamClass(String paramClass) {
+		this.paramClass = paramClass;
+	}
+
+	public String getCurrJobTypeId() {
+		return currJobTypeId;
+	}
+
+	public void setCurrJobTypeId(String currJobTypeId) {
+		this.currJobTypeId = currJobTypeId;
+	}
+
+	public String getCurrJobTypeName() {
+		return currJobTypeName;
+	}
+
+	public void setCurrJobTypeName(String currJobTypeName) {
+		this.currJobTypeName = currJobTypeName;
+	}
+
+	public String getCurrParentJobTypeId() {
+		return currParentJobTypeId;
+	}
+
+	public void setCurrParentJobTypeId(String currParentJobTypeId) {
+		this.currParentJobTypeId = currParentJobTypeId;
+	}
+
+	public String getCurrParentJobTypeName() {
+		return currParentJobTypeName;
+	}
+
+	public void setCurrParentJobTypeName(String currParentJobTypeName) {
+		this.currParentJobTypeName = currParentJobTypeName;
+	}
+
+	public String getCurrClass() {
+		return currClass;
+	}
+
+	public void setCurrClass(String currClass) {
+		this.currClass = currClass;
+	}
+
+	public String getQueryCityCode() {
+		return queryCityCode;
+	}
+
+	public void setQueryCityCode(String queryCityCode) {
+		this.queryCityCode = queryCityCode;
+	}
+
+	public String getQueryTypeCode() {
+		return queryTypeCode;
+	}
+
+	public void setQueryTypeCode(String queryTypeCode) {
+		this.queryTypeCode = queryTypeCode;
+	}
+
+	public String getQueryJobTypeCode() {
+		return queryJobTypeCode;
+	}
+
+	public void setQueryJobTypeCode(String queryJobTypeCode) {
+		this.queryJobTypeCode = queryJobTypeCode;
+	}
+
+	public String getQueryUnitype() {
+		return queryUnitype;
+	}
+
+	public void setQueryUnitype(String queryUnitype) {
+		this.queryUnitype = queryUnitype;
+	}
+
+	public String getQueryClass() {
+		return queryClass;
+	}
+
+	public void setQueryClass(String queryClass) {
+		this.queryClass = queryClass;
+	}
+
+	public List<JobType> getFillJobTypeList() {
+		return fillJobTypeList;
+	}
+
+	public void setFillJobTypeList(List<JobType> fillJobTypeList) {
+		this.fillJobTypeList = fillJobTypeList;
 	}
 
 }
