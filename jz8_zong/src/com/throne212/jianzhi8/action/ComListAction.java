@@ -167,7 +167,7 @@ public class ComListAction extends ActionSupport {
 			succ = true;
 		}
 		//ÕÒ³öp²ÎÊý
-		p = Pattern.compile("p\\d");
+		p = Pattern.compile("p\\d+");
 		m = p.matcher(str);
 		if(m.find()){
 			paramPageNum = m.group();

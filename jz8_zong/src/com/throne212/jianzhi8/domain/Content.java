@@ -2,6 +2,7 @@ package com.throne212.jianzhi8.domain;
 // default package
 
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
@@ -484,6 +485,68 @@ public class Content  implements java.io.Serializable {
 	public void setType(TypeIntf type) {
 		this.type = type;
 	}
+	
+	/**
+     * 比较当前日期和指定日期 return boolean
+     * 如果当前日期在指定日期之前返回true否则返回flase
+     */
+    public  boolean getTodate3(){
+    	if(!"0".equals(ctLimitdate)){
+        boolean bea = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String isDate = sdf.format(new java.util.Date());
+        java.util.Date date1;
+        java.util.Date date0;
+        int limit = Integer.parseInt(ctLimitdate);
+        System.out.println("ctEnddate "+ctEnddate);
+        date1  = new java.util.Date(ctEnddate.getTime()+1000*60*60*24*25 );   
+
+        try {
+            //date1 = sdf.parse(strdate);//信息时间
+            date0 = sdf.parse(isDate); //当前时间
+            System.out.println("date0 "+isDate);
+            System.out.println("date1 "+sdf.format(date1));
+            if (date0.after(date1)) { // 当前时间在信息时间之后，ture，表示过期
+                bea = true;
+            }
+        } catch (ParseException e) {
+            bea = false;
+        }
+        finally {
+        	return bea;
+        }
+    	}
+    	else{
+    		return false;	
+    	}
+    }
+    
+    
+    
+    public boolean getTodate() {  //查看是否过期信息。
+    	if(!"0".equals(ctLimitdate)){
+    		try {
+    			long limit = Long.parseLong(ctLimitdate);
+				//ct_update + ct_limitdate 
+				long now = System.currentTimeMillis();
+				long updateTime = ctEnddate.getTime();
+				long endTime = updateTime + limit * 24L * 60L * 60L * 1000L ;	//必须转为long 否则int 溢出
+				if(now > endTime){  //过期返回true
+					return true;
+				}
+				else{
+					return false;	
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return true;
+			}
+    	}
+    	else{
+    		return false;	
+    	}
+       
+    }
 
 
 }

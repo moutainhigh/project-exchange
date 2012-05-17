@@ -1,5 +1,7 @@
 package com.throne212.jianzhi8.domain;
 
+import java.util.List;
+
 // default package
 
 /**
@@ -22,6 +24,9 @@ public class Region implements java.io.Serializable {
 	
 	private String parentCode;
 	private int grade;
+	
+	//用于展示而不是存储的
+	private List<Region> childs;
 
 	// Constructors
 
@@ -88,6 +93,14 @@ public class Region implements java.io.Serializable {
 		else
 			simpleName = cityName;
 		return simpleName;
+	}
+
+	public List<Region> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(List<Region> childs) {
+		this.childs = childs;
 	}
 
 }

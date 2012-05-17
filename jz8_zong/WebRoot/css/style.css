@@ -86,8 +86,10 @@
 .tb_jz span{ color:#585858; font-weight:bold; font-size:13px;_font-size:12px; }
 
 /*招兼职内容页*/
-.con_wlnr{ border-bottom:1px solid #EFEFEF;}
-.zj_con{ margin-top:20px;}
+ .con_wlnr{padding-top:0px;padding-right:8px;padding-left:2px;margin-bottom:2px; border-bottom:1px solid #EFEFEF;  TEXT-ALIGN: left }
+ .con_wlnr  SPAN {FONT-WEIGHT: normal; FONT-SIZE: 13px; FLOAT: right; COLOR: #666}
+ .zj_con{ margin-top:20px;margin-right:5px;}
+.zj_con_l{ width:725px; float:left; position:relative;z-index:1;}
 
 /*2012-3-12修改开始*/
 .zj_con_l{ width:725px; float:left; position:relative; z-index:1;}
@@ -199,8 +201,7 @@
 #tab_link {	CLEAR: both; MARGIN-TOP: 10px; OVERFLOW: hidden; CURSOR: pointer; FONT-FAMILY: Arial; HEIGHT: 20px}
 #tab_link SPAN {PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px}
 #tab_link .selected {BORDER-RIGHT: #a6daf0 1px solid; BORDER-TOP: #a6daf0 1px solid; BACKGROUND: #f1f9ff; BORDER-LEFT: #a6daf0 1px solid; COLOR: #000; BORDER-BOTTOM: #a6daf0 1px solid}
-#line {	CLEAR: both; BORDER-TOP: #a6daf0 1px solid; MARGIN-BOTTOM: 5px; BORDER-BOTTOM: #f1f9ff 2px solid; height:auto; margin:0; width:399px;
-}
+#line {	CLEAR: both; BORDER-TOP: #a6daf0 1px solid; MARGIN-BOTTOM: 5px; BORDER-BOTTOM: #f1f9ff 2px solid; height:auto; margin:0; width:399px;}
 A.hot {	COLOR: #f60}
 A.hot:hover {TEXT-DECORATION: underline}
 #tab1 {	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; width:auto; text-align:left; font-size:12px;}

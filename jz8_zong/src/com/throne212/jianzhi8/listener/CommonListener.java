@@ -13,10 +13,12 @@ import org.springframework.beans.factory.InitializingBean;
 import com.throne212.jianzhi8.common.Consts;
 import com.throne212.jianzhi8.common.Parameter;
 import com.throne212.jianzhi8.dao.JobTypeDAO;
+import com.throne212.jianzhi8.dao.QitaTypeDAO;
 import com.throne212.jianzhi8.dao.RegionDAO;
 import com.throne212.jianzhi8.dao.TypeDAO;
 import com.throne212.jianzhi8.dao.jdbc.RegionDAOJDBC;
 import com.throne212.jianzhi8.domain.JobType;
+import com.throne212.jianzhi8.domain.QitaType;
 import com.throne212.jianzhi8.domain.Region;
 import com.throne212.jianzhi8.domain.Type;
 import com.throne212.jianzhi8.service.HtmlBuildService;
@@ -42,6 +44,9 @@ public class CommonListener implements InitializingBean {
 	
 	@Resource
 	private RegionDAOJDBC regionDAOJDBC;
+	
+	@Resource
+	private QitaTypeDAO qitaTypeDAO;
 	
 	public void cacheDatas(){
 		logger.info("init ...");
@@ -97,6 +102,15 @@ public class CommonListener implements InitializingBean {
 		}
 		servletContext.setAttribute(Consts.CITY_MAP_BIANHAO, map3);
 		Parameter.citymap_bh.putAll(map3);
+		
+		//qita type
+		List<QitaType> qitaTypeList = qitaTypeDAO.findAll();
+		Map<String, QitaType> qitaTypeMap = new TreeMap<String, QitaType>();
+		for(QitaType t : qitaTypeList){
+			qitaTypeMap.put(t.getTypeCode(), t);
+		}
+		servletContext.setAttribute(Consts.QITA_MAP, qitaTypeMap);
+		Parameter.qitatypemap.putAll(qitaTypeMap);
 		
 	}
 	

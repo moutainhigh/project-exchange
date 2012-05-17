@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.throne212.jianzhi8.domain.JobType;
+import com.throne212.jianzhi8.domain.QitaType;
 import com.throne212.jianzhi8.domain.Region;
 import com.throne212.jianzhi8.domain.Type;
 
@@ -32,6 +33,7 @@ public final class Parameter {
 	public static HashMap<String, String> citymap_simplename=new HashMap<String, String>();
 	public static HashMap<String, String> citymap_name=new HashMap<String, String>();
 	public static HashMap<String, Region> citymap_bh=new HashMap<String, Region>();
+	public static HashMap<String, QitaType> qitatypemap=new HashMap<String, QitaType>();
 	
 	  static {
 		  jianzhimap = new HashMap<String, String>();

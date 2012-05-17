@@ -20,6 +20,25 @@ public class Qita implements java.io.Serializable {
 	private String qitaAuthor;
 	private String qitaIscheck;
 
+	public String getKey(){
+		if(qitaType == null)
+			return null;
+		if(qitaType.startsWith("A")){
+			return "jianli";
+		}else if(qitaType.startsWith("B")){
+			return "zhidao";
+		}else if(qitaType.startsWith("C")){
+			return "lunwen";
+		}else if(qitaType.startsWith("D")){
+			return "jiqiao";
+		}else if(qitaType.startsWith("E")){
+			return "baogao";
+		}else if(qitaType.startsWith("F")){
+			return "edu";
+		}
+		return null;
+	}
+	
 	// Constructors
 
 	/** default constructor */

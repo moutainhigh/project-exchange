@@ -49,12 +49,23 @@
         </action>
         <!-- 搜素 -->
         <action name="search" class="com.throne212.jianzhi8.action.SearchAction"></action>
-        <!-- 兼职,求职,全职无条件列表页 -->
+        <!-- 招聘会 -->
+    	<action name="zph" class="com.throne212.jianzhi8.action.ZphAction"></action>
+    	<!-- 求职指导 -->
+    	<action name="qzzhidao" class="com.throne212.jianzhi8.action.QiuzhiZhidaoAction"></action>
+    	<!-- 毕业指导 -->
+    	<action name="byzhidao" class="com.throne212.jianzhi8.action.BiyeZhidaoAction"></action>
+        <!-- 兼职,求职,全职，简历无条件列表页 -->
         <action name="list" class="com.throne212.jianzhi8.action.ComListAction"></action>
-        <!-- 兼职,求职,全职多条件筛选列表页，也是默认页面 -->
+        <!-- 兼职,求职,全职,简历多条件筛选列表页，也是默认页面 -->
         <action name="index" class="com.throne212.jianzhi8.action.ComListAction"></action>
+        <action name="qitaList" class="com.throne212.jianzhi8.action.QitaListAction"></action>
+        <!-- 其他的详细页面 -->
+        <action name="qita" class="com.throne212.jianzhi8.action.QitaAction"></action>
+        <action name="view_zph" class="com.throne212.jianzhi8.action.ViewZphAction"></action>
     </package>
     <package name="adminPackage" extends="struts-default" namespace="/admin/">
         <action name="admin" class="com.throne212.jianzhi8.action.AdminAction"></action>
     </package>
 </struts>
+

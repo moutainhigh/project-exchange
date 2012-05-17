@@ -25,20 +25,7 @@
 		</script>
 	</head>
 <body>
-<div id="top">
-		<div class="top_con">
-		<div class="top_l">找兼职，上兼职吧！</div>
-		<div class="top_r"><a href="#">注册</a> | <a href="#">登录</a><span><a href="#">发布免费信息</a><a href="#">付费推广</a><a href="#">帮助</a></span></div>
-		</div>
-</div>
-<div id="mian">
-<!--LOGo区域-->
-	<div class="logo_uar">
-		<div class="logo"></div>
-		<div class="city"></div>
-		<div class="sch"></div>
-		<div class="issue"></div>
-	</div>
+	<#include "/WEB-INF/template/top.ftl"/>
 	<!--导航区域-->
 	<div class="nav">
     	<div class="nav_top clearfix">
@@ -166,13 +153,4 @@ ${bean.getPaper('/jianzhi/',2)}
 	<p>没有找到合适的工作，那<a href="#">发布求职信息</a>吧！</p>
 
 </div>
-<div class="copyright">
-	<ul>
-		<li><a href="#">联系我们</a> | <a href="#">广告业务</a> | <a href="#">信息置顶</a> | <a href="#">站内留言</a> | <a href="#">最新兼职</a> | <a href="#">最新简历</a> | <a href="#">免责声明</a></li>
-		<li>Copyright  2007-2011 <a href="#">广州兼职网 (jianzhi8.com)</a> 版权所有</li>
-		<li>ICP证：京07038868号</li>
-	</ul>
-</div>
-</div>
-</body>
-</html>
+<#include "/WEB-INF/template/foot.ftl"/>

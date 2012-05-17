@@ -10,11 +10,42 @@
 		<from>/a(\d+).html</from>
 		<to>view!a.do?ctNo=$1</to>
 	</rule>
-	
 	<rule>
 		<from>/resume/(\d+).html</from>
 		<to >view!b.do?ctNo=$1</to>
 	</rule>
+	<!-- zph view-->
+	<rule>
+		<from>^/zph/(\d+).html$</from>
+		<to>view_zph.do?paramZphNo=$1</to>
+	</rule>
+	<!-- qiuzhi view-->
+	<rule>
+		<from>^/jianli/(\d+).html</from>
+		<to>qita.do?paramQitaNo=$1</to>
+	</rule>
+	<rule>
+		<from>^/jiqiao/(\d+).html</from>
+		<to>qita.do?paramQitaNo=$1</to>
+	</rule>
+	<rule>
+		<from>^/zhidao/(\d+).html</from>
+		<to>qita.do?paramQitaNo=$1</to>
+	</rule>
+	<!-- biye -->
+	<rule>
+		<from>^/lunwen/(\d+).html</from>
+		<to>qita.do?paramQitaNo=$1</to>
+	</rule>
+	<rule>
+		<from>^/baogao/(\d+).html</from>
+		<to>qita.do?paramQitaNo=$1</to>
+	</rule>
+	<rule>
+		<from>^/edu/(\d+).html</from>
+		<to>qita.do?paramQitaNo=$1</to>
+	</rule>
+	
 	
 	<!-- list info -->
 	
@@ -34,6 +65,47 @@
 		<from>^/resume/(.*)$</from>
 		<to>list!resume.do?paramPageNum=$1</to>
 	</rule>
-
-
+	
+	<!-- qita -->
+	<!-- qiuzhi -->
+	<rule>
+		<from>^/qiuzhizhidao/$</from>
+		<to>qzzhidao!index.do</to>
+	</rule>
+	<rule>
+		<from>^/jianli/(.*)$</from>
+		<to>qzzhidao!jianli.do?params=$1</to>
+	</rule>
+	<rule>
+		<from>^/jiqiao/(.*)$</from>
+		<to>qzzhidao!jiqiao.do?params=$1</to>
+	</rule>
+	<rule>
+		<from>^/zhidao/(.*)$</from>
+		<to>qzzhidao!zhidao.do?params=$1</to>
+	</rule>
+	<!-- biye -->
+	<rule>
+		<from>^/biyezhidao/$</from>
+		<to>byzhidao!index.do</to>
+	</rule>
+	<rule>
+		<from>^/lunwen/(.*)$</from>
+		<to>byzhidao!lunwen.do?params=$1</to>
+	</rule>
+	<rule>
+		<from>^/baogao/(.*)$</from>
+		<to>byzhidao!baogao.do?params=$1</to>
+	</rule>
+	<rule>
+		<from>^/edu/(.*)$</from>
+		<to>byzhidao!edu.do?params=$1</to>
+	</rule>
+	
+	<!-- zph -->
+	<rule>
+		<from>^/zph/(.*)$</from>
+		<to>zph.do?params=$1</to>
+	</rule>
+	
 </urlrewrite>

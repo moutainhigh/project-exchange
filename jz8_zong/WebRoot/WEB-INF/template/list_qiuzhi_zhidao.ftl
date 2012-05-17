@@ -10,10 +10,11 @@
 		<link href="/css/reset.css" rel="stylesheet" type="text/css" />
 		<link href="/css/mian.css" rel="stylesheet" type="text/css" />
 		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/accordian.pack.js"></script>
 		<script>
 		</script>
 	</head>
-<body>
+<body onload="new Accordian('basic-accordian',5,'header_highlight');">
 	<#include "/WEB-INF/template/top.ftl"/>
 	<!--导航区域-->
 	<div class="nav">
@@ -42,68 +43,79 @@
                 <li><A href="/jianzhi/">兼职招聘</A></li>
                 <li><A href="/job/">全职招聘</A></li> 
                 <li><A href="/rencai/">个人求职</A></li>
-                <li><A href="/resume/" class="now_a">简历中心</A></li>
-                <li><A href="/qiuzhizhidao/">求职指导</A></li>
+                <li><A href="/resume/">简历中心</A></li>
+                <li><A href="/qiuzhizhidao/" class="now_a">求职指导</A></li>
                 <li><A href="/biyezhidao/">毕业指导</A></li>
                 <li style="background:none;"><A href="/zph/">招聘会</A></li>
             </ul>
         </div>
     </div>
 	<!--当前位置区域-->
-	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 简历中心 </div>
+	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 毕业指导 > ${currQitaName}  </div>
 	
-<div class="nr_bq_top nr_bq_top_y">
-	<table width="951" cellpadding="0" cellspacing="0" class="tb1">
-		<tr align="left">
-			<td width="146" class="tb_p">姓名</td>
-			<td width="146">期望职位</td>
-			<td width="146">求职类型</td>
-			<td width="99">性别</td>
-			<td width="87">年龄</td>
-			<td width="139">现住地址</td>
-			<td width="113">人才类型</td>
-			<td width="73">时间</td>
-		</tr>
-		</table>
-		<table width="951" cellpadding="0" cellspacing="0">
-		<tr>
-		<td colspan="4" id='afs_list_top' class="td_top">
-      </td>
-		</tr>
-		</table>
-		<table width="951" cellpadding="0" cellspacing="0" id="listTbl">
-		<#list bean.resultList as r>
-		<tr align="left";>
-			<td width="143" class="tb_p"><a href="/resume/${r.userNo}.html" target="_blank">${r.userName}</a></td>
-			<td width="152">${r.typeName}</td>
-			<td width="149">${r.userClass}</td>
-			<td width="94">${r.sex}</td>
-			<td width="93">${r.age}</td>
-			<td width="136">${r.area}</td>
-			<td width="106">${r.shenfen}</td>
-			<td width="76">${r.date?string('MM-dd')}</td>
-		</tr>
-		</#list>
-	</table>
-	<table width="951" cellpadding="0" cellspacing="0">
-		<tr>
-		<td colspan="4" class="td_top_left" id='afs_list_bot'></td
-		</tr>
-	</table>
+	<div class="jz_pz_con">
+	<div class="jz_qiuzhi_zn">
+		<div class="jz_zj_zd">
+			<h3>${currQitaName}<span><a href="/${currQitaKey}/">更多>></a></span></h3>
+			<ul>
+				<#list bean.resultList as q>
+				<li><a href="/${currQitaKey}/${q.qitaNo}.html" target="_blank">${q.qitaTitle}</a><span>${q.qitaUpdate?string('yyyy-MM-dd')}</span></li>
+				</#list>
+			</ul>
+			<div class="con_fy">
+				<#if !bean.isFirstPage>
+					<a href="/${currQitaKey}/<#if currQitaTypeCode??>${currQitaTypeCode}/</#if>p${bean.prePageIndex}/" class="fy_d">上页</a>
+				</#if>
+				${bean.getQitaPaper('/' + currQitaKey + '/' + currQitaTypeCode + '/')}
+				<#if !bean.isLastPage>
+					<a href="/${currQitaKey}/<#if currQitaTypeCode??>${currQitaTypeCode}/</#if>p${bean.pageIndex+1}/" class="fy_d">下页</a>
+				</#if>
+			</div>
+			<div class="clear"></div>
+		</div>
+		</div>
+		<div class="jz_pz_right">
+		<div class="js_erji">
+  	
+    <div id="basic-accordian" >
+      <div id="test-header" class="accordion_headings header_highlight" ><span>简历模板</span></div>
+      <div id="test-content">
+        <div class="accordion_child">
+        	<ul>
+        		<li><a href="/jianli/A/">简历模板</a></li>
+            	<li><a href="/jianli/A01/">英文简历模板</a></li>
+                <li><a href="/jianli/A02/">中文简历模板</a></li>
+                <li><a href="/jianli/A03/">个人简历范文</a></li>
+                <li><a href="/jianli/A04/">个人简历封面</a></li>
+                <li><a href="/jianli/A05/">简历技巧</a></li>
+            </ul>
+        </div>
+      </div>
+      <div id="test1-header" class="accordion_headings" ><span>面试技巧</span></div>
+      <div id="test1-content">
+        <div class="accordion_child">
+        	<ul>
+            	<li><a href="/jiqiao/">面试技巧</a></li>
+            </ul>
+        </div>
+      </div>
+      <div id="test2-header" class="accordion_headings" ><span>职业指导</span></div>
+      <div id="test2-content">
+        <div class="accordion_child">
+        	<ul>
+            	<li><a href="/zhidao/B/">简历模板</a></li>
+            	<li><a href="/zhidao/B01/">就业动态</a></li>
+            	<li><a href="/zhidao/B02/">辞职跳槽</a></li>
+            	<li><a href="/zhidao/B03/">兼职经验</a></li>
+            	<li><a href="/zhidao/B04/">外劳经验</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
     
-    <h3 class="clearfix">
-     <p id="page">
-		<#if !bean.isFirstPage>
-			<a href="/resume/">首页</a>
-			<a href="/resume/p${bean.prePageIndex}/">上页</a>
-		</#if>${bean.getPaper('/resume/')}
-		<#if !bean.isLastPage>
-			<a href="/resume/p${bean.pageIndex+1}/">下页</a>
-		</#if>
-		</p>
-    </h3>
-</div>
-<div class="tb_bom">
-	<p>还没有简历？那快<a href="#">登记一份简历</a>吧！</p>
-</div>
+  </div>
+		
+		</div>
+		<div class="clear"></div>
+	</div>
 <#include "/WEB-INF/template/foot.ftl"/>

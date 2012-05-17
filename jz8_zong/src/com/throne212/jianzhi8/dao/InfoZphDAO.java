@@ -1,10 +1,13 @@
 package com.throne212.jianzhi8.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -12,8 +15,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.throne212.jianzhi8.common.PageBean;
+import com.throne212.jianzhi8.common.Util;
 import com.throne212.jianzhi8.domain.InfoZph;
+import com.throne212.jianzhi8.domain.Qita;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -28,6 +35,7 @@ import com.throne212.jianzhi8.domain.InfoZph;
  */
 
 @Repository("infoZphDAO")
+//@Transactional
 public class InfoZphDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory.getLogger(InfoZphDAO.class);
 	// property constants
@@ -51,6 +59,53 @@ public class InfoZphDAO extends HibernateDaoSupport {
 	protected void initDao() {
 		// do nothing
 	}
+	
+	public InfoZph getPreZphById(Integer no){
+		String hql = "from InfoZph where zphNo<?";
+		Session s = null;
+		try {
+			s = this.getHibernateTemplate().getSessionFactory().openSession();
+			return (InfoZph) s.createQuery(hql).setParameter(0, no).setMaxResults(1).uniqueResult();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally{
+			if(s!=null && s.isOpen())
+				s.close();
+		}
+		return null;
+	}
+	
+	public InfoZph getPostZphById(Integer no){
+		String hql = "from InfoZph where zphNo>?";
+		Session s = null;
+		try {
+			s = this.getHibernateTemplate().getSessionFactory().openSession();
+			return (InfoZph) s.createQuery(hql).setParameter(0, no).setMaxResults(1).uniqueResult();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally{
+			if(s!=null && s.isOpen())
+				s.close();
+		}
+		return null;
+	}
+	
+	public List<InfoZph> getMoreZph(InfoZph z){
+		String hql = "from InfoZph where zphNo!=? and zphProvince=? order by zphUpdate desc";
+		Session s = null;
+		try {
+			s = this.getHibernateTemplate().getSessionFactory().openSession();
+			List<InfoZph> list = s.createQuery(hql).setParameter(0, z.getZphNo()).setParameter(1, z.getZphProvince()).setMaxResults(6).list();
+			return list;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally{
+			if(s!=null && s.isOpen())
+				s.close();
+		}
+		return null;
+	}
+	
 
 	public void save(InfoZph transientInstance) {
 		log.debug("saving InfoZph instance");
@@ -77,11 +132,56 @@ public class InfoZphDAO extends HibernateDaoSupport {
 	public InfoZph findById(java.lang.Integer id) {
 		log.debug("getting InfoZph instance with id: " + id);
 		try {
-			InfoZph instance = (InfoZph) getHibernateTemplate().get("com.throne212.jz8.domain.InfoZph", id);
+			InfoZph instance = (InfoZph) getHibernateTemplate().get(InfoZph.class, id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public PageBean listZph(String cityCode,Integer pageIndex) {
+		Session s = null;
+		try {
+			PageBean<InfoZph> bean = new PageBean<InfoZph>();
+			// 制作参数
+			if (pageIndex == 0)
+				pageIndex = 1;
+			int startIndex = (pageIndex - 1) * 20;
+			//拼接hql
+			List params = new ArrayList();
+			String hql = "from InfoZph where 1=1";
+			if(!Util.isEmpty(cityCode)){
+				hql += " and zphProvince=?";
+				params.add(cityCode);
+			}
+			// 首先计算总行数
+			s = this.getHibernateTemplate().getSessionFactory().openSession();
+			Query q = s.createQuery("select count(*) " + hql);
+			int i = 0;
+			for(Object param : params)
+				q.setParameter(i++, param);
+			Long len = (Long) q.uniqueResult();
+			bean.setTotalRow(len.intValue());
+			//计算结果
+			hql += " order by zphUpdate desc";
+			q = s.createQuery(hql);
+			i = 0;
+			for(Object param : params)
+				q.setParameter(i++, param);
+			q.setMaxResults(20);
+			q.setFirstResult(startIndex);
+			List<InfoZph> rstList = q.list();
+			bean.setResultList(rstList);
+			bean.setPageIndex(pageIndex);
+			bean.setRowPerPage(20);
+			return bean;
+		} catch (RuntimeException re) {
+			log.error("find by example failed", re);
+			throw re;
+		} finally{
+			if(s != null && s.isOpen())
+				s.close();
 		}
 	}
 

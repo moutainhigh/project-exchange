@@ -42,68 +42,70 @@
                 <li><A href="/jianzhi/">兼职招聘</A></li>
                 <li><A href="/job/">全职招聘</A></li> 
                 <li><A href="/rencai/">个人求职</A></li>
-                <li><A href="/resume/" class="now_a">简历中心</A></li>
+                <li><A href="/resume/">简历中心</A></li>
                 <li><A href="/qiuzhizhidao/">求职指导</A></li>
                 <li><A href="/biyezhidao/">毕业指导</A></li>
-                <li style="background:none;"><A href="/zph/">招聘会</A></li>
+                <li style="background:none;"><A href="/zph/" class="now_a">招聘会</A></li>
             </ul>
         </div>
     </div>
 	<!--当前位置区域-->
-	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 简历中心 </div>
+	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 招聘会 </div>
 	
-<div class="nr_bq_top nr_bq_top_y">
-	<table width="951" cellpadding="0" cellspacing="0" class="tb1">
-		<tr align="left">
-			<td width="146" class="tb_p">姓名</td>
-			<td width="146">期望职位</td>
-			<td width="146">求职类型</td>
-			<td width="99">性别</td>
-			<td width="87">年龄</td>
-			<td width="139">现住地址</td>
-			<td width="113">人才类型</td>
-			<td width="73">时间</td>
-		</tr>
-		</table>
-		<table width="951" cellpadding="0" cellspacing="0">
-		<tr>
-		<td colspan="4" id='afs_list_top' class="td_top">
-      </td>
-		</tr>
-		</table>
-		<table width="951" cellpadding="0" cellspacing="0" id="listTbl">
-		<#list bean.resultList as r>
-		<tr align="left";>
-			<td width="143" class="tb_p"><a href="/resume/${r.userNo}.html" target="_blank">${r.userName}</a></td>
-			<td width="152">${r.typeName}</td>
-			<td width="149">${r.userClass}</td>
-			<td width="94">${r.sex}</td>
-			<td width="93">${r.age}</td>
-			<td width="136">${r.area}</td>
-			<td width="106">${r.shenfen}</td>
-			<td width="76">${r.date?string('MM-dd')}</td>
-		</tr>
-		</#list>
-	</table>
-	<table width="951" cellpadding="0" cellspacing="0">
-		<tr>
-		<td colspan="4" class="td_top_left" id='afs_list_bot'></td
-		</tr>
-	</table>
-    
-    <h3 class="clearfix">
-     <p id="page">
-		<#if !bean.isFirstPage>
-			<a href="/resume/">首页</a>
-			<a href="/resume/p${bean.prePageIndex}/">上页</a>
-		</#if>${bean.getPaper('/resume/')}
-		<#if !bean.isLastPage>
-			<a href="/resume/p${bean.pageIndex+1}/">下页</a>
-		</#if>
-		</p>
-    </h3>
-</div>
-<div class="tb_bom">
-	<p>还没有简历？那快<a href="#">登记一份简历</a>吧！</p>
-</div>
+	<div class="jz_pz_con">
+		<div class="jz_pz_left">
+			<h3>最新招聘会</h3>
+			<ul>
+				<#list bean.resultList as z>
+				<li><a href="/zph/${z.zphNo}.html">${z.zphTitle}</a><span>${z.zphUpdate?string('yyyy-MM-dd')}</span></li>
+				</#list>
+			</ul>
+			
+			<div class="con_fy">
+				<#if !bean.isFirstPage>
+					<a href="/zph/<#if currCityId??>${currCityId}/</#if>p${bean.prePageIndex}/" class="fy_d">上页</a>
+				</#if>
+				${bean.getQitaPaper('/zph/' + currCityId + '/')}
+				<#if !bean.isLastPage>
+					<a href="/zph/<#if currCityId??>${currCityId}/</#if>p${bean.pageIndex+1}/" class="fy_d">下页</a>
+				</#if>
+			</div>
+<div class="clear"></div>
+		</div>
+		<div class="jz_pz_right">
+			<div class="add_erji">
+            	<h1>城市招聘会</h1>
+          	    <h3>
+                	<a href="/zph/bj/">北京</a>
+                    <a href="/zph/sh/">上海</a>
+                    <a href="/zph/cq/">重庆</a>
+                    <a href="/zph/tj/">天津</a>
+                </h3>
+                <ul>
+                	<#list fillProCityList as p>
+                	<li class="hover_lia">
+                    	<p><b>${p.cityName}</b>><#list p.childs[0..1] as c><a href="/zph/${c.cityId}/">${c.simpleName}</a></#list></p>
+                        <div>
+                        	<ul>
+                        		<#list p.childs[2..] as c>
+                            	<li><a href="/zph/${c.cityId}/">${c.simpleName}</a></li>
+                            	</#list>
+                            </ul>
+                        </div>
+                    </li>
+                    </#list>
+                    <script type="text/javascript">
+                    	$('.hover_lia').mouseover(function(){
+						    $(this).addClass('hover_now');	
+						})
+						
+						$('.hover_lia').mouseout(function(){
+						    $(this).removeClass('hover_now');							   
+						})
+                    </script>
+                </ul>
+            </div>
+		</div>
+		<div class="clear"></div>
+	</div>
 <#include "/WEB-INF/template/foot.ftl"/>

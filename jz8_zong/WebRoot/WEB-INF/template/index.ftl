@@ -60,9 +60,9 @@
                 <li><A href="/job/">全职招聘</A></li> 
                 <li><A href="/rencai/">个人求职</A></li>
                 <li><A href="/resume/">简历中心</A></li>
-                <li><A href="#">求职指导</A></li>
-                <li><A href="#">毕业指导</A></li>
-                <li style="background:none;"><A href="#">招聘会</A></li>
+                <li><A href="/qiuzhizhidao/">求职指导</A></li>
+                <li><A href="/biyezhidao/">毕业指导</A></li>
+                <li><A href="/zph/">招聘会</A></li>
             </ul>
         </div>
         
@@ -183,7 +183,7 @@
                 <p>最新简历</p>
                 <ul>
                 	<#list rencaiList as u>
-                	<li><a title="${u.userName}" href="/jianli/${u.userNo}.html" target="_blank">${u.userName}的简历</a><span>${u.userLastdate?string('yyyy-MM-dd')}</span></li>
+                	<li><a title="${u.userName}" href="/resume/${u.userNo}.html" target="_blank">${u.userName}的简历</a><span>${u.userLastdate?string('yyyy-MM-dd')}</span></li>
                 	</#list>
                 </ul>
             </div>

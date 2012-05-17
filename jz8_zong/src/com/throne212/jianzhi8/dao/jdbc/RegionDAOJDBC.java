@@ -26,6 +26,7 @@ public class RegionDAOJDBC {
 	
 	private static List<Region> ALL_CITIES = null;
 	private static List<Region> HOT_CITIES = null;
+	private static List<Region> PRO_CITIES = null;
 	
 	public List<Region> getAllCities(){
 		if(ALL_CITIES != null)
@@ -136,6 +137,37 @@ public class RegionDAOJDBC {
 				city.setCityName("大连");				
 				list.add(city);
 				
+		return list;
+	}
+	
+	public List<Region> getProCityList(){
+		if(PRO_CITIES != null){
+			return PRO_CITIES;
+		}
+		String sql = "select * from region_tab where right(city_code,2)='00' and city_code not in ('0100','0200','0300','0400','3500') and city_name not in ('香港','澳门','台湾')";
+		List<Region> list = jdbcTemplate.query(sql, new RowMapper<Region>(){
+			public Region mapRow(ResultSet rs, int i) throws SQLException {
+				Region pro = new Region();
+				pro.setCityCode(rs.getString("city_code"));
+				pro.setCityId(rs.getString("city_id"));
+				pro.setCityName(rs.getString("city_name"));
+				pro.setGrade(rs.getInt("grade"));
+				pro.setParentCode(rs.getString("parent_id"));
+				String csql = "select * from region_tab where parent_id=?";
+				List<Region> clist = jdbcTemplate.query(csql,new Object[]{pro.getCityCode()}, new RowMapper<Region>(){
+					public Region mapRow(ResultSet rs, int i) throws SQLException {
+						Region city = new Region();
+						city.setCityCode(rs.getString("city_code"));
+						city.setCityId(rs.getString("city_id"));
+						city.setCityName(rs.getString("city_name"));
+						city.setGrade(rs.getInt("grade"));
+						city.setParentCode(rs.getString("parent_id"));
+						return city;
+				}});
+				pro.setChilds(clist);
+				return pro;
+			}});
+		PRO_CITIES = list;
 		return list;
 	}
 	

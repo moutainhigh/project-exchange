@@ -127,8 +127,27 @@ public class PageBean<T> {
 		return getPaper(href, nextnum);
 	}
 	
+	public String getQitaPaper(String href){
+		StringBuffer sb = new StringBuffer();
+		int max = this.getMaxPage();
+		for (int i = pageIndex - 5; i < pageIndex; i++) {
+			if (i < 1)
+				continue;
+			sb.append("<a href=\"" + href + "p" + i +"/\">" + i + "</a>");
+		}
+		sb.append("<a href=\"javascript:void(0);\" style=\"color:black; border:0;\">"+pageIndex+"</a>");
+		for (int i = pageIndex + 1; i <= pageIndex + 5; i++) {
+			if (i > max)
+				break;
+			sb.append("<a href=\"" + href + "p" + i + "/\">" + i + "</a>");
+		}
+		return sb.toString();
+	}
+	
 	
 	public String getPaper(String href){
+		if(href != null)
+			href = href.replaceAll("/{2,}", "/").trim();
 		StringBuffer sb = new StringBuffer();
 		//int max = this.resultList.size();
 		int max = this.getMaxPage();
