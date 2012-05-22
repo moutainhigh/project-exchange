@@ -8,7 +8,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.sun.faces.config.WebConfiguration;
 import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;

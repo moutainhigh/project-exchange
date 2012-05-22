@@ -238,7 +238,7 @@
 								${f.cun.zhen.area.name}${f.cun.zhen.name}${f.cun.name}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete) || userObj.roleType=='帮扶单位管理员'}">
+								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员' || (userObj.roleType=='县级管理员' && !userObj.complete)}">
 								<a href="#" onclick="winOpen('${appPath}family_editFamily.action?family.id=${f.id}',1150,700);">修改</a>
 								</c:if>
 								<a href="#" onclick="winOpen('${appPath}family_viewFamily.action?family.id=${f.id}',1150,700);">查看</a>
