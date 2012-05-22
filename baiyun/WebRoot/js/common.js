@@ -65,11 +65,12 @@ function help(key){
 	//alert('key=[' + key + ']');
 	if(key.indexOf('：') > 0){
 		var key = key.split('：')[1];
-		key = key.trim();
+		key = key.replace(/\s/ig,'');
 		if(key == null || key == '')
 			return false;
 		//alert('key=[' + key + ']');
 		key = key.replace(/\s/ig,'').replace(/>/ig,'');
+		//alert('key=' + key);
 		$.ajax({
 		   type: "GET",
 		   url: "help/" + encodeURI(key) + ".txt",
@@ -87,18 +88,19 @@ $(function(){
 	//添加导出Excel功能
 	//alert(checkAll);
 	try{
+		if($("td:contains('您当前所处页面')").length > 0){
+			var btn = $("input[type='button']:last").not("#lightBox input[type='button']");
+			if(btn == null || btn.length == 0)
+				btn = $("input[type='submit']:last");
+			var str = '<input type="button" class="button" value="帮助" onclick="help(\'' + $("td:contains('您当前所处页面')").text().replace(/\"/ig,'').replace(/\s/ig,'').replace(/”/ig,'').replace(/“/ig,'') + '\')">';
+			//alert(str);
+			//alert(btn.length);
+			btn.after(str);
+		}
 		if(checkAll){
 			$("input[type='button']:last").after('<input type="button" class="button" value="Excel" onclick="exportExcel()">');
 		}
-		if($("td:contains('您当前所处页面')").length > 0){
-			var btn = $("input[type='button']:last");
-			if(btn == null || btn.length == 0)
-				btn = $("input[type='submit']:last");
-			btn.after('<input type="button" class="button" value="帮助" onclick="help(\'' + $("td:contains('您当前所处页面')").text().trim() + '\')">');
-		}
-	}catch(e){
-		//alert(e);
-	}
+	}catch(e){}
 });
 
 function exportExcel(tableid){

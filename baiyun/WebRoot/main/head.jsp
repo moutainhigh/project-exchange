@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -74,7 +75,9 @@ function getExplorInfo(){
               
 ${userObj.loginNameTxt }（<span title="${userObj.roleName }">${userObj.roleName }</span>）
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<c:if test="${last == 'Y' && userObj.roleType=='帮扶单位管理员'}"><a href="${appPath}login.action?username=${lastUser}&password=${lastPwd}&needRand=N" target="_top" style="color: red;">返回baiyun管理员登录</a></c:if>
+<c:if test="${last == 'Y' and userObj.roleType=='帮扶单位管理员'}">
+<a href="${appPath}login.action?username=${lastUser}&password=${lastPwd}&needRand=N" target="_top" style="color: red;">返回baiyun管理员登录</a>
+</c:if>
 </td>
     <td width="80"><!--<img src="${appPath}images/a1_qp.gif" width="12" height="11" /> 全屏-->&nbsp;</td>
   </tr>
