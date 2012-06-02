@@ -2,16 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-		<title>${areaName}${unitypename}${jobdatename}${typeName}兼职|${areaName}${jobdatename}兼职${typeName}招聘信息_兼职吧</title>
-		<meta name="keywords" content='${areaName}${unitypename}${jobdatename}${typeName}兼职, ${areaName}${unitypename}${jobdatename}兼职${typeName}招聘' />
-		<meta name="description" content="兼职吧${areaName}${unitypename}${jobdatename}${typeName}兼职栏目,每天免费为${areaName}${jobdatename}找${typeName}兼职工作的求职者提供大量最新最全的${areaName}${unitypename}${jobdatename}兼职${typeName}招聘信息。" />
+		<title>${bean.title}_兼职吧${bean.pages}</title>
+		<meta name="keywords" content='${bean.keywords}' />
+		<meta name="description" content="${bean.description}${bean.pages}" />
 		<link rel="Bookmark" href="/favicon.ico" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link href="/css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
-		<script>
-		</script>
+		<script src="/js/top.js" type="text/javascript"></script>
 	</head>
 <body>
 	<#include "/WEB-INF/template/top.ftl"/>
@@ -25,12 +24,15 @@
                 	   <SCRIPT language="JavaScript" src="http://css.jianzhi8.com/fenzhan/js/city.js" type="text/javascript"></SCRIPT>
                 </li>
             </ul>
-             <div class="serch_div">
-            	<A href="#" class="agg_a" onmousemove="document.getElementById('a_hover_ul').style.display='block'"onmouseout="document.getElementById('a_hover_ul').style.display='none'">网页设计</A><input type="text" class="sr_btn" /><input type="button" value="" />
+           <div class="serch_div">
+            	<a id="search_type" href="#" class="agg_a" onmousemove="document.getElementById('a_hover_ul').style.display='block'"onmouseout="document.getElementById('a_hover_ul').style.display='none'">综合</a>
+            	<input type="text" class="sr_btn" id="s_key" name="s_key" value=""/><input type="button" value="" onclick="doSearch();"/>
                 <ul id="a_hover_ul" style="display:none;" onmousemove="document.getElementById('a_hover_ul').style.display='block'" onmouseout="document.getElementById('a_hover_ul').style.display='none'">
-                    <li><a href="#">网页设计</a></li>
-                    <li><a href="#">网页设计</a></li>
-                    <li><a href="#">网页设计</a></li>
+                	<li><a href="#">综合</a></li>
+                    <li><a href="#">兼职</a></li>
+                    <li><a href="#">全职</a></li>
+                    <li><a href="#">求职</a></li>
+                    <li><a href="#">简历</a></li>
                 </ul>
             </div>
           <p><input type="button" value="免费发布信息" class="gs_mff" /><input type="button" value="写简历"  class="gs_xjl"/></p>
@@ -50,16 +52,15 @@
         </div>
     </div>
 	<!--当前位置区域-->
-	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 简历中心 </div>
-	
-<div class="nr_bq_top nr_bq_top_y">
+	<div class="current jz_dq_xg"><a href="http://www.jianzhi8.com/">兼职吧</a> > 简历中心 </div>
+<div class="nr_bq_bg">
 	<table width="951" cellpadding="0" cellspacing="0" class="tb1">
 		<tr align="left">
-			<td width="146" class="tb_p">姓名</td>
-			<td width="146">期望职位</td>
-			<td width="146">求职类型</td>
-			<td width="99">性别</td>
-			<td width="87">年龄</td>
+			<td width="143" class="tb_p">姓名</td>
+			<td width="200">期望职位</td>
+			<td width="80">求职类型</td>
+			<td width="94">性别</td>
+			<td width="93">年龄</td>
 			<td width="139">现住地址</td>
 			<td width="113">人才类型</td>
 			<td width="73">时间</td>
@@ -67,19 +68,22 @@
 		</table>
 		<table width="951" cellpadding="0" cellspacing="0">
 		<tr>
-		<td colspan="4" id='afs_list_top' class="td_top">
+		<td  id='afs_list_top' class="td_top">
       </td>
 		</tr>
 		</table>
 		<table width="951" cellpadding="0" cellspacing="0" id="listTbl">
 		<#list bean.resultList as r>
-		<tr align="left";>
-			<td width="143" class="tb_p"><a href="/resume/${r.userNo}.html" target="_blank">${r.userName}</a></td>
-			<td width="152">${r.typeName}</td>
-			<td width="149">${r.userClass}</td>
+		<tr align="left" class="info">
+			<td width="143" class="tb_p">
+			<a href="http://${r.cityId}.jianzhi8.com/resume/${r.userNo}.html" target="_blank">${r.userName}</a>
+			<#if r.userfilename !='face.gif' && r.userfilename!=''><span class=tu>图</span></#if>
+			</td>
+			<td width="200">${r.typeName}</td>
+			<td width="80"><#if r.userClass=="0">兼职<#else>全职</#if></td>
 			<td width="94">${r.sex}</td>
-			<td width="93">${r.age}</td>
-			<td width="136">${r.area}</td>
+			<td width="93"><#if r.age==""||r.age="保密">保密<#else>${r.age}岁</#if></td>
+			<td width="136"><#if r.cityName=="">未填写 <#else>${r.cityName} </#if></td>
 			<td width="106">${r.shenfen}</td>
 			<td width="76">${r.date?string('MM-dd')}</td>
 		</tr>
@@ -87,18 +91,18 @@
 	</table>
 	<table width="951" cellpadding="0" cellspacing="0">
 		<tr>
-		<td colspan="4" class="td_top_left" id='afs_list_bot'></td
+		<td  class="td_top_left" id='afs_list_bot'></td>
 		</tr>
 	</table>
     
-    <h3 class="clearfix">
-     <p id="page">
+  <h3 class="clearfix" >
+    <p id="page">
 		<#if !bean.isFirstPage>
-			<a href="/resume/">首页</a>
-			<a href="/resume/p${bean.prePageIndex}/">上页</a>
+			<a href="/resume/" class="n">首页</a>
+			<a href="/resume/p${bean.prePageIndex}/" class="n">上页</a>
 		</#if>${bean.getPaper('/resume/')}
 		<#if !bean.isLastPage>
-			<a href="/resume/p${bean.pageIndex+1}/">下页</a>
+			<a href="/resume/p${bean.pageIndex+1}/" class="n">下页</a>
 		</#if>
 		</p>
     </h3>
@@ -106,4 +110,8 @@
 <div class="tb_bom">
 	<p>还没有简历？那快<a href="#">登记一份简历</a>吧！</p>
 </div>
+<script>var channel_id="8219879658",minTop="3",minBot="2",afsword='${currTypeName}个人简历   人才招聘'</script>
+	<script src="http://www.google.cn/jsapi" type="text/javascript"></script>
+	<script type="text/javascript" charset="utf-8">google.load('ads.search', '2');</script>
+	<script src="http://css.jianzhi8.com/fenzhan/ggads/afs2.js" type="text/javascript"></script>
 <#include "/WEB-INF/template/foot.ftl"/>

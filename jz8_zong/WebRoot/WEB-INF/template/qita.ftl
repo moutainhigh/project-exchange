@@ -2,13 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-		<title>${areaName}${unitypename}${jobdatename}${typeName}兼职|${areaName}${jobdatename}兼职${typeName}招聘信息_兼职吧</title>
-		<meta name="keywords" content='${areaName}${unitypename}${jobdatename}${typeName}兼职, ${areaName}${unitypename}${jobdatename}兼职${typeName}招聘' />
-		<meta name="description" content="兼职吧${areaName}${unitypename}${jobdatename}${typeName}兼职栏目,每天免费为${areaName}${jobdatename}找${typeName}兼职工作的求职者提供大量最新最全的${areaName}${unitypename}${jobdatename}兼职${typeName}招聘信息。" />
-		<link rel="Bookmark" href="/favicon.ico" />
+		<title>${q.qitaTitle}_兼职吧</title>
+		<meta name="keywords" content='' />
+		<meta name="description" content=''/>		<link rel="Bookmark" href="/favicon.ico" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link href="/css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="/js/accordian.pack.js"></script>
 		<script>
@@ -27,12 +26,7 @@
                 </li>
             </ul>
              <div class="serch_div">
-            	<A href="#" class="agg_a" onmousemove="document.getElementById('a_hover_ul').style.display='block'"onmouseout="document.getElementById('a_hover_ul').style.display='none'">网页设计</A><input type="text" class="sr_btn" /><input type="button" value="" />
-                <ul id="a_hover_ul" style="display:none;" onmousemove="document.getElementById('a_hover_ul').style.display='block'" onmouseout="document.getElementById('a_hover_ul').style.display='none'">
-                    <li><a href="#">网页设计</a></li>
-                    <li><a href="#">网页设计</a></li>
-                    <li><a href="#">网页设计</a></li>
-                </ul>
+            	
             </div>
           <p><input type="button" value="免费发布信息" class="gs_mff" /><input type="button" value="写简历"  class="gs_xjl"/></p>
             
@@ -57,19 +51,20 @@
 		<div class="jz_pz_left jz_qiuzhi_con_zw">
 			<div class="jz_left_ne_top">
 			<h2>${q.qitaTitle}</h2>
-			<p class="jz_ne_ly"><span>来源：兼职吧</span><span>发布时间：${q.qitaUpdate?string('yyyy-MM-dd')}</span><span>浏览：${q.qitaClick} 次</span></p>
-			<p>
+			<p class="jz_ne_ly"><span>来源：兼职吧</span><span>发布时间：${q.qitaUpdate?string('yyyy-MM-dd')}</span> <span><SCRIPT language=JavaScript src="/js/fontsize.js" type=text/javascript></SCRIPT></span>  <span>浏览：${q.qitaClick} 次</span></p>
+			
+			<p id="zoom">
 			${q.qitaContent}
 			</p>
 			<br />
-			文章由兼职吧<a href="/">（www.jianzhi8.com）</a>发布,转载请注明出处！<br />
-			原文网址：<a href="/${q.key}/${q.qitaNo}.html">http://www.jianzhi8.com/${q.key}/${q.qitaNo}.html</a></p>
+			文章由兼职吧<a href="http://www.jianzhi8.com/"><font color="#000000" >（www.jianzhi8.com）</font></a>整理发布,转载请注明出处！<br />
+			原文网址：<a href="/${q.key}/${q.qitaNo}.html"><font color="#000000">http://www.jianzhi8.com/${q.key}/${q.qitaNo}.html<font></a></p>
 			<div class="jz_sx_pianz">
 				<#if preQita??>
 					上一篇：<a href="/${preQita.key}/${preQita.qitaNo}.html">${preQita.qitaTitle}</a>
 				</#if>
 				<#if postQita??>
-					<span>下一篇：<a href="/${postQita.key}/${postQita.qitaNo}.html">${postQita.qitaTitle}</a></span>
+					下一篇：<a href="/${postQita.key}/${postQita.qitaNo}.html">${postQita.qitaTitle}</a>
 				</#if>
 			</div>
 			</div>
@@ -90,12 +85,12 @@
       <div id="test-content">
         <div class="accordion_child">
         	<ul>
-        		<li><a href="/jianli/A/">简历模板</a></li>
-            	<li><a href="/jianli/A01/">英文简历模板</a></li>
-                <li><a href="/jianli/A02/">中文简历模板</a></li>
-                <li><a href="/jianli/A03/">个人简历范文</a></li>
-                <li><a href="/jianli/A04/">个人简历封面</a></li>
-                <li><a href="/jianli/A05/">简历技巧</a></li>
+      	<li><a href="/jianli/">简历模板</a></li>
+            	<li><a href="/jianli/english/">英文简历模板</a></li>
+                <li><a href="/jianli/chinese/">中文简历模板</a></li>
+                <li><a href="/jianli/fangwen/">个人简历范文</a></li>
+                <li><a href="/jianli/fengmian/">个人简历封面</a></li>
+                <li><a href="/jianli/jianlijiqiao/">简历技巧</a></li>
             </ul>
         </div>
       </div>
@@ -111,11 +106,11 @@
       <div id="test2-content">
         <div class="accordion_child">
         	<ul>
-            	<li><a href="/zhidao/B/">简历模板</a></li>
-            	<li><a href="/zhidao/B01/">就业动态</a></li>
-            	<li><a href="/zhidao/B02/">辞职跳槽</a></li>
-            	<li><a href="/zhidao/B03/">兼职经验</a></li>
-            	<li><a href="/zhidao/B04/">外劳经验</a></li>
+            	<li><a href="/zhidao/">职业指导</a></li>
+            	<li><a href="/zhidao/jiuyedongtai/">就业动态</a></li>
+            	<li><a href="/zhidao/tiaocao/">辞职跳槽</a></li>
+            	<li><a href="/zhidao/jianzhijingyan/">兼职经验</a></li>
+            	<li><a href="/zhidao/wailaojingyan/">外劳经验</a></li>
             </ul>
         </div>
       </div>

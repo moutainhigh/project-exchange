@@ -8,7 +8,7 @@
 		<link rel="Bookmark" href="/favicon.ico" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link href="/css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="/js/accordian.pack.js"></script>
 		<script src="http://css.jianzhi8.com/fenzhan/js/image.js"></script>

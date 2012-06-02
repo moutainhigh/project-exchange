@@ -1,0 +1,315 @@
+* HTML {
+	
+}
+* {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fff; PADDING-BOTTOM: 0px; MARGIN: 0px; FONT: 12px Verdana, Arial, "ËÎÌו", SimSun ,serif, sans-serif; COLOR: #000; PADDING-TOP: 0px
+}
+.layout {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: center top; PADDING-LEFT: 0px; MARGIN: 0px auto; WIDTH: 950px; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #ffffff
+}
+.input {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 4px; BACKGROUND: #f6f6f6; PADDING-BOTTOM: 3px; BORDER-LEFT: #999 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #999 1px solid
+}
+IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+INPUT.comm_input {
+	HEIGHT: 18px
+}
+TABLE {
+	WORD-BREAK: break-all; BORDER-COLLAPSE: collapse; border-spacing: 0
+}
+TD {
+	FONT-SIZE: 12px; LINE-HEIGHT: 150%; FONT-FAMILY: "arial", "sans-serif","ËÎÌו"; TEXT-DECORATION: none
+}
+SMALL {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #555
+}
+STRONG {
+	COLOR: #000
+}
+IMG.imgBorder {
+	BORDER-RIGHT: #ebebeb 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #ebebeb 1px solid; PADDING-LEFT: 5px; BACKGROUND: #fff; PADDING-BOTTOM: 5px; MARGIN: 2px; BORDER-LEFT: #ebebeb 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #ebebeb 1px solid
+}
+.zhushi {
+	FONT-SIZE: 9pt; COLOR: #888888; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #00398c; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #00398c; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ca1804; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #ca1804; TEXT-DECORATION: underline
+}
+A.titlered:link {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+A.titlered:visited {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.titlered:hover {
+	COLOR: #f60; TEXT-DECORATION: none
+}
+A.titlered:active {
+	COLOR: #f60; TEXT-DECORATION: none
+}
+A.title_top:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #f60; TEXT-DECORATION: underline
+}
+A.title_top:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #f60; TEXT-DECORATION: underline
+}
+A.title_top:hover {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.title_top:active {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.text2_mouseout:link {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 10px; COLOR: #f60; PADDING-TOP: 0px; TEXT-DECORATION: underline
+}
+A.text2_mouseout:visited {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 10px; COLOR: #f60; PADDING-TOP: 0px; TEXT-DECORATION: underline
+}
+A.text2_mouseout:hover {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 10px; COLOR: #f60; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+A.text2_mouseout:active {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 10px; COLOR: #f60; PADDING-TOP: 0px; TEXT-DECORATION: underline
+}
+.text_mouseout {
+	BORDER-TOP-WIDTH: 1px; BORDER-RIGHT: #7ebf4f 1px solid; PADDING-RIGHT: 3px; MARGIN-TOP: 10px; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FONT-SIZE: 13px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #7ebf4f; PADDING-TOP: 3px
+}
+.text1_mouseout {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 0px; MARGIN-RIGHT: 10px; PADDING-TOP: 0px; BORDER-BOTTOM: #7ebf4f 0px solid; TEXT-DECORATION: none
+}
+A.text2_mouseout:link {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 10px; COLOR: #f60; PADDING-TOP: 0px; TEXT-DECORATION: underline
+}
+#myfoot {
+	CLEAR: both; BORDER-TOP: #ccc 1px solid; MARGIN-TOP: 50px; MARGIN-BOTTOM: 10px; PADDING-TOP: 5px; TEXT-ALIGN: center
+}
+#myfoot LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 6px; LINE-HEIGHT: 20px; PADDING-TOP: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-RIGHT-COLOR: #1abaf4
+}
+UNKNOWN {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.fblack:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.fblack:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.fblack:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A.fblack:active {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A.myred:link {
+	FONT-WEIGHT: bold; COLOR: #af2d0f; TEXT-DECORATION: none
+}
+A.myred:visited {
+	COLOR: #af2d0f; TEXT-DECORATION: none
+}
+A.myred:hover {
+	COLOR: #af2d0f; TEXT-DECORATION: underline
+}
+A.myred:active {
+	COLOR: #af2d0f; TEXT-DECORATION: underline
+}
+.topdiv {
+	PADDING-LEFT: 8px; BACKGROUND: url(http://my.jianzhi8.com/myimages/topbar1_bk.gif); MARGIN-BOTTOM: 8px; WIDTH: 950px; PADDING-TOP: 7px; TEXT-ALIGN: left
+}
+.topdiv SPAN {
+	FONT-WEIGHT: normal; FONT-SIZE: 13px; FLOAT: right; COLOR: #666
+}
+.hc {
+	DISPLAY: none
+}
+#all_city {
+	BORDER-RIGHT: #a6daf0 2px solid; PADDING-RIGHT: 5px; BORDER-TOP: #a6daf0 2px solid; PADDING-LEFT: 5px; Z-INDEX: 1000; BACKGROUND: #fff; LEFT: 220px; PADDING-BOTTOM: 5px; BORDER-LEFT: #a6daf0 2px solid; WIDTH: 390px; COLOR: #000; PADDING-TOP: 5px; BORDER-BOTTOM: #a6daf0 2px solid; POSITION: absolute; TOP: 55px; HEIGHT: 210px
+}
+.grey_font {
+	COLOR: #f60; TEXT-DECORATION: none
+}
+.CurrentPro {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-SIZE: 25px; PADDING-BOTTOM: 5px; PADDING-TOP: 10px; TEXT-DECORATION: none
+}
+.p {
+	FLOAT: right; MARGIN: 3px; WHITE-SPACE: nowrap
+}
+.p A {
+	BORDER-RIGHT: #fff 1px solid; PADDING-RIGHT: 0.4em; BORDER-TOP: #fff 1px solid; DISPLAY: inline-block; PADDING-LEFT: 0.4em; FONT-SIZE: 115%; PADDING-BOTTOM: 0.05em; BORDER-LEFT: #fff 1px solid; COLOR: #00398c; PADDING-TOP: 0.05em; BORDER-BOTTOM: #fff 1px solid; TEXT-DECORATION: none
+}
+.p B {
+	BORDER-RIGHT: #fff 1px solid; PADDING-RIGHT: 0.4em; BORDER-TOP: #fff 1px solid; DISPLAY: inline-block; PADDING-LEFT: 0.4em; FONT-SIZE: 115%; PADDING-BOTTOM: 0.05em; BORDER-LEFT: #fff 1px solid; COLOR: #00398c; PADDING-TOP: 0.05em; BORDER-BOTTOM: #fff 1px solid; TEXT-DECORATION: none
+}
+.p B {
+	FONT-WEIGHT: bold; COLOR: #333
+}
+.p A:hover {
+	BORDER-RIGHT: #03c 1px solid; BORDER-TOP: #03c 1px solid; BORDER-LEFT: #03c 1px solid; BORDER-BOTTOM: #03c 1px solid
+}
+A.pre {
+	PADDING-LEFT: 1em; FONT-WEIGHT: bold; BACKGROUND: url(/jz8_images/al.gif) no-repeat 3% 45%
+}
+A.nxt {
+	PADDING-RIGHT: 1em; FONT-WEIGHT: bold; BACKGROUND: url(/jz8_images/ar.gif) no-repeat 97% 45%
+}
+.adsp {
+	FLOAT: right; MARGIN: 2px; WHITE-SPACE: nowrap
+}
+.button1 {
+	PADDING-RIGHT: 5px; MARGIN-TOP: 30px; PADDING-LEFT: 5px; FONT-SIZE: 18px; MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.yanzhen {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ccc 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 0px; VERTICAL-ALIGN: bottom; BORDER-LEFT: #ccc 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #ccc 1px solid
+}
+.div_left200 {
+	MARGIN-LEFT: 200px
+}
+#menu {
+	MARGIN-TOP: 8px; MARGIN-LEFT: 10px; WIDTH: 180px; MARGIN-RIGHT: 30px
+}
+#menu LI A {
+	HEIGHT: 24px; TEXT-DECORATION: none; voice-family: inherit
+}
+#menu LI A:link {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 30px; BACKGROUND: url(/myimages/menu.gif); PADDING-BOTTOM: 0px; COLOR: #00398c; PADDING-TOP: 8px
+}
+#menu LI A:visited {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 30px; BACKGROUND: url(/myimages/menu.gif); PADDING-BOTTOM: 0px; COLOR: #00398c; PADDING-TOP: 8px
+}
+#menu LI A:hover {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 30px; BACKGROUND: url(/myimages/menu.gif) 0px -32px; PADDING-BOTTOM: 0px; COLOR: #fff; PADDING-TOP: 8px
+}
+#menu LI A.this {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 30px; BACKGROUND: url(/myimages/menu.gif) 0px -32px; PADDING-BOTTOM: 0px; COLOR: #fff; PADDING-TOP: 8px
+}
+.my_red {
+	FONT-SIZE: 9pt; COLOR: #b44806; TEXT-DECORATION: none
+}
+.my_red:hover {
+	FONT-SIZE: 9pt; COLOR: #b44806; TEXT-DECORATION: none
+}
+#regbar {
+	PADDING-LEFT: 35px; FONT-SIZE: 14px; BACKGROUND: url(/myimages/ico1.gif) no-repeat left top; MARGIN: 15px auto; LINE-HEIGHT: 30px; BORDER-BOTTOM: 1px dashed; HEIGHT: 30px; TEXT-ALIGN: left
+}
+STRONG {
+	FONT-SIZE: 14px; COLOR: #ff3300
+}
+#mygonggao {
+	BORDER-RIGHT: #0033cc 1px solid; BORDER-TOP: #0033cc 1px solid; MARGIN-TOP: 20px; MARGIN-LEFT: 10px; BORDER-LEFT: #0033cc 1px solid; WIDTH: 178px; BORDER-BOTTOM: #0033cc 1px solid
+}
+.content_left {
+	FLOAT: left; WIDTH: 180px
+}
+.hackDiv {
+	CLEAR: both; FONT-SIZE: 1px; VISIBILITY: hidden; LINE-HEIGHT: 1px; HEIGHT: 5px
+}
+.bgtop {
+	BACKGROUND-POSITION: 0px 0px; BACKGROUND-IMAGE: url(/myimages/member_bgtop.gif); OVERFLOW: hidden; WIDTH: 180px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 3px
+}
+.bgbottom {
+	BACKGROUND-IMAGE: url(/myimages/member_bgbottom.gif); OVERFLOW: hidden; WIDTH: 180px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 3px
+}
+.bgtop2 {
+	BACKGROUND-POSITION: 0px 0px; BACKGROUND-IMAGE: url(/myimages/member_bgtop2.gif); OVERFLOW: hidden; WIDTH: 180px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 3px
+}
+.bgbottom2 {
+	BACKGROUND-POSITION: 0px 0px; BACKGROUND-IMAGE: url(/myimages/member_bgbottom2.gif); OVERFLOW: hidden; WIDTH: 180px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 3px
+}
+.MyInformation {
+	BORDER-RIGHT: #bed5ff 2px solid; BORDER-TOP: #bed5ff 2px solid; BORDER-LEFT: #bed5ff 2px solid; BORDER-BOTTOM: #bed5ff 2px solid; POSITION: relative
+}
+.MyInformation H1 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 14px; BACKGROUND: #f4f7ff; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.MyInformation UL {
+	FONT-SIZE: 10px; PADDING-BOTTOM: 5px; MARGIN: 5px 5px 0px 10px
+}
+.MyInformation UL LI {
+	LINE-HEIGHT: 24px; BORDER-BOTTOM: #ccc 1px dotted; ZOOM: 1
+}
+.MyInformation UL LI A {
+	FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.MyInformation UL LI A:active {
+	COLOR: #000
+}
+.MyInformation2 {
+	BORDER-RIGHT: #c3eeb6 2px solid; BORDER-TOP: #c3eeb6 2px solid; BORDER-LEFT: #c3eeb6 2px solid; BORDER-BOTTOM: #c3eeb6 2px solid; POSITION: relative
+}
+.MyInformation2 H1 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 14px; BACKGROUND: #f2faec; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.MyInformation2 UL {
+	FONT-SIZE: 10px; PADDING-BOTTOM: 5px; MARGIN: 5px 5px 0px 10px
+}
+.MyInformation2 UL LI {
+	LINE-HEIGHT: 24px; BORDER-BOTTOM: #ccc 1px dotted
+}
+.MyInformation2 UL LI A {
+	FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.MyInformation2 UL LI A:active {
+	COLOR: #000
+}
+.rightTitle1 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 30px; BORDER-BOTTOM: #ccc 1px solid
+}
+.rightTitle3 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 30px; BORDER-BOTTOM: #ccc 1px solid
+}
+.viewaccount {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-WEIGHT: normal; FONT-SIZE: 12px! important; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-DECORATION: underline! important
+}
+.lineheight2em {
+	LINE-HEIGHT: 2em
+}
+.lineheight1em {
+	LINE-HEIGHT: 1.5em
+}
+.lineheight3em {
+	LINE-HEIGHT: 3em
+}
+.fontTitle {
+	FONT-SIZE: 14px; LINE-HEIGHT: 30px; BORDER-BOTTOM: #ccc 0px solid
+}
+.DotLine {
+	BACKGROUND-POSITION: 50% bottom; BACKGROUND-IMAGE: url(/myimages/dotbg.gif); BACKGROUND-REPEAT: repeat-x
+}
+.DotLine2 {
+	BACKGROUND-POSITION: 50% bottom; BACKGROUND-IMAGE: url(/myimages/dotbg2.gif); BACKGROUND-REPEAT: repeat-x
+}
+.AlertTxt {
+	FONT: bold 12px Arial; COLOR: #ff3300
+}
+.BtnCss {
+	BORDER-RIGHT: #c0c8cf 1px solid; BORDER-TOP: #eeeeee 1px solid; FONT: 12px Arial; BORDER-LEFT: #eeeeee 1px solid; COLOR: #666666; BORDER-BOTTOM: #c0c8cf 1px solid; HEIGHT: 22px
+}
+.InputCss {
+	BORDER-RIGHT: #dddddd 1px solid; BORDER-TOP: #999999 1px solid; FONT: 12px Arial; BORDER-LEFT: #999999 1px solid; COLOR: #333333; BORDER-BOTTOM: #dddddd 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #f8f8f8
+}
+TABLE.ListProduct {
+	BORDER-RIGHT: #a9a9a9 1px solid; BORDER-TOP: #a9a9a9 1px solid; MARGIN-TOP: 0px; BORDER-LEFT: #a9a9a9 1px solid; WIDTH: 100%; BORDER-BOTTOM: #a9a9a9 1px solid
+}
+TABLE.ListProduct THEAD TH {
+	BORDER-RIGHT: #a9a9a9 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #a9a9a9 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 12px; PADDING-BOTTOM: 5px; COLOR: #666; PADDING-TOP: 5px; BORDER-BOTTOM: #e2e2e2 1px solid; BACKGROUND-COLOR: #eee
+}
+TABLE.ListProduct TBODY TD {
+	BORDER-RIGHT: #a9a9a9 1px solid; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; BORDER-BOTTOM: #ccc 1px solid
+}

@@ -1,6 +1,6 @@
 #MyEclipse Hibernate Properties
-#Mon May 14 10:48:38 CST 2012
-sessionFactoryName=HibernateSessionFactory
+#Thu May 31 11:23:23 CST 2012
+sessionFactoryName=
 genBasicCompId=false
 profile=
 daoSFId=
@@ -22,4 +22,3 @@ reSettingsFile=/jz8_zong/hibernate.reveng.xml
 configFile=/jz8_zong/cfg/hibernate.cfg.xml
 createConfigFile=true
 addLibs2Classpath=false
-baseDaoClass=BaseHibernateDAO

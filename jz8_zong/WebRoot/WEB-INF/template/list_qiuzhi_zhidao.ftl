@@ -8,7 +8,7 @@
 		<link rel="Bookmark" href="/favicon.ico" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link href="/css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="/js/jquery-1.4.3.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="/js/accordian.pack.js"></script>
 		<script>
@@ -27,12 +27,7 @@
                 </li>
             </ul>
              <div class="serch_div">
-            	<A href="#" class="agg_a" onmousemove="document.getElementById('a_hover_ul').style.display='block'"onmouseout="document.getElementById('a_hover_ul').style.display='none'">网页设计</A><input type="text" class="sr_btn" /><input type="button" value="" />
-                <ul id="a_hover_ul" style="display:none;" onmousemove="document.getElementById('a_hover_ul').style.display='block'" onmouseout="document.getElementById('a_hover_ul').style.display='none'">
-                    <li><a href="#">网页设计</a></li>
-                    <li><a href="#">网页设计</a></li>
-                    <li><a href="#">网页设计</a></li>
-                </ul>
+
             </div>
           <p><input type="button" value="免费发布信息" class="gs_mff" /><input type="button" value="写简历"  class="gs_xjl"/></p>
             
@@ -82,12 +77,12 @@
       <div id="test-content">
         <div class="accordion_child">
         	<ul>
-        		<li><a href="/jianli/A/">简历模板</a></li>
-            	<li><a href="/jianli/A01/">英文简历模板</a></li>
-                <li><a href="/jianli/A02/">中文简历模板</a></li>
-                <li><a href="/jianli/A03/">个人简历范文</a></li>
-                <li><a href="/jianli/A04/">个人简历封面</a></li>
-                <li><a href="/jianli/A05/">简历技巧</a></li>
+        		<li><a href="/jianli/">简历模板</a></li>
+            	<li><a href="/jianli/english/">英文简历模板</a></li>
+                <li><a href="/jianli/chinese/">中文简历模板</a></li>
+                <li><a href="/jianli/fangwen/">个人简历范文</a></li>
+                <li><a href="/jianli/fengmian/">个人简历封面</a></li>
+                <li><a href="/jianli/jianlijiqiao/">简历技巧</a></li>
             </ul>
         </div>
       </div>
@@ -103,11 +98,11 @@
       <div id="test2-content">
         <div class="accordion_child">
         	<ul>
-            	<li><a href="/zhidao/B/">简历模板</a></li>
-            	<li><a href="/zhidao/B01/">就业动态</a></li>
-            	<li><a href="/zhidao/B02/">辞职跳槽</a></li>
-            	<li><a href="/zhidao/B03/">兼职经验</a></li>
-            	<li><a href="/zhidao/B04/">外劳经验</a></li>
+            	<li><a href="/zhidao/">职业指导</a></li>
+            	<li><a href="/zhidao/jiuyedongtai/">就业动态</a></li>
+            	<li><a href="/zhidao/tiaocao/">辞职跳槽</a></li>
+            	<li><a href="/zhidao/jianzhijingyan/">兼职经验</a></li>
+            	<li><a href="/zhidao/wailaojingyan/">外劳经验</a></li>
             </ul>
         </div>
       </div>

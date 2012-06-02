@@ -44,7 +44,7 @@
         	<result name="404">/404.html</result>
         </global-results>
         <!-- 首页 -->
-        <action name="default" class="com.throne212.jianzhi8.action.IndexAction">
+        <action name="default" class="com.throne212.jianzhi8.action.DefaultAction">
         	<result name="html">/WEB-INF/template/index.html</result>
         </action>
         <!-- 搜素 -->
@@ -63,6 +63,11 @@
         <!-- 其他的详细页面 -->
         <action name="qita" class="com.throne212.jianzhi8.action.QitaAction"></action>
         <action name="view_zph" class="com.throne212.jianzhi8.action.ViewZphAction"></action>
+        <action name="gonggao" class="com.throne212.jianzhi8.action.GongGaoAction"></action>
+        <action name="view_gonggao" class="com.throne212.jianzhi8.action.ViewGonggaoAction"></action>
+        <action name="tuandui" class="com.throne212.jianzhi8.action.TuanDuiAction"></action>
+        <action name="view_tuandui" class="com.throne212.jianzhi8.action.ViewTuanDuiAction"></action>
+        <action name="user" class="com.throne212.jianzhi8.action.UserAction"></action>
     </package>
     <package name="adminPackage" extends="struts-default" namespace="/admin/">
         <action name="admin" class="com.throne212.jianzhi8.action.AdminAction"></action>

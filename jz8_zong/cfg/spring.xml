@@ -42,7 +42,6 @@
         <property name="removeAbandonedTimeout" value="1000" />
         <property name="maxWait" value="5000" />
 	</bean>
-
 	<!-- enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="txManager" />
 

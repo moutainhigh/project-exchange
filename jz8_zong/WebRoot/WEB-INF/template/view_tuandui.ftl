@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-		<title>${z.zphTitle}_兼职吧</title>
+		<title>${t.tuanduiTitle}_兼职吧</title>
 		<meta name="keywords" content='' />
 		<meta name="description" content=''/>
 		<link rel="Bookmark" href="/favicon.ico" />
@@ -40,60 +40,51 @@
                 <li><A href="/resume/">简历中心</A></li>
                 <li><A href="/qiuzhizhidao/">求职指导</A></li>
                 <li><A href="/biyezhidao/">毕业指导</A></li>
-                <li style="background:none;"><A href="/zph/" class="now_a">招聘会</A></li>
+                <li style="background:none;"><A href="/zph/">招聘会</A></li>
             </ul>
         </div>
     </div>
 	<!--当前位置区域-->
-	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 招聘会 </div>
+	<div class="current jz_dq_xg"><a href="#">兼职吧</a> > 兼职团队 > ${t.tuanduiTitle} </div>
 	
 	<div class="jz_pz_con">
 		<div class="jz_pz_left jz_qiuzhi_con_zw">
 			<div class="jz_left_ne_top">
-			<h2>${z.zphTitle}</h2>
-			<p class="jz_ne_ly"><span>来源：兼职吧</span><span>发布时间：${z.zphUpdate?string('yyyy-MM-dd')}</span> <span>	<SCRIPT language=JavaScript src="/js/fontsize.js" type=text/javascript></SCRIPT></span>  <span>浏览：${z.zphClick} 次</span></p>
-			
+			<h2>${t.tuanduiTitle}</h2>
+			<p class="jz_ne_ly"><span>来源：兼职吧</span><span>发布时间：${t.tuanduiDate?string('yyyy-MM-dd')}</span> <span>	<SCRIPT language=JavaScript src="/js/fontsize.js" type=text/javascript></SCRIPT></span>  <span>IP：${t.tuanduiIpaddr} </span></p>
+			<p class="jz_pz_lx">兼职团队所在城市：${city.cityName}</p>
 			<p id="zoom">
-			${z.zphContent}
+			${t.tuanduiContent}
 			</p>
 			<br />
-			文章由兼职吧<a href="http://www.jianzhi8.com/"><font color="#000000" >（www.jianzhi8.com）</font></a>发布,转载请注明出处！<br />
-			原文网址：<a href="/zph/${z.zphNo}.html"><font color="#000000" >http://www.jianzhi8.com/zph/${z.zphNo}.html</font></a></p>
-			<div class="jz_sx_pianz">
-				<#if preZph??>
-					上一篇：<a href="/zph/${preZph.zphNo}.html">${preZph.zphTitle}</a>
-				</#if>
-				<#if postZph??>
-					下一篇：<a href="/zph/${postZph.zphNo}.html">${postZph.zphTitle}</a>
-				</#if>
-			</div>
+			<p class="jz_pz_lx">兼职团队联系方式：${t.tuanduiContact}</p>
 			</div>
 			<div class="jz_left_ne_bom">
-				<h3>更多相关内容</h3>
-					<ul>
-						<#list moreList as mz>
-						<li><a href="/zph/${mz.zphNo}.html" target="_blank">${mz.zphTitle}</a>${mz.zphUpdate?string('yyyy-MM-dd')}</li>
-						</#list>
-					</ul>
+				<h3>更多相关兼职团队</h3>
+				<ul>
+					<#list moreList as mt>
+					<li><a href="/tuandui/${mt.tuanduiNo}.html" target="_blank">${mt.tuanduiTitle}</a>${mt.tuanduiDate?string('yyyy-MM-dd')}</li>
+					</#list>
+				</ul>
 			</div>
 		</div>
 		<div class="jz_pz_right">
 			<div class="add_erji">
             	<h1>城市招聘会</h1>
           	    <h3>
-                	<a href="/zph/bj/">北京</a>
-                    <a href="/zph/sh/">上海</a>
-                    <a href="/zph/cq/">重庆</a>
-                    <a href="/zph/tj/">天津</a>
+                	<a href="/tuandui/bj/">北京</a>
+                    <a href="/tuandui/sh/">上海</a>
+                    <a href="/tuandui/cq/">重庆</a>
+                    <a href="/tuandui/tj/">天津</a>
                 </h3>
                 <ul>
                 	<#list fillProCityList as p>
                 	<li class="hover_lia">
-                    	<p><b>${p.cityName}</b>><#list p.childs[0..1] as c><a href="/zph/${c.cityId}/">${c.simpleName}</a></#list></p>
+                    	<p><b>${p.cityName}</b>><#list p.childs[0..1] as c><a href="/tuandui/${c.cityId}/">${c.simpleName}</a></#list></p>
                         <div>
                         	<ul>
                         		<#list p.childs[2..] as c>
-                            	<li><a href="/zph/${c.cityId}/">${c.simpleName}</a></li>
+                            	<li><a href="/tuandui/${c.cityId}/">${c.simpleName}</a></li>
                             	</#list>
                             </ul>
                         </div>

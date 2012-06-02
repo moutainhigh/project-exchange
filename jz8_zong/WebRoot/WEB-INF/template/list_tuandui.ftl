@@ -40,52 +40,52 @@
                 <li><A href="/resume/">简历中心</A></li>
                 <li><A href="/qiuzhizhidao/">求职指导</A></li>
                 <li><A href="/biyezhidao/">毕业指导</A></li>
-                <li style="background:none;"><A href="/zph/" class="now_a">招聘会</A></li>
+                <li style="background:none;"><A href="/zph/">招聘会</A></li>
             </ul>
         </div>
     </div>
 	<!--当前位置区域-->
-	<div class="current jz_dq_xg"><a href="http://www.jianzhi8.com/">兼职吧</a> > <a href="http://www.jianzhi8.com/zph/">招聘会</a> 
-	<#if currCityName??> &gt; <a href="http://www.jianzhi8.com/zph/${currCityId}/">${currCityName}招聘会</a></#if>
+	<div class="current jz_dq_xg"><a href="http://www.jianzhi8.com/">兼职吧</a> > <a href="http://www.jianzhi8.com/tuandui/">兼职团队</a> 
+	<#if currCityName??> &gt; <a href="http://www.jianzhi8.com/tuandui/${currCityId}/">${currCityName}兼职团队</a></#if>
 	</div>
 	
 	<div class="jz_pz_con">
 		<div class="jz_pz_left">
-			<h3>最新招聘会</h3>
+			<h3>最新兼职团队</h3>
 			<ul>
-				<#list bean.resultList as z>
-				<li><a href="/zph/${z.zphNo}.html">${z.zphTitle}</a><span>${z.zphUpdate?string('yyyy-MM-dd')}</span></li>
+				<#list bean.resultList as t>
+				<li><a href="/tuandui/${t.tuanduiNo}.html">${t.tuanduiTitle}</a>&nbsp;<span>${t.tuanduiDate?string('yyyy-MM-dd')}</span></li>
 				</#list>
 			</ul>
 			
 			<div class="con_fy">
 				<#if !bean.isFirstPage>
-					<a href="/zph/<#if currCityId??>${currCityId}/</#if>p${bean.prePageIndex}/" class="fy_d">上页</a>
+					<a href="/tuandui/<#if currCityId??>${currCityId}/</#if>p${bean.prePageIndex}/" class="fy_d">上页</a>
 				</#if>
-				${bean.getQitaPaper('/zph/' + currCityId + '/')}
+				${bean.getQitaPaper('/tuandui/' + currCityId + '/')}
 				<#if !bean.isLastPage>
-					<a href="/zph/<#if currCityId??>${currCityId}/</#if>p${bean.pageIndex+1}/" class="fy_d">下页</a>
+					<a href="/tuandui/<#if currCityId??>${currCityId}/</#if>p${bean.pageIndex+1}/" class="fy_d">下页</a>
 				</#if>
 			</div>
 <div class="clear"></div>
 		</div>
 		<div class="jz_pz_right">
 			<div class="add_erji">
-            	<h1>城市招聘会</h1>
+            	<h1>城市兼职团队</h1>
           	    <h3>
-                	<a href="/zph/bj/">北京</a>
-                    <a href="/zph/sh/">上海</a>
-                    <a href="/zph/cq/">重庆</a>
-                    <a href="/zph/tj/">天津</a>
+                	<a href="/tuandui/bj/">北京</a>
+                    <a href="/tuandui/sh/">上海</a>
+                    <a href="/tuandui/cq/">重庆</a>
+                    <a href="/tuandui/tj/">天津</a>
                 </h3>
                 <ul>
                 	<#list fillProCityList as p>
                 	<li class="hover_lia">
-                    	<p><b>${p.cityName}</b>><#list p.childs[0..1] as c><a href="/zph/${c.cityId}/">${c.simpleName}</a></#list></p>
+                    	<p><b>${p.cityName}</b>><#list p.childs[0..1] as c><a href="/tuandui/${c.cityId}/">${c.simpleName}</a></#list></p>
                         <div>
                         	<ul>
                         		<#list p.childs[2..] as c>
-                            	<li><a href="/zph/${c.cityId}/">${c.simpleName}</a></li>
+                            	<li><a href="/tuandui/${c.cityId}/">${c.simpleName}</a></li>
                             	</#list>
                             </ul>
                         </div>

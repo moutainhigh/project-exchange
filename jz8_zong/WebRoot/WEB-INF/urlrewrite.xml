@@ -14,10 +14,23 @@
 		<from>/resume/(\d+).html</from>
 		<to >view!b.do?ctNo=$1</to>
 	</rule>
-	<!-- zph view-->
+	<!-- zph,gonggao,tuandui view-->
 	<rule>
 		<from>^/zph/(\d+).html$</from>
 		<to>view_zph.do?paramZphNo=$1</to>
+	</rule>
+	<rule>
+		<from>^/tuandui/(\d+).html$</from>
+		<to>view_tuandui.do?paramTuanDuiNo=$1</to>
+	</rule>
+	<rule>
+		<from>^/gonggao/(\d+).html$</from>
+		<to>view_gonggao.do?paramGonggaoNo=$1</to>
+	</rule>
+	<!-- user -->
+	<rule>
+		<from>^/user/(.+)$</from>
+		<to>user.do?params=$1</to>
 	</rule>
 	<!-- qiuzhi view-->
 	<rule>
@@ -48,7 +61,6 @@
 	
 	
 	<!-- list info -->
-	
 	<rule>
 		<from>^/jianzhi/(.*)$</from>
 		<to>list!jianzhi.do?paramPageNum=$1</to>
@@ -106,6 +118,18 @@
 	<rule>
 		<from>^/zph/(.*)$</from>
 		<to>zph.do?params=$1</to>
+	</rule>
+	
+	<!-- tuandui -->
+	<rule>
+		<from>^/tuandui/(.*)$</from>
+		<to>tuandui.do?params=$1</to>
+	</rule>
+	
+	<!-- gonggao -->
+	<rule>
+		<from>^/gonggao/(.*)$</from>
+		<to>gonggao.do?paramPageNum=$1</to>
 	</rule>
 	
 </urlrewrite>
