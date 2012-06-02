@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+
+		<mapping resource="com/throne212/jianzhi8/domain/User.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Region.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Link.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Type.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Content.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/JobType.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/JZWords.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Gonggao.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/QitaType.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/Qita.hbm.xml" />
+		<mapping resource="com/throne212/jianzhi8/domain/InfoZph.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>
+

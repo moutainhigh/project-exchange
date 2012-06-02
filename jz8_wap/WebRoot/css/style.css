@@ -1,0 +1,639 @@
+﻿.header-nav
+{
+	padding: 2px;
+	padding-left: 5px;
+	padding-bottom: 1px;
+	color: #fff;
+	background: #00afce;
+	border-bottom: 1px solid #999;
+}
+.header-nav a
+{
+	color: #fff;
+}
+.header a:hover
+{
+	color: #fff;
+}
+html, body
+{
+	font-size: medium;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+}
+div, ul, li, img, form, h1, h2, h3, h4, table, tr, td, p
+{
+	padding: 0;
+	margin: 0;
+	font-size: medium;
+	border: 0;
+	list-style: none;
+}
+em, i
+{
+	font-style: normal;
+}
+.fc-000201
+{
+	color: #000201;
+}
+.fc-ff6702
+{
+	color: #ff6702;
+}
+.fc-d7d7d7
+{
+	color: #d7d7d7;
+}
+.fc-fd6600
+{
+	color: #fd6600;
+}
+.fc-0091C4
+{
+	color: #0091C4;
+}
+.mm2
+{
+	margin: 0 2px;
+}
+.mm10
+{
+	margin: 10px 0;
+}
+.mb10
+{
+	margin-bottom: 10px;
+}
+.page-wp
+{
+	margin: 10px 0;
+}
+.page-wp a
+{
+	padding: 0 3px;
+}
+a.page-wp-on
+{
+	color: #000;
+}
+.search-wp
+{
+	padding: 3px 5px 10px 5px;
+}
+.txt
+{
+	border: solid 1px #aba899;
+	height: 26px;
+	color: #cacaca;
+	padding: 0 2px;
+	vertical-align: middle;
+}
+.radius-ss
+{
+	border: 1px solid #79b71e;
+	text-align: center;
+	padding: 0 5px;
+	height: 26px;
+	width: 58px;
+	color: #fff;
+	vertical-align: middle;
+}
+#wapper
+{
+	width: 100%;
+}
+a
+{
+	color: #0091c4;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus
+{
+	color: #0091c4;
+}
+.header
+{
+	background: #FFF;
+}
+.header-content
+{
+	text-align: left;
+	padding-left: 5px;
+	background: #FFF;
+	height: 48px; /*border-top: 1px solid #8bcc0a; 	border-bottom: 1px solid #5d8c00;*/
+}
+.header-content a
+{
+	font-size: small;
+	color: #444;
+	padding: 0;
+}
+.header-content a:hover
+{
+	color: #AAA;
+}
+div.search
+{
+	background: #EFEFEF;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 3px;
+	padding-left: 5px;
+}
+.mar-t img
+{
+	margin-top: 5px;
+}
+.f_c
+{
+	color: #666;
+}
+.red
+{
+	color: #e40000;
+}
+.navh2
+{
+	color: #999;
+	padding: 5px;
+	background: #ecedec;
+	border-bottom: 1px solid #d1d1d1;
+}
+.ip-r
+{
+	border: 1px solid #79b71e;
+	text-align: center;
+	padding: 0 10px;
+}
+.ip-r a
+{
+	color: #fff;
+}
+.navh2 .nav-tit
+{
+	color: #999;
+	padding-top: 7px;
+}
+.navh2 a.nav-tit-on
+{
+	color: #000;
+}
+.ip-text-bg
+{
+	width: 150px;
+	height: 24px;
+	color: #999;
+	border-radius: 2px;
+	border: 1px solid #c0c0c0;
+	-webkit-box-shadow: 0 2px 2px #ccc inset;
+	-moz-box-shadow: 0 2px 2px #ccc inset;
+	box-shadow: 0 2px 2px #ccc inset;
+	margin: 5px 0;
+}
+.ip-btn-bg
+{
+	background: url(        '../images/btn_search.png' ) no-repeat;
+	width: 63px;
+	height: 26px;
+	border: 0;
+	margin-left: 5px;
+	text-align: center;
+	color: #fff;
+	font-size: small;
+}
+.lr-type
+{
+	font-weight: normal;
+	color: #fff;
+}
+.nav p, .city_nav h2, .nav div
+{
+	line-height: 22px;
+}
+.bulletin
+{
+	border-bottom: solid 1px #ececec;
+	padding: 5px;
+	color: #333;
+}
+.bulletin span em .ft-yj
+{
+	background: #F00;
+	border-radius: 5px;
+	color: #fff;
+	padding: 0 2px;
+}
+.bulletin span a
+{
+	color: #ff7609;
+}
+.cl-kd a
+{
+	color: #699B1E;
+}
+.nav-list em
+{
+	color: #d0d0d0;
+}
+.nav-list p
+{
+	border-bottom: solid 1px #ececec;
+	padding: 5px;
+}
+.nav-list span
+{
+	color: #666;
+}
+.new-in-wp
+{
+	border-top: solid 1px #ececec;
+}
+.nw-title
+{
+	font-weight: bold;
+	color: #555;
+	border-bottom: 1px solid #ececec;
+	background: #f7f7f7;
+	padding: 5px;
+}
+.nw-p-ty
+{
+	margin: 10px 0 0 0;
+}
+.nw-p-ty a
+{
+	color: #f60;
+}
+.foot-bg
+{
+	background-color: #f3f3f3;
+	text-align: center;
+	margin-bottom: -20px;
+}
+.foot-bg .top
+{
+	padding: 5px;
+	color: #d0d0d0;
+}
+.inp_form
+{
+	line-height: 20px;
+	width: 150px;
+	height: 24px;
+	color: #999;
+	border-radius: 2px;
+	border: 1px solid #c0c0c0;
+	-webkit-box-shadow: 0 2px 2px #ccc inset;
+	-moz-box-shadow: 0 2px 2px #ccc inset;
+	box-shadow: 0 2px 2px #ccc inset;
+	margin: 5px 0;
+}
+.list_content a
+{
+	padding: 0 !important;
+}
+.news
+{
+	padding: 5px 0 5px 5px;
+	border-top: 1px solid #C3D9FF;
+}
+.messages
+{
+	border-top: 1px solid #C3D9FF;
+	line-height: 20px;
+}
+.formbg
+{
+	background-color: #E9F2FF;
+	padding: 5px;
+}
+.noborder
+{
+	border-bottom: none !important;
+}
+.detail_img, .detail_map
+{
+	text-align: center;
+	width: 170px;
+	margin-bottom: 5px;
+}
+.detail_img img, .detail_map img
+{
+	width: 170px;
+	padding: 0 5px;
+}
+.detail_img p, .detail_map p
+{
+	line-height: 20px;
+}
+.area
+{
+	line-height: 20px;
+	height: 65px;
+}
+.list_content
+{
+	line-height: 20px;
+	border-bottom: 1px dashed #ccc;
+	padding: 1px 0;
+	margin-bottom: 4px;
+}
+.list_content a:hover
+{
+	text-decoration: underline;
+}
+.oran_n
+{
+	color: #FF8A00;
+}
+.pager
+{
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+.pager p
+{
+	line-height: 20px;
+}
+.footer
+{
+	padding: 5px 0 5px 6px;
+	color: #666;
+}
+.footer p
+{
+	padding-top: 7px;
+}
+.list_cont
+{
+	line-height: 20px;
+	border-bottom: 1px dashed #C3D9FF;
+	padding: 1px 0;
+	margin-bottom: 4px;
+}
+.f_t13
+{
+	font-size: 13px;
+	padding: 5px 0;
+}
+.pd
+{
+	line-height: 22px;
+}
+.grey
+{
+	color: #999;
+}
+.pk-list p
+{
+	color: #ff6702;
+}
+.pk-list .more-a a
+{
+	padding: 0;
+}
+.cl-kd
+{
+	font-weight: bold;
+	color: #699b1e;
+}
+.cl-kd-dt
+{
+	margin: 10px 0;
+	padding-left: 5px;
+}
+.cl-kd-dt p span
+{
+	color: #0091C4;
+}
+.pt-dl-sd
+{
+	padding: 0 5px;
+}
+.pt-dl-img
+{
+	text-align: center;
+	margin: 10px auto;
+}
+.pt-dl-pg
+{
+	text-align: center;
+	margin: 0 0 10px 0;
+}
+.pt-dl-js
+{
+	margin: 0;
+}
+.pt-dl-gy
+{
+	border-top: solid 1px #e4e4e4;
+	background: #f2f2f2;
+	padding: 10px 5px;
+}
+.pt-gj-lk
+{
+	margin: 10px 0;
+	padding-left: 5px;
+}
+.pt-gj-lk a
+{
+	color: #0091c4;
+}
+.pt-gj
+{
+	color: #000;
+}
+.nw-wp-bg p
+{
+	padding-left: 5px;
+}
+.nav .mm10
+{
+	padding-left: 5px;
+}
+.nw-wp-bg p
+{
+	line-height: 22px;
+}
+.new-con
+{
+	padding: 3px;
+	padding-left: 5px;
+	border-bottom: 1px solid #ECECEC;
+}
+.new-con a
+{
+	color: #3083ff;
+}
+.new-con strong
+{
+	font-size: 18px;
+}
+.good-job
+{
+	color: #ff7609;
+	padding: 5px;
+}
+.hot
+{
+	padding: 5px;
+}
+div.car_info select.bsx
+{
+	width: 165px;
+}
+div.car_info input.gas
+{
+	width: 163px;
+}
+input.house_title
+{
+	width: 170px;
+}
+input.house_weizhi
+{
+	width: 170px;
+}
+form.i_direct select
+{
+	width: 170px;
+	border: 1px solid #ccc;
+}
+form.i_direct textarea
+{
+	width: 217px;
+	height: 83px;
+	border: 1px solid #ccc;
+}
+form.i_direct div.house_info
+{
+	line-height: 0;
+}
+form.i_direct input.rental
+{
+	width: 140px;
+}
+form.i_direct select.rental4
+{
+	width: 152px;
+}
+form.i_direct div.house_info input
+{
+	width: 20px;
+	height: 15px;
+}
+form.i_direct input.buy_info
+{
+	width: 110px;
+}
+form.i_direct select.h
+{
+	width: 178px;
+	margin-bottom: 5px;
+}
+form.i_direct select.laiyuan
+{
+	margin-left: 0;
+	width: 178px;
+}
+form.i_direct select.hezu
+{
+	width: 150px;
+}
+form.i_direct select.gongqiu
+{
+	width: 172px;
+}
+form.i_direct select.price
+{
+	width: 152px;
+}
+form.i_direct select.mobile_w
+{
+	width: 178px;
+}
+form.i_direct select.color
+{
+	width: 178px;
+}
+form.i_direct input.mobile_title
+{
+	width: 175px;
+}
+form.i_direct input.per
+{
+	margin-left: 13px;
+}
+form.i_login input
+{
+	margin-left: 13px;
+}
+.fcon
+{
+	padding-left: 5px;
+	line-height: 30px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 24px;
+}
+.fch
+{
+	color: #666;
+	padding: 2px 5px;
+}
+.fch span
+{
+	color: #333;
+}
+.skb_line
+{
+	margin-top: 5px;
+}
+.search2
+{
+	background: #f6f6f6;
+}
+#resumeList
+{
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+#resumeList th
+{
+	padding: 5px 0px;
+	border-bottom: 1px solid #999;
+	border-top: 1px solid #999;
+}
+#resumeList tr
+{
+	height: 38px;
+	padding: 5px 0px;
+	border-bottom: 1px solid #999;
+}
+.content_model h2
+{
+	background: #e3e3e3;
+	margin-top: 5px;
+	padding: 5px 0px;
+}
+.content_model ul li
+{
+	padding: 5px;
+}
+.content_model p
+{
+	border-bottom: 1px solid #eee;
+	padding: 5px 5px;
+}
+content_about ul li
+{
+	padding: 5px 0px;
+}
+
+
+.nav_botttom{ height:39px; background:url(../images/home_r2_c2.jpg) no-repeat; line-height:39px; margin-top: 8px;}
+.nav_botttom ul li{ float:left; width:70px; text-align:center; font-weight:bold; font-size:14px; background:url(../images/right.jpg) no-repeat right center;}
+.nav_botttom ul li a,.nav_botttom ul li a:visited{ color:#fff; height:39px; display:block;}
+.nav_botttom ul li a:hover,.nav_botttom ul li .now_a{ text-decoration:none; color: black;}
+.curr_sel{font-weight: 600;}

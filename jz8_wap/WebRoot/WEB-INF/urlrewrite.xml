@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+
+	<!-- content info -->
+	<rule>
+		<from>^/(\w+)/a(\d+).html$</from>
+		<to>view!a.do?paramCityId=$1&amp;ctNo=$2</to>
+	</rule>
+	<rule>
+		<from>^/(\w+)/resume/(\d+).html$</from>
+		<to >view!b.do?paramCityId=$1&amp;ctNo=$2</to>
+	</rule>
+	
+	<!-- search -->
+	<rule>
+		<from>^/(\w+)/s/(.+)/(.*)$</from>
+		<to>search.do?paramCityId=$1&amp;paramKey=$2&amp;paramPageNum=$3</to>
+	</rule>
+	
+	<!-- list info -->
+	<rule>
+		<from>^/(\w+)/jianzhi/(.*)$</from>
+		<to>list!jianzhi.do?paramCityId=$1&amp;paramPageNum=$2</to>
+	</rule>
+	<rule>
+		<from>^/(\w+)/rencai/(.*)$</from>
+		<to>list!rencai.do?paramCityId=$1&amp;paramPageNum=$2</to>
+	</rule>
+	<rule>
+		<from>^/(\w+)/job/(.*)$</from>
+		<to>list!job.do?paramCityId=$1&amp;paramPageNum=$2</to>
+	</rule>
+	<rule>
+		<from>^/(\w+)/resume/(.*)$</from>
+		<to>list!resume.do?paramCityId=$1&amp;paramPageNum=$2</to>
+	</rule>
+	
+	
+</urlrewrite>
