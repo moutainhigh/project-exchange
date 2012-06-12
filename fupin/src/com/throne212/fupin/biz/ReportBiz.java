@@ -16,5 +16,7 @@ public interface ReportBiz extends BaseBiz {
 	public String getExcelReportFilePath(Report r, String reportType) throws Exception;
 	
 	public String getExcelReportFilePath(ReportParam reportParam) throws Exception;
+	
+	public void autoSaveReports(int year, int month);
 
 }

@@ -79,4 +79,29 @@
 		<property name="qDao" ref="questionDao"></property>
 		<property name="cunDao" ref="cunDao"></property>
 	</bean>
+	
+	<!-- 定时器,11日，自动保存报表 -->
+	<bean name="autoGenReport" class="org.springframework.scheduling.quartz.JobDetailBean">
+  		<property name="jobClass" value="com.throne212.fupin.common.TimerBean" />
+		<property name="jobDataAsMap">
+ 			<map>
+   				<entry key="timeout" value="10" />
+   				<entry key="reportBiz" value-ref="reportBiz"></entry>
+ 			</map>
+		</property>
+	</bean>
+
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean" lazy-init="false">
+	    <property name="jobDetail" ref="autoGenReport" />
+	    <property name="startDelay" value="1" />
+	    <property name="repeatInterval" value="86400000" /> <!-- 间隔一天 -->
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    	<property name="triggers">
+	        <list>
+	            <ref bean="simpleTrigger" />
+	        </list>
+	    </property>
+	</bean>
+	
 </beans>

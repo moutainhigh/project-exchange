@@ -197,6 +197,7 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 			r.setItem10(cun.getPoorPersonNum4() == null ? "" : cun.getPoorPersonNum4() + "");
 			r.setItem11(cun.getWeiHouse() == null ? "" : cun.getWeiHouse() + "");
 
+			//if(Util.isEmpty(r.getItem30()))
 			r.setItem30(cun.getIncome() == null ? "" : cun.getIncome() + "");
 			// if("0".equals(r.getItem30())){
 			// r.setItem30("");
@@ -355,6 +356,10 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		String targetFile = path + File.separator + tgtFileName + "_" + Util.getDate(new Date()) + ".xls";
 
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
+	}
+	
+	public void autoSaveReports(int year, int month){
+		reportDao.autoSaveReports(year, month);
 	}
 
 }

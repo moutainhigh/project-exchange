@@ -365,4 +365,58 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 
 		return null;
 	}
+	
+	public void autoSaveReports(int year, int month){
+		String hql = "from Cun";
+		List<Cun> cunList = this.getHibernateTemplate().find(hql);
+		for(Cun cun : cunList){
+			if(cun.getOrg() != null){
+				//表一表二
+				hql = "from Report1 where type='month' and year=? and time=?";
+				List<Report1> r1List = this.getHibernateTemplate().find(hql, new Object[]{year, month + ""});
+				if(r1List != null && r1List.size() > 0){//存在，或已经暂存过来
+					Report1 r1 = r1List.get(0);
+					if(r1.getLock() != 1){
+						r1.setLock(1);//锁定
+						this.saveOrUpdate(r1);
+					}
+				}else{
+					Report report = getReport("1", cun.getOrg(), cun, year, "month", month + "");
+					for (int i = 1; i <= 60; i++) {
+						report.setItem(i, "0");
+					}
+					report.setCun(cun);
+					report.setOrg(cun.getOrg());
+					report.setYear(year);
+					report.setType("month");
+					report.setTime(month + "");
+					report.setLock(1);// 1表示已经锁定
+					saveOrUpdate(report);
+				}
+				//表三
+				hql = "from Report2 where type='month' and year=? and time=?";
+				List<Report2> r2List = this.getHibernateTemplate().find(hql, new Object[]{year, month + ""});
+				if(r2List != null && r2List.size() > 0){//存在，或已经暂存过来
+					Report2 r2 = r2List.get(0);
+					if(r2.getLock() != 1){
+						r2.setLock(1);//锁定
+						this.saveOrUpdate(r2);
+					}
+				}else{
+					Report report = getReport("2", cun.getOrg(), cun, year, "month", month + "");
+					for (int i = 1; i <= 60; i++) {
+						report.setItem(i, "0");
+					}
+					report.setCun(cun);
+					report.setOrg(cun.getOrg());
+					report.setYear(year);
+					report.setType("month");
+					report.setTime(month + "");
+					report.setLock(1);// 1表示已经锁定
+					saveOrUpdate(report);
+				}
+			}
+		}
+	}
+	
 }

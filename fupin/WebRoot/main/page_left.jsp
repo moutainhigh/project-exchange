@@ -244,7 +244,7 @@ function images_update(){
 	    menuArray[menuArray.length]="2,区驻镇工作组账号管理,${appPath}team_teamList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
-	    menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenBFList.action";
+	    //menuArray[menuArray.length]="1,指定镇扶贫,${appPath}zhen_bf_zhenBFList.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,帮扶单位管理,";
 	    menuArray[menuArray.length]="1,单位管理员账号,${appPath}manager_managerList.action";

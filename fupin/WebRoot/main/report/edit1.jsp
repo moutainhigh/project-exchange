@@ -47,6 +47,11 @@
 			}	
 			//自动地区数据灰化
 			$('.auto_readonly').css('background','#EBEBE4');
+			//处理万元
+			var item31Val = $('#item31').val();
+			if(item31Val != null && item31Val != ''){
+				$('#item31').next('select').val('yuan');
+			}
 		});
 		function chooseType(type){
 			if(!type){
@@ -106,7 +111,24 @@
 			f.action = '${appPath}report_viewReport1.action';
 			f.submit();
 		}
+		function opWan(){
+			//处理元和万元
+			var item31 = $('#item31').val();
+			var item31_yuan = $('#item31_yuan').val();
+			if(item31 != '' && item31 != null){
+				if(item31_yuan == null || item31_yuan == ''){
+					alert('请先选择收入金额单位，元或万元');
+					return false;
+				}else if(item31_yuan == 'wan'){
+					item31 = parseFloat(item31) * 10000;
+					$('#item31').val(item31);
+				}
+			}
+			return true;
+		}
 		function tmpSaveReport(){
+			if(!opWan())
+				return false;
 			//自动提取不得为空
 			var autoPass = true;
 			$('input[readonly=true]').each(function(){
@@ -125,8 +147,16 @@
 			f.submit();
 		}
 		function saveReport(){
+			if(!opWan())
+				return false;
 			//所有项目都不得为空
-			if($('input[type="text"][value=""]').length > 0){
+			var emptyPass = true;
+			$('input[type="text"]').each(function(){
+				if($(this).val()==null || $(this).val()==''){
+					emptyPass = false;
+				}
+			});
+			if(!emptyPass){
 				alert('填报项目必须全部填写，如无则填0');
 				return false;
 			}
@@ -150,6 +180,15 @@
 					//alert($(this).attr('name'));
 				}
 			});
+			//预计今年村级集体经济收入》=8万
+			var item31Val = $('#item31').val();
+			if(item31Val != null && item31Val != ''){
+				var money = parseFloat(item31Val);
+				if(money < 80000){
+					alert('预计今年村级集体经济收入须》=8万元');
+					return false;
+				}
+			}
 			if(!pass){
 				alert('所有项目都必须是数字');
 				return false;
@@ -263,7 +302,7 @@
 							<c:if test="${empty r.type || r.type=='month'}">
 								<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
 								<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
-								<input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();">
+								<c:if test="${showZanCun}"><input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();"></c:if>
 								</c:if>
 								<c:if test="${not empty r.lock && r.lock==1}">
 								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
@@ -567,7 +606,7 @@
 									2010年村级集体经济收入(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item30" value="${r.item30}" readonly="readonly" class="auto_readonly"/>元
+									<input type="text" name="r.item30" id="item30" value="${r.item30}" readonly="readonly" class="auto_readonly"/>
 									</td>
 								</tr>
 								<tr>
@@ -578,7 +617,12 @@
 									预计今年村级集体经济收入(元)
 									</td>
 									<td class="tables_contentcell">
-									<input type="text" name="r.item31" value="${r.item31}"/>元
+									<input type="text" name="r.item31" value="${r.item31}" id="item31" />
+									<select id="item31_yuan">
+										<option value=""></option>
+										<option value="yuan">元</option>
+										<option value="wan">万元</option>
+									</select>
 									</td>
 								</tr>
 								<tr>

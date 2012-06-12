@@ -10,5 +10,7 @@ public interface ReportDao extends BaseDao {
 	public Report getReport(String reportType, Org org, Cun cun, Integer year, String type, String time);
 
 	public String getExportReportData(ReportParam reportParam, String sourceFile, String targetFile);
+	
+	public void autoSaveReports(int year, int month);
 
 }

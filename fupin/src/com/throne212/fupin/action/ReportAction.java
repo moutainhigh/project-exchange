@@ -25,6 +25,8 @@ public class ReportAction extends BaseAction {
 	private Integer maxMonth;
 	private Integer maxSeason;
 	private Integer maxYear;
+	
+	private Boolean showZanCun = false;
 
 	// excel导出文件
 	private InputStream downloadFile;
@@ -114,6 +116,15 @@ public class ReportAction extends BaseAction {
 
 		// 填充灰色项目
 		reportBiz.fillReport(r);
+		
+		//只有每月的1号到10号，可以暂存
+		if(user instanceof Org){
+			Calendar now = Calendar.getInstance();
+			int day = now.get(Calendar.DAY_OF_MONTH);
+			if(day >= 1 && day <= 10){
+				showZanCun = true;
+			}
+		}
 
 		return "report_edit1";
 	}
@@ -394,6 +405,14 @@ public class ReportAction extends BaseAction {
 
 	public void setMaxYear(Integer maxYear) {
 		this.maxYear = maxYear;
+	}
+
+	public Boolean getShowZanCun() {
+		return showZanCun;
+	}
+
+	public void setShowZanCun(Boolean showZanCun) {
+		this.showZanCun = showZanCun;
 	}
 
 }
