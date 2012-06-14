@@ -80,6 +80,10 @@
 				}
 			},100);
 		}
+		function autoSaveReport(){
+			document.forms[0].action = '${appPath}report_autoSaveReport.action';
+			document.forms[0].submit();
+		}
 		</script>
 		<style>
 .tables_search {
@@ -99,6 +103,7 @@
 						</td>
 						<td align="right">
 						<input type="button" class="button" value="导出报表" onclick="exportReport();">
+						<input type="button" class="button" value="手动保存当月报表" onclick="autoSaveReport();">
 						</td>
 						<td width="5px"></td>
 					</tr>

@@ -342,6 +342,26 @@ public class ReportAction extends BaseAction {
 		}
 		return "report_export";
 	}
+	
+	public String autoSaveReport(){
+		Calendar now = Calendar.getInstance();
+		int year = now.get(Calendar.YEAR);
+		int month = now.get(Calendar.MONTH) + 1;
+		int day = now.get(Calendar.DAY_OF_MONTH);
+		if(day >= 11){
+			try {
+				reportBiz.autoSaveReports(year, month);
+				this.setMsg("保存当月报表成功");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				this.setMsg("保存失败，系统错误");
+			}
+		}else{
+			this.setMsg("11号之前不能进行此操作");
+		}
+		return "report_export";
+	}
 
 	public Report getR() {
 		return r;
