@@ -160,8 +160,9 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem2() {
-		if(this instanceof Report2 && item2 != null && !"".equals(item2)){
+		if(this instanceof Report2 && item2 != null && !"".equals(item2.trim())){
 			try {
+				item2 = item2.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item2));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -175,8 +176,9 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem3() {
-		if(this instanceof Report2 && item3 != null && !"".equals(item3)){
+		if(this instanceof Report2 && item3 != null && !"".equals(item3.trim())){
 			try {
+				item3 = item3.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item3));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -190,8 +192,9 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem4() {
-		if(this instanceof Report2 && item4 != null && !"".equals(item4)){
+		if(this instanceof Report2 && item4 != null && !"".equals(item4.trim())){
 			try {
+				item4 = item4.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item4));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -205,8 +208,9 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem5() {
-		if(this instanceof Report2 && item5 != null && !"".equals(item5)){
+		if(this instanceof Report2 && item5 != null && !"".equals(item5.trim())){
 			try {
+				item5 = item5.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item5));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -220,8 +224,9 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem6() {
-		if(this instanceof Report2 && item6 != null && !"".equals(item6)){
+		if(this instanceof Report2 && item6 != null && !"".equals(item6.trim())){
 			try {
+				item6 = item6.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item6));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -235,8 +240,9 @@ public class Report extends MyEntity{
 	}
 
 	public String getItem7() {
-		if(this instanceof Report2 && item7 != null && !"".equals(item7)){
+		if(this instanceof Report2 && item7 != null && !"".equals(item7.trim())){
 			try {
+				item7 = item7.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item7));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -252,6 +258,7 @@ public class Report extends MyEntity{
 	public String getItem8() {
 		if(this instanceof Report2 && item8 != null && !"".equals(item8)){
 			try {
+				item8 = item8.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item8));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -267,6 +274,7 @@ public class Report extends MyEntity{
 	public String getItem9() {
 		if(this instanceof Report2 && item9 != null && !"".equals(item9)){
 			try {
+				item9 = item9.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item9));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -282,6 +290,7 @@ public class Report extends MyEntity{
 	public String getItem10() {
 		if(this instanceof Report2 && item10 != null && !"".equals(item10)){
 			try {
+				item10 = item10.trim().replaceAll(",", "");
 				return df.format(Double.parseDouble(item10));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();

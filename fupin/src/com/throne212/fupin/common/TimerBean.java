@@ -28,10 +28,13 @@ public class TimerBean extends QuartzJobBean {
 
 	protected void executeInternal(JobExecutionContext ctx) throws JobExecutionException {
 		Calendar now = Calendar.getInstance();
+		int nowDay = now.get(Calendar.DAY_OF_MONTH);
+		//last month
+		Calendar last = Calendar.getInstance();
+		last.setTimeInMillis(now.getTimeInMillis() - 30L * 24 * 60 * 60 * 1000);
 		int year = now.get(Calendar.YEAR);
-		int month = now.get(Calendar.MONTH) + 1;
-		int day = now.get(Calendar.DAY_OF_MONTH);
-		if(day == 11)
+		int month = now.get(Calendar.MONTH);
+		if(nowDay >= 11)
 			reportBiz.autoSaveReports(year, month);
 	}
 }

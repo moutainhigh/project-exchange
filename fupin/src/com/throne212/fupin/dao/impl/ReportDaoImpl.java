@@ -372,8 +372,8 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		for(Cun cun : cunList){
 			if(cun.getOrg() != null){
 				//表一表二
-				hql = "from Report1 where type='month' and year=? and time=?";
-				List<Report1> r1List = this.getHibernateTemplate().find(hql, new Object[]{year, month + ""});
+				hql = "from Report1 where type='month' and year=? and time=? and cun=?";
+				List<Report1> r1List = this.getHibernateTemplate().find(hql, new Object[]{year, month + "",cun});
 				if(r1List != null && r1List.size() > 0){//存在，或已经暂存过来
 					Report1 r1 = r1List.get(0);
 					if(r1.getLock() != 1){
@@ -394,8 +394,8 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 					saveOrUpdate(report);
 				}
 				//表三
-				hql = "from Report2 where type='month' and year=? and time=?";
-				List<Report2> r2List = this.getHibernateTemplate().find(hql, new Object[]{year, month + ""});
+				hql = "from Report2 where type='month' and year=? and time=? and cun=?";
+				List<Report2> r2List = this.getHibernateTemplate().find(hql, new Object[]{year, month + "", cun});
 				if(r2List != null && r2List.size() > 0){//存在，或已经暂存过来
 					Report2 r2 = r2List.get(0);
 					if(r2.getLock() != 1){
