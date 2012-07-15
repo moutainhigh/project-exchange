@@ -186,11 +186,11 @@
 					</td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="doc.name" value="${doc.name}" id="docName" style="width:200px;"/>
+					<td style="color:red;">
+						<font color="red">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</font><input type="text" name="doc.name" value="${doc.name}" id="docName" style="width:200px;"/>
 					</td>
 					<td>
-						性&nbsp;&nbsp;&nbsp;&nbsp;别：
+						<font color="red">性&nbsp;&nbsp;&nbsp;&nbsp;别：</font>
 						<select name="doc.gender">
 							<option value=""></option>
 							<option value="true" <c:if test="${doc.gender==true}">selected="selected"</c:if>>男</option>
@@ -198,7 +198,7 @@
 						</select>
 					</td>
 					<td>
-						出生日期：<input type="text" name="doc.birthday" value="<fmt:formatDate value = "${doc.birthday}" pattern = "yyyy-MM-dd"/>" id="birthday" style="width:100px;" class="datetime"/>
+						<font color="red">出生日期：</font><input type="text" name="doc.birthday" value="<fmt:formatDate value = "${doc.birthday}" pattern = "yyyy-MM-dd"/>" id="birthday" style="width:100px;" class="datetime"/>
 					</td>
 					<td>
 						民&nbsp;&nbsp;&nbsp;&nbsp;族：
@@ -222,7 +222,7 @@
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						身份证号：<input type="text" name="doc.idNo" value="${doc.idNo}" id="idNo" style="width:200px;"/>
+						<font color="red">身份证号：</font><input type="text" name="doc.idNo" value="${doc.idNo}" id="idNo" style="width:200px;"/>
 					</td>
 					<td colspan="2">
 						家庭住址：<input type="text" name="doc.address" value="${doc.address}" id="address" style="width:300px;"/>
@@ -257,7 +257,7 @@
 						</select>
 					</td>
 					<td colspan="2">
-						注册编号：<input type="text" name="doc.zigeNo" value="${doc.zigeNo}" id="zigeNo" style="width:300px;"/>
+						<font color="red">注册编号：</font><input type="text" name="doc.zigeNo" value="${doc.zigeNo}" id="zigeNo" style="width:300px;"/>
 					</td>
 					<td>
 						级&nbsp;&nbsp;&nbsp;&nbsp;别：
@@ -278,7 +278,7 @@
 				</tr>
 				<tr class="list_td_context">
 					<td colspan="3">
-						机构地址：<input type="text" name="doc.orgAddress" value="${doc.orgAddress}" id="orgAddress" style="width:400px;"/>
+						<font color="red">执业地点：</font><input type="text" name="doc.orgAddress" value="${doc.orgAddress}" id="orgAddress" style="width:400px;"/>
 					</td>
 					<td colspan="2">
 						邮政编码：<input type="text" name="doc.orgPost" value="${doc.orgPost}" id="orgPost" style="width:200px;"/>
@@ -361,11 +361,11 @@
 						<input type="text" name="doc.applyDate" value="<fmt:formatDate value = "${doc.applyDate}" pattern = "yyyy-MM-dd"/>" id="applyDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="1">
-						批准时间：
+						<font color="red">批准时间：</font>
 						<input type="text" name="doc.okDate" value="<fmt:formatDate value = "${doc.okDate}" pattern = "yyyy-MM-dd"/>" id="okDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="2">
-						批准机构：
+						<font color="red">批准机构：</font>
 						<input type="text" name="doc.shenpiOrg" value="${doc.shenpiOrg}" id="shenpiOrg" style="width:300px;"/>
 					</td>
 				</tr>

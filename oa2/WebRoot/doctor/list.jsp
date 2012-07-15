@@ -232,7 +232,7 @@
 						${d.idNo }
 					</td>
 					<td>
-						${d.areaZhen.name } ${d.areaCun.name }
+						${d.orgAddress }
 					</td>
 					<td>
 						<fmt:formatDate value = "${d.okDate }" pattern = "yyyy-MM-dd"/>
