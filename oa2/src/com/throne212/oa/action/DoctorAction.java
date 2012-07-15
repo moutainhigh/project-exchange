@@ -324,7 +324,8 @@ public class DoctorAction extends DispatchAction{
 			c.setName("村名");
 			doc.setAreaCun(c);
 			doc.setZigeNo("资格号码");
-			doc.setShenpiOrg("审批机构");
+			doc.setShenpiOrg("发证机关");
+			doc.setOrgAddress("执业地点");
 			Calendar time = GregorianCalendar.getInstance();
 			time.set(Calendar.YEAR, 1999);
 			time.set(Calendar.MONTH, 11);

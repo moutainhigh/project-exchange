@@ -361,11 +361,11 @@
 						<input type="text" name="doc.applyDate" value="<fmt:formatDate value = "${doc.applyDate}" pattern = "yyyy-MM-dd"/>" id="applyDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="1">
-						<font color="red">批准时间：</font>
+						<font color="red">发证时间：</font>
 						<input type="text" name="doc.okDate" value="<fmt:formatDate value = "${doc.okDate}" pattern = "yyyy-MM-dd"/>" id="okDate" style="width:100px;" class="datetime"/>
 					</td>
 					<td colspan="2">
-						<font color="red">批准机构：</font>
+						<font color="red">发证机关：</font>
 						<input type="text" name="doc.shenpiOrg" value="${doc.shenpiOrg}" id="shenpiOrg" style="width:300px;"/>
 					</td>
 				</tr>

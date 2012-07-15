@@ -241,7 +241,7 @@ function savePos(){
 			${doc.idNo}
 		</div>
 		<div id="Layer5" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
-			${doc.areaCun.name}
+			${doc.orgAddress}
 		</div>
 		<div id="Layer6" class="Layer" style="position: absolute; width: 600px; height: 50px; z-index: 4; left: 430px; top: 182px;">
 			${doc.zigeNo}
