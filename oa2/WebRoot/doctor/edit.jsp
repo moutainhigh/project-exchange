@@ -59,6 +59,10 @@
 				}); 	
 				//初始化日期输入数据
 				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
+				//初始化发证机关
+				if(docId == ''){
+					$('#shenpiOrg').val('四会市卫生局');
+				}
 			});
 			function cover(id){
 			     //$("select").each(function(){this.style.visibility="hidden";})
