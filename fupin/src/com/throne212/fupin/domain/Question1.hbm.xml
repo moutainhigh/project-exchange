@@ -10,6 +10,8 @@
 		<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
 		<property name="writer"></property>
 		<property name="date"></property>
+		<property name="year"></property>
+		<property name="status"></property>
 		<!-- 公用字段 -->
 		<property name="createDate" column="create_date"></property>
 		<property name="createName" column="create_name"></property>

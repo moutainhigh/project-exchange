@@ -20,6 +20,7 @@
     </head>
 <body bgcolor="#FFFFFF" text="#000000">
 <form name="form1" method="post" action="${appPath}ExcelUploadAction.action" enctype="multipart/form-data" >
+	<input type="hidden" name="year" value="${param.year}"/>
 	<input type="hidden" name="type" value="question2"/>
   <table width="360" border="0" cellspacing="0" cellpadding="5" align="center" bordercolordark="#CCCCCC" bordercolorlight="#000000">
 	<tr bgcolor="#CCCCCC"> 

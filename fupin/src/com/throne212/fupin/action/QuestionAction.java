@@ -2,67 +2,71 @@ package com.throne212.fupin.action;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.domain.Question;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
 
-
 public class QuestionAction extends BaseAction {
-	
+
 	private PageBean pageBean;
 	private Integer pageIndex;
 	private Long areaId;
 	private Long zhenId;
 	private Long cunId;
 	private String familyName;
-	
+
 	// excel导出文件
 	private InputStream downloadFile;
-	
+
 	private Question1 q1;
 	private Question2 q2;
 	private QuestionStatDO q;
-	
+
 	private QuestionBiz questionBiz;
-	
+
 	private String isShow;
-	
-	//一
-	public String list1(){
+
+	// 一
+	public String list1() {
 		pageBean = questionBiz.listQuestion1(areaId, zhenId, cunId, pageIndex);
 		return "list1";
 	}
-	public String uploadQuestion1(){
+
+	public String uploadQuestion1() {
 		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
-		if(fileName!=null){
+		if (fileName != null) {
 			String msg = null;
 			try {
 				msg = questionBiz.importQuestion1(fileName);
 				this.setSucc("Y");
-				this.setMsg("数据导入成功\\n"+msg);
+				this.setMsg("数据导入成功\\n" + msg);
 			} catch (Exception e) {
 				e.printStackTrace();
-				this.setMsg("数据导入失败\\n"+e.getMessage());
+				this.setMsg("数据导入失败\\n" + e.getMessage());
 			}
 		}
 		return "upload1";
 	}
-	public String deleteQuestion1(){
-		if(q1!=null && q1.getId() != null){
+
+	public String deleteQuestion1() {
+		if (q1 != null && q1.getId() != null) {
 			questionBiz.deleteEntity(Question1.class, q1.getId());
 			this.setMsg("删除成功");
-		}else{
+		} else {
 			String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
-			if(ids != null && ids.length > 0){
-				for(String idStr : ids){
+			if (ids != null && ids.length > 0) {
+				for (String idStr : ids) {
 					Long id = Long.parseLong(idStr);
 					Question1 q = questionBiz.getEntityById(Question1.class, id);
-					if(q != null){
+					if (q != null) {
 						questionBiz.deleteEntity(Question1.class, id);
 						this.setMsg("删除成功");
 					}
@@ -71,29 +75,33 @@ public class QuestionAction extends BaseAction {
 		}
 		return list1();
 	}
-	public String show1(){
-		if(q1!=null && q1.getId() != null){
+
+	public String show1() {
+		if (q1 != null && q1.getId() != null) {
 			q1 = questionBiz.getEntityById(Question1.class, q1.getId());
 		}
 		isShow = "Y";
 		return "show1";
 	}
-	public String stat1(){
-		if(areaId != null || zhenId != null)
+
+	public String stat1() {
+		if (areaId != null || zhenId != null)
 			q = questionBiz.statQuestion1(areaId, zhenId);
 		return "stat1";
 	}
-	public String edit1(){
-		if(q1!=null && q1.getId() != null){
+
+	public String edit1() {
+		if (q1 != null && q1.getId() != null) {
 			q1 = questionBiz.getEntityById(Question1.class, q1.getId());
 		}
 		return "edit1";
 	}
-	public String save1(){
-		if(q1!=null && q1.getId() != null){
+
+	public String save1() {
+		if (q1 != null && q1.getId() != null) {
 			Question1 q = questionBiz.getEntityById(Question1.class, q1.getId());
-			for(int i=1;i<=100;i++){
-				q.setItem(i, q1.getItem(i)==null?0:q1.getItem(i));
+			for (int i = 1; i <= 100; i++) {
+				q.setItem(i, q1.getItem(i) == null ? 0 : q1.getItem(i));
 			}
 			questionBiz.saveOrUpdateEntity(q);
 			this.setMsg("保存成功");
@@ -101,8 +109,9 @@ public class QuestionAction extends BaseAction {
 		}
 		return edit1();
 	}
-	public String exportQ1(){
-		if(q1 == null || q1.getId() == null || (q1 = questionBiz.getEntityById(Question1.class, q1.getId()))==null)
+
+	public String exportQ1() {
+		if (q1 == null || q1.getId() == null || (q1 = questionBiz.getEntityById(Question1.class, q1.getId())) == null)
 			return show1();
 		String filePath = null;
 		try {
@@ -121,10 +130,11 @@ public class QuestionAction extends BaseAction {
 		}
 		return "excel";
 	}
-	public String exportQ1Stat1(){
-		if(areaId == null && zhenId == null)
+
+	public String exportQ1Stat1() {
+		if (areaId == null && zhenId == null)
 			return stat1();
-		else{
+		else {
 			String filePath = null;
 			try {
 				filePath = questionBiz.getQ1StatExcelReportFilePath(areaId, zhenId);
@@ -143,38 +153,40 @@ public class QuestionAction extends BaseAction {
 			return "excel";
 		}
 	}
-	
-	//二
-	public String list2(){
-		pageBean = questionBiz.listQuestion2(areaId, zhenId, cunId,familyName, pageIndex);
+
+	// 二
+	public String list2() {
+		pageBean = questionBiz.listQuestion2(areaId, zhenId, cunId, familyName, pageIndex);
 		return "list2";
 	}
-	public String uploadQuestion2(){
+
+	public String uploadQuestion2() {
 		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
-		if(fileName!=null){
+		if (fileName != null) {
 			String msg = null;
 			try {
 				msg = questionBiz.importQuestion2(fileName);
 				this.setSucc("Y");
-				this.setMsg("数据导入成功\\n"+msg);
+				this.setMsg("数据导入成功\\n" + msg);
 			} catch (Exception e) {
 				e.printStackTrace();
-				this.setMsg("数据导入失败\\n"+e.getMessage());
+				this.setMsg("数据导入失败\\n" + e.getMessage());
 			}
 		}
 		return "upload2";
 	}
-	public String deleteQuestion2(){
-		if(q2!=null && q2.getId() != null){
+
+	public String deleteQuestion2() {
+		if (q2 != null && q2.getId() != null) {
 			questionBiz.deleteEntity(Question2.class, q2.getId());
 			this.setMsg("删除成功");
-		}else{
+		} else {
 			String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
-			if(ids != null && ids.length > 0){
-				for(String idStr : ids){
+			if (ids != null && ids.length > 0) {
+				for (String idStr : ids) {
 					Long id = Long.parseLong(idStr);
 					Question2 q = questionBiz.getEntityById(Question2.class, id);
-					if(q != null){
+					if (q != null) {
 						questionBiz.deleteEntity(Question2.class, id);
 						this.setMsg("删除成功");
 					}
@@ -183,29 +195,33 @@ public class QuestionAction extends BaseAction {
 		}
 		return list2();
 	}
-	public String show2(){
-		if(q2!=null && q2.getId() != null){
+
+	public String show2() {
+		if (q2 != null && q2.getId() != null) {
 			q2 = questionBiz.getEntityById(Question2.class, q2.getId());
 		}
 		isShow = "Y";
 		return "show2";
 	}
-	public String stat2(){
-		if(areaId != null || zhenId != null || cunId != null)
+
+	public String stat2() {
+		if (areaId != null || zhenId != null || cunId != null)
 			q = questionBiz.statQuestion2(areaId, zhenId, cunId);
 		return "stat2";
 	}
-	public String edit2(){
-		if(q2!=null && q2.getId() != null){
+
+	public String edit2() {
+		if (q2 != null && q2.getId() != null) {
 			q2 = questionBiz.getEntityById(Question2.class, q2.getId());
 		}
 		return "edit2";
 	}
-	public String save2(){
-		if(q2!=null && q2.getId() != null){
+
+	public String save2() {
+		if (q2 != null && q2.getId() != null) {
 			Question2 q = questionBiz.getEntityById(Question2.class, q2.getId());
-			for(int i=1;i<=47;i++){
-				q.setItem(i, q2.getItem(i)==null?0:q2.getItem(i));
+			for (int i = 1; i <= 47; i++) {
+				q.setItem(i, q2.getItem(i) == null ? 0 : q2.getItem(i));
 			}
 			questionBiz.saveOrUpdateEntity(q);
 			this.setMsg("保存成功");
@@ -213,8 +229,9 @@ public class QuestionAction extends BaseAction {
 		}
 		return edit2();
 	}
-	public String exportQ2(){
-		if(q2 == null || q2.getId() == null || (q2 = questionBiz.getEntityById(Question2.class, q2.getId()))==null)
+
+	public String exportQ2() {
+		if (q2 == null || q2.getId() == null || (q2 = questionBiz.getEntityById(Question2.class, q2.getId())) == null)
 			return show2();
 		String filePath = null;
 		try {
@@ -233,10 +250,11 @@ public class QuestionAction extends BaseAction {
 		}
 		return "excel";
 	}
-	public String exportQ2Stat2(){
-		if(areaId == null && zhenId == null)
+
+	public String exportQ2Stat2() {
+		if (areaId == null && zhenId == null)
 			return stat1();
-		else{
+		else {
 			String filePath = null;
 			try {
 				filePath = questionBiz.getQ2StatExcelReportFilePath(areaId, zhenId, cunId);
@@ -254,6 +272,45 @@ public class QuestionAction extends BaseAction {
 			}
 			return "excel";
 		}
+	}
+
+	private String qType;
+
+	public String lockList() {
+		List<Question> qList = new ArrayList<Question>();
+		if ("2".equals(qType)) {
+			List<Question2> q2List = questionBiz.getEntitiesByColumn(Question2.class, "status", 2);
+			qList.addAll(q2List);
+		} else {
+			List<Question1> q1List = questionBiz.getEntitiesByColumn(Question1.class, "status", 2);
+			qList.addAll(q1List);
+		}
+		pageBean = new PageBean();
+		pageBean.setResultList(qList);
+		return "lock_list";
+	}
+
+	public String unlock() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		for (String id : ids) {
+			Long i = Long.valueOf(id);
+			if ("2".equals(qType)) {
+				Question2 q2 = questionBiz.getEntityById(Question2.class, i);
+				if (q2 != null) {
+					q2.setStatus(0);
+					questionBiz.saveOrUpdateEntity(q2);
+					this.setMsg("解锁成功");
+				}
+			} else {
+				Question1 q1 = questionBiz.getEntityById(Question1.class, i);
+				if (q1 != null) {
+					q1.setStatus(0);
+					questionBiz.saveOrUpdateEntity(q1);
+					this.setMsg("解锁成功");
+				}
+			}
+		}
+		return lockList();
 	}
 
 	public PageBean getPageBean() {
@@ -327,23 +384,37 @@ public class QuestionAction extends BaseAction {
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
+
 	public String getIsShow() {
 		return isShow;
 	}
+
 	public void setIsShow(String isShow) {
 		this.isShow = isShow;
 	}
+
 	public QuestionStatDO getQ() {
 		return q;
 	}
+
 	public void setQ(QuestionStatDO q) {
 		this.q = q;
 	}
+
 	public InputStream getDownloadFile() {
 		return downloadFile;
 	}
+
 	public void setDownloadFile(InputStream downloadFile) {
 		this.downloadFile = downloadFile;
 	}
-	
+
+	public String getqType() {
+		return qType;
+	}
+
+	public void setqType(String qType) {
+		this.qType = qType;
+	}
+
 }

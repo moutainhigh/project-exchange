@@ -110,11 +110,12 @@
 	</head>
 	<body>
 		<form method="get" action="${appPath}question_list2.action" name="searchForm">
+			<input type="hidden" name="year" value="${param.year}"/>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：调查表资料维护 >> 调查表（二）
+							您当前所处页面：调查表资料维护 >> ${param.year}调查表（二）
 						</td>
 						<td align="right">
 							<span class="STYLE1">市：</span>
@@ -135,7 +136,7 @@
 									</select>
 							<input type="text" name="familyName" value="${param.familyName }" style="width:100px;"/>
 							<input type="button" class="button" value="查询" onclick="query();"> 
-							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question/upload2.jsp',500,300);"/>
+							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question/upload2.jsp?year=${param.year}',500,300);"/>
 							<input type="button" class="button" value="删除" onclick="deleteQuestion2();"> 
 						</td>
 					</tr>

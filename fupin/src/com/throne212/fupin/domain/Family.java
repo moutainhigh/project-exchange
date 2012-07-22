@@ -52,6 +52,8 @@ public class Family extends MyEntity {
 	private Person person10;
 
 	private List<Leader> leaderList;
+	
+	private Question2 q2;//所填的调查表2，不用于存储
 
 	public String getLeaderNames() {
 		if (leaderList == null || leaderList.size() == 0) {
@@ -409,6 +411,14 @@ public class Family extends MyEntity {
 
 	public void setWeifang(String weifang) {
 		this.weifang = weifang;
+	}
+
+	public Question2 getQ2() {
+		return q2;
+	}
+
+	public void setQ2(Question2 q2) {
+		this.q2 = q2;
 	}
 
 }

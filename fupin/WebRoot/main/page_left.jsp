@@ -152,11 +152,24 @@ function images_update(){
 	
 		<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 	    menuArray[menuArray.length]="0,考评调查表资料维护,";
-	    menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}question_list1.action";
-	    menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}question_list2.action";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}question_list1.action?year=2011";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}question_list2.action?year=2011";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}question_list1.action?year=2012";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}question_list2.action?year=2012";
+	    menuArray[menuArray.length]="1,申请修改,${appPath}question_lockList.action";
 	    menuArray[menuArray.length]="0,考评调查表统计,";
-	    menuArray[menuArray.length]="1,2011年度考评调查表（一）统计,${appPath}question_stat1.action";
-	    menuArray[menuArray.length]="1,2011年度考评调查表（二）统计,${appPath}question_stat2.action";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（一）统计,${appPath}question_stat1.action?year=2011";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（二）统计,${appPath}question_stat2.action?year=2011";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（一）统计,${appPath}question_stat1.action?year=2012";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（二）统计,${appPath}question_stat2.action?year=2012";
+	    </c:if>
+	    
+	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	    menuArray[menuArray.length]="0,考评调查表填报,";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2011";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2011";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2012";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2012";
 	    </c:if>
 	
 		menuArray[menuArray.length]="0,报表维护,";

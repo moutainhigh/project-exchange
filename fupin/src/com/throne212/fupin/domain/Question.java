@@ -9,6 +9,10 @@ public class Question extends MyEntity {
 	
 	private Date date;//填表日期
 	
+	private Integer year;//年份
+	
+	private Integer status;//0 or null normal, 1代表锁定了,2表示申请jiesuo
+	
 	//项目
 	private Double item1;
 	private Double item2;
@@ -751,5 +755,28 @@ public class Question extends MyEntity {
 	public void setItem100(Double item100) {
 		this.item100 = item100;
 	}
-	
+
+	public Integer getYear() {
+		return year;
+	}
+ 
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getTypeName(){
+		if(this instanceof Question1){
+			return "调查表一";
+		}else if(this instanceof Question2){
+			return "调查表二";
+		}
+		return null;
+	}
 }

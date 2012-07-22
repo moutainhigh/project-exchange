@@ -5,20 +5,23 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.QuestionDao;
+import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
 
 public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 	
-	public PageBean<Question1> listQuestion1(Long areaId, Long zhenId, Long cunId, Integer pageIndex) {
+	public PageBean<Question1> listQuestion1(Long areaId, Long zhenId, Long cunId, Integer pageIndex, int year) {
 		PageBean<Question1> page = new PageBean<Question1>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Question1 q where 1=1";
+		String hql = "from Question1 q where year=" + year;
 		
 		if(cunId != null){
 			hql += " and cun.id=" + cunId;
@@ -41,10 +44,10 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		return page;
 	}
 
-	public PageBean<Question2> listQuestion2(Long areaId, Long zhenId, Long cunId, String familyName, Integer pageIndex) {
+	public PageBean<Question2> listQuestion2(Long areaId, Long zhenId, Long cunId, String familyName, Integer pageIndex, int year) {
 		PageBean<Question2> page = new PageBean<Question2>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
-		String hql = "from Question2 q where 1=1";
+		String hql = "from Question2 q where year=" + year;
 		
 		if(cunId != null){
 			hql += " and family.cun.id=" + cunId;
@@ -77,12 +80,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		return page;
 	}
 	
-	public QuestionStatDO statQuestion1(Long areaId, Long zhenId){
+	public QuestionStatDO statQuestion1(Long areaId, Long zhenId, int year){
 		QuestionStatDO q = new QuestionStatDO();
 		Question1 tq = new Question1();
 		q.setQ(tq);
 		
-		String hql = "from Question1 q where 1=1";
+		String hql = "from Question1 q where year=" + year;
 		if(zhenId != null){
 			hql += " and cun.zhen.id=" + zhenId;
 		}else if(areaId != null){
@@ -123,12 +126,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		return q;
 	}
 	
-	public QuestionStatDO statQuestion2(Long areaId, Long zhenId, Long cunId){
+	public QuestionStatDO statQuestion2(Long areaId, Long zhenId, Long cunId, int year){
 		QuestionStatDO q = new QuestionStatDO();
 		Question2 tq = new Question2();
 		q.setQ(tq);
 		
-		String hql = "from Question2 q where 1=1";
+		String hql = "from Question2 q where year=" + year;
 		if(cunId != null){
 			hql += " and family.cun.id=" + cunId;
 		}else if(zhenId != null){
@@ -159,6 +162,41 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		}
 		
 		return q;
+	}
+	
+	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex){		
+		Org org = (Org) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);		
+		PageBean<Family> page = new PageBean<Family>();
+		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
+		String hql = "from Family f where f.cun.id=" + org.getCun().getId();
+		
+		Object[] params = new Object[]{};
+		if(!Util.isEmpty(familyName)){
+			hql += " and f.name like ?";
+			params = new Object[]{"%"+familyName+"%"};
+		}
+		
+		hql+=" order by id desc";
+		logger.debug("hql="+hql);
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,params).get(0);
+		logger.debug("查询总数为：" + count);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query q = s.createQuery(hql);
+		for(int i=0;i<params.length;i++){
+			q.setParameter(i, params[i]);
+		}
+		List<Family> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
+		for(Family f : list){
+			List<Question2> q2List = this.getHibernateTemplate().find("from Question2 where family=?", f);
+			if(q2List != null && q2List.size() > 0){
+				f.setQ2(q2List.get(0));
+			}
+		}
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		return page;
 	}
 
 }
