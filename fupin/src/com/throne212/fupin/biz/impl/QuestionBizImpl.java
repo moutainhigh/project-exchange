@@ -600,10 +600,10 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 	}
 
 
-	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex){
+	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex, int year){
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		return qDao.getFamilyList(familyName, pageIndex);
+		return qDao.getFamilyList(familyName, pageIndex, year);
 	}
 	
 	public QuestionDao getqDao() {

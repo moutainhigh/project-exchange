@@ -164,7 +164,7 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		return q;
 	}
 	
-	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex){		
+	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex, int year){		
 		Org org = (Org) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);		
 		PageBean<Family> page = new PageBean<Family>();
 		int startIndex = (pageIndex - 1) * WebConstants.PAGE_SIZE;
@@ -188,7 +188,7 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		}
 		List<Family> list = q.setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		for(Family f : list){
-			List<Question2> q2List = this.getHibernateTemplate().find("from Question2 where family=?", f);
+			List<Question2> q2List = this.getHibernateTemplate().find("from Question2 where family=? and year=?", new Object[]{f, year});
 			if(q2List != null && q2List.size() > 0){
 				f.setQ2(q2List.get(0));
 			}

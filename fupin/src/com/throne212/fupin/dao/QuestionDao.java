@@ -16,6 +16,6 @@ public interface QuestionDao extends BaseDao {
 	
 	public QuestionStatDO statQuestion2(Long areaId, Long zhenId, Long cunId, int year);
 	
-	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex);
+	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex, int year);
 
 }

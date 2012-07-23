@@ -31,6 +31,6 @@ public interface QuestionBiz extends BaseBiz {
 	public String getQ2StatExcelReportFilePath(Long areaId, Long zhenId, Long cunId) throws Exception;
 	
 	//单位调查表获取用户列表
-	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex);
+	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex, int year);
 
 }

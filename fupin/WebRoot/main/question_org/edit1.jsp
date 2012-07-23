@@ -202,7 +202,7 @@ div.Section1
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：调查表资料填报 >> ${param.year}调查表（一）
+							您当前所处页面：调查表资料填报 >> ${year}调查表（一）
 						</td>
 						<td align="right">
 							${q1.org.orgName}
@@ -222,7 +222,7 @@ div.Section1
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:18.0pt;font-family:黑体;mso-hansi-font-family:宋体;mso-bidi-font-family:
   宋体;mso-font-kerning:0pt'>广州市农村扶贫开发“规划到户责任到人”工作<span lang=EN-US><br>
-  2011</span>年度调查表（一）<span lang=EN-US><o:p></o:p></span></span></p>
+  ${year}</span>年度调查表（一）<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:1;height:64.15pt'>
@@ -357,7 +357,8 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item1" value="${q1.item1}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item1" value="<fmt:formatNumber value="${q1.item1 }" pattern="#.##" type="number"/>"/>  
+  <span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:5;height:28.5pt'>
@@ -392,7 +393,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item2" value="${q1.item2}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item2" value="<fmt:formatNumber value="${q1.item2}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6;height:28.5pt'>
@@ -427,7 +428,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item3" value="${q1.item3}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item3" value="<fmt:formatNumber value="${q1.item3 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:7;height:28.5pt'>
@@ -461,7 +462,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item4" value="${q1.item4}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item4" value="<fmt:formatNumber value="${q1.item4 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:8;height:22.15pt'>
@@ -495,7 +496,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:22.15pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item5" value="${q1.item5}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item5" value="<fmt:formatNumber value="${q1.item5 }" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:9;height:18.75pt'>

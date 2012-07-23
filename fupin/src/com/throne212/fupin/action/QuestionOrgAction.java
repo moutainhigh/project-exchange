@@ -198,7 +198,7 @@ public class QuestionOrgAction extends BaseAction {
 
 	// 二
 	public String list2() {
-		pageBean = questionBiz.getFamilyList(familyName, pageIndex);
+		pageBean = questionBiz.getFamilyList(familyName, pageIndex, year);
 		return "list2";
 	}
 
@@ -211,7 +211,10 @@ public class QuestionOrgAction extends BaseAction {
 				this.setSucc("Y");
 				return "edit2";
 			}
-			Question2 q = questionBiz.getEntityByUnique(Question2.class, "family.id", q2.getFamily().getId());
+			Question2 q = null;
+			List<Question2> qList = questionBiz.getEntitiesByTwoColumn(Question2.class, "family.id", q2.getFamily().getId(), "year", year);
+			if(qList != null && qList.size() > 0)
+				q = qList.get(0);
 			if (q == null) {
 				q = new Question2();
 				q.setCreateDate(new Date());
