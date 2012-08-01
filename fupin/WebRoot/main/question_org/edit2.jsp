@@ -261,6 +261,11 @@ rt
 <body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
 <form method="post" action="${appPath}questionOrg_save2.action" name="searchForm">
 <input type="hidden" name="q2.id" value="${q2.id }"/>
+			<c:if test="${not empty msg }">
+			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center;">
+			${msg }
+			</div>
+			</c:if>
 <table border=0 cellpadding=0 cellspacing=0 width=620 style='border-collapse:
  collapse;table-layout:fixed;'>
  <col width=100 style='mso-width-source:userset;mso-width-alt:4096;width:96pt'>

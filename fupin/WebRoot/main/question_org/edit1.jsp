@@ -7,6 +7,8 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<title>调查表（一）  ${q1.cun.name }</title>
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
+		<script src="${appPath}js/sel_style.js" language="javascript"></script>
+		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			function submitForm(){
@@ -230,7 +232,11 @@ div.Section1
 					</tr>
 				</tbody>
 			</table>		
-
+			<c:if test="${not empty msg }">
+			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center;">
+			${msg }
+			</div>
+			</c:if>
 		<div class=Section1 style='layout-grid:15.6pt;margin: 5px auto; width: 75%;'>
 
 <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=741
@@ -4535,6 +4541,8 @@ div.Section1
 		<div style="text-align: center;">
 		<c:if test="${empty q1.status || q1.status == 0}">
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
+		<a href="#" onclick="winOpen('${appPath}main/question_org/leader_edit.jsp',450,250);"></a>
+		<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload1.jsp?year=${year}',500,300);"/>
 		</c:if>
 		<c:if test="${q1.status == 1}">
 		<input type="button" class="button" value="申请修改" name="申请修改" onclick="javascript:self.location.href = '${appPath}questionOrg_unlock1.action?id=${q1.id}'">

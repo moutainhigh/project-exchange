@@ -195,6 +195,23 @@ public class QuestionOrgAction extends BaseAction {
 		}
 		return "excel";
 	}
+	
+	public String uploadQuestion1() {
+		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (fileName != null) {
+			String msg = null;
+			try {
+				msg = questionBiz.importQuestion1(fileName);
+				this.setSucc("Y");
+				this.setMsg("数据导入成功\\n" + msg);
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("数据导入失败\\n" + e.getMessage());
+			}
+		}
+		return "upload1";
+	}
+	
 
 	// 二
 	public String list2() {
@@ -266,11 +283,12 @@ public class QuestionOrgAction extends BaseAction {
 			}
 			q.setWriter(q2.getWriter());
 			q.setDate(q2.getDate());
-			if(pass)
+			if(pass){
 				q.setStatus(1);
-			questionBiz.saveOrUpdateEntity(q);
-			this.setMsg("保存成功");
-			this.setSucc("Y");
+				this.setMsg("保存成功");
+				this.setSucc("Y");
+			}
+			questionBiz.saveOrUpdateEntity(q);			
 		}
 		return edit2();
 	}
@@ -323,6 +341,22 @@ public class QuestionOrgAction extends BaseAction {
 		}
 		return "excel";
 	}
+	
+	public String uploadQuestion2() {
+		String fileName = (String) ActionContext.getContext().getSession().get(WebConstants.SESS_IMAGE);
+		if (fileName != null) {
+			String msg = null;
+			try {
+				msg = questionBiz.importQuestion2(fileName);
+				this.setSucc("Y");
+				this.setMsg("数据导入成功\\n" + msg);
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("数据导入失败\\n" + e.getMessage());
+			}
+		}
+		return "upload2";
+	}	
 
 	public InputStream getDownloadFile() {
 		return downloadFile;

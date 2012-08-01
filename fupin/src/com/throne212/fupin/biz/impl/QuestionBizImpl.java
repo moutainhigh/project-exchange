@@ -17,6 +17,7 @@ import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.Util;
+import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.dao.QuestionDao;
 import com.throne212.fupin.domain.Area;
@@ -25,6 +26,7 @@ import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
+import com.throne212.fupin.domain.User;
 import com.throne212.fupin.domain.Zhen;
 
 public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
@@ -74,6 +76,16 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		if(cun == null){
 			throw new RuntimeException("村("+cunName+")获取失败");
 		}
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof Org){
+			Org org = (Org) user;
+			if(org.getCun() == null || !org.getCun().getId().equals(cun.getId())){
+				logger.error("org.getCun()=" + org.getCun() + ", org.getCun().getId()="+ org.getCun().getId() + ",cun.getId()="+cun.getId() + ",org.getCun().getId() != cun.getId()"+(org.getCun().getId() != cun.getId()));
+				throw new RuntimeException("单位帮扶的村与上传报表中的村不符");
+			}
+		}
+		
 		String orgName = sheet.getCell(3, 1).getContents();
 		
 		try {
@@ -285,6 +297,13 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 				Family family = cunDao.getEntityByUniqueColumn(Family.class, "idNo", idNo);
 				if(family == null){
 					throw new RuntimeException("户主的身份证("+idNo+")不存在与系统中," + sheet.getName());
+				}
+				User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+				if(user instanceof Org){
+					Org org = (Org) user;
+					if(org.getCun() == null || !org.getCun().getId().equals(family.getCun().getId())){
+						throw new RuntimeException("户(身份证号："+idNo+")不属于单位帮扶的村("+org.getCun().getName()+")");
+					}
 				}
 				String orgName = sheet.getCell(3, 1).getContents();
 				
