@@ -358,6 +358,10 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
 	}
 	
+	public List<String[]> statReport(ReportParam reportParam) throws Exception {
+		return reportDao.statReport(reportParam);
+	}
+	
 	public void autoSaveReports(int year, int month){
 		reportDao.autoSaveReports(year, month);
 	}

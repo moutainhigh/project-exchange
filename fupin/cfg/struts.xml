@@ -277,6 +277,7 @@
 			<result name="report_edit2">/main/report/edit2.jsp</result>
 			<result name="report_list">/main/report/report_list.jsp</result>
 			<result name="report_export">/main/report/report_export.jsp</result>
+			<result name="report_stat">/main/report/report_stat.jsp</result>
 		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
