@@ -343,6 +343,7 @@ public class ReportAction extends BaseAction {
 		return "report_export";
 	}
 	//统计
+	private List<String[]> statList;
 	public String stat() {
 		if (reportParam == null)
 			return "report_stat";
@@ -350,19 +351,11 @@ public class ReportAction extends BaseAction {
 			this.setMsg("月份不可为空");
 			return "report_stat"; 
 		}
-		String filePath = null;
 		try {
-			filePath = reportBiz.getExcelReportFilePath(reportParam);
-			if (filePath != null) {
-				downloadFile = new FileInputStream(filePath);
-				this.setMsg(filePath.substring(filePath.lastIndexOf(File.separator),filePath.lastIndexOf(".")));
-				return "excel";
-			} else {
-				this.setMsg("报表文件生成失败，数据不完整或参数错误，请联系管理员");
-			}
+			statList = reportBiz.statReport(reportParam);
 		} catch (Exception e) {
-			logger.error("报表文件生成失败", e);
-			this.setMsg("报表文件生成失败，请联系管理员");
+			logger.error("统计失败", e);
+			this.setMsg("统计失败，请联系管理员");
 		}
 		return "report_stat";
 	}
@@ -483,6 +476,14 @@ public class ReportAction extends BaseAction {
 
 	public void setShowZanCun(Boolean showZanCun) {
 		this.showZanCun = showZanCun;
+	}
+
+	public List<String[]> getStatList() {
+		return statList;
+	}
+
+	public void setStatList(List<String[]> statList) {
+		this.statList = statList;
 	}
 
 }

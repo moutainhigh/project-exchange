@@ -80,6 +80,11 @@ public class SMSAction extends BaseAction {
 		this.setMsg(sb.toString());
 		return "sms_edit";
 	}
+	
+	public String batchSMS(){
+		
+		return "batch_sms";
+	}
 
 	public String sendMessage() {
 		return "mes_send";

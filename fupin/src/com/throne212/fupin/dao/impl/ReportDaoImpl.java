@@ -1,10 +1,12 @@
 package com.throne212.fupin.dao.impl;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import jxl.Workbook;
@@ -367,26 +369,43 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 	}
 	
 	public List<String[]> statReport(ReportParam reportParam){
+		ReportParam p1 = getCommonParam(reportParam);
+		p1.setName("12");
+		p1.setIs206("206");
+		List<String[]> list = statSubReport(p1);
+		list.add(this.hejiSubReport("206", "小计", list));
+		ReportParam p2 = getCommonParam(reportParam);
+		p2.setName("12");
+		p2.setIs206("not206");
+		List<String[]> tempList = statSubReport(p2);
+		list.addAll(tempList);
+		list.add(this.hejiSubReport("not206", "小计", tempList));
+		list.add(this.hejiSubReport(null, "总计", list));
+		return list;
+	}
+	
+	private ReportParam getCommonParam(ReportParam reportParam){
+		ReportParam p = new ReportParam();
+		p.setYear(reportParam.getYear());
+		p.setMonth(reportParam.getMonth());
+		p.setYear2(reportParam.getYear2());
+		p.setMonth2(reportParam.getMonth2());
+		return p;
+	}
+	
+	private List<String[]> statSubReport(ReportParam reportParam){
 		StringBuffer sql = new StringBuffer();
-		sql.append("select distinct ");
-		sql.append("c.id as 'cun_id', ");
+		sql.append("select ");
+		if ("206".equals(reportParam.getIs206()))
+			sql.append("'北部山区', ");
+		else
+			sql.append("'非北部山区', ");
 		sql.append("a.name as '区（县）', ");
-		sql.append("z.name as '镇名称', ");
-		sql.append("c.name as '村名称', ");
 		sql.append("(select count(f2.id)  ");
 		sql.append("from fp_family f2  ");
 		sql.append("LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id ");
 		sql.append("where c2.id=c.id) as '贫困户数', ");
 		sql.append("c.poorPersonNum  as '贫困人口数', ");
-		sql.append("(select o.orgName ");
-		sql.append("from fp_user o  ");
-		sql.append("where o.id=c.org and o.user_type='org') as '帮扶单位', ");
-		sql.append("(select o.contactName ");
-		sql.append("from fp_user o  ");
-		sql.append("where o.id=c.org and o.user_type='org') as '联系人', ");
-		sql.append("(select o.contactTel ");
-		sql.append("from fp_user o  ");
-		sql.append("where o.id=c.org and o.user_type='org') as '联系电话', ");
 		if ("3".equals(reportParam.getName())) {
 			sql.append("r.item1 as '规划投入资金（元）', ");
 			sql.append("sum(r.item2) as '已投入帮扶资金(元)', ");
@@ -398,37 +417,35 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("sum(r.item8) as '社会募捐(元)', ");
 			sql.append("sum(r.item9) as '社会引资(元)' ");
 		} else {
-			sql.append("r.item1 as '贫困户户数(户) ', ");
-			sql.append("r.item2 as '贫困户人数(人) ', ");
-			sql.append("r.item3 as '1低保对象(户) ', ");
-			sql.append("r.item4 as '1低保对象(人) ', ");
-			sql.append("r.item5 as '1低收入困难家庭(户) ', ");
-			sql.append("r.item6 as '1低收入困难家庭(人) ', ");
-			sql.append("r.item7 as '2低保对象(户) ', ");
-			sql.append("r.item8 as '2低保对象(人) ', ");
-			sql.append("r.item9 as '2低收入困难家庭(户) ', ");
-			sql.append("r.item10 as '2低收入困难家庭(人) ', ");
-			sql.append("r.item11 as '危房户(户) ', ");
+			sql.append("sum(c.poorFamilyNum1) as '1低保对象(户) ', ");
+			sql.append("sum(c.poorPersonNum1) as '1低保对象(人) ', ");
+			sql.append("sum(c.poorFamilyNum3) as '1低收入困难家庭(户) ', ");
+			sql.append("sum(c.poorPersonNum3) as '1低收入困难家庭(人) ', ");
+			sql.append("sum(c.poorFamilyNum2) as '2低保对象(户) ', ");
+			sql.append("sum(c.poorPersonNum2) as '2低保对象(人) ', ");
+			sql.append("sum(c.poorFamilyNum4) as '2低收入困难家庭(户) ', ");
+			sql.append("sum(c.poorPersonNum4) as '2低收入困难家庭(人) ', ");
+			sql.append("sum(c.weiHouse) as '危房户(户) ',");
 			sql.append("sum(r.item12) as '贫困户去世、失踪等情况(户) ', ");
-			sql.append("r.item13 as '预计本年脱贫户数(户) ', ");
-			sql.append("r.item14 as '预计本年脱贫人数(人) ', ");
-			sql.append("sum(r.item15)  as '帮扶单位领导(人次) ', ");
-			sql.append("sum(r.item16)  as '帮扶单位干部　职工(人次) ', ");
-			sql.append("sum(r.item17)  as '种植(户) ', ");
-			sql.append("sum(r.item18)  as '养殖(户) ', ");
-			sql.append("sum(r.item19)  as '务工(人) ', ");
-			sql.append("sum(r.item20)  as '创业(人) ', ");
-			sql.append("sum(r.item21)  as '农业科技培训(人次)', ");
-			sql.append("sum(r.item22)  as '就业技能培训(人次) ', ");
-			sql.append("sum(r.item23)  as '完成危房改造(户) ', ");
-			sql.append("sum(r.item24)  as '参加农村合作医疗(人) ', ");
-			sql.append("sum(r.item25)  as '参加农村养老保险(人) ', ");
-			sql.append("sum(r.item26)  as '义务教育阶段(人) ', ");
-			sql.append("sum(r.item27)  as '高中、职高、技校、中专等(人) ', ");
-			sql.append("sum(r.item28)  as '大专、本科以上(人) ', ");
-			sql.append("sum(r.item29)  as '产业发展带动农户(户) ', ");
-			sql.append("r.item30 as '上年村级集体经济收入(元) ', ");
-			sql.append("r.item31 as '预计今年村级集体经济收入(元) ', ");
+			sql.append("sum(r.item13) as '预计本年脱贫户数(户) ', ");
+			sql.append("sum(r.item14) as '预计本年脱贫人数(人) ', ");
+			sql.append("sum(r.item15) as '帮扶单位领导(人次) ', ");
+			sql.append("sum(r.item16) as '帮扶单位干部　职工(人次) ', ");
+			sql.append("sum(r.item17) as '种植(户) ', ");
+			sql.append("sum(r.item18) as '养殖(户) ', ");
+			sql.append("sum(r.item19) as '务工(人) ', ");
+			sql.append("sum(r.item20) as '创业(人) ', ");
+			sql.append("sum(r.item21) as '农业科技培训(人次)', ");
+			sql.append("sum(r.item22) as '就业技能培训(人次) ', ");
+			sql.append("sum(r.item23) as '完成危房改造(户) ', ");
+			sql.append("sum(r.item24) as '参加农村合作医疗(人) ', ");
+			sql.append("sum(r.item25) as '参加农村养老保险(人) ', ");
+			sql.append("sum(r.item26) as '义务教育阶段(人) ', ");
+			sql.append("sum(r.item27) as '高中、职高、技校、中专等(人) ', ");
+			sql.append("sum(r.item28) as '大专、本科以上(人) ', ");
+			sql.append("sum(r.item29) as '产业发展带动农户(户) ', ");
+			sql.append("sum(c.income) as '上年村级集体经济收入(元) ', ");
+			sql.append("sum(r.item31) as '预计今年村级集体经济收入(元) ', ");
 			sql.append("sum(r.item32) as '组织活动(次) ', ");
 			sql.append("sum(r.item33) as '扶贫工作会议(次) ', ");
 			sql.append("sum(r.item34) as '发展新党员(人) ', ");
@@ -494,22 +511,37 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("z.name != '流溪河林场' ");
 			sql.append(") or c.name = '塘田村' or c.name = '安山村') ");
 		}
-//		if ("conghua".equals(reportParam.getDiqu())) {
-//			sql.append("and a.name='从化市' ");
-//		} else {
-//			sql.append("and a.name='增城市' ");
-//		}
-		sql.append("and a.name='"+reportParam.getAreaName()+"' ");
-		sql.append("group by a.name,z.name,c.name ");
+		sql.append("group by a.name");
 
-		logger.info("报表导出sql：\n" + sql);
+		logger.info("报表统计生成sql：\n" + sql);
 		Session s = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			return null;
+			List<String[]> rows = new ArrayList<String[]>();
+			s = this.getHibernateTemplate().getSessionFactory().openSession();
+			conn = s.connection();
+			// 获取数据
+			ps = conn.prepareStatement(sql.toString());
+			int colSize = ps.getMetaData().getColumnCount();
+			rs = ps.executeQuery();
+			int i=0;
+			while(rs.next()){
+				String[] row = new String[120];
+				if ("12".equals(reportParam.getName())){
+					for(int j=0;j<2;j++)
+						row[j] = rs.getString(j+1);
+					for(int j=2;j<58;j++){
+						Double d = rs.getDouble(j + 1);
+						d = Math.floor(d);
+						row[j] = new BigDecimal(d).toPlainString();
+					}
+				}
+				rows.add(row);
+			}
+			return rows;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		} finally {
@@ -544,6 +576,34 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		}
 
 		return null;
+	}
+	
+	private String[] hejiSubReport(String is206, String heji, List<String[]> list){
+		String[] arr = new String[120];
+		if ("206".equals(is206))
+			arr[0] = "北部山区";
+		else if ("not206".equals(is206))
+			arr[0] = "非北部山区";
+		else
+			arr[0] = null;
+		arr[1] = heji;
+		for(String[] data : list){
+			if("总计".equals(heji) && "小计".equals(data[1])){
+				continue;
+			}
+			for (int i = 2; i < data.length; i++) {
+				if(arr[i] == null)
+					arr[i] = "0";
+				try {
+					Double d = Double.valueOf(data[i]);
+					Double old = Double.valueOf(arr[i]);
+					arr[i] = new BigDecimal(d).add(new BigDecimal(old)).toPlainString();
+				} catch (Exception e) {
+					//ignore
+				}
+			}
+		}
+		return arr;
 	}
 	
 	public void autoSaveReports(int year, int month){

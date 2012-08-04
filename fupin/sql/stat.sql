@@ -1,20 +1,18 @@
 select
 a.name as '区（县）',
+count(z.id) as '镇的数目',
 count(c.id) as '村的数目',
-count(r.item1) as 'item1的数目',
-r.id as rid,
 sum((select count(f2.id)  from fp_family f2  LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id where c2.id=c.id)) as '贫困户户数(户) ',
 sum(c.poorPersonNum) as '贫困户人数(人) ',
-r.item3 as 'item3',
-sum(r.item3) as '1低保对象(户) ',
-sum(r.item4) as '1低保对象(人) ',
-sum(r.item5) as '1低收入困难家庭(户) ',
-sum(r.item6) as '1低收入困难家庭(人) ',
-sum(r.item7) as '2低保对象(户) ',
-sum(r.item8) as '2低保对象(人) ',
-sum(r.item9) as '2低收入困难家庭(户) ',
-sum(r.item10) as '2低收入困难家庭(人) ',
-sum(r.item11) as '危房户(户) ',
+sum(c.poorFamilyNum1) as '1低保对象(户) ',
+sum(c.poorPersonNum1) as '1低保对象(人) ',
+sum(c.poorFamilyNum3) as '1低收入困难家庭(户) ',
+sum(c.poorPersonNum3) as '1低收入困难家庭(人) ',
+sum(c.poorFamilyNum2) as '2低保对象(户) ',
+sum(c.poorPersonNum2) as '2低保对象(人) ',
+sum(c.poorFamilyNum4) as '2低收入困难家庭(户) ',
+sum(c.poorPersonNum4) as '2低收入困难家庭(人) ',
+sum(c.weiHouse) as '危房户(户) ',
 sum(r.item12) as '贫困户去世、失踪等情况(户) ',
 sum(r.item13) as '预计本年脱贫户数(户) ',
 sum(r.item14) as '预计本年脱贫人数(人) ',
@@ -33,7 +31,7 @@ sum(r.item26) as '义务教育阶段(人) ',
 sum(r.item27) as '高中、职高、技校、中专等(人) ',
 sum(r.item28) as '大专、本科以上(人) ',
 sum(r.item29) as '产业发展带动农户(户) ',
-sum(r.item30) as '上年村级集体经济收入(元) ',
+sum(c.income) as '上年村级集体经济收入(元) ',
 sum(r.item31) as '预计今年村级集体经济收入(元) ',
 sum(r.item32) as '组织活动(次) ',
 sum(r.item33) as '扶贫工作会议(次) ',
@@ -71,16 +69,14 @@ and STR_TO_DATE
 (
    CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d'
 )
->=STR_TO_DATE('2011-12-01','%Y-%m-%d')
+>=STR_TO_DATE('2011-01-01','%Y-%m-%d')
 and STR_TO_DATE
 (
    CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d'
 )
-<=STR_TO_DATE('2011-12-01','%Y-%m-%d')
+<=STR_TO_DATE('2011-01-01','%Y-%m-%d')
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'
-and z.is_ns='N'
-and (c.name = '三村村' or c.name='东坑村') 
-group by a.name
+group by z.is_ns,a.name
 ;

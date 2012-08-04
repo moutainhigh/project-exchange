@@ -263,6 +263,7 @@
 		<action name="sms_*" method="{1}" class="com.throne212.fupin.action.SMSAction">
 			<result name="sms_edit">/main/sms/edit.jsp</result>
 			<result name="sms_list">/main/sms/list.jsp</result>
+			<result name="sms_batch">/main/sms/batch.jsp</result>
 		</action>
 		<!-- 论坛交流 -->
 		<action name="dis_*" method="{1}" class="com.throne212.fupin.action.DiscussAction">
