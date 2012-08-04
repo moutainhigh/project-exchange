@@ -368,7 +368,8 @@ public class ReportAction extends BaseAction {
 		}
 		String filePath = null;
 		try {
-			filePath = reportBiz.getExcelReportFilePath(reportParam);
+			statList = reportBiz.statReport(reportParam);
+			filePath = reportBiz.getExcelStatFilePath(statList);
 			if (filePath != null) {
 				downloadFile = new FileInputStream(filePath);
 				this.setMsg(filePath.substring(filePath.lastIndexOf(File.separator),filePath.lastIndexOf(".")));

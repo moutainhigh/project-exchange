@@ -1,9 +1,8 @@
 select
+'北部山区',
 a.name as '区（县）',
-count(z.id) as '镇的数目',
-count(c.id) as '村的数目',
-sum((select count(f2.id)  from fp_family f2  LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id where c2.id=c.id)) as '贫困户户数(户) ',
-sum(c.poorPersonNum) as '贫困户人数(人) ',
+(select sum(f2.id) from fp_family f2 LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id where c2.id=c.id) as '贫困户数',
+sum(c.poorPersonNum) as '贫困人口数',
 sum(c.poorFamilyNum1) as '1低保对象(户) ',
 sum(c.poorPersonNum1) as '1低保对象(人) ',
 sum(c.poorFamilyNum3) as '1低收入困难家庭(户) ',
@@ -69,14 +68,20 @@ and STR_TO_DATE
 (
    CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d'
 )
->=STR_TO_DATE('2011-01-01','%Y-%m-%d')
+>=STR_TO_DATE('2011-12-01','%Y-%m-%d')
 and STR_TO_DATE
 (
    CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d'
 )
-<=STR_TO_DATE('2011-01-01','%Y-%m-%d')
+<=STR_TO_DATE('2011-12-01','%Y-%m-%d')
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'
+and
+(
+   z.name = '温泉镇' or z.name = '吕田镇' or z.name = '良口镇' or z.name = '鳌头镇' or z.name = '小楼镇' or z.name = '正果镇' or z.name = '派潭镇' or z.name = '梯面镇' or z.name = '流溪河林场'
+)
+and c.name != '塘田村'
+and c.name != '安山村'
 group by a.name
 ;

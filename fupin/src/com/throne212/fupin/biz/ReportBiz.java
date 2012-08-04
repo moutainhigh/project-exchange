@@ -21,6 +21,8 @@ public interface ReportBiz extends BaseBiz {
 	
 	public List<String[]> statReport(ReportParam reportParam) throws Exception;
 	
+	public String getExcelStatFilePath(List<String[]> list) throws Exception;
+	
 	public void autoSaveReports(int year, int month);
 
 }

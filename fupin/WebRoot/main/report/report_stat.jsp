@@ -14,8 +14,13 @@
 		if(msg != ''){
 			alert(msg);
 		}
+		var paramY = '${reportParam.year}';
+		var paramM = '${reportParam.month}';
+		var paramY2 = '${reportParam.year2}';
+		var paramM2 = '${reportParam.month2}';
 		function statReport(){
 			$(".tables_table").hide();
+			$("h2").hide();
 			$(".tables_search").after('<h2 style="margin: 30px auto; width:50%; padding: 10px;">统计需要一些时间，请勿进行其他操作，正在加载中。。。</h2>');
 			document.forms[0].action = '${appPath}report_stat.action';
 			document.forms[0].submit();
@@ -35,6 +40,7 @@
 			//修改月份的限制
 			changeMonth();
 			changeMonth2();
+			
 		});
 		function changeMonth(){
 			var now = new Date();
@@ -50,7 +56,13 @@
 				if(m > 1){
 					$('#month').val(m-1);
 				}
-			},100);
+			},1);
+			if(paramY != '' && paramM != ''){
+				setTimeout(function(){
+					$("#year").val(paramY);
+					$("#month").val(paramM);
+				},100);
+			}
 		}
 		function changeMonth2(){
 			var now = new Date();
@@ -67,6 +79,12 @@
 					$('#month2').val(m-1);
 				}
 			},100);
+			if(paramY2 != '' && paramM2 != ''){
+				setTimeout(function(){
+					$("#year2").val(paramY2);
+					$("#month2").val(paramM2);
+				},100);
+			}
 		}
 		</script>
 		<style>
@@ -75,6 +93,7 @@
 	height: 40px;
 	background-color: #418FD0;
 }
+h2{margin:5px auto; width: 50%; text-align:center;}
 </style>
 	</head>
 	<body>
@@ -120,6 +139,7 @@
 				</tbody>
 			</table>
 			<br/>
+			<h2>表一二（一）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
@@ -235,6 +255,7 @@
 				</tbody>
 			</table>
 			<br/>
+			<h2>表一二（二）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
@@ -362,6 +383,7 @@
 				</tbody>
 			</table>
 			<br/>
+			<h2>表一二（三）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
@@ -480,6 +502,7 @@
 				</tbody>
 			</table>
 			<br/>
+			<h2>表一二（四）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
@@ -594,13 +617,103 @@
 								&nbsp; ${f[55] }
 							</td>
 							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[55] }
-							</td>
-							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[56] }
 							</td>
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[57] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[58] }
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<br/>
+			<!--表三-->
+			<h2>表三</h2>
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
+				<tbody>
+					<tr align="center">
+						<td height="28" width="" class="tables_headercell" rowspan="2">
+							分类
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							区（县）
+						</td>
+						<td width="" class="tables_headercell">
+							规划
+						</td>
+						<td width="" class="tables_headercell" rowspan="2">
+							本月（季）投入帮扶资金（元） 
+						</td>
+						<td width="" class="tables_headercell" colspan="2">
+							本月（季）投入帮扶资金（元）
+						</td>
+						<td width="" class="tables_headercell" colspan="5">
+							本月（季）投入帮扶资金构成
+						</td>
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell">
+							两年规划投入资金（元）
+						</td>
+						<td class="tables_headercell"">
+							用于帮扶到户资金(元)
+						</td>
+						<td class="tables_headercell"">
+							用于帮扶到村资金(元) 
+						</td>
+						<td class="tables_headercell"">
+							 财政专项(元) 
+						</td>
+						<td class="tables_headercell">
+							信贷资金(元) 
+						</td>
+						<td class="tables_headercell"">
+							单位自筹(元) 
+						</td>
+						<td class="tables_headercell"">
+							社会募捐（元） 
+						</td>
+						<td class="tables_headercell"">
+							社会引资（元） 
+						</td>
+					</tr>
+					<c:forEach items="${statList}" var="f">
+						<tr>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[0] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[1] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[100] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[101] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[102] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[103] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[104] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[105] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[106] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[107] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[108] }
 							</td>
 						</tr>
 					</c:forEach>

@@ -7,6 +7,7 @@ import java.util.List;
 
 import jxl.Workbook;
 import jxl.write.Label;
+import jxl.write.Number;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
@@ -356,6 +357,56 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 		String targetFile = path + File.separator + tgtFileName + "_" + Util.getDate(new Date()) + ".xls";
 
 		return reportDao.getExportReportData(reportParam, sourceFile, targetFile);
+	}
+	
+	public String getExcelStatFilePath(List<String[]> list) throws Exception{
+		// 文件拷贝
+		String path = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		path = path.substring(0, path.indexOf("WEB-INF"));
+		path += "excel" + File.separator + "export";
+		String srcFileName = "stat";
+		String sourceFile = path + File.separator + srcFileName + ".xls";
+		String targetFile = path + File.separator + "stat_" + Util.getDate(new Date()) + ".xls";
+		
+		// 打开excel文件
+		Workbook rw = Workbook.getWorkbook(new File(sourceFile));
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(targetFile), rw);
+		WritableSheet sheet1 = workbook.getSheet(0);
+		WritableSheet sheet2 = workbook.getSheet(1);
+		WritableSheet sheet3 = workbook.getSheet(2);
+		WritableSheet sheet4 = workbook.getSheet(3);
+		WritableSheet sheet5 = workbook.getSheet(4);
+
+		int row = 2;
+		for(String[] arr : list){
+			for(int i=0; i<=1; i++){
+				for(int j=0;j<5;j++){
+					workbook.getSheet(j).addCell(new Label(i, row, arr[i]));
+				}
+			}
+			for(int i=2; i<=15; i++){
+				sheet1.addCell(new Label(i, row, arr[i]));
+			}
+			for(int i=16; i<=29; i++){
+				sheet2.addCell(new Label(i - 14, row, arr[i]));
+			}
+			for(int i=30; i<=43; i++){
+				sheet3.addCell(new Label(i - 14*2, row, arr[i]));
+			}
+			for(int i=44; i<=58; i++){
+				sheet4.addCell(new Label(i - 14*3, row, arr[i]));
+			}
+			for(int i=100; i<=108; i++){
+				sheet5.addCell(new Label(i - 98, row, arr[i]));
+			}
+			row++;
+		}
+		// 关闭
+		workbook.write();
+		workbook.close();
+		rw.close();
+		
+		return targetFile;
 	}
 	
 	public List<String[]> statReport(ReportParam reportParam) throws Exception {

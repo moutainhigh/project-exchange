@@ -369,17 +369,30 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 	}
 	
 	public List<String[]> statReport(ReportParam reportParam){
+		//表一二
 		ReportParam p1 = getCommonParam(reportParam);
 		p1.setName("12");
 		p1.setIs206("206");
-		List<String[]> list = statSubReport(p1);
+		List<String[]> list = statSubReport(p1, null, 0);
+		//表三
+		ReportParam p3 = getCommonParam(reportParam);
+		p3.setName("3");
+		p3.setIs206("206");
+		statSubReport(p3, list, 0);		
 		list.add(this.hejiSubReport("206", "小计", list));
+		//表一二
 		ReportParam p2 = getCommonParam(reportParam);
 		p2.setName("12");
 		p2.setIs206("not206");
-		List<String[]> tempList = statSubReport(p2);
+		List<String[]> tempList = statSubReport(p2, null, 0);
 		list.addAll(tempList);
+		//表三
+		ReportParam p4 = getCommonParam(reportParam);
+		p4.setName("3");
+		p4.setIs206("not206");
+		statSubReport(p4, list, 2);
 		list.add(this.hejiSubReport("not206", "小计", tempList));
+		//总合计
 		list.add(this.hejiSubReport(null, "总计", list));
 		return list;
 	}
@@ -393,7 +406,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		return p;
 	}
 	
-	private List<String[]> statSubReport(ReportParam reportParam){
+	private List<String[]> statSubReport(ReportParam reportParam, List<String[]> list, int startIndex){
 		StringBuffer sql = new StringBuffer();
 		sql.append("select ");
 		if ("206".equals(reportParam.getIs206()))
@@ -401,13 +414,13 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		else
 			sql.append("'非北部山区', ");
 		sql.append("a.name as '区（县）', ");
-		sql.append("(select count(f2.id)  ");
+		sql.append("(select sum(f2.id)  ");
 		sql.append("from fp_family f2  ");
 		sql.append("LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id ");
 		sql.append("where c2.id=c.id) as '贫困户数', ");
-		sql.append("c.poorPersonNum  as '贫困人口数', ");
+		sql.append("sum(c.poorPersonNum)  as '贫困人口数', ");
 		if ("3".equals(reportParam.getName())) {
-			sql.append("r.item1 as '规划投入资金（元）', ");
+			sql.append("sum(r.item1) as '规划投入资金（元）', ");
 			sql.append("sum(r.item2) as '已投入帮扶资金(元)', ");
 			sql.append("sum(r.item3) as '用于帮扶到户资金(元)', ");
 			sql.append("sum(r.item4) as '用于帮扶到村资金(元)', ");
@@ -520,26 +533,46 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		ResultSet rs = null;
 
 		try {
+			//统计表一二
 			List<String[]> rows = new ArrayList<String[]>();
+			if ("3".equals(reportParam.getName())){
+				rows = list;
+			}
 			s = this.getHibernateTemplate().getSessionFactory().openSession();
 			conn = s.connection();
 			// 获取数据
 			ps = conn.prepareStatement(sql.toString());
-			int colSize = ps.getMetaData().getColumnCount();
 			rs = ps.executeQuery();
-			int i=0;
 			while(rs.next()){
-				String[] row = new String[120];
 				if ("12".equals(reportParam.getName())){
+					String[] row = new String[120];
 					for(int j=0;j<2;j++)
 						row[j] = rs.getString(j+1);
-					for(int j=2;j<58;j++){
+					for(int j=2;j<=58;j++){
 						Double d = rs.getDouble(j + 1);
-						d = Math.floor(d);
 						row[j] = new BigDecimal(d).toPlainString();
+						int index = row[j].indexOf(".");
+						if(index > -1){
+							String num2 = row[j].substring(index+1);   
+							if(num2.length() > 2)
+							row[j] = row[j].substring(0, index + 3);
+						}
+					}
+					rows.add(row);
+				}else if ("3".equals(reportParam.getName())){
+					String[] row = rows.get(startIndex++);
+					int i = 5;
+					for(int j=100;j<109;j++){
+						Double d = rs.getDouble(i++);
+						row[j] = new BigDecimal(d).toPlainString();
+						int index = row[j].indexOf(".");
+						if(index > -1){
+							String num2 = row[j].substring(index+1);   
+							if(num2.length() > 2)
+							row[j] = row[j].substring(0, index + 3);
+						}
 					}
 				}
-				rows.add(row);
 			}
 			return rows;
 		} catch (Exception e) {
@@ -578,6 +611,27 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		return null;
 	}
 	
+	private boolean isIntNumber(String number){
+		if(number.indexOf("E") > -1 || number.indexOf("e") > -1)
+			return false;
+		int index = number.indexOf(".");
+		if(index < 0){
+				return true;
+		}else{
+			String num1 = number.substring(0,index);
+			String num2 = number.substring(index+1);   
+			long i = Long.valueOf(num2);
+			if(i == 0)
+				return true;
+		}
+		return false;
+	}
+	
+	private double round(double d){
+		int i = (int)(d * 100);
+		return new BigDecimal(i).divide(new BigDecimal(100.0)).doubleValue();
+	}
+	
 	private String[] hejiSubReport(String is206, String heji, List<String[]> list){
 		String[] arr = new String[120];
 		if ("206".equals(is206))
@@ -598,6 +652,12 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 					Double d = Double.valueOf(data[i]);
 					Double old = Double.valueOf(arr[i]);
 					arr[i] = new BigDecimal(d).add(new BigDecimal(old)).toPlainString();
+					int index = arr[i].indexOf(".");
+					if(index > -1){
+						String num2 = arr[i].substring(index+1);   
+						if(num2.length() > 2)
+						arr[i] = arr[i].substring(0, index + 3);
+					}
 				} catch (Exception e) {
 					//ignore
 				}
