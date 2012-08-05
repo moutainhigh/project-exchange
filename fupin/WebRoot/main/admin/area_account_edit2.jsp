@@ -94,6 +94,14 @@
 						</td>
 					</tr>
 					<tr>
+						<td height="30" align="right" class="tables_leftcell">
+							手机号码：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" datatype="Mobile" msg="手机格式不正确！" size="20" value="${areaWorkOrg.segment4 }" id="mobile" name="areaWorkOrg.segment4">
+						</td>
+					</tr>
+					<tr>
 						<td align="center" class="tables_contentcell" colspan="4">
 							<input type="submit" value="确认" class="button" name="确认">
 							<input type="button" onclick="self.close();" class="button" value="取消" name="取消">

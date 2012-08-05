@@ -117,6 +117,14 @@
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
+							手机号码：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" datatype="Mobile" msg="手机格式不正确！" size="20" value="${areaWorkOrg.segment3 }" id="mobile" name="areaWorkOrg.segment3">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
 							备注：
 						</td>
 						<td class="tables_contentcell">

@@ -170,6 +170,7 @@ public class AdminAction extends BaseAction {
 			if (areaOrg != null) {
 				areaOrg.setPassword2(areaWorkOrg.getPassword2());
 				areaOrg.setSegment2(areaWorkOrg.getSegment2());
+				areaOrg.setSegment4(areaWorkOrg.getSegment4());
 				areaWorkOrg = adminBiz.saveOrUpdateAreaWorkOrg(areaOrg);
 				this.setMsg("保存成功");
 				this.setSucc("Y");
