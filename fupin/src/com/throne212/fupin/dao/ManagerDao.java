@@ -55,4 +55,7 @@ public interface ManagerDao extends BaseDao {
 	public List<Family>  getAllFamily(Long areaId, Long zhenId, Long cunId);
 
 	public List<Family>  getAllFamily(String name, Long areaId, Long zhenId, Long cunId);
+	
+	//org list
+	public List getAllOrg(Long zhenId);
 }

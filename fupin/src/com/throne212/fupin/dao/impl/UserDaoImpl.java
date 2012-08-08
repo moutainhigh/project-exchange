@@ -72,6 +72,12 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
 	}
 
+	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaWorkOrgId) {
+		PageBean<ZhenWorkOrg> page = new PageBean<ZhenWorkOrg>();
+		String hql = "from ZhenWorkOrg  where areaWorkOrg.id=?  order by id desc";
+		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return s.createQuery(hql).setParameter(0, areaWorkOrgId).list();
+	}
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgList(int pageIndex, Long areaWorkOrgId) {
 
 		if (pageIndex == 0) {

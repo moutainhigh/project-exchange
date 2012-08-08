@@ -162,6 +162,14 @@
 					</tr>
 					<tr>
 						<td height="30" align="right" class="tables_leftcell">
+							手机号码：
+						</td>
+						<td class="tables_contentcell">
+							<input type="text" style="height: 22px;" require="false" size="20" value="${zhenWorkOrg.segment3 }" id="bz" name="zhenWorkOrg.segment3">
+						</td>
+					</tr>
+					<tr>
+						<td height="30" align="right" class="tables_leftcell">
 							备注：
 						</td>
 						<td class="tables_contentcell">

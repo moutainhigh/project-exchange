@@ -729,5 +729,10 @@ public class ManagerDaoImpl extends BaseDaoImpl implements ManagerDao{
 		List<Family> list = q.list();
 		return list;
 	}
+	
+	public List getAllOrg(Long zhenId){
+		String hql = "from Org o where o.cun.zhen.id=?";
+		return this.getHibernateTemplate().find(hql, zhenId);
+	}
 
 }

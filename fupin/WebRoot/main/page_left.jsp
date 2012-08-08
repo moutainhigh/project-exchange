@@ -242,6 +242,9 @@ function images_update(){
 	    menuArray[menuArray.length]="1,短信发送,${appPath}sms_getAllSMS.action";
 	    menuArray[menuArray.length]="1,通讯录组,${appPath}group_groupList.action";
 	    menuArray[menuArray.length]="1,通讯录,${appPath}contact_queryContact.action";
+	    <c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='扶贫工作组'}">
+	    menuArray[menuArray.length]="1,单位联系电话维护,${appPath}admin_edit.action";
+	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,批量短信,${appPath}sms_batchSMS.action";
 	    </c:if>

@@ -18,6 +18,7 @@ public interface OrgBiz extends BaseBiz {
 	public PageBean getAllCun(Zhen zhen,String name,Integer pageIndex);
 	
 	public List getAllOrg();
+	public List getAllOrg(Long zhenId);
 	
 	public void deleteFamily(Long familyId); 
 	
@@ -30,6 +31,7 @@ public interface OrgBiz extends BaseBiz {
 	
 	//干部
 	public PageBean getAllLeader(Org org,String name,Integer pageIndex);
+	public List getAllLeader(Org org);
 	public void deleteNonLeaderData();
 	
 	public String uploadFamilyData(String fileName) throws Exception;

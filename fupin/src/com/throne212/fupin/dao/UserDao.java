@@ -1,5 +1,7 @@
 package com.throne212.fupin.dao;
 
+import java.util.List;
+
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.ShiWorkOrg;
@@ -18,4 +20,5 @@ public interface UserDao extends BaseDao {
 	//镇级账号管理
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgList(int page,Long areaWorkOrgId);
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgList(int page);
+	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaWorkOrgId);
 }

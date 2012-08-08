@@ -124,6 +124,12 @@ public class User extends MyEntity implements Serializable {
 		}
 		return false;
 	}
+	
+	public String getIsWorkGroup() {
+		if(this instanceof AreaWorkOrg)
+			return ((AreaWorkOrg)this).getIsWorkGroup();
+		return null;
+	}
 
 	public String getLoginName() {
 		return loginName;

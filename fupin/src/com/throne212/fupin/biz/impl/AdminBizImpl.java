@@ -79,9 +79,12 @@ public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
 			pageIndex = page.intValue();
 		}
 		return userDao.getZhenWorkOrgList(pageIndex, areaWorkOrgId);
-		
-		
 	}
+	
+	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaWorkOrgId){
+		return userDao.getZhenWorkOrgList(areaWorkOrgId);
+	}
+	
 	public ZhenWorkOrg saveOrUpdateZhenWorkOrg(ZhenWorkOrg zhenWorkOrg){
 
 		if (zhenWorkOrg.getId() == null) {

@@ -296,6 +296,27 @@ public class AdminAction extends BaseAction {
 		return perList();
 	}
 	
+	//修改县级、镇级、扶贫组的电话
+	private String mobile;
+	public String edit(){
+		if(Util.isEmpty(mobile))
+			return "edit";
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			if("Y".equals(a.getIsWorkGroup())){
+				user.setSegment4(mobile);
+			}else{
+				user.setSegment3(mobile);
+			}
+		}else{
+			user.setSegment3(mobile);
+		}
+		adminBiz.saveOrUpdateEntity(user);
+		this.setMsg("保存成功");
+		return "edit";
+	}
+	
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
@@ -375,6 +396,14 @@ public class AdminAction extends BaseAction {
 
 	public void setChWorkOrg(AreaWorkOrg chWorkOrg) {
 		this.chWorkOrg = chWorkOrg;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 }

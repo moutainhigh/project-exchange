@@ -17,7 +17,6 @@ import jxl.write.WritableWorkbook;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.OrgBiz;
-import com.throne212.fupin.common.FamilyTypeStatDO;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
@@ -26,6 +25,7 @@ import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
+import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Person;
 import com.throne212.fupin.domain.User;
@@ -92,6 +92,10 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 			}
 		} 
 		return managerDao.getAll(Org.class);
+	}
+	
+	public List getAllOrg(Long zhenId){
+		return managerDao.getAllOrg(zhenId);
 	}
 
 	public PageBean getAllFamily(String name, Integer pageIndex) {
@@ -833,6 +837,10 @@ public class OrgBizImpl extends BaseBizImpl implements OrgBiz {
 				rw.close();
 		}
 		return null;
+	}
+	
+	public List getAllLeader(Org org){
+		return managerDao.getEntitiesByColumn(Leader.class, "org", org);
 	}
 
 	public void deleteNonLeaderData() {
