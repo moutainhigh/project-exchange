@@ -97,11 +97,18 @@ public class SMSAction extends BaseAction {
 	
 	private List<ContactGroup> gList;
 	public String batchSMS(){
+		if(ActionContext.getContext().getSession().get("gList") != null){
+			gList = (List<ContactGroup>) ActionContext.getContext().getSession().get("gList");
+			return "batch_sms";
+		}
+		long i = 0;
 		//市级
 		ContactGroup shiGroup = new ContactGroup();
+		shiGroup.setId(i++);
 		shiGroup.setGroupName("全广州市扶贫系统");
 		shiGroup.setShowTreeName("全广州市扶贫系统");
 		shiGroup.setUserName("全广州市扶贫系统");
+		shiGroup.setShowTreeName("全广州市扶贫系统");
 		shiGroup.setChilds(new ArrayList<ContactGroup>());
 		
 		//县级group
@@ -122,9 +129,10 @@ public class SMSAction extends BaseAction {
 			}
 			for(AreaWorkOrg a : newList){
 				ContactGroup xianGroup = new ContactGroup();
-				xianGroup.setGroupName(a.getOrgName());
-				xianGroup.setShowTreeName(a.getOrgName());
-				xianGroup.setUserName(a.getOrgName());
+				xianGroup.setId(i++);
+				xianGroup.setGroupName(a.getArea().getName());
+				xianGroup.setShowTreeName(a.getArea().getName());
+				xianGroup.setUserName(a.getArea().getName());
 				xianGroup.setParentGroup(shiGroup);
 				xianGroup.setIsLeaf(false);
 				shiGroup.getChilds().add(xianGroup);
@@ -149,9 +157,10 @@ public class SMSAction extends BaseAction {
 					c2.setTelNo(xianGroup.getSegment4());
 					xianGroup.getContactList().add(c2);
 				}
-				List<ZhenWorkOrg> zList = adminBiz.getZhenWorkOrgList(a.getId());
+				List<ZhenWorkOrg> zList = adminBiz.getZhenWorkOrgList(a.getArea().getId());
 				for(ZhenWorkOrg z : zList){
 					ContactGroup zhenGroup = new ContactGroup();
+					zhenGroup.setId(i++);
 					xianGroup.getChilds().add(zhenGroup);
 					zhenGroup.setGroupName(z.getOrgName());
 					zhenGroup.setShowTreeName(z.getOrgName());
@@ -176,6 +185,7 @@ public class SMSAction extends BaseAction {
 					List<Org> orgList = orgBiz.getAllOrg(z.getZhen().getId());
 					for(Org org : orgList){
 						ContactGroup orgGroup = new ContactGroup();
+						orgGroup.setId(i++);
 						zhenGroup.getChilds().add(orgGroup);
 						orgGroup.setGroupName(org.getOrgName());
 						orgGroup.setShowTreeName(org.getOrgName());
@@ -195,10 +205,26 @@ public class SMSAction extends BaseAction {
 				}
 			}
 		}
-		
+		gList = new ArrayList<ContactGroup>();
+		gList.add(shiGroup);
+		fillContactGroup(shiGroup, gList, 1);
+		ActionContext.getContext().getSession().put("gList", gList);
 		return "batch_sms";
 	}
-
+	
+	private void fillContactGroup(ContactGroup g, List<ContactGroup> list, int level){
+		if(g.getChilds() == null || g.getChilds().size() == 0)
+			return;
+		String blank = "";
+		for (int i = 0; i < level; i++)
+			blank += "&nbsp;&nbsp;";
+		for(ContactGroup cg : g.getChilds()){
+			cg.setShowTreeName(blank + cg.getGroupName());
+			list.add(cg);
+			fillContactGroup(cg, list, level+1);
+		}
+	}
+	
 	public String sendMessage() {
 		return "mes_send";
 	}

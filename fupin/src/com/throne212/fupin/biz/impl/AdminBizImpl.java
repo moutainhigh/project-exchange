@@ -81,8 +81,8 @@ public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
 		return userDao.getZhenWorkOrgList(pageIndex, areaWorkOrgId);
 	}
 	
-	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaWorkOrgId){
-		return userDao.getZhenWorkOrgList(areaWorkOrgId);
+	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaId){
+		return userDao.getZhenWorkOrgList(areaId);
 	}
 	
 	public ZhenWorkOrg saveOrUpdateZhenWorkOrg(ZhenWorkOrg zhenWorkOrg){

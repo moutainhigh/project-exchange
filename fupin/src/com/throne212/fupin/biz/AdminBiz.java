@@ -22,7 +22,7 @@ public interface AdminBiz extends BaseBiz {
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgBean(Integer page,Long areaWorkOrgId);
 	public ZhenWorkOrg saveOrUpdateZhenWorkOrg(ZhenWorkOrg zhenWorkOrg);
 	public PageBean<ZhenWorkOrg> getZhenWorkOrgBean(Integer page);
-	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaWorkOrgId);
+	public List<ZhenWorkOrg> getZhenWorkOrgList(Long areaId);
 	
 	//根据拼音找村
 	public List<Cun> getCunListByLike(String pinyin);

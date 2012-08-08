@@ -8,11 +8,11 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 	for(ContactGroup g:gList){
 		sb.append("<option value=\"g_"+g.getId()+"\">"+g.getShowTreeName()+"</option>");
 		//所属的通讯录
-		if(g.getContactList()!=null && g.getContactList().size()>0){
-			for(Contact c : g.getContactList()){
-				sb.append("<option value=\"c_"+c.getId()+"\">&nbsp;&nbsp;&nbsp;&nbsp;"+c.getContactName()+"("+c.getTelNo()+")"+"</option>");
-			}
-		}
+		//if(g.getContactList()!=null && g.getContactList().size()>0){
+		//	for(Contact c : g.getContactList()){
+		//		//sb.append("<option value=\"c_"+c.getId()+"\">&nbsp;&nbsp;&nbsp;&nbsp;"+c.getContactName()+"("+c.getTelNo()+")"+"</option>");
+		//	}
+		//}
 	}
 	//System.out.println(sb.toString());
 	return sb.toString();
@@ -76,7 +76,7 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 			function getContactOptionsByGroup(val){
 				var gid = val.substring(2);
 				var choosedObj=$("#choosedIds option");
-				$.getJSON("${appPath}ajax/getContactsByGroup?time="+new Date().getTime(), {'gId':gid}, function(json){
+				$.getJSON("${appPath}ajax/getContactsByGroup2?time="+new Date().getTime(), {'gId':gid}, function(json){
 					if(json && json['list'] && json['list'].length){
 						for(var i=0;i<json['list'].length;i++){
 							optionsValue="c_"+json['list'][i]['id'];
@@ -113,7 +113,7 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 				 }
 				//alert(choosedIds);
 				
-				$.getJSON("${appPath}ajax/getSelectedContacts?time="+new Date().getTime(), {'choosedIds':choosedIds}, function(json){
+				$.getJSON("${appPath}ajax/getSelectedContacts2?time="+new Date().getTime(), {'choosedIds':choosedIds}, function(json){
 						//alert(json['telNo']);
 						if(json && json['telNo']){
 							var telNo=json['telNo'];
@@ -146,7 +146,7 @@ private String getChildGroupOptionHtml(List<ContactGroup> gList){
 	<tbody>
 	<tr>
 		<td height="25" align="center" class="tables_contentcell">
-			<h4>通讯录(按住Ctrl键可进行多选)</h4>
+			<h4>双击选取整组人员</h4>
 		</td>
 		<td align="center" class="tables_contentcell">
 			&nbsp;

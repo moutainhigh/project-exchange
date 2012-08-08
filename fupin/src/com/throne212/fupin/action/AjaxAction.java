@@ -491,6 +491,20 @@ public class AjaxAction extends BaseAction {
 		list = contactBiz.getContactsInGroup(gId);
 		return "contacts_in_group";
 	}
+	
+	public String getContactsByGroup2(){
+		List<ContactGroup> gList = (List<ContactGroup>) ActionContext.getContext().getSession().get("gList");
+		list = getGroupFromList(gList);
+		return "contacts_in_group";
+	}
+	
+	private List<Contact> getGroupFromList(List<ContactGroup> gList){
+		for(ContactGroup g : gList){
+			if(g.getId() == gId)
+				return g.getContactList();
+		}
+		return null;
+	}
 
 	private Long cunId;
 
