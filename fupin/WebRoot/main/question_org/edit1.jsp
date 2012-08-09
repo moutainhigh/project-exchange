@@ -14,7 +14,7 @@
 			function submitForm(){
 				var inputArr = $('input[type="text"]');
 				for(var i=0; i<inputArr.length; i++){
-					if($(inputArr[i]).val().trim() == ''){
+					if($(inputArr[i]).val().replace(/\s/ig,'') == ''){
 						alert('不能留空，请检查');
 						return false;
 					}
