@@ -20,10 +20,10 @@
 				document.forms[0].submit();
 			}
 			$(function(){
-				$("tr:contains('是'):contains('否') td input").blur(function(){
+				$("tr:contains('1.'):contains('2.'):contains('3.') td input").blur(function(){
 				    var val = $(this).val();
-				    if(val != '' && val != 1 && val != 2){
-				        alert('该值只能是1或2');
+				    if(val != '' && val != 1 && val != 2 && val != 3 && val != 4){
+				        alert('该值只能是1、2、3或4');
 				        $(this).val('');
 				        $(this).focus();
 				    }
@@ -815,9 +815,6 @@ rt
 		<div style="text-align: center;">
 		<c:if test="${empty q2.status || q2.status == 0}">
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
-		</c:if>
-		<c:if test="${q2.status == 1}">
-		<input type="button" class="button" value="申请修改" name="申请修改" onclick="javascript:self.location.href = '${appPath}questionOrg.unlock2.action?id=${q2.id}'">
 		</c:if>
 		</div>
 	</form>

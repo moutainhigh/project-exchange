@@ -91,12 +91,11 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp;
-								<c:if test="${empty f.q2.status || f.q2.status == 0}">
-								<a href="javascript:void(0);" onclick="winOpen('${appPath}questionOrg_edit2.action?q2.family.id=${f.id}&year=${param.year }',800,600);">编辑</a>
-								</c:if>
+								<a href="javascript:void(0);" onclick="winOpen('${appPath}questionOrg_edit2.action?q2.family.id=${f.id}&year=${param.year }',800,600);">编辑/查看</a>
 								<c:if test="${f.q2.status == 1}">
-								<a href="${appPath}questionOrg_unlock2.action?id=${f.q2.id }">申请修改</a>
+								<a href="${appPath}questionOrg_unlock2.action?id=${f.q2.id }&year=${param.year }">申请修改</a>
 								</c:if>
+								<c:if test="${f.q2.status == 2}">&nbsp;(申请解锁中)</c:if>
 							</td>
 						</tr>
 					</c:forEach>
