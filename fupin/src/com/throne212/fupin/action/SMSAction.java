@@ -1,6 +1,7 @@
 package com.throne212.fupin.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,18 +14,20 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.BatchSMS;
 import com.throne212.fupin.domain.Contact;
 import com.throne212.fupin.domain.ContactGroup;
 import com.throne212.fupin.domain.Leader;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.SMS;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.UserContact;
 import com.throne212.fupin.domain.WorkTeam;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
 public class SMSAction extends BaseAction {
 
-	private PageBean<SMS> pageBean;
+	private PageBean pageBean;
 	private MessageBiz messageBiz;
 	private Integer pageIndex;
 	private SMS sms;
@@ -97,6 +100,9 @@ public class SMSAction extends BaseAction {
 	
 	private List<ContactGroup> gList;
 	public String batchSMS(){
+		if(1 == 1)
+			return "batch_sms";
+		
 		if(ActionContext.getContext().getSession().get("gList") != null){
 			gList = (List<ContactGroup>) ActionContext.getContext().getSession().get("gList");
 			return "batch_sms";
@@ -225,15 +231,90 @@ public class SMSAction extends BaseAction {
 		}
 	}
 	
+	
+	private String receiver;
+	private String content;
+	public String sendBatchSMS(){
+		if(Util.isEmpty(receiver) || Util.isEmpty(content)){
+			this.setMsg("请输入完整信息和选择接收人信息");
+			return "batch_sms";
+		}
+		if (content.length()>120){
+			this.setMsg("短信内容过长，请注意不要超过120个汉字");
+			return "batch_sms";
+		}
+		
+//		try {
+//			Thread.sleep(10000);
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		int sum = 0;
+		String[] reArr = receiver.split(",");
+		for (String s : reArr) {
+			String mobile = null;
+			if(s.contains("user_")){
+				String[] arr = s.split("_");
+				Long id = Long.parseLong(arr[arr.length - 1]);
+				UserContact c = adminBiz.getEntityById(UserContact.class, id);
+				if(c != null)
+					mobile = c.getMobile();
+			}
+			if(s.contains("leader_")){
+				Leader leader = adminBiz.getEntityById(Leader.class, Long.parseLong(s.split("_")[1]));
+				if(leader != null)
+					mobile = leader.getTel();
+			}
+			if(mobile == null)
+				continue;
+			logger.info("正在发送短信给：" + mobile);
+			int rst = -1;
+			try {
+				rst = Util.sendMessage(mobile, content, user.getLoginName(), user.getId().intValue());//0为成功
+				if(rst == 0){
+					sum++;
+					logger.info("成功发送短信给：" + mobile);
+				}else if(rst == -108){
+					logger.warn("发送短信失败,短息服务连接失败");
+					break;
+				}else{
+					//ignore
+				}
+			} catch (Exception e) {
+				logger.warn("发送短信失败", e);
+				break;
+			}
+		}
+		if(sum == 0){
+			this.setMsg("短信发送失败，请检查与短信服务器之间的连接");
+		}else{
+			this.setMsg("成功发送短信"+sum+"条");
+			BatchSMS s = new BatchSMS();
+			s.setContent(content);
+			s.setDate(new Date());
+			s.setReceiver(receiver);
+			adminBiz.saveOrUpdateEntity(s);
+		}		
+		return "batch_sms";
+	}
+	
+	public String batchList(){
+		pageBean = messageBiz.getAllBatchSMS(pageIndex);
+		return "batch_list";
+	}
+	
 	public String sendMessage() {
 		return "mes_send";
 	}
 
-	public PageBean<SMS> getPageBean() {
+	public PageBean getPageBean() {
 		return pageBean;
 	}
 
-	public void setPageBean(PageBean<SMS> pageBean) {
+	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
 
@@ -283,6 +364,22 @@ public class SMSAction extends BaseAction {
 
 	public void setOrgBiz(OrgBiz orgBiz) {
 		this.orgBiz = orgBiz;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }

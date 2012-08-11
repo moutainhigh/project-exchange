@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="BatchSMS" table="fp_sms_batch">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="content"></property>
+		<property name="date" column="send_date"></property>
+		<property name="receiver"></property>
+	</class>
+</hibernate-mapping>

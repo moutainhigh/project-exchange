@@ -233,6 +233,7 @@ var msg = '${msg}';
 	<tbody><tr align="center">
 		<td height="28" width="6%" class="tables_headercell">
 		<input type="checkbox" onclick="checkAll(this);">
+		</td>
 		<td width="5%" class="tables_headercell">编号</td>
 		<td width="5%" class="tables_headercell">时间</td>
 		<td class="tables_headercell">贫困村名</td>

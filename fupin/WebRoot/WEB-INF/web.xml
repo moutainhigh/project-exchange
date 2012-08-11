@@ -48,6 +48,16 @@
 		<servlet-name>RandServlet</servlet-name>
 		<url-pattern>/rand.servlet</url-pattern>
 	</servlet-mapping>
+	
+	<!-- tree -->
+	<servlet>
+		<servlet-name>TreeServlet</servlet-name>
+		<servlet-class>com.throne212.fupin.servlet.TreeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TreeServlet</servlet-name>
+		<url-pattern>/tree.servlet</url-pattern>
+	</servlet-mapping>
     
 	<!-- welcome page -->
 	<welcome-file-list>

@@ -8,6 +8,7 @@ import com.throne212.fupin.biz.MessageBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.dao.MessageDao;
 import com.throne212.fupin.domain.AreaWorkOrg;
+import com.throne212.fupin.domain.BatchSMS;
 import com.throne212.fupin.domain.Message;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.SMS;
@@ -111,5 +112,9 @@ public class MessageBizImpl extends BaseBizImpl implements MessageBiz {
 			}
 		}
 		return map;
+	}
+	
+	public PageBean<BatchSMS> getAllBatchSMS(Integer pageIndex){
+		return messageDao.getAllBatchSMS(pageIndex);
 	}
 }

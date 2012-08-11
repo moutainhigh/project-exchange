@@ -243,10 +243,11 @@ function images_update(){
 	    menuArray[menuArray.length]="1,通讯录组,${appPath}group_groupList.action";
 	    menuArray[menuArray.length]="1,通讯录,${appPath}contact_queryContact.action";
 	    <c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='扶贫工作组'}">
-	    menuArray[menuArray.length]="1,单位联系电话维护,${appPath}admin_edit.action";
+	    menuArray[menuArray.length]="1,单位联系电话维护,${appPath}admin_userContacts.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    menuArray[menuArray.length]="1,批量短信,${appPath}sms_batchSMS.action";
+	    menuArray[menuArray.length]="1,批量短信发送记录,${appPath}sms_batchList.action";
 	    </c:if>
 	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
 	    

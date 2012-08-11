@@ -15,6 +15,7 @@ import com.throne212.fupin.domain.Permission;
 import com.throne212.fupin.domain.Shi;
 import com.throne212.fupin.domain.ShiWorkOrg;
 import com.throne212.fupin.domain.User;
+import com.throne212.fupin.domain.UserContact;
 import com.throne212.fupin.domain.Zhen;
 import com.throne212.fupin.domain.ZhenWorkOrg;
 
@@ -297,23 +298,55 @@ public class AdminAction extends BaseAction {
 	}
 	
 	//修改县级、镇级、扶贫组的电话
-	private String mobile;
-	public String edit(){
-		if(Util.isEmpty(mobile))
-			return "edit";
+	private List<UserContact> userContactList;
+	public String userContacts(){
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		userContactList = adminBiz.getEntitiesByColumn(UserContact.class, "user.id", user.getId());
+		if(user instanceof AreaWorkOrg){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			List<UserContact> list = new ArrayList<UserContact>();
+			if("Y".equals(a.getIsWorkGroup())){
+				for(UserContact uc : userContactList){
+					if("Y".equals(uc.getIsGroup())){
+						list.add(uc);
+					}
+				}
+			}else{
+				for(UserContact uc : userContactList){
+					if(!"Y".equals(uc.getIsGroup())){
+						list.add(uc);
+					}
+				}
+			}
+			userContactList = list;
+		}
+		return "user_contact";
+	}
+	
+	private String name;
+	private String mobile;
+	private UserContact userContact;
+	public String edit(){
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(userContact != null && userContact.getId() != null){
+			userContact = adminBiz.getEntityById(UserContact.class, userContact.getId());
+		}else{
+			userContact = new UserContact();
+		}
+		if(Util.isEmpty(mobile) || Util.isEmpty(name))
+			return "edit";
+		userContact.setMobile(mobile);
+		userContact.setName(name);
+		userContact.setUser(user);
 		if(user instanceof AreaWorkOrg){
 			AreaWorkOrg a = (AreaWorkOrg) user;
 			if("Y".equals(a.getIsWorkGroup())){
-				user.setSegment4(mobile);
-			}else{
-				user.setSegment3(mobile);
+				userContact.setIsGroup("Y");
 			}
-		}else{
-			user.setSegment3(mobile);
 		}
-		adminBiz.saveOrUpdateEntity(user);
+		adminBiz.saveOrUpdateEntity(userContact);
 		this.setMsg("保存成功");
+		this.setSucc("Y");
 		return "edit";
 	}
 	
@@ -404,6 +437,30 @@ public class AdminAction extends BaseAction {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public List<UserContact> getUserContactList() {
+		return userContactList;
+	}
+
+	public void setUserContactList(List<UserContact> userContactList) {
+		this.userContactList = userContactList;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public UserContact getUserContact() {
+		return userContact;
+	}
+
+	public void setUserContact(UserContact userContact) {
+		this.userContact = userContact;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.throne212.fupin.biz;
 import java.util.Map;
 
 import com.throne212.fupin.common.PageBean;
+import com.throne212.fupin.domain.BatchSMS;
 import com.throne212.fupin.domain.Message;
 import com.throne212.fupin.domain.SMS;
 
@@ -18,4 +19,7 @@ public interface MessageBiz extends BaseBiz {
 	//sms
 	public PageBean<SMS> getAllSMS(Integer pageIndex,String loginName);
 	public boolean sendSMS(String tel,String content);
+	
+	//batch
+	public PageBean<BatchSMS> getAllBatchSMS(Integer pageIndex);
 }

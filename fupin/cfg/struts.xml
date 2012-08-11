@@ -110,6 +110,7 @@
 			<result name="per_list">/main/admin/per_list.jsp</result>
 			<result name="per_edit">/main/admin/per_edit.jsp</result>
 			<result name="edit">/main/admin/user_edit.jsp</result>
+			<result name="user_contact">/main/admin/user_contact_list.jsp</result>
 		</action>
 		<!-- 工作组 -->
 		<action name="team_*" method="{1}" class="com.throne212.fupin.action.TeamAction">
@@ -264,7 +265,8 @@
 		<action name="sms_*" method="{1}" class="com.throne212.fupin.action.SMSAction">
 			<result name="sms_edit">/main/sms/edit.jsp</result>
 			<result name="sms_list">/main/sms/list.jsp</result>
-			<result name="batch_sms">/main/sms/batch_sms.jsp</result>
+			<result name="batch_sms">/main/sms/batch_sms3.jsp</result>
+			<result name="batch_list">/main/sms/batch_list.jsp</result>
 		</action>
 		<!-- 论坛交流 -->
 		<action name="dis_*" method="{1}" class="com.throne212.fupin.action.DiscussAction">
