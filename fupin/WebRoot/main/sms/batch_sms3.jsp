@@ -27,13 +27,27 @@
 			myScript.defer=true;				//程序下载完后再进行解析和执行
 			theHead.appendChild(myScript);		//把dom挂载到头部
 			
+			//alert('we1');
 			if (!0) { //if not IE
 		        //Firefox2、Firefox3、Safari3.1+、Opera9.6+ support js.onload
-		        myScript.onload = function () {
-		            //alert('Firefox2、Firefox3、Safari3.1+、Opera9.6+ support myScript.onload');
-		            init();
-		        }
+		        //alert('we2');
+		        if(myScript.onload){
+			        myScript.onload = function () {
+			            //alert('Firefox2、Firefox3、Safari3.1+、Opera9.6+ support myScript.onload');
+			            //alert('we3');
+			            init();
+			        }
+			    }else{
+			    	//alert('we4');
+			    	myScript.onreadystatechange = function () {
+			            if (myScript.readyState == 'loaded' || myScript.readyState == 'complete') {
+			                //alert('IE6、IE7 support myScript.onreadystatechange');
+			                init();
+			            }
+			        }
+			    }
 		    } else {
+		    	//alert('we');
 		        //IE6、IE7 support myScript.onreadystatechange
 		        myScript.onreadystatechange = function () {
 		            if (myScript.readyState == 'loaded' || myScript.readyState == 'complete') {
@@ -42,9 +56,13 @@
 		            }
 		        }
 		    }
+		    //init();
         });
         function init(){
+        	//alert('we5');
         	$("h3").hide();
+        	$("#tree").html("");
+        	//alert('we6');
         	var o = {
                 showcheck: true,          
                 //url: "http://jscs.cloudapp.net/ControlsSample/GetChildData" 
@@ -100,6 +118,7 @@
 						</td>
 						<td align="right">
 						&nbsp;
+						<input type="button" onclick="init();" class="button" value="重新加载联系人"/>
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -117,8 +136,8 @@
 	</tr>
 	<tr>
 	<tr>
-		<td height="500" width="50%" align="left" class="tables_contentcell">
-    <div style="border-bottom: #c3daf9 1px solid; border-left: #c3daf9 1px solid; width: 350px; height: 500px; overflow: auto; border-top: #c3daf9 1px solid; border-right: #c3daf9 1px solid;">
+		<td height="350" width="50%" align="left" class="tables_contentcell">
+    <div style="border-bottom: #c3daf9 1px solid; border-left: #c3daf9 1px solid; width: 350px; height: 350px; overflow: auto; border-top: #c3daf9 1px solid; border-right: #c3daf9 1px solid;">
     <h3>联系人加载中。。。</h3>
         <div id="tree">
             

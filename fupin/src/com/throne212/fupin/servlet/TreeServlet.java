@@ -56,20 +56,19 @@ public class TreeServlet extends HttpServlet {
 		response.setContentType("text/xml;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-
-		out.print(buildRst());
+		if(treeStr != null){
+			if(System.currentTimeMillis() - time < 30 * 60 * 1000){
+				out.print(treeStr);
+			}
+		}else{
+			out.print(buildRst());
+		}
 		out.flush();
 		out.close();
 
 	}
 	
 	private String buildRst(){
-		
-		if(treeStr != null){
-			if(System.currentTimeMillis() - time < 30 * 60 * 1000){
-				return treeStr;
-			}
-		}
 		
 		//广州市
 		TreeNode t = new TreeNode();
