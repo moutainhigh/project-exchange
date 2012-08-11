@@ -33,13 +33,13 @@ import com.throne212.fupin.domain.ZhenWorkOrg;
 public class TreeServlet extends HttpServlet {
 
 	private static FrontBiz frontBiz;
-	
+
 	private static AdminBiz adminBiz;
-	
+
 	private static OrgBiz orgBiz;
-	
+
 	private static String treeStr;
-	
+
 	private static long time;
 
 	@Override
@@ -51,36 +51,41 @@ public class TreeServlet extends HttpServlet {
 			adminBiz = (AdminBiz) ac.getBean("adminBiz");
 			orgBiz = (OrgBiz) ac.getBean("orgBiz");
 		}
-		
+
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/xml;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		if(treeStr != null){
-			if(System.currentTimeMillis() - time < 30 * 60 * 1000){
-				out.print(treeStr);
-			}
-		}else{
+		String reload = request.getParameter("reload");
+		if (treeStr != null && "Y".equals(reload)) {
+			// if(System.currentTimeMillis() - time < 30 * 60 * 1000){
+			// out.print(treeStr);
+			// }
+			out.print(treeStr);
+		} else {
 			out.print(buildRst());
 		}
+
+		out.print("\n\r\ninit();");
+
 		out.flush();
 		out.close();
 
 	}
-	
-	private String buildRst(){
-		
-		//广州市
+
+	private String buildRst() {
+
+		// 广州市
 		TreeNode t = new TreeNode();
 		t.setText("广州市");
 		t.setValue("shi");
 		t.setId("shi");
 		t.setHasChildren(true);
 		t.setIsexpand(true);
-		
-		//区县
+
+		// 区县
 		PageBean bean = adminBiz.getAreaWorkOrgBean(1);
-		if(bean != null && bean.getResultList() != null && bean.getResultList().size() > 0){
+		if (bean != null && bean.getResultList() != null && bean.getResultList().size() > 0) {
 			List<AreaWorkOrg> newList = new ArrayList<AreaWorkOrg>();
 			List<String> needList = new ArrayList<String>();
 			needList.add("nsqfpb_admin");
@@ -88,13 +93,13 @@ public class TreeServlet extends HttpServlet {
 			needList.add("lgqfpb_admin");
 			needList.add("chfpb_admin");
 			needList.add("baiyun");
-			for(Object o : bean.getResultList()){
+			for (Object o : bean.getResultList()) {
 				AreaWorkOrg areaWorkOrg = (AreaWorkOrg) o;
-				if(needList.contains(areaWorkOrg.getLoginName())){
+				if (needList.contains(areaWorkOrg.getLoginName())) {
 					newList.add(areaWorkOrg);
 				}
 			}
-			for(AreaWorkOrg a : newList){//区县数据
+			for (AreaWorkOrg a : newList) {// 区县数据
 				Area area = a.getArea();
 				TreeNode at = new TreeNode();
 				at.setText(area.getName());
@@ -103,52 +108,52 @@ public class TreeServlet extends HttpServlet {
 				at.setHasChildren(true);
 				at.setIsexpand(false);
 				t.getChildNodes().add(at);
-				
-				//扶贫办
+
+				// 扶贫办
 				List<UserContact> aContacts = adminBiz.getEntitiesByColumn(UserContact.class, "user.id", a.getId());
 				TreeNode at2 = new TreeNode();
 				at2.setText(area.getName() + "扶贫办");
-				at2.setValue("area_"+area.getId()+"_fpb_" + area.getId());
-				at2.setId("area_"+area.getId()+"_fpb_" + area.getId());
+				at2.setValue("area_" + area.getId() + "_fpb_" + area.getId());
+				at2.setId("area_" + area.getId() + "_fpb_" + area.getId());
 				at2.setHasChildren(true);
 				at2.setIsexpand(false);
 				at.getChildNodes().add(at2);
-				for(UserContact uc : aContacts){
-					if("Y".equals(uc.getIsGroup()))
+				for (UserContact uc : aContacts) {
+					if ("Y".equals(uc.getIsGroup()))
 						continue;
 					TreeNode ut = new TreeNode();
 					ut.setText(uc.getName());
-					ut.setValue("area_"+area.getId()+"_fpb_user_" + uc.getId());
-					ut.setId("area_"+area.getId()+"_fpb_user_" + uc.getId());
+					ut.setValue("area_" + area.getId() + "_fpb_user_" + uc.getId());
+					ut.setId("area_" + area.getId() + "_fpb_user_" + uc.getId());
 					ut.setHasChildren(false);
 					ut.setIsexpand(false);
 					at2.getChildNodes().add(ut);
 				}
-				
-				//扶贫工作队
-				if(area.getName().equals("增城市") || area.getName().equals("从化市")){
+
+				// 扶贫工作队
+				if (area.getName().equals("增城市") || area.getName().equals("从化市")) {
 					TreeNode at3 = new TreeNode();
 					at3.setText(area.getName() + "扶贫工作队");
-					at3.setValue("area_"+area.getId()+"_fpd_" + area.getId());
-					at3.setId("area_"+area.getId()+"_fpd_" + area.getId());
+					at3.setValue("area_" + area.getId() + "_fpd_" + area.getId());
+					at3.setId("area_" + area.getId() + "_fpd_" + area.getId());
 					at3.setHasChildren(true);
 					at3.setIsexpand(false);
 					at.getChildNodes().add(at3);
 					aContacts = adminBiz.getEntitiesByTwoColumn(UserContact.class, "user.id", a.getId(), "isGroup", "Y");
-					for(UserContact uc : aContacts){
+					for (UserContact uc : aContacts) {
 						TreeNode ut = new TreeNode();
 						ut.setText(uc.getName());
-						ut.setValue("area_"+area.getId()+"_fpd_user_" + uc.getId());
-						ut.setId("area_"+area.getId()+"_fpd_user_" + uc.getId());
+						ut.setValue("area_" + area.getId() + "_fpd_user_" + uc.getId());
+						ut.setId("area_" + area.getId() + "_fpd_user_" + uc.getId());
 						ut.setHasChildren(false);
 						ut.setIsexpand(false);
 						at3.getChildNodes().add(ut);
 					}
 				}
-				
-				//镇
+
+				// 镇
 				List<ZhenWorkOrg> zList = adminBiz.getZhenWorkOrgList(a.getArea().getId());
-				for(ZhenWorkOrg z : zList){
+				for (ZhenWorkOrg z : zList) {
 					Zhen zhen = z.getZhen();
 					TreeNode zt = new TreeNode();
 					zt.setText(zhen.getName());
@@ -157,10 +162,10 @@ public class TreeServlet extends HttpServlet {
 					zt.setHasChildren(true);
 					zt.setIsexpand(false);
 					at.getChildNodes().add(zt);
-					
-					//镇扶贫组
+
+					// 镇扶贫组
 					WorkTeam team = adminBiz.getEntityByUnique(WorkTeam.class, "zhen.id", zhen.getId());
-					if(team != null){
+					if (team != null) {
 						TreeNode zt2 = new TreeNode();
 						zt2.setText(zhen.getName() + "扶贫工作组");
 						zt2.setValue("zhen_gzz_" + zhen.getId());
@@ -169,7 +174,7 @@ public class TreeServlet extends HttpServlet {
 						zt2.setIsexpand(false);
 						zt.getChildNodes().add(zt2);
 						aContacts = adminBiz.getEntitiesByColumn(UserContact.class, "user.id", z.getId());
-						for(UserContact uc : aContacts){
+						for (UserContact uc : aContacts) {
 							TreeNode ut = new TreeNode();
 							ut.setText(uc.getName());
 							ut.setValue("zhen_gzz_user_" + uc.getId());
@@ -179,8 +184,8 @@ public class TreeServlet extends HttpServlet {
 							zt2.getChildNodes().add(ut);
 						}
 					}
-					
-					//扶贫办
+
+					// 扶贫办
 					TreeNode zt3 = new TreeNode();
 					zt3.setText(zhen.getName() + "扶贫办");
 					zt3.setValue("zhen_fpb_" + zhen.getId());
@@ -189,7 +194,7 @@ public class TreeServlet extends HttpServlet {
 					zt3.setIsexpand(false);
 					zt.getChildNodes().add(zt3);
 					aContacts = adminBiz.getEntitiesByColumn(UserContact.class, "user.id", z.getId());
-					for(UserContact uc : aContacts){
+					for (UserContact uc : aContacts) {
 						TreeNode ut = new TreeNode();
 						ut.setText(uc.getName());
 						ut.setValue("zhen_fpb_user_" + uc.getId());
@@ -198,21 +203,21 @@ public class TreeServlet extends HttpServlet {
 						ut.setIsexpand(false);
 						zt3.getChildNodes().add(ut);
 					}
-					
-					//村
+
+					// 村
 					List<Org> orgList = orgBiz.getAllOrg(z.getZhen().getId());
-					for(Org org : orgList){
+					for (Org org : orgList) {
 						Cun cun = org.getCun();
 						TreeNode ct = new TreeNode();
-						ct.setText(cun.getName() + "("+org.getOrgName()+")");
+						ct.setText(cun.getName() + "(" + org.getOrgName() + ")");
 						ct.setValue("cun_" + cun.getId());
 						ct.setId("cun_" + cun.getId());
 						ct.setHasChildren(true);
 						ct.setIsexpand(false);
 						zt.getChildNodes().add(ct);
-						
+
 						List<Leader> leaderList = orgBiz.getAllLeader(org);
-						for(Leader l : leaderList){
+						for (Leader l : leaderList) {
 							TreeNode lt = new TreeNode();
 							lt.setText(l.getLeaderName());
 							lt.setValue("leader_" + l.getId());
@@ -223,21 +228,21 @@ public class TreeServlet extends HttpServlet {
 						}
 					}
 				}
-				
+
 			}
 		}
-		
+
 		JSONObject shiObj = JSONObject.fromObject(t);
 		JSONArray arr = new JSONArray();
 		arr.add(shiObj);
-		
+
 		String rst = "var treedata = " + arr.toString();
-		
+
 		rst = rst.replaceAll("childNodes", "ChildNodes");
-		
+
 		time = System.currentTimeMillis();
 		treeStr = rst;
-		
+
 		return rst;
 	}
 }

@@ -17,79 +17,27 @@
         	var msg = '${msg}';
         	if(msg != '')
         		alert(msg);
-        
-        	//得到html的头部dom
-			var theHead = document.getElementsByTagName('head').item(0); 
-			//创建脚本的dom对象实例
-			var myScript = document.createElement('script'); 
-			myScript.src='${appPath}tree.servlet?time=<%=System.currentTimeMillis()%>';			//指定脚本路径
-			myScript.type='text/javascript';	//指定脚本类型
-			myScript.defer=true;				//程序下载完后再进行解析和执行
-			theHead.appendChild(myScript);		//把dom挂载到头部
-			
-			//alert('we1');
-			if (!0) { //if not IE
-		        //Firefox2、Firefox3、Safari3.1+、Opera9.6+ support js.onload
-		        //alert('we2');
-		        if(myScript.onload){
-			        myScript.onload = function () {
-			            //alert('Firefox2、Firefox3、Safari3.1+、Opera9.6+ support myScript.onload');
-			            //alert('we3');
-			            init();
-			        }
-			    }else{
-			    	//alert('we4');
-			    	myScript.onreadystatechange = function () {
-			            if (myScript.readyState == 'loaded' || myScript.readyState == 'complete') {
-			                //alert('IE6、IE7 support myScript.onreadystatechange');
-			                init();
-			            }
-			        }
-			    }
-		    } else {
-		    	//alert('we');
-		        //IE6、IE7 support myScript.onreadystatechange
-		        myScript.onreadystatechange = function () {
-		            if (myScript.readyState == 'loaded' || myScript.readyState == 'complete') {
-		                //alert('IE6、IE7 support myScript.onreadystatechange');
-		                init();
-		            }
-		        }
-		    }
-		    //init();
+        	
+        		//得到html的头部dom
+				var theHead = document.getElementsByTagName('head').item(0); 
+				//创建脚本的dom对象实例
+				var myScript = document.createElement('script'); 
+				myScript.src='${appPath}tree.servlet?reload=${param.reload}';			//指定脚本路径
+				myScript.type='text/javascript';	//指定脚本类型
+				myScript.defer=true;				//程序下载完后再进行解析和执行
+				theHead.appendChild(myScript);		//把dom挂载到头部
+        	
         });
         function init(){
-        	//alert('we5');
         	$("h3").hide();
-        	$("#tree").html("");
-        	//alert('we6');
         	var o = {
                 showcheck: true,          
-                //url: "http://jscs.cloudapp.net/ControlsSample/GetChildData" 
-                theme: "bbit-tree-lines", //bbit-tree-lines ,bbit-tree-no-lines,bbit-tree-arrows
+                theme: "bbit-tree-lines", 
                 showcheck: true,
-                theme: "bbit-tree-arrows" //bbit-tree-lines ,bbit-tree-no-lines,bbit-tree-arrows
-                //onnodeclick:function(item){alert(item.text);}
+                theme: "bbit-tree-arrows"
             };
             o.data = treedata;
             $("#tree").treeview(o);
-            $("#showchecked").click(function(e){
-                var s=$("#tree").getTSVs();
-                if(s !=null)
-                alert(s.join(","));
-                else
-                alert("NULL");
-            });
-             $("#showcurrent").click(function(e){
-                var s=$("#tree").getTCT();
-                if(s !=null)
-                    alert(s.text);
-                else
-                    alert("NULL");
-             });
-             //$(".bbit-tree-node-anchor").dblclick(function(){
-            //	alert($(this).text());
-             //});
         }
         function sendBatchSMS(){
         	var s = $("#tree").getTSVs();
@@ -118,7 +66,7 @@
 						</td>
 						<td align="right">
 						&nbsp;
-						<input type="button" onclick="init();" class="button" value="重新加载联系人"/>
+						<input type="button" onclick="self.location.href = '${appPath}sms_batchSMS.action'" class="button" value="重新加载">
 						</td>
 						<td width="5px"></td>
 					</tr>
