@@ -14,6 +14,10 @@
 			<jsp:include page="../../msg.jsp"></jsp:include>
 				
 		</script>
+		<style type="text/css">
+		ul{margin:0px; padding: 2px; list-style: none;}
+		li{margin:1px 3px; padding: 2px; list-style: none; display: block; float: left;}
+		</style>
 	</head>
 	<body>
 		<form method="get" onsubmit="return Validator.Validate(this);" action="${appPath}sms_sendSMS.action" name="">
@@ -48,16 +52,14 @@
 		接收号码
 		</td>
 		<td class="tables_contentcell">
-		<ul>
-		<c:forEach items="${ucList }" var="uc">
-		<li>${uc.name} / ${uc.mobile }</li>
-		</c:forEach>
-		</ul>
-		<ul>
-		<c:forEach items="${leaderList }" var="l">
-		<li>${l.leaderName} / ${l.tel }</li>
-		</c:forEach>
-		</ul>
+			<ul>
+			<c:forEach items="${ucList }" var="uc">
+			<li>${uc.name}/${uc.mobile}</li>
+			</c:forEach>
+			<c:forEach items="${leaderList }" var="l">
+			<li>${l.leaderName}/${l.tel}</li>
+			</c:forEach>
+			</ul>
 		</td>
 	</tr>
 	<tr>
