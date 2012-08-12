@@ -267,6 +267,7 @@
 			<result name="sms_list">/main/sms/list.jsp</result>
 			<result name="batch_sms">/main/sms/batch_sms3.jsp</result>
 			<result name="batch_list">/main/sms/batch_list.jsp</result>
+			<result name="batch_detail">/main/sms/batch_detail.jsp</result>
 		</action>
 		<!-- 论坛交流 -->
 		<action name="dis_*" method="{1}" class="com.throne212.fupin.action.DiscussAction">

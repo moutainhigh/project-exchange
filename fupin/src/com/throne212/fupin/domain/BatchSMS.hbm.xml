@@ -8,6 +8,7 @@
 		</id>
 		<property name="content"></property>
 		<property name="date" column="send_date"></property>
-		<property name="receiver"></property>
+		<property name="receiver" column="receiver"></property>
+		<property name="sender"></property>
 	</class>
 </hibernate-mapping>

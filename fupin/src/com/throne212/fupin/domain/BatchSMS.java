@@ -8,6 +8,8 @@ public class BatchSMS extends MyEntity {
 	private String content;
 	private Date date;
 	private String receiver;
+	private String sender;
+	private Long count;
 
 	public String getContent() {
 		return content;
@@ -31,6 +33,22 @@ public class BatchSMS extends MyEntity {
 
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
+	}
+
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+	public Long getCount() {
+		return count;
+	}
+
+	public void setCount(Long count) {
+		this.count = count;
 	}
 
 }

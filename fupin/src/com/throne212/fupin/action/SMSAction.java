@@ -300,6 +300,64 @@ public class SMSAction extends BaseAction {
 		}		
 		return "batch_sms";
 	}
+	private List<UserContact> ucList;
+	private List<Leader> leaderList;
+	private BatchSMS bs;
+	public String batchSMSDetail(){
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("id");
+		if(ids == null || ids.length == 0){
+			this.setMsg("参数缺失");
+			this.setSucc("Y");
+			return "batch_detail";
+		}
+		Long id = Long.parseLong(ids[0]);
+		bs = adminBiz.getEntityById(BatchSMS.class, id);
+		if(bs != null){
+			String receiver = bs.getReceiver();
+			bs.setCount(0L);
+			ucList = this.getAllUsercontactsByReceiver(receiver);
+			if(ucList != null)
+				bs.setCount(bs.getCount() + ucList.size());
+			leaderList = this.getAllLeaderByReceiver(receiver);
+				bs.setCount(bs.getCount() + leaderList.size());
+		}
+		return "batch_detail";
+	}
+	
+	public List<UserContact> getAllUsercontactsByReceiver(String receiver) {
+		List<UserContact> list = new ArrayList<UserContact>();
+		String[] arr = receiver.split(",");
+		for (String r : arr) {
+			if (r.startsWith("area_") || r.startsWith("zhen_")) {
+				String[] a = r.split("_");
+				if (a != null && a.length >= 2) {
+					Long id = Long.parseLong(a[a.length - 1]);
+					UserContact uc = adminBiz.getEntityById(UserContact.class, id);
+					if(uc != null)
+						list.add(uc);
+				}
+			}
+		}
+		return list;
+	}
+
+	public List<Leader> getAllLeaderByReceiver(String receiver) {
+		List<Leader> list = new ArrayList<Leader>();
+		String[] arr = receiver.split(",");
+		for (String r : arr) {
+			if (r.startsWith("leader_")) {
+				String[] a = r.split("_");
+				if (a != null && a.length >= 2) {
+					Long id = Long.parseLong(a[1]);
+					Leader leader = adminBiz.getEntityById(Leader.class, id);
+					if (leader != null) {
+						list.add(leader);
+					}
+				}
+			}
+		}
+		return list;
+	}
 	
 	public String batchList(){
 		pageBean = messageBiz.getAllBatchSMS(pageIndex);
@@ -380,6 +438,30 @@ public class SMSAction extends BaseAction {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public List<UserContact> getUcList() {
+		return ucList;
+	}
+
+	public void setUcList(List<UserContact> ucList) {
+		this.ucList = ucList;
+	}
+
+	public List<Leader> getLeaderList() {
+		return leaderList;
+	}
+
+	public void setLeaderList(List<Leader> leaderList) {
+		this.leaderList = leaderList;
+	}
+
+	public BatchSMS getBs() {
+		return bs;
+	}
+
+	public void setBs(BatchSMS bs) {
+		this.bs = bs;
 	}
 
 }

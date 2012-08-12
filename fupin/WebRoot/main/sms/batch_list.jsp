@@ -103,25 +103,37 @@
 				<tbody>
 					<tr align="center">
 						<td width="" class="tables_headercell">
-							主要接收单位
+							序号
+						</td>
+						<td width="" class="tables_headercell">
+							发信人
+						</td>
+						<td width="" class="tables_headercell">
+							发送时间
 						</td>
 						<td width="" class="tables_headercell">
 							内容
 						</td>
 						<td width="" class="tables_headercell">
-							发送时间
+							详细
 						</td>
 					</tr>
-					<c:forEach items="${pageBean.resultList}" var="f">
+					<c:forEach items="${pageBean.resultList}" var="f" varStatus="status">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.receiver}
+								&nbsp; ${status.count}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; ${f.sender}
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
+								<fmt:formatDate value="${f.date}" pattern="yyyy-MM-dd hh:mm:ss"/> 
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.content}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-							<fmt:formatDate value="${f.date}" pattern="yyyy-MM-dd hh:mm:ss"/> 
+								&nbsp; <a href="#" onclick="winOpen('${appPath}sms_batchSMSDetail.action?id=${f.id}',600,300);">详细</a>
 							</td>
 						</tr>
 					</c:forEach>
