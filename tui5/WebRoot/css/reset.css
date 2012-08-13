@@ -1,0 +1,20 @@
+@charset "utf-8";
+@import url("style.css");
+body{font-size:14px;font-family:Tahoma,Arial,Verdana;color:#000;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {padding:0;margin:0}
+fieldset,img {border:0}
+.clear{ clear:both;}
+address,caption,cite,code,dfn,em,th,var {font-weight:normal;font-style:normal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%}
+abbr,acronym,img {border:0}
+button,input,select,textarea{font-size:100%;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+table {border-collapse:collapse;border-spacing:0;}
+h3 {font-size:14px}
+
+a,a:visited {text-decoration:none; color:#2B45D6;}
+a:hover {text-decoration:underline;}
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: ".";clear:both;}
+

@@ -1,4 +1,4 @@
-package com.throne212.tui5.dao.domain;
+package com.throne212.tui5.domain;
 
 // default package
 import java.util.List;

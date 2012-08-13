@@ -1,4 +1,4 @@
-package com.throne212.tui5.dao.domain;
+package com.throne212.tui5.domain;
 
 // default package
 
@@ -23,7 +23,7 @@ public class User implements java.io.Serializable {
 	private Timestamp userLastdate;// 最后登录时间
 	private String userPassword;// 密码
 	private Timestamp userUpdate;// 最后修改资料时间
-	private String userName;// 别名
+	private String userName;// 姓名
 	private String userSex;// 男，女
 	private String userBrief;// 自我介绍，简介
 	private String userDigree;// 学历
@@ -37,9 +37,11 @@ public class User implements java.io.Serializable {
 	private String userFileName;// 头像
 	private String userIsvip;// 1为VIP，0不是
 	private String userAge;// 年龄
+	private String userPost;//邮政编码
 	
-	private String secret;//是否保密，1保密，0不保密
-	private City region;//常住地区
+	private String userSecret;//是否保密，1保密，0不保密
+	private String userCityId;//常住地区
+	private String userSign;//行签名
 
 	public Integer getUserNo() {
 		return userNo;
@@ -208,4 +210,37 @@ public class User implements java.io.Serializable {
 	public void setUserAge(String userAge) {
 		this.userAge = userAge;
 	}
+
+	public String getUserPost() {
+		return userPost;
+	}
+
+	public void setUserPost(String userPost) {
+		this.userPost = userPost;
+	}
+
+	public String getUserSecret() {
+		return userSecret;
+	}
+
+	public void setUserSecret(String userSecret) {
+		this.userSecret = userSecret;
+	}
+
+	public String getUserCityId() {
+		return userCityId;
+	}
+
+	public void setUserCityId(String userCityId) {
+		this.userCityId = userCityId;
+	}
+
+	public String getUserSign() {
+		return userSign;
+	}
+
+	public void setUserSign(String userSign) {
+		this.userSign = userSign;
+	}
+
 }

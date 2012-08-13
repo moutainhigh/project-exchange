@@ -5,6 +5,10 @@
 
 <urlrewrite>
 
-	
+	<!-- reg.html -->
+	<rule>
+		<from>/reg.html</from>
+		<to>reg.do</to>
+	</rule>
 	
 </urlrewrite>

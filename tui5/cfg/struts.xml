@@ -32,7 +32,22 @@
 	<constant name="struts.freemarker.templatesCache" value="false" />
 	
     <package name="basePackage" extends="struts-default" namespace="/">
-    	
+    	<action name="reg" class="com.throne212.tui5.action.RegAction"></action>
     </package>
+    <package name="json" extends="json-default" namespace="/">
+        <action name="ajax_*" method="{1}" class="com.throne212.tui5.action.AjaxAction">
+			<result name="msg" type="json">
+				<param name="includeProperties">  
+					msg
+				</param>
+			</result>
+			<result name="list_group" type="json">
+				<param name="includeProperties">  
+					list\[\d+\]\.id,
+					list\[\d+\]\.showTreeName
+				</param>
+			</result>
+		</action>		
+	</package>
 </struts>
 

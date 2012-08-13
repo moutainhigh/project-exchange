@@ -40,7 +40,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.do</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
   		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
@@ -49,6 +49,16 @@
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
+	
+	<!-- rand -->
+	<servlet>
+		<servlet-name>RandServlet</servlet-name>
+		<servlet-class>com.throne212.tui5.servlet.RandServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RandServlet</servlet-name>
+		<url-pattern>/rand.servlet</url-pattern>
+	</servlet-mapping>
 	
 	<!-- Session超时定义,单位为分钟 -->
 	<session-config>
