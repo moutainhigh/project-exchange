@@ -407,6 +407,11 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 	}
 	
 	private List<String[]> statSubReport(ReportParam reportParam, List<String[]> list, int startIndex){
+		
+		String month = reportParam.getMonth();
+		String month2 = reportParam.getMonth2();
+		int monthCount = Math.abs(Integer.parseInt(month2) - Integer.parseInt(month)) + 1;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("select ");
 		if ("206".equals(reportParam.getIs206()))
@@ -414,11 +419,71 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		else
 			sql.append("'非北部山区', ");
 		sql.append("a.name as '区（县）', ");
-		sql.append("(select sum(f2.id)  ");
-		sql.append("from fp_family f2  ");
-		sql.append("LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id ");
-		sql.append("where c2.id=c.id) as '贫困户数', ");
-		sql.append("sum(c.poorPersonNum)  as '贫困人口数', ");
+//		sql.append("sum((select count(f2.id)  ");
+//		sql.append("from fp_family f2  ");
+//		sql.append("LEFT OUTER JOIN fp_diqu c2 ON f2.cun_id = c2.id ");
+//		sql.append("where c2.id=c.id)) as '贫困户数', ");		
+		sql.append("(select count(f2.id) ");
+		sql.append("from fp_family f2 left outer join fp_diqu c2 on f2.cun_id=c2.id ");
+		sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
+		sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
+		sql.append("where a2.id=a.id ");
+		if ("206".equals(reportParam.getIs206())) {
+			sql.append("and (z2.name = '温泉镇' or ");
+			sql.append("z2.name = '吕田镇' or ");
+			sql.append("z2.name = '良口镇' or ");
+			sql.append("z2.name = '鳌头镇' or ");
+			sql.append("z2.name = '小楼镇' or ");
+			sql.append("z2.name = '正果镇' or ");
+			sql.append("z2.name = '派潭镇' or ");
+			sql.append("z2.name = '梯面镇' or ");
+			sql.append("z2.name = '流溪河林场' ");
+			sql.append(") ");
+			sql.append("and c2.name != '塘田村' and c2.name != '安山村' ");
+		}else if ("not206".equals(reportParam.getIs206())){
+			sql.append("and ((z2.name != '温泉镇' and   ");
+			sql.append("z2.name != '吕田镇' and   ");
+			sql.append("z2.name != '良口镇' and   ");
+			sql.append("z2.name != '鳌头镇' and   ");
+			sql.append("z2.name != '小楼镇' and   ");
+			sql.append("z2.name != '正果镇' and   ");
+			sql.append("z2.name != '派潭镇' and   ");
+			sql.append("z2.name != '梯面镇' and   ");
+			sql.append("z2.name != '流溪河林场' ");
+			sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
+		}
+		sql.append(") as '贫困户数', ");
+		//sql.append("sum(c.poorPersonNum)  as '贫困人口数', ");		
+		sql.append("(select sum(c2.poorPersonNum) ");
+		sql.append("from fp_diqu c2 ");
+		sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
+		sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
+		sql.append("where a2.id=a.id and c2.diqu_type='cun' ");
+		if ("206".equals(reportParam.getIs206())) {
+			sql.append("and (z2.name = '温泉镇' or ");
+			sql.append("z2.name = '吕田镇' or ");
+			sql.append("z2.name = '良口镇' or ");
+			sql.append("z2.name = '鳌头镇' or ");
+			sql.append("z2.name = '小楼镇' or ");
+			sql.append("z2.name = '正果镇' or ");
+			sql.append("z2.name = '派潭镇' or ");
+			sql.append("z2.name = '梯面镇' or ");
+			sql.append("z2.name = '流溪河林场' ");
+			sql.append(") ");
+			sql.append("and c2.name != '塘田村' and c2.name != '安山村' ");
+		}else if ("not206".equals(reportParam.getIs206())){
+			sql.append("and ((z2.name != '温泉镇' and   ");
+			sql.append("z2.name != '吕田镇' and   ");
+			sql.append("z2.name != '良口镇' and   ");
+			sql.append("z2.name != '鳌头镇' and   ");
+			sql.append("z2.name != '小楼镇' and   ");
+			sql.append("z2.name != '正果镇' and   ");
+			sql.append("z2.name != '派潭镇' and   ");
+			sql.append("z2.name != '梯面镇' and   ");
+			sql.append("z2.name != '流溪河林场' ");
+			sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
+		}
+		sql.append(") as '贫困人数', ");
 		if ("3".equals(reportParam.getName())) {
 			sql.append("sum(r.item1) as '规划投入资金（元）', ");
 			sql.append("sum(r.item2) as '已投入帮扶资金(元)', ");
@@ -430,18 +495,92 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("sum(r.item8) as '社会募捐(元)', ");
 			sql.append("sum(r.item9) as '社会引资(元)' ");
 		} else {
-			sql.append("sum(c.poorFamilyNum1) as '1低保对象(户) ', ");
-			sql.append("sum(c.poorPersonNum1) as '1低保对象(人) ', ");
-			sql.append("sum(c.poorFamilyNum3) as '1低收入困难家庭(户) ', ");
-			sql.append("sum(c.poorPersonNum3) as '1低收入困难家庭(人) ', ");
-			sql.append("sum(c.poorFamilyNum2) as '2低保对象(户) ', ");
-			sql.append("sum(c.poorPersonNum2) as '2低保对象(人) ', ");
-			sql.append("sum(c.poorFamilyNum4) as '2低收入困难家庭(户) ', ");
-			sql.append("sum(c.poorPersonNum4) as '2低收入困难家庭(人) ', ");
-			sql.append("sum(c.weiHouse) as '危房户(户) ',");
+			sql.append("sum(c.poorFamilyNum1)/"+monthCount+" as '1低保对象(户) ', ");
+			sql.append("sum(c.poorPersonNum1)/"+monthCount+" as '1低保对象(人) ', ");
+			sql.append("sum(c.poorFamilyNum3)/"+monthCount+" as '1低收入困难家庭(户) ', ");
+			sql.append("sum(c.poorPersonNum3)/"+monthCount+" as '1低收入困难家庭(人) ', ");
+			sql.append("sum(c.poorFamilyNum2)/"+monthCount+" as '2低保对象(户) ', ");
+			sql.append("sum(c.poorPersonNum2)/"+monthCount+" as '2低保对象(人) ', ");
+			sql.append("sum(c.poorFamilyNum4)/"+monthCount+" as '2低收入困难家庭(户) ', ");
+			sql.append("sum(c.poorPersonNum4)/"+monthCount+" as '2低收入困难家庭(人) ', ");
+			sql.append("sum(c.weiHouse)/"+monthCount+" as '危房户(户) ',");
 			sql.append("sum(r.item12) as '贫困户去世、失踪等情况(户) ', ");
-			sql.append("sum(r.item13) as '预计本年脱贫户数(户) ', ");
-			sql.append("sum(r.item14) as '预计本年脱贫人数(人) ', ");
+			//sql.append("r.item13 as '预计本年脱贫户数(户) ', ");
+			
+			sql.append("(select sum(r2.item13) ");
+			sql.append("from fp_report r2 ");
+			if ("3".equals(reportParam.getName())) 
+				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=2 and r2.type='month' ");
+			if ("12".equals(reportParam.getName())) 
+				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
+			sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
+			sql.append("where a2.id=a.id ");
+			if ("206".equals(reportParam.getIs206())) {
+				sql.append("and (z2.name = '温泉镇' or ");
+				sql.append("z2.name = '吕田镇' or ");
+				sql.append("z2.name = '良口镇' or ");
+				sql.append("z2.name = '鳌头镇' or ");
+				sql.append("z2.name = '小楼镇' or ");
+				sql.append("z2.name = '正果镇' or ");
+				sql.append("z2.name = '派潭镇' or ");
+				sql.append("z2.name = '梯面镇' or ");
+				sql.append("z2.name = '流溪河林场' ");
+				sql.append(") ");
+				sql.append("and c2.name != '塘田村' and c2.name != '安山村' ");
+			}else if ("not206".equals(reportParam.getIs206())){
+				sql.append("and ((z2.name != '温泉镇' and   ");
+				sql.append("z2.name != '吕田镇' and   ");
+				sql.append("z2.name != '良口镇' and   ");
+				sql.append("z2.name != '鳌头镇' and   ");
+				sql.append("z2.name != '小楼镇' and   ");
+				sql.append("z2.name != '正果镇' and   ");
+				sql.append("z2.name != '派潭镇' and   ");
+				sql.append("z2.name != '梯面镇' and   ");
+				sql.append("z2.name != '流溪河林场' ");
+				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
+			}
+			sql.append(") as '预计本年脱贫户数(户) ', ");
+			
+			//sql.append("r.item14 as '预计本年脱贫人数(人) ', ");
+			
+			sql.append("(select sum(r2.item14) ");
+			sql.append("from fp_report r2 ");
+			if ("3".equals(reportParam.getName())) 
+				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=2 and r2.type='month' ");
+			if ("12".equals(reportParam.getName())) 
+				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
+			sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
+			sql.append("where a2.id=a.id ");
+			if ("206".equals(reportParam.getIs206())) {
+				sql.append("and (z2.name = '温泉镇' or ");
+				sql.append("z2.name = '吕田镇' or ");
+				sql.append("z2.name = '良口镇' or ");
+				sql.append("z2.name = '鳌头镇' or ");
+				sql.append("z2.name = '小楼镇' or ");
+				sql.append("z2.name = '正果镇' or ");
+				sql.append("z2.name = '派潭镇' or ");
+				sql.append("z2.name = '梯面镇' or ");
+				sql.append("z2.name = '流溪河林场' ");
+				sql.append(") ");
+				sql.append("and c2.name != '塘田村' and c2.name != '安山村' ");
+			}else if ("not206".equals(reportParam.getIs206())){
+				sql.append("and ((z2.name != '温泉镇' and   ");
+				sql.append("z2.name != '吕田镇' and   ");
+				sql.append("z2.name != '良口镇' and   ");
+				sql.append("z2.name != '鳌头镇' and   ");
+				sql.append("z2.name != '小楼镇' and   ");
+				sql.append("z2.name != '正果镇' and   ");
+				sql.append("z2.name != '派潭镇' and   ");
+				sql.append("z2.name != '梯面镇' and   ");
+				sql.append("z2.name != '流溪河林场' ");
+				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
+			}
+			sql.append(") as '预计本年脱贫人数(人) ', ");			
+			
 			sql.append("sum(r.item15) as '帮扶单位领导(人次) ', ");
 			sql.append("sum(r.item16) as '帮扶单位干部　职工(人次) ', ");
 			sql.append("sum(r.item17) as '种植(户) ', ");
@@ -457,8 +596,44 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("sum(r.item27) as '高中、职高、技校、中专等(人) ', ");
 			sql.append("sum(r.item28) as '大专、本科以上(人) ', ");
 			sql.append("sum(r.item29) as '产业发展带动农户(户) ', ");
-			sql.append("sum(c.income) as '上年村级集体经济收入(元) ', ");
-			sql.append("sum(r.item31) as '预计今年村级集体经济收入(元) ', ");
+			sql.append("sum(c.income)/"+monthCount+" as '上年村级集体经济收入(元) ', ");
+			//sql.append("sum(r.item31)/"+monthCount+" as '预计今年村级集体经济收入(元) ', ");
+			sql.append("(select sum(r2.item31) ");
+			sql.append("from fp_report r2 ");
+			if ("3".equals(reportParam.getName())) 
+				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=2 and r2.type='month' ");
+			if ("12".equals(reportParam.getName())) 
+				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
+			sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
+			sql.append("where a2.id=a.id ");
+			if ("206".equals(reportParam.getIs206())) {
+				sql.append("and (z2.name = '温泉镇' or ");
+				sql.append("z2.name = '吕田镇' or ");
+				sql.append("z2.name = '良口镇' or ");
+				sql.append("z2.name = '鳌头镇' or ");
+				sql.append("z2.name = '小楼镇' or ");
+				sql.append("z2.name = '正果镇' or ");
+				sql.append("z2.name = '派潭镇' or ");
+				sql.append("z2.name = '梯面镇' or ");
+				sql.append("z2.name = '流溪河林场' ");
+				sql.append(") ");
+				sql.append("and c2.name != '塘田村' and c2.name != '安山村' ");
+			}else if ("not206".equals(reportParam.getIs206())){
+				sql.append("and ((z2.name != '温泉镇' and   ");
+				sql.append("z2.name != '吕田镇' and   ");
+				sql.append("z2.name != '良口镇' and   ");
+				sql.append("z2.name != '鳌头镇' and   ");
+				sql.append("z2.name != '小楼镇' and   ");
+				sql.append("z2.name != '正果镇' and   ");
+				sql.append("z2.name != '派潭镇' and   ");
+				sql.append("z2.name != '梯面镇' and   ");
+				sql.append("z2.name != '流溪河林场' ");
+				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
+			}
+			sql.append(") as '预计今年村级集体经济收入(元) ', ");
+			
 			sql.append("sum(r.item32) as '组织活动(次) ', ");
 			sql.append("sum(r.item33) as '扶贫工作会议(次) ', ");
 			sql.append("sum(r.item34) as '发展新党员(人) ', ");
