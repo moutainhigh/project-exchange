@@ -211,6 +211,7 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 //		}
 		sql.append("and a.name='"+reportParam.getAreaName()+"' ");
 		sql.append("group by a.name,z.name,c.name ");
+		sql.append("order by r.year desc, r.time desc ");
 
 		logger.info("报表导出sql：\n" + sql);
 		Session s = null;
@@ -787,16 +788,15 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append("sum(r.item12) as '贫困户去世、失踪等情况(户) ', ");
 	
 			//sql.append("r.item13 as '预计本年脱贫户数(户) ', ");			
-			sql.append("(select sum(r2.item13) ");
-			sql.append("from fp_report r2 ");
-			if ("3".equals(reportParam.getName())) 
-				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=2 and r2.type='month' ");
-			if ("12".equals(reportParam.getName())) 
-				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' ");
-			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");
-			sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
-			sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
-			sql.append("where a2.id=a.id ");
+			sql.append("(select sum(t2.i13) from ( ");
+			sql.append("select r2.item13 as 'i13', a2.id as aid from fp_diqu c2 ");
+			sql.append("left outer join fp_diqu z2 on z2.id=c2.zhen_id ");
+			sql.append("left outer join fp_diqu a2 on a2.id=z2.area_id ");
+			sql.append("left outer join fp_report r2 on r2.cun_id=c2.id ");
+			sql.append("and r2.report_type=1 and r2.type='month' ");			
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");			
+			sql.append("where c2.diqu_type='cun' and z2.diqu_type='zhen' and a2.diqu_type='area' ");
 			if ("206".equals(reportParam.getIs206())) {
 				sql.append("and (z2.name = '温泉镇' or ");
 				sql.append("z2.name = '吕田镇' or ");
@@ -821,20 +821,19 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				sql.append("z2.name != '流溪河林场' ");
 				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
 			}
-			sql.append(") as '预计本年脱贫户数(户) ', ");
+			sql.append("group by a2.name,z2.name,c2.name ");
+			sql.append("order by r2.year desc, r2.time desc) t2 where aid=a.id) as '预计本年脱贫户数(户) ', ");
 			
-			//sql.append("r.item14 as '预计本年脱贫人数(人) ', ");
-			
-			sql.append("(select sum(r2.item14) ");
-			sql.append("from fp_report r2 ");
-			if ("3".equals(reportParam.getName())) 
-				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=2 and r2.type='month' ");
-			if ("12".equals(reportParam.getName())) 
-				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' ");
-			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");
-			sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
-			sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
-			sql.append("where a2.id=a.id ");
+			//sql.append("r.item14 as '预计本年脱贫人数(人) ', ");			
+			sql.append("(select sum(t2.i14) from ( ");
+			sql.append("select r2.item14 as 'i14', a2.id as aid from fp_diqu c2 ");
+			sql.append("left outer join fp_diqu z2 on z2.id=c2.zhen_id ");
+			sql.append("left outer join fp_diqu a2 on a2.id=z2.area_id ");
+			sql.append("left outer join fp_report r2 on r2.cun_id=c2.id ");
+			sql.append("and r2.report_type=1 and r2.type='month' ");			
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");			
+			sql.append("where c2.diqu_type='cun' and z2.diqu_type='zhen' and a2.diqu_type='area' ");
 			if ("206".equals(reportParam.getIs206())) {
 				sql.append("and (z2.name = '温泉镇' or ");
 				sql.append("z2.name = '吕田镇' or ");
@@ -859,7 +858,8 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				sql.append("z2.name != '流溪河林场' ");
 				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
 			}
-			sql.append(") as '预计本年脱贫人数(人) ', ");			
+			sql.append("group by a2.name,z2.name,c2.name ");
+			sql.append("order by r2.year desc, r2.time desc) t2 where aid=a.id) as '预计本年脱贫人数(人) ', ");		
 			
 			sql.append("sum(r.item15) as '帮扶单位领导(人次) ', ");
 			sql.append("sum(r.item16) as '帮扶单位干部　职工(人次) ', ");
@@ -909,16 +909,15 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 			sql.append(") as '上年村级集体经济收入(元) ', ");
 			
 			//sql.append("sum(r.item31)/"+monthCount+" as '预计今年村级集体经济收入(元) ', ");
-			sql.append("(select sum(r2.item31) ");
-			sql.append("from fp_report r2 ");
-			if ("3".equals(reportParam.getName())) 
-				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=2 and r2.type='month' ");
-			if ("12".equals(reportParam.getName())) 
-				sql.append("left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' ");
-			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");
-			sql.append("left outer join fp_diqu z2 on c2.zhen_id=z2.id ");
-			sql.append("left outer join fp_diqu a2 on z2.area_id=a2.id ");
-			sql.append("where a2.id=a.id ");
+			sql.append("(select sum(t2.i31) from ( ");
+			sql.append("select r2.item31 as 'i31', a2.id as aid from fp_diqu c2 ");
+			sql.append("left outer join fp_diqu z2 on z2.id=c2.zhen_id ");
+			sql.append("left outer join fp_diqu a2 on a2.id=z2.area_id ");
+			sql.append("left outer join fp_report r2 on r2.cun_id=c2.id ");
+			sql.append("and r2.report_type=1 and r2.type='month' ");			
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");			
+			sql.append("where c2.diqu_type='cun' and z2.diqu_type='zhen' and a2.diqu_type='area' ");
 			if ("206".equals(reportParam.getIs206())) {
 				sql.append("and (z2.name = '温泉镇' or ");
 				sql.append("z2.name = '吕田镇' or ");
@@ -943,7 +942,8 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				sql.append("z2.name != '流溪河林场' ");
 				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
 			}
-			sql.append(") as '预计今年村级集体经济收入(元) ', ");
+			sql.append("group by a2.name,z2.name,c2.name ");
+			sql.append("order by r2.year desc, r2.time desc) t2 where aid=a.id) as '预计今年村级集体经济收入(元) ', ");
 			
 			sql.append("sum(r.item32) as '组织活动(次) ', ");
 			sql.append("sum(r.item33) as '扶贫工作会议(次) ', ");

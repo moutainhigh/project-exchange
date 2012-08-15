@@ -1,20 +1,20 @@
 select
 '北部山区',
 a.name as '区（县）',
-(select sum from fp_family f2 left outer join fp_diqu c2 on f2.cun_id=c2.id left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 where z2.area_id=a2.id where a2.id=a.id) as '贫困户数',
-c.poorPersonNum as '贫困人口数',
-sum(c.poorFamilyNum1) as '1低保对象(户) ',
-sum(c.poorPersonNum1) as '1低保对象(人) ',
-sum(c.poorFamilyNum3) as '1低收入困难家庭(户) ',
-sum(c.poorPersonNum3) as '1低收入困难家庭(人) ',
-sum(c.poorFamilyNum2) as '2低保对象(户) ',
-sum(c.poorPersonNum2) as '2低保对象(人) ',
-sum(c.poorFamilyNum4) as '2低收入困难家庭(户) ',
-sum(c.poorPersonNum4) as '2低收入困难家庭(人) ',
-sum(c.weiHouse) as '危房户(户) ',
+(select count(f2.id) from fp_family f2 left outer join fp_diqu c2 on f2.cun_id=c2.id left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '贫困户数',
+(select sum(c2.poorPersonNum) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and c2.diqu_type='cun' and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '贫困人数',
+(select sum(c2.poorFamilyNum1) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '1低保对象(户) ',
+(select sum(c2.poorPersonNum1) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '1低保对象(人) ',
+(select sum(c2.poorFamilyNum3) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '1低收入困难家庭(户) ',
+(select sum(c2.poorPersonNum3) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '1低收入困难家庭(人) ',
+(select sum(c2.poorFamilyNum2) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '2低保对象(户) ',
+(select sum(c2.poorPersonNum2) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '2低保对象(人) ',
+(select sum(c2.poorFamilyNum4) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '2低收入困难家庭(户) ',
+(select sum(c2.poorPersonNum4) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '2低收入困难家庭(人) ',
+(select sum(c2.weiHouse) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '危房户(户) ',
 sum(r.item12) as '贫困户去世、失踪等情况(户) ',
-sum(r.item13) as '预计本年脱贫户数(户) ',
-sum(r.item14) as '预计本年脱贫人数(人) ',
+(select sum(t2.i13) from ( select r2.item13 as 'i13', a2.id as aid from fp_diqu c2 left outer join fp_diqu z2 on z2.id=c2.zhen_id left outer join fp_diqu a2 on a2.id=z2.area_id left outer join fp_report r2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('2012-4-01','%Y-%m-%d') and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('2012-5-01','%Y-%m-%d') where c2.diqu_type='cun' and z2.diqu_type='zhen' and a2.diqu_type='area' and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' group by a2.name,z2.name,c2.name order by r2.year desc, r2.time desc) t2 where t2.aid=a.id) as '预计本年脱贫户数(户) ',  
+(select sum(t2.i14) from ( select r2.item14 as 'i14', a2.id as aid from fp_diqu c2 left outer join fp_diqu z2 on z2.id=c2.zhen_id left outer join fp_diqu a2 on a2.id=z2.area_id left outer join fp_report r2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('2012-4-01','%Y-%m-%d') and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('2012-5-01','%Y-%m-%d') where c2.diqu_type='cun' and z2.diqu_type='zhen' and a2.diqu_type='area' and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' group by a2.name,z2.name,c2.name order by r2.year desc, r2.time desc) t2 where t2.aid=a.id) as '预计本年脱贫户数(户) ',
 sum(r.item15) as '帮扶单位领导(人次) ',
 sum(r.item16) as '帮扶单位干部　职工(人次) ',
 sum(r.item17) as '种植(户) ',
@@ -30,8 +30,8 @@ sum(r.item26) as '义务教育阶段(人) ',
 sum(r.item27) as '高中、职高、技校、中专等(人) ',
 sum(r.item28) as '大专、本科以上(人) ',
 sum(r.item29) as '产业发展带动农户(户) ',
-sum(c.income) as '上年村级集体经济收入(元) ',
-sum(r.item31) as '预计今年村级集体经济收入(元) ',
+(select sum(c2.income) from fp_diqu c2 left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' ) as '上年村级集体经济收入(元) ',
+(select sum(r2.item31) from fp_report r2 left outer join fp_diqu c2 on r2.cun_id=c2.id and r2.report_type=1 and r2.type='month' and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('2012-4-01','%Y-%m-%d') and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('2012-5-01','%Y-%m-%d') left outer join fp_diqu z2 on c2.zhen_id=z2.id left outer join fp_diqu a2 on z2.area_id=a2.id where a2.id=a.id and (z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场' ) and c2.name != '塘田村' and c2.name != '安山村' order by r2.time desc) as '预计今年村级集体经济收入(元) ',
 sum(r.item32) as '组织活动(次) ',
 sum(r.item33) as '扶贫工作会议(次) ',
 sum(r.item34) as '发展新党员(人) ',
@@ -68,12 +68,12 @@ and STR_TO_DATE
 (
    CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d'
 )
->=STR_TO_DATE('2012-05-01','%Y-%m-%d')
+>=STR_TO_DATE('2012-4-01','%Y-%m-%d')
 and STR_TO_DATE
 (
    CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d'
 )
-<=STR_TO_DATE('2012-07-01','%Y-%m-%d')
+<=STR_TO_DATE('2012-5-01','%Y-%m-%d')
 where c.diqu_type='cun'
 and z.diqu_type='zhen'
 and a.diqu_type='area'

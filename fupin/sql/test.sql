@@ -1,24 +1,32 @@
-SELECT u.loginName AS '登录账号', u.orgName AS '单位名称', d.name AS '村的名称', l.leaderName AS '干部名', l.tel AS '手机号码'
-FROM fp_user u
-LEFT JOIN fp_diqu d ON u.id = d.org
-LEFT JOIN fp_leader l ON l.org_id = u.id
-WHERE u.user_type = 'org' 
---and u.orgName='市汽车工业集团'
-
-
-select u.orgName,d.name
-from fp_diqu d left join fp_user u on u.id=d.org
-where u.user_type='org' and u.orgName='市汽车工业集团'
-
-select name
-from fp_diqu d
-where d.name = '龙新村'
-
-
-create table fp_leader_help
+select
+sum(the_item13)
+from
 (
-	`id` bigint(20) NOT NULL primary key,
-	`family_id` bigint(20),
-	`leader_id` bigint(20)
-)
-commit;
+   select
+   r2.item13 the_item13, c2.name,r2.time
+   from fp_diqu c2
+   left outer join fp_report r2 on r2.cun_id=c2.id
+   and r2.report_type=1
+   and r2.type='month'
+   and STR_TO_DATE
+   (
+      CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d'
+   )
+   >=STR_TO_DATE('2012-4-01','%Y-%m-%d')
+   and STR_TO_DATE
+   (
+      CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d'
+   )
+   <=STR_TO_DATE('2012-5-01','%Y-%m-%d')
+   left outer join fp_diqu z2 on c2.zhen_id=z2.id
+   left outer join fp_diqu a2 on z2.area_id=a2.id
+   where 
+   (
+      z2.name = '温泉镇' or z2.name = '吕田镇' or z2.name = '良口镇' or z2.name = '鳌头镇' or z2.name = '小楼镇' or z2.name = '正果镇' or z2.name = '派潭镇' or z2.name = '梯面镇' or z2.name = '流溪河林场'
+   )
+   and c2.name != '塘田村'
+   and c2.name != '安山村'
+   and a2.id=40 
+   order by r2.year desc,r2.time desc
+) as the_sum
+where 1=1
