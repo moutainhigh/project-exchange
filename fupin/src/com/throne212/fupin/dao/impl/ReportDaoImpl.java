@@ -486,7 +486,43 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 		}
 		sql.append(") as '贫困人数', ");
 		if ("3".equals(reportParam.getName())) {
-			sql.append("sum(r.item1) as '规划投入资金（元）', ");
+			//sql.append("sum(r.item1) as '规划投入资金（元）', ");
+			sql.append("(select sum(t2.i1) from ( ");
+			sql.append("select r2.item1 as 'i1', a2.id as aid from fp_diqu c2 ");
+			sql.append("left outer join fp_diqu z2 on z2.id=c2.zhen_id ");
+			sql.append("left outer join fp_diqu a2 on a2.id=z2.area_id ");
+			sql.append("left outer join fp_report r2 on r2.cun_id=c2.id ");
+			sql.append("and r2.report_type=2 and r2.type='month' ");			
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+			sql.append("and STR_TO_DATE(CONCAT(r2.year,'-',r2.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");			
+			sql.append("where c2.diqu_type='cun' and z2.diqu_type='zhen' and a2.diqu_type='area' ");
+			if ("206".equals(reportParam.getIs206())) {
+				sql.append("and (z2.name = '温泉镇' or ");
+				sql.append("z2.name = '吕田镇' or ");
+				sql.append("z2.name = '良口镇' or ");
+				sql.append("z2.name = '鳌头镇' or ");
+				sql.append("z2.name = '小楼镇' or ");
+				sql.append("z2.name = '正果镇' or ");
+				sql.append("z2.name = '派潭镇' or ");
+				sql.append("z2.name = '梯面镇' or ");
+				sql.append("z2.name = '流溪河林场' ");
+				sql.append(") ");
+				sql.append("and c2.name != '塘田村' and c2.name != '安山村' ");
+			}else if ("not206".equals(reportParam.getIs206())){
+				sql.append("and ((z2.name != '温泉镇' and   ");
+				sql.append("z2.name != '吕田镇' and   ");
+				sql.append("z2.name != '良口镇' and   ");
+				sql.append("z2.name != '鳌头镇' and   ");
+				sql.append("z2.name != '小楼镇' and   ");
+				sql.append("z2.name != '正果镇' and   ");
+				sql.append("z2.name != '派潭镇' and   ");
+				sql.append("z2.name != '梯面镇' and   ");
+				sql.append("z2.name != '流溪河林场' ");
+				sql.append(") or c2.name = '塘田村' or c2.name = '安山村') ");
+			}
+			sql.append("group by a2.name,z2.name,c2.name ");
+			sql.append("order by r2.year desc, r2.time desc) t2 where aid=a.id) as '预计本年脱贫户数(户) ', ");			
+			
 			sql.append("sum(r.item2) as '已投入帮扶资金(元)', ");
 			sql.append("sum(r.item3) as '用于帮扶到户资金(元)', ");
 			sql.append("sum(r.item4) as '用于帮扶到村资金(元)', ");
