@@ -25,6 +25,7 @@
 			if(confirm('您确定删除吗？') && $('input:checked').length>0){
 				document.forms[0].action = '${appPath}admin_deleteUserContact.action';
 				document.forms[0].submit();
+				document.forms[0].action = '${appPath}admin_userContacts.action';
 			}
 		}
 		</script>

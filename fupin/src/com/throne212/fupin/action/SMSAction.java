@@ -288,6 +288,9 @@ public class SMSAction extends BaseAction {
 				break;
 			}
 		}
+//		if(1 ==1 )
+//			sum = 1;
+		
 		if(sum == 0){
 			this.setMsg("短信发送失败，请检查与短信服务器之间的连接");
 		}else{
@@ -296,7 +299,9 @@ public class SMSAction extends BaseAction {
 			s.setContent(content);
 			s.setDate(new Date());
 			s.setReceiver(receiver);
+			s.setSender(user.getLoginName());
 			adminBiz.saveOrUpdateEntity(s);
+			return batchList();
 		}		
 		return "batch_sms";
 	}

@@ -31,6 +31,8 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		T e = this.getEntityById(clazz, id);
 		if (e != null)
 			this.getHibernateTemplate().delete(e);
+		else
+			throw new RuntimeException("no record");
 	}
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value) {

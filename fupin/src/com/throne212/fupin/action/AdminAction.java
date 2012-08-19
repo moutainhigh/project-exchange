@@ -350,6 +350,22 @@ public class AdminAction extends BaseAction {
 		return "edit";
 	}
 	
+	public String deleteUserContact(){
+		String[] idsStr = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if(idsStr != null && idsStr.length>0){
+			for(String idStr : idsStr){
+				Long id = Long.parseLong(idStr);
+				try {
+					adminBiz.deleteEntity(UserContact.class, id);
+					this.setMsg("删除成功");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return userContacts();
+	}
+	
 
 	public AdminBiz getAdminBiz() {
 		return adminBiz;
