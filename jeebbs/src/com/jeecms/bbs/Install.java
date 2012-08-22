@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
  * @author liufang
  * 
  */
+
 public class Install {
 	public static void dbXml(String fileName, String dbHost, String dbPort,
 			String dbName, String dbUser, String dbPassword) throws Exception {
