@@ -16,7 +16,7 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script language="javascript">
 			$(function(){
-				//$('#form2').submit();
+				$('#form2').submit();
 				window.setTimeout(function(){
 					$('#form1').submit();
 				},500);
