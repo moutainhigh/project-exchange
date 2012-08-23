@@ -130,10 +130,12 @@
 		<servlet-name>JeeCmsFront</servlet-name>
 		<url-pattern>*.jspx</url-pattern>
 	</servlet-mapping>
+	<!-- 
 	<servlet-mapping>
 		<servlet-name>JeeCmsFront</servlet-name>
 		<url-pattern>*.jsp</url-pattern>
 	</servlet-mapping>
+	 -->
 	<servlet-mapping>
 		<servlet-name>JeeCmsFront</servlet-name>
 		<url-pattern>*.htm</url-pattern>

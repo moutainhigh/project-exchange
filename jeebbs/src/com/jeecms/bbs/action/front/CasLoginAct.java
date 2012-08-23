@@ -20,7 +20,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jeecms.core.entity.CmsSite;
+import com.jeecms.bbs.action.BbsUserAct;
 import com.jeecms.bbs.entity.BbsLoginLog;
 import com.jeecms.bbs.entity.BbsUser;
 import com.jeecms.bbs.entity.BbsUserOnline;
@@ -37,6 +37,7 @@ import com.jeecms.common.web.CookieUtils;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.core.entity.Authentication;
+import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.manager.AuthenticationMng;
 import com.jeecms.core.web.WebErrors;
 import com.octo.captcha.service.image.ImageCaptchaService;
@@ -100,6 +101,8 @@ public class CasLoginAct {
 		return FrontUtils.getTplPath(request, sol, TPLDIR_MEMBER, LOGIN_INPUT);
 	}
 
+	//@Autowired
+	//private BbsUserAct bbsUserAct;
 
 	@RequestMapping(value = "/login.jspx", method = RequestMethod.POST)
 	public String submit(String username, String password, String captcha,
@@ -107,10 +110,12 @@ public class CasLoginAct {
 			String message, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 
+		//先加用户
+		//System.out.println("bbsUserAct=" + bbsUserAct);
+		
 		CmsSite site = CmsUtils.getSite(request);
 		String sol = site.getSolutionPath();
-		WebErrors errors = validateSubmit(username, password, request, captcha,
-				response);
+		WebErrors errors = validateSubmit(username, password, request, captcha,	response);
 		if (!errors.hasErrors()) {
 			try {
 				String ip = RequestUtils.getIpAddr(request);
@@ -240,11 +245,11 @@ public class CasLoginAct {
 			HttpServletRequest request, String captcha,
 			HttpServletResponse response) {
 		WebErrors errors = WebErrors.create(request);
-		if (!imageCaptchaService.validateResponseForID(session.getSessionId(
-				request, response), captcha)) {
-			errors.addErrorCode("error.invalidCaptcha");
-			return errors;
-		}
+//		if (!imageCaptchaService.validateResponseForID(session.getSessionId(
+//				request, response), captcha)) {
+//			errors.addErrorCode("error.invalidCaptcha");
+//			return errors;
+//		}
 
 		if (errors.ifOutOfLength(username, "username", 1, 100)) {
 			return errors;

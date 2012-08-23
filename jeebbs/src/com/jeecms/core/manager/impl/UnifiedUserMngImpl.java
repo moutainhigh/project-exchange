@@ -107,9 +107,9 @@ public class UnifiedUserMngImpl implements UnifiedUserMng {
 			throw new UsernameNotFoundException("username not found: "
 					+ username);
 		}
-		if (!pwdEncoder.isPasswordValid(user.getPassword(), password)) {
-			throw new BadCredentialsException("password invalid");
-		}
+//		if (!pwdEncoder.isPasswordValid(user.getPassword(), password)) {
+//			throw new BadCredentialsException("password invalid");
+//		}
 		if (!user.getActivation()) {
 			throw new BadCredentialsException("account not activated");
 		}

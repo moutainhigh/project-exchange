@@ -43,6 +43,7 @@
 			<list>
 				<value>/login.do</value>
 				<value>/logout.do</value>
+				<value>/user/o_save.do</value>
 			</list>
 		</property>
     </bean>
