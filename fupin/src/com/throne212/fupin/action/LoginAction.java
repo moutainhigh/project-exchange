@@ -2,7 +2,9 @@ package com.throne212.fupin.action;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -93,6 +95,14 @@ public class LoginAction extends BaseAction {
 			c.setMaxAge(30*24*60*60);
 			response.addCookie(c);
 		}
+		
+		//bbs的地址
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String ip = request.getLocalAddr();
+		int port = request.getLocalPort();
+		//System.out.println("ip=http://" + ip + ":" + port+"/jeebbs/");
+		request.getSession().setAttribute("BBS_Path","http://" + ip + ":" + port+"/jeebbs/");
+		
 		return "success";
 	}
 

@@ -249,8 +249,11 @@ function images_update(){
 	    menuArray[menuArray.length]="1,批量短信,${appPath}sms_batchSMS.action";
 	    menuArray[menuArray.length]="1,批量短信发送记录,${appPath}sms_batchList.action";
 	    </c:if>
-	    menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
-	    
+	    //menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
+	    menuArray[menuArray.length]="0,登录论坛,${appPath}main/bbs/login_bbs.jsp";
+	    <c:if test="${userObj.roleType=='超级管理员'}">
+	    menuArray[menuArray.length]="0,登录管理,${BBS_Path}jeeadmin/jeebbs/logout.do?returnUrl=index.do";
+	     </c:if>
 	    
 	}
 	//document.all.span_menu.innerHTML=showMenu(menuArray); 
