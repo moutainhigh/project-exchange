@@ -143,6 +143,8 @@ public class CmsLoginAct {
 			HttpServletResponse response) {
 		String authId = (String) session.getAttribute(request, AUTH_KEY);
 		BbsUser user = CmsUtils.getUser(request);
+		if(user == null)
+			return "redirect:/jeeadmin/jeebbs/index.do";
 		Calendar calendar = Calendar.getInstance();
 		BbsUserOnline online = user.getUserOnline();
 		Date lastKeepSessionTime = (Date) session.getAttribute(request,
