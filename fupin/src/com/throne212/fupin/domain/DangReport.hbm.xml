@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="DangReport" table="fp_dang_report">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="org" column="org_id" lazy="false"></many-to-one>
+		<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
+		<property name="year"></property>
+		<property name="time"></property>
+		<property name="lock" column="lock_status"></property>
+		
+		<property name="createDate" column="create_date"></property>
+		<property name="createName" column="create_name"></property>
+		<property name="segment1"></property>
+		<property name="segment2"></property>
+		<property name="segment3"></property>
+		<property name="segment4"></property>
+		<property name="segment5"></property>
+		
+		<property name="item1"></property>
+		<property name="item2"></property>
+		<property name="item3"></property>
+		<property name="item4"></property>
+		<property name="item5"></property>
+		<property name="item6"></property>
+		<property name="item7"></property>
+		<property name="item8"></property>
+		<property name="item9"></property>
+		<property name="item10"></property>
+		<property name="item11"></property>
+		<property name="item12"></property>
+		<property name="item13"></property>
+		<property name="item14"></property>
+		<property name="item15"></property>
+		<property name="item16"></property>
+		<property name="item17"></property>
+		<property name="item18"></property>
+		<property name="item19"></property>
+		<property name="item20"></property>
+		<property name="item21"></property>
+		<property name="item22"></property>
+		<property name="item23"></property>
+		<property name="item24"></property>
+		<property name="item25"></property>
+		<property name="item26"></property>
+		<property name="item27"></property>
+		<property name="item28"></property>
+		<property name="item29"></property>
+		<property name="item30"></property>
+		<property name="item31"></property>
+		<property name="item32"></property>
+		<property name="item33"></property>
+		<property name="item34"></property>
+		<property name="item35"></property>
+		<property name="item36"></property>
+		<property name="item37"></property>
+		<property name="item38"></property>
+		<property name="item39"></property>
+		<property name="item40"></property>
+		<property name="item41"></property>
+		<property name="item42"></property>
+		<property name="item43"></property>
+		<property name="item44"></property>
+		<property name="item45"></property>
+		<property name="item46"></property>
+		<property name="item47"></property>
+		<property name="item48"></property>
+		<property name="item49"></property>
+		<property name="item50"></property>
+		<property name="item51"></property>
+		<property name="item52"></property>
+		<property name="item53"></property>
+		<property name="item54"></property>
+		<property name="item55"></property>
+		<property name="item56"></property>
+		<property name="item57"></property>
+		<property name="item58"></property>
+		<property name="item59"></property>
+		<property name="item60"></property>
+	</class>
+</hibernate-mapping>
