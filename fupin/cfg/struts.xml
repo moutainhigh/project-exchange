@@ -284,6 +284,13 @@
 			<result name="report_export">/main/report/report_export.jsp</result>
 			<result name="report_stat">/main/report/report_stat.jsp</result>
 		</action>
+		<!-- 党建报表工具 -->
+		<action name="dang_report_*" method="{1}" class="com.throne212.fupin.action.DangReportAction">
+			<result name="report_edit">/main/dang_report/edit.jsp</result>
+			<result name="report_list">/main/dang_report/report_list.jsp</result>
+			<result name="report_export">/main/dang_report/report_export.jsp</result>
+			<result name="report_stat">/main/dang_report/report_stat.jsp</result>
+		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
 			<result name="family_type_stat">/main/report/family_type_stat.jsp</result>

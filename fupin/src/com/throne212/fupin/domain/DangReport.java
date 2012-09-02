@@ -2,6 +2,7 @@ package com.throne212.fupin.domain;
 
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
+import java.util.Date;
 
 //党建工作报表父类
 public class DangReport extends MyEntity{
@@ -12,6 +13,7 @@ public class DangReport extends MyEntity{
 	private Cun cun;
 	private Integer year;
 	private String time;
+	private Date date;
 	
 	//锁定
 	private Integer lock;//0代表未锁/已解锁，1代表锁定，2代表请求解锁, 3代表暂存
@@ -628,6 +630,14 @@ public class DangReport extends MyEntity{
 
 	public void setLock(Integer lock) {
 		this.lock = lock;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

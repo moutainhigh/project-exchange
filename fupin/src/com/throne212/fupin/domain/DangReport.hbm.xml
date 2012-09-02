@@ -10,6 +10,7 @@
 		<many-to-one name="cun" column="cun_id" lazy="false"></many-to-one>
 		<property name="year"></property>
 		<property name="time"></property>
+		<property name="date" column="fill_date"></property>
 		<property name="lock" column="lock_status"></property>
 		
 		<property name="createDate" column="create_date"></property>

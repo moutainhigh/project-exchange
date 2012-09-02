@@ -79,6 +79,10 @@
 		<property name="qDao" ref="questionDao"></property>
 		<property name="cunDao" ref="cunDao"></property>
 	</bean>
+	<bean id="dangReportBiz" class="com.throne212.fupin.biz.impl.DangReportBizImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="dangReportDao" ref="dangReportDao"></property>
+	</bean>
 	
 	<!-- 定时器,11日，自动保存报表 -->
 	<bean name="autoGenReport" class="org.springframework.scheduling.quartz.JobDetailBean">

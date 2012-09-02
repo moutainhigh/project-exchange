@@ -139,6 +139,17 @@ function images_update(){
 		menuArray[menuArray.length]="1,表三,${appPath}report_viewReport2.action";
 	    </c:if>
 	    menuArray[menuArray.length]="1,贫困户类型统计,${appPath}stat_familyTypeList.action";
+	    
+	    menuArray[menuArray.length]="0,党建报表维护,";
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
+	    menuArray[menuArray.length]="1,党建报表导出,${appPath}dang_report_export.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='超级管理员'}">
+	    //menuArray[menuArray.length]="1,党建工作统计表,${appPath}dang_report_stat.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	    menuArray[menuArray.length]="1,党建报表填报,${appPath}dang_report_viewReport.action";
+	    </c:if>
 	
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 		menuArray[menuArray.length]="0,单位与干部维护,";
