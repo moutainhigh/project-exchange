@@ -146,6 +146,7 @@ function images_update(){
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
 	    //menuArray[menuArray.length]="1,党建工作统计表,${appPath}dang_report_stat.action";
+	    menuArray[menuArray.length]="1,党建报表解锁,${appPath}dang_report_reportList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
 	    menuArray[menuArray.length]="1,党建报表填报,${appPath}dang_report_viewReport.action";

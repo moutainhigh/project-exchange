@@ -122,6 +122,9 @@
 			//数字正则检查
 			var pass = true;
 			$('input[type="text"]').each(function(){
+				var name = this.name;
+				if(name == 'r.date' || name == 'r.item47' || name == 'r.item48')
+					return;
 				if($(this).val()!='' && $(this).val()!=null && !/^\d+(\.\d+)?$/.test($(this).val())){
 					pass = false;
 					//alert($(this).attr('name'));
@@ -146,8 +149,8 @@
 		}
 		function excel(){
 			var f = document.forms[0];
-				f.action = '${appPath}dang_report_excelReport.action';
-				f.submit();
+			f.action = '${appPath}dang_report_excelReport.action';
+			f.submit();
 		}
 		</script>
 		<style>

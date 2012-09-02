@@ -23,7 +23,7 @@
 		}
 		function unlockInfo(){
 			if($('input:checked').length>0 && confirm('您确定解锁吗？')){
-				document.forms[0].action = '${appPath}report_unlock.action';
+				document.forms[0].action = '${appPath}dang_report_unlock.action';
 				document.forms[0].submit();
 			}
 		}
@@ -37,12 +37,12 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}report_unlock.action" name="searchForm">
+		<form method="get" action="${appPath}dang_report_unlock.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：报表解锁
+							您当前所处页面：党建报表解锁
 						</td>
 						<td align="right">
 						<input type="button" class="button" value="解锁" onclick="unlockInfo();">
@@ -67,16 +67,10 @@
 							村名
 						</td>
 						<td width="" class="tables_headercell">
-							报表名称
-						</td>
-						<td width="" class="tables_headercell">
 							年份
-						</td>
+						</td>				
 						<td width="" class="tables_headercell">
-							报表类型
-						</td>						
-						<td width="" class="tables_headercell">
-							时间（季度/月份）
+							月份
 						</td>
 					</tr>
 					<c:forEach items="${reportList}" var="f">
@@ -94,16 +88,7 @@
 								&nbsp; ${f.cun.name }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; ${f.reportName }
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.year }
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; 
-								<c:if test="${f.type=='year'}">年度</c:if>
-								<c:if test="${f.type=='season'}">季度</c:if>
-								<c:if test="${f.type=='month'}">月份</c:if>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.time }

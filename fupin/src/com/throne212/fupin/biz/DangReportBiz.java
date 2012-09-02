@@ -16,9 +16,9 @@ public interface DangReportBiz extends BaseBiz {
 	
 	public DangReport saveReport(DangReport r);
 	
-	public String getExcelReportFilePath(ReportParam reportParam);
+	public String getExcelReportFilePath(ReportParam reportParam) throws Exception;
 	
-	public String getExcelReportFilePath(DangReport r);
+	public String getExcelReportFilePath(DangReport r) throws Exception;
 	
 	public List<String[]> statReport(ReportParam reportParam);
 	

@@ -27,6 +27,27 @@ public class DangReportAction extends BaseAction {
 	
 	private boolean showZanCun;
 	
+	// 报表列表，给sa用的
+	private List<DangReport> reportList;
+
+	public String reportList() {
+		reportList = dangReportBiz.getEntitiesByColumn(DangReport.class, "lock", 2);
+		return "report_list";
+	}
+
+	public String unlock() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (String idStr : ids) {
+				DangReport report = dangReportBiz.getEntityById(DangReport.class, Long.parseLong(idStr));
+				report.setLock(0);// 0表示已经解锁
+				dangReportBiz.saveOrUpdateEntity(report);
+			}
+			this.setMsg("成功解锁" + ids.length + "个报表");
+		}
+		return reportList();
+	}
+	
 	// 解锁
 	public String requstUnlock() {
 		dangReportBiz.requestUnlock(r);
@@ -49,7 +70,6 @@ public class DangReportAction extends BaseAction {
 		if (r == null) {// 默认条件打开，定向到当前的年得月份
 			Calendar c = GregorianCalendar.getInstance();
 			Integer year = c.get(Calendar.YEAR);
-			String type = "month";
 			String time = (c.get(Calendar.MONTH)) + "";
 			if("0".equals(time)){
 				year--;
@@ -86,13 +106,13 @@ public class DangReportAction extends BaseAction {
 		dangReportBiz.fillReport(r);
 		
 		//只有每月的1号到10号，可以暂存
-		if(user instanceof Org){
-			Calendar now = Calendar.getInstance();
-			int day = now.get(Calendar.DAY_OF_MONTH);
-			if(day >= 1 && day <= 10){
+//		if(user instanceof Org){
+//			Calendar now = Calendar.getInstance();
+//			int day = now.get(Calendar.DAY_OF_MONTH);
+//			if(day >= 1 && day <= 10){
 				showZanCun = true;
-			}
-		}
+//			}
+//		}
 
 		return "report_edit";
 	}
@@ -108,7 +128,7 @@ public class DangReportAction extends BaseAction {
 			filePath = dangReportBiz.getExcelReportFilePath(r);
 			if (filePath != null) {
 				downloadFile = new FileInputStream(filePath);
-				this.setMsg("report1_" + r.getYear() + "_" + r.getTime());
+				this.setMsg("report_dang_" + r.getYear() + "_" + r.getTime());
 			} else {
 				this.setMsg("报表文件生成失败，数据不完整或参数错误，请联系管理员");
 				return viewReport();
@@ -275,5 +295,13 @@ public class DangReportAction extends BaseAction {
 
 	public void setStatList(List<String[]> statList) {
 		this.statList = statList;
+	}
+
+	public List<DangReport> getReportList() {
+		return reportList;
+	}
+
+	public void setReportList(List<DangReport> reportList) {
+		this.reportList = reportList;
 	}
 }

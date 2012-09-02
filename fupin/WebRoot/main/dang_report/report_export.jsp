@@ -15,7 +15,7 @@
 			alert(msg);
 		}
 		function exportReport(){
-			document.forms[0].action = '${appPath}report_export.action';
+			document.forms[0].action = '${appPath}dang_report_export.action';
 			document.forms[0].submit();
 		}
 		$(function(){
@@ -94,16 +94,16 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}report_export.action" name="searchForm">
+		<form method="get" action="${appPath}dang_report_export.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：报表导出
+							您当前所处页面：党建报表导出
 						</td>
 						<td align="right">
 						<input type="button" class="button" value="导出报表" onclick="exportReport();">
-						<input type="button" class="button" value="手动保存当月报表" onclick="autoSaveReport();">
+						<!-- <input type="button" class="button" value="手动保存当月报表" onclick="autoSaveReport();"> -->
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -167,17 +167,6 @@
 								
 							</select>
 							月
-						</td>
-					</tr>
-					<tr>
-						<td height="25" align="center" class="tables_contentcell">
-							报表名称
-						</td>
-						<td height="25" align="center" class="tables_contentcell">
-							<select name="reportParam.name">
-								<option value="12">表一表二</option>
-								<option value="3">表三</option>
-							</select>
 						</td>
 					</tr>
 				</tbody>
