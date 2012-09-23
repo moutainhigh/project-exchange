@@ -1,6 +1,5 @@
 package com.throne212.fupin.dao.impl;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,7 +8,6 @@ import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ContactDao;
 import com.throne212.fupin.domain.Contact;
-import com.throne212.fupin.domain.CuoshiCun;
 
 public class ContactDaoImpl extends BaseDaoImpl implements ContactDao {
 
@@ -44,9 +42,5 @@ public class ContactDaoImpl extends BaseDaoImpl implements ContactDao {
 		return page;
 	}
 
-	public <T> List<T> getEntitiesByIds(Class<T> clazz, Collection<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

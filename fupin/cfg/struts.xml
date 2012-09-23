@@ -291,6 +291,13 @@
 			<result name="report_export">/main/dang_report/report_export.jsp</result>
 			<result name="report_stat">/main/dang_report/report_stat.jsp</result>
 		</action>
+		<!-- 民意调查 -->
+		<action name="people_*" method="{1}" class="com.throne212.fupin.action.PeopleAction">
+			<result name="people_setting">/main/people/people_setting.jsp</result>
+			<result name="people_list">/main/people/people_list.jsp</result>
+			<result name="people_edit">/main/people/people_edit.jsp</result>
+			<result name="people_summary">/main/people/people_summary.jsp</result>
+		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">
 			<result name="family_type_stat">/main/report/family_type_stat.jsp</result>

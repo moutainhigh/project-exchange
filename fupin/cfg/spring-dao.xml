@@ -64,4 +64,7 @@
 	<bean id="dangReportDao" class="com.throne212.fupin.dao.impl.DangReportDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="peopleDao" class="com.throne212.fupin.dao.impl.PeopleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

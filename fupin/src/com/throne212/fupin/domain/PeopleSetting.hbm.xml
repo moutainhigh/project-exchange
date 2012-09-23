@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.throne212.fupin.domain">
+	<class name="PeopleSetting" table="fp_people_setting">
+		<id column="id" name="id" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="year"></property>
+		<property name="mount"></property>
+	</class>
+</hibernate-mapping>

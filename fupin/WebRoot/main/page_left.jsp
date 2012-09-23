@@ -81,6 +81,7 @@ function getClickNode(inum){
 }
 
 function images_update(){	
+	try{
 	imgIDLeft0102.style.backgroundImage='url('+golobal_image_path+'/leftmu-01_r1_c2.gif)';
 	imgIDLeft0121.style.backgroundImage='url('+golobal_image_path+'/leftmu-01_r1_c2.gif)';
 	imgIDLeft0201.style.backgroundImage='url('+golobal_image_path+'/leftmu-01_r2_c1.gif)';
@@ -92,6 +93,7 @@ function images_update(){
 	imgIDLeft0104.src=golobal_image_path+'/leftmu-01_r1_c4.gif';
 	imgIDLeft0301.src=golobal_image_path+'/leftmu-01_r3_c1.gif';
 	imgIDLeft0304.src=golobal_image_path+'/leftmu-01_r3_c4.gif';
+	}catch(e){}
 } 
 
 
@@ -150,6 +152,15 @@ function images_update(){
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
 	    menuArray[menuArray.length]="1,党建报表填报,${appPath}dang_report_viewReport.action";
+	    </c:if>
+	    
+	    menuArray[menuArray.length]="0,民意调查表维护,";
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
+	    menuArray[menuArray.length]="1,民意调查表统计,${appPath}people_summary.action";
+	    menuArray[menuArray.length]="1,民意调查表设置,${appPath}people_peopleSetting.action";
+	    </c:if>
+	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	    menuArray[menuArray.length]="1,民意调查表填报,${appPath}people_peopleList.action";
 	    </c:if>
 	
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">

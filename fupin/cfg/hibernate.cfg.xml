@@ -47,6 +47,8 @@
 	<mapping resource="com/throne212/fupin/domain/UserContact.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/BatchSMS.hbm.xml" />
 	<mapping resource="com/throne212/fupin/domain/DangReport.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/People.hbm.xml" />
+	<mapping resource="com/throne212/fupin/domain/PeopleSetting.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
 

@@ -47,6 +47,7 @@
 				<value>projectBiz</value>
 				<value>questionBiz</value>
 				<value>dangReportBiz</value>
+				<value>peopleBiz</value>
 			</list>
 		</property>
 		<property name="interceptorNames">
