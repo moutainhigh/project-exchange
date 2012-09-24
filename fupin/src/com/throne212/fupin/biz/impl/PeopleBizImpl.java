@@ -30,5 +30,9 @@ public class PeopleBizImpl extends BaseBizImpl implements PeopleBiz {
 	public PageBean<PeopleSummary> summary(Integer year,Long areaId, Long zhenId, Long cunId, Integer pageIndex){
 		return peopleDao.summary(year, areaId, zhenId, cunId, pageIndex);
 	}
+	
+	public PageBean<People> getLockPeoples(Integer year, Integer pageIndex){
+		return peopleDao.getLockPeoples(year, pageIndex);
+	}
 
 }

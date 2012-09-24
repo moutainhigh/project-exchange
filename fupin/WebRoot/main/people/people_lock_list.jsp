@@ -23,12 +23,12 @@
 		}
 		function unlockInfo(){
 			if($('input:checked').length>0 && confirm('您确定解锁吗？')){
-				document.forms[0].action = '${appPath}dang_report_unlock.action';
+				document.forms[0].action = '${appPath}people_unlockPeople.action';
 				document.forms[0].submit();
 			}
 		}
 		function query(){
-			document.forms[0].action = '${appPath}people_peopleList.action';
+			document.forms[0].action = '${appPath}people_lockPeopleList.action';
 			document.forms[0].submit();
 		}
 		</script>
@@ -42,12 +42,12 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}people_peopleList.action" name="searchForm">
+		<form method="get" action="${appPath}people_lockPeopleList.action" name="searchForm">
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：民意调查表填报
+							您当前所处页面：民意调查表解锁
 						</td>
 						<td align="right">
 						<select name="year">
@@ -56,23 +56,17 @@
 							</c:forEach>
 						</select>年度
 						<input type="button" class="button" value="查询" onclick="query();">
-						<input type="button" class="button" value="新增" onclick="winOpen('${appPath}people_viewPeople.action',600,500);">
+						<input type="button" class="button" value="解锁" onclick="unlockInfo();">
 						</td>
 						<td width="5px"></td>
 					</tr>
 				</tbody>
 			</table>
-			
-<DIV class=content>
-<DIV id=statinfo>
-待提交 的 调查表：${ps.mount-pageBean.total}份&nbsp;│&nbsp;已 提 交 的 调查表：${pageBean.total}份&nbsp;│&nbsp;离${ps.mount}份<FONT color=red><B>还差</B></FONT><FONT color=red><B>${ps.mount-pageBean.total}</B></FONT>份（备注：调查表必须填写并确认提交才算数）
-</DIV>
-</DIV>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
 					<tr align="center">
 						<td height="28" width="" class="tables_headercell">
-							序号
+							<input type="checkbox" onclick="checkAll(this);">
 						</td>
 						<td width="" class="tables_headercell">
 							编号
@@ -89,14 +83,11 @@
 						<td width="" class="tables_headercell">
 							状态
 						</td>
-						<td width="" class="tables_headercell">
-							操作
-						</td>
 					</tr>
 					<c:forEach items="${pageBean.resultList}" var="f" varStatus="status">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								${status.count }
+								<input type="checkbox" value="${f.id}" name="ids"/>
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.id}
@@ -112,12 +103,6 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								&nbsp; ${f.statusTxt }
-							</td>
-							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}people_viewPeople.action?p.id=${f.id}',600,500);">查看</a>
-								<c:if test="${f.status == 2}">
-								<a href="${appPath}people_requestUnlockPeople.action?p.id=${f.id}">请求解锁</a>
-								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

@@ -297,6 +297,7 @@
 			<result name="people_list">/main/people/people_list.jsp</result>
 			<result name="people_edit">/main/people/people_edit.jsp</result>
 			<result name="people_summary">/main/people/people_summary.jsp</result>
+			<result name="people_lock_list">/main/people/people_lock_list.jsp</result>
 		</action>
 		<!-- 统计 -->
 		<action name="stat_*" method="{1}" class="com.throne212.fupin.action.StatAction">

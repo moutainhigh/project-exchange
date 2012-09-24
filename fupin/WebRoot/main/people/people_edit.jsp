@@ -131,7 +131,7 @@
 					</tr>
 					<tr>
 						<td align="center" class="tables_contentcell" colspan="4">
-							<c:if test="${p.status != 2 }">
+							<c:if test="${p.status == 0 || p.status == 1}">
 							<input type="button" value="存为草稿" class="button" onclick="tmpSaveForm();">
 							<input type="button" value="保存并提交" class="button" onclick="saveForm();">
 							</c:if>

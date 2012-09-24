@@ -88,6 +88,8 @@ public class People extends MyEntity {
 			return "草稿";
 		}else if(status == 2){
 			return "已提交";
+		}else if(status == 3){
+			return "请求解锁中";
 		}
 		return "";
 	}

@@ -157,6 +157,7 @@ function images_update(){
 	    menuArray[menuArray.length]="0,民意调查表维护,";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="1,民意调查表统计,${appPath}people_summary.action";
+	    menuArray[menuArray.length]="1,民意调查表解锁,${appPath}people_lockPeopleList.action";
 	    menuArray[menuArray.length]="1,民意调查表设置,${appPath}people_peopleSetting.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">

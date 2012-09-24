@@ -13,4 +13,6 @@ public interface PeopleDao extends BaseDao {
 	
 	public PageBean<PeopleSummary> summary(Integer year,Long areaId, Long zhenId, Long cunId, Integer pageIndex);
 	
+	public PageBean<People> getLockPeoples(Integer year, Integer pageIndex);
+	
 }

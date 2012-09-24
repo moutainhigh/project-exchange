@@ -15,40 +15,41 @@ import com.throne212.fupin.domain.People;
 import com.throne212.fupin.domain.PeopleSetting;
 import com.throne212.fupin.domain.User;
 
-
 //民意调查的action
 public class PeopleAction extends BaseAction {
-	
+
 	private PeopleBiz peopleBiz;
 
 	public void setPeopleBiz(PeopleBiz peopleBiz) {
 		this.peopleBiz = peopleBiz;
-	} 
-	
+	}
+
 	private Long areaId;
 	private Long zhenId;
 	private Long cunId;
-	public String summary(){
+
+	public String summary() {
 		fillSettingList();
-		if(year == null)
+		if (year == null)
 			year = 2011;
 		pageBean = peopleBiz.summary(year, areaId, zhenId, cunId, pageIndex);
 		return "people_summary";
 	}
-	
+
 	private List<PeopleSetting> settingList;
-	public String peopleSetting(){
+
+	public String peopleSetting() {
 		Map<String, Object> params = ActionContext.getContext().getParameters();
-		for(String param : params.keySet()){
-			if(param.contains("mount_")){
+		for (String param : params.keySet()) {
+			if (param.contains("mount_")) {
 				String[] val = (String[]) params.get(param);
-				if(val != null && val.length == 1){
+				if (val != null && val.length == 1) {
 					int mount = Integer.parseInt(val[0]);
 					int year = Integer.parseInt(param.split("_")[1]);
 					PeopleSetting ps = peopleBiz.getSettingByYear(year);
-					if(ps != null){
+					if (ps != null) {
 						ps.setMount(mount);
-					}else{
+					} else {
 						ps = new PeopleSetting();
 						ps.setYear(year);
 						ps.setMount(mount);
@@ -61,66 +62,69 @@ public class PeopleAction extends BaseAction {
 		fillSettingList();
 		return "people_setting";
 	}
-	
-	private void fillSettingList(){
+
+	private void fillSettingList() {
 		settingList = new ArrayList<PeopleSetting>();
 		int currYear = Calendar.getInstance().get(Calendar.YEAR);
-		for(int i=2011;i<currYear;i++){
+		for (int i = 2011; i < currYear; i++) {
 			PeopleSetting ps = peopleBiz.getSettingByYear(i);
-			if(ps == null){
+			if (ps == null) {
 				ps = new PeopleSetting();
 				ps.setYear(i);
 			}
 			settingList.add(ps);
-			if(year != null && year.equals(ps.getYear())){
+			if (year != null && year.equals(ps.getYear())) {
 				ActionContext.getContext().put("ps", ps);
 			}
 		}
 	}
-	
+
 	private PageBean pageBean;
 	private Integer pageIndex;
 	private Integer year;
-	public String peopleList(){
-		if(year == null)
+
+	public String peopleList() {
+		if (year == null)
 			year = 2011;
 		pageBean = peopleBiz.getPeoples(year, pageIndex);
 		fillSettingList();
 		return "people_list";
 	}
-	
+
 	private People p;
-	public String viewPeople(){
-		if(p != null && p.getId() != null){
+
+	public String viewPeople() {
+		if (p != null && p.getId() != null) {
 			p = peopleBiz.getEntityById(People.class, p.getId());
 		}
 		fillSettingList();
 		return "people_edit";
 	}
-	public String savePeople(){
+
+	public String savePeople() {
 		fillSettingList();
-		if(p!=null && p.getTargetType() == null){
+		if (p != null && p.getTargetType() == null) {
 			this.setMsg("被调查人的类别必选");
 			return "people_edit";
 		}
-		if(p!=null && (p.getItem1() == 0 || p.getItem2() == 0 || p.getItem3() == 0 || p.getItem4() == 0)){
+		if (p != null && (p.getItem1() == 0 || p.getItem2() == 0 || p.getItem3() == 0 || p.getItem4() == 0)) {
 			this.setMsg("请勾选所有调查满意度");
 			return "people_edit";
 		}
 		tmpSavePeople();
-		if(p != null && p.getId() != null){
-			p.setStatus(2);//提交
+		if (p != null && p.getId() != null) {
+			p.setStatus(2);// 提交
 			peopleBiz.saveOrUpdateEntity(p);
 		}
 		return "people_edit";
 	}
-	
-	public String tmpSavePeople(){
+
+	public String tmpSavePeople() {
 		fillSettingList();
-		if(p != null){
-			if(p.getId() != null){
+		if (p != null) {
+			if (p.getId() != null) {
 				People p2 = peopleBiz.getEntityById(People.class, p.getId());
-				if(p2 != null){
+				if (p2 != null) {
 					p2.setItem1(p.getItem1());
 					p2.setItem2(p.getItem2());
 					p2.setItem3(p.getItem3());
@@ -132,23 +136,23 @@ public class PeopleAction extends BaseAction {
 					p2.setDate(p.getDate());
 					p = p2;
 				}
-			}else{
+			} else {
 				PeopleSetting ps = peopleBiz.getSettingByYear(p.getYear());
-				if(ps != null){
+				if (ps != null) {
 					long count = peopleBiz.getPeopleSubmitCount(p.getYear());
-					if(count+1 > ps.getMount()){
+					if (count + 1 > ps.getMount()) {
 						this.setMsg("已经超过设置的该年度的最大份数:" + ps.getMount());
-						return "people_edit"; 
+						return "people_edit";
 					}
 				}
 				p.setCreateDate(new Date());
 			}
 			User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-			if(user instanceof Org){
+			if (user instanceof Org) {
 				Org org = (Org) user;
 				p.setOrg(org);
 				p.setCun(org.getCun());
-				p.setStatus(1);//草稿
+				p.setStatus(1);// 草稿
 			}
 			peopleBiz.saveOrUpdateEntity(p);
 			this.setMsg("保存成功");
@@ -156,13 +160,49 @@ public class PeopleAction extends BaseAction {
 		}
 		return "people_edit";
 	}
-	
+
+	public String requestUnlockPeople() {
+		if (p != null && p.getId() != null) {
+			p = peopleBiz.getEntityById(People.class, p.getId());
+			if (p != null) {
+				p.setStatus(3);// 请求解锁
+				peopleBiz.saveOrUpdateEntity(p);
+				this.setMsg("请求解锁成功，待管理员处理");
+			}
+		}
+		return peopleList();
+	}
+
+	public String lockPeopleList() {
+		fillSettingList();
+		pageBean = peopleBiz.getLockPeoples(year, pageIndex);
+		return "people_lock_list";
+	}
+
+	public String unlockPeople() {
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if (ids != null && ids.length > 0) {
+			for (int i = 0; i < ids.length; i++) {
+				long id = Long.parseLong(ids[i]);
+				p = peopleBiz.getEntityById(People.class, id);
+				if (p != null) {
+					p.setStatus(1);// 草稿
+					peopleBiz.saveOrUpdateEntity(p);
+					this.setMsg("解锁成功");
+				}
+			}
+		}
+		return lockPeopleList();
+	}
+
 	public List<PeopleSetting> getSettingList() {
 		return settingList;
 	}
+
 	public void setSettingList(List<PeopleSetting> settingList) {
 		this.settingList = settingList;
 	}
+
 	public PeopleBiz getPeopleBiz() {
 		return peopleBiz;
 	}
@@ -222,5 +262,5 @@ public class PeopleAction extends BaseAction {
 	public void setCunId(Long cunId) {
 		this.cunId = cunId;
 	}
-	
+
 }
