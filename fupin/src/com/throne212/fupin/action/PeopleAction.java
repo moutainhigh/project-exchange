@@ -28,6 +28,8 @@ public class PeopleAction extends BaseAction {
 	private Long zhenId;
 	private Long cunId;
 
+	private Integer mount;
+	
 	public String summary() {
 		fillSettingList();
 		if (year == null)
@@ -39,44 +41,38 @@ public class PeopleAction extends BaseAction {
 	private List<PeopleSetting> settingList;
 
 	public String peopleSetting() {
-		Map<String, Object> params = ActionContext.getContext().getParameters();
-		for (String param : params.keySet()) {
-			if (param.contains("mount_")) {
-				String[] val = (String[]) params.get(param);
-				if (val != null && val.length == 1) {
-					int mount = Integer.parseInt(val[0]);
-					int year = Integer.parseInt(param.split("_")[1]);
-					PeopleSetting ps = peopleBiz.getSettingByYear(year);
-					if (ps != null) {
-						ps.setMount(mount);
-					} else {
-						ps = new PeopleSetting();
-						ps.setYear(year);
-						ps.setMount(mount);
-					}
-					peopleBiz.saveOrUpdateEntity(ps);
-					this.setMsg("保存成功");
-				}
+		
+		if(year != null && mount != null && year > 0 && mount > 0){
+			PeopleSetting ps = peopleBiz.getSettingByYear(year);
+			if (ps != null) {
+				ps.setMount(mount);
+			} else {
+				ps = new PeopleSetting();
+				ps.setYear(year);
+				ps.setMount(mount);
 			}
+			peopleBiz.saveOrUpdateEntity(ps);
+			this.setMsg("保存成功");
 		}
 		fillSettingList();
 		return "people_setting";
 	}
 
 	private void fillSettingList() {
-		settingList = new ArrayList<PeopleSetting>();
-		int currYear = Calendar.getInstance().get(Calendar.YEAR);
-		for (int i = 2011; i < currYear; i++) {
-			PeopleSetting ps = peopleBiz.getSettingByYear(i);
-			if (ps == null) {
-				ps = new PeopleSetting();
-				ps.setYear(i);
-			}
-			settingList.add(ps);
-			if (year != null && year.equals(ps.getYear())) {
-				ActionContext.getContext().put("ps", ps);
-			}
-		}
+//		settingList = new ArrayList<PeopleSetting>();
+//		int currYear = Calendar.getInstance().get(Calendar.YEAR);
+//		for (int i = 2010; i < currYear; i++) {
+//			PeopleSetting ps = peopleBiz.getSettingByYear(i);
+//			if (ps == null) {
+//				ps = new PeopleSetting();
+//				ps.setYear(i);
+//			}
+//			settingList.add(ps);
+//			if (year != null && year.equals(ps.getYear())) {
+//				ActionContext.getContext().put("ps", ps);
+//			}
+//		}
+		settingList = peopleBiz.getAll(PeopleSetting.class,"year","asc");
 	}
 
 	private PageBean pageBean;
@@ -261,6 +257,14 @@ public class PeopleAction extends BaseAction {
 
 	public void setCunId(Long cunId) {
 		this.cunId = cunId;
+	}
+
+	public Integer getMount() {
+		return mount;
+	}
+
+	public void setMount(Integer mount) {
+		this.mount = mount;
 	}
 
 }

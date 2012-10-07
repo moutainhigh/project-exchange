@@ -8,6 +8,7 @@ public class PeopleSummary {
 	private Cun cun;
 	private Org org;
 	private int submit;
+	private int nosubmit;
 	private int year;
 
 	public Cun getCun() {
@@ -40,6 +41,14 @@ public class PeopleSummary {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	public int getNosubmit() {
+		return nosubmit;
+	}
+
+	public void setNosubmit(int nosubmit) {
+		this.nosubmit = nosubmit;
 	}
 
 }

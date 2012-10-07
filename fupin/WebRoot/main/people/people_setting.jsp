@@ -26,6 +26,14 @@
 			}
 			f.submit();
 		}
+		$(function(){
+			var now = new Date();
+			var y = now.getYear() + 1900;
+			for(var i=2010;i<y+5;i++){
+				var str = '<option value="'+i+'">'+i+'</option>';
+				$('#year').append(str);
+			}
+		});
 		</script>
 		<style>
 .tables_search {
@@ -52,6 +60,21 @@
 			</table>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
 				<tbody>
+					<tr>
+						<td height="25" align="center" class="tables_contentcell">
+							<select name="year" id="year">
+								<option value=""></option>
+							</select>年
+						</td>
+						<td height="25" align="center" class="tables_contentcell">
+							<input type="text" value="" name="mount">份
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br/>
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table">
+				<tbody>
 					<tr align="center">
 						<td width="" class="tables_headercell">
 							年份
@@ -63,10 +86,10 @@
 					<c:forEach items="${settingList }" var="s">
 						<tr>
 							<td height="25" align="center" class="tables_contentcell">
-								${s.year}年
+								${s.year}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								<input type="text" value="${s.mount}" name="mount_${s.year}">
+								${s.mount}
 							</td>
 						</tr>
 					</c:forEach>

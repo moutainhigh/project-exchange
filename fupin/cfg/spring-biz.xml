@@ -108,8 +108,26 @@
     	<property name="triggers">
 	        <list>
 	            <ref bean="simpleTrigger" />
+	            <ref bean="simpleTrigger2" />
 	        </list>
 	    </property>
+	</bean>
+	
+	<!-- 党建repot自动保存 -->
+	<bean name="autoGenReport2" class="org.springframework.scheduling.quartz.JobDetailBean">
+  		<property name="jobClass" value="com.throne212.fupin.common.TimerBean2" />
+		<property name="jobDataAsMap">
+ 			<map>
+   				<entry key="timeout" value="10" />
+   				<entry key="dangReportBiz" value-ref="dangReportBiz"></entry>
+ 			</map>
+		</property>
+	</bean>
+
+	<bean id="simpleTrigger2" class="org.springframework.scheduling.quartz.SimpleTriggerBean" lazy-init="false">
+	    <property name="jobDetail" ref="autoGenReport2" />
+	    <property name="startDelay" value="1" />
+	    <property name="repeatInterval" value="86400000" /> <!-- 间隔一天 -->
 	</bean>
 	
 </beans>

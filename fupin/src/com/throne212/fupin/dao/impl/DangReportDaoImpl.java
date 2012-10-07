@@ -1,10 +1,13 @@
 package com.throne212.fupin.dao.impl;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import jxl.Workbook;
@@ -22,6 +25,9 @@ import com.throne212.fupin.dao.DangReportDao;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.DangReport;
 import com.throne212.fupin.domain.Org;
+import com.throne212.fupin.domain.Report;
+import com.throne212.fupin.domain.Report1;
+import com.throne212.fupin.domain.Report2;
 import com.throne212.fupin.domain.User;
 
 public class DangReportDaoImpl extends BaseDaoImpl implements DangReportDao {
@@ -241,4 +247,155 @@ public class DangReportDaoImpl extends BaseDaoImpl implements DangReportDao {
 
 		return null;
 	}
+
+	public List<String[]> statReport(ReportParam reportParam) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select a.name,");
+		sql.append("sum(r.item1), ");
+		sql.append("sum(r.item2), ");
+		sql.append("sum(r.item3), ");
+		sql.append("sum(r.item4), ");
+		sql.append("sum(r.item5), ");
+		sql.append("sum(r.item6), ");
+		sql.append("sum(r.item7), ");
+		sql.append("sum(r.item8), ");
+		sql.append("sum(r.item9), ");
+		sql.append("sum(r.item10), ");
+		sql.append("sum(r.item11), ");
+		sql.append("sum(r.item12), ");
+		sql.append("sum(r.item13), ");
+		sql.append("sum(r.item14), ");
+		sql.append("sum(r.item15), ");
+		sql.append("sum(r.item16), ");
+		sql.append("sum(r.item17), ");
+		sql.append("sum(r.item18), ");
+		sql.append("sum(r.item19), ");
+		sql.append("sum(r.item20), ");
+		sql.append("sum(r.item21), ");
+		sql.append("sum(r.item22), ");
+		sql.append("sum(r.item23), ");
+		sql.append("sum(r.item24), ");
+		sql.append("sum(r.item25), ");
+		sql.append("sum(r.item26), ");
+		sql.append("sum(r.item27), ");
+		sql.append("sum(r.item28), ");
+		sql.append("sum(r.item29), ");
+		sql.append("sum(r.item30), ");
+		sql.append("sum(r.item31), ");
+		sql.append("sum(r.item32), ");
+		sql.append("sum(r.item33), ");
+		sql.append("sum(r.item34), ");
+		sql.append("sum(r.item35), ");
+		sql.append("sum(r.item36), ");
+		sql.append("sum(r.item37), ");
+		sql.append("sum(r.item38), ");
+		sql.append("sum(r.item39), ");
+		sql.append("sum(r.item40), ");
+		sql.append("sum(r.item41), ");
+		sql.append("sum(r.item42), ");
+		sql.append("sum(r.item43), ");
+		sql.append("sum(r.item44), ");
+		sql.append("sum(r.item45), ");
+		sql.append("sum(r.item46) ");
+		sql.append("from fp_diqu c ");
+		sql.append("left outer join fp_diqu z on z.id=c.zhen_id ");
+		sql.append("left outer join fp_diqu a on a.id=z.area_id ");
+		sql.append("left outer join fp_dang_report r on r.cun_id=c.id ");
+		sql.append("and STR_TO_DATE(CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d')>=STR_TO_DATE('" + reportParam.getYear() + "-" + reportParam.getMonth() + "-01','%Y-%m-%d') ");
+		sql.append("and STR_TO_DATE(CONCAT(r.year,'-',r.time,'-01'),'%Y-%m-%d')<=STR_TO_DATE('" + reportParam.getYear2() + "-" + reportParam.getMonth2() + "-01','%Y-%m-%d') ");
+		sql.append("where c.diqu_type='cun' ");
+		sql.append("and z.diqu_type='zhen' ");
+		sql.append("and a.diqu_type='area' ");
+		sql.append("group by a.name");
+		logger.info("报表统计生成sql：\n" + sql);
+		List<String[]> rows = new ArrayList<String[]>();
+		Session s = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			s = this.getHibernateTemplate().getSessionFactory().openSession();
+			conn = s.connection();
+			ps = conn.prepareStatement(sql.toString());
+			rs = ps.executeQuery();
+			while(rs.next()){
+				String[] row = new String[47];
+				for(int j=0;j<1;j++)
+					row[j] = rs.getString(j+1);
+				for(int j=1;j<=46;j++){
+					Double d = rs.getDouble(j + 1);
+					if(d == null)
+						continue;
+					row[j] = new BigDecimal(d).toPlainString().trim();
+					int index = row[j].indexOf(".");
+					if(index > -1){
+						String num2 = row[j].substring(index+1);   
+						if(num2.length() > 2)
+						row[j] = row[j].substring(0, index + 3);
+					}
+				}
+				rows.add(row);
+			}
+			return rows;
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			if (ps != null)
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			if (s != null)
+				try {
+					s.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+
+		return rows;
+	}
+	public void autoSaveReports(int year, int month){
+		String hql = "from Cun";
+		List<Cun> cunList = this.getHibernateTemplate().find(hql);
+		for(Cun cun : cunList){
+			if(cun.getOrg() != null){
+				hql = "from DangReport where year=? and time=? and cun=?";
+				List<Report1> r1List = this.getHibernateTemplate().find(hql, new Object[]{year, month + "",cun});
+				if(r1List != null && r1List.size() > 0){//存在，或已经暂存过来
+					Report1 r1 = r1List.get(0);
+					if(r1.getLock() != 1){
+						r1.setLock(1);//锁定
+						this.saveOrUpdate(r1);
+					}
+				}else{
+					DangReport report = getReport(cun.getOrg(), cun, year, month + "");
+					for (int i = 1; i <= 60; i++) {
+						report.setItem(i, "0");
+					}
+					report.setCun(cun);
+					report.setOrg(cun.getOrg());
+					report.setYear(year);
+					report.setTime(month + "");
+					report.setLock(1);// 1表示已经锁定
+					saveOrUpdate(report);
+				}
+			}
+		}
+	}
+	
 }

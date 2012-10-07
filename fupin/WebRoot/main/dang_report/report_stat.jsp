@@ -22,11 +22,11 @@
 			$(".tables_table").hide();
 			$("h2").hide();
 			$(".tables_search").after('<h2 style="margin: 30px auto; width:50%; padding: 10px;">统计需要一些时间，请勿进行其他操作，正在加载中。。。</h2>');
-			document.forms[0].action = '${appPath}report_stat.action';
+			document.forms[0].action = '${appPath}dang_report_stat.action';
 			document.forms[0].submit();
 		}
 		function statExportReport(){
-			document.forms[0].action = '${appPath}report_statExport.action';
+			document.forms[0].action = '${appPath}dang_report_statExport.action';
 			document.forms[0].submit();
 		}
 		$(function(){
@@ -102,11 +102,10 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 				<tbody>
 					<tr>
 						<td>
-							您当前所处页面：“双到”工作统计表
+							您当前所处页面：党建工作统计表
 						</td>
 						<td align="right">
 						<input type="button" class="button" value="统计" onclick="statReport();">
-						<input type="button" class="button" value="导出统计报表" onclick="statExportReport();">
 						</td>
 						<td width="5px"></td>
 					</tr>
@@ -139,65 +138,66 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 				</tbody>
 			</table>
 			<br/>
-			<h2>表一二（一）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="" class="tables_headercell" rowspan="2">
-							分类
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
+						<td width="" class="tables_headercell" rowspan="3">
 							区（县）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							贫困户户数（户）
+						<td width="" class="tables_headercell" colspan="14">
+							村组织情况
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							贫困户人数（人）
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell" rowspan="2">
+							支部数（个）
 						</td>
-						<td width="" class="tables_headercell" colspan="4">
-							有劳动力
+						<td class="tables_headercell" rowspan="2">
+							党小组（个）
 						</td>
-						<td width="" class="tables_headercell" colspan="4">
-							无劳动力
+						<td class="tables_headercell" rowspan="2">
+							本村党组织支委（不含挂扶干部任职）人数（人）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							危房户
+						<td class="tables_headercell" colspan="4">
+							其中：年龄分布（人）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							贫困户去世、失踪等情况(户) 
+						<td class="tables_headercell" colspan="3">
+							其中：文化程度分布（人）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							预计本年脱贫户数(户) 
+						<td class="tables_headercell" rowspan="2">
+							其中：女干部（人）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							预计本年脱贫人数(人) 
+						<td class="tables_headercell" rowspan="2">
+							其中：交叉任村委（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							其中：联系带动10户以上的农户致富能手（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							2011年村干部人均工资待遇（万元/年）
 						</td>
 					</tr>
 					<tr align="center">
 						<td class="tables_headercell">
-							低保对象(户) 
-						</td>
-						<td class="tables_headercell"">
-							低保对象(人) 
-						</td>
-						<td class="tables_headercell"">
-							低收入困难家庭(户) 
-						</td>
-						<td class="tables_headercell"">
-							低收入困难家庭(人) 
+							35岁以下
 						</td>
 						<td class="tables_headercell">
-							低保对象(户) 
+							36-45岁
 						</td>
-						<td class="tables_headercell"">
-							低保对象(人) 
+						<td class="tables_headercell">
+							45-59岁
 						</td>
-						<td class="tables_headercell"">
-							低收入困难家庭(户) 
+						<td class="tables_headercell">
+							60岁以上
 						</td>
-						<td class="tables_headercell"">
-							低收入困难家庭(人) 
+						<td class="tables_headercell">
+							初中及以下
+						</td>
+						<td class="tables_headercell">
+							高中
+						</td>
+						<td class="tables_headercell">
+							大专及以上
 						</td>
 					</tr>
 					<c:forEach items="${statList}" var="f">
@@ -247,85 +247,68 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[14] }
 							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[15] }
-							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<br/>
-			<h2>表一二（二）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="" class="tables_headercell" rowspan="2">
-							分类
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
+						<td width="" class="tables_headercell" rowspan="3">
 							区（县）
 						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							到村到户 
+						<td width="" class="tables_headercell" colspan="13">
+							党员情况
 						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							农业生产 
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell" rowspan="2">
+							全村人口（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							劳动力转移 
+						<td class="tables_headercell" rowspan="2">
+							全村党员（不含挂扶干部）人数（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							培训 
+						<td class="tables_headercell" rowspan="2">
+							其中：女党员（人）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							完成危房改造(户)
+						<td class="tables_headercell" colspan="4">
+							其中：年龄分布（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							保障 
+						<td class="tables_headercell" colspan="3">
+							其中：文化程度分布（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="3">
-							助学  
+						<td class="tables_headercell" rowspan="2">
+							其中：2009年6月份以来新党员（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							其中：外出就业党员（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							全村党员联系带动本村农户脱贫致富户数(户)
 						</td>
 					</tr>
 					<tr align="center">
 						<td class="tables_headercell">
-							帮扶单位领导(人次) 
-						</td>
-						<td class="tables_headercell"">
-							帮扶单位干部　职工(人次) 
-						</td>
-						<td class="tables_headercell"">
-							种植(户)
-						</td>
-						<td class="tables_headercell"">
-							养殖(户) 
+							35岁以下
 						</td>
 						<td class="tables_headercell">
-							务工(人) 
+							36-45岁
 						</td>
-						<td class="tables_headercell"">
-							创业(人) 
+						<td class="tables_headercell">
+							45-59岁
 						</td>
-						<td class="tables_headercell"">
-							农业科技培训(人次)
+						<td class="tables_headercell">
+							60岁以上
 						</td>
-						<td class="tables_headercell"">
-							就业技能培训(人次)
+						<td class="tables_headercell">
+							初中及以下
 						</td>
-						<td class="tables_headercell"">
-							参加农村合作医疗(人)
+						<td class="tables_headercell">
+							高中
 						</td>
-						<td class="tables_headercell"">
-							参加农村养老保险(人) 
-						</td>
-						<td class="tables_headercell"">
-							义务教育阶段(人) 
-						</td>
-						<td class="tables_headercell"">
-							高中、职高、技校、中专等(人) 
-						</td>
-						<td class="tables_headercell"">
-							大专、本科以上(人)
+						<td class="tables_headercell">
+							大专及以上
 						</td>
 					</tr>
 					<c:forEach items="${statList}" var="f">
@@ -334,7 +317,7 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 								&nbsp; ${f[0] }
 							</td>
 							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[1] }
+								&nbsp; ${f[15] }
 							</td>
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[16] }
@@ -372,79 +355,92 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[27] }
 							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[28] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[29] }
-							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<br/>
-			<h2>表一二（三）</h2>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
 				<tbody>
 					<tr align="center">
-						<td height="28" width="" class="tables_headercell" rowspan="2">
-							分类
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
+						<td width="" class="tables_headercell" rowspan="3">
 							区（县）
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							产业发展带动农户(户) 
+						<td width="" class="tables_headercell" colspan="10">
+							挂扶干部参与党组织情况
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							上年村级集体经济收入(元) 
+						<td width="" class="tables_headercell" colspan="9">
+							党支部活动情况
 						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							预计今年村级集体经济收入(元)
+					</tr>
+					<tr align="center">
+						<td class="tables_headercell" rowspan="2">
+							挂扶干部担任党组织支委（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="3">
-							"两委"班子 
+						<td class="tables_headercell" colspan="4">
+							其中：年龄分布（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="4">
-							文化活动 
+						<td class="tables_headercell" colspan="3">
+							其中：文化程度分布（人）
 						</td>
-						<td width="" class="tables_headercell" colspan="6">
-							村集体项目   
+						<td class="tables_headercell" rowspan="2">
+							其中：女干部（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							其中：交叉任村委（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							2009年6月份以来建立完善村制度数（项）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							2009年6月份以来组织党员组织活动次数（次）
+						</td>
+						<td class="tables_headercell" colspan="4">
+							其中：年龄分布（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							2009年6月份以来申请入党人数（人）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							2009年6月份以来全村党建活动专项经费（万元）
+						</td>
+						<td class="tables_headercell" rowspan="2">
+							2009年6月份以来党组织活动场所建设投入（万元）
 						</td>
 					</tr>
 					<tr align="center">
 						<td class="tables_headercell">
-							组织活动(次)
-						</td>
-						<td class="tables_headercell"">
-							扶贫工作会议(次) 
-						</td>
-						<td class="tables_headercell"">
-							发展新党员(人) 
-						</td>
-						<td class="tables_headercell"">
-							文娱体育(次)
+							35岁以下
 						</td>
 						<td class="tables_headercell">
-							送医送药(次)
+							36-45岁
 						</td>
-						<td class="tables_headercell"">
-							科技下乡(次) 
+						<td class="tables_headercell">
+							45-59岁
 						</td>
-						<td class="tables_headercell"">
-							其他(次) 
+						<td class="tables_headercell">
+							60岁以上
 						</td>
-						<td class="tables_headercell"">
-							工业开发项目(个)
+						<td class="tables_headercell">
+							初中及以下
 						</td>
-						<td class="tables_headercell"">
-							商贸旅游项目(个) 
+						<td class="tables_headercell">
+							高中
 						</td>
-						<td class="tables_headercell"">
-							农业开发项目(个) 
+						<td class="tables_headercell">
+							大专及以上
 						</td>
-						<td class="tables_headercell"">
-							手工加工项目(个) 
+						<td class="tables_headercell">
+							支部大会（次）
+						</td>
+						<td class="tables_headercell">
+							党小组会议（次）
+						</td>
+						<td class="tables_headercell">
+							民主生活会（次）
+						</td>
+						<td class="tables_headercell">
+							学习讨论活动（次）
 						</td>
 					</tr>
 					<c:forEach items="${statList}" var="f">
@@ -453,7 +449,10 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 								&nbsp; ${f[0] }
 							</td>
 							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[1] }
+								&nbsp; ${f[28] }
+							</td>
+							<td align="center" class="tables_contentcell">
+								&nbsp; ${f[29] }
 							</td>
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[30] }
@@ -497,89 +496,6 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[43] }
 							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<br/>
-			<h2>表一二（四）</h2>
-			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
-				<tbody>
-					<tr align="center">
-						<td height="28" width="" class="tables_headercell" rowspan="2">
-							分类
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							区（县）
-						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							村集体项目 
-						</td>
-						<td width="" class="tables_headercell" colspan="4">
-							基础建设 
-						</td>
-						<td width="" class="tables_headercell" colspan="3">
-							农田建设 
-						</td>
-						<td width="" class="tables_headercell" colspan="6">
-							建设或改造村公共文化卫生设施
-						</td>
-					</tr>
-					<tr align="center">
-						<td class="tables_headercell"">
-							招商引资项目(个) 
-						</td>
-						<td class="tables_headercell"">
-							企业捐建项目(个) 
-						</td>
-						<td class="tables_headercell"">
-							硬底化村道(公里) 
-						</td>
-						<td class="tables_headercell"">
-							安装路灯村道(公里)
-						</td>
-						<td class="tables_headercell">
-							二次改水工程(个) 
-						</td>
-						<td class="tables_headercell"">
-							生活污水处理设施(个) 
-						</td>
-						<td class="tables_headercell"">
-							农田水利设施(个) 
-						</td>
-						<td class="tables_headercell"">
-							受益农田(鱼塘)面积(亩)
-						</td>
-						<td class="tables_headercell"">
-							标准农田(鱼塘)(亩) 
-						</td>
-						<td class="tables_headercell"">
-							村委会(个) 
-						</td>
-						<td class="tables_headercell"">
-							文化室(个) 
-						</td>
-						<td class="tables_headercell"">
-							卫生站(个) 
-						</td>
-						<td class="tables_headercell"">
-							环卫设施(个) 
-						</td>
-						<td class="tables_headercell"">
-							体育设施(个) 
-						</td>
-						<td class="tables_headercell"">
-							其他(个) 
-						</td>
-					</tr>
-					<c:forEach items="${statList}" var="f">
-						<tr>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[0] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[1] }
-							</td>
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[44] }
 							</td>
@@ -588,132 +504,6 @@ h2{margin:5px auto; width: 50%; text-align:center;}
 							</td>
 							<td align="center" class="tables_contentcell">
 								&nbsp; ${f[46] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[47] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[48] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[49] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[50] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[51] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[52] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[53] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[54] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[55] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[56] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[57] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[58] }
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<br/>
-			<!--表三-->
-			<h2>表三</h2>
-			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_table data_table">
-				<tbody>
-					<tr align="center">
-						<td height="28" width="" class="tables_headercell" rowspan="2">
-							分类
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							区（县）
-						</td>
-						<td width="" class="tables_headercell">
-							规划
-						</td>
-						<td width="" class="tables_headercell" rowspan="2">
-							本月（季）投入帮扶资金（元） 
-						</td>
-						<td width="" class="tables_headercell" colspan="2">
-							本月（季）投入帮扶资金（元）
-						</td>
-						<td width="" class="tables_headercell" colspan="5">
-							本月（季）投入帮扶资金构成
-						</td>
-					</tr>
-					<tr align="center">
-						<td class="tables_headercell">
-							两年规划投入资金（元）
-						</td>
-						<td class="tables_headercell"">
-							用于帮扶到户资金(元)
-						</td>
-						<td class="tables_headercell"">
-							用于帮扶到村资金(元) 
-						</td>
-						<td class="tables_headercell"">
-							 财政专项(元) 
-						</td>
-						<td class="tables_headercell">
-							信贷资金(元) 
-						</td>
-						<td class="tables_headercell"">
-							单位自筹(元) 
-						</td>
-						<td class="tables_headercell"">
-							社会募捐（元） 
-						</td>
-						<td class="tables_headercell"">
-							社会引资（元） 
-						</td>
-					</tr>
-					<c:forEach items="${statList}" var="f">
-						<tr>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[0] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[1] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[100] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[101] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[102] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[103] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[104] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[105] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[106] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[107] }
-							</td>
-							<td align="center" class="tables_contentcell">
-								&nbsp; ${f[108] }
 							</td>
 						</tr>
 					</c:forEach>

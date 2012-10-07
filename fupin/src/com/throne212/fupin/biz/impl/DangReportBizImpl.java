@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.dao.support.DaoSupport;
+
 import jxl.Workbook;
 import jxl.format.UnderlineStyle;
 import jxl.format.VerticalAlignment;
@@ -111,7 +113,7 @@ public class DangReportBizImpl extends BaseBizImpl implements DangReportBiz {
 
 	public List<String[]> statReport(ReportParam reportParam) {
 		// TODO Auto-generated method stub
-		return null;
+		return dangReportDao.statReport(reportParam);
 	}
 	
 	public String getExcelReportFilePath(DangReport r) throws Exception{
@@ -181,6 +183,8 @@ public class DangReportBizImpl extends BaseBizImpl implements DangReportBiz {
 
 		return null;
 	}
-
+	public void autoSaveReports(int year, int month){
+		dangReportDao.autoSaveReports(year, month);
+	}
 
 }

@@ -22,4 +22,6 @@ public interface DangReportBiz extends BaseBiz {
 	
 	public List<String[]> statReport(ReportParam reportParam);
 	
+	public void autoSaveReports(int year, int month);
+	
 }

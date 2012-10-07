@@ -13,6 +13,7 @@ import com.throne212.fupin.dao.PeopleDao;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.People;
+import com.throne212.fupin.domain.PeopleSetting;
 import com.throne212.fupin.domain.User;
 
 public class PeopleDaoImpl extends BaseDaoImpl implements PeopleDao {
@@ -79,6 +80,7 @@ public class PeopleDaoImpl extends BaseDaoImpl implements PeopleDao {
 		logger.debug("查询总数为：" + count);
 		page.setTotalRow(count.intValue());// 总记录数目
 
+		PeopleSetting pst = this.getEntityByUniqueColumn(PeopleSetting.class, "year", year);
 		Session s = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		List<Cun> list = s.createQuery(hql).setMaxResults(WebConstants.PAGE_SIZE).setFirstResult(startIndex).list();
 		List<PeopleSummary> summList = new ArrayList<PeopleSummary>();
@@ -89,12 +91,30 @@ public class PeopleDaoImpl extends BaseDaoImpl implements PeopleDao {
 			ps.setCun(c);
 			ps.setOrg(c.getOrg());
 			ps.setSubmit(count.intValue());
+			ps.setNosubmit(Long.valueOf(pst.getMount() - count).intValue());
 			ps.setYear(year);
 			summList.add(ps);
 		}
 		page.setResultList(summList);// 数据列表
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
+		//汇总
+		if(pageIndex >= page.getMaxPage()){
+			hql = "select count(*) from People where status=2 and year=" + year;
+			if (cunId != null) {
+				hql += " and cun.id=" + cunId;
+			} else if (zhenId != null) {
+				hql += " and cun.zhen.id=" + zhenId;
+			} else if (areaId != null) {
+				hql += " and cun.zhen.area.id=" + areaId;
+			}
+			count = (Long) this.getHibernateTemplate().find(hql).get(0);
+			PeopleSummary ps = new PeopleSummary();
+			ps.setSubmit(count.intValue());
+			ps.setNosubmit(Long.valueOf((page.getTotalRow() * pst.getMount() - count)).intValue());
+			ps.setYear(year);
+			summList.add(ps);
+		}
 		return page;
 	}
 

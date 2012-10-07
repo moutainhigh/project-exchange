@@ -10,6 +10,7 @@
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
+		<script language="javascript" type="text/javascript" src="${appPath}js/date/WdatePicker.js"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
 			function saveForm(){
@@ -86,7 +87,7 @@
 						调查日期
 						</td>
 						<td class="tables_contentcell">
-							<input type="text" style="height: 22px;" msg="调查日期格式不正确！" datatype="Date" size="20" value='<fmt:formatDate value="${ p.date}"/>' name="p.date">
+							<input type="text" style="height: 22px;" msg="调查日期格式不正确！" datatype="Date" size="20" value='<fmt:formatDate value="${ p.date}" pattern="yyyy-MM-dd" />' name="p.date" class="Wdate" onclick="WdatePicker()">
 							<font color="gray">(格式：2012-09-20)</font>
 						</td>
 					</tr>
@@ -131,7 +132,7 @@
 					</tr>
 					<tr>
 						<td align="center" class="tables_contentcell" colspan="4">
-							<c:if test="${p.status == 0 || p.status == 1}">
+							<c:if test="${p==null || p.status == 0 || p.status == 1}">
 							<input type="button" value="存为草稿" class="button" onclick="tmpSaveForm();">
 							<input type="button" value="保存并提交" class="button" onclick="saveForm();">
 							</c:if>

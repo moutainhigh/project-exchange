@@ -182,7 +182,7 @@
 								&nbsp; ${f.submit }
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
-								&nbsp; <font <c:if test="${ps.mount>f.submit}">color="red"</c:if>>${ps.mount - f.submit }</font>
+								&nbsp; <font <c:if test="${ps.mount>f.submit}">color="red"</c:if>>${f.nosubmit }</font>
 							</td>
 						</tr>
 					</c:forEach>
