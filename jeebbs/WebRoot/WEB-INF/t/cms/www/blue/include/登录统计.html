@@ -8,10 +8,16 @@
     &nbsp;&nbsp;[#if user.group??]【级别：${user.group.name}】[/#if]
     &nbsp;&nbsp;【<a href="${base}/member/index.jhtml">用户中心</a>】
     [#if returnUrl?? && returnUrl?length gt 0]
-    &nbsp;&nbsp;【<a href="${base}/logout.jspx?returnUrl=${returnUrl!}">退出</a>】
+    &nbsp;&nbsp;【<a href="${base}/logout.jspx?returnUrl=${returnUrl!}">退出 </a>】
     [#else]
     &nbsp;&nbsp;【<a href="${base}/logout.jspx?returnUrl=/">退出</a>】
     [/#if]
+    <script>
+    	var isAdmin = '${user.username}';
+    	if(isAdmin == 'admin'){
+    		document.write('&nbsp;&nbsp;【<a target="_blank" href="${base}/jeeadmin/jeebbs/index.do">管理后台</a>】');
+    	}
+    </script>
     [#else]
     <form id="jvForm" action="${base}/login.jspx" method="post">
       <table cellspacing="0" cellpadding="0" border="0">
