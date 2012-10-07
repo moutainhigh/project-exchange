@@ -99,10 +99,12 @@ public class LoginAction extends BaseAction {
 		//bbs的地址
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String ip = request.getLocalAddr();
+		if("0.0.0.0".equals(ip)){
+			ip = "127.0.0.1";
+		}
 		int port = request.getLocalPort();
-		//System.out.println("ip=http://" + ip + ":" + port+"/jeebbs/");
+		System.out.println("ip=http://" + ip + ":" + port+"/jeebbs/");
 		request.getSession().setAttribute("BBS_Path","http://" + ip + ":" + port+"/jeebbs/");
-		
 		return "success";
 	}
 

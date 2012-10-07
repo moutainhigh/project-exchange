@@ -19,7 +19,7 @@
 				$('#form2').submit();
 				window.setTimeout(function(){
 					$('#form1').submit();
-				},500);
+				},1000);
 			});
 		</script>
 	</head>
@@ -30,7 +30,11 @@
 			<input type="hidden" name="password" value="123" />
 			<input type="hidden" name="processUrl" value="${BBS_Path}?locale=zh_CN" />
 			<input type="hidden" name="returnUrl" value="${BBS_Path}" />
-			<input type="hidden" name="username" value="${userObj.loginName }" />
+			<c:set var="loginname" value="${userObj.loginName }"/>
+			<c:if test="${userObj.loginName == 'sa'}">
+				<c:set var="loginname" value="admin"/>
+			</c:if>
+			<input type="hidden" name="username" value="${loginname}" />
 			<h2>论坛登录中。。。</h2>
 		</form>
 		<form id="form2" method="post" action="${BBS_Path}jeeadmin/jeebbs/user/o_save.do" target="myFrame">

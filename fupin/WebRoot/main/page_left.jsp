@@ -263,9 +263,9 @@ function images_update(){
 	    
 	    menuArray[menuArray.length]="0,通知公告,${appPath}mes_getAllMessageToUser.action";
 	    menuArray[menuArray.length]="0,短信服务,";
-	    menuArray[menuArray.length]="1,短信发送,${appPath}sms_getAllSMS.action";
-	    menuArray[menuArray.length]="1,通讯录组,${appPath}group_groupList.action";
-	    menuArray[menuArray.length]="1,通讯录,${appPath}contact_queryContact.action";
+	    //menuArray[menuArray.length]="1,短信发送,${appPath}sms_getAllSMS.action";
+	    //menuArray[menuArray.length]="1,通讯录组,${appPath}group_groupList.action";
+	    //menuArray[menuArray.length]="1,通讯录,${appPath}contact_queryContact.action";
 	    <c:if test="${userObj.roleType=='镇级管理员' || userObj.roleType=='县级管理员' || userObj.roleType=='扶贫工作组'}">
 	    menuArray[menuArray.length]="1,单位联系电话维护,${appPath}admin_userContacts.action";
 	    </c:if>
@@ -274,9 +274,9 @@ function images_update(){
 	    menuArray[menuArray.length]="1,批量短信发送记录,${appPath}sms_batchList.action";
 	    </c:if>
 	    //menuArray[menuArray.length]="0,论坛交流,${appPath}dis_getAllDiscuss.action";
-	    menuArray[menuArray.length]="0,登录论坛,${appPath}main/bbs/login_bbs.jsp";
+	    menuArray[menuArray.length]="0,扶贫内部论坛,${appPath}main/bbs/login_bbs.jsp";
 	    <c:if test="${userObj.roleType=='超级管理员'}">
-	    menuArray[menuArray.length]="0,登录管理,${BBS_Path}jeeadmin/jeebbs/logout.do?returnUrl=index.do";
+	    //menuArray[menuArray.length]="0,登录管理,${BBS_Path}jeeadmin/jeebbs/index.do";
 	     </c:if>
 	    
 	}

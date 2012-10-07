@@ -365,7 +365,7 @@ rt
  <col width=137 style='mso-width-source:userset;mso-width-alt:4384;width:103pt'>
  <tr height=30 style='height:22.5pt'>
   <td height=30 class=xl27 width=72 style='height:22.5pt;width:54pt'>　</td>
-  <td colspan=4 class=xl28 width=665 style='border-left:none;width:500pt'>五华县华阳镇红洞村党组织和党员情况明细表</td>
+  <td colspan=4 class=xl28 width=665 style='border-left:none;width:500pt'>${userObj.cun.zhen.area.name}${userObj.cun.zhen.name}${userObj.cun.name}党组织和党员情况明细表</td>
  </tr>
  <!-- 
  <tr height=25 style='height:18.75pt'>
