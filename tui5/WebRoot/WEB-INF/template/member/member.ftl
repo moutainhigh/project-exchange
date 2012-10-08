@@ -259,8 +259,6 @@
 			</div>
 			<div class="right_body">
  
-  				<div style="width:254px; height:30px;margin-bottom:10px; background:url(../img/member/yijian_bg.gif) no-repeat;"><a target="_blank" href="http://www.sandaha.com/about/msg.asp?t=1"><img border="0" onmouseout="this.src='../img/member/yijian_bg.gif';" onmouseover="this.src='../img/member/yijian_bg2.gif';" alt="有建议吗？欢迎发表！" src="../img/member/yijian_bg.gif"></a></div>
-  
   				<div class="right-box">
   
 		        <div class="right-1">
