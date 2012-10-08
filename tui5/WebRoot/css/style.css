@@ -42,7 +42,7 @@
 #mian .friedly_link_jc a{ margin-right:31px; _margin-right:28px;}
 #mian .friedly_link_link{ height:42px; line-height:42px;}
 #mian .friedly_link_link a{ margin-right:31px; _margin-right:28px;}
-.copyright{text-align:center; line-height:20px; margin:0 auto; font-size:13px; padding-top:11px; border-top:2px solid #C4C4C4; margin-top:29px;}
+.copyright{text-align:center; line-height:20px; margin:0 auto; font-size:13px; padding-top:11px; border-top:1px solid #C4C4C4; margin-top:29px;}
 .copyright a,.copyright a:visited{ color:#3E3E3E;}
 
 
@@ -195,7 +195,7 @@
 
 /*3.16*/
 
-.index_a{ float:left; width:695px; height:70px; display:block; margin-top:2px; overflow:hidden;}
+.index_a{ float:left; width:650px; height:70px; display:block; margin-top:2px; overflow:hidden;}
 #tab_link {	CLEAR: both; MARGIN-TOP: 10px; OVERFLOW: hidden; CURSOR: pointer; FONT-FAMILY: Arial; HEIGHT: 20px}
 #tab_link SPAN {PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px}
 #tab_link .selected {BORDER-RIGHT: #a6daf0 1px solid; BORDER-TOP: #a6daf0 1px solid; BACKGROUND: #f1f9ff; BORDER-LEFT: #a6daf0 1px solid; COLOR: #000; BORDER-BOTTOM: #a6daf0 1px solid}

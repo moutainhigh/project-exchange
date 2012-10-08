@@ -16,15 +16,6 @@
 .formrow .tip-alert{color:#c60; background:url(../img/alert.gif) no-repeat;}
 .formrow{zoom:1;}
 .formrow:after{content:".";display:block;clear:both;height:0;font:0/0 sans-serif;visibility:hidden;}
-input,button,select,textarea{font-size:100%;font-family:"Lucida Grande",Helvetica,Arial,sans-serif;}
-input.text{padding:2px 1px;height:16px;line-height:16px;}
-input.text,textarea{border:1px solid;border-color:#b4b4b4 #e8e8e8 #e8e8e8 #b4b4b4;}
-input.button,button{cursor:pointer;overflow:visible;}
-textarea{overflow:auto;resize:none;}
-label[for],input[type="button"],input[type="submit"]{cursor:pointer;}
-input[type="text"],input[type="password"]{border:1px solid;border-color:#b4b4b4 #e8e8e8 #e8e8e8 #b4b4b4;}
-a:link,a:visited{color:#178eb9;text-decoration:none;}
-a:hover,a:active{text-decoration:underline;}
 
 .formrow{line-height:2;margin-bottom:15px;padding-left:70px;}
 .formrow .label{float:left;display:inline;width:60px;margin-left:-70px;font-weight:normal; font-size:14px;}
