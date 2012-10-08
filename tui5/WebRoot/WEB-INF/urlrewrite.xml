@@ -5,10 +5,14 @@
 
 <urlrewrite>
 
-	<!-- reg.html -->
+	<!-- reg.html & login.html -->
 	<rule>
 		<from>/reg.html</from>
 		<to>reg.do</to>
+	</rule>
+	<rule>
+		<from>/login.html</from>
+		<to>login.do</to>
 	</rule>
 	
 </urlrewrite>

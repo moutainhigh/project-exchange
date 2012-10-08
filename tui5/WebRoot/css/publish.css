@@ -1,0 +1,30 @@
+.item-repeat h3{margin: 4px auto 1px; padding: 5px 10px;}
+.item-repeat p{margin: 2px auto; padding: 5px 10px;}
+.item{border-left: 1px solid #107fd8;border-right: 1px solid #107fd8;}
+.item-title{background:#107fd8;width:auto;}
+.item-repeat{background:white;border-bottom: 1px solid #107fd8;}
+
+.publish_body{float:right;width:720px;display:inline;}
+.publish_body .publish_box{border:1px solid #107fd8;margin:10px 0;}
+.publish_box_content{padding:5px 10px;}
+
+.publish_box_content h3{margin:8px auto 2px;}
+.publish_box_content p{margin:5px auto 20px;}
+#class2 span{margin: 2px 10px 2px 0;display: inline-block;}
+.money_info{width: 660px;margin: 5px auto;background-color: #FFFBF6;border: 1px solid #FF9A00;padding: 5px 20px;}
+
+.orange{color:#FF510A;font-size:12px;}
+.ft12{font-size: 12px;}
+.text2{border:1px solid #CCC;}
+.text1{border:1px solid #D3E4FE; background:#F5FBFF; color:#666; font-size:14px; height:30px; line-height:30px; padding:0px 0 0 10px;font-size:14px;}
+.text3{border:1px solid #D3E4FE; background:#F5FBFF; color:#666; height:17px; line-height:17px; padding:0px 0 0 5px;}
+.button1{color:#454545; font-size:14px; border:0px; background:url(../img/member/btn.jpg) no-repeat; font-weight:bold; height:38px; width:182px; line-height:38px; letter-spacing:1px;}
+.txtArea{border:1px solid #D3E4FE; background:#F5FBFF; color:#666;padding:10px 0 0 10px; width:610px; height:180px; overflow-y:auto;font-size:14px;}
+.txtArea2{border:1px solid #D3E4FE; background:#F5FBFF; color:#666;padding:10px 0 0 10px; width:610px; height:80px; overflow-y:auto;font-size:14px;}
+.txtArea3{border:1px solid #D3E4FE; background:#F5FBFF; color:#666;padding:10px 0 0 10px; width:610px; height:40px; overflow-y:auto;font-size:14px;}
+.txtArea4{border:1px solid #D3E4FE; background:#F5FBFF; color:#666;padding:10px 0 0 10px; width:610px; height:200px; overflow-y:auto;font-size:14px;}
+.addfujian{padding-left: 15px; background: url(../img/member/add.jpg) no-repeat;}
+.gray{color:#999;}
+.font14{font-size:14px;}
+.center{text-align:center;}
+.cursor{cursor:pointer;}

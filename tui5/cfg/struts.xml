@@ -33,6 +33,8 @@
 	
     <package name="basePackage" extends="struts-default" namespace="/">
     	<action name="reg" class="com.throne212.tui5.action.RegAction"></action>
+    	<action name="login" class="com.throne212.tui5.action.LoginAction"></action>
+    	<action name="member!*" method="{1}" class="com.throne212.tui5.action.MemberAction"></action>
     </package>
     <package name="json" extends="json-default" namespace="/">
         <action name="ajax_*" method="{1}" class="com.throne212.tui5.action.AjaxAction">

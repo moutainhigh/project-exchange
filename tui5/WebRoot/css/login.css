@@ -1,0 +1,91 @@
+.content{ width:950px; margin: 10px auto; border:solid #BED7DD 1px;}
+.reg_title{width: 200px; padding: 10px 10px 10px 40px; font-size: 16px;}
+.mc-main{ padding-bottom:25px; width:955px;}
+.formcaption{margin-bottom:40px; color:#666;}
+.formgroup{margin-bottom:10px;zoom:1;}
+.formrow .label{font-weight:bold;}
+.formrow .form-enter{ height:28px;}
+.formrow .form-enter p{margin-bottom:5px;}
+.formrow .captcha{margin-top:5px;}
+.formrow .captcha img{cursor:pointer;}
+.formrow .form-note{color:#666;}
+.formrow .label .form-note{font-weight:normal;}
+.formrow .form-tip{line-height:20px; padding:2px; padding-left:18px;}
+.formrow .tip-error{color:#c00; background:url(../img/vikecn-reg-bg.png) no-repeat left -167px;}
+.formrow .tip-success{color:#090; background:url(../img/vikecn-reg-bg.png) no-repeat left -127px;}
+.formrow .tip-alert{color:#c60; background:url(../img/alert.gif) no-repeat;}
+.formrow{zoom:1;}
+.formrow:after{content:".";display:block;clear:both;height:0;font:0/0 sans-serif;visibility:hidden;}
+input,button,select,textarea{font-size:100%;font-family:"Lucida Grande",Helvetica,Arial,sans-serif;}
+input.text{padding:2px 1px;height:16px;line-height:16px;}
+input.text,textarea{border:1px solid;border-color:#b4b4b4 #e8e8e8 #e8e8e8 #b4b4b4;}
+input.button,button{cursor:pointer;overflow:visible;}
+textarea{overflow:auto;resize:none;}
+label[for],input[type="button"],input[type="submit"]{cursor:pointer;}
+input[type="text"],input[type="password"]{border:1px solid;border-color:#b4b4b4 #e8e8e8 #e8e8e8 #b4b4b4;}
+a:link,a:visited{color:#178eb9;text-decoration:none;}
+a:hover,a:active{text-decoration:underline;}
+
+.formrow{line-height:2;margin-bottom:15px;padding-left:70px;}
+.formrow .label{float:left;display:inline;width:60px;margin-left:-70px;font-weight:normal; font-size:14px;}
+.formrow .form-note{margin:5px 0 0 0;}
+.formrow .ajaxloading{padding:0 10px 0 25px; background:url(http://js.680.com/img3.0/ajaxloading.gif) no-repeat 5px 50%;}
+.formrow input.text{width:150px;padding:3px;}
+.formrow input.act{ background:url(../img/vikecn-reg-bg.png) no-repeat left -220px; border:0; height:18px; width:152px; line-height:18px;}
+.formrow input.err{ background:url(../img/vikecn-reg-bg.png) no-repeat left -256px; border:0; height:18px; width:152px; line-height:18px;}
+.formrow input.validcode{width:60px;}
+.formrow .captcha img{border:1px solid #ccc;vertical-align:top;}
+.account-message{font-size:117%;margin:10px 0;padding:10px 10px 10px 35px;color:#333;}
+.loginform-wrap{float:left;width:50%;}
+.loginform-wrap .formcaption{display:none;}
+.loginform{float:right;display:inline;width:400px;margin:0 10px 0 0;}
+.loginform .formrow .label{text-align:right;}
+.loginform .remember,
+.loginform .invisible{margin-bottom:0px;}
+.loginform .remember input,
+.loginform .invisible input{margin:0;vertical-align:middle;}
+.loginform .formrow-action{line-height:30px;}
+.reglink-wrap{float:left; width:49.9%;}
+.reglink{width:400px;}
+.reglink-inner{padding-left:150px;min-height:80px;height:auto !important;height:80px;}
+.reglink .reglink-text h3{font-size:117%;margin-bottom:10px;}
+.reglink .reglink-text p{color:#999;margin-bottom:10px;}
+.reglink .register-link{font-size:117%;}
+.registerdock-wrap{ float:left; width:500px;}
+.registerdock{margin:0 10px 0 25px;}
+.registerform .formrow-agree input{margin:0;vertical-align:middle;}
+.loginlink-wrap{float:left; width:330px; padding-left:40px; background:url(../img/vikecn-reg-bg.png) no-repeat -226px top;}
+.loginlink-inner{padding-left:120px; padding-top:10px; background:url(../img/vikecn-reg-bg.png) no-repeat left top; min-height:88px; height:auto !important; height:89px;}
+.loginlink .loginlink-text h3{font-size:117%; margin-bottom:10px; padding-top:10px;}
+.loginlink .loginlink-text p{color:#999;margin-bottom:10px;}
+.loginlink .loginlink-desp{ padding-top:10px; line-height:22px; font-size:14px; color:#666; height:110px; overflow:hidden; width:330px;}
+.loginlink .loginlink-desp li{ height:110px; overflow:hidden; width:330px;}
+.loginlink .loginlink-desp b{ color:#333}
+.loginlink .loginlink-text ul{}
+.loginlink .loginlink-text ul li{ float:left; margin-right:10px; padding-bottom:5px;}
+.loginlink .login-link{font-size:117%;}
+.login-link a{ display:inline-block; width:91px; height:30px; line-height:30px; color:#FFF; background:url(../img/vikecn-reg-bg.png) no-repeat left -377px; text-align:center;}
+.register-inviter{margin:10px 0;padding:10px;background:#afd5e2;}
+.register-inviter .inviter-avatar{float:left;margin-right:20px;}
+.register-inviter .inviter-avatar img{padding:1px;border:1px solid #ccc;background:#fff;}
+.register-inviter .inviter-message{font-size:117%;float:left;width:500px;}
+.register-inviter .inviter-message h3{font-size:114%;margin-bottom:1em;}
+.register-inviter .inviter-message p{margin-bottom:5px;}
+.registerverify-step{font-size:117%;margin-bottom:20px;}
+.registerverify-step li{padding:20px 0;}
+.registerverify-step li strong{color:#333;margin-right:40px;}
+.registerverify-step .mail-login:link,.registerverify-step .mail-login:visited{color:#f60;}
+.registerverify-button{text-align:center;}
+.registerverify-buttontext{color:#666;margin-bottom:20px;}
+.registerverify-button .btn-wrap{float:none;display:inline-block;margin-right:10px;}
+.registerverify-button .btn-wrap .btn{float:none;display:inline-block;}
+.agreement-content{margin-bottom:10px;border:1px solid #999;background:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
+.agreement-content-inner{height:300px;line-height:1.6;margin:10px;padding:10px;overflow:auto; }
+.agreement-buttons{text-align:center;}
+.agreement-buttons .btn-wrap{float:none;display:inline-block;}
+.agreement-buttons .btn-wrap .btn{float:none;display:inline-block;}
+.findpassworddock{margin:0 10px 0 70px;}
+.btn-wrap .button{ width:104px; height:30px; border:0; background:url(../img/vikecn-reg-bg.png) no-repeat left -339px; color:#FFF; font-size:14px;}
+
+.bom{ border-top:solid #F80 4px; margin-top:20px; text-align:center; line-height:30px; background:url(../img/vikecn_register_r6_c2.jpg) repeat-x; padding:15px 0; color:#999;}
+.bom a{ color:#06F;}
