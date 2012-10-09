@@ -82,6 +82,16 @@ public class TreeServlet extends HttpServlet {
 		t.setId("shi");
 		t.setHasChildren(true);
 		t.setIsexpand(true);
+		List<UserContact> sContacts = adminBiz.getEntitiesByColumn(UserContact.class, "user.loginName", "gzs_admin");
+		for (UserContact uc : sContacts) {
+			TreeNode ut = new TreeNode();
+			ut.setText(uc.getName());
+			ut.setValue("shi_user_" + uc.getId());
+			ut.setId("shi_user_" + uc.getId());
+			ut.setHasChildren(false);
+			ut.setIsexpand(false);
+			t.getChildNodes().add(ut);
+		}
 
 		// 区县
 		PageBean bean = adminBiz.getAreaWorkOrgBean(1);

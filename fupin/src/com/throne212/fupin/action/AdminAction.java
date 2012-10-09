@@ -297,7 +297,7 @@ public class AdminAction extends BaseAction {
 		return perList();
 	}
 	
-	//修改县级、镇级、扶贫组的电话
+	//修改市级扶贫办，县级、镇级、扶贫组的电话
 	private List<UserContact> userContactList;
 	public String userContacts(){
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
@@ -319,6 +319,8 @@ public class AdminAction extends BaseAction {
 				}
 			}
 			userContactList = list;
+		}else if(user instanceof ShiWorkOrg){
+			
 		}
 		return "user_contact";
 	}
