@@ -12,6 +12,8 @@
 .publish_box_content p{margin:5px auto 20px;}
 #class2 span{margin: 2px 10px 2px 0;display: inline-block;}
 .money_info{width: 660px;margin: 5px auto;background-color: #FFFBF6;border: 1px solid #FF9A00;padding: 5px 20px;}
+#xieyi{margin:13px 5px 10px 5px;border:1px solid #CCC;background:#FAFAFA;padding:8px;height:200px;overflow:auto;font:12px/20px Verdana;display: none;}
+#xieyi h2{width:150px;margin: 10px auto;font-size: 14px;}
 
 .orange{color:#FF510A;font-size:12px;}
 .ft12{font-size: 12px;}

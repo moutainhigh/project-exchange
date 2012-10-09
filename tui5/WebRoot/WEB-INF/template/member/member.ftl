@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset==gbk" />
 	<title>推我网 - 会员中心</title>	
 	<link href="/css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="/css/mian.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
 			<div class="nav_member clearfix">
 				<ul>
 					<li><a href="/">网站首页</a></li>
-					<li class="focus"><a href="/member!index.do">我的三打哈</a></li>
+					<li><a class="focus" href="/member!index.do">我的三打哈</a></li>
 					<li><a href="/member!publish.do">发布任务</a></li>
 					<li><a href="/member/score.html">积分管理</a></li>
 					<li><a href="/member/finance.html">财务管理</a></li>

@@ -7,13 +7,9 @@
 
 .nav{width:950px; margin:10px auto 0 auto; overflow:hidden;}
 .nav ul{clear:both;}
-.nav ul li{background:url(../img/member/nav_bg.jpg) no-repeat;margin:0 5px 0 0; float:left; width:100px; height:30px; line-height:32px; text-align:center; overflow:hidden;}
-.nav ul li a{color:#333;font-size:13px; font-weight:normal;}
+.nav ul li a{background:url(../img/member/nav_bg.jpg) no-repeat;margin:0 5px 0 0; float:left; width:100px; height:30px; line-height:32px; text-align:center; overflow:hidden;color:#333;font-size:13px; font-weight:normal;}
 .nav ul li a:hover{color:#FFF;font-weight:bold;background:url(../img/member/nav_hoverbg.jpg) no-repeat; text-decoration:none;}
-.nav ul li.focus{background:url(../img/member/nav_hoverbg.jpg) no-repeat;}
-.nav ul li.focus a{color:#FFF;font-weight:bold;}
-.nav ul li.fabu_btn{width:144px; float:right;}
-
+.nav .focus{color:#FFF;font-weight:bold;background:url(../img/member/nav_hoverbg.jpg) no-repeat;}
 .top_line{width:100%;background:#107FD8; height:4px; overflow:hidden; margin:0 auto;}
 
 .body_content{width:950px; margin:0 auto; overflow:hidden;}
@@ -78,6 +74,5 @@
 .task_tble tr{line-height:25px;}
 .task_tble th{line-height:30px;font-weight:600;text-align:center;border:1px solid #a0c6e5;}
 .task_tble td{background-color:white;padding-left: 5px; overflow-x: hidden;border:1px solid #a0c6e5;font-size: 12px;}
-
 
 a{font-size:12px;}

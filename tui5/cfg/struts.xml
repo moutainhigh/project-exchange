@@ -32,6 +32,8 @@
 	<constant name="struts.freemarker.templatesCache" value="false" />
 	
     <package name="basePackage" extends="struts-default" namespace="/">
+    	<action name="index" class="com.throne212.tui5.action.IndexAction"></action>
+    	<action name="tasklist" class="com.throne212.tui5.action.TaskListAction"></action>
     	<action name="reg" class="com.throne212.tui5.action.RegAction"></action>
     	<action name="login" class="com.throne212.tui5.action.LoginAction"></action>
     	<action name="member!*" method="{1}" class="com.throne212.tui5.action.MemberAction"></action>

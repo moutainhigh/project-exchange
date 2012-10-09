@@ -14,5 +14,10 @@
 		<from>/login.html</from>
 		<to>login.do</to>
 	</rule>
+	<!-- task list -->
+	<rule>
+		<from>/tasklist.html</from>
+		<to>tasklist.do</to>
+	</rule>
 	
 </urlrewrite>
