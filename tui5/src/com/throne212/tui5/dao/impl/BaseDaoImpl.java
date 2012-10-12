@@ -71,12 +71,7 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> void saveOrUpdate(T entity) {
-		try {
-			this.getHibernateTemplate().saveOrUpdate(entity);
-		} catch (DataAccessException e) {
-			e.printStackTrace();
-			this.getHibernateTemplate().merge(entity);
-		}
+		this.getHibernateTemplate().saveOrUpdate(entity);
 	}
 
 	public <T> void merge(T entity) {

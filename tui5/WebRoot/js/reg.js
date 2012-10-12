@@ -15,22 +15,23 @@ $(function(){
 		if (password == "") {//不能为空
 			$("#checkpassword").html('<span class="form-tip tip-error">密码不能为空<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		} else if(!/^.{6,16}$/.test(password)) {//6-16字符
 			$("#checkpassword").html('<span class="form-tip tip-error">密码长度不在6-16位字符之间<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		} else if(/^(.)\1*$/.test(password) || password=='123456' || password=='12345678') {//过于简单
 			$("#checkpassword").html('<span class="form-tip tip-error">密码不能过于简单<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		} else if($(this).val().toLowerCase().indexOf($("#username").val().toLowerCase())>0) {
 			$("#checkpassword").html('<span class="form-tip tip-error">密码不能和用户名太相近<br></span>');
 			$(this).addClass('err');	
-			return;
+			return false;
 		}else{
 			$("#checkpassword").html('<span class="form-tip tip-success">输入正确<br></span>');
 			$(this).removeClass("err");
+			return true;
 		};
 	});
 	$("#confirmpassword").blur(function(){
@@ -39,14 +40,15 @@ $(function(){
 		if (password == "") {//不能为空
 			$("#checkpassword2").html('<span class="form-tip tip-error">确认密码不能为空<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		} else if(password != pwd) {
 			$("#checkpassword2").html('<span class="form-tip tip-error">两次输入的密码不一致<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		}else{
 			$("#checkpassword2").html('<span class="form-tip tip-success">输入正确！<br></span>');
 			$(this).removeClass("err");
+			return true;
 		};
 	});
 	$("#email").blur(function(){
@@ -54,7 +56,7 @@ $(function(){
 		if (!e_nameStr) {
 			$("#err_email").html('<span class="form-tip tip-error">电子邮件地址格式错误<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		};
 		$("#err_email").html('<span class="form-tip tip-alert">查询中...<br></span>');
 		$.getJSON("/ajax_checkEmail.do?email="+$(this).val(), function(json){				
@@ -64,20 +66,21 @@ $(function(){
 			}else{
 				$("#err_email").html('<span class="form-tip tip-error">'+json.msg+'<br></span>');
 				$(this).addClass("err");	
-				return;
+				return false;
 			};
 		});	
+		return true;
 	});
 	$("#rand").blur(function(){
 		var e_nameStr = /\d{4}/.test($(this).val());		
 		if (!e_nameStr) {
 			$("#err_rand").html('<span class="form-tip tip-error">验证码格式错误<br></span>');
 			$(this).addClass("err");	
-			return;
+			return false;
 		};
+		return true;
 	});
-	$("#regForm").submit(function(){
-		var t = art.dialog({title:"新用户注册",lock:true});
+	$("#regbtn").click(function(){
 		if($("#username").blur()){
 			if($("#password").blur()){
 				if($("#confirmpassword").blur()){
@@ -88,10 +91,14 @@ $(function(){
 						var email = $("#email").val();
 						var rand   = $("#rand").val();
 						$.getJSON("/ajax_addUser.do?username="+escape(uin)+"&password="+escape(pwd)+"&password2="+escape(pwd2)+"&email="+escape(email)+"&pid="+Math.random()+"&rand="+rand,function(data) {
-							t.content(data.msg).lock().time(2);
+							//alert(data.msg);
 							if(data.msg == "Y"){
 								window.location.href = "regok.html";
-							};
+							}else{
+								alert(data.msg);
+								$("#rand").val('');
+								$("#yanzheng").attr('src',$("#yanzheng").attr('src') + Math.random());
+							}
 						})
 					};
 				};
@@ -107,22 +114,22 @@ function ckName(o){
 	if(len==0){
 		$("#err_username").html('<span class="form-tip tip-error">请填写用户名<br></span>');
 		o.addClass("err");
-		return;
+		return false;
 	};
 	if (len < 2 ) {
 		$("#err_username").html('<span class="form-tip tip-error">用户名至少需要2个字符<br></span>');
 		o.addClass("err");	
-		return;
+		return false;
 	};
 	if (len > 16) {
 		$("#err_username").html('<span class="form-tip tip-error">用户名不能超过16个字符<br></span>');
 		o.addClass("err");	
-		return;
+		return false;
 	};
 	if (!/^[\u4e00-\u9fa5\w]*$/.test(o.val())) {//特殊字符
 		$("#err_username").html('<span class="form-tip tip-error">用户名中不能包含#$% $#^%等特殊字符<br></span>');
 		o.addClass("err");		
-		return;
+		return false;
 	};
 	
 	var url = location.href;
@@ -134,7 +141,7 @@ function ckName(o){
 			if(o.val().indexOf(keyName[j])!=-1) {
 				$("#err_username").html('<span class="form-tip tip-error">用户名中包含被过滤字符,无法注册<br></span>');
 				o.addClass("err");			
-				return;
+				return false;
 			}
 		}
 	};
@@ -146,9 +153,10 @@ function ckName(o){
 		}else{
 			$("#err_username").html('<span class="form-tip tip-error">'+json.msg+'<br></span>');
 			o.addClass("err");	
-			return;
+			return false;
 		};
 	});	
+	return true;
 };
 
 //right

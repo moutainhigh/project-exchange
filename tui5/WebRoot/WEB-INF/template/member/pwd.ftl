@@ -2,12 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset==gbk" />
-	<title>推我网 - 会员中心</title>	
+	<title>推我网 - 修改密码</title>	
 	<link href="/css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="/css/mian.css" rel="stylesheet" type="text/css" />
 	<link href="/css/member.css" rel="stylesheet" type="text/css" />
 	<script src="/js/jquery.js" type="text/javascript"></script>
 	<script src="/js/member.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		function submitForm(){
+			var password = $('#pwd').val().replace(/\s*/, "");
+			if (password == "") {//不能为空	
+				alert('密码不能为空');
+				return false;
+			} else if(!/^.{6,16}$/.test(password)) {//6-16字符
+				alert('密码为6-16字符');
+				return false;
+			} else if(/^(.)\1*$/.test(password) || password=='123456' || password=='12345678') {//过于简单
+				alert('密码不能过于简单');
+				return false;
+			} else{
+				var password2 = $('#pwd2').val().replace(/\s*/, "");
+				if(password2 != password){
+					alert('两次密码不一致');
+					return false;
+				}else{
+					$('form').submit();
+				}
+			}			
+		}
+	</script>
+	<#include "/WEB-INF/template/include/msg.ftl">
 </head>
 <body>
 	<#include "/WEB-INF/template/include/head.ftl">
@@ -23,26 +47,27 @@
 				   		<ul><li>我的任务</li></ul>
 				   </div>
 				   <div class="list_box_content">
+				   		<form action="/member_pwd.do" method="post">
 					   <table class="task_tble" border="0" cellspacing="1">
 						   <tr>
-						   		<th>编号</th>
-						   		<th>名称</th>
-						   		<th>时间</th>
-						   		<th>操作</th>
+						   		<td>用户名</td>
+						   		<td>${userObj.userId}</td>
 						   </tr>
 						   <tr>
-						   		<td>1</td>
-						   		<td>2</td>
-						   		<td>333</td>
-						   		<td>中文</td>
+						   		<td>老密码</td>
+						   		<td><input type="password" name="oldpwd" value=""/></td>
 						   </tr>
 						   <tr>
-						   		<td>2</td>
-						   		<td>2</td>
-						   		<td>333</td>
-						   		<td>中文</td>
+						   		<td>新密码</td>
+						   		<td><input type="password" name="pwd" value="" id="pwd"/></td>
+						   </tr>
+						   <tr>
+						   		<td>确认新密码</td>
+						   		<td><input type="password" name="pwd2" value="" id="pwd2"/></td>
 						   </tr>
 					   </table>
+					   <p class="ctr_btn"><input type="button" class="button" value="保存" name="button" onclick="submitForm();"></p>
+					   </form>
 			       </div>
 			   </div>
 			</div>

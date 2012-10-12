@@ -13,10 +13,10 @@ public class City implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6078871439989357526L;
-	private String cityId;//主键,bj
-	private String cityCode;//编码,0100
+	private String cityId;//主键,0100
+	private String cityPinyin;//编码,bj
 	private String cityName;//北京
-	private String parentCode;//上级code
+	private String parentId;//上级id,0100
 	private int grade;//级别
 	//用于展示而不是存储的
 	private String simpleName;
@@ -27,52 +27,36 @@ public class City implements java.io.Serializable {
 	public City() {
 	}
 
-	/** full constructor */
-	public City(String cityCode, String cityName) {
-		this.cityCode = cityCode;
-		this.cityName = cityName;
-	}
-
-	// Property accessors
-
 	public String getCityId() {
-		return this.cityId;
+		return cityId;
 	}
 
 	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 
-	public String getCityCode() {
-		return this.cityCode;
+	public String getCityPinyin() {
+		return cityPinyin;
 	}
 
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
+	public void setCityPinyin(String cityPinyin) {
+		this.cityPinyin = cityPinyin;
 	}
 
 	public String getCityName() {
-	
-		return this.cityName;
+		return cityName;
 	}
 
 	public void setCityName(String cityName) {
-		
-		String[] arr = cityName.split(",");
-		if (arr != null && arr.length == 2)
-			this.simpleName = arr[1];
-		else
-			this.simpleName = cityName;	
-		
 		this.cityName = cityName;
 	}
 
-	public String getParentCode() {
-		return parentCode;
+	public String getParentId() {
+		return parentId;
 	}
 
-	public void setParentCode(String parentCode) {
-		this.parentCode = parentCode;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
 	public int getGrade() {
@@ -82,22 +66,20 @@ public class City implements java.io.Serializable {
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	
-  public void setSimpleName(String simpleName) {
-		this.simpleName = simpleName;
-	}
 
 	public String getSimpleName() {
-		
 		return simpleName;
 	}
 
-	public void setChilds(List<City> childs) {
-		this.childs = childs;
+	public void setSimpleName(String simpleName) {
+		this.simpleName = simpleName;
 	}
 
 	public List<City> getChilds() {
 		return childs;
 	}
 
+	public void setChilds(List<City> childs) {
+		this.childs = childs;
+	}
 }

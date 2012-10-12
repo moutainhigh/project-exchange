@@ -32,11 +32,27 @@
 	<constant name="struts.freemarker.templatesCache" value="false" />
 	
     <package name="basePackage" extends="struts-default" namespace="/">
+    	<interceptors>
+            <interceptor name="member" class="com.throne212.tui5.filter.MemberInterceptor"/>
+            <interceptor-stack name="authStack">
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="member" />
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+        	<result name="login" type="freemarker">/WEB-INF/template/login.ftl</result>
+        </global-results>
     	<action name="index" class="com.throne212.tui5.action.IndexAction"></action>
     	<action name="tasklist" class="com.throne212.tui5.action.TaskListAction"></action>
-    	<action name="reg" class="com.throne212.tui5.action.RegAction"></action>
-    	<action name="login" class="com.throne212.tui5.action.LoginAction"></action>
-    	<action name="member!*" method="{1}" class="com.throne212.tui5.action.MemberAction"></action>
+    	<action name="reg" class="com.throne212.tui5.action.RegAction">
+    		<result name="reg" type="freemarker">/WEB-INF/template/reg.ftl</result>
+    		<result name="reg_ok" type="freemarker">/WEB-INF/template/reg_ok.ftl</result>
+    	</action>
+    	<action name="login" method="login" class="com.throne212.tui5.action.LoginAction"></action>
+    	<action name="logout" method="logout" class="com.throne212.tui5.action.LoginAction"></action>
+    	<action name="member_*" method="{1}" class="com.throne212.tui5.action.MemberAction">
+    		<interceptor-ref name="authStack"></interceptor-ref>
+    	</action>
     </package>
     <package name="json" extends="json-default" namespace="/">
         <action name="ajax_*" method="{1}" class="com.throne212.tui5.action.AjaxAction">

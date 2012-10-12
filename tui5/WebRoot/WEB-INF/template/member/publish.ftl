@@ -11,56 +11,12 @@
 	<script src="/js/member.js" type="text/javascript"></script>
 </head>
 <body>
-	<!-- 顶部区域 -->
-	<div id="top">
-			<div class="top_con">
-			<div class="top_l">找兼职，上推我网！</div>
-			<div class="top_r"><a href="/reg.html">注册</a> | <a href="/login.html">登录</a><span><a href="#">发布推广任务</a><a href="#">帮助</a></span></div>
-			</div>
-	</div>
-	<!-- 顶部区域结束 -->
+	<#include "/WEB-INF/template/include/head.ftl">
 	<div id="mian">		
-		<!-- 头部区域 -->
-		<div class="nav">
-			<!--LOGo区域-->
-			<div class="nav_top clearfix">
-				<a href="#" class="logo_a"><img src="img/logo.gif"/></a>
-				<a href="#" class="index_a">广告图width:695px; height:70px; </a>            
-			</div>
-			<!--LOGo区域结束-->
-			<!--导航区域-->
-			<div class="nav_member clearfix">
-				<ul>
-					<li><a href="/">网站首页</a></li>
-					<li><a href="/member!index.do">我的推我网</a></li>
-					<li><a class="focus" href="/member!publish.do">发布任务</a></li>
-					<li><a href="/member/score.html">积分管理</a></li>
-					<li><a href="/member/finance.html">财务管理</a></li>
-				</ul>
-			</div>
-			<div class="top_line"></div>
-			<!--导航区域结束-->
-		</div>
-		<!-- 头部区域结束 -->
+		<#include "/WEB-INF/template/include/member_nav.ftl">
 		<!-- 内容区域 -->
 		<div class="body_content">
-			<div class="left_body">
-				<div class="item">
-				    <div class="item-title">
-					    <ul>
-						    <li>任务发布指南</li>
-					    </ul>
-					</div>
-					<div class="item-repeat">
-					    <h3>选择任务一级分类</h3>
-					    <p>推广、文案、招标任务，请任选其一</p>
-					    <h3>选择任务二级分类</h3>
-					    <p>二级分类，包含了具体的任务类别，不同的任务类别包含了不同的任务信息填写项目</p>
-					    <h3>填写任务项</h3>
-					    <p>您最好是把任务的每一项都填写清楚，这样可以推手可以更好的了解你的任务</p>
-					</div>
-				</div>
-			</div>
+			<#include "/WEB-INF/template/include/member_left.ftl">
 			<div class="publish_body">
 			    <div class="publish_box">
 				   <div class="publish_box_content">
@@ -167,15 +123,7 @@
 			</div>
 		</div>
 		<!-- 内容区域结束 -->
-		<!-- 底部区域 -->
-		<div class="copyright">
-			<ul>
-				<li><a href="#">联系我们</a> | <a href="#">广告业务</a> | <a href="#">信息置顶</a> | <a href="#">站内留言</a> | <a href="#">最新兼职</a> | <a href="#">最新简历</a> | <a href="#">免责声明</a></li>
-				<li>Copyright &copy; 2009-2012 <a href="#">推我网 (tui5.com)</a> 版权所有</li>
-				<li>ICP证：京07038868号</li>
-			</ul>
-		</div>
-		<!-- 底部区域结束 -->
+		<#include "/WEB-INF/template/include/foot.ftl">
 	</div>
 </body>
 </html>

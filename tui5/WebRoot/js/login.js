@@ -1,3 +1,23 @@
+$(function(){
+	$("#loginbtn").click(function(){
+		if($("#username").val() != '' && $("#password").val() != '' && $("#rand").val() != ''){
+			var uin   = $("#username").val();
+			var pwd   = $("#password").val();
+			var rand   = $("#rand").val();
+			$.getJSON("/ajax_loginUser.do?username="+escape(uin)+"&password="+escape(pwd)+"&rand="+rand,function(data) {
+				//alert(data.msg);
+				if(data.msg == "Y"){
+					window.location.href = returnurl;
+				}else{
+					alert(data.msg);
+					$("#rand").val('');
+					$("#yanzheng").attr('src',$("#yanzheng").attr('src') + Math.random());
+				}
+			})
+		};
+		return false;
+	});	
+});
 //right
 var qt_tx;
 $(function(){

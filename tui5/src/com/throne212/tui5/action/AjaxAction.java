@@ -1,9 +1,12 @@
 package com.throne212.tui5.action;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.tui5.biz.BaseBiz;
+import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.Util;
 import com.throne212.tui5.domain.User;
@@ -22,24 +25,27 @@ public class AjaxAction extends BaseAction {
 	private String password;
 	private String password2;
 	private String rand;
+	
 	public String checkUserName(){
 		User user = baseBiz.getEntityByUnique(User.class, "userId", username);
 		if(user == null)
 			msg = "Y";
 		else
-			msg = "N";
+			msg = "用户名已经被注册";
 		return "msg";
 	}	
+	
 	public String checkEmail(){
 		User user = baseBiz.getEntityByUnique(User.class, "userEmail", email);
 		if(user == null)
 			msg = "Y";
 		else
-			msg = "N";
+			msg = "邮箱地址已经被注册";
 		return "msg";
 	}
+	
 	public String addUser(){
-		String randInSess = (String) ActionContext.getContext().getSession().get("rand");
+		String randInSess = (String) ActionContext.getContext().getSession().get(Const.SESS_RAND);
 		if(rand == null || !rand.equals(randInSess)){
 			msg = "验证码错误";
 		} else if(!Util.isEmpty(username) 
@@ -47,12 +53,54 @@ public class AjaxAction extends BaseAction {
 				&& !Util.isEmpty(password)
 				&& !Util.isEmpty(password2)
 				&& password.equals(password2)){
+			if(!"Y".equals(this.checkUserName())){
+				msg = "用户名已经被注册，请重新填写";
+				return "msg"; 
+			}if(!"Y".equals(this.checkEmail())){
+				msg = "邮件地址已经被注册，请重新填写";
+				return "msg";
+			}
 			User user = new User();
 			user.setUserId(username);
 			user.setUserPassword(EncryptUtil.md5Encode(password));
 			user.setUserEmail(email);
-			baseBiz.saveOrUpdateEntity(user);
-			msg = "Y";
+			user.setUserRegdate(new Timestamp(System.currentTimeMillis()));
+			user.setUserLastdate(new Timestamp(System.currentTimeMillis()));
+			user.setUserUpdate(new Timestamp(System.currentTimeMillis()));
+			try {
+				logger.debug("try to add user: "  + username);
+				baseBiz.saveOrUpdateEntity(user);
+				msg = "Y";
+			} catch (Exception e) {
+				e.printStackTrace();
+				msg = "服务器内部错误，请稍候再试";
+			}
+		}else{
+			msg = "数据错误，请检查";
+		}
+		return "msg";
+	}
+	
+	public String loginUser(){
+		String randInSess = (String) ActionContext.getContext().getSession().get(Const.SESS_RAND);
+		if(rand == null || !rand.equals(randInSess)){
+			msg = "验证码错误";
+		} else if(!Util.isEmpty(username) 
+				&& !Util.isEmpty(password)){
+			try {
+				User user = baseBiz.getEntityByUnique(User.class, "userId", username);
+				if(user == null)
+					msg = "登录名或密码错误";
+				else if(!user.getUserPassword().equals(EncryptUtil.md5Encode(password))){
+					msg = "登录名或密码错误";
+				}else {
+					msg = "Y";
+					ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, user);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				msg = "服务器内部错误，请稍候再试";
+			}
 		}else{
 			msg = "数据错误，请检查";
 		}

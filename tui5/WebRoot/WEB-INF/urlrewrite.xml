@@ -6,14 +6,9 @@
 <urlrewrite>
 
 	<!-- reg.html & login.html -->
-	<rule>
-		<from>/reg.html</from>
-		<to>reg.do</to>
-	</rule>
-	<rule>
-		<from>/login.html</from>
-		<to>login.do</to>
-	</rule>
+	<rule><from>/reg(.*).html</from><to>reg.do?params=$1</to></rule>
+	<rule><from>/login.html</from><to>login.do</to></rule>
+	<rule><from>/logout.html</from><to>logout.do</to></rule>
 	<!-- task list -->
 	<rule>
 		<from>/tasklist.html</from>

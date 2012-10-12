@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.throne212.tui5.common.Const;
+
 public class RandServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -64,7 +66,7 @@ public class RandServlet extends HttpServlet {
 			break;
 		}
 
-		request.getSession().setAttribute("rand", rand);
+		request.getSession().setAttribute(Const.SESS_RAND, rand);
 		log.debug("gen rand=[" + rand + "]");
 
 		g.setColor(Color.black);
