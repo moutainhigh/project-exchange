@@ -7,40 +7,16 @@
 	<link href="css/mian.css" rel="stylesheet" type="text/css" />
 	<link href="css/task_list.css" rel="stylesheet" type="text/css" />
 	<script src="js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.nav_botttom a:eq(1)').addClass('now_a');
+		});
+	</script>
 </head>
 <body>
-	<!-- 顶部区域 -->
-	<div id="top">
-		<div class="top_con">
-		<div class="top_l">找兼职，上推我网！</div>
-		<div class="top_r"><a href="/reg.html">注册</a> | <a href="/login.html">登录</a><span><a href="#">发布推广任务</a><a href="#">帮助</a></span></div>
-		</div>
-	</div>
-	<!-- 顶部区域结束 -->
+	<#include "/WEB-INF/template/include/head.ftl">
 	<div id="mian">		
-		<!-- 头部区域 -->
-		<div class="nav">
-			<!--LOGo区域-->
-			<div class="nav_top clearfix">
-				<a href="#" class="logo_a"><img src="img/logo.gif"/></a>
-				<a href="#" class="index_a">广告图width:695px; height:70px; </a>            
-			</div>
-			<!--LOGo区域结束-->
-			<!--导航区域-->
-			<div class="nav_botttom clearfix">
-				<ul class="clearfix">
-					<li><A href="#" class="now_a">首页</A></li>
-					<li><A href="#">微博营销</A></li>
-					<li><A href="#">网络推广</A></li> 
-					<li><A href="#">文案写作</A></li>
-					<li><A href="#">推广人才</A></li>
-					<li><A href="#">推广学院</A></li>
-					<li><A href="#">交流论坛</A></li>
-				</ul>
-			</div>
-			<!--导航区域结束-->
-		</div>
-		<!-- 头部区域结束 -->
+		<#include "/WEB-INF/template/include/nav.ftl">
 		<!-- 内容区域 -->
 		<div class="zw_leibie zw_leibie1">
 	    	<h2 class="clearfix">
@@ -107,15 +83,7 @@
 	        
 	    </div>
 		<!-- 内容区域结束 -->
-		<!-- 底部区域 -->
-		<div class="copyright">
-			<ul>
-				<li><a href="#">联系我们</a> | <a href="#">广告业务</a> | <a href="#">信息置顶</a> | <a href="#">站内留言</a> | <a href="#">最新兼职</a> | <a href="#">最新简历</a> | <a href="#">免责声明</a></li>
-				<li>Copyright &copy; 2009-2012 <a href="#">推我网 (tui5.com)</a> 版权所有</li>
-				<li>ICP证：京07038868号</li>
-			</ul>
-		</div>
-		<!-- 底部区域结束 -->
+		<#include "/WEB-INF/template/include/foot.ftl">
 	</div>
 </body>
 </html>

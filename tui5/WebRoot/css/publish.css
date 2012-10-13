@@ -7,6 +7,8 @@
 .publish_body{float:right;width:720px;display:inline;}
 .publish_body .publish_box{border:1px solid #107fd8;margin:10px 0;}
 .publish_box_content{padding:5px 10px;}
+.publish_box_title{background-color: #107fd8; height:34px;}
+.publish_box_title ul li{color:white; font-weight:bold; font-size:14px; padding:10px 0 0 15px;}
 
 .publish_box_content h3{margin:8px auto 2px;}
 .publish_box_content p{margin:5px auto 20px;}

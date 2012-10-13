@@ -4,8 +4,8 @@
 #top{ background-image:url(../img/home2_r1_c3.jpg); height:31px; line-height:31px; background-repeat:repeat-x;}
 #top .top_con{ width:951px; margin:0 auto;}
 #top .top_con .top_l{ float:left;}
-#top .top_con .top_r{ float:right; width:290px;}
-#top .top_con .top_r span a{ margin-left:33px; color:#3E3C3D;}
+#top .top_con .top_r{ float:right; width:400px;text-align:right;}
+#top .top_con .top_r span a{ margin-left:20px; color:#3E3C3D;}
 
 
 #mian{ width:950px; margin:0 auto; font-family:"SimSun";}

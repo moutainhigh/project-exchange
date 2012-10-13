@@ -3,7 +3,7 @@ package com.throne212.tui5.domain;
 import java.util.List;
 
 //分类
-public class Type {
+public class Task {
 
 	private String id;
 	private String pinyin;
@@ -11,7 +11,7 @@ public class Type {
 	private String parentId;
 
 	//用于显示，不存储
-	private List<Type> childs;
+	private List<Task> childs;
 	
 	public String getId() {
 		return id;
@@ -45,11 +45,11 @@ public class Type {
 		this.parentId = parentId;
 	}
 
-	public List<Type> getChilds() {
+	public List<Task> getChilds() {
 		return childs;
 	}
 
-	public void setChilds(List<Type> childs) {
+	public void setChilds(List<Task> childs) {
 		this.childs = childs;
 	}
 

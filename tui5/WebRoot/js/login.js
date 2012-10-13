@@ -1,5 +1,7 @@
 $(function(){
 	$("#loginbtn").click(function(){
+		if($(this).val() == 'µÇÂ¼ÖÐ...')
+			return false;
 		if($("#username").val() != '' && $("#password").val() != '' && $("#rand").val() != ''){
 			var uin   = $("#username").val();
 			var pwd   = $("#password").val();
@@ -15,6 +17,7 @@ $(function(){
 				}
 			})
 		};
+		$(this).val('µÇÂ¼ÖÐ...');
 		return false;
 	});	
 });

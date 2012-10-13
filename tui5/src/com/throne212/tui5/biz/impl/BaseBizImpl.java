@@ -86,7 +86,6 @@ public class BaseBizImpl implements BaseBiz {
 	}
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value) {
-		// TODO Auto-generated method stub
 		return baseDao.getEntitiesByColumn(clazz, colName, value);
 	}
 

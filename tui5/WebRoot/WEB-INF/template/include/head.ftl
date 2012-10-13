@@ -5,6 +5,7 @@
 			<div class="top_r">
 				<#if userObj?exists>
 				欢迎你，${userObj.userId}
+				<a href="/member_index.do">会员中心</a>
 				<a href="/logout.html">登出</a>
 				<#else>
 				<a href="/reg.html">注册</a> | 

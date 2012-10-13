@@ -21,12 +21,11 @@ import org.springframework.stereotype.Repository;
 
 import com.throne212.tui5.dao.BaseDao;
 
-
 @Repository("baseDao")
 public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 
 	protected Logger logger = Logger.getLogger(this.getClass());
-	
+
 	@Resource(name = "sessionFactory")
 	public void setBaseDaoSessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
@@ -43,8 +42,12 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 	}
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value) {
-		String hql = "from " + clazz.getSimpleName() + " e where e." + colName + "=?";
-		return this.getHibernateTemplate().find(hql, value);
+		if (value == null)
+			return this.getHibernateTemplate().find("from " + clazz.getSimpleName() + " e where e." + colName + " is null");
+		else {
+			String hql = "from " + clazz.getSimpleName() + " e where e." + colName + "=?";
+			return this.getHibernateTemplate().find(hql, value);
+		}
 	}
 
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue, String colTwoName, Object twoValue) {

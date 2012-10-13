@@ -10,9 +10,6 @@
 	<rule><from>/login.html</from><to>login.do</to></rule>
 	<rule><from>/logout.html</from><to>logout.do</to></rule>
 	<!-- task list -->
-	<rule>
-		<from>/tasklist.html</from>
-		<to>tasklist.do</to>
-	</rule>
+	<rule><from>/tasklist.html</from><to>tasklist.do</to></rule>
 	
 </urlrewrite>

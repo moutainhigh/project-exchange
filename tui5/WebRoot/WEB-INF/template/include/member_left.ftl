@@ -2,10 +2,11 @@
 				<div class="item">
 				    <div class="item-title">
 					    <ul>
-						    <li><img src="/img/member/arrow1.jpg"> 我是雇主</li>
+						    <li><img src="/img/member/arrow1.jpg"> 我是雇主
+						    <span class="open_close" onclick="$('#guzhu').slideToggle('slow')">&nbsp;</span></li>
 					    </ul>
 					</div>
-					<div class="item-repeat">
+					<div class="item-repeat" id="guzhu">
 					    <ul>
 						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_publish.do"><font color="#0033FF">我要发布任务</font></a></li>
 							<li><img border="0" src="/img/member/tips.jpg"> <a href="/member_taskList.do">我发布的悬赏任务</a></li>
@@ -27,10 +28,11 @@
 				<div class="item">
 				    <div class="item-title">
 					    <ul>
-						    <li><img src="/img/member/arrow1.jpg"> 我是推手</li>
+						    <li><img src="/img/member/arrow1.jpg"> 我是推手
+						    <span class="open_close" onclick="$('#tuishou').slideToggle('slow')">&nbsp;</span></li>
 						</ul>
 					</div>
-					<div class="item-repeat">
+					<div class="item-repeat" id="tuishou">
 					    <ul>
 						    <li><img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=all">我参加的悬赏任务</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=ApplyYes_JGNo">报名未交稿的任务</a></li>
@@ -54,7 +56,9 @@
 				<div class="item">
 				    <div class="item-title">
 					    <ul>
-						    <li style="cursor:pointer;" onclick="$('#myhabao').slideToggle('slow')"><img src="/img/member/arrow2.jpg"> 我的哈宝</li>
+						    <li><img src="/img/member/arrow2.jpg"> 我的哈宝
+						    <span class="open_close" onclick="$('#myhabao').slideToggle('slow')">&nbsp;</span>
+						    </li>
 						</ul>
 					</div>
 					<div class="item-repeat none" id="myhabao">
@@ -76,7 +80,9 @@
 				<div style="overflow:hidden" class="item">
 				    <div class="item-title">
 					    <ul>
-						    <li style="cursor:pointer;" onclick="$('#myinfo').slideToggle('slow')"><img src="/img/member/arrow3.jpg"> 信息管理</li>
+						    <li><img src="/img/member/arrow3.jpg"> 信息管理
+						    <span class="open_close" onclick="$('#myinfo').slideToggle('slow')">&nbsp;</span>
+						    </li>
 						</ul>
 					</div>
 					
