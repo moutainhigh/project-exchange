@@ -1,5 +1,6 @@
 package com.throne212.tui5.action;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,7 @@ public class AjaxAction extends BaseAction {
 			user.setUserRegdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserLastdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserUpdate(new Timestamp(System.currentTimeMillis()));
+			user.setUserAccount(new BigDecimal(0));
 			try {
 				logger.debug("try to add user: "  + username);
 				baseBiz.saveOrUpdateEntity(user);
@@ -96,6 +98,8 @@ public class AjaxAction extends BaseAction {
 				}else {
 					msg = "Y";
 					ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, user);
+					user.setUserLastdate(new Timestamp(System.currentTimeMillis()));
+					baseBiz.saveOrUpdateEntity(user);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

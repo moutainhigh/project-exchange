@@ -49,6 +49,15 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 			return this.getHibernateTemplate().find(hql, value);
 		}
 	}
+	
+	public Long getEntityCountByColumn(Class clazz, String colName, Object value){
+		if (value == null)
+			return (Long) this.getHibernateTemplate().find("select count(*) from " + clazz.getSimpleName() + " e where e." + colName + " is null").get(0);
+		else {
+			String hql = "select count(*) from " + clazz.getSimpleName() + " e where e." + colName + "=?";
+			return (Long) this.getHibernateTemplate().find(hql, value).get(0);
+		}
+	}
 
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue, String colTwoName, Object twoValue) {
 		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e." + colTwoName + "=? order by e.id desc";

@@ -29,7 +29,10 @@ public class MemberAction extends BaseAction {
 	private int currNav = 1;
 
 	// Ê×Ò³
+	private int taskMount = 0;
 	public String index() {
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		taskMount = baseBiz.getEntityCountByColumn(Task.class, "publisher", user).intValue();
 		return "member/member";
 	}
 
@@ -39,7 +42,8 @@ public class MemberAction extends BaseAction {
 	private Integer status;
 
 	public String taskList() {
-		pageBean = taskBiz.getTaskList(pageIndex, status);
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		pageBean = taskBiz.getTaskList(pageIndex, status, user);
 		return "member/task_list";
 	}
 
@@ -340,6 +344,14 @@ public class MemberAction extends BaseAction {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public int getTaskMount() {
+		return taskMount;
+	}
+
+	public void setTaskMount(int taskMount) {
+		this.taskMount = taskMount;
 	}
 
 }

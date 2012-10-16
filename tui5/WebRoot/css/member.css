@@ -35,6 +35,7 @@
 .box-2-content{padding:10px 0 0 10px; overflow:hidden;}
 .box-2-content ul{clear:both; }
 .box-2-content ul li{float:left; line-height:26px; color:#285F9C;}
+.box-2-content ul li p{margin: 5px auto;}
 .box-3-content{padding:10px 0 0 10px; overflow:hidden;}
 .box-3-content ul li{line-height:23px; color:#285F9C; padding:1px 0;}
 .box-3-content ul li span{float:right;padding-right:10px;}

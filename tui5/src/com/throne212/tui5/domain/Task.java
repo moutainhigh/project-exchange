@@ -33,7 +33,8 @@ public class Task implements java.io.Serializable {
 	private Timestamp publishDate;
 	private Timestamp startDate;
 	private Timestamp endDate;
-	private Type type;
+	private Type type;//所属类型
+	private User publisher;//发布者
 
 	// Constructors
 
@@ -223,6 +224,14 @@ public class Task implements java.io.Serializable {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public User getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(User publisher) {
+		this.publisher = publisher;
 	}
 
 }

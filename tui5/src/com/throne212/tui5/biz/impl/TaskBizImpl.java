@@ -8,6 +8,7 @@ import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.dao.BaseDao;
 import com.throne212.tui5.dao.TaskDao;
 import com.throne212.tui5.domain.Task;
+import com.throne212.tui5.domain.User;
 
 @Service("taskBiz")
 public class TaskBizImpl extends BaseBizImpl implements TaskBiz{
@@ -22,10 +23,10 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz{
 		return task;
 	}
 	
-	public PageBean<Task> getTaskList(Integer pageIndex, Integer status){
+	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User user){
 		if(pageIndex == null || pageIndex < 1)
 			pageIndex = 1;
-		return taskDao.getTaskList(pageIndex, status);
+		return taskDao.getTaskList(pageIndex, status, user);
 	}
 	
 }

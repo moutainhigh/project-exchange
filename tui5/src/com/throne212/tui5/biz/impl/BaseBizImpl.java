@@ -96,4 +96,8 @@ public class BaseBizImpl implements BaseBiz {
 	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue, String colTwoName) {
 		return baseDao.getEntitiesSecondColIsNull(clazz, colOneName, oneValue, colTwoName);
 	}
+	
+	public Long getEntityCountByColumn(Class clazz, String colName, Object value){
+		return baseDao.getEntityCountByColumn(clazz, colName, value);
+	}
 }

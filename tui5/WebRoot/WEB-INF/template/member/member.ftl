@@ -30,28 +30,16 @@
 							    <li class="pic"><img width="120" height="120" border="0" src="../img/member/nopic.jpg"></li>
 								<li class="l1">
 								<p>用户：<span class="redTxt font14">throne212</span></p>
-								<p>登录次数：<span class="redTxt">8</span>&nbsp;次</p>
-								<p>上次登录时间：2012-10-8 11:13:07</p>
-								
-								<p>当前账户余额：<span class="redTxt font14 fontBold">0元</span>&#12288;<a target="_blank" title="我要充值" href="http://www.sandaha.com/member/onlinePay2.asp"><img border="0" align="absmiddle" src="../img/member/cz_btn.gif"></a></p>
-								<p style="padding-top:5px;"><a title="我想要网络推广方案" href="http://www.sandaha.com/member/NeedProject.asp"><img border="0" onmouseout="this.src='../img/member/suoyao.gif'" onmouseover="this.src='../img/member/suoyao2.gif'" src="../img/member/suoyao.gif"></a>&nbsp;<a title="我的网络推广方案" href="http://www.sandaha.com/member/MyProject.asp"><img border="0" onmouseout="this.src='../img/member/fangan.jpg'" onmouseover="this.src='../img/member/fangan2.jpg'" src="../img/member/fangan.jpg"></a></p>
-								
+								<p>上次登录时间：${(userObj.userLastdate)?string('yyyy-MM-dd HH:mm:ss')}</p>
+								<p>当前账户余额：<span class="redTxt font14 fontBold">${userObj.userAccount}元</span></p>
+								<p><a target="_blank" title="我要充值" href="javascript:;"><img border="0" align="absmiddle" src="../img/member/cz_btn.gif"></a></p>
 							  </li>
 							</ul>
 							<ul>
-								<li>&#12288;<a title="我要发布任务" class="font14 fontBold" style="color:#C30;" href="../task/addTask.asp"><u>要推广，我要发布任务</u></a>&#12288;
-								我已发布的任务（<span class="redTxt">0</span>）个&#12288;&#12288;客服：12344566
+								<li>&#12288;<a title="我要发布任务" class="font14 fontBold" style="color:#C30;" href="/member_publish.do"><u>要推广，我要发布任务</u></a>&#12288;
+								我已发布的任务（<span class="redTxt">${taskMount}</span>）个&#12288;&#12288;客服：12344566
 								</li>
 							</ul>
-							<!--< %if sdh_Type = 1 then%>
-							<ul style="margin-top:5px;">
-								<li>　我是新手，<a href="< %=sdhurl%>Task/AddFastTask_new.asp" target="_blank" style="font-size:12px;color:#C30;text-decoration:underline;"><strong>快速发布任务</strong></a></li>
-							</ul>
-							<ul style="margin-top:5px;">
-								<li>　我很忙，<a href="../task/waibao.html" style="font-size:12px;color:#0066FF;text-decoration:underline;" target="_blank"><strong>将推广工作外包给三打哈</strong></a></li>
-							</ul>
-							< %end if%>-->
-							
 					    </div>
 					</div>
 					<div class="box-3"></div>
