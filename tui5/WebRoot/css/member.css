@@ -78,3 +78,9 @@
 .body_content a{font-size:12px;}
 .ctr_btn{margin: 10px; text-align: center;}
 .open_close{cursor:pointer;float:right;font-size:12px;width:12px;background: url(../img/open_close.jpg) left top;height:11px;margin-right: 10px;}
+
+.pager {
+  font-size: 12px;
+  margin: 10px;
+  text-align: right;
+}

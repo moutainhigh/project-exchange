@@ -13,6 +13,7 @@
 			$('form').submit();
 		}
 	</script>
+	<#include "/WEB-INF/template/member/msg.ftl">
 </head>
 <body>
 	<#include "/WEB-INF/template/include/head.ftl">

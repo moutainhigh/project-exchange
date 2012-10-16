@@ -23,12 +23,11 @@ import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
-
 public class Util {
 	private static Logger logger = Logger.getLogger(Util.class);
-	
+
 	public static Date getDate(String dateTxt) throws ParseException {
-		if(!isEmpty(dateTxt)){
+		if (!isEmpty(dateTxt)) {
 			dateTxt = dateTxt.replaceAll("\"", "");
 		}
 		try {
@@ -58,7 +57,7 @@ public class Util {
 										try {
 											return new SimpleDateFormat("yyyy").parse(dateTxt);
 										} catch (Exception e9) {
-											
+
 										}
 									}
 								}
@@ -74,21 +73,25 @@ public class Util {
 	public static String getCurrentDate() {
 		return getDate(new Date());
 	}
+
 	public static Date getDateOnly(Date date) {
-		return new Date(date.getYear(),date.getMonth(),date.getDate());
+		return new Date(date.getYear(), date.getMonth(), date.getDate());
 	}
+
 	public static String getDate(Date date) {
-		if(date == null)
+		if (date == null)
 			return null;
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return dateFormat.format(date);
 	}
+
 	public static String getDate2(Date date) {
-		if(date == null)
+		if (date == null)
 			return null;
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
 		return dateFormat.format(date);
 	}
+
 	public static Date getDateByTxtChina(String dateTxt) throws ParseException {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
@@ -99,6 +102,7 @@ public class Util {
 		}
 		return null;
 	}
+
 	public static Date getDateByTxt(String dateTxt) throws ParseException {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -109,6 +113,7 @@ public class Util {
 		}
 		return null;
 	}
+
 	public static Date getDateByTxtNoDay(String dateTxt) throws ParseException {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
@@ -119,6 +124,7 @@ public class Util {
 		}
 		return null;
 	}
+
 	public static Date getDateByTxtInExcel(String dateTxt) throws ParseException {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -135,33 +141,36 @@ public class Util {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
 		return dateFormat.format(date);
 	}
-	
+
 	public static Date getNextDay(Date date) {
-		long time = date.getTime() + 24*60*60*1000 - 1;
+		long time = date.getTime() + 24 * 60 * 60 * 1000 - 1;
 		return new Date(time);
 	}
-	public static Date getNextDate(Date d){
-		return getAfterDaysDate(d,1);
+
+	public static Date getNextDate(Date d) {
+		return getAfterDaysDate(d, 1);
 	}
-	public static Date getAfterDaysDate(Date d, int days){
+
+	public static Date getAfterDaysDate(Date d, int days) {
 		long addTime = 1;
-		addTime *= days; 
-		addTime *= 24; 
-		addTime *= 60; 
-		addTime *= 60; 
+		addTime *= days;
+		addTime *= 24;
+		addTime *= 60;
+		addTime *= 60;
 		addTime *= 1000;
 		return new Date(d.getTime() + addTime);
 	}
+
 	public static boolean isEmpty(String str) {
 		if (str == null || "".equals(str.trim()))
 			return true;
 		return false;
 	}
-	
+
 	public static boolean isValideParameter(String[] param) {
 		return param != null && param.length > 0 && !"".equals(param[0]);
 	}
-	
+
 	public static boolean isNum(String str) {
 		return str.matches("[0-9]{1,}");
 	}
@@ -195,21 +204,21 @@ public class Util {
 			logger.error(e.getMessage(), e);
 		}
 	}
-	
-//	public static Date getNextDate(Date d){
-//		return getAfterDaysDate(d,1);
-//	}
-//	
-//	public static Date getAfterDaysDate(Date d, int days){
-//		long addTime = 1;
-//		addTime *= days; 
-//		addTime *= 24; 
-//		addTime *= 60; 
-//		addTime *= 60; 
-//		addTime *= 1000;
-//		addTime -= 1;
-//		return new Date(d.getTime() + addTime);
-//	}
+
+	// public static Date getNextDate(Date d){
+	// return getAfterDaysDate(d,1);
+	// }
+	//
+	// public static Date getAfterDaysDate(Date d, int days){
+	// long addTime = 1;
+	// addTime *= days;
+	// addTime *= 24;
+	// addTime *= 60;
+	// addTime *= 60;
+	// addTime *= 1000;
+	// addTime -= 1;
+	// return new Date(d.getTime() + addTime);
+	// }
 	public static void writeImage(InputStream in, OutputStream out) throws Exception {
 		Image src = ImageIO.read(in); // ����Image����
 		int h = src.getHeight(null);
@@ -219,33 +228,34 @@ public class Util {
 		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
 		encoder.encode(tag); // ��JPEG����
 	}
-	public static void writeImage(InputStream in, OutputStream out,int maxWidth, int maxHeight) {
+
+	public static void writeImage(InputStream in, OutputStream out, int maxWidth, int maxHeight) {
 		try {
 			Image src = ImageIO.read(in); // ����Image����
 			int h = src.getHeight(null);
 			int w = src.getWidth(null);
 			// case 1
-			if(h <= maxHeight && w <= maxWidth){
-				
+			if (h <= maxHeight && w <= maxWidth) {
+
 			}
-			//case 2
-			else if(h > maxHeight && w <= maxWidth){
+			// case 2
+			else if (h > maxHeight && w <= maxWidth) {
 				h = maxHeight;
-				w = h * (maxWidth/maxHeight);
+				w = h * (maxWidth / maxHeight);
 			}
-			//case 3
-			else if(h <= maxHeight && w > maxWidth){
+			// case 3
+			else if (h <= maxHeight && w > maxWidth) {
 				w = maxWidth;
 				h = w * maxHeight / maxWidth;
 			}
-			//case 4
-			else if(h > maxHeight && w > maxWidth){
-				if(h/maxHeight > w/maxWidth){
+			// case 4
+			else if (h > maxHeight && w > maxWidth) {
+				if (h / maxHeight > w / maxWidth) {
 					w = w * maxHeight / h;
-					h = maxHeight;					
-				}else{
+					h = maxHeight;
+				} else {
 					h = h * maxWidth / w;
-					w = maxWidth;					
+					w = maxWidth;
 				}
 			}
 			BufferedImage tag = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
@@ -260,31 +270,52 @@ public class Util {
 			e.printStackTrace();
 		}
 	}
-	public static String generateOrderNo(){
+
+	public static String generateOrderNo() {
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		return fmt.format(new Date()).toString();
 	}
-	
-	public static double addMoney(double d1,double d2){
+
+	public static double addMoney(double d1, double d2) {
 		BigDecimal m1 = new BigDecimal(Double.toString(d1));
 		BigDecimal m2 = new BigDecimal(Double.toString(d2));
 		return roundMoney(m1.add(m2).doubleValue());
 	}
-	
-	public static double subMoney(double d1,double d2){
+
+	public static double subMoney(double d1, double d2) {
 		BigDecimal m1 = new BigDecimal(Double.toString(d1));
 		BigDecimal m2 = new BigDecimal(Double.toString(d2));
 		return roundMoney(m1.subtract(m2).doubleValue());
 	}
-	
-	public static double multiplyMoney(double d1,double d2){
+
+	public static double multiplyMoney(double d1, double d2) {
 		BigDecimal m1 = new BigDecimal(Double.toString(d1));
 		BigDecimal m2 = new BigDecimal(Double.toString(d2));
 		return roundMoney(m1.multiply(m2).doubleValue());
 	}
-	
-	public static double roundMoney(double val){
-		long b = (long)Math.round(val * 100); //小数点后两位前移，并四舍五入 
-		return (double)b / 100.00; //还原小数点后两位
+
+	public static double roundMoney(double val) {
+		long b = (long) Math.round(val * 100); // 小数点后两位前移，并四舍五入
+		return (double) b / 100.00; // 还原小数点后两位
 	}
+
+	public static int chineseLength(String value) {
+		int valueLength = 0;
+		String chinese = "[\u0391-\uFFE5]";
+		/* 获取字段值的长度，如果含中文字符，则每个中文字符长度为2，否则为1 */
+		for (int i = 0; i < value.length(); i++) {
+			/* 获取一个字符 */
+			String temp = value.substring(i, i + 1);
+			/* 判断是否为中文字符 */
+			if (temp.matches(chinese)) {
+				/* 中文字符长度为2 */
+				valueLength += 2;
+			} else {
+				/* 其他字符长度为1 */
+				valueLength += 1;
+			}
+		}
+		return valueLength;
+	}
+
 }

@@ -2,6 +2,7 @@ package com.throne212.tui5.domain;
 
 // default package
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -32,7 +33,7 @@ public class User implements java.io.Serializable {
 	private String userPhone;// 电话
 	private String userQq;// qq
 	private String userMobile;// 手机号码
-	private Float userAccount;// 账户余额
+	private BigDecimal userAccount;// 账户余额
 	private Integer userScore;// 积分
 	private String userFileName;// 头像
 	private String userIsvip;// 1为VIP，0不是
@@ -171,11 +172,11 @@ public class User implements java.io.Serializable {
 		this.userMobile = userMobile;
 	}
 
-	public Float getUserAccount() {
+	public BigDecimal getUserAccount() {
 		return userAccount;
 	}
 
-	public void setUserAccount(Float userAccount) {
+	public void setUserAccount(BigDecimal userAccount) {
 		this.userAccount = userAccount;
 	}
 

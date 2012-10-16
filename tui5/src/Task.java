@@ -1,11 +1,9 @@
-package com.throne212.tui5.domain;
 // default package
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- * Task entity. @author Yang Lei
+ * Task entity. @author MyEclipse Persistence Tools
  */
 
 public class Task implements java.io.Serializable {
@@ -16,24 +14,22 @@ public class Task implements java.io.Serializable {
 	private String title;
 	private String content;
 	private String shenhe;
-	private String attachment1;//上传附件
+	private String attachment1;
 	private String attachment2;
 	private String attachment3;
 	private String attachment4;
 	private String attachment5;
 	private String qq;
 	private String tel;
-	private BigDecimal money;
+	private Long money;
 	private Integer gaojianMount;
-	private BigDecimal gaojianPrice;
+	private Long gaojianPrice;
 	private Integer days;
-	//0/null:初始化，1:等待发布中,10:正常已发布状态
 	private Integer status;
-	private Short nospider;//1可用，0不可用
+	private Short nospider;
 	private Timestamp publishDate;
 	private Timestamp startDate;
 	private Timestamp endDate;
-	private Type type;
 
 	// Constructors
 
@@ -41,22 +37,32 @@ public class Task implements java.io.Serializable {
 	public Task() {
 	}
 
+	/** full constructor */
+	public Task(String title, String content, String shenhe, String attachment1, String attachment2, String attachment3, String attachment4, String attachment5, String qq, String tel, Long money,
+			Integer gaojianMount, Long gaojianPrice, Integer days, Integer status, Short nospider, Timestamp publishDate, Timestamp startDate, Timestamp endDate) {
+		this.title = title;
+		this.content = content;
+		this.shenhe = shenhe;
+		this.attachment1 = attachment1;
+		this.attachment2 = attachment2;
+		this.attachment3 = attachment3;
+		this.attachment4 = attachment4;
+		this.attachment5 = attachment5;
+		this.qq = qq;
+		this.tel = tel;
+		this.money = money;
+		this.gaojianMount = gaojianMount;
+		this.gaojianPrice = gaojianPrice;
+		this.days = days;
+		this.status = status;
+		this.nospider = nospider;
+		this.publishDate = publishDate;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
 	// Property accessors
 
-	public String getStatusTxt(){
-		if(status == 1){
-			return "等待发布";
-		}else if(status == 2){
-			return "已到期";
-		}else if(status == 5){
-			return "已结束";
-		}else if(status == 10){
-			return "进行中";
-		}else{
-			return "";
-		}
-	}
-	
 	public Long getId() {
 		return this.id;
 	}
@@ -145,11 +151,11 @@ public class Task implements java.io.Serializable {
 		this.tel = tel;
 	}
 
-	public BigDecimal getMoney() {
+	public Long getMoney() {
 		return this.money;
 	}
 
-	public void setMoney(BigDecimal money) {
+	public void setMoney(Long money) {
 		this.money = money;
 	}
 
@@ -161,11 +167,11 @@ public class Task implements java.io.Serializable {
 		this.gaojianMount = gaojianMount;
 	}
 
-	public BigDecimal getGaojianPrice() {
+	public Long getGaojianPrice() {
 		return this.gaojianPrice;
 	}
 
-	public void setGaojianPrice(BigDecimal gaojianPrice) {
+	public void setGaojianPrice(Long gaojianPrice) {
 		this.gaojianPrice = gaojianPrice;
 	}
 
@@ -215,14 +221,6 @@ public class Task implements java.io.Serializable {
 
 	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
-	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
 	}
 
 }

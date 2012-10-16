@@ -20,29 +20,59 @@
 			<div class="list_body">
 			    <div class="list_box">
 			       <div class="list_box_title">
-				   		<ul><li>我的任务</li></ul>
+				   		<ul><li>我的任务<#if status?exists>
+				   			(<#if status==1>等待发布的任务</#if>
+				   			<#if status==2>到期的任务</#if>
+				   			<#if status==5>结束的任务</#if>
+				   			<#if status==10>进行中的任务</#if>)
+				   		</#if></li></ul>
 				   </div>
 				   <div class="list_box_content">
 					   <table class="task_tble" border="0" cellspacing="1">
 						   <tr>
 						   		<th>编号</th>
 						   		<th>名称</th>
-						   		<th>时间</th>
-						   		<th>操作</th>
+						   		<th>发布时间</th>
+						   		<th>开始时间</th>
+						   		<th>结束时间</th>
+						   		<th>状态</th>
 						   </tr>
+						   <#list pageBean.resultList as t>
 						   <tr>
-						   		<td>1</td>
-						   		<td>2</td>
-						   		<td>333</td>
-						   		<td>中文</td>
+						   		<td>${t.id}</td>
+						   		<td>${t.title?html}</td>
+						   		<td>${t.publishDate?string('yyyy-MM-dd HH:mm:ss')}</td>
+						   		<td>${(t.startDate?string('yyyy-MM-dd HH:mm:ss'))?default('')}</td>
+						   		<td>${(t.endDate?string('yyyy-MM-dd HH:mm:ss'))?default('')}</td>
+						   		<td>${t.statusTxt}</td>
 						   </tr>
-						   <tr>
-						   		<td>2</td>
-						   		<td>2</td>
-						   		<td>333</td>
-						   		<td>中文</td>
-						   </tr>
+						   </#list>
 					   </table>
+<div class="pager">
+	共<strong>${pageBean.totalRow}</strong>条记录&nbsp;&nbsp;
+	每页${pageBean.rowPerPage}条 &nbsp;&nbsp;
+	第${pageBean.pageIndex}页/共${pageBean.maxPage}页&nbsp;&nbsp;
+	<#if !pageBean.isFirstPage>
+		<a href="javascript:gotoPage(1);">[首页]</a>
+	<#else>
+		[首页]
+	</#if>
+	<#if !pageBean.isFirstPage>
+		<a href="javascript:gotoPage(${pageBean.prePageIndex });">[前一页]</a>
+	<#else>
+		[前一页]
+	</#if>
+	<#if !pageBean.isLastPage>
+		<a href="javascript:gotoPage(${pageBean.nextPageIndex });">[后一页]</a>
+	<#else>
+		[后一页]
+	</#if>
+	<#if !pageBean.isLastPage>
+		<a href="javascript:gotoPage(${pageBean.maxPage });">[尾页]</a>
+	<#else>
+		[尾页]
+	</#if>	
+</div>
 			       </div>
 			   </div>
 			</div>

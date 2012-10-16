@@ -14,9 +14,13 @@ $(function(){
 					alert(data.msg);
 					$("#rand").val('');
 					$("#yanzheng").attr('src',$("#yanzheng").attr('src') + Math.random());
+					$("#loginbtn").val('登录');
 				}
-			})
-		};
+			});
+		}else{
+			alert('请正确填写用户名，密码和验证码');
+			return false;			
+		}
 		$(this).val('登录中...');
 		return false;
 	});	

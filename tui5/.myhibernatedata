@@ -1,5 +1,5 @@
 #MyEclipse Hibernate Properties
-#Mon Aug 06 15:15:28 CST 2012
+#Tue Oct 16 13:02:06 CST 2012
 sessionFactoryName=
 genBasicCompId=false
 profile=
@@ -18,8 +18,7 @@ genVersionTag=false
 sessionFactoryId=
 basePersistenceClass=
 genAnnotations=false
-reSettingsFile=
+reSettingsFile=/tui5/hibernate.reveng.xml
 configFile=/tui5/cfg/hibernate.cfg.xml
 createConfigFile=false
 addLibs2Classpath=false
-baseDaoClass=

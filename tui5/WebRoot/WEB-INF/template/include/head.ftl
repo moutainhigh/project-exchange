@@ -11,7 +11,7 @@
 				<a href="/reg.html">注册</a> | 
 				<a href="/login.html">登录</a>
 				</#if>
-				<span><a href="/member_publish.do">发布推广任务</a><a href="javascript:;">帮助</a></span>
+				<span><a href="/member_publish.do">我要发布推广任务</a><a href="javascript:;">帮助</a></span>
 			</div>
 		</div>
 	</div>

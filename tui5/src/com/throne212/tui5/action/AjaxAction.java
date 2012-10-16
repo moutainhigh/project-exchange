@@ -53,10 +53,10 @@ public class AjaxAction extends BaseAction {
 				&& !Util.isEmpty(password)
 				&& !Util.isEmpty(password2)
 				&& password.equals(password2)){
-			if(!"Y".equals(this.checkUserName())){
+			if(baseBiz.getEntityByUnique(User.class, "userId", username) != null){
 				msg = "用户名已经被注册，请重新填写";
 				return "msg"; 
-			}if(!"Y".equals(this.checkEmail())){
+			}if(baseBiz.getEntityByUnique(User.class, "userEmail", email) != null){
 				msg = "邮件地址已经被注册，请重新填写";
 				return "msg";
 			}
