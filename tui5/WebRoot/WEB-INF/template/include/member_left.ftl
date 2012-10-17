@@ -36,7 +36,7 @@
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=winning">中标的任务</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="ManuSearch.asp">稿件状态查询</a></li>
 						</ul>
-				  </div>
+				    </div>
 					<div class="item-bottom"></div>
 				</div>
 	
@@ -48,7 +48,7 @@
 						    </li>
 						</ul>
 					</div>
-					<div class="item-repeat" id="myhabao">
+					<div class="item-repeat none" id="myhabao">
 						<ul>
 							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;"><font color="#0033FF">我的财务</font></a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp">财务总记录</a></li>
