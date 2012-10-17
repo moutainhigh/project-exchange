@@ -8,4 +8,6 @@ public interface TaskDao extends BaseDao{
 
 	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User user);
 	
+	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status);
+	
 }

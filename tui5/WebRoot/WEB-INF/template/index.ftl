@@ -3,13 +3,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
 	<title>推我网 - 首页</title>	
-	<link href="css/reset.css" rel="stylesheet" type="text/css" />
-	<link href="css/mian.css" rel="stylesheet" type="text/css" />
-	<link href="css/pic_ad.css" rel="stylesheet" type="text/css" />
-	<link href="css/index.css" rel="stylesheet" type="text/css" />
-	<script src="js/jquery.js" type="text/javascript"></script>
-	<script src="js/pic_ad.js" type="text/javascript"></script>
-	<script src="js/index.js" type="text/javascript"></script>
+	<link href="/css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+	<link href="/css/pic_ad.css" rel="stylesheet" type="text/css" />
+	<link href="/css/index.css" rel="stylesheet" type="text/css" />
+	<script src="/js/jquery.js" type="text/javascript"></script>
+	<script src="/js/pic_ad.js" type="text/javascript"></script>
+	<script src="/js/index.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('.nav_botttom a:eq(0)').addClass('now_a');

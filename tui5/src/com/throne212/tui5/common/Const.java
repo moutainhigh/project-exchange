@@ -15,5 +15,6 @@ public class Const {
 	
 	//member
 	public static int MEMBER_PAGE_SIZE = 20;
+	public static int FRONT_PAGE_SIZE = 30;
 	
 }

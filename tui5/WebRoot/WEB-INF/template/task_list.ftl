@@ -3,10 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
 	<title>推我网 - 任务大厅</title>	
-	<link href="css/reset.css" rel="stylesheet" type="text/css" />
-	<link href="css/mian.css" rel="stylesheet" type="text/css" />
-	<link href="css/task_list.css" rel="stylesheet" type="text/css" />
-	<script src="js/jquery.js" type="text/javascript"></script>
+	<link href="/css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="/css/mian.css" rel="stylesheet" type="text/css" />
+	<link href="/css/task_list.css" rel="stylesheet" type="text/css" />
+	<script src="/js/jquery.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('.nav_botttom a:eq(1)').addClass('now_a');
@@ -22,33 +22,25 @@
 	    	<h2 class="clearfix">
 	        	<span>任务类别</span>
 	        </h2>
-	        <h3>网络推广</h3>
+	        <#list topTypeList as tt>
+	        <h3>${tt.name}</h3>
 	        <p>
-	        	<a href="javascript:void(0);">论坛发帖</a>
-	        	<a href="javascript:void(0);">论坛发帖</a>
-	        	<a href="javascript:void(0);">论坛发帖</a>
-	        	<a href="javascript:void(0);">论坛发帖</a>
-	        	<a href="javascript:void(0);">论坛发帖</a>
-	        	<a href="javascript:void(0);">论坛发帖</a>
+	        	<#list tt.childs as t>
+	        	<a href="/task_${t.pinyin}.html" class="<#if typepinyin==t.pinyin>curr_type</#if>">${t.name}</a>
+	        	</#list>
 	        </p>
-	        <h3>文案写作</h3>
-	        <p>
-	        	<a href="javascript:void(0);">软文写作</a>
-	        	<a href="javascript:void(0);">软文写作</a>
-	        	<a href="javascript:void(0);">软文写作</a>
-	        	<a href="javascript:void(0);">软文写作</a>
-	        </p>
+	        </#list>
 	    </div>
 	    
 	    <div class="zw_leibie2 zw_leibie_zhiwei">
 	    	<h2 class="clearfix">
 	        	<span>任务列表</span>
-	            <a href="#" class="now_Aaa">最新任务</a>
-	            <a href="#">500元以上的任务</a>
-	            <a href="#">500元以下的任务</a>
-	            <a href="#">结束任务</a>
-	            <a href="#">按金额排序</a>
-	            <a href="#">按发布日期排序</a>
+	            <a href="/tasklist.html" class="now_Aaa">最新任务</a>
+	            <a href="javascript:;">500元以上的任务</a>
+	            <a href="javascript:;">500元以下的任务</a>
+	            <a href="javascript:;">结束任务</a>
+	            <a href="javascript:;">按金额排序</a>
+	            <a href="javascript:;">按发布日期排序</a>
 	        </h2>
 	        <div class="task_list">
 				<ul class="title2">

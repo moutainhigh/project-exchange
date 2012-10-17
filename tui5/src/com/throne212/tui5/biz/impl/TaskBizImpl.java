@@ -24,9 +24,11 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz{
 	}
 	
 	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User user){
-		if(pageIndex == null || pageIndex < 1)
-			pageIndex = 1;
 		return taskDao.getTaskList(pageIndex, status, user);
+	}
+	
+	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status){
+		return taskDao.getTaskList(pageIndex, status);
 	}
 	
 }

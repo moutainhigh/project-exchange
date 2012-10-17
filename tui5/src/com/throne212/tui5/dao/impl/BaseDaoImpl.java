@@ -19,7 +19,9 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.dao.BaseDao;
+import com.throne212.tui5.domain.Task;
 
 @Repository("baseDao")
 public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
@@ -212,14 +214,23 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
 	}
 
-	// public <T extends Log> List<T> getLogList(MyEntity entity,String
-	// refName){
-	// String entityName = entity.getClass().getSimpleName()+"Log";
-	// if(entity instanceof User){
-	// entityName = "UserLog";
-	// }
-	// String hql =
-	// "from "+entityName+" l where l."+refName+"=? order by logTime asc";
-	// return this.getHibernateTemplate().find(hql, entity);
-	// }
+	protected PageBean buildBean(Integer pageIndex, int pageSize, String fromHql, List params){
+		if(pageIndex == null || pageIndex < 1)
+			pageIndex = 1;
+		PageBean page = new PageBean();
+		int startIndex = (pageIndex - 1) * pageSize;		
+		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + fromHql, params.toArray()).get(0);
+		page.setTotalRow(count.intValue());// 总记录数目
+		Session s = this.getHibernateTemplate().getSessionFactory().openSession();
+		Query q = s.createQuery(fromHql);
+		for (int i = 0; i < params.size(); i++) {
+			q.setParameter(i, params.get(i));
+		}
+		List<Task> list = q.setMaxResults(pageSize).setFirstResult(startIndex).list();
+		page.setResultList(list);// 数据列表
+		page.setRowPerPage(pageSize);// 每页记录数目
+		page.setPageIndex(pageIndex);// 当前页码
+		s.close();
+		return page;
+	}
 }

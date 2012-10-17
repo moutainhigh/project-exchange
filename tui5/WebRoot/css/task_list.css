@@ -1,4 +1,5 @@
 .zw_leibie{ margin-top:12px; border:1px solid #D7D7D7; border-top:none; position:relative;}
+.zw_leibie .curr_type{background-color: #178EB9;color: #fff;}
 .po_aa,.po_aa:visited{ position:absolute; right:10px; top:10px; color:#000;}
 .zw_leibie h2{ height:35px; line-height:35px; background:url(../img/new_index_r6_c6.jpg) repeat-x; font-size:14px;}
 .zw_leibie h2 span{ margin-left:10px; background:url(../img/new_index_r7_c4.jpg) no-repeat left center; padding-left:20px; width:89px; border-right:1px solid #DBDBDB; color:#D4651D;}
@@ -78,3 +79,4 @@
 .zw_leibie_zhiwei ul li a,.zw_leibie_zhiwei ul li a:visited{ color:#212121;}
 .zw_leibie_zhiwei ul li a:hover{ text-decoration:none;}
 .zw_leibie_zhiwei ul li a span{ color:#1058E0; margin-left:20px;}
+

@@ -10,4 +10,6 @@ public interface TaskBiz extends BaseBiz{
 	
 	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User user);
 	
+	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status);
+	
 }
