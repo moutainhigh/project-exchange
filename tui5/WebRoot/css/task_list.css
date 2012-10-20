@@ -15,7 +15,7 @@
 .zw_leibie2 h2 a,.zw_leibie2 h2 a:visited{ font-weight:normal; color:#000; padding:0 10px;border-right:1px solid #DBDBDB; }
 .zw_leibie2 h2 a,.zw_leibie2 h2 span{ float:left;}
 
-.task_title{width:960px;height:31px;overflow:hidden;}
+.task_title{width:950px;height:31px;overflow:hidden;}
 .task_title li{background:url(../images/task/task_bg.gif) -87px -16px no-repeat;margin-left:5px;width:81px; height:31px; float:left;color:#406899; line-height:33px; text-align:center; font-weight:bold; }
 .task_title li a{color:#406899; text-decoration:none;}
 .task_title li a:hover{color:#406899; text-decoration:underline;}
@@ -28,7 +28,7 @@
 .task_title li.sort_1{background:none; padding:0px 0 0 10px; _padding:10px 0 0 10px; line-height:33px; overflow:hidden; color:#787878;}
 .task_title li.sort_1 a{font-size:12px; font-weight:normal; color:#000; text-decoration:none;}
 .task_title li.sort_1 a:hover{color:#FF7700; text-decoration:underline;}
-.line{background:#FF8902; overflow:hidden;width:960px; height:5px; clear:both;}
+.line{background:#FF8902; overflow:hidden;width:950px; height:5px; clear:both;}
 
 .task_list{width:930px;border-left:1px #BFE3FF solid; border-right:1px #BFE3FF solid; border-top:1px #BFE3FF solid; margin:3px auto;overflow:hidden;}
 
@@ -74,9 +74,10 @@
 
 .zw_leibie_zhiwei h2 span{ background:url(../img/new_index_r10_c4.jpg) no-repeat left center; color:#0C62C7;}
 .zw_leibie_zhiwei h2 .now_Aaa{ border-top:2px solid #0C62C7;text-decoration:none; font-weight:bold; height:33px; line-height:33px; background-color:#fff;}
-.zw_leibie_zhiwei ul,.zw_leibie ul{ width:951px;}
 .zw_leibie_zhiwei ul li{ width:297px; text-align:left; padding-left:20px; overflow:hidden;}
 .zw_leibie_zhiwei ul li a,.zw_leibie_zhiwei ul li a:visited{ color:#212121;}
 .zw_leibie_zhiwei ul li a:hover{ text-decoration:none;}
 .zw_leibie_zhiwei ul li a span{ color:#1058E0; margin-left:20px;}
 
+.task_list ul.ul_list .pager{float: right;width: auto;margin-right: 10px;}
+.task_list ul.ul_list .pager a{line-height: 35px;border: 1px solid #107FD8; padding: 2px;}

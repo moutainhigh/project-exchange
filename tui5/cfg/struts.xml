@@ -41,9 +41,11 @@
         </interceptors>
         <global-results>
         	<result name="login" type="freemarker">/WEB-INF/template/login.ftl</result>
+        	<result name="404">/WEB-INF/template/login.ftl</result>
         </global-results>
     	<action name="index" class="com.throne212.tui5.action.IndexAction"></action>
     	<action name="tasklist" class="com.throne212.tui5.action.TaskListAction"></action>
+    	<action name="task_*" method="{1}" class="com.throne212.tui5.action.TaskAction"></action>
     	<action name="reg" class="com.throne212.tui5.action.RegAction">
     		<result name="reg" type="freemarker">/WEB-INF/template/reg.ftl</result>
     		<result name="reg_ok" type="freemarker">/WEB-INF/template/reg_ok.ftl</result>

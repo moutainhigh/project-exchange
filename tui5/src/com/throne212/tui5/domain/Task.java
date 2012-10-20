@@ -4,6 +4,9 @@ package com.throne212.tui5.domain;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.throne212.tui5.common.Const;
+import com.throne212.tui5.common.Util;
+
 /**
  * Task entity. @author Yang Lei
  */
@@ -27,7 +30,7 @@ public class Task implements java.io.Serializable {
 	private Integer gaojianMount;
 	private BigDecimal gaojianPrice;
 	private Integer days;
-	//0/null:初始化，1:等待发布中,10:正常已发布状态
+	//0/null:初始化，1:等待发布中,10:正常已发布状态,2已到期,5已结束
 	private Integer status;
 	private Short nospider;//1可用，0不可用
 	private Timestamp publishDate;
@@ -56,6 +59,15 @@ public class Task implements java.io.Serializable {
 		}else{
 			return "";
 		}
+	}
+	
+	public String getLeftHour(){
+		String str = "已结束";
+		if(endDate != null && Const.TASK_STATUS_PUBLISHED.equals(status)){
+			Long leftTime = endDate.getTime() - System.currentTimeMillis();
+			return Util.getLeftTimeTxt(leftTime);
+		}
+		return str;
 	}
 	
 	public Long getId() {

@@ -7,13 +7,14 @@ import java.util.TreeMap;
 
 import com.throne212.tui5.biz.BaseBiz;
 import com.throne212.tui5.biz.TaskBiz;
+import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.Type;
 
 public class TaskListAction extends BaseAction {
-	
+
 	private TaskBiz taskBiz;
 	private BaseBiz baseBiz;
 
@@ -24,24 +25,20 @@ public class TaskListAction extends BaseAction {
 	private List<Type> topTypeList;
 	private String toptypepinyin;
 	private String typepinyin;
+
 	public String execute() {
 		buildTopTypeList();// 构建分类类型
+		if (status == null)
+			status = Const.TASK_STATUS_PUBLISHED;
 		if (!Util.isEmpty(typepinyin)) {
-			Type t = baseBiz.getEntityByUnique(Type.class, "pinyin", typepinyin);
-			if (t != null) {
-				Type topType = baseBiz.getEntityByUnique(Type.class, "id", t.getParentId());
-				toptypepinyin = topType.getPinyin();
-			}
-		}
-		
-		if(status == null){
-			pageBean = taskBiz.getTaskList(pageIndex);
-		}else{
-			pageBean = taskBiz.getTaskList(pageIndex,status);
+			Type type = baseBiz.getEntityByUnique(Type.class, "pinyin", typepinyin);
+			pageBean = taskBiz.getTaskList(pageIndex, type, status);
+		} else {
+			pageBean = taskBiz.getTaskList(pageIndex, status);
 		}
 		return "task_list";
 	}
-	
+
 	private void buildTopTypeList() {
 		typeMap = new TreeMap<String, List<Type>>(new Comparator<String>() {
 			public int compare(String o1, String o2) {
@@ -56,8 +53,8 @@ public class TaskListAction extends BaseAction {
 		}
 	}
 
-	//getter and setter
-	
+	// getter and setter
+
 	public TaskBiz getTaskBiz() {
 		return taskBiz;
 	}

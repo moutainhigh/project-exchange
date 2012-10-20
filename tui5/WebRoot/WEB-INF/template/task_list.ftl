@@ -26,7 +26,7 @@
 	        <h3>${tt.name}</h3>
 	        <p>
 	        	<#list tt.childs as t>
-	        	<a href="/task_${t.pinyin}.html" class="<#if typepinyin==t.pinyin>curr_type</#if>">${t.name}</a>
+	        	<a href="/tasklist_${t.pinyin}.html" class="<#if typepinyin==t.pinyin>curr_type</#if>">${t.name}</a>
 	        	</#list>
 	        </p>
 	        </#list>
@@ -53,26 +53,26 @@
 				  <li class="li6">结束时间</li>
 				  <li class="line2"></li>
 				</ul>
-				<ul class="ul_list" onmouseout="hideTask(61914);this.className='ul_list';" onmouseover="showTask(61914);this.className='ul_over';">
-					<li class="li1">61914</li>
-				    <li class="li2"><span class="plusTask" style="display: none;" id="plusTask_61914"><a target="_blank" href="http://www.sandaha.com/task/task_plus.asp?TaskID=61914"></a></span><a title="百度知道只回答不提问" target="_blank" href="http://www.sandaha.com/task/Detail_61914.html">百度知道只回答不提问</a>&#12288;</li>
-					<li class="li5">￥500</li>
-					<li class="li4">500</li>
+				<#list pageBean.resultList as t>
+				<ul class="ul_list" onmouseout="this.className='ul_list';$(this).find('.plusTask').hide()" onmouseover="this.className='ul_over';$(this).find('.plusTask').show()">
+					<li class="li1">${t.id}</li>
+				    <li class="li2"><a href="/task_${t.id}.html">${t.title}</a>&nbsp;&nbsp;<span class="plusTask none"><a target="_blank" href="/member_publish.do">发布类似任务</a></span></li>
+					<li class="li5">￥${t.money}</li>
+					<li class="li4">${t.gaojianMount}</li>
 					<li class="li8">0</li>
 					<li class="li8">505</li>
-					<li class="li6">6天19小时</li>
+					<li class="li6">${t.leftHour}</li>
 				</ul>
-				<ul class="ul_list" onmouseout="hideTask(61906);this.className='ul_list';" onmouseover="showTask(61906);this.className='ul_over';">
-					<li class="li1">61906</li>
-				    <li class="li2"><span class="plusTask" style="display: none;" id="plusTask_61906"><a target="_blank" href="http://www.sandaha.com/task/task_plus.asp?TaskID=61906"></a></span><a title="在百度，发布50问，50答，问答都含关键词" target="_blank" href="http://www.sandaha.com/task/Detail_61906.html">在百度，发布50问，50答，问答都含关键词</a>&#12288;</li>
-					<li class="li5">￥500</li>
-					<li class="li4">200</li>
-					<li class="li8">0</li>
-					<li class="li8">0</li>
-					<li class="li6">4天18小时</li>
+				</#list>
+				<ul class="ul_list">
+					<li class="pager">
+						<a href="/tasklist.html">首页</a>
+						<a href="/tasklist.html">上一页</a>
+						<a href="/tasklist.html">下一页</a>
+						<a href="/tasklist.html">尾页</a>
+					</li>
 				</ul>
 			</div>
-	        
 	    </div>
 		<!-- 内容区域结束 -->
 		<#include "/WEB-INF/template/include/foot.ftl">

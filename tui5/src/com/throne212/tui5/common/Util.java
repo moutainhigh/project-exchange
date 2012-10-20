@@ -317,5 +317,29 @@ public class Util {
 		}
 		return valueLength;
 	}
+	
+	public static String getLeftTimeTxt(long leftTime){
+		Long m = leftTime / 1000;
+		StringBuffer sb = new StringBuffer();
+		//天
+		if(m / 60 / 60 / 24 > 0){
+			sb.append(m / 60 / 60 / 24 + "天");
+		}
+		m = m % (60 * 60 * 24);
+		//时
+		if(m / 60 / 60 > 0){
+			sb.append(m / 60 / 60 + "时");
+		}
+		m = m % (60 * 60);
+		//分
+		if(sb.indexOf("天") < 0 && m / 60 > 0){
+			sb.append(m / 60 + "分");
+		}
+		m = m % 60;
+		//秒
+		if(sb.indexOf("天") < 0 && sb.indexOf("时") < 0)
+			sb.append(m + "秒");
+		return sb.toString();
+	}
 
 }

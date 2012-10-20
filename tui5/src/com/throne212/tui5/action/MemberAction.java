@@ -109,11 +109,11 @@ public class MemberAction extends BaseAction {
 				task.setStartDate(new Timestamp(currMill));
 				long mill = task.getDays() * 24 * 60 * 60 * 1000;
 				task.setEndDate(new Timestamp(currMill + mill));
-				task.setStatus(Const.tASK_STATUS_PUBLISHED);
+				task.setStatus(Const.TASK_STATUS_PUBLISHED);
 			} else {
 				long currMill = System.currentTimeMillis();
 				task.setPublishDate(new Timestamp(currMill));
-				task.setStatus(Const.tASK_STATUS_WAITING);
+				task.setStatus(Const.TASK_STATUS_WAITING);
 			}
 
 			// ±£´æ½ø¿â

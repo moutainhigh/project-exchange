@@ -11,6 +11,8 @@
 	<rule><from>/logout.html</from><to>logout.do</to></rule>
 	<!-- task list -->
 	<rule><from>/tasklist.html</from><to>tasklist.do</to></rule>
-	<rule><from>/task_(\w+).html</from><to>tasklist.do?typepinyin=$1</to></rule>
+	<rule><from>/task_(\d+).html</from><to>task_task.do?id=$1</to></rule>
+	<rule><from>/gaojian_(\d+).html</from><to>task_gaojian.do?id=$1</to></rule>
+	<rule><from>/tasklist_(\w+).html</from><to>tasklist.do?typepinyin=$1</to></rule>
 	
 </urlrewrite>
