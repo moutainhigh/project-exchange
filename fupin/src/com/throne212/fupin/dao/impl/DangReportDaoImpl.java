@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import jxl.Workbook;
@@ -18,17 +17,11 @@ import jxl.write.WritableWorkbook;
 
 import org.hibernate.Session;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.common.ReportParam;
-import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.DangReportDao;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.DangReport;
 import com.throne212.fupin.domain.Org;
-import com.throne212.fupin.domain.Report;
-import com.throne212.fupin.domain.Report1;
-import com.throne212.fupin.domain.Report2;
-import com.throne212.fupin.domain.User;
 
 public class DangReportDaoImpl extends BaseDaoImpl implements DangReportDao {
 
@@ -375,9 +368,9 @@ public class DangReportDaoImpl extends BaseDaoImpl implements DangReportDao {
 		for(Cun cun : cunList){
 			if(cun.getOrg() != null){
 				hql = "from DangReport where year=? and time=? and cun=?";
-				List<Report1> r1List = this.getHibernateTemplate().find(hql, new Object[]{year, month + "",cun});
+				List<DangReport> r1List = this.getHibernateTemplate().find(hql, new Object[]{year, month + "",cun});
 				if(r1List != null && r1List.size() > 0){//存在，或已经暂存过来
-					Report1 r1 = r1List.get(0);
+					DangReport r1 = r1List.get(0);
 					if(r1.getLock() != 1){
 						r1.setLock(1);//锁定
 						this.saveOrUpdate(r1);
