@@ -4,6 +4,7 @@ public class Const {
 
 	public static String SESS_RAND = "rand";
 	public static String SESS_USER_OBJ = "userObj";
+	public static String SESS_UPLOAD_IMGAGE = "uploadImage";
 	
 	public static String REQ_RETURN_URL = "returnurl";
 	public static String REQ_CURR_NAV_INDEX = "currNav";

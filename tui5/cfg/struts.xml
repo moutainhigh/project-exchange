@@ -13,7 +13,7 @@
 	<!-- 配置使用Spring管理Action -->
 	<constant name="struts.objectFactory" value="spring" />
 	<!-- 上传文件大小限制设置 -->
-	<constant name="struts.multipart.maxSize" value="-1" />
+	<constant name="struts.multipart.maxSize" value="5242880" /><!-- 附件大小最大为5M -->
 	<!-- action的路径可以使用/ -->
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	<!-- 主题 -->
@@ -55,6 +55,12 @@
     	<action name="member_*" method="{1}" class="com.throne212.tui5.action.MemberAction">
     		<interceptor-ref name="authStack"></interceptor-ref>
     	</action>
+    	<!-- 上传图片 -->
+		<action name="FileUploadAction_*" method="{1}" class="com.throne212.tui5.action.FileUploadAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success">/upload/success.jsp</result>
+			<result name="error">/upload/fail.jsp</result>
+		</action>
     </package>
     <package name="json" extends="json-default" namespace="/">
         <action name="ajax_*" method="{1}" class="com.throne212.tui5.action.AjaxAction">

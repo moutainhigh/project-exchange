@@ -16,6 +16,7 @@ import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
+import com.throne212.tui5.domain.Gaojian;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.Type;
 import com.throne212.tui5.domain.User;
@@ -30,9 +31,15 @@ public class MemberAction extends BaseAction {
 
 	// 首页
 	private int taskMount = 0;
+	private int gaojianMount = 0;
+	private List<Task> myTasks;
+	private List<Gaojian> myGaojians;
 	public String index() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		taskMount = baseBiz.getEntityCountByColumn(Task.class, "publisher", user).intValue();
+		gaojianMount = baseBiz.getEntityCountByColumn(Gaojian.class, "user", user).intValue();
+		myTasks = taskBiz.getTaskTop(10, user);
+		myGaojians = taskBiz.getGaojianTop(10, user);
 		return "member/member";
 	}
 
@@ -202,6 +209,45 @@ public class MemberAction extends BaseAction {
 		return "member/pwd";
 	}
 
+	private Gaojian gj;
+
+	public String submitGaojian() {
+		if (task != null && task.getId() != null) {
+			task = taskBiz.getEntityById(Task.class, task.getId());
+			if (gj != null && !Util.isEmpty(gj.getContent())) {// 保存稿件
+				try {
+					gj.setTask(task);
+					User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+					gj.setUser(user);
+					gj.setSubmitDate(new Timestamp(System.currentTimeMillis()));
+					gj.setStatus(Const.GAOJIAN_STATUS_INIT);
+					taskBiz.saveOrUpdateEntity(gj);
+					this.setMsg("稿件提交成功");
+					return "member/submit_gaojian_rst";
+				} catch (Exception e) {
+					e.printStackTrace();
+					this.setMsg("稿件提交失败，请稍候再试");
+					return "member/submit_gaojian_rst";
+				}
+			}
+		}else{
+			this.setMsg("参数缺失");
+		}
+		return "member/submit_gaojian";
+	}
+	
+	public String myTaskList() {
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		pageBean = taskBiz.getMyTaskList(pageIndex, user);
+		return "member/my_task_list";
+	}
+	
+	public String myGaojianList() {
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		pageBean = taskBiz.getGaojianList(pageIndex, user);
+		return "member/my_gaojian_list";
+	}
+
 	public int getCurrNav() {
 		return currNav;
 	}
@@ -352,6 +398,38 @@ public class MemberAction extends BaseAction {
 
 	public void setTaskMount(int taskMount) {
 		this.taskMount = taskMount;
+	}
+
+	public Gaojian getGj() {
+		return gj;
+	}
+
+	public void setGj(Gaojian gj) {
+		this.gj = gj;
+	}
+
+	public int getGaojianMount() {
+		return gaojianMount;
+	}
+
+	public void setGaojianMount(int gaojianMount) {
+		this.gaojianMount = gaojianMount;
+	}
+
+	public List<Task> getMyTasks() {
+		return myTasks;
+	}
+
+	public void setMyTasks(List<Task> myTasks) {
+		this.myTasks = myTasks;
+	}
+
+	public List<Gaojian> getMyGaojians() {
+		return myGaojians;
+	}
+
+	public void setMyGaojians(List<Gaojian> myGaojians) {
+		this.myGaojians = myGaojians;
 	}
 
 }

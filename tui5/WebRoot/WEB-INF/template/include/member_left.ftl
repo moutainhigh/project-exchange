@@ -30,11 +30,9 @@
 					</div>
 					<div class="item-repeat" id="tuishou">
 					    <ul>
-						    <li><img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=all">我参加的悬赏任务</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=ApplyYes_JGNo">报名未交稿的任务</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=JGYes_EndingNo">已交稿未结束的任务</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="myJoinTask.asp?Status=winning">中标的任务</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="ManuSearch.asp">稿件状态查询</a></li>
+						    <li><img border="0" src="/img/member/tips.jpg"> <a href="member_myTaskList.do">我参加的悬赏任务</a></li>
+							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;">已交稿未结束的任务</a></li>
+							<li><img border="0" src="/img/member/tips.jpg"> <a href="member_myGaojianList.do">稿件状态查询</a></li>
 						</ul>
 				    </div>
 					<div class="item-bottom"></div>
@@ -48,7 +46,7 @@
 						    </li>
 						</ul>
 					</div>
-					<div class="item-repeat none" id="myhabao">
+					<div class="item-repeat" id="myhabao">
 						<ul>
 							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;"><font color="#0033FF">我的财务</font></a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp">财务总记录</a></li>
@@ -76,28 +74,12 @@
 						    </li>
 						</ul>
 					</div>
-					
-					<div style="overflow:hidden" class="item-repeat2" id="myinfo">
+					<div style="overflow:hidden" class="item-repeat" id="myinfo">
 					    <ul>
 						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_info.do">修改资料</a></li>
 						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_pwd.do">修改密码</a></li>
 						</ul>
-						<div style="clear:both"></div>
-						<ul>
-							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;">我的投诉</a></li>
-							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;">我收到的投诉</a></li>
-						</ul>
-						<div style="clear:both"></div>
-						<ul>
-						    <li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;">发送信息</a></li>
-							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;">发件箱</a></li>
-						</ul>
-						<div style="clear:both"></div>
-						<ul>
-							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;">收件箱</a></li>
-							<li></li>
-						</ul>
-				  </div>
+				   </div>
 				  
 					<div class="item-bottom"></div>
 				</div>

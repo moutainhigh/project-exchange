@@ -12,7 +12,7 @@ public interface TaskBiz extends BaseBiz {
 
 	public Task publishTask(Task task);
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User user);
+	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User publisher);
 
 	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status);
 
@@ -25,5 +25,13 @@ public interface TaskBiz extends BaseBiz {
 	public List<Task> getRelateTask(Task t);
 
 	public PageBean<Gaojian> getGaojianList(Integer pageIndex, Task task);
+	
+	public PageBean<Task> getMyTaskList(Integer pageIndex, User user);
+	
+	public PageBean<Gaojian> getGaojianList(Integer pageIndex, User user);
 
+	public List<Task> getTaskTop(int top, User user);
+	
+	public List<Gaojian> getGaojianTop(int top, User user);
+	
 }

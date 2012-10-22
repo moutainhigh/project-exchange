@@ -27,8 +27,8 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 		return task;
 	}
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User user) {
-		return taskDao.getTaskList(pageIndex, status, user);
+	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User publisher) {
+		return taskDao.getTaskList(pageIndex, status, publisher);
 	}
 
 	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status) {
@@ -53,5 +53,21 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 
 	public PageBean<Gaojian> getGaojianList(Integer pageIndex, Task task) {
 		return taskDao.getGaojianList(pageIndex, task);
+	}
+
+	public PageBean<Task> getMyTaskList(Integer pageIndex, User user) {
+		return taskDao.getMyTaskList(pageIndex, user);
+	}
+
+	public PageBean<Gaojian> getGaojianList(Integer pageIndex, User user) {
+		return taskDao.getGaojianList(pageIndex, user);
+	}
+
+	public List<Task> getTaskTop(int top, User user) {
+		return taskDao.getTaskTop(top, user);
+	}
+
+	public List<Gaojian> getGaojianTop(int top, User user) {
+		return taskDao.getGaojianTop(top, user);
 	}
 }

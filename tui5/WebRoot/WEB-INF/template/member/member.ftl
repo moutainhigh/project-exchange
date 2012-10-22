@@ -27,7 +27,7 @@
 					
 					    <div class="box-2-content">
 						    <ul>
-							    <li class="pic"><img width="120" height="120" border="0" src="../img/member/nopic.jpg"></li>
+							    <li class="pic"><img width="120" height="120" border="0" src="/img/member/nopic.jpg"></li>
 								<li class="l1">
 								<p>用户：<span class="redTxt font14">throne212</span></p>
 								<p>上次登录时间：${(userObj.userLastdate)?string('yyyy-MM-dd HH:mm:ss')}</p>
@@ -38,7 +38,10 @@
 							</ul>
 							<ul>
 								<li>&#12288;<a title="我要发布任务" class="font14 fontBold" style="color:#C30;" href="/member_publish.do"><u>要推广，我要发布任务</u></a>&#12288;
-								我已发布的任务（<span class="redTxt">${taskMount}</span>）个&#12288;&#12288;客服：12344566
+								我已发布的任务（<span class="redTxt">${taskMount}</span>）个
+								</li>
+								<li>&#12288;<a title="我要交稿" class="font14 fontBold" style="color:#C30;" href="/member_myTaskList.do"><u>我要交稿</u></a>&#12288;
+								我交稿（<span class="redTxt">${gaojianMount}</span>）份
 								</li>
 							</ul>
 					    </div>
@@ -50,61 +53,34 @@
 				<div class="m-box-1">
 				    <div class="box-1">
 					    <ul>
-						    <li><span><a href="myTask.asp?Status=all">更多&gt;&gt;</a></span>我的任务</li>
+						    <li><span><a href="/member_taskList.do">更多&gt;&gt;</a></span>我的任务</li>
 						</ul>
 					</div>
 					<div class="box-2">
 					    <div class="box-3-content">
 						    <ul>
-						<li target="_blank" addtask.asp'="" task="" www.sandaha.com="" http:="" style="color:#999999;&gt;您暂时还没发布任务!想推广,我要&lt;a href=">发布任务!</li>
+						    <#list myTasks as t>	
+							<li><a href="/task_${t.id}.html" target="_blank">[${t.id}]${t.title}</a>&nbsp;&nbsp;￥${t.money}&nbsp;&nbsp;${t.publishDate?string('yyyy-MM-dd')}</li>
+							</#list>
 							</ul>
 					    </div>
 					</div>
 					<div class="box-3"></div>
 				</div>
 				
-				<div style="margin-top:10px;" class="m-box-1">
-				    <div style=" background:url(../img/member/m11.jpg) repeat-x;" class="box-1">
+				<div style="height:10px;"></div>
+				<div class="m-box-1">
+				    <div class="box-1">
 					    <ul>
-						    <li><span><a href="http://www.sandaha.com/Member/Email_list.asp">更多&gt;&gt;</a></span>我的邮件代发任务</li>
-						</ul>
-					</div>
-					<div class="box-2">
-					    <div class="box-3-content">
-							<ul>
-					
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="box-3"></div>
-				
-				<div style="margin-top:10px;" class="m-box-1">
-				    <div style=" background:url(../img/member/m11.jpg) repeat-x;" class="box-1">
-					    <ul>
-						    <li><span><a href="http://www.sandaha.com/Member/xinwengao_list.asp">更多&gt;&gt;</a></span>我的新闻稿任务</li>
-						</ul>
-					</div>
-					<div class="box-2">
-					    <div class="box-3-content">
-							<ul>
-					
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="box-3"></div>
-				
-				<div style="margin-top:10px;" class="m-box-1">
-				    <div style=" background:url(../img/member/m11.jpg) repeat-x;" class="box-1">
-					    <ul>
-						    <li><span><a href="http://www.sandaha.com/weibo/task_weibo.asp">更多&gt;&gt;</a></span>我的红人微博任务</li>
+						    <li><span><a href="/member_myGaojianList.do">更多&gt;&gt;</a></span>我的稿件</li>
 						</ul>
 					</div>
 					<div class="box-2">
 					    <div class="box-3-content">
 						    <ul>
-						<li target="_blank" addtask_hr.asp'="" weibo="" www.sandaha.com="" http:="" style="color:#999999;&gt;您暂时还没发布红人微博任务，想要红人微博转转发，点击&lt;a href=">发布红人微博任务!</li>
+							<#list myGaojians as g>	
+							<li><a href="/gaojian_${g.task.id}.html" target="_blank">${g.task.title}</a>&nbsp;&nbsp;${g.statusTxt}&nbsp;&nbsp;${g.submitDate?string('yyyy-MM-dd')}&nbsp;&nbsp;<a href="/member_submitGaojian.do?task.id=${g.task.id}">继续投稿</a></li>
+							</#list>
 							</ul>
 					    </div>
 					</div>

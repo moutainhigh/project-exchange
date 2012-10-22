@@ -76,7 +76,7 @@
 							</li>
 						</ul>
 						<ul>
-							<li class="li-2"><a target="_blank" class="a4" href="/member_submitGaojian.do?task.id=${t.id}">我要参与</a></li>
+							<li class="li-2"><a target="_blank" class="a4" href="/member_submitGaojian.do?task.id=${t.id}">我要投稿</a></li>
 						</ul>
 					</div>
 					<div class="left-b">
@@ -107,7 +107,7 @@
 				<div class="taskContent-left">
 					<div class="title">
 						<ul class="btn">
-							<li class="focus"><a href="Detail_62718.html">任务描述</a></li>
+							<li class="focus"><a href="/task_${t.id}.html">任务描述</a></li>
 							<li><a href="gaojian_${t.id}.html">查看稿件</a></li>
 						</ul>
 						<ul class="bg"></ul>
@@ -128,23 +128,23 @@
 										<ul>
 											<#if t.attachment1?exists>
 										    <li class="down">附件下载：</li>
-											<li class="fields"><a target="_blank" href="/upload/gaojian/${t.attachment1}">${t.attachment1}</a></li>
+											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment1}">${t.attachment1}</a></li>
 											</#if>
 											<#if t.attachment2?exists>
 										    <li class="down">附件下载：</li>
-											<li class="fields"><a target="_blank" href="/upload/gaojian/${t.attachment2}">${t.attachment2}</a></li>
+											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment2}">${t.attachment2}</a></li>
 											</#if>
 											<#if t.attachment3?exists>
 										    <li class="down">附件下载：</li>
-											<li class="fields"><a target="_blank" href="/upload/gaojian/${t.attachment3}">${t.attachment3}</a></li>
+											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment3}">${t.attachment3}</a></li>
 											</#if>
 											<#if t.attachment4?exists>
 										    <li class="down">附件下载：</li>
-											<li class="fields"><a target="_blank" href="/upload/gaojian/${t.attachment4}">${t.attachment4}</a></li>
+											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment4}">${t.attachment4}</a></li>
 											</#if>
 											<#if t.attachment5?exists>
 										    <li class="down">附件下载：</li>
-											<li class="fields"><a target="_blank" href="/upload/gaojian/${t.attachment5}">${t.attachment5}</a></li>
+											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment5}">${t.attachment5}</a></li>
 											</#if>
 										</ul>
 									</div>

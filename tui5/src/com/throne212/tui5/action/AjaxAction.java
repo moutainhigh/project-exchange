@@ -69,6 +69,7 @@ public class AjaxAction extends BaseAction {
 			user.setUserLastdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserUpdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserAccount(new BigDecimal(0));
+			user.setUserScore(0);
 			try {
 				logger.debug("try to add user: "  + username);
 				baseBiz.saveOrUpdateEntity(user);

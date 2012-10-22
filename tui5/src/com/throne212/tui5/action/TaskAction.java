@@ -48,6 +48,9 @@ public class TaskAction extends BaseAction {
 		t = taskBiz.getEntityByUnique(Task.class, "id", id);
 		if(t == null)
 			return "404";
+		//填充task的数据
+		task();
+		//获取稿件数据
 		pageBean = taskBiz.getGaojianList(pageIndex, t);
 		return "gaojian";
 	}

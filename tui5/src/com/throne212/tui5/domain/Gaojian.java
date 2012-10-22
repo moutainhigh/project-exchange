@@ -2,6 +2,8 @@ package com.throne212.tui5.domain;
 
 import java.sql.Timestamp;
 
+import com.throne212.tui5.common.Const;
+
 // default package
 
 
@@ -20,6 +22,20 @@ public class Gaojian implements java.io.Serializable {
 	private Task task;// 所属任务
 	private Timestamp submitDate;//提交时间
 	private Timestamp checkDate;//审核检查时间
+	private Short hide;//1不隐藏，0隐藏
+	private String content;//内容
+	private String attachment;//附件图片列表
+	
+	public String getStatusTxt(){
+		if(Const.GAOJIAN_STATUS_INIT.equals(status)){
+			return "等待审核";
+		}else if(Const.GAOJIAN_STATUS_SUCC.equals(status)){
+			return "已采纳";
+		}else if(Const.GAOJIAN_STATUS_FAIL.equals(status)){
+			return "未采纳";
+		}
+		return "";
+	}
 
 	public Long getId() {
 		return id;
@@ -67,6 +83,30 @@ public class Gaojian implements java.io.Serializable {
 
 	public void setCheckDate(Timestamp checkDate) {
 		this.checkDate = checkDate;
+	}
+
+	public Short getHide() {
+		return hide;
+	}
+
+	public void setHide(Short hide) {
+		this.hide = hide;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
 	}
 
 }

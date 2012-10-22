@@ -44,7 +44,7 @@
 			<div class="list_body">
 			    <div class="list_box">
 			       <div class="list_box_title">
-				   		<ul><li>我的任务</li></ul>
+				   		<ul><li>修改密码</li></ul>
 				   </div>
 				   <div class="list_box_content">
 				   		<form action="/member_pwd.do" method="post">

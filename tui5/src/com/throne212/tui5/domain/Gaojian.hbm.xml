@@ -13,7 +13,10 @@
         <property name="status"></property>
         <property name="submitDate" column="submit_date"></property>
         <property name="checkDate" column="check_date"></property>
+        <property name="content"></property>
+        <property name="hide"></property>
+        <property name="attachment"></property>
         <many-to-one name="task" column="task_id" lazy="false"></many-to-one>
-        <many-to-one name="user" column="user_id"></many-to-one>
+        <many-to-one name="user" column="user_id" lazy="false"></many-to-one>
     </class>
 </hibernate-mapping>

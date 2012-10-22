@@ -53,7 +53,7 @@
 								});
 							</script>
 					    </p>
-					    <h3>请选择推广方式${toptypepinyin}_${typepinyin}</h3>
+					    <h3>请选择推广方式</h3>
 					    <#list topTypeList as topType>
 					    <p class="class2 ${topType.pinyin} none"><#list typeMap[topType.pinyin] as t>
 						<span><input name="typepinyin" onclick="javascript:self.location.href='/member_publish.do?typepinyin=${t.pinyin}';" value="${t.pinyin}" type="radio" <#if typepinyin==t.pinyin>checked="checked"</#if>>${t.name}</span>

@@ -23,7 +23,14 @@ public class MemberInterceptor extends AbstractInterceptor {
 		Object userObj = ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		if(userObj == null || !(userObj instanceof User)){
 			HttpServletRequest request = ServletActionContext.getRequest();
-			String returnurl = request.getRequestURI();
+			String returnurl = request.getRequestURI() + "?";
+			for(Object key : request.getParameterMap().keySet()){
+				Object val = request.getParameterMap().get(key);
+				if(val instanceof String[]){
+					String[] arr = (String[]) val;
+					returnurl += key + "=" + arr[0];
+				}
+			}
 			request.setAttribute(Const.REQ_RETURN_URL, returnurl);
 			return "login";
 		}
