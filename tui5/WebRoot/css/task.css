@@ -70,7 +70,7 @@
 .fujian_list{width:400px; overflow:hidden; margin:5px 0;}
 .fujian_list ul li{float:left; height:30px; line-height:30px;}
 .fujian_list ul li.down{background:#0099FF; color:#FFF; font-size:14px; font-weight:bold; padding:0 0 0 10px;}
-.fujian_list ul li.fields{background:#f0f0f0; color:#0099FF; font-family:verdana; padding:0 10px; font-size:14px; cursor:pointer; width:180px;}
+.fujian_list ul li.fields{background:#f0f0f0; color:#0099FF; font-family:verdana; padding:0 10px; font-size:14px; cursor:pointer;}
 
 .dianpin{width:700px; margin:10px 0 0 20px;}
 .dianpin ul{margin:10px 0;}

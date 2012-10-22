@@ -14,6 +14,7 @@
 		<mapping resource="com/throne212/tui5/domain/City.hbm.xml" />
 		<mapping resource="com/throne212/tui5/domain/Type.hbm.xml" />
 		<mapping resource="com/throne212/tui5/domain/Task.hbm.xml" />
+		<mapping resource="com/throne212/tui5/domain/Gaojian.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
 

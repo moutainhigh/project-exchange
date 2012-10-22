@@ -40,7 +40,7 @@ public class BaseBizImpl implements BaseBiz {
 		this.baseDao = baseDao;
 	}
 
-	public <T> T getEntityById(Class<T> clazz, Long id) {
+	public <T> T getEntityById(Class<T> clazz, Object id) {
 		return baseDao.getEntityById(clazz, id);
 	}
 
@@ -99,5 +99,12 @@ public class BaseBizImpl implements BaseBiz {
 	
 	public Long getEntityCountByColumn(Class clazz, String colName, Object value){
 		return baseDao.getEntityCountByColumn(clazz, colName, value);
+	}
+	
+	public Long getEntityCountByTwoColumn(Class clazz, String colName, Object value, String colName2, Object value2){
+		return baseDao.getEntityCountByTwoColumn(clazz, colName, value, colName2, value2);
+	}
+	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value, String orderCol, String orderType){
+		return baseDao.getEntitiesByColumn(clazz, colName, value, orderCol, orderType);
 	}
 }

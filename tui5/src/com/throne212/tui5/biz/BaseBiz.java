@@ -9,7 +9,7 @@ public interface BaseBiz {
 
 	public <T> List<T> getAll(Class<T> clazz, String col, String orderType);
 
-	public <T> T getEntityById(Class<T> clazz, Long id);
+	public <T> T getEntityById(Class<T> clazz, Object id);
 
 	public <T> T getEntityByUnique(Class<T> clazz, String col, Object val);
 
@@ -22,10 +22,14 @@ public interface BaseBiz {
 	public <T> List<T> getAllLike(Class<T> clazz, String colName, String likeValue);
 
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value);
+	
+	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value, String orderCol, String orderType);
 
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue, String colTwoName, Object twoValue);
 
 	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue, String colTwoName);
 	
 	public Long getEntityCountByColumn(Class clazz, String colName, Object value);
+	
+	public Long getEntityCountByTwoColumn(Class clazz, String colName, Object value, String colName2, Object value2);
 }

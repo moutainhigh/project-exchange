@@ -63,5 +63,27 @@
     <!-- 配置freemarkerManager -->
 	<bean id="freemarkerManager" class="org.apache.struts2.views.freemarker.FreemarkerManager" />
 	
+	<!-- 配置定时器，定时检查更新任务的状态 -->
+	<bean name="updateTaskStatus" class="org.springframework.scheduling.quartz.JobDetailBean">
+  		<property name="jobClass" value="com.throne212.tui5.common.TimerBean" />
+		<property name="jobDataAsMap">
+ 			<map>
+   				<entry key="timeout" value="5" />
+   				<entry key="taskBiz" value-ref="taskBiz"></entry>
+ 			</map>
+		</property>
+	</bean>
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean" lazy-init="false">
+	    <property name="jobDetail" ref="updateTaskStatus" />
+	    <property name="startDelay" value="5000" /><!-- 启动5秒钟以后开始 -->
+	    <property name="repeatInterval" value="300000" /> <!-- 间隔5分钟 -->
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    	<property name="triggers">
+	        <list>
+	            <ref bean="simpleTrigger" />
+	        </list>
+	    </property>
+	</bean>
 
 </beans>

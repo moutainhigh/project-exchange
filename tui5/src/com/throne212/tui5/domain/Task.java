@@ -27,8 +27,8 @@ public class Task implements java.io.Serializable {
 	private String qq;
 	private String tel;
 	private BigDecimal money;
-	private Integer gaojianMount;
-	private BigDecimal gaojianPrice;
+	private Integer gaojianMount;//稿件数量
+	private BigDecimal gaojianPrice;//稿件单价
 	private Integer days;
 	//0/null:初始化，1:等待发布中,10:正常已发布状态,2已到期,5已结束
 	private Integer status;
@@ -55,10 +55,12 @@ public class Task implements java.io.Serializable {
 		}else if(status == 5){
 			return "已结束";
 		}else if(status == 10){
-			return "进行中";
-		}else{
-			return "";
+			if(System.currentTimeMillis() < endDate.getTime())
+				return "进行中";
+			else
+				return "已到期";
 		}
+		return "";
 	}
 	
 	public String getLeftHour(){

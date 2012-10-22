@@ -12,9 +12,17 @@ public class Const {
 	public static Integer TASK_STATUS_INIT = 0;
 	public static Integer TASK_STATUS_WAITING = 1;
 	public static Integer TASK_STATUS_PUBLISHED = 10;
+	public static Integer TASK_STATUS_END = 2;
+	public static Integer TASK_STATUS_COMPLETE = 5;
+	
+	//gaojian status
+	public static Integer GAOJIAN_STATUS_INIT = 0;
+	public static Integer GAOJIAN_STATUS_SUCC = 1;
+	public static Integer GAOJIAN_STATUS_FAIL = 2;
 	
 	//member
 	public static int MEMBER_PAGE_SIZE = 20;
 	public static int FRONT_PAGE_SIZE = 30;
+	public static int FRONT_GAOJIAN_PAGE_SIZE = 30;
 	
 }

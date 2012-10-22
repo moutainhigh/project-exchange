@@ -12,11 +12,11 @@
 					<li><A href="/">首页</A></li>
 					<li><A href="/tasklist.html">任务大厅</A></li>
 					<li><A href="#">微博营销</A></li>
-					<li><A href="#">网络推广</A></li> 
-					<li><A href="#">文案写作</A></li>
-					<li><A href="#">推广人才</A></li>
+					<!--<li><A href="#">网络推广</A></li> -->
+					<!--<li><A href="#">文案写作</A></li>-->
+					<!--<li><A href="#">推客人才</A></li>-->
 					<li><A href="#">推广学院</A></li>
-					<li><A href="#">交流论坛</A></li>
+					<!--<li><A href="#">交流论坛</A></li>-->
 				</ul>
 			</div>
 			<!--导航区域结束-->

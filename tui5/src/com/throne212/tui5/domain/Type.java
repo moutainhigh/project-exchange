@@ -12,6 +12,7 @@ public class Type {
 
 	//用于显示，不存储
 	private List<Type> childs;
+	private Type parent;
 	
 	public String getId() {
 		return id;
@@ -51,6 +52,14 @@ public class Type {
 
 	public void setChilds(List<Type> childs) {
 		this.childs = childs;
+	}
+
+	public Type getParent() {
+		return parent;
+	}
+
+	public void setParent(Type parent) {
+		this.parent = parent;
 	}
 
 }
