@@ -1,7 +1,6 @@
 package com.throne212.tui5.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -73,12 +72,14 @@ public class TaskDaoImpl extends BaseDaoImpl implements TaskDao {
 	}
 
 	public List<Task> getEndingTask(int min) {
-		String hql = "from Task t where t.status=" + Const.TASK_STATUS_PUBLISHED + " and t.endDate>=? and t.endDate<=?";
-		long now = System.currentTimeMillis();
-		long smaller = now - min * 60 * 1000;
-		Calendar c = Calendar.getInstance();
-		c.setTimeInMillis(smaller);
-		return this.getHibernateTemplate().find(hql, new Object[] { c.getTime(), new Date() });
+		String hql = "from Task t where t.status=" + Const.TASK_STATUS_PUBLISHED + " and t.endDate<=?";
+		// long now = System.currentTimeMillis();
+		// long smaller = now - min * 60 * 1000;
+		// Calendar c = Calendar.getInstance();
+		// c.setTimeInMillis(smaller);
+		// Date d1 = c.getTime();
+		Date d2 = new Date();
+		return this.getHibernateTemplate().find(hql, new Object[] { d2 });
 	}
 
 	public long getUserCountInTask(Task t) {
@@ -117,12 +118,19 @@ public class TaskDaoImpl extends BaseDaoImpl implements TaskDao {
 		return buildBean(1, top, hql, params).getResultList();
 	}
 
-	public List<Gaojian> getGaojianTop(int top, User user){
+	public List<Task> getTaskTop(int top, Integer status) {
+		List params = new ArrayList();
+		String hql = "from Task where status=? order by publishDate desc";
+		params.add(status);
+		return buildBean(1, top, hql, params).getResultList();
+	}
+
+	public List<Gaojian> getGaojianTop(int top, User user) {
 		List params = new ArrayList();
 		String hql = "from Gaojian where user=? order by checkDate desc,submitDate desc";
 		params.add(user);
 		return buildBean(1, top, hql, params).getResultList();
-	
+
 	}
 
 }

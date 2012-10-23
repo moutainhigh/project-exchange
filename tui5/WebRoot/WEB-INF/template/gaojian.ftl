@@ -32,6 +32,16 @@
 			sb += parseInt(m)+ "秒";
 			return sb;
 		}
+		function shenhe(id,s){
+			$.getJSON("/ajax_checkGaojian.do?gjId="+id+"&status="+s, function(json){				
+				if(json.msg=="Y"){
+					alert('审核成功');
+					self.location.reload();
+				}else{
+					alert(json.msg);
+				}
+			});	
+		}
 	</script>
 </head>
 <body>
@@ -75,9 +85,11 @@
 							</script> 
 							</li>
 						</ul>
+						<#if t.status == 10>
 						<ul>
 							<li class="li-2"><a target="_blank" class="a4" href="/member_submitGaojian.do?task.id=${t.id}">我要投稿</a></li>
 						</ul>
+						</#if>
 					</div>
 					<div class="left-b">
 						<div style="color:#F60;">尊敬的推手，请您看清楚并理解了雇主的要求后再做此任务，这样雇主才会给合格。<br>尊敬的雇主，请您认真、及时的审核推手给您完成的稿件，这是保证您推广效果的重要一环。</div>
@@ -129,9 +141,19 @@
 								<li style="padding:0 0 10px 10px;"><a href="javascript:;"><img border="0" align="absmiddle" src="/img/mail.jpg">发送站内信息</a></li>
 							</ul>
 							<ul id="ulRight_14" class="content" style="height: 151px;">
-								<li class="t"><img width="16" height="16" align="absmiddle" src="/img/time.gif">&nbsp;时间:${g.submitDate?string('yyyy-MM-dd HH:mm:ss')}&#12288;&#12288;<img width="35" height="19" border="0" align="absmiddle" style="display:none;" id="beixuanIMG_5824459" src="/img/beixuan.jpg"></li>
-								<span style="background-image:url(); background-repeat:no-repeat;" id="draftState_5824459" class="draftState"></span>
-								<#if g.hide==1>
+								<li class="t">
+								<#if g.status == 0>
+								<span style="float:right; padding:0 10px 0 0;"><a href="javascript:;" onclick="shenhe(${g.id},1)">审核通过</a>&nbsp;&nbsp;
+								<a href="javascript:;" onclick="shenhe(${g.id},2)">审核不通过</a></span>
+								</#if>
+								<img width="16" height="16" align="absmiddle" src="/img/time.gif">&nbsp;时间:${g.submitDate?string('yyyy-MM-dd HH:mm:ss')}&#12288;&#12288;<img width="35" height="19" border="0" align="absmiddle" style="display:none;" id="beixuanIMG_5824459" src="/img/beixuan.jpg"></li>
+								<#if g.status==1>
+								<span style="background-image:url(/img/hege.gif); background-repeat:no-repeat;" class="draftState"></span>
+								</#if>
+								<#if g.status==2>
+								<span style="background-image:url(/img/buhege.gif); background-repeat:no-repeat;" class="draftState"></span>
+								</#if>
+								<#if (userObj==null && g.hide==1) || (userObj!=null && g.task.publisher.id!=userObj.id && g.hide==1)>
 								<li id="con_14" class="c"><span style="font-size:15px; color:#305B8F;">此稿件已设为隐藏稿件，只能由雇主和稿件作者可见。中标后自动公开。</span></li>
 								<#else>
 								<li id="con_14" class="c">
@@ -142,8 +164,21 @@
 						</div>
 					    </#list>
 					   <div style="text-align:center;">
-							    共有记录：<font color="#FF3300">${pageBean.totalRow}</font>&nbsp;条&nbsp;当前：<font color="#FF3300">${pageBean.pageIndex}</font>/${pageBean.maxPage}&nbsp;页
-							    <font color="#999999">&nbsp;首页&nbsp;&nbsp;上一页&nbsp;</font>&nbsp;<a href="Works_62718_a_15_2.html">下一页</a>&nbsp;&nbsp;<a href="Works_62718_a_15_5.html">尾页</a>
+							 共有记录：<font color="#FF3300">${pageBean.totalRow}</font>&nbsp;条&nbsp;当前：<font color="#FF3300">${pageBean.pageIndex}</font>/${pageBean.maxPage}&nbsp;页
+						    <#if pageBean.isFirstPage>
+						    <font color="#999999">&nbsp;首页&nbsp;&nbsp;上一页&nbsp;</font>
+						    </#if>
+						    <#if pageBean.pageIndex gt 1>
+						    <a href="/gaojian_${g.task.id}.html?pageIndex=1">首页</a>&nbsp;
+						    <a href="/gaojian_${g.task.id}.html?pageIndex=${pageBean.pageIndex-1}">上一页</a>&nbsp;
+						    </#if>
+						    <#if !pageBean.isLastPage>
+						    <a href="/gaojian_${g.task.id}.html?pageIndex=${pageBean.pageIndex+1}">下一页</a>&nbsp;
+						    <a href="/gaojian_${g.task.id}.html?pageIndex=${pageBean.maxPage}">尾页</a>&nbsp;
+						    </#if>
+						    <#if pageBean.isLastPage>
+						    <font color="#999999">&nbsp;下一页&nbsp;&nbsp;尾页&nbsp;</font>
+						    </#if>
 					   </div>
 					</div>
 			  </div>

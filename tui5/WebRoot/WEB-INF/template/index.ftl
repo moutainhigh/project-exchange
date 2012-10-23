@@ -67,79 +67,35 @@
 		<div class="zw_leibie zw_leibie1">
 	    	<h2 class="clearfix">
 	        	<span>任务类别</span>
-	            <a href="#" class="now_a">网络推广</a>
-	            <a href="#">文案写作</a>
+	        	<#list topTypeList as topType>
+	            <a href="javascript:;">${topType.name}</a>
+	            </#list>
+	            <script>$(function(){$('.zw_leibie1 a:eq(0)').addClass('now_a')});</script>
 	        </h2>
-	        <a href="#" class="po_aa">进入任务大厅</a>
+	        <a href="/tasklist.html" class="po_aa">进入任务大厅</a>
 	        <ul class="clearfix add_ul" style="display:;">
-	        	<li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
+	        	<#list typeMap['tuiguang'] as t>
+	        	<li><a href="/tasklist_${t.pinyin}.html">${t.name}</a></li>
+	        	</#list>
 	        </ul>
 	        <ul class="clearfix add_ul" style="display:none;">
-	        	<li><a href="#">网页设计</a>(2331)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
-	            <li><a href="#">网页设计</a>(233)</li>
+	        	<#list typeMap['wenan'] as t>
+	        	<li><a href="/tasklist_${t.pinyin}.html">${t.name}</a></li>
+	        	</#list>
 	        </ul>
 	    </div>
 	    
 	    <div class="zw_leibie2 zw_leibie_zhiwei">
 	    	<h2 class="clearfix">
 	        	<span>推荐任务</span>
-	            <a href="#" class="now_Aaa">最新任务</a>
-	            <a href="#">结束任务</a>
+	            <a href="javascript:;" class="now_Aaa">最新任务</a>
 	        </h2>
 	        <span class="search_bar"><input type="text" name="skey" size="20"/>&nbsp;<input type="button" value=" 搜索任务 "/></span>
-	        <a href="#" class="po_aa">更多</a>
+	        <a href="/tasklist.html" class="po_aa">更多</a>
 	        <ul class="clearfix">
-	        	<li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
-	            <li><a href="#">诚招学生兼职服务员可日结<span>￥500.00</span></a></li>
+	        	<#list topTasks as t>
+	        	<li><a href="/task_${t.id}.html" target="_blank">${t.title}<span>￥${t.money}</span></a></li>
+	            </#list>
 	        </ul>
 	    </div>
 	    
@@ -179,9 +135,9 @@
 	    <div class="freied">
 	    	<h2>友情链接</h2>
 	        <p>
-	        <a href="www.jianzhi8.com" target="_blank">兼职吧</a>
-	        <a href="www.mm14.com" target="_blank">美女图库</a>
-	        <a href="www.jianzhi8.com" target="_blank">三打哈</a>
+	        <a href="http://www.jianzhi8.com" target="_blank">兼职吧</a>
+	        <a href="http://www.mm14.com" target="_blank">美女图库</a>
+	        <a href="http://www.jianzhi8.com" target="_blank">三打哈</a>
 	        </p>
 	    </div>
 		<!-- 内容区域结束 -->

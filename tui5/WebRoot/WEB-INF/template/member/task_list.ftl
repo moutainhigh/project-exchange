@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset==gbk" />
-	<title>推我网 - 会员中心</title>	
+	<title>推我网 - 会员中心 - 我发布的任务列表</title>	
 	<link href="/css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="/css/mian.css" rel="stylesheet" type="text/css" />
 	<link href="/css/member.css" rel="stylesheet" type="text/css" />
@@ -32,6 +32,7 @@
 						   <tr>
 						   		<th>编号</th>
 						   		<th>名称</th>
+						   		<th>金额</th>
 						   		<th>发布时间</th>
 						   		<th>开始时间</th>
 						   		<th>结束时间</th>
@@ -41,10 +42,14 @@
 						   <tr>
 						   		<td>${t.id}</td>
 						   		<td>${t.title?html}</td>
-						   		<td>${t.publishDate?string('yyyy-MM-dd HH:mm:ss')}</td>
-						   		<td>${(t.startDate?string('yyyy-MM-dd HH:mm:ss'))?default('')}</td>
-						   		<td>${(t.endDate?string('yyyy-MM-dd HH:mm:ss'))?default('')}</td>
-						   		<td>${t.statusTxt}</td>
+						   		<td>￥${t.money}</td>
+						   		<td>${t.publishDate?string('yyyy-MM-dd')}</td>
+						   		<td>${(t.startDate?string('yyyy-MM-dd'))?default('')}</td>
+						   		<td>${(t.endDate?string('yyyy-MM-dd'))?default('')}</td>
+						   		<td>${t.statusTxt}
+						   		<#if t.status==1><a href="/member_publish.do?task.id=${t.id}">正式发布</a></#if>
+						   		<#if t.status gt 1 && t.gjCount gt 0><a href="/gaojian_${t.id}.html">稿件审核(${t.gjCount})</a></#if>
+						   		</td>
 						   </tr>
 						   </#list>
 					   </table>

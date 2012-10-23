@@ -18,7 +18,7 @@
 			<h2 class="reg_title">新用户注册</h2>
 			<div class="mc-main">
 				<div class="registerdock-wrap">
-					<p class="regok">恭喜你注册成功，现在就去<a href="/member_publish.do">发布任务</a>或<a href="/member_index.do">完善资料</a></p>
+					<p class="regok">恭喜你注册成功，系统赠送积分20分，余额1元，现在就去<a href="/member_publish.do">发布任务</a>或<a href="/member_index.do">完善资料</a></p>
 				</div>
 				<div style="padding-left:30px" class="loginlink-wrap">
 					<div class="loginlink">

@@ -75,9 +75,11 @@
 							</script> 
 							</li>
 						</ul>
+						<#if t.status == 10>
 						<ul>
 							<li class="li-2"><a target="_blank" class="a4" href="/member_submitGaojian.do?task.id=${t.id}">我要投稿</a></li>
 						</ul>
+						</#if>
 					</div>
 					<div class="left-b">
 						<div style="color:#F60;">尊敬的推手，请您看清楚并理解了雇主的要求后再做此任务，这样雇主才会给合格。<br>尊敬的雇主，请您认真、及时的审核推手给您完成的稿件，这是保证您推广效果的重要一环。</div>

@@ -1,11 +1,13 @@
 package com.throne212.tui5.biz.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.throne212.tui5.biz.TaskBiz;
+import com.throne212.tui5.common.AppException;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.dao.BaseDao;
 import com.throne212.tui5.dao.TaskDao;
@@ -23,6 +25,14 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 	private TaskDao taskDao;
 
 	public Task publishTask(Task task) {
+		User user = task.getPublisher();
+		BigDecimal currMoney = user.getUserAccount();
+		BigDecimal newMoney = currMoney.subtract(task.getMoney());
+		if(newMoney.doubleValue() < 0){
+			throw new AppException("Óà¶î²»×ã");
+		}
+		user.setUserAccount(newMoney);
+		baseDao.saveOrUpdate(user);
 		baseDao.saveOrUpdate(task);
 		return task;
 	}
@@ -69,5 +79,9 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 
 	public List<Gaojian> getGaojianTop(int top, User user) {
 		return taskDao.getGaojianTop(top, user);
+	}
+	
+	public List<Task> getTaskTop(int top, Integer status){
+		return taskDao.getTaskTop(top, status);
 	}
 }

@@ -12,7 +12,7 @@
 					<li><a href="/">网站首页</a></li>
 					<li><a class="focus" href="/member_index.do">我的三打哈</a></li>
 					<li><a href="/member_publish.do">发布任务</a></li>
-					<li><a href="/member_score.do">积分管理</a></li>
+					<li><a href="/member_myscore.do">积分管理</a></li>
 					<li><a href="/member_finance.do">财务管理</a></li>
 				</ul>
 				<script>

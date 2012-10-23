@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset==gbk" />
-	<title>推我网 - 会员中心</title>	
+	<title>推我网 - 会员中心 - 我的稿件</title>	
 	<link href="/css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="/css/mian.css" rel="stylesheet" type="text/css" />
 	<link href="/css/member.css" rel="stylesheet" type="text/css" />

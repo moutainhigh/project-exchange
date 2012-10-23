@@ -3,6 +3,7 @@ package com.throne212.tui5.domain;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.Util;
@@ -38,6 +39,10 @@ public class Task implements java.io.Serializable {
 	private Timestamp endDate;
 	private Type type;//所属类型
 	private User publisher;//发布者
+	
+	//用户展示
+	private List<Gaojian> gjList;
+	private Integer gjCount;
 
 	// Constructors
 
@@ -246,6 +251,22 @@ public class Task implements java.io.Serializable {
 
 	public void setPublisher(User publisher) {
 		this.publisher = publisher;
+	}
+
+	public List<Gaojian> getGjList() {
+		return gjList;
+	}
+
+	public void setGjList(List<Gaojian> gjList) {
+		this.gjList = gjList;
+	}
+
+	public Integer getGjCount() {
+		return gjCount;
+	}
+
+	public void setGjCount(Integer gjCount) {
+		this.gjCount = gjCount;
 	}
 
 }

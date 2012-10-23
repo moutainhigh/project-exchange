@@ -66,10 +66,9 @@
 				</#list>
 				<ul class="ul_list">
 					<li class="pager">
-						<a href="/tasklist.html">首页</a>
-						<a href="/tasklist.html">上一页</a>
-						<a href="/tasklist.html">下一页</a>
-						<a href="/tasklist.html">尾页</a>
+						<#if pageBean.pageIndex gt 1><a href="/tasklist<#if typepinyin?exists>${'_'+typepinyin}</#if>.html">首页</a></#if>
+						<#if !pageBean.isFirstPage && pageBean.pageIndex gt 1><a href="/tasklist<#if typepinyin?exists>${'_'+typepinyin}</#if>.html?pageIndex=${pageBean.pageIndex-1}">上一页</a></#if>
+						<#if !pageBean.isLastPage><a href="/tasklist<#if typepinyin?exists>${'_'+typepinyin}</#if>.html?pageIndex=${pageBean.pageIndex+1}">下一页</a></#if>
 					</li>
 				</ul>
 			</div>

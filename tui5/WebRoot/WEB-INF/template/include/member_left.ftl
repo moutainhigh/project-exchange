@@ -48,7 +48,7 @@
 					</div>
 					<div class="item-repeat" id="myhabao">
 						<ul>
-							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;"><font color="#0033FF">我的财务</font></a></li>
+							<li><img border="0" src="/img/member/tips.jpg"> <a href="/member_finance.do"><font color="#0033FF">我的财务</font></a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp">财务总记录</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=1">雇主充值记录</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=4">任务支出记录</a></li>
@@ -57,7 +57,7 @@
 						    <li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="onlinePay2.asp"><font color="EE0000">我要充值</font></a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="tuikuan1.asp">我要提现</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="tuikuan_shenqing.asp">提现申请记录</a></li>
-							<li><img border="0" src="/img/member/tips.jpg"> <a href="javascript:;"><font color="#0033FF">我的积分</font></a></li>
+							<li><img border="0" src="/img/member/tips.jpg"> <a href="/member_myscore.do"><font color="#0033FF">我的积分</font></a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp">积分查询</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=1">积分记录</a></li>
 						</ul>

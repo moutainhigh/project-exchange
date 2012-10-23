@@ -33,7 +33,7 @@
 								<p>上次登录时间：${(userObj.userLastdate)?string('yyyy-MM-dd HH:mm:ss')}</p>
 								<p>当前账户余额：<span class="redTxt font14 fontBold">${userObj.userAccount}元</span></p>
 								<p>当前积分：<span class="redTxt font14 fontBold">${userObj.userScore}</span></p>
-								<p><a target="_blank" title="我要充值" href="javascript:;"><img border="0" align="absmiddle" src="../img/member/cz_btn.gif"></a></p>
+								<p><a target="_blank" title="我要充值" href="javascript:;"><img border="0" align="absmiddle" src="/img/member/cz_btn.gif"></a></p>
 							  </li>
 							</ul>
 							<ul>
@@ -93,37 +93,25 @@
   
 		        <div class="right-1">
 		          <ul>
-		            <li><span><a target="_blank" href="http://www.sandaha.com/help/help_g.html">更多问题&gt;&gt;</a></span>常见问题</li>
+		            <li><span><a target="_blank" href="javascript:;">更多问题&gt;&gt;</a></span>常见问题</li>
 		          </ul>
 		        </div>
 		        <div class="right-2">
 		          <ul>
-				
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g53_3.html">什么是雇主</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g54_3.html">发布任务流程</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g55_3.html">为什么要全额预付任务赏金？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g56_3.html">如何查看已发布任务进展情况？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g57_3.html">已发布进行中的任务可以修改任务要求吗？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g58_3.html">正在进行中的任务可以提前结束吗？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g59_3.html">选稿评标有期限吗？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g60_3.html">有了满意的结果怎样选定中标？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g61_3.html">什么是超期任务？超期任务怎么处理？</a></li>
-		            
-		            <li><img width="8" height="7" src="../img/member/arrow5.jpg">&nbsp;<a class="a1" href="http://www.sandaha.com/help/help_g62_3.html">我想加价，具体怎么操作呢？</a></li>
-		            
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">什么是雇主</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">发布任务流程</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">为什么要全额预付任务赏金？</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">如何查看已发布任务进展情况？</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">已发布进行中的任务可以修改任务要求吗？</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">选稿评标有期限吗？</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">有了满意的结果怎样选定中标？</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">什么是超期任务？超期任务怎么处理？</a></li>
+		            <li><img width="8" height="7" src="/img/member/arrow5.jpg">&nbsp;<a class="a1" href="javascript:;">我想加价，具体怎么操作呢？</a></li>
 		          </ul>
 		        </div>
     				<div class="right-3"></div>
-					<div style="width:254px;padding-top:10px; overflow:hidden;"><a target="_blank" href="http://t.qq.com/sandahanet"><img border="0" alt="三打哈腾讯官方微博，关注我们，随时掌握最新动态。" src="../img/member/txweibo.jpg"></a></div>
-  					<div style="width:254px;padding-top:10px; overflow:hidden;"><a target="_blank" href="http://weibo.com/sandahanet"><img border="0" alt="三打哈新浪官方微博，关注我们，随时掌握最新动态。" src="../img/member/xlweibo.jpg"></a></div>
+					<div style="width:254px;padding-top:10px; overflow:hidden;"><a target="_blank" href="http://t.qq.com/sandahanet"><img border="0" alt="推我网腾讯官方微博，关注我们，随时掌握最新动态。" src="/img/member/txweibo.jpg"></a></div>
+  					<div style="width:254px;padding-top:10px; overflow:hidden;"><a target="_blank" href="http://weibo.com/sandahanet"><img border="0" alt="推我网新浪官方微博，关注我们，随时掌握最新动态。" src="/img/member/xlweibo.jpg"></a></div>
   				</div>
 			</div>
 		</div>

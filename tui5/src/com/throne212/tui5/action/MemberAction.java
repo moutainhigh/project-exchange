@@ -34,6 +34,7 @@ public class MemberAction extends BaseAction {
 	private int gaojianMount = 0;
 	private List<Task> myTasks;
 	private List<Gaojian> myGaojians;
+
 	public String index() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		taskMount = baseBiz.getEntityCountByColumn(Task.class, "publisher", user).intValue();
@@ -51,6 +52,10 @@ public class MemberAction extends BaseAction {
 	public String taskList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getTaskList(pageIndex, status, user);
+		for(Object obj : pageBean.getResultList()){
+			Task t = (Task) obj;
+			t.setGjCount(baseBiz.getEntityCountByColumn(Gaojian.class, "task", t).intValue());
+		}
 		return "member/task_list";
 	}
 
@@ -72,9 +77,34 @@ public class MemberAction extends BaseAction {
 				toptypepinyin = topType.getPinyin();
 			}
 		}
-
-		// 发布，存储进库
-		if (task != null && !Util.isEmpty(task.getTitle())) {
+		
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		if (task != null && task.getId() != null) {// 发布已有的，存储进库
+			task = taskBiz.getEntityById(Task.class, task.getId());
+			if(task == null){
+				this.setMsg("任务不存在了");
+				return "member/publish"; 
+			}
+			try {
+				if (user.getUserAccount().doubleValue() < task.getMoney().doubleValue()) {
+					this.setMsg("对不起，帐号余额不足，请先充值。或选择“稍后再发布的方式”。");
+					return "member/publish";
+				}
+				long currMill = System.currentTimeMillis();
+				task.setPublishDate(new Timestamp(currMill));
+				task.setStartDate(new Timestamp(currMill));
+				long mill = task.getDays() * 24 * 60 * 60 * 1000;
+				task.setEndDate(new Timestamp(currMill + mill));
+				task.setStatus(Const.TASK_STATUS_PUBLISHED);
+				taskBiz.publishTask(task);
+				return "member/publish_succ";
+			} catch (AppException e) {
+				msg = e.getMessage();
+			} catch (Exception e) {
+				e.printStackTrace();
+				msg = "服务器内部错误，请稍后再试";
+			}
+		}else if (task != null && !Util.isEmpty(task.getTitle())) {// 发布全新的，存储进库
 			// 校验
 			if (Util.chineseLength(task.getTitle()) > 50) {
 				this.setMsg("标题长度超过要求");
@@ -102,11 +132,12 @@ public class MemberAction extends BaseAction {
 				return "member/publish";
 			}
 			task.setType(type);
-
+			//publisher
+			task.setPublisher(user);
+			
 			String isGongBu = ServletActionContext.getRequest().getParameter("isGongBu");
 			// 是否立即发布
 			if ("1".equals(isGongBu)) {
-				User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 				if (user.getUserAccount().doubleValue() < task.getMoney().doubleValue()) {
 					this.setMsg("对不起，帐号余额不足，请先充值。或选择“稍后再发布的方式”。");
 					return "member/publish";
@@ -150,7 +181,7 @@ public class MemberAction extends BaseAction {
 			typeMap.put(t.getPinyin(), tList);
 		}
 	}
-
+	
 	// 资料修改
 	private String userName;
 	private String userMobile;
@@ -214,6 +245,10 @@ public class MemberAction extends BaseAction {
 	public String submitGaojian() {
 		if (task != null && task.getId() != null) {
 			task = taskBiz.getEntityById(Task.class, task.getId());
+			if (!Const.TASK_STATUS_PUBLISHED.equals(task.getStatus()) || task.getEndDate() == null || System.currentTimeMillis() > task.getEndDate().getTime()) {
+				this.setMsg("任务已经结束或关闭，无法投稿");
+				return "member/submit_gaojian_rst";
+			}
 			if (gj != null && !Util.isEmpty(gj.getContent())) {// 保存稿件
 				try {
 					gj.setTask(task);
@@ -230,18 +265,30 @@ public class MemberAction extends BaseAction {
 					return "member/submit_gaojian_rst";
 				}
 			}
-		}else{
+		} else {
 			this.setMsg("参数缺失");
 		}
 		return "member/submit_gaojian";
 	}
 	
+	//积分
+	public String myscore(){
+		
+		return "member/myscore";
+	}
+	
+	//财务
+	public String finance(){
+		
+		return "member/finance";
+	}
+
 	public String myTaskList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getMyTaskList(pageIndex, user);
 		return "member/my_task_list";
 	}
-	
+
 	public String myGaojianList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getGaojianList(pageIndex, user);

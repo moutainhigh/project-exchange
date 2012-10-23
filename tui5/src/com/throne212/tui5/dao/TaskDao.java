@@ -29,6 +29,8 @@ public interface TaskDao extends BaseDao {
 	public PageBean<Gaojian> getGaojianList(Integer pageIndex, User user);
 
 	public List<Task> getTaskTop(int top, User user);
+	
+	public List<Task> getTaskTop(int top, Integer status);
 
 	public List<Gaojian> getGaojianTop(int top, User user);
 

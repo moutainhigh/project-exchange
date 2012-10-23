@@ -21,9 +21,13 @@ public class Const {
 	public static Integer GAOJIAN_STATUS_SUCC = 1;
 	public static Integer GAOJIAN_STATUS_FAIL = 2;
 	
-	//member
+	//page sizes
 	public static int MEMBER_PAGE_SIZE = 20;
 	public static int FRONT_PAGE_SIZE = 30;
 	public static int FRONT_GAOJIAN_PAGE_SIZE = 30;
+	
+	//score
+	public static int USER_REG_SCORE = 20;
+	public static double USER_REG_MONEY = 1;
 	
 }
