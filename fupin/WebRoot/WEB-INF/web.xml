@@ -7,7 +7,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring*.xml
+			classpath:spring-hibernate.xml,classpath:spring-dao.xml,classpath:spring-biz.xml
 		</param-value>
 	</context-param>
 	<listener>
