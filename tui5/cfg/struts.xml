@@ -50,6 +50,7 @@
     		<result name="reg" type="freemarker">/WEB-INF/template/reg.ftl</result>
     		<result name="reg_ok" type="freemarker">/WEB-INF/template/reg_ok.ftl</result>
     	</action>
+    	<action name="alliance_*" method="{1}" class="com.throne212.tui5.action.AllianceAction"></action>
     	<action name="login" method="login" class="com.throne212.tui5.action.LoginAction"></action>
     	<action name="logout" method="logout" class="com.throne212.tui5.action.LoginAction"></action>
     	<action name="member_*" method="{1}" class="com.throne212.tui5.action.MemberAction">

@@ -5,39 +5,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.throne212.tui5.biz.BaseBiz;
 import com.throne212.tui5.biz.TaskBiz;
 import com.throne212.tui5.common.Const;
+import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.Type;
 
-public class IndexAction extends BaseAction {
-	
-	private BaseBiz baseBiz;
+public class AllianceAction extends BaseAction {
+
 	private TaskBiz taskBiz;
-	
+	private BaseBiz baseBiz;
+
+	private PageBean<Task> pageBean;
+	private Integer pageIndex;
+	private Integer status;
 	private Map<String, List<Type>> typeMap;
 	private List<Type> topTypeList;
 	private String toptypepinyin;
 	private String typepinyin;
 
-	private List<Task> topTasks;
-	
-	private String allianceUserId;
-	
 	public String execute() {
 		buildTopTypeList();// 构建分类类型
-		//最新的任务列表
-		topTasks = taskBiz.getTaskTop(30, Const.TASK_STATUS_PUBLISHED);
-		//判断是否为推客推荐过来的用户
-		if(!Util.isEmpty(allianceUserId)){
-			ActionContext.getContext().getSession().put(Const.SESS_ALLIANCE_USER_ID, allianceUserId);
+		if (status == null)
+			status = Const.TASK_STATUS_PUBLISHED;
+		if (!Util.isEmpty(typepinyin)) {
+			Type type = baseBiz.getEntityByUnique(Type.class, "pinyin", typepinyin);
+			pageBean = taskBiz.getTaskList(pageIndex, type, status);
+		} else {
+			pageBean = taskBiz.getTaskList(pageIndex, status);
 		}
-		return "index";
+		return "task_list";
 	}
-	
+
 	private void buildTopTypeList() {
 		typeMap = new TreeMap<String, List<Type>>(new Comparator<String>() {
 			public int compare(String o1, String o2) {
@@ -50,6 +51,48 @@ public class IndexAction extends BaseAction {
 			t.setChilds(tList);
 			typeMap.put(t.getPinyin(), tList);
 		}
+	}
+
+	// getter and setter
+
+	public TaskBiz getTaskBiz() {
+		return taskBiz;
+	}
+
+	public void setTaskBiz(TaskBiz taskBiz) {
+		this.taskBiz = taskBiz;
+	}
+
+	public PageBean<Task> getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean<Task> pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public Integer getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public BaseBiz getBaseBiz() {
+		return baseBiz;
+	}
+
+	public void setBaseBiz(BaseBiz baseBiz) {
+		this.baseBiz = baseBiz;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Map<String, List<Type>> getTypeMap() {
@@ -83,29 +126,4 @@ public class IndexAction extends BaseAction {
 	public void setTypepinyin(String typepinyin) {
 		this.typepinyin = typepinyin;
 	}
-
-	public BaseBiz getBaseBiz() {
-		return baseBiz;
-	}
-
-	public void setBaseBiz(BaseBiz baseBiz) {
-		this.baseBiz = baseBiz;
-	}
-
-	public TaskBiz getTaskBiz() {
-		return taskBiz;
-	}
-
-	public void setTaskBiz(TaskBiz taskBiz) {
-		this.taskBiz = taskBiz;
-	}
-
-	public List<Task> getTopTasks() {
-		return topTasks;
-	}
-
-	public void setTopTasks(List<Task> topTasks) {
-		this.topTasks = topTasks;
-	}
-	
 }

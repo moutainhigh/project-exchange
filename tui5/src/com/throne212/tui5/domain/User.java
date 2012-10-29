@@ -43,6 +43,8 @@ public class User implements java.io.Serializable {
 	private String userSecret;//是否保密，1保密，0不保密
 	private String userCityId;//常住地区
 	private String userSign;//行签名
+	
+	private User allianceUser;//推客联盟的推荐人
 
 	public Integer getUserNo() {
 		return userNo;
@@ -242,6 +244,14 @@ public class User implements java.io.Serializable {
 
 	public void setUserSign(String userSign) {
 		this.userSign = userSign;
+	}
+
+	public User getAllianceUser() {
+		return allianceUser;
+	}
+
+	public void setAllianceUser(User allianceUser) {
+		this.allianceUser = allianceUser;
 	}
 
 }

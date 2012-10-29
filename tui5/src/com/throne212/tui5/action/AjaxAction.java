@@ -68,6 +68,13 @@ public class AjaxAction extends BaseAction {
 			user.setUserUpdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserAccount(new BigDecimal(Const.USER_REG_MONEY));
 			user.setUserScore(Const.USER_REG_SCORE);
+			//是否为推客推荐过来的用户
+			String allianceUserId = (String) ActionContext.getContext().getSession().get(Const.SESS_ALLIANCE_USER_ID);
+			if(!Util.isEmpty(allianceUserId)){
+				User u = baseBiz.getEntityByUnique(User.class, "userId", allianceUserId);
+				if(u != null)
+					user.setAllianceUser(u);
+			}
 			try {
 				logger.debug("try to add user: " + username);
 				baseBiz.saveOrUpdateEntity(user);

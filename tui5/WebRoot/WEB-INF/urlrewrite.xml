@@ -14,5 +14,7 @@
 	<rule><from>/task_(\d+).html</from><to>task_task.do?id=$1</to></rule>
 	<rule><from>/gaojian_(\d+).html</from><to>task_gaojian.do?id=$1</to></rule>
 	<rule><from>/tasklist_(\w+).html</from><to>tasklist.do?typepinyin=$1</to></rule>
+	<!-- alliance -->
+	<rule><from>/alliance.html</from><to>alliance_index.do</to></rule>
 	
 </urlrewrite>

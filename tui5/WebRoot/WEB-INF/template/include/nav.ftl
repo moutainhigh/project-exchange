@@ -16,7 +16,7 @@
 					<!--<li><A href="#">文案写作</A></li>-->
 					<!--<li><A href="#">推客人才</A></li>-->
 					<li><A href="#">推广学院</A></li>
-					<!--<li><A href="#">交流论坛</A></li>-->
+					<li><A href="/alliance.html">推客联盟</A></li>
 				</ul>
 			</div>
 			<!--导航区域结束-->
