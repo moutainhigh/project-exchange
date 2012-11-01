@@ -14,6 +14,7 @@
 					<li><a href="/member_publish.do">发布任务</a></li>
 					<li><a href="/member_myscore.do">积分管理</a></li>
 					<li><a href="/member_finance.do">财务管理</a></li>
+					<li><a href="/member_allianceList.do">我的推客联盟</a></li>
 				</ul>
 				<script>
 					var curr_nav = '${currNav}';

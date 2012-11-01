@@ -69,6 +69,22 @@
 				<div style="overflow:hidden" class="item">
 				    <div class="item-title">
 					    <ul>
+						    <li><img src="/img/member/arrow3.jpg"> 推客联盟
+						    <span class="open_close" onclick="$('#mytuike').slideToggle('slow')">&nbsp;</span>
+						    </li>
+						</ul>
+					</div>
+					<div style="overflow:hidden" class="item-repeat" id="myinfo">
+					    <ul>
+						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_allianceList.do">我的推广网站</a></li>
+						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_allianceCodes.do">获取推广代码</a></li>
+						</ul>
+				   </div>
+					<div class="item-bottom"></div>
+				</div>
+				<div style="overflow:hidden" class="item">
+				    <div class="item-title">
+					    <ul>
 						    <li><img src="/img/member/arrow3.jpg"> 信息管理
 						    <span class="open_close" onclick="$('#myinfo').slideToggle('slow')">&nbsp;</span>
 						    </li>
@@ -80,7 +96,6 @@
 						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_pwd.do">修改密码</a></li>
 						</ul>
 				   </div>
-				  
 					<div class="item-bottom"></div>
 				</div>
 			</div>

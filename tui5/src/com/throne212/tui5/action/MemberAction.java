@@ -16,6 +16,7 @@ import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
+import com.throne212.tui5.domain.Alliance;
 import com.throne212.tui5.domain.Gaojian;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.Type;
@@ -294,6 +295,36 @@ public class MemberAction extends BaseAction {
 		pageBean = taskBiz.getGaojianList(pageIndex, user);
 		return "member/my_gaojian_list";
 	}
+	
+	//推客联盟
+	private Alliance a;	
+	public String addAlliance(){
+		if(a != null && !Util.isEmpty(a.getSiteName()) && !Util.isEmpty(a.getSiteURL())){
+			Alliance a2 = baseBiz.getEntityByUnique(Alliance.class, "siteURL", a.getSiteURL());
+			if(a2 != null){
+				this.setMsg("此URL已经存在于系统了，请勿重复添加");
+				return "member/add_alliance";
+			}else{
+				try {
+					User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+					a.setUser(user);
+					baseBiz.saveOrUpdateEntity(a);
+					this.setMsg("添加成功");
+					logger.info("add alliance site succ," + a.getSiteURL());
+					return allianceList();
+				} catch (Exception e) {
+					e.printStackTrace();
+					this.setMsg("服务器内部错误，请稍候再试");
+				}
+			}
+		}
+		return "member/add_alliance";
+	}
+	
+	public String allianceList(){
+		
+		return "member/alliance_list";
+	}
 
 	public int getCurrNav() {
 		return currNav;
@@ -477,6 +508,14 @@ public class MemberAction extends BaseAction {
 
 	public void setMyGaojians(List<Gaojian> myGaojians) {
 		this.myGaojians = myGaojians;
+	}
+
+	public Alliance getA() {
+		return a;
+	}
+
+	public void setA(Alliance a) {
+		this.a = a;
 	}
 
 }
