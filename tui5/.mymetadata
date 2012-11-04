@@ -3,11 +3,11 @@
   type="WEB"
   name="tui5"
   id="myeclipse.1344233947375"
-  context-root="/tui5"
+  context-root="/"
   j2ee-spec="5.0"
   archive="tui5.war">
   <attributes>
-    <attribute name="webrootdir" value="WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 

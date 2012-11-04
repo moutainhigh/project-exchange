@@ -20,36 +20,22 @@
 			<div class="list_body">
 			    <div class="list_box">
 			       <div class="list_box_title">
-				   		<ul><li>我的任务<#if status?exists>
-				   			(<#if status==1>等待发布的任务</#if>
-				   			<#if status==2>到期的任务</#if>
-				   			<#if status==5>结束的任务</#if>
-				   			<#if status==10>进行中的任务</#if>)
-				   		</#if></li></ul>
+				   		<ul><li>我的推客联盟网站</li></ul>
 				   </div>
 				   <div class="list_box_content">
 					   <table class="task_tble" border="0" cellspacing="1">
 						   <tr>
 						   		<th>编号</th>
-						   		<th>名称</th>
-						   		<th>金额</th>
-						   		<th>发布时间</th>
-						   		<th>开始时间</th>
-						   		<th>结束时间</th>
-						   		<th>状态</th>
+						   		<th>网站名称</th>
+						   		<th>网站地址</th>
+						   		<th>加入时间</th>
 						   </tr>
-						   <#list pageBean.resultList as t>
+						   <#list pageBean.resultList as a>
 						   <tr>
-						   		<td>${t.id}</td>
-						   		<td>${t.title?html}</td>
-						   		<td>￥${t.money}</td>
-						   		<td>${t.publishDate?string('yyyy-MM-dd')}</td>
-						   		<td>${(t.startDate?string('yyyy-MM-dd'))?default('')}</td>
-						   		<td>${(t.endDate?string('yyyy-MM-dd'))?default('')}</td>
-						   		<td>${t.statusTxt}
-						   		<#if t.status==1><a href="/member_publish.do?task.id=${t.id}">正式发布</a></#if>
-						   		<#if t.status gt 1 && t.gjCount gt 0><a href="/gaojian_${t.id}.html">稿件审核(${t.gjCount})</a></#if>
-						   		</td>
+						   		<td>${a.id}</td>
+						   		<td>${a.siteName?html}</td>
+						   		<td>${a.siteURL?html}</td>
+						   		<td>${(t.date?string('yyyy-MM-dd'))?default('')}</td>
 						   </tr>
 						   </#list>
 					   </table>

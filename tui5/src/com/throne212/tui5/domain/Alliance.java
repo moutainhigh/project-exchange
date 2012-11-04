@@ -1,5 +1,6 @@
 package com.throne212.tui5.domain;
 
+import java.util.Date;
 import java.util.List;
 
 //推客联盟_站点信息
@@ -9,6 +10,7 @@ public class Alliance {
 	private User user;
 	private String siteName;
 	private String siteURL;
+	private Date date;
 
 	public Long getId() {
 		return id;
@@ -40,6 +42,14 @@ public class Alliance {
 
 	public void setSiteURL(String siteURL) {
 		this.siteURL = siteURL;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

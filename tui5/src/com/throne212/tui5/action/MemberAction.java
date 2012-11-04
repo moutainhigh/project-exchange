@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.throne212.tui5.biz.AllianceBiz;
 import com.throne212.tui5.biz.BaseBiz;
 import com.throne212.tui5.biz.TaskBiz;
 import com.throne212.tui5.common.AppException;
@@ -26,7 +27,8 @@ public class MemberAction extends BaseAction {
 
 	private BaseBiz baseBiz;
 	private TaskBiz taskBiz;
-
+	private AllianceBiz allianceBiz;
+	
 	// 公共参数
 	private int currNav = 1;
 
@@ -322,7 +324,8 @@ public class MemberAction extends BaseAction {
 	}
 	
 	public String allianceList(){
-		
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		pageBean = allianceBiz.getTaskList(pageIndex, user);
 		return "member/alliance_list";
 	}
 
@@ -516,6 +519,14 @@ public class MemberAction extends BaseAction {
 
 	public void setA(Alliance a) {
 		this.a = a;
+	}
+
+	public AllianceBiz getAllianceBiz() {
+		return allianceBiz;
+	}
+
+	public void setAllianceBiz(AllianceBiz allianceBiz) {
+		this.allianceBiz = allianceBiz;
 	}
 
 }

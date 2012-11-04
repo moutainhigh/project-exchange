@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/cfg"/>
-        <property name="context-root" value="/tui5"/>
         <property name="java-output-path" value="/tui5/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/"/>
     </wb-module>
 </project-modules>
