@@ -74,10 +74,11 @@
 						    </li>
 						</ul>
 					</div>
-					<div style="overflow:hidden" class="item-repeat" id="myinfo">
+					<div style="overflow:hidden" class="item-repeat" id="mytuike">
 					    <ul>
 						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_allianceList.do">我的推广网站</a></li>
-						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_allianceCodes.do">获取推广代码</a></li>
+						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_addAlliance.do">添加推广网站</a></li>
+						    <li><img border="0" src="/img/member/tips.jpg"> <a href="/member_allianceCode.do">获取推广代码</a></li>
 						</ul>
 				   </div>
 					<div class="item-bottom"></div>

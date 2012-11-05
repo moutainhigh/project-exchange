@@ -107,5 +107,13 @@ public class IndexAction extends BaseAction {
 	public void setTopTasks(List<Task> topTasks) {
 		this.topTasks = topTasks;
 	}
+
+	public String getAllianceUserId() {
+		return allianceUserId;
+	}
+
+	public void setAllianceUserId(String allianceUserId) {
+		this.allianceUserId = allianceUserId;
+	}
 	
 }

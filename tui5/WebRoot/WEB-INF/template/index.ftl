@@ -136,7 +136,6 @@
 	    	<h2>友情链接</h2>
 	        <p>
 	        <a href="http://www.jianzhi8.com" target="_blank">兼职吧</a>
-	        <a href="http://www.mm14.com" target="_blank">美女图库</a>
 	        <a href="http://www.jianzhi8.com" target="_blank">三打哈</a>
 	        </p>
 	    </div>

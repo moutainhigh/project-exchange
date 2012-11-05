@@ -2,6 +2,7 @@ package com.throne212.tui5.action;
 
 import java.sql.Timestamp;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -302,6 +303,11 @@ public class MemberAction extends BaseAction {
 	private Alliance a;	
 	public String addAlliance(){
 		if(a != null && !Util.isEmpty(a.getSiteName()) && !Util.isEmpty(a.getSiteURL())){
+			String url = a.getSiteURL();
+			if(!url.matches("http:\\/\\/[A-Za-z0-9]+\\.([A-Za-z0-9]+\\.)*[A-Za-z0-9]+")){
+				this.setMsg("URL格式错误，请以http://开头");
+				return "member/add_alliance";
+			}
 			Alliance a2 = baseBiz.getEntityByUnique(Alliance.class, "siteURL", a.getSiteURL());
 			if(a2 != null){
 				this.setMsg("此URL已经存在于系统了，请勿重复添加");
@@ -310,6 +316,7 @@ public class MemberAction extends BaseAction {
 				try {
 					User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 					a.setUser(user);
+					a.setDate(new Date());
 					baseBiz.saveOrUpdateEntity(a);
 					this.setMsg("添加成功");
 					logger.info("add alliance site succ," + a.getSiteURL());
@@ -321,6 +328,11 @@ public class MemberAction extends BaseAction {
 			}
 		}
 		return "member/add_alliance";
+	}
+	
+	public String allianceCode(){
+		
+		return "member/alliance_code";
 	}
 	
 	public String allianceList(){

@@ -39,3 +39,16 @@ function gotoPage(pageIndex, url) {
 	// alert(url);
 	self.location.href = url;
 }
+function clip(id){
+	var clipBoardContent=""; 
+	try{
+		clipBoardContent+="";
+		clipBoardContent+=document.getElementById(id).value;
+		window.clipboardData.setData("Text",clipBoardContent);
+		alert("你已复制你的推广连接!");
+		document.getElementById(id).select();
+	}catch(e){
+		alert("您用的浏览器无法复制，请手动复制！");
+		document.getElementById(id).select();
+	}
+}

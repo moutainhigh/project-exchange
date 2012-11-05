@@ -78,6 +78,6 @@
         <property name="userSign" type="java.lang.String" column="USER_SIGN"></property>
         <property name="userSecret" type="java.lang.String" column="USER_SECRET"></property>
         <property name="userCityId" type="java.lang.String" column="USER_CITY_ID"></property>
-        <many-to-one name="allianceUser" column="USER_ALLIANCE_USER_ID" lazy="false"></many-to-one>
+        <many-to-one name="allianceUser" column="USER_ALLIANCE_USER_NO" lazy="false"></many-to-one>
     </class>
 </hibernate-mapping>

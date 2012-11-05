@@ -8,7 +8,6 @@
 	<link href="/css/member.css" rel="stylesheet" type="text/css" />
 	<script src="/js/jquery.js" type="text/javascript"></script>
 	<script src="/js/member.js" type="text/javascript"></script>
-	<script src="/js/add_alliance.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function checkregform(){
 			var siteName = $('#siteName').val();
@@ -17,7 +16,7 @@
 				return false;
 			}
 			var siteURL = $('#siteURL').val();
-			if(!siteURL || siteURL=='' ||siteURL.length>50 || ){
+			if(!siteURL || siteURL=='' ||siteURL.length>50){
 				alert('请输入网站地址，长度不超过50个字，请以http://开头');
 				return false;
 			}
@@ -25,7 +24,7 @@
 		}
 		$(function(){
 			var siteURL = $('#siteURL').val();
-			if(siteURL == ''){
+			if(siteURL==null ||　siteURL == ''){
 				$('#siteURL').val('http://');
 			}
 		});
@@ -51,11 +50,11 @@
 				<tbody>
 				<tr>
 				  <td width="20%" height="35" align="right">网站名称：</td>
-				  <td width="80%" colspan="2"><input type="text" alt="网站名称不能为空。" size="40" id="siteName" class="text1" name="a.siteName"> <span style="color:#999; ">如：新浪网</span></td>
+				  <td width="80%" colspan="2"><input type="text" alt="网站名称不能为空。" size="40" id="siteName" class="text1" name="a.siteName" value="${(a.siteName)?default('')}"> <span style="color:#999; ">如：新浪网</span></td>
 				</tr>
 				<tr>
 				  <td width="20%" height="35" align="right">网址：</td>
-				  <td colspan="2"><input type="text" alt="网址不能为空。" size="40" id="siteURL" class="text1" name="a.siteURL"> <span style="color:#999; ">如：http://www.sina.com.cn</span></td>
+				  <td colspan="2"><input type="text" alt="网址不能为空。" size="40" id="siteURL" class="text1" name="a.siteURL" value="${(a.siteURL)?default('')}"> <span style="color:#999; ">如：http://www.sina.com.cn</span></td>
 				</tr>
 				<tr>
 				  <td height="50" align="right">&nbsp;</td>

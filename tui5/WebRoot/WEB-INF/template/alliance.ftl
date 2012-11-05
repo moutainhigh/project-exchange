@@ -20,12 +20,10 @@
 		<!-- 内容区域 -->
 <div class="content clearfix">
 <div class="left">
-		<#if userObj?exists>
 		<div class="title">推客联盟会员信息</div>
 		<div style="margin-bottom:10px;" class="login">
 			<a href="/member_addAlliance.do">添加推广网站，复制广告代码</a>
 		</div>
-		</#if>
 		<div class="title"><span><a href="http://www.sandaha.com/Alliance/help.asp">更多</a></span>推客联盟帮助</div>
 		<div class="list">
 			<ul>
@@ -98,7 +96,7 @@
 	  </div>
 	  <div style="border-bottom:1px #BFE3FF solid;" class="r_cont">
 		<div class="tit_bg"><span><a href="#top">Top</a></span>注册推客联盟</div>
-		<div class="cont_text"><table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size:14px;">
+		<div class="cont_text">
 			<a href="/member_addAlliance.do">添加推广网站，复制广告代码</a>
 		</div>
 	  </div>

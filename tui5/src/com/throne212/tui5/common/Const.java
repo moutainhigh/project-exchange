@@ -5,7 +5,7 @@ public class Const {
 	public static String SESS_RAND = "rand";
 	public static String SESS_USER_OBJ = "userObj";
 	public static String SESS_UPLOAD_IMGAGE = "uploadImage";
-	public static String SESS_ALLIANCE_USER_ID;//联盟推荐用户名
+	public static String SESS_ALLIANCE_USER_ID = "ALL_USER_ID";//联盟推荐用户名
 	
 	public static String REQ_RETURN_URL = "returnurl";
 	public static String REQ_CURR_NAV_INDEX = "currNav";

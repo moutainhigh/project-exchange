@@ -13,6 +13,6 @@
         <property name="siteName" column="site_name"></property>
         <property name="siteURL" column="site_url"></property>
         <property name="date" column="site_date"></property>
-        <property name="user" column="user_no" lazy="false"></property>
+        <many-to-one name="user" column="user_no" lazy="false"></many-to-one>
     </class>
 </hibernate-mapping>

@@ -35,7 +35,7 @@
 						   		<td>${a.id}</td>
 						   		<td>${a.siteName?html}</td>
 						   		<td>${a.siteURL?html}</td>
-						   		<td>${(t.date?string('yyyy-MM-dd'))?default('')}</td>
+						   		<td>${(a.date?string('yyyy-MM-dd'))?default('')}</td>
 						   </tr>
 						   </#list>
 					   </table>
