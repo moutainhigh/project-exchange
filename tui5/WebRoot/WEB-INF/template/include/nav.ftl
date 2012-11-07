@@ -15,7 +15,7 @@
 					<!--<li><A href="#">网络推广</A></li> -->
 					<!--<li><A href="#">文案写作</A></li>-->
 					<!--<li><A href="#">推客人才</A></li>-->
-					<li><A href="#">推广学院</A></li>
+					<li><A href="/college">推广学院</A></li>
 					<li><A href="/alliance.html">推客联盟</A></li>
 				</ul>
 			</div>
