@@ -29,7 +29,7 @@
 						    <ul>
 							    <li class="pic"><img width="120" height="120" border="0" src="/img/member/nopic.jpg"></li>
 								<li class="l1">
-								<p>用户：<span class="redTxt font14">throne212</span></p>
+								<p>用户：<span class="redTxt font14">${userObj.userId}</span></p>
 								<p>上次登录时间：${(userObj.userLastdate)?string('yyyy-MM-dd HH:mm:ss')}</p>
 								<p>当前账户余额：<span class="redTxt font14 fontBold">${userObj.userAccount}元</span></p>
 								<p>当前积分：<span class="redTxt font14 fontBold">${userObj.userScore}</span></p>

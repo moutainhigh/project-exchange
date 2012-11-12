@@ -157,6 +157,35 @@ public class MemberAction extends BaseAction {
 				task.setPublishDate(new Timestamp(currMill));
 				task.setStatus(Const.TASK_STATUS_WAITING);
 			}
+			
+			//¸½¼þ
+			String att = task.getAttachment1();
+			if(!Util.isEmpty(att)){
+				String[] arr = att.split("|");
+				int i = 1;
+				for(String a : arr){
+					if(!Util.isEmpty(a)){
+						switch (i) {
+						case 1:
+							task.setAttachment1(a);
+							break;
+						case 2:
+							task.setAttachment2(a);
+							break;
+						case 3:
+							task.setAttachment3(a);
+							break;
+						case 4:
+							task.setAttachment4(a);
+							break;
+						case 5:
+							task.setAttachment5(a);
+							break;
+						}
+						i++;
+					}
+				}
+			}
 
 			// ±£´æ½ø¿â
 			try {

@@ -19,7 +19,9 @@
 					    </p>
 					    <h3>上传附件</h3>
 					    <p>
-					   	<a class="addfujian" onclick="javascript:;" href="javascript:;">点击添加附件</a>
+					    <ul class="file-list" id="fujianList"></ul>
+					   	<iframe frameborder="0" height="30" width="330" id="iframe" scrolling="no" src="/upload/task_upload.jsp"></iframe>
+				   		<input type="hidden" name="task.attachment1" id="attachment"/>
 					   	<br/><span class="orange">最多可上传5个附件，单个附件容量最大不超过2M。</span>
 					    </p>
 					    <#include "/WEB-INF/template/member/frag/common/contact.ftl">

@@ -13,7 +13,7 @@
 	<!-- 配置使用Spring管理Action -->
 	<constant name="struts.objectFactory" value="spring" />
 	<!-- 上传文件大小限制设置 -->
-	<constant name="struts.multipart.maxSize" value="5242880" /><!-- 附件大小最大为5M -->
+	<constant name="struts.multipart.maxSize" value="2097152" /><!-- 附件大小最大为2M -->
 	<!-- action的路径可以使用/ -->
 	<constant name="struts.enable.SlashesInActionNames" value="true"></constant>
 	<!-- 主题 -->

@@ -5,11 +5,12 @@
 .top_2 ul.ul_2 li.top_link{width:708px; height:25px; overflow:hidden; line-height:25px;}
 .top_2 ul.ul_2 li.top_tel{width:708px; padding-top:15px; overflow:hidden;}
 
-.nav{width:950px; margin:10px auto 0 auto; overflow:hidden;}
-.nav ul{clear:both;}
-.nav ul li a{background:url(../img/member/nav_bg.jpg) no-repeat;margin:0 5px 0 0; float:left; width:100px; height:30px; line-height:32px; text-align:center; overflow:hidden;color:#333;font-size:13px; font-weight:normal;}
-.nav ul li a:hover{color:#FFF;font-weight:bold;background:url(../img/member/nav_hoverbg.jpg) no-repeat; text-decoration:none;}
-.nav .focus{color:#FFF;font-weight:bold;background:url(../img/member/nav_hoverbg.jpg) no-repeat;}
+.nav_member{width:950px; margin:10px auto 0 auto; overflow:hidden;}
+.nav_member ul{clear:both;}
+.nav_member ul li{display: inline;}
+.nav_member ul li a{background:url(../img/member/nav_bg.jpg) no-repeat;margin:0 5px 0 0; float:left; width:100px; height:30px; line-height:32px; text-align:center; overflow:hidden;color:#333;font-size:13px; font-weight:normal;}
+.nav_member ul li a:hover{color:#FFF;font-weight:bold;background:url(../img/member/nav_hoverbg.jpg) no-repeat; text-decoration:none;}
+.nav_member .focus{color:#FFF;font-weight:bold;background:url(../img/member/nav_hoverbg.jpg) no-repeat;}
 .top_line{width:100%;background:#107FD8; height:4px; overflow:hidden; margin:0 auto;}
 
 .body_content{width:950px; margin:0 auto; overflow:hidden;}
