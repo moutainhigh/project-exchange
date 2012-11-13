@@ -31,4 +31,13 @@ public class Const {
 	public static int USER_REG_SCORE = 20;
 	public static double USER_REG_MONEY = 1;
 	
+	//money,score,money_record type
+	public static int RECORD_TYPE_1 = 1;//加
+	public static int RECORD_TYPE_0 = 0;//减
+	
+	//money record status
+	public static int MONEY_RECORD_APPLY = 1;//已申请
+	public static int MONEY_RECORD_SUCC = 2;//完成
+	public static int MONEY_RECORD_FAIL = 3;//失败
+	
 }

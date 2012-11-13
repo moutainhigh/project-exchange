@@ -17,13 +17,7 @@
 					   	<textarea size="60" id="task_shenhe" class="txtArea2" type="text" name="task.shenhe">${(task.shenhe)?default('')}</textarea>
 					   	<br/><span class="orange">请把您的审核要求尽可能的写清楚， 以便推手们更有效益的为您工作。</span>
 					    </p>
-					    <h3>上传附件</h3>
-					    <p>
-					    <ul class="file-list" id="fujianList"></ul>
-					   	<iframe frameborder="0" height="30" width="330" id="iframe" scrolling="no" src="/upload/task_upload.jsp"></iframe>
-				   		<input type="hidden" name="task.attachment1" id="attachment"/>
-					   	<br/><span class="orange">最多可上传5个附件，单个附件容量最大不超过2M。</span>
-					    </p>
+					    <#include "/WEB-INF/template/member/frag/common/attachment.ftl">
 					    <#include "/WEB-INF/template/member/frag/common/contact.ftl">
 					    <div class="money_info">
 					   	<h3>你想悬赏多少钱呢？</h3>

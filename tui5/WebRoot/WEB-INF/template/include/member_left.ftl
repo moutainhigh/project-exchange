@@ -49,17 +49,15 @@
 					<div class="item-repeat" id="myhabao">
 						<ul>
 							<li><img border="0" src="/img/member/tips.jpg"> <a href="/member_finance.do"><font color="#0033FF">我的财务</font></a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp">财务总记录</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=1">雇主充值记录</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=4">任务支出记录</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=6">任务退款记录</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=9">邮件代发记录</a></li>
-						    <li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="onlinePay2.asp"><font color="EE0000">我要充值</font></a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="tuikuan1.asp">我要提现</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="tuikuan_shenqing.asp">提现申请记录</a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_financeList.do">财务总记录</a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_financeList.do?type=1">充值记录</a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_financeList.do?type=0">提现记录</a></li>
+						    <li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="javascript:;"><font color="EE0000">我要充值</font></a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_applyMoney.do">我要提现</a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_applyMoneyList.do">我的提现进度查询</a></li>
 							<li><img border="0" src="/img/member/tips.jpg"> <a href="/member_myscore.do"><font color="#0033FF">我的积分</font></a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp">积分查询</a></li>
-							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="payIndex.asp?Status=1">积分记录</a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_myscore.do">积分查询</a></li>
+							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_myscoreList.do">积分记录</a></li>
 						</ul>
 						
 						<div style="clear:both"></div>
@@ -99,4 +97,17 @@
 				   </div>
 					<div class="item-bottom"></div>
 				</div>
+				<script>
+					$(function(){
+						var currNav = '${currNav}';
+						if(currNav == '4' || currNav == '3'){
+							$('#guzhu').hide();
+							$('#tuishou').hide();
+						}else if(currNav == '5'){
+							$('#guzhu').hide();
+							$('#tuishou').hide();
+							$('#myhabao').hide();
+						}
+					});
+				</script>
 			</div>

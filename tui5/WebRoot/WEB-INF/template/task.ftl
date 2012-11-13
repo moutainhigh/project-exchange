@@ -50,7 +50,7 @@
 							<li>所属分类：<span class="gray">${t.type.parent.name} -&gt; ${t.type.name}</span></li>
 							<li>中标模式：<span class="orange">计件任务模式</span></li>
 							
-							<li>中标所得：<span class="gray">任务发布者需要 <span class="orange">${t.gaojianMount}</span> 个稿件，每个<span class="orange">${gaojianPrice}</span>元<br>&#12288;&#12288;&#12288;&#12288;&#12288;已选定<span class="orange">${gjSucc}</span>个合格，<span class="orange">${gjFail}</span>个不合格，<span class="orange">${gjAll-gjSucc-gjFail}</span>个未审核<br>&#12288;&#12288;&#12288;&#12288;&#12288;目前还需要<span class="orange">${t.gaojianMount-gjSucc}</span>个稿件</span></li>
+							<li>中标所得：<span class="gray">任务发布者需要 <span class="orange">${t.gaojianMount}</span> 个稿件，每个<span class="orange">${t.gaojianPrice}</span>元<br>&#12288;&#12288;&#12288;&#12288;&#12288;已选定<span class="orange">${gjSucc}</span>个合格，<span class="orange">${gjFail}</span>个不合格，<span class="orange">${gjAll-gjSucc-gjFail}</span>个未审核<br>&#12288;&#12288;&#12288;&#12288;&#12288;目前还需要<span class="orange">${t.gaojianMount-gjSucc}</span>个稿件</span></li>
 							<li>当前状态：<span class="green"><span class="green">${t.statusTxt}</span></span> ( <span class="orange">${gjUser}</span>人参与 <span class="orange">${gjAll}</span>个稿件 )</li>
 						</ul>
 					</div>
@@ -98,7 +98,7 @@
 					</div>
 					<div class="EmployersInfo">
 						<ul>
-							<li>用户：${t.publisher.userName}</li>
+							<li>用户：${t.publisher.userId}</li>
 							<li>加入时间：${t.publisher.userRegdate?string('yyyy年MM月dd日')}</li>
 							<li><a href="javascript:;"><img width="81" height="22" border="0" align="absmiddle" src="/img/msg.jpg"></a></li>
 						</ul>
@@ -129,23 +129,18 @@
 									<div class="fujian_list">
 										<ul>
 											<#if t.attachment1?exists>
-										    <li class="down">附件下载：</li>
 											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment1}">${t.attachment1}</a></li>
 											</#if>
 											<#if t.attachment2?exists>
-										    <li class="down">附件下载：</li>
 											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment2}">${t.attachment2}</a></li>
 											</#if>
 											<#if t.attachment3?exists>
-										    <li class="down">附件下载：</li>
 											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment3}">${t.attachment3}</a></li>
 											</#if>
 											<#if t.attachment4?exists>
-										    <li class="down">附件下载：</li>
 											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment4}">${t.attachment4}</a></li>
 											</#if>
 											<#if t.attachment5?exists>
-										    <li class="down">附件下载：</li>
 											<li class="fields"><a target="_blank" href="/upload/task/${t.attachment5}">${t.attachment5}</a></li>
 											</#if>
 										</ul>

@@ -1,5 +1,6 @@
 package com.throne212.tui5.action;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.Date;
@@ -12,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.tui5.biz.AllianceBiz;
 import com.throne212.tui5.biz.BaseBiz;
+import com.throne212.tui5.biz.ScoreFinanceBiz;
 import com.throne212.tui5.biz.TaskBiz;
 import com.throne212.tui5.common.AppException;
 import com.throne212.tui5.common.Const;
@@ -29,6 +31,7 @@ public class MemberAction extends BaseAction {
 	private BaseBiz baseBiz;
 	private TaskBiz taskBiz;
 	private AllianceBiz allianceBiz;
+	private ScoreFinanceBiz sfBiz;
 	
 	// 公共参数
 	private int currNav = 1;
@@ -161,7 +164,7 @@ public class MemberAction extends BaseAction {
 			//附件
 			String att = task.getAttachment1();
 			if(!Util.isEmpty(att)){
-				String[] arr = att.split("|");
+				String[] arr = att.split("\\|");
 				int i = 1;
 				for(String a : arr){
 					if(!Util.isEmpty(a)){
@@ -306,22 +309,92 @@ public class MemberAction extends BaseAction {
 	
 	//积分
 	public String myscore(){
-		
+		// 展示数据初始化
+		currNav = 3;// 当前tab下标
 		return "member/myscore";
+	}
+	
+	public String myscoreList(){
+		// 展示数据初始化
+		currNav = 3;// 当前tab下标
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		pageBean = sfBiz.getMyScore(pageIndex, user);
+		return "member/myscore_list";
 	}
 	
 	//财务
 	public String finance(){
-		
+		// 展示数据初始化
+		currNav = 4;// 当前tab下标
 		return "member/finance";
 	}
+	
+	public String financeList(){
+		// 展示数据初始化
+		currNav = 4;// 当前tab下标
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		String type = ServletActionContext.getRequest().getParameter("type");
+		if(Util.isEmpty(type))
+			pageBean = sfBiz.getMyFinance(pageIndex, user);
+		else if(type.matches("\\d"))
+			pageBean = sfBiz.getMyFinance(pageIndex, user, Integer.valueOf(type));
+		return "member/finance_list";
+	}
+	
+	public String applyMoney() {
+		// 展示数据初始化
+		currNav = 4;// 当前tab下标
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		user = baseBiz.getEntityById(User.class, user.getUserNo());
+		ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, user);
+		
+		String money = ServletActionContext.getRequest().getParameter("money");
+		if(!Util.isEmpty(money)){
+			if(!money.matches("^\\d+(\\.\\d+)?$")){
+				msg = "金额格式不正确";
+				return "member/apply_money";
+			}
+			double m = Double.parseDouble(money);
+			if(m < 30){
+				msg = "金额不能少于30元";
+				return "member/apply_money";
+			}
+			BigDecimal acct = user.getUserAccount();
+			if(acct.doubleValue() < m){
+				msg = "提现金额已经超过你的余额";
+				return "member/apply_money";				
+			}
+			try {
+				sfBiz.applyMoney(new BigDecimal(m), user);
+				this.setMsg("申请提现成功，请等待客服处理");
+				return this.applyMoneyList();
+			} catch (AppException e) {
+				e.printStackTrace();
+				this.setMsg(e.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setMsg("服务器内部错误，请稍候再试");
+			} 
+		}
+		return "member/apply_money";
+	}
+	
+	public String applyMoneyList() {
+		// 展示数据初始化
+		currNav = 4;// 当前tab下标
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		pageBean = sfBiz.getMyMoneyRecords(pageIndex, user);
+		return "member/apply_money_list";
+	}
 
+	//我发布的任务
 	public String myTaskList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getMyTaskList(pageIndex, user);
 		return "member/my_task_list";
 	}
 
+	//我的稿件
 	public String myGaojianList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getGaojianList(pageIndex, user);
@@ -331,6 +404,8 @@ public class MemberAction extends BaseAction {
 	//推客联盟
 	private Alliance a;	
 	public String addAlliance(){
+		// 展示数据初始化
+		currNav = 5;// 当前tab下标
 		if(a != null && !Util.isEmpty(a.getSiteName()) && !Util.isEmpty(a.getSiteURL())){
 			String url = a.getSiteURL();
 			if(!url.matches("http:\\/\\/[A-Za-z0-9]+\\.([A-Za-z0-9]+\\.)*[A-Za-z0-9]+")){
@@ -360,11 +435,14 @@ public class MemberAction extends BaseAction {
 	}
 	
 	public String allianceCode(){
-		
+		// 展示数据初始化
+		currNav = 5;// 当前tab下标
 		return "member/alliance_code";
 	}
 	
 	public String allianceList(){
+		// 展示数据初始化
+		currNav = 5;// 当前tab下标
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = allianceBiz.getTaskList(pageIndex, user);
 		return "member/alliance_list";
@@ -568,6 +646,14 @@ public class MemberAction extends BaseAction {
 
 	public void setAllianceBiz(AllianceBiz allianceBiz) {
 		this.allianceBiz = allianceBiz;
+	}
+
+	public ScoreFinanceBiz getSfBiz() {
+		return sfBiz;
+	}
+
+	public void setSfBiz(ScoreFinanceBiz sfBiz) {
+		this.sfBiz = sfBiz;
 	}
 
 }

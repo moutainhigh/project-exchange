@@ -38,8 +38,12 @@ public class FileUploadAction extends BaseAction {
 			if (Util.isEmpty(subfix)) {
 				this.setMsg("文件格式错误");
 				return "error";
-			} else if (!subfix.trim().equalsIgnoreCase("JPG") && !subfix.trim().equalsIgnoreCase("JPEG") && !subfix.trim().equalsIgnoreCase("GIF")) {
-				this.setMsg("请上传后缀名仅为jpg,jpeg,gif的图片文件");
+			} else if (!subfix.trim().equalsIgnoreCase("JPG") 
+					&& !subfix.trim().equalsIgnoreCase("JPEG")
+					&& !subfix.trim().equalsIgnoreCase("PNG") 
+					&& !subfix.trim().equalsIgnoreCase("BMP") 
+					&& !subfix.trim().equalsIgnoreCase("GIF")) {
+				this.setMsg("请上传后缀名仅为jpg,jpeg,gif,png,bmp的图片文件");
 				return "error";
 			}
 			String targetFileName = System.currentTimeMillis() + "." + subfix;

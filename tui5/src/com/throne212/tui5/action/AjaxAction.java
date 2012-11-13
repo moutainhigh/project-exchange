@@ -2,6 +2,7 @@ package com.throne212.tui5.action;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +11,9 @@ import com.throne212.tui5.biz.BaseBiz;
 import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.Util;
+import com.throne212.tui5.domain.Finance;
 import com.throne212.tui5.domain.Gaojian;
+import com.throne212.tui5.domain.Score;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.User;
 
@@ -79,6 +82,22 @@ public class AjaxAction extends BaseAction {
 			try {
 				logger.debug("try to add user: " + username);
 				baseBiz.saveOrUpdateEntity(user);
+				//积分记录
+				Score s = new Score();
+				s.setContent("新用户注册奖励积分");
+				s.setMount(Const.USER_REG_SCORE);
+				s.setTime(new Date());
+				s.setType(Const.RECORD_TYPE_1);
+				s.setUser(user);
+				baseBiz.saveOrUpdateEntity(s);
+				//加入记录
+				Finance f = new Finance();
+				f.setContent("新用户注册奖励现金");
+				f.setMoney(new BigDecimal(Const.USER_REG_MONEY));
+				f.setTime(new Date());
+				f.setType(Const.RECORD_TYPE_1);
+				f.setUser(user);
+				baseBiz.saveOrUpdateEntity(f);
 				msg = "Y";
 			} catch (Exception e) {
 				e.printStackTrace();

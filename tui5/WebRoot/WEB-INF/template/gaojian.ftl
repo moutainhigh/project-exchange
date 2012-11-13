@@ -140,7 +140,7 @@
 								当前积分：${g.user.userScore}</li>
 								<li style="padding:0 0 10px 10px;"><a href="javascript:;"><img border="0" align="absmiddle" src="/img/mail.jpg">发送站内信息</a></li>
 							</ul>
-							<ul id="ulRight_14" class="content" style="height: 151px;">
+							<ul id="ulRight_14" class="content" style="min-height: 151px;">
 								<li class="t">
 								<#if g.status == 0>
 								<span style="float:right; padding:0 10px 0 0;"><a href="javascript:;" onclick="shenhe(${g.id},1)">审核通过</a>&nbsp;&nbsp;
@@ -158,6 +158,7 @@
 								<#else>
 								<li id="con_14" class="c">
 								${g.content}
+								<#if g.attachment?exists><img src="/upload/gaojian/${g.attachment}"/></#if>
 								</li>
 								</#if>
 							</ul>

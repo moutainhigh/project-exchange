@@ -30,7 +30,7 @@
 					   <table class="task_tble" border="0" cellspacing="1">
 						   <tr>
 						   		<td>当前积分</td>
-						   		<td>${userObj.userScore}</td>
+						   		<td>${userObj.userScore}&nbsp;<a href="/member_myscoreList.do">(点击查看积分明细)</a></td>
 						   </tr>
 					   </table>
 					   </form>

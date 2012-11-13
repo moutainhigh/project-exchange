@@ -16,6 +16,9 @@
 		<mapping resource="com/throne212/tui5/domain/Task.hbm.xml" />
 		<mapping resource="com/throne212/tui5/domain/Gaojian.hbm.xml" />
 		<mapping resource="com/throne212/tui5/domain/Alliance.hbm.xml" />
+		<mapping resource="com/throne212/tui5/domain/Finance.hbm.xml" />
+		<mapping resource="com/throne212/tui5/domain/Score.hbm.xml" />
+		<mapping resource="com/throne212/tui5/domain/MoneyRecord.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
 

@@ -74,7 +74,13 @@
 				   					</ul>
 				   					<iframe frameborder="0" height="30" width="330" id="iframe" scrolling="no" src="/upload/upload.jsp"></iframe>
 				   					<input type="hidden" name="gj.attachment" id="attachment"/>
-				   					<br/>(注意：只能上传jpg、gif和jpeg文件，大小不能超过2M)
+				   					<br/>(注意：只能上传jpg、gif、png、bmp和jpeg文件，大小不能超过2M)
+				   					<script>
+				   						function uploadAtt(fileName){
+				   							document.getElementById("fujianList").innerHTML = '<li>'+fileName+'</li>';
+											document.getElementById("attachment").value = fileName;
+				   						}
+				   					</script>
 						   		</td>
 						   </tr>
 					   </table>
