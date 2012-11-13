@@ -115,7 +115,10 @@
 						<ul class="bg"></ul>
 						<div class="txt">
 							<ul>
-								
+								<#if (t.url)?exists><li class="mtitle">目标地址</li>
+								<li>
+								<a target="_blank" href="${t.url}">${t.url}</a>
+								</li></#if>
 								<li class="mtitle">推广要求</li>
 								<li>
 								${t.content}

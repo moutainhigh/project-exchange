@@ -29,6 +29,7 @@
 					   	</p>
 					   	<p class="ft12">您悬赏越高，参与推手将越多，推广任务完成的质量也将越好。</p>
 					    </div>
+					    <#include "/WEB-INF/template/member/frag/common/days7.ftl">
 					    
 <script>
 var preInfoArr = [];

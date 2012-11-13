@@ -40,6 +40,9 @@ public class Task implements java.io.Serializable {
 	private Type type;//所属类型
 	private User publisher;//发布者
 	
+	//顶贴的URL
+	private String url;
+	
 	//用户展示
 	private List<Gaojian> gjList;
 	private Integer gjCount;
@@ -267,6 +270,14 @@ public class Task implements java.io.Serializable {
 
 	public void setGjCount(Integer gjCount) {
 		this.gjCount = gjCount;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

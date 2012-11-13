@@ -67,6 +67,7 @@
         <property name="endDate" type="java.sql.Timestamp">
             <column name="end_date" length="0" />
         </property>
+        <property name="url"></property>
         <many-to-one name="type" column="type_id" lazy="false"></many-to-one>
         <many-to-one name="publisher" column="publisher_id" lazy="false"></many-to-one>
     </class>
