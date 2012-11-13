@@ -1,10 +1,8 @@
-					    <h3>请选择软文价格</h3>
+					    <h3>请选择推广方法</h3>
 					    <p>
-							<input type="radio" value="0" name="danjia">自定义&nbsp;&nbsp;
-							<input type="radio" value="0.25" name="danjia">0.25元（不限论坛广泛发帖）&nbsp;&nbsp;
-							<input type="radio" value="1" name="danjia">1元（限定论坛精准发帖）&nbsp;&nbsp;
-							<input type="radio" value="3" name="danjia">3元（增加外链及推广关键词）&nbsp;&nbsp;
-							<input type="radio" value="10" name="danjia">10元写帖发帖（推手原创帖子并发布）&nbsp;&nbsp;
+							<input type="radio" value="1" name="danjia">店铺收藏分享&nbsp;&nbsp;
+							<input type="radio" value="2" name="danjia">聚划算团&nbsp;&nbsp;
+							<input type="radio" value="3" name="danjia">淘宝社区顶贴&nbsp;&nbsp;
 					    </p>
 					    <#include "/WEB-INF/template/member/frag/common/title.ftl">
 					    <h3>推广要求</h3>
@@ -29,20 +27,17 @@
 					   	</p>
 					   	<p class="ft12">您悬赏越高，参与推手将越多，推广任务完成的质量也将越好。</p>
 					    </div>
-					    <#include "/WEB-INF/template/member/frag/common/days7.ftl">
+					    <#include "/WEB-INF/template/member/frag/common/days2.ftl">
 					    
 <script>
 var preInfoArr = [];
-preInfoArr[preInfoArr.length] = ['','','',''];
-preInfoArr[preInfoArr.length] = ['1、不限论坛，只要没被删就算合格。必须人工发帖，不注册也能查看。\n2、将雇主提供的帖子（见附件）发布到互联网上的各大论坛。\n3、发帖时要保持帖子内容完整、整齐；如果帖子中含有网址或图片，注意保留。\n4、发一个论坛算一稿，一稿0.25元。\n5、推手不限制发帖的数目。','推手提供发帖网址\n24小时后三打哈系统自动审核，雇主不审。\n系统审核软件已设置自动屏蔽重复交稿。'];
-preInfoArr[preInfoArr.length] = ['1、将雇主提供的帖子（见附件）发布到互联网上(   )类型的论坛。\n2、帖子的标题需要推手重新自拟，标题要与帖子内容有关，标题中包含关键字：XXX、XXX、XXX。\n3、发帖时要保持帖子内容完整、整齐；如果帖子中含有网址或图片，注意保留。\n4、必须人工发帖，不注册也能查看，被删帖子无效。\n5、发一个论坛算一稿，一稿1元。','推手提供发帖网址\n雇主亲自人工审核，请推手严格按要求做任务。'];
-preInfoArr[preInfoArr.length] = ['1、写一篇或者摘抄一篇关于XXXXXX（关键词）的文章，文章可以在网上搜索但不能整篇文章完全复制，必须修改一下标题及首段、中段及尾段内容，文章里面必须有“XXXXXX”这个关键词.\n2、以 “XXXXXX”为关键词在论坛上发布这篇文章，关键词要带上超链接，链接地址是http://www.xxxxxx.com\n3、 发高质量论坛不要发垃圾论坛，每个论坛只能发一次。\n4、考虑到帖子可能被删的因素，一篇文章需发三个论坛，至少一个未被删就算合格。\n5、必须人工发帖，不注册也能查看。','雇主亲自人工审核，请推手严格按要求做任务。\n伪原创一篇帖子（需加上关键词链接）并发到三个论坛，至少一个未被删，就算合格。'];
-preInfoArr[preInfoArr.length] = ['（1）推手先上雇主的网站，了解雇主的产品及业务，网址：（        ）\n（2）推手围绕雇主提供的关键词：（      ）产品，整理成一篇帖子，可以在网络上搜索相关资料作为补充。帖子中至少有一个超链接，超链接关键词：（      ），超链接网址：（        ）。帖子结尾必须留下：本文作者：XXX公司，网址。\n（3）帖子字数300字以上，内容通俗易懂。帖子标题吸引网民眼球，最好含有关键词。\n（4）写完帖子后，将它发布到天涯、猫扑、凯迪、西陆、新浪、搜狐、网易、腾讯、凤凰、西祠胡同、百度贴吧、豆瓣的相关版块。考虑到帖子可能被论坛删除的因素，推手需选择其中的至少三个论坛发布帖子，至少有一个论坛不被删才算合格。','雇主亲自人工审核，请推手严格按要求做任务。\n原创一篇帖子并发到三个论坛，至少一个未被删，就算合格。'];
+preInfoArr[preInfoArr.length] = ['“收藏店铺 + 收藏3个宝贝 + 分享店铺 为一稿，1元一稿,分享不得删除。\n1、必须要用1心以上有过交易记录的淘宝账号进行收藏和分享，提交稿件时需提交淘宝ID和截图。\n截图内容：店铺收藏截图、宝贝收藏截图、分享店铺截图，截图必须含有自己ID才能合格。\n2、分享理由：重点写关于宝贝质量、性价比、服务之类的内容。\n（评论需在10字以上，重复填写，复制，没有评论的视为不合格。不能乱写，重点写关于宝贝质量、性价比、服务之类的内容）\n3、请注意收藏时不要点“仅自己可见”，收藏后不能删除收藏，稿件不合格！\n4、收藏过我的店铺的就不要重复收藏了喔，本任务会定期多次发布，谢谢大家的合作。\n5、网店地址：http://xxxxxxx','提交（1）淘宝ID:XXX（2）宝贝、店铺收藏证明截图（必须清晰）'];
+preInfoArr[preInfoArr.length] = ['1、登陆淘宝账号（要求：信用等级5星并且该账号三个月内参加过聚划算！）\n2、打开投票页面：\n3、点击，我想团。(如果有多个账号，可以多投！)\n4、将成功投票截图贴，要看到淘宝账号和投票成功，审核过后，付佣金！\n5、投票成功算一稿，每稿1元。\n淘宝店网址：xxx\n','提供投票成功的截图'];
+preInfoArr[preInfoArr.length] = ['1、每个ID最多顶5贴，同一个ID不能连续顶贴，每贴相隔必须5分钟以上，可换ID顶。 \n2、回复的话要求迎合主题，20字以上。要发表对本帖内容的看法，要加油，呐喊，助威！\n3、5贴为一稿，一稿1元\n4、顶贴链接(   )','留下ID和 顶贴楼层和截图，举例：张三  9楼 +截图'];
 function selectDanjia(dom, index){
 	if($(dom).attr('checked')){
 		$('#task_content').val(preInfoArr[index][0]);
 		$('#task_shenhe').val(preInfoArr[index][1]);
-		$('#task_gaojian_price').val($(dom).val());
 		danjia = dom.value;
 	}
 }

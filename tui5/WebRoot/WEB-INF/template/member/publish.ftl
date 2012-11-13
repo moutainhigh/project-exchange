@@ -79,6 +79,13 @@
 					    <p class="ctr"><input type="button" class="button" value="提交任务" id="submit_task"></p>
 					    <script>
 					    	$('#submit_task').click(function(){
+					    		if($('#task_title').length > 0){
+					    			var title = $('#task_title').val();
+					    			if(title == ''){
+					    				alert('标题不能为空');
+					    				return false;
+					    			}
+					    		}
 					    		if(confirm('确认无误，需要发布了吗？')){
 						    		$(this).val('提交中...');
 						    		$(this).attr('disabled',true);
