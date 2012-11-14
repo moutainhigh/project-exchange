@@ -68,6 +68,13 @@
             <column name="end_date" length="0" />
         </property>
         <property name="url"></property>
+        <property name="priceClass" column="price_class"></property>
+        <property name="rate1"></property>
+        <property name="rate2"></property>
+        <property name="rate3"></property>
+        <property name="people1"></property>
+        <property name="people2"></property>
+        <property name="people3"></property>
         <many-to-one name="type" column="type_id" lazy="false"></many-to-one>
         <many-to-one name="publisher" column="publisher_id" lazy="false"></many-to-one>
     </class>

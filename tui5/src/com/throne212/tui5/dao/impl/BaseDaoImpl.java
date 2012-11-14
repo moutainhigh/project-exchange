@@ -74,6 +74,11 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		String hql = "select count(*) from " + clazz.getSimpleName() + " e where e." + colName + "=? and e." + colName2 +"=?";
 		return (Long) this.getHibernateTemplate().find(hql, new Object[]{value,value2}).get(0);
 	}
+	
+	public Long getEntityCountByThreeColumn(Class clazz, String colName, Object value, String colName2, Object value2, String colName3, Object value3){
+		String hql = "select count(*) from " + clazz.getSimpleName() + " e where e." + colName + "=? and e." + colName2 +"=? and e." + colName3 +"=?";
+		return (Long) this.getHibernateTemplate().find(hql, new Object[]{value,value2,value3}).get(0);
+	}
 
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue, String colTwoName, Object twoValue) {
 		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e." + colTwoName + "=? order by e.id desc";

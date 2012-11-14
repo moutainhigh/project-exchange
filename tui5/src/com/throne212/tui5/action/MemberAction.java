@@ -189,6 +189,35 @@ public class MemberAction extends BaseAction {
 					}
 				}
 			}
+			
+			//price class
+			if(task.getPriceClass() == null)
+				task.setPriceClass(1);
+			if(task.getPriceClass()!=3){
+				task.setRate1(0.0);
+				task.setRate2(0.0);
+				task.setRate3(0.0);
+				task.setPeople1(0);
+				task.setPeople2(0);
+				task.setPeople3(0);
+			}else if(task.getPriceClass()==3){
+				task.setRate1(new BigDecimal(task.getRate1()).divide(new BigDecimal(100)).doubleValue());
+				task.setRate2(new BigDecimal(task.getRate2()).divide(new BigDecimal(100)).doubleValue());
+				task.setRate3(new BigDecimal(task.getRate3()).divide(new BigDecimal(100)).doubleValue());
+				int sum = 0;
+				if(task.getRate1() > 0 && task.getPeople1() > 0)
+					sum += task.getPeople1();
+				if(task.getRate2() > 0 && task.getPeople2() > 0)
+					sum += task.getPeople2();
+				if(task.getRate3() > 0 && task.getPeople3() > 0)
+					sum += task.getPeople3();
+				task.setGaojianMount(sum);
+			}
+			
+			if(task.getPriceClass() == 2){//单人中标
+				task.setGaojianMount(1);
+				task.setGaojianPrice(task.getMoney());
+			}
 
 			// 保存进库
 			try {

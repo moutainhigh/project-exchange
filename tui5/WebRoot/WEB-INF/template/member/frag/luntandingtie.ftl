@@ -4,6 +4,7 @@
 							<br/><span class="orange">建议雇主：您的帖子最好是发布在影响力非常大的论坛，还有您的帖子最好要有争议性。</span>
 					    </p>
 					    <#include "/WEB-INF/template/member/frag/common/title.ftl">
+					    <#include "/WEB-INF/template/member/frag/common/price_class_1.ftl">
 					    <h3>推广要求</h3>
 					    <p>
 					   	<textarea size="60" id="task_content" class="txtArea4"type="text" name="task.content">${(task.content)?default('')}</textarea>

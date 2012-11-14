@@ -104,7 +104,13 @@ public class BaseBizImpl implements BaseBiz {
 	public Long getEntityCountByTwoColumn(Class clazz, String colName, Object value, String colName2, Object value2){
 		return baseDao.getEntityCountByTwoColumn(clazz, colName, value, colName2, value2);
 	}
+	
+	public Long getEntityCountByThreeColumn(Class clazz, String colName, Object value, String colName2, Object value2, String colName3, Object value3){
+		return baseDao.getEntityCountByThreeColumn(clazz, colName, value, colName2, value2, colName3, value3);
+	}
+	
 	public <T> List<T> getEntitiesByColumn(Class<T> clazz, String colName, Object value, String orderCol, String orderType){
 		return baseDao.getEntitiesByColumn(clazz, colName, value, orderCol, orderType);
 	}
+	
 }

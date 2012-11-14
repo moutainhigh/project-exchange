@@ -1,5 +1,6 @@
 package com.throne212.tui5.domain;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import com.throne212.tui5.common.Const;
@@ -16,7 +17,7 @@ public class Gaojian implements java.io.Serializable {
 	// Fields
 
 	private Long id;
-	// 0/null:初始化，1:已投稿，等待审核,2:通过,3失败
+	// 0:已投稿，等待审核,1:通过,2失败
 	private Integer status;
 	private User user;// 投稿者
 	private Task task;// 所属任务
@@ -25,6 +26,8 @@ public class Gaojian implements java.io.Serializable {
 	private Short hide;//1不隐藏，0隐藏
 	private String content;//内容
 	private String attachment;//附件图片列表
+	private BigDecimal money;//所得奖金
+	private Integer price123;//所属几等奖
 	
 	public String getStatusTxt(){
 		if(Const.GAOJIAN_STATUS_INIT.equals(status)){
@@ -107,6 +110,22 @@ public class Gaojian implements java.io.Serializable {
 
 	public void setAttachment(String attachment) {
 		this.attachment = attachment;
+	}
+
+	public BigDecimal getMoney() {
+		return money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
+	}
+
+	public Integer getPrice123() {
+		return price123;
+	}
+
+	public void setPrice123(Integer price123) {
+		this.price123 = price123;
 	}
 
 }

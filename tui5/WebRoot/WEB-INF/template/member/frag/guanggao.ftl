@@ -1,11 +1,3 @@
-					    <h3>请选择软文价格</h3>
-					    <p>
-							<input type="radio" value="0" name="danjia">自定义&nbsp;&nbsp;
-							<input type="radio" value="50" name="danjia">100元两篇&nbsp;&nbsp;
-							<input type="radio" value="100" name="danjia">100元一篇&nbsp;&nbsp;
-							<input type="radio" value="200" name="danjia">200元一篇&nbsp;&nbsp;
-							<input type="radio" value="300" name="danjia">300元一篇&nbsp;&nbsp;
-					    </p>
 					    <#include "/WEB-INF/template/member/frag/common/title.ftl">
 					    <#include "/WEB-INF/template/member/frag/common/price_class_2.ftl">
 					    <h3>任务要求</h3>
@@ -121,45 +113,12 @@
 					    
 <script>
 var preInfoArr = [];
-preInfoArr[preInfoArr.length] = ['','','',''];
-preInfoArr[preInfoArr.length] = ['1、要求原创写作，内容和标题原创，不能抄袭。\n2、先了解我的产品和网站：www.xxx.com\n3、自拟标题，要有诱惑力，能吸引网民点击。\n4、字数300-500字，内容语言简练，内涵丰富，朗朗上口，易于记忆和传播。\n5、软文适合在论坛、博客、微博、门户网站等发布。',''];
-preInfoArr[preInfoArr.length] = ['1、要求原创写作，内容和标题原创，不能抄袭。\n2、先了解我的产品和网站：www.xxx.com\n3、自拟题材，要有特色高质量的题材，标题要新颖，吸引足够的人气。\n4、软文内容要体现产品信息，不含明显的广告味；并且要有吸引力，可读性，可以以故事、体验，专业性等表现手法，或者以体会、心得来描写。\n5、字数500字以上，内容语言简练，内涵丰富，朗朗上口，易于记忆和传播。\n6、软文适合在论坛、博客、微博、门户网站等发布。',''];
-preInfoArr[preInfoArr.length] = ['1、要求原创写作，内容和标题原创，不能抄袭。\n2、先了解我的产品和网站：www.xxx.com\n3、软文题材切合当前的时事热点、网络热门事件，不能有明显的广告特征，以便于软文的推广与传播。\n4、软文内容要融入产品信息，图文并茂；并且要有吸引力，可读性；以记者体验、新闻报道、专业性报道等表现手法写作。\n5、字数500-800字，围绕我的产品和网站展开写作，文笔通俗易懂，让人印象深刻，能让消费者看了能产生使用的欲望。\n6、软文适合在新闻门户网站、论坛、博客、微博等发布。'];
-preInfoArr[preInfoArr.length] = ['1、要求原创写作，内容和标题原创，不能抄袭。\n2、先了解我的产品和网站：www.xxx.com\n3、有新颖吸引眼球的标题，让人一看就有点击查看的冲动；\n4、字数在500-800字为佳，软文导向性强，能让消费者看了能产生购买的欲望。\n5、软文题材切合当前的时事热点、网络热门事件；图文并茂，可读性强；要显得自然、富有趣味，无广告味，以利于软文的推广与传播。\n6、软文内容要融入我的产品信息，以记者体验、新闻报道、专业性报道等表现手法写作；内容要能引起点击和共鸣，能吸引网友参与讨论。\n7、软文适合在新闻门户网站、论坛、博客、微博等发布。'];
-function selectDanjia(dom, index){
-	if($(dom).attr('checked')){
-		$('#task_content').val(preInfoArr[index][0]);
-		danjia = dom.value;
-		try{danjia = parseInt(danjia);}catch(e){}
-		if(danjia>=100){
-			$('#task_money').val(danjia);
-			selectType(0);
-		}else if(danjia==50){
-			$('#task_money').val(danjia*2);
-			selectType(1);
-			setTimeout(function(){$('#rate1').val('100');},1);
-			setTimeout(function(){$('#rate2').val('0');},1);
-			setTimeout(function(){$('#rate3').val('0');},1);
-			$('#people1').val(2);
-			$('#people2').val(0);
-			$('#people3').val(0);
-		}else{
-			$('#task_money').val('');
-			selectType(0);
-		}
-	}
+preInfoArr[preInfoArr.length] = ['1、先了解我们的网站（www.xxx.com）。\n2、广告语要简短易记，字数越少越好。\n3、广告语内容要围绕主题，朗朗上口，要吸引眼球。\n4、广告语必须为原创，抄袭者一律不给予通过。\n审核标准：\n写手提交广告语内容，雇主亲自审核。'];
+function selectDanjia(index){
+	$('#task_content').val(preInfoArr[index][0]);
+	selectType(0);
 }
-var danjia = '${(req.getParameter("danjia"))?default("")}';
 $(function(){
-	//设置选择发帖单价
-	$('input[name="danjia"]').each(function(index){
-		$(this).click(function(){
-			selectDanjia(this,index);
-		});
-		if($(this).val() == danjia)
-			selectDanjia(this,index);
-	});
-	//单价和稿费的计算
-	
+	selectDanjia(0);
 });
 </script>

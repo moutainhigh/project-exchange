@@ -51,6 +51,7 @@
 						   		<td>
 						   			<input type="radio" name="gj.hide" value="1"/>是
 						   			<input type="radio" name="gj.hide" value="0" checked="checked"/>非
+						   			&nbsp;(注意：您的稿件包含了您的心血，如果公开，可能会被别人剽窃)
 						   		</td>
 						   </tr>
 						   <tr>

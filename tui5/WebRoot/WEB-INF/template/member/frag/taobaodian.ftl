@@ -5,6 +5,7 @@
 							<input type="radio" value="3" name="danjia">淘宝社区顶贴&nbsp;&nbsp;
 					    </p>
 					    <#include "/WEB-INF/template/member/frag/common/title.ftl">
+					    <#include "/WEB-INF/template/member/frag/common/price_class_1.ftl">
 					    <h3>推广要求</h3>
 					    <p>
 					   	<textarea size="60" id="task_content" class="txtArea4"type="text" name="task.content">${(task.content)?default('')}</textarea>

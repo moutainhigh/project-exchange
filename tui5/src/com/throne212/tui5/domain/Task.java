@@ -1,6 +1,7 @@
 package com.throne212.tui5.domain;
 // default package
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
@@ -40,6 +41,16 @@ public class Task implements java.io.Serializable {
 	private Type type;//所属类型
 	private User publisher;//发布者
 	
+	private Integer priceClass;//1,计件，2单人中标，3多人中标
+	private Double rate1;//多人中标，一等奖比例
+	private Double rate2;//多人中标，2等奖比例
+	private Double rate3;//多人中标，3等奖比例
+	private Integer people1;//多人中标，一等奖人数
+	private Integer people2;//多人中标，2等奖人数
+	private Integer people3;//多人中标，3等奖人数
+	
+	private Integer passGaojian;//合格的稿件数量
+	
 	//顶贴的URL
 	private String url;
 	
@@ -54,6 +65,22 @@ public class Task implements java.io.Serializable {
 	}
 
 	// Property accessors
+	
+	public String getpriceClassTxt(){
+		if(priceClass == null) 
+			return "";
+		switch (priceClass) {
+		case 1:
+			return "计件任务模式";
+		case 2:
+			return "单人中标任务模式";
+		case 3:
+			return "多人中标任务模式";
+		default:
+			break;
+		}
+		return "";
+	}
 
 	public String getStatusTxt(){
 		if(status == 1){
@@ -278,6 +305,116 @@ public class Task implements java.io.Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Integer getPriceClass() {
+		return priceClass;
+	}
+
+	public void setPriceClass(Integer priceClass) {
+		this.priceClass = priceClass;
+	}
+
+	public Double getRate1() {
+		return rate1;
+	}
+
+	public void setRate1(Double rate1) {
+		this.rate1 = rate1;
+	}
+
+	public Double getRate2() {
+		return rate2;
+	}
+
+	public void setRate2(Double rate2) {
+		this.rate2 = rate2;
+	}
+
+	public Double getRate3() {
+		return rate3;
+	}
+
+	public void setRate3(Double rate3) {
+		this.rate3 = rate3;
+	}
+	
+	public Double getRate(int i){
+		try {
+			Field f = this.getClass().getDeclaredField("rate" + i);
+			if(f != null){
+				f.setAccessible(true);
+				return (Double) f.get(this);
+			}
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Integer getPeople(int i){
+		try {
+			Field f = this.getClass().getDeclaredField("people" + i);
+			if(f != null){
+				f.setAccessible(true);
+				return (Integer) f.get(this);
+			}
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public Integer getPeople1() {
+		return people1;
+	}
+
+	public void setPeople1(Integer people1) {
+		this.people1 = people1;
+	}
+
+	public Integer getPeople2() {
+		return people2;
+	}
+
+	public void setPeople2(Integer people2) {
+		this.people2 = people2;
+	}
+
+	public Integer getPeople3() {
+		return people3;
+	}
+
+	public void setPeople3(Integer people3) {
+		this.people3 = people3;
+	}
+
+	public Integer getPassGaojian() {
+		return passGaojian;
+	}
+
+	public void setPassGaojian(Integer passGaojian) {
+		this.passGaojian = passGaojian;
 	}
 
 }

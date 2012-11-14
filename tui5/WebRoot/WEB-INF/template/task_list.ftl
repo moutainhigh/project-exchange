@@ -49,7 +49,6 @@
 				  <li class="li5">金额</li>
 				  <li class="li4">需要稿件</li>
 				  <li class="li8">已合格稿件</li>
-				  <li class="li3">未审稿件</li>
 				  <li class="li6">结束时间</li>
 				  <li class="line2"></li>
 				</ul>
@@ -57,10 +56,9 @@
 				<ul class="ul_list" onmouseout="this.className='ul_list';$(this).find('.plusTask').hide()" onmouseover="this.className='ul_over';$(this).find('.plusTask').show()">
 					<li class="li1">${t.id}</li>
 				    <li class="li2"><a href="/task_${t.id}.html">${t.title}</a>&nbsp;&nbsp;<span class="plusTask none"><a target="_blank" href="/member_publish.do">发布类似任务</a></span></li>
-					<li class="li5">￥${t.money}</li>
+					<li class="li5">${t.money?string.currency}</li>
 					<li class="li4">${t.gaojianMount}</li>
-					<li class="li8">0</li>
-					<li class="li8">505</li>
+					<li class="li8">${t.passGaojian}</li>
 					<li class="li6">${t.leftHour}</li>
 				</ul>
 				</#list>

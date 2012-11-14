@@ -86,6 +86,16 @@
 					    				return false;
 					    			}
 					    		}
+					    		var pclass = $('input[name="task.priceClass"]').val();
+					    		if(pclass == '3'){
+					    			var rate1 = parseInt($('#rate1').val());
+					    			var rate2 = parseInt($('#rate2').val());
+					    			var rate3 = parseInt($('#rate3').val());
+					    			if(rate1 + rate2 + rate3 != 100){
+					    				alert('请保证多人中选的奖金分配比例的综合为100%');
+					    				return false;
+					    			} 
+					    		}
 					    		if(confirm('确认无误，需要发布了吗？')){
 						    		$(this).val('提交中...');
 						    		$(this).attr('disabled',true);

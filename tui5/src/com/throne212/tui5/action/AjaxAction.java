@@ -138,6 +138,7 @@ public class AjaxAction extends BaseAction {
 
 	private Long gjId;
 	private Integer status;
+	private Integer price123;
 
 	public String checkGaojian() {
 		if (gjId == null || status == null) {
@@ -166,20 +167,40 @@ public class AjaxAction extends BaseAction {
 		}
 		try {
 			Task task = gj.getTask();
+			if(task.getStatus() == Const.TASK_STATUS_COMPLETE){
+				msg = "任务已经完成，不能再审核稿件了";
+				return "msg";
+			}
 			int mount = task.getGaojianMount();
 			long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
 			if (currMount >= mount) {
 				msg = "提交的稿件份数已经足够了";
 				return "msg";
 			}
+			//多人中标
+			if(task.getPriceClass()!=null && task.getPriceClass()==3 && price123 != null && price123>0){
+				long sum = baseBiz.getEntityCountByThreeColumn(Gaojian.class, "task", task, "price123", price123,"status", Const.GAOJIAN_STATUS_SUCC);
+				if(sum >= task.getPeople(price123)){
+					msg = price123 + "等奖提交的稿件份数已经足够了";
+					return "msg";
+				}
+				gj.setPrice123(price123);
+				BigDecimal money = new BigDecimal(task.getRate(price123)).multiply(task.getMoney());
+				gj.setMoney(money);
+			}else if(task.getGaojianPrice()!=null && task.getGaojianPrice().doubleValue() > 0){
+				gj.setMoney(task.getGaojianPrice());
+			}
+			
 			// 保存
 			baseBiz.saveOrUpdateEntity(gj);
 			if (status == Const.GAOJIAN_STATUS_SUCC) {
 				currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
-				if (currMount >= mount) {
+				if (task.getPriceClass() == 1 && currMount >= mount) {
+					msg += "\n已经收齐合格的稿件，任务结束";
 					task.setStatus(Const.TASK_STATUS_COMPLETE);
-					baseBiz.saveOrUpdateEntity(task);
 				}
+				task.setPassGaojian(Long.valueOf(currMount).intValue());
+				baseBiz.saveOrUpdateEntity(task);
 			}
 			msg = "Y";
 		} catch (Exception e) {
@@ -252,5 +273,14 @@ public class AjaxAction extends BaseAction {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
+	public Integer getPrice123() {
+		return price123;
+	}
+
+	public void setPrice123(Integer price123) {
+		this.price123 = price123;
+	}
+
 
 }
