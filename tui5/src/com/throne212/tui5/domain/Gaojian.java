@@ -28,6 +28,7 @@ public class Gaojian implements java.io.Serializable {
 	private String attachment;//附件图片列表
 	private BigDecimal money;//所得奖金
 	private Integer price123;//所属几等奖
+	private Integer fs;//粉丝数量所属范围
 	
 	public String getStatusTxt(){
 		if(Const.GAOJIAN_STATUS_INIT.equals(status)){
@@ -126,6 +127,14 @@ public class Gaojian implements java.io.Serializable {
 
 	public void setPrice123(Integer price123) {
 		this.price123 = price123;
+	}
+
+	public Integer getFs() {
+		return fs;
+	}
+
+	public void setFs(Integer fs) {
+		this.fs = fs;
 	}
 
 }

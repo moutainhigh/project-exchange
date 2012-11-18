@@ -49,7 +49,24 @@ public class Task implements java.io.Serializable {
 	private Integer people2;//多人中标，2等奖人数
 	private Integer people3;//多人中标，3等奖人数
 	
+	private Integer wbType;//1新浪，2腾讯
+	private Integer wbSend;//发送规则,0,6,12,24
+	
+	private BigDecimal fs1;//粉丝1
+	private BigDecimal fs2;//粉丝2
+	private BigDecimal fs3;//粉丝3
+	private BigDecimal fs4;//粉丝4
+	private BigDecimal fs5;//粉丝5
+	private BigDecimal fs6;//粉丝6
+	private BigDecimal fs7;//粉丝7
+	private BigDecimal fs8;//粉丝8
+	private BigDecimal fs9;//粉丝9
+	private BigDecimal fs10;//粉丝10
+	private BigDecimal fs11;//粉丝11
+	private BigDecimal fs12;//粉丝12
+	
 	private Integer passGaojian;//合格的稿件数量
+	private BigDecimal passMoney;//合格的稿件奖金合计
 	
 	//顶贴的URL
 	private String url;
@@ -417,4 +434,160 @@ public class Task implements java.io.Serializable {
 		this.passGaojian = passGaojian;
 	}
 
+	public Integer getWbType() {
+		return wbType;
+	}
+
+	public void setWbType(Integer wbType) {
+		this.wbType = wbType;
+	}
+
+	public Integer getWbSend() {
+		return wbSend;
+	}
+
+	public void setWbSend(Integer wbSend) {
+		this.wbSend = wbSend;
+	}
+
+	public BigDecimal getFs1() {
+		return fs1;
+	}
+
+	public void setFs1(BigDecimal fs1) {
+		this.fs1 = fs1;
+	}
+
+	public BigDecimal getFs2() {
+		return fs2;
+	}
+
+	public void setFs2(BigDecimal fs2) {
+		this.fs2 = fs2;
+	}
+
+	public BigDecimal getFs3() {
+		return fs3;
+	}
+
+	public void setFs3(BigDecimal fs3) {
+		this.fs3 = fs3;
+	}
+
+	public BigDecimal getFs4() {
+		return fs4;
+	}
+
+	public void setFs4(BigDecimal fs4) {
+		this.fs4 = fs4;
+	}
+
+	public BigDecimal getFs5() {
+		return fs5;
+	}
+
+	public void setFs5(BigDecimal fs5) {
+		this.fs5 = fs5;
+	}
+
+	public BigDecimal getFs6() {
+		return fs6;
+	}
+
+	public void setFs6(BigDecimal fs6) {
+		this.fs6 = fs6;
+	}
+
+	public BigDecimal getFs7() {
+		return fs7;
+	}
+
+	public void setFs7(BigDecimal fs7) {
+		this.fs7 = fs7;
+	}
+
+	public BigDecimal getFs8() {
+		return fs8;
+	}
+
+	public void setFs8(BigDecimal fs8) {
+		this.fs8 = fs8;
+	}
+
+	public BigDecimal getFs9() {
+		return fs9;
+	}
+
+	public void setFs9(BigDecimal fs9) {
+		this.fs9 = fs9;
+	}
+
+	public BigDecimal getFs10() {
+		return fs10;
+	}
+
+	public void setFs10(BigDecimal fs10) {
+		this.fs10 = fs10;
+	}
+
+	public BigDecimal getFs11() {
+		return fs11;
+	}
+
+	public void setFs11(BigDecimal fs11) {
+		this.fs11 = fs11;
+	}
+
+	public BigDecimal getFs12() {
+		return fs12;
+	}
+
+	public void setFs12(BigDecimal fs12) {
+		this.fs12 = fs12;
+	}
+	
+	public BigDecimal getFs(int i){
+		try {
+			Field f = this.getClass().getDeclaredField("fs" + i);
+			if(f != null){
+				f.setAccessible(true);
+				return (BigDecimal) f.get(this);
+			}
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getWbSendTxt(){
+		switch (wbSend) {
+		case 0:
+			return "一个微博只能做一次";
+		case 6:
+			return "一个微博6小时可以发一条";
+		case 12:
+			return "一个微博12小时可以发一条";
+		case 24:
+			return "一个微博24小时可以发一条";
+		}
+		return "";
+	}
+
+	public BigDecimal getPassMoney() {
+		return passMoney;
+	}
+
+	public void setPassMoney(BigDecimal passMoney) {
+		this.passMoney = passMoney;
+	}
 }

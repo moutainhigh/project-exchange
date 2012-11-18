@@ -11,6 +11,13 @@
 		$(function(){
 			$('.nav_botttom a:eq(1)').addClass('now_a');
 		});
+		var tpinyin = '${typepinyin}';
+		function sort(s){
+			if(tpinyin == '')
+				self.location.href = '/tasklist.html?sort=money';
+			else
+				self.location.href = '/tasklist_'+tpinyin+'.html?sort=money';
+		}
 	</script>
 </head>
 <body>
@@ -35,12 +42,8 @@
 	    <div class="zw_leibie2 zw_leibie_zhiwei">
 	    	<h2 class="clearfix">
 	        	<span>任务列表</span>
-	            <a href="/tasklist.html" class="now_Aaa">最新任务</a>
-	            <a href="javascript:;">500元以上的任务</a>
-	            <a href="javascript:;">500元以下的任务</a>
-	            <a href="javascript:;">结束任务</a>
-	            <a href="javascript:;">按金额排序</a>
-	            <a href="javascript:;">按发布日期排序</a>
+	            <a href="/tasklist.html"<#if !sort?exists> class="now_Aaa"</#if>>最新任务</a>
+	            <a href="javascript:sort('money');"<#if !sort?exists> class="now_Aaa"</#if>><img src="/img/arrow2.gif"/>按金额排序</a>
 	        </h2>
 	        <div class="task_list">
 				<ul class="title2">

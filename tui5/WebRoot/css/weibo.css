@@ -1,0 +1,52 @@
+.task_title{width:960px;height:35px;overflow:hidden; margin:15px auto 0 auto; position:relative;}
+.task_title li{background:url(/img/xxk_bg2.gif) 0 0 no-repeat;margin-right:10px;width:120px; height:35px; float:left;color:#406899; line-height:38px; text-align:center; font-weight:bold; }
+.task_title li a{color:#1E70B2;font-size:14px;text-decoration:none;}
+.task_title li a:hover{color:#FF5500; text-decoration:underline;}
+.task_title li.focus{background:url(/img/xxk_bg1.gif) no-repeat;width:120px;height:35px; float:left;color:#FFF; font-weight:bold;}
+.task_title li.focus a{color:#FF5500; text-decoration:none;}
+.task_title li.focus a:hover{color:#CC0000; text-decoration:underline;}
+.task_title li.sort{margin:0;background:none; _padding:10px 0 0 0; _line-height:14px; overflow:hidden; color:#787878;}
+.task_title li.sort a{font-size:12px; font-weight:normal; color:#000; text-decoration:none;}
+.task_title li.sort a:hover{color:#FF7700; text-decoration:underline;}
+.task_title li.sort_1{margin:0;background:none; _padding:10px 0 0 0; _line-height:14px; overflow:hidden; color:#787878;}
+.task_title li.sort_1 a{font-size:12px; font-weight:normal; color:#000; text-decoration:none;}
+.task_title li.sort_1 a:hover{color:#FF7700; text-decoration:underline;}
+.task_title li.t_list{text-align:right;background:none;line-height:33px; font-weight:normal;}
+.task_title li.t_list a{color:#FF5500;font-size:12px; text-decoration:underline;}
+.task_title li.t_list a:hover{color:#CC0000;font-size:12px; text-decoration:underline;}
+
+.list_top{width:938px;border-top:1px #BFE3FF solid;border-left:1px #BFE3FF solid;border-right:1px #BFE3FF solid;margin:-1px auto 0 auto;padding:10px 10px 0 10px;overflow:hidden;}
+.list_top ul{width:938px; border-bottom:1px #DAEFFF solid; overflow:hidden;padding:10px 0;}
+.list_top ul li{float:left;padding-left:10px;overflow:hidden;text-align:center;color:#49779A; font-weight:bold;}
+.list_top ul li.tit_li1{width:70px; text-align:left;}
+.list_top ul li.tit_li2{width:400px; text-align:left;}
+.list_top ul li.tit_li3{width:90px;}
+.list_top ul li.tit_li4{width:90px;}
+.list_top ul li.tit_li5{width:90px;}
+.list_top ul li.tit_li6{width:90px;}
+
+.task_list{width:938px;border-bottom:1px #BFE3FF solid;border-left:1px #BFE3FF solid;border-right:1px #BFE3FF solid;margin:0 auto;padding:10px;overflow:hidden;}
+.task_list ul.ul_list{width:938px; border-bottom:1px #EEE solid; overflow:hidden;padding:10px 0;}
+.task_list ul.ul_list li{float:left;font-size:14px;padding-left:10px;overflow:hidden;text-align:center;color:#2C65B5;}
+.task_list ul.ul_list li.list_li1{width:70px; padding-left:15px; text-align:left;}
+.task_list ul.ul_list li.list_li2{width:400px; text-align:left;}
+.task_list ul.ul_list li.list_li3{width:90px; color:#FF7700;font-weight:bold;}
+.task_list ul.ul_list li.list_li4{width:90px; color:#FF7700;font-weight:bold;}
+.task_list ul.ul_list li.list_li5{width:90px;}
+.task_list ul.ul_list li.list_li6{width:90px;}
+.task_list ul a{font-size:14px;}
+
+.task_list ul.ul_over{width:938px; border-bottom:1px #EEE solid; background-color:#F9F9F9; overflow:hidden;padding:10px 0;}
+.task_list ul.ul_over li{float:left;font-size:14px;padding-left:10px;overflow:hidden;text-align:center;color:#2C65B5;}
+.task_list ul.ul_over li.list_li1{width:70px; padding-left:15px; text-align:left;font-weight:bold;}
+.task_list ul.ul_over li.list_li2{width:400px; text-align:left;font-weight:bold;}
+.task_list ul.ul_over li.list_li3{width:90px; color:#FF7700;font-weight:bold;}
+.task_list ul.ul_over li.list_li4{width:90px; color:#FF7700;font-weight:bold;}
+.task_list ul.ul_over li.list_li5{width:90px;font-weight:bold;}
+.task_list ul.ul_over li.list_li6{width:90px;font-weight:bold;}
+
+.task_list ul.page{width:918px;height:25px;margin:15px 10px 5px 10px;overflow:hidden;}
+.task_list ul.page li{margin:0 5px 0 0; background-color:#FFF;line-height:25px;color:#2C65B5; float:left;}
+.task_list ul.page li.focus{border:1px solid #406899; margin:0 5px 0 0; height:21px;line-height:22px;background-color:#406899; color:#FFF; font-weight:bold; padding:0 8px 0 8px;}
+.task_list ul.page li a{color:#2F64B7;display:block; text-decoration:none;border:1px solid #ACDAFF; padding:0 8px;line-height:22px;}
+.task_list ul.page li a:hover{color:#2F64B7;text-decoration: none;border:1px solid #406899; padding:0 8px;line-height:22px;}

@@ -33,7 +33,7 @@
 			return sb;
 		}
 		function shenhe(id,s,c){
-			$.getJSON("/ajax_checkGaojian.do?gjId="+id+"&status="+s+"&priceClass="+(c?c:""), function(json){				
+			$.getJSON("/ajax_checkGaojian.do?gjId="+id+"&status="+s+"&fs="+(c?c:""), function(json){				
 				if(json.msg=="Y"){
 					alert('审核成功');
 					self.location.reload();
@@ -50,7 +50,7 @@
 		<#include "/WEB-INF/template/include/nav.ftl">
 		<!-- 内容区域 -->
 		<div class="zj_con clearfix">
-			<#include "/WEB-INF/template/include/task_head.ftl">
+			<#include "/WEB-INF/template/include/task_head_weibo.ftl">
 			<div class="taskContent">
 				<div class="wordContent">
 					<div class="title2">
@@ -74,18 +74,23 @@
 							<ul id="ulRight_14" class="content" style="min-height: 151px;">
 								<li class="t">
 								<#if g.status == 0 && userObj?exists && t.publisher.userNo==userObj.userNo>
-								<#if t.priceClass==2 || t.priceClass==1>
-								<span style="float:right; padding:0 10px 0 0;"><a href="javascript:;" onclick="shenhe(${g.id},1)">审核通过</a>&nbsp;&nbsp;
-								<a href="javascript:;" onclick="shenhe(${g.id},2)">审核不通过</a></span>
-								</#if>
-								<#if t.priceClass==3>
-								<span style="float:right; padding:0 10px 0 0;">
-								<#if t.people1 gt 0 && t.rate1 gt 0><a href="javascript:;" onclick="shenhe(${g.id},1,1)">审核通过一等奖</a>&nbsp;&nbsp;</#if>
-								<#if t.people2 gt 0 && t.rate2 gt 0><a href="javascript:;" onclick="shenhe(${g.id},1,2)">审核通过二等奖</a>&nbsp;&nbsp;</#if>
-								<#if t.people3 gt 0 && t.rate3 gt 0><a href="javascript:;" onclick="shenhe(${g.id},1,3)">审核通过三等奖</a>&nbsp;&nbsp;</#if>
-								<a href="javascript:;" onclick="shenhe(${g.id},2)">审核不通过</a>
-								</span>
-								</#if>
+								<span style="float:right; padding:0 10px 0 0;">粉丝数量：
+									<select name="fs_${g.id}" id="fs_${g.id}">
+										<option value=""></option>
+										<option value="1">5-50</option>
+										<option value="2">51-100</option>
+										<option value="3">101-200</option>
+										<option value="4">201-500</option>
+										<option value="5">501-1000</option>
+										<option value="6">1001-1500</option>
+										<option value="7">1501-2000</option>
+										<option value="8">2001-2500</option>
+										<option value="9">2501-3000</option>
+										<option value="10">3001-3500</option>
+										<option value="11">3501-5000</option>
+										<option value="12">5000以上</option>
+									</select>
+								&nbsp;<a href="javascript:;" onclick="shenhe(${g.id},1,$('#fs_${g.id}').val())">审核通过</a>&nbsp;|&nbsp;<a href="javascript:;" onclick="shenhe(${g.id},2)">审核不通过</a></span>
 								</#if>
 								<img width="16" height="16" align="absmiddle" src="/img/time.gif">&nbsp;时间:${g.submitDate?string('yyyy-MM-dd HH:mm:ss')}&#12288;&#12288;<img width="35" height="19" border="0" align="absmiddle" style="display:none;" id="beixuanIMG_5824459" src="/img/beixuan.jpg"></li>
 								<#if g.status==1>

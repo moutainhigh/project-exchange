@@ -16,5 +16,6 @@
 	<rule><from>/tasklist_(\w+).html</from><to>tasklist.do?typepinyin=$1</to></rule>
 	<!-- alliance -->
 	<rule><from>/alliance.html</from><to>alliance.do</to></rule>
+	<!-- weibo -->
 	
 </urlrewrite>

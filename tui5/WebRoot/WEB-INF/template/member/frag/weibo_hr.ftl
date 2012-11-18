@@ -1,3 +1,32 @@
+					    <h3>选择任务模式</h3>
+					    <p>
+						    <ul>
+								<li>
+									<div class="wb_box">
+										<input type="radio" name="renwu" value="2" id="renwu_1" onclick="selectWB('weibo_hr')">
+										<label for="renwu_2"> <span class="span1">红人微博任务</span><span>(推荐)</span></label>
+										<p>包括微博转发、直发的任务，自由选择派单给指定的微博推广，推手自由定义传播单价，传播更精准。<br><font color="#FF6600">红人微博任务针对性强，属于精准推广，建议使用。</font></p>
+									</div>
+									<div class="wb_box">
+										<input type="radio" name="renwu" value="1" id="renwu_2" onclick="selectWB('weibo_pt')">
+										<label for="renwu_1"> <span class="span1">普通微博任务</span></label>
+										<p>包括微博转发、直发的任务，按照粉丝区间段定义传播价格，推手自由接任务，价格更低。<br><font color="#FF6600">普通微博任务转发单价低，受众面广，适合大范围推广。</font></p>
+									</div>
+									<div style="clear:both;"></div>
+								</li>
+							</ul>
+					    </p>
+					    <script>
+					    	function selectWB(wb){
+					    		self.location.href = '/member_publish.do?typepinyin=weibo&wb=' + wb;
+					    	}
+					    </script>
+					    <#if request.getParameter("wb")?exists>					    
+					    <#include "/WEB-INF/template/member/frag/${request.getParameter('wb')}.ftl">
+					    </#if>
+					    
+					    
+					    
 					    <script>
 					    	$(function(){
 					    		$('#renwu_1').attr('checked',true);
@@ -27,6 +56,8 @@
 					    		if(val == 1){
 					    			$('.zhuanfa').show();
 					    			$('.zhifa').hide();
+					    			$('.file-list').html('');
+					    			$('#attachment').val('');
 					    		}else if(val == 2){
 					    			$('.zhuanfa').hide();
 					    			$('.zhifa').show();
@@ -34,10 +65,10 @@
 					    	}
 					    	var moshi = '${(task.moshi)?default("")}';
 					    	$(function(){
-					    		if(moshi == '2')
-					    			selMoshi(2);
-					    		else
-					    			selMoshi(1);
+					    		setTimeout(function(){
+					    			if(moshi == '2') selMoshi(document.getElementById('ra_2'));
+						    		else selMoshi(document.getElementById('ra_1'));
+					    		},10);					    		
 					    	});
 					    </script>
 					    
@@ -45,11 +76,11 @@
 					    <p class="zhuanfa">
 							<INPUT id="taskURL" class="text1" name="task.url" value="${(task.url)?default('')}" size=70>
 					    </p>
-					    <h3 class="zhifa">直发图片</h3>
-					    <p class="zhifa none">
-						    <ul class="file-list" id="fujianList"></ul>
-						   	<iframe frameborder="0" height="30" width="330" id="iframe" scrolling="no" src="/upload/weibo_upload.jsp"></iframe>
-					   		<input type="hidden" name="task.attachment1" id="attachment"/>
+					    <h3 class="zhifa none">直发图片</h3>
+					    <ul class="file-list" id="fujianList"></ul>
+					    <p class="zhifa clearfix">
+					    	<input type="hidden" name="task.attachment1" id="attachment"/>
+							<iframe class="" frameborder="0" height="30" width="330" id="iframe" scrolling="no" src="/upload/weibo_upload.jsp"></iframe>
 						   	<br/><span class="orange">图片容量最大不超过2M，支持文件：(jpg,png,bmp,gif)。</span>
 						   	<script>
 		   						function uploadAtt(fileName){

@@ -41,12 +41,16 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 		return taskDao.getTaskList(pageIndex, status, publisher);
 	}
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status) {
-		return taskDao.getTaskList(pageIndex, status);
+	public PageBean<Task> getTaskList(Integer pageIndex,String sort, Integer... status) {
+		return taskDao.getTaskList(pageIndex,sort, status);
 	}
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Type t, Integer... status) {
-		return taskDao.getTaskList(pageIndex, t, status);
+	public PageBean<Task> getTaskList(Integer pageIndex,String sort, Type t, Integer... status) {
+		return taskDao.getTaskList(pageIndex,sort, t, status);
+	}
+	
+	public PageBean<Task> getWeiboList(Integer pageIndex, Integer status, Integer wbType, String sort){
+		return taskDao.getWeiboList(pageIndex, status, wbType, sort);
 	}
 
 	public List<Task> getEndingTask(int min) {

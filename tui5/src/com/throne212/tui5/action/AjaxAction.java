@@ -3,6 +3,7 @@ package com.throne212.tui5.action;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -72,17 +73,17 @@ public class AjaxAction extends BaseAction {
 			user.setUserAccount(new BigDecimal(Const.USER_REG_MONEY));
 			user.setUserScore(Const.USER_REG_SCORE);
 			System.out.println(ActionContext.getContext().getSession());
-			//是否为推客推荐过来的用户
-			if(ActionContext.getContext().getSession().get(Const.SESS_ALLIANCE_USER_ID) != null){
+			// 是否为推客推荐过来的用户
+			if (ActionContext.getContext().getSession().get(Const.SESS_ALLIANCE_USER_ID) != null) {
 				String allianceUserId = (String) ActionContext.getContext().getSession().get(Const.SESS_ALLIANCE_USER_ID);
 				User u = baseBiz.getEntityByUnique(User.class, "userId", allianceUserId);
-				if(u != null)
+				if (u != null)
 					user.setAllianceUser(u);
 			}
 			try {
 				logger.debug("try to add user: " + username);
 				baseBiz.saveOrUpdateEntity(user);
-				//积分记录
+				// 积分记录
 				Score s = new Score();
 				s.setContent("新用户注册奖励积分");
 				s.setMount(Const.USER_REG_SCORE);
@@ -90,7 +91,7 @@ public class AjaxAction extends BaseAction {
 				s.setType(Const.RECORD_TYPE_1);
 				s.setUser(user);
 				baseBiz.saveOrUpdateEntity(s);
-				//加入记录
+				// 加入记录
 				Finance f = new Finance();
 				f.setContent("新用户注册奖励现金");
 				f.setMoney(new BigDecimal(Const.USER_REG_MONEY));
@@ -138,7 +139,8 @@ public class AjaxAction extends BaseAction {
 
 	private Long gjId;
 	private Integer status;
-	private Integer price123;
+	private Integer price123;// 那种计价模式的
+	private Integer fs;// 粉丝
 
 	public String checkGaojian() {
 		if (gjId == null || status == null) {
@@ -159,6 +161,10 @@ public class AjaxAction extends BaseAction {
 			msg = "审核用户与任务的发布者不一致";
 			return "msg";
 		}
+		if ("weibo".equals(gj.getTask().getType().getPinyin()) && fs == null) {
+			msg = "请选择该稿件所发微博的粉丝数量";
+			return "msg";
+		}
 		if (status == Const.GAOJIAN_STATUS_FAIL || status == Const.GAOJIAN_STATUS_SUCC)
 			gj.setStatus(status);
 		else {
@@ -167,39 +173,60 @@ public class AjaxAction extends BaseAction {
 		}
 		try {
 			Task task = gj.getTask();
-			if(task.getStatus() == Const.TASK_STATUS_COMPLETE){
+			if (task.getStatus() == Const.TASK_STATUS_COMPLETE) {
 				msg = "任务已经完成，不能再审核稿件了";
 				return "msg";
 			}
-			int mount = task.getGaojianMount();
-			long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
-			if (currMount >= mount) {
-				msg = "提交的稿件份数已经足够了";
+			int mount = 0;
+			if (price123 != null && price123 > 0) {// 除开weibo，要检查份数
+				mount = task.getGaojianMount() == null ? 0 : task.getGaojianMount();
+				long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
+				if (currMount >= mount) {
+					msg = "提交的稿件份数已经足够了";
+					return "msg";
+				}
+			}
+			// 检查金额是否已经大于任务的总金额
+			List<Gaojian> gjList = baseBiz.getEntitiesByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
+			BigDecimal m = new BigDecimal(0);
+			for (Gaojian g : gjList) {
+				m = m.add(g.getMoney());
+			}
+			task.setPassMoney(m);
+			if (m.add(task.getFs(fs)).doubleValue() > task.getMoney().doubleValue()) {
+				msg = "你的任务的剩余金额，不足以支付该稿件的酬劳了，请增加任务预算金额，然后再试";
 				return "msg";
 			}
-			//多人中标
-			if(task.getPriceClass()!=null && task.getPriceClass()==3 && price123 != null && price123>0){
-				long sum = baseBiz.getEntityCountByThreeColumn(Gaojian.class, "task", task, "price123", price123,"status", Const.GAOJIAN_STATUS_SUCC);
-				if(sum >= task.getPeople(price123)){
+
+			// 多人中标
+			if (task.getPriceClass() != null && task.getPriceClass() == 3 && price123 != null && price123 > 0) {
+				long sum = baseBiz.getEntityCountByThreeColumn(Gaojian.class, "task", task, "price123", price123, "status", Const.GAOJIAN_STATUS_SUCC);
+				if (sum >= task.getPeople(price123)) {
 					msg = price123 + "等奖提交的稿件份数已经足够了";
 					return "msg";
 				}
 				gj.setPrice123(price123);
 				BigDecimal money = new BigDecimal(task.getRate(price123)).multiply(task.getMoney());
 				gj.setMoney(money);
-			}else if(task.getGaojianPrice()!=null && task.getGaojianPrice().doubleValue() > 0){
+			} else if (task.getGaojianPrice() != null && task.getGaojianPrice().doubleValue() > 0) {// 单人中标和几件
 				gj.setMoney(task.getGaojianPrice());
+			} else if (fs != null && fs > 0) {// 微博类型
+				gj.setMoney(gj.getTask().getFs(fs));
 			}
-			
+
 			// 保存
+			gj.setCheckDate(new Timestamp(new Date().getTime()));
 			baseBiz.saveOrUpdateEntity(gj);
+			//任务是否该结束了
 			if (status == Const.GAOJIAN_STATUS_SUCC) {
-				currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
-				if (task.getPriceClass() == 1 && currMount >= mount) {
-					msg += "\n已经收齐合格的稿件，任务结束";
-					task.setStatus(Const.TASK_STATUS_COMPLETE);
+				if (price123 != null && price123 > 0) {//按件算的
+					long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
+					if (task.getPriceClass() == 1 && currMount >= mount) {
+						msg += "\n已经收齐合格的稿件，任务结束";
+						task.setStatus(Const.TASK_STATUS_COMPLETE);
+					}
+					task.setPassGaojian(Long.valueOf(currMount).intValue());
 				}
-				task.setPassGaojian(Long.valueOf(currMount).intValue());
 				baseBiz.saveOrUpdateEntity(task);
 			}
 			msg = "Y";
@@ -282,5 +309,12 @@ public class AjaxAction extends BaseAction {
 		this.price123 = price123;
 	}
 
+	public Integer getFs() {
+		return fs;
+	}
+
+	public void setFs(Integer fs) {
+		this.fs = fs;
+	}
 
 }

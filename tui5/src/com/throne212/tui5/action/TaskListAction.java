@@ -25,6 +25,8 @@ public class TaskListAction extends BaseAction {
 	private List<Type> topTypeList;
 	private String toptypepinyin;
 	private String typepinyin;
+	
+	private String sort;
 
 	public String execute() {
 		buildTopTypeList();// 构建分类类型
@@ -32,9 +34,9 @@ public class TaskListAction extends BaseAction {
 			status = Const.TASK_STATUS_PUBLISHED;
 		if (!Util.isEmpty(typepinyin)) {
 			Type type = baseBiz.getEntityByUnique(Type.class, "pinyin", typepinyin);
-			pageBean = taskBiz.getTaskList(pageIndex, type, status);
+			pageBean = taskBiz.getTaskList(pageIndex,sort, type, status);
 		} else {
-			pageBean = taskBiz.getTaskList(pageIndex, status);
+			pageBean = taskBiz.getTaskList(pageIndex,sort, status);
 		}
 		return "task_list";
 	}
@@ -125,5 +127,13 @@ public class TaskListAction extends BaseAction {
 
 	public void setTypepinyin(String typepinyin) {
 		this.typepinyin = typepinyin;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 }

@@ -75,6 +75,20 @@
         <property name="people1"></property>
         <property name="people2"></property>
         <property name="people3"></property>
+        <property name="wbSend" column="wb_send"></property>
+        <property name="wbType" column="wb_type"></property>
+        <property name="fs1"></property>
+        <property name="fs2"></property>
+        <property name="fs3"></property>
+        <property name="fs4"></property>
+        <property name="fs5"></property>
+        <property name="fs6"></property>
+        <property name="fs7"></property>
+        <property name="fs8"></property>
+        <property name="fs9"></property>
+        <property name="fs10"></property>
+        <property name="fs11"></property>
+        <property name="fs12"></property>
         <many-to-one name="type" column="type_id" lazy="false"></many-to-one>
         <many-to-one name="publisher" column="publisher_id" lazy="false"></many-to-one>
     </class>

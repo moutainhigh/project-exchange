@@ -177,3 +177,9 @@
 .gaojian_dp ul{border-bottom:1px solid #ddd;color:#666;padding:10px 0;}
 .gaojian_dp ul li{padding:2px 0;}
 
+.d_cont3{width:646px; margin:10px; padding:5px 10px 0 10px;border:1px #BFE3FF solid; overflow:hidden; background:#FFFFFF;}
+.d_cont3 ul.d3_tit{width:641px; padding-left:5px; height:22px; line-height:22px; border-bottom:1px #DAEFFF solid;font-weight:bold;color:#0A5499; overflow:hidden;}
+.d_cont3 ul.d3_cont{width:636px;padding:5px; color:#666; overflow:hidden;}
+.d_cont3 ul.d3_cont li{width:191px; padding:0 10px 0 10px; height:22px; line-height:22px; overflow:hidden; float:left; border-right:1px #DDD solid;}
+.d_cont3 ul.d3_cont li span{color:#FF6600;font-weight:bold;}
+

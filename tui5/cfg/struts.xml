@@ -45,6 +45,7 @@
         </global-results>
     	<action name="index" class="com.throne212.tui5.action.IndexAction"></action>
     	<action name="tasklist" class="com.throne212.tui5.action.TaskListAction"></action>
+    	<action name="weibo_*" method="{1}" class="com.throne212.tui5.action.WeiboAction"></action>
     	<action name="task_*" method="{1}" class="com.throne212.tui5.action.TaskAction"></action>
     	<action name="reg" class="com.throne212.tui5.action.RegAction">
     		<result name="reg" type="freemarker">/WEB-INF/template/reg.ftl</result>

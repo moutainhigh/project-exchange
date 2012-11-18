@@ -1,6 +1,6 @@
 					    <h3>请输入您要顶贴的链接</h3>
 					    <p>
-							<INPUT id="taskURL" class="text1" name="task.url" value="${(task.url)?default('')}" size=70>
+							<input id="taskURL" class="text1" name="task.url" value="${(task.url)?default('')}" size=70><font color="#FF0000">*</font>
 							<br/><span class="orange">建议雇主：您的帖子最好是发布在影响力非常大的论坛，还有您的帖子最好要有争议性。</span>
 					    </p>
 					    <#include "/WEB-INF/template/member/frag/common/title.ftl">

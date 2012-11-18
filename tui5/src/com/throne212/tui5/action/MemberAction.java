@@ -221,6 +221,8 @@ public class MemberAction extends BaseAction {
 
 			// ±£´æ½ø¿â
 			try {
+				task.setPassGaojian(0);
+				task.setPassMoney(new BigDecimal(0));
 				taskBiz.publishTask(task);
 				return "member/publish_succ";
 			} catch (AppException e) {

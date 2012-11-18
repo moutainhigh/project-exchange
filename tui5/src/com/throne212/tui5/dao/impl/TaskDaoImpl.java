@@ -1,5 +1,6 @@
 package com.throne212.tui5.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.PageBean;
+import com.throne212.tui5.common.Util;
 import com.throne212.tui5.dao.TaskDao;
 import com.throne212.tui5.domain.Gaojian;
 import com.throne212.tui5.domain.Task;
@@ -40,7 +42,7 @@ public class TaskDaoImpl extends BaseDaoImpl implements TaskDao {
 		return buildBean(pageIndex, Const.MEMBER_PAGE_SIZE, hql, params);
 	}
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status) {
+	public PageBean<Task> getTaskList(Integer pageIndex,String sort, Integer... status) {
 		List params = new ArrayList();
 		String hql = "from Task where 1=1";
 		if (status != null && status.length > 0) {
@@ -51,11 +53,14 @@ public class TaskDaoImpl extends BaseDaoImpl implements TaskDao {
 			}
 			hql += ")";
 		}
-		hql += " order by publishDate desc";
+		if(!Util.isEmpty(sort)){
+			hql += " order by " + sort + " desc, publishDate desc";
+		}else
+			hql += " order by publishDate desc";
 		return buildBean(pageIndex, Const.FRONT_PAGE_SIZE, hql, params);
 	}
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Type t, Integer... status) {
+	public PageBean<Task> getTaskList(Integer pageIndex,String sort, Type t, Integer... status) {
 		List params = new ArrayList();
 		String hql = "from Task where 1=1 and type=?";
 		params.add(t);
@@ -67,8 +72,39 @@ public class TaskDaoImpl extends BaseDaoImpl implements TaskDao {
 			}
 			hql += ")";
 		}
-		hql += " order by publishDate desc";
+		if(!Util.isEmpty(sort)){
+			hql += " order by " + sort + " desc, publishDate desc";
+		}else
+			hql += " order by publishDate desc";
 		return buildBean(pageIndex, Const.FRONT_PAGE_SIZE, hql, params);
+	}
+	
+	public PageBean<Task> getWeiboList(Integer pageIndex, Integer status, Integer wbType, String sort){
+		List params = new ArrayList();
+		String hql = "from Task where type.pinyin='weibo' and status=?";
+		params.add(status);
+		if(wbType != null && wbType > 0){
+			hql += " and wbType=?";
+			params.add(wbType);
+		}
+		if(!Util.isEmpty(sort)){
+			hql += " order by " + sort + " desc, publishDate desc";
+		}else
+			hql += " order by publishDate desc";
+		PageBean<Task> bean = buildBean(pageIndex, Const.FRONT_PAGE_SIZE, hql, params);
+		if(bean.getResultList() != null && bean.getResultList().size() > 0){
+			for(Task t : bean.getResultList()){
+				String sumHql = "select sum(money) from Gaojian where status=" + Const.GAOJIAN_STATUS_SUCC + " and task=?";
+				BigDecimal money = (BigDecimal) this.getHibernateTemplate().find(sumHql, t).get(0);
+				if(money == null)
+					money = new BigDecimal(0);
+				t.setPassMoney(money);
+				String countHql = "select count(*) from Gaojian where status=" + Const.GAOJIAN_STATUS_SUCC + " and task=?";
+				Long count = (Long) this.getHibernateTemplate().find(countHql, t).get(0);
+				t.setPassGaojian(count.intValue());
+			}
+		}
+		return bean;
 	}
 
 	public List<Task> getEndingTask(int min) {

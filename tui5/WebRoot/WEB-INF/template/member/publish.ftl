@@ -86,6 +86,22 @@
 					    				return false;
 					    			}
 					    		}
+					    		if($('#taskURL').length > 0){
+					    			var url = $('#taskURL').val();
+					    			if(url == ''){
+					    				alert('任务的地址不能为空');
+					    				return false;
+					    			}else if(!Validator.Url.test(url)){
+					    				alert('任务的地址的格式不正确，请检查');
+					    				return false;
+					    			}
+					    		}
+					    		if('${typepinyin}' == 'weibo'){
+					    			if(!$('input[name="task.wbType"]:eq(0)').attr('checked') && !$('input[name="task.wbType"]:eq(1)').attr('checked')){
+					    				alert('请选择新浪或腾讯的推广平台');
+					    				return false;
+					    			}
+					    		}
 					    		var pclass = $('input[name="task.priceClass"]').val();
 					    		if(pclass == '3'){
 					    			var rate1 = parseInt($('#rate1').val());
@@ -95,6 +111,13 @@
 					    				alert('请保证多人中选的奖金分配比例的综合为100%');
 					    				return false;
 					    			} 
+					    		}
+					    		if($('#task_money').length > 0){
+					    			var m = $('#task_money').val();
+					    			if(m == '' || !Validator.Currency.test(m)){
+					    				alert('请正确填写任务的奖金金额');
+					    				return false;
+					    			}
 					    		}
 					    		if(confirm('确认无误，需要发布了吗？')){
 						    		$(this).val('提交中...');

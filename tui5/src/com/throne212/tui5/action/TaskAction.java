@@ -1,5 +1,6 @@
 package com.throne212.tui5.action;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.throne212.tui5.biz.TaskBiz;
@@ -37,6 +38,19 @@ public class TaskAction extends BaseAction {
 		gjUser = taskBiz.getUserCountInTask(t);
 		//相关其他任务
 		relateTasks = taskBiz.getRelateTask(t);
+		//weibo
+		if("weibo".equals(t.getType().getPinyin())){
+			List<Gaojian> gjList = taskBiz.getEntitiesByTwoColumn(Gaojian.class, "task", t, "status", Const.GAOJIAN_STATUS_SUCC);
+			BigDecimal m = new BigDecimal(0);
+			int sum = 0;
+			for(Gaojian g : gjList){
+				m = m.add(g.getMoney());
+				sum++;
+			}
+			t.setPassMoney(m);
+			t.setPassGaojian(sum);
+			return "task_weibo";
+		}
 		return "task";
 	}
 	
@@ -52,6 +66,9 @@ public class TaskAction extends BaseAction {
 		task();
 		//获取稿件数据
 		pageBean = taskBiz.getGaojianList(pageIndex, t);
+		//weibo
+		if("weibo".equals(t.getType().getPinyin()))
+			return "gaojian_weibo";
 		return "gaojian";
 	}
 

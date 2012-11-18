@@ -12,9 +12,11 @@ public interface TaskDao extends BaseDao {
 
 	public PageBean<Task> getTaskList(Integer pageIndex, Integer status, User publisher);
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Integer... status);
+	public PageBean<Task> getTaskList(Integer pageIndex,String sort, Integer... status);
 
-	public PageBean<Task> getTaskList(Integer pageIndex, Type t, Integer... status);
+	public PageBean<Task> getTaskList(Integer pageIndex,String sort, Type t, Integer... status);
+	
+	public PageBean<Task> getWeiboList(Integer pageIndex, Integer status, Integer wbType, String sort);
 
 	public List<Task> getEndingTask(int min);
 
