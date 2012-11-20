@@ -17,5 +17,5 @@
 	<!-- alliance -->
 	<rule><from>/alliance.html</from><to>alliance.do</to></rule>
 	<!-- weibo -->
-	
+	<rule><from>/weibo_(\d+).html</from><to>task_task.do?id=$1</to></rule>
 </urlrewrite>

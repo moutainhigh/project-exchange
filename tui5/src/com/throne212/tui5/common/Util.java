@@ -271,7 +271,12 @@ public class Util {
 		}
 	}
 
-	public static String generateOrderNo() {
+	public static synchronized String generateOrderNo() {
+		try {
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		return fmt.format(new Date()).toString();
 	}

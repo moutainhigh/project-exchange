@@ -15,6 +15,7 @@ public class MoneyRecord {
 	private User user;// 用户
 	private BigDecimal money;// 金额
 	private Integer status;//1申请中，2完成，3失败
+	private String orderNo;//订单号
 
 	public Long getId() {
 		return id;
@@ -103,4 +104,12 @@ public class MoneyRecord {
 		}
 	}
 
+	public String getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
+	
 }

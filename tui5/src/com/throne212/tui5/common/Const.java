@@ -40,4 +40,8 @@ public class Const {
 	public static int MONEY_RECORD_SUCC = 2;//完成
 	public static int MONEY_RECORD_FAIL = 3;//失败
 	
+	//order prefix
+	public static String ORDER_PRE_CHONG = "C";//充值
+	public static String ORDER_PRE_TIXIAN = "T";//提现
+	
 }

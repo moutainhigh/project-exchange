@@ -52,7 +52,7 @@
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_financeList.do">财务总记录</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_financeList.do?type=1">充值记录</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_financeList.do?type=0">提现记录</a></li>
-						    <li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="javascript:;"><font color="EE0000">我要充值</font></a></li>
+						    <li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_payIndex.do"><font color="EE0000">我要充值</font></a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_applyMoney.do">我要提现</a></li>
 							<li>&#12288;<img border="0" src="/img/member/tips.jpg"> <a href="/member_applyMoneyList.do">我的提现进度查询</a></li>
 							<li><img border="0" src="/img/member/tips.jpg"> <a href="/member_myscore.do"><font color="#0033FF">我的积分</font></a></li>

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -22,9 +24,12 @@ import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
 import com.throne212.tui5.domain.Alliance;
 import com.throne212.tui5.domain.Gaojian;
+import com.throne212.tui5.domain.MoneyRecord;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.Type;
 import com.throne212.tui5.domain.User;
+import com.yeepay.Configuration;
+import com.yeepay.PaymentForOnlineService;
 
 public class MemberAction extends BaseAction {
 
@@ -32,7 +37,7 @@ public class MemberAction extends BaseAction {
 	private TaskBiz taskBiz;
 	private AllianceBiz allianceBiz;
 	private ScoreFinanceBiz sfBiz;
-	
+
 	// 公共参数
 	private int currNav = 1;
 
@@ -59,7 +64,7 @@ public class MemberAction extends BaseAction {
 	public String taskList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getTaskList(pageIndex, status, user);
-		for(Object obj : pageBean.getResultList()){
+		for (Object obj : pageBean.getResultList()) {
 			Task t = (Task) obj;
 			t.setGjCount(baseBiz.getEntityCountByColumn(Gaojian.class, "task", t).intValue());
 		}
@@ -84,13 +89,13 @@ public class MemberAction extends BaseAction {
 				toptypepinyin = topType.getPinyin();
 			}
 		}
-		
+
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		if (task != null && task.getId() != null) {// 发布已有的，存储进库
 			task = taskBiz.getEntityById(Task.class, task.getId());
-			if(task == null){
+			if (task == null) {
 				this.setMsg("任务不存在了");
-				return "member/publish"; 
+				return "member/publish";
 			}
 			try {
 				if (user.getUserAccount().doubleValue() < task.getMoney().doubleValue()) {
@@ -111,7 +116,7 @@ public class MemberAction extends BaseAction {
 				e.printStackTrace();
 				msg = "服务器内部错误，请稍后再试";
 			}
-		}else if (task != null && !Util.isEmpty(task.getTitle())) {// 发布全新的，存储进库
+		} else if (task != null && !Util.isEmpty(task.getTitle())) {// 发布全新的，存储进库
 			// 校验
 			if (Util.chineseLength(task.getTitle()) > 50) {
 				this.setMsg("标题长度超过要求");
@@ -139,9 +144,9 @@ public class MemberAction extends BaseAction {
 				return "member/publish";
 			}
 			task.setType(type);
-			//publisher
+			// publisher
 			task.setPublisher(user);
-			
+
 			String isGongBu = ServletActionContext.getRequest().getParameter("isGongBu");
 			// 是否立即发布
 			if ("1".equals(isGongBu)) {
@@ -160,14 +165,14 @@ public class MemberAction extends BaseAction {
 				task.setPublishDate(new Timestamp(currMill));
 				task.setStatus(Const.TASK_STATUS_WAITING);
 			}
-			
-			//附件
+
+			// 附件
 			String att = task.getAttachment1();
-			if(!Util.isEmpty(att)){
+			if (!Util.isEmpty(att)) {
 				String[] arr = att.split("\\|");
 				int i = 1;
-				for(String a : arr){
-					if(!Util.isEmpty(a)){
+				for (String a : arr) {
+					if (!Util.isEmpty(a)) {
 						switch (i) {
 						case 1:
 							task.setAttachment1(a);
@@ -189,32 +194,32 @@ public class MemberAction extends BaseAction {
 					}
 				}
 			}
-			
-			//price class
-			if(task.getPriceClass() == null)
+
+			// price class
+			if (task.getPriceClass() == null)
 				task.setPriceClass(1);
-			if(task.getPriceClass()!=3){
+			if (task.getPriceClass() != 3) {
 				task.setRate1(0.0);
 				task.setRate2(0.0);
 				task.setRate3(0.0);
 				task.setPeople1(0);
 				task.setPeople2(0);
 				task.setPeople3(0);
-			}else if(task.getPriceClass()==3){
+			} else if (task.getPriceClass() == 3) {
 				task.setRate1(new BigDecimal(task.getRate1()).divide(new BigDecimal(100)).doubleValue());
 				task.setRate2(new BigDecimal(task.getRate2()).divide(new BigDecimal(100)).doubleValue());
 				task.setRate3(new BigDecimal(task.getRate3()).divide(new BigDecimal(100)).doubleValue());
 				int sum = 0;
-				if(task.getRate1() > 0 && task.getPeople1() > 0)
+				if (task.getRate1() > 0 && task.getPeople1() > 0)
 					sum += task.getPeople1();
-				if(task.getRate2() > 0 && task.getPeople2() > 0)
+				if (task.getRate2() > 0 && task.getPeople2() > 0)
 					sum += task.getPeople2();
-				if(task.getRate3() > 0 && task.getPeople3() > 0)
+				if (task.getRate3() > 0 && task.getPeople3() > 0)
 					sum += task.getPeople3();
 				task.setGaojianMount(sum);
 			}
-			
-			if(task.getPriceClass() == 2){//单人中标
+
+			if (task.getPriceClass() == 2) {// 单人中标
 				task.setGaojianMount(1);
 				task.setGaojianPrice(task.getMoney());
 			}
@@ -248,7 +253,7 @@ public class MemberAction extends BaseAction {
 			typeMap.put(t.getPinyin(), tList);
 		}
 	}
-	
+
 	// 资料修改
 	private String userName;
 	private String userMobile;
@@ -312,7 +317,8 @@ public class MemberAction extends BaseAction {
 	public String submitGaojian() {
 		if (task != null && task.getId() != null) {
 			task = taskBiz.getEntityById(Task.class, task.getId());
-			if (!Const.TASK_STATUS_PUBLISHED.equals(task.getStatus()) || task.getEndDate() == null || System.currentTimeMillis() > task.getEndDate().getTime()) {
+			if (!Const.TASK_STATUS_PUBLISHED.equals(task.getStatus()) || task.getEndDate() == null
+					|| System.currentTimeMillis() > task.getEndDate().getTime()) {
 				this.setMsg("任务已经结束或关闭，无法投稿");
 				return "member/submit_gaojian_rst";
 			}
@@ -337,63 +343,219 @@ public class MemberAction extends BaseAction {
 		}
 		return "member/submit_gaojian";
 	}
-	
-	//积分
-	public String myscore(){
+
+	// 积分
+	public String myscore() {
 		// 展示数据初始化
 		currNav = 3;// 当前tab下标
 		return "member/myscore";
 	}
-	
-	public String myscoreList(){
+
+	public String myscoreList() {
 		// 展示数据初始化
 		currNav = 3;// 当前tab下标
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = sfBiz.getMyScore(pageIndex, user);
 		return "member/myscore_list";
 	}
-	
-	//财务
-	public String finance(){
+
+	// 财务
+	public String finance() {
 		// 展示数据初始化
 		currNav = 4;// 当前tab下标
 		return "member/finance";
 	}
-	
-	public String financeList(){
+
+	public String financeList() {
 		// 展示数据初始化
 		currNav = 4;// 当前tab下标
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		String type = ServletActionContext.getRequest().getParameter("type");
-		if(Util.isEmpty(type))
+		if (Util.isEmpty(type))
 			pageBean = sfBiz.getMyFinance(pageIndex, user);
-		else if(type.matches("\\d"))
+		else if (type.matches("\\d"))
 			pageBean = sfBiz.getMyFinance(pageIndex, user, Integer.valueOf(type));
 		return "member/finance_list";
 	}
+
+	// 充值首页
+	public String payIndex() {
+
+		return "member/pay_index";
+	}
+
+	private String keyValue;
+	private String nodeAuthorizationURL;
+	private String p0_Cmd;
+	private String p1_MerId;
+	private String p2_Order;
+	private String p3_Amt;
+	private String p4_Cur;
+	private String p5_Pid;
+	private String p6_Pcat;
+	private String p7_Pdesc;
+	private String p8_Url;
+	private String p9_SAF;
+	private String pa_MP;
+	private String pd_FrpId;
+	private String pr_NeedResponse;
+	private String hmac;
 	
+	public String repay() {
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		String money = request.getParameter("p3_Amt");
+		int m = 0;
+		try {
+			m = Integer.parseInt(money);
+			m = Math.abs(m);
+			if(m < 5){
+				msg = "最低充值金额为5元";
+				return payIndex();
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			msg = "充值金额须为正整数";
+			return payIndex();
+		}
+		
+		try {
+			request.setCharacterEncoding("GBK");
+			keyValue = formatString(Configuration.getInstance().getValue("keyValue")); // 商家密钥
+			nodeAuthorizationURL = formatString(Configuration.getInstance().getValue("yeepayCommonReqURL")); // 交易请求地址
+			// 商家设置用户购买商品的支付信息
+			p0_Cmd = formatString("Buy"); // 在线支付请求，固定值 ”Buy”
+			p1_MerId = formatString(Configuration.getInstance().getValue("p1_MerId")); // 商户编号
+			p2_Order = formatString(request.getParameter("p2_Order")); // 商户订单号
+			p2_Order = Const.ORDER_PRE_CHONG + Util.generateOrderNo();
+			p3_Amt = formatString(request.getParameter("p3_Amt")); // 支付金额
+			p4_Cur = formatString("CNY"); // 交易币种
+			p5_Pid = formatString(request.getParameter("p5_Pid")); // 商品名称
+			p5_Pid = "会员充值";
+			p6_Pcat = formatString(request.getParameter("p6_Pcat")); // 商品种类
+			p6_Pcat = "会员充值";
+			p7_Pdesc = formatString(request.getParameter("p7_Pdesc")); // 商品描述
+			p7_Pdesc = "会员充值" + p3_Amt;
+			p8_Url = formatString(request.getParameter("p8_Url")); // 商户接收支付成功数据的地址
+			p8_Url = "http://www.tui5.com/callback.jsp";
+			p9_SAF = formatString(request.getParameter("p9_SAF")); // 需要填写送货信息
+																			// 0：不需要
+																			// 1:需要
+			p9_SAF = "0";
+			pa_MP = formatString(request.getParameter("pa_MP")); // 商户扩展信息
+			pa_MP = user.getUserId();
+			pd_FrpId = formatString(request.getParameter("pd_FrpId")); // 支付通道编码
+			// 银行编号必须大写
+			pd_FrpId = pd_FrpId.toUpperCase();
+			pr_NeedResponse = formatString("1"); // 默认为"1"，需要应答机制
+			hmac = formatString(""); // 交易签名串
+
+			// 获得MD5-HMAC签名
+			hmac = PaymentForOnlineService.getReqMd5HmacForOnlinePayment(p0_Cmd, p1_MerId, p2_Order, p3_Amt, p4_Cur,
+					p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, p9_SAF, pa_MP, pd_FrpId, pr_NeedResponse, keyValue);
+			return "member/repay";
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg = "支付接口错误，请稍候再试";
+			return payIndex();
+		}
+
+	}
+	
+	private String formatString(String text) {
+		if (text == null) {
+			return "";
+		}
+		return text;
+	}
+	
+	public String callback(){
+		try {
+			User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String keyValue   = formatString(Configuration.getInstance().getValue("keyValue"));   // 商家密钥
+			String r0_Cmd 	  = formatString(request.getParameter("r0_Cmd")); // 业务类型
+			String p1_MerId   = formatString(Configuration.getInstance().getValue("p1_MerId"));   // 商户编号
+			String r1_Code    = formatString(request.getParameter("r1_Code"));// 支付结果
+			String r2_TrxId   = formatString(request.getParameter("r2_TrxId"));// 易宝支付交易流水号
+			String r3_Amt     = formatString(request.getParameter("r3_Amt"));// 支付金额
+			String r4_Cur     = formatString(request.getParameter("r4_Cur"));// 交易币种
+			String r5_Pid     = new String(formatString(request.getParameter("r5_Pid")).getBytes("iso-8859-1"),"gbk");// 商品名称
+			String r6_Order   = formatString(request.getParameter("r6_Order"));// 商户订单号
+			String r7_Uid     = formatString(request.getParameter("r7_Uid"));// 易宝支付会员ID
+			String r8_MP      = new String(formatString(request.getParameter("r8_MP")).getBytes("iso-8859-1"),"gbk");// 商户扩展信息
+			String r9_BType   = formatString(request.getParameter("r9_BType"));// 交易结果返回类型
+			String hmac       = formatString(request.getParameter("hmac"));// 签名数据
+			boolean isOK = false;
+			// 校验返回数据包
+			isOK = PaymentForOnlineService.verifyCallback(hmac,p1_MerId,r0_Cmd,r1_Code, 
+					r2_TrxId,r3_Amt,r4_Cur,r5_Pid,r6_Order,r7_Uid,r8_MP,r9_BType,keyValue);
+			if(isOK) {
+				//在接收到支付结果通知后，判断是否进行过业务逻辑处理，不要重复进行业务逻辑处理
+				if(r1_Code.equals("1")) {
+					// 产品通用接口支付成功返回-浏览器重定向
+					if(r9_BType.equals("1")) {
+						//out.println("callback方式:产品通用接口支付成功返回-浏览器重定向");
+						// 产品通用接口支付成功返回-服务器点对点通讯
+					} else if(r9_BType.equals("2")) {
+						// 如果在发起交易请求时	设置使用应答机制时，必须应答以"success"开头的字符串，大小写不敏感
+						//out.println("SUCCESS");
+					  // 产品通用接口支付成功返回-电话支付返回		
+					}
+					// 下面页面输出是测试时观察结果使用
+					msg = "交易成功!\n商家订单号:" + r6_Order + "<br>支付金额:" + r3_Amt + "<br>易宝支付交易流水号:" + r2_TrxId;
+					user = baseBiz.getEntityById(User.class, user.getUserNo());
+					BigDecimal m = user.getUserAccount().add(new BigDecimal(r3_Amt).abs());
+					user.setUserAccount(m);
+					baseBiz.saveOrUpdateEntity("user");
+					ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, user);
+					logger.info("user [" + user.getUserId() + "] pay money " + r3_Amt + "success");
+					//加入记录
+					MoneyRecord mr = new MoneyRecord();
+					mr.setMoney(new BigDecimal(r3_Amt).abs());
+					mr.setApplyTime(new Date());
+					mr.setContent("会员充值:" + r3_Amt);
+					mr.setCompleteTime(new Date());
+					mr.setStatus(Const.MONEY_RECORD_SUCC);
+					mr.setUser(user);
+					mr.setType(Const.RECORD_TYPE_1);
+					mr.setOrderNo(r6_Order);
+					baseBiz.saveOrUpdateEntity(mr);
+					return "member/pay_callback";
+				}
+			} else {
+				msg = "交易签名被篡改!";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg = "充值发生错误，请联系客服解决";
+		}
+		return payIndex();
+	}
+
 	public String applyMoney() {
 		// 展示数据初始化
 		currNav = 4;// 当前tab下标
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		user = baseBiz.getEntityById(User.class, user.getUserNo());
 		ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, user);
-		
+
 		String money = ServletActionContext.getRequest().getParameter("money");
-		if(!Util.isEmpty(money)){
-			if(!money.matches("^\\d+(\\.\\d+)?$")){
+		if (!Util.isEmpty(money)) {
+			if (!money.matches("^\\d+(\\.\\d+)?$")) {
 				msg = "金额格式不正确";
 				return "member/apply_money";
 			}
 			double m = Double.parseDouble(money);
-			if(m < 30){
+			if (m < 30) {
 				msg = "金额不能少于30元";
 				return "member/apply_money";
 			}
 			BigDecimal acct = user.getUserAccount();
-			if(acct.doubleValue() < m){
+			if (acct.doubleValue() < m) {
 				msg = "提现金额已经超过你的余额";
-				return "member/apply_money";				
+				return "member/apply_money";
 			}
 			try {
 				sfBiz.applyMoney(new BigDecimal(m), user);
@@ -405,11 +567,11 @@ public class MemberAction extends BaseAction {
 			} catch (Exception e) {
 				e.printStackTrace();
 				this.setMsg("服务器内部错误，请稍候再试");
-			} 
+			}
 		}
 		return "member/apply_money";
 	}
-	
+
 	public String applyMoneyList() {
 		// 展示数据初始化
 		currNav = 4;// 当前tab下标
@@ -418,36 +580,37 @@ public class MemberAction extends BaseAction {
 		return "member/apply_money_list";
 	}
 
-	//我发布的任务
+	// 我发布的任务
 	public String myTaskList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getMyTaskList(pageIndex, user);
 		return "member/my_task_list";
 	}
 
-	//我的稿件
+	// 我的稿件
 	public String myGaojianList() {
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 		pageBean = taskBiz.getGaojianList(pageIndex, user);
 		return "member/my_gaojian_list";
 	}
-	
-	//推客联盟
-	private Alliance a;	
-	public String addAlliance(){
+
+	// 推客联盟
+	private Alliance a;
+
+	public String addAlliance() {
 		// 展示数据初始化
 		currNav = 5;// 当前tab下标
-		if(a != null && !Util.isEmpty(a.getSiteName()) && !Util.isEmpty(a.getSiteURL())){
+		if (a != null && !Util.isEmpty(a.getSiteName()) && !Util.isEmpty(a.getSiteURL())) {
 			String url = a.getSiteURL();
-			if(!url.matches("http:\\/\\/[A-Za-z0-9]+\\.([A-Za-z0-9]+\\.)*[A-Za-z0-9]+")){
+			if (!url.matches("http:\\/\\/[A-Za-z0-9]+\\.([A-Za-z0-9]+\\.)*[A-Za-z0-9]+")) {
 				this.setMsg("URL格式错误，请以http://开头");
 				return "member/add_alliance";
 			}
 			Alliance a2 = baseBiz.getEntityByUnique(Alliance.class, "siteURL", a.getSiteURL());
-			if(a2 != null){
+			if (a2 != null) {
 				this.setMsg("此URL已经存在于系统了，请勿重复添加");
 				return "member/add_alliance";
-			}else{
+			} else {
 				try {
 					User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
 					a.setUser(user);
@@ -464,14 +627,14 @@ public class MemberAction extends BaseAction {
 		}
 		return "member/add_alliance";
 	}
-	
-	public String allianceCode(){
+
+	public String allianceCode() {
 		// 展示数据初始化
 		currNav = 5;// 当前tab下标
 		return "member/alliance_code";
 	}
-	
-	public String allianceList(){
+
+	public String allianceList() {
 		// 展示数据初始化
 		currNav = 5;// 当前tab下标
 		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
@@ -685,6 +848,134 @@ public class MemberAction extends BaseAction {
 
 	public void setSfBiz(ScoreFinanceBiz sfBiz) {
 		this.sfBiz = sfBiz;
+	}
+
+	public String getKeyValue() {
+		return keyValue;
+	}
+
+	public void setKeyValue(String keyValue) {
+		this.keyValue = keyValue;
+	}
+
+	public String getNodeAuthorizationURL() {
+		return nodeAuthorizationURL;
+	}
+
+	public void setNodeAuthorizationURL(String nodeAuthorizationURL) {
+		this.nodeAuthorizationURL = nodeAuthorizationURL;
+	}
+
+	public String getP0_Cmd() {
+		return p0_Cmd;
+	}
+
+	public void setP0_Cmd(String p0_Cmd) {
+		this.p0_Cmd = p0_Cmd;
+	}
+
+	public String getP1_MerId() {
+		return p1_MerId;
+	}
+
+	public void setP1_MerId(String p1_MerId) {
+		this.p1_MerId = p1_MerId;
+	}
+
+	public String getP2_Order() {
+		return p2_Order;
+	}
+
+	public void setP2_Order(String p2_Order) {
+		this.p2_Order = p2_Order;
+	}
+
+	public String getP3_Amt() {
+		return p3_Amt;
+	}
+
+	public void setP3_Amt(String p3_Amt) {
+		this.p3_Amt = p3_Amt;
+	}
+
+	public String getP4_Cur() {
+		return p4_Cur;
+	}
+
+	public void setP4_Cur(String p4_Cur) {
+		this.p4_Cur = p4_Cur;
+	}
+
+	public String getP5_Pid() {
+		return p5_Pid;
+	}
+
+	public void setP5_Pid(String p5_Pid) {
+		this.p5_Pid = p5_Pid;
+	}
+
+	public String getP6_Pcat() {
+		return p6_Pcat;
+	}
+
+	public void setP6_Pcat(String p6_Pcat) {
+		this.p6_Pcat = p6_Pcat;
+	}
+
+	public String getP7_Pdesc() {
+		return p7_Pdesc;
+	}
+
+	public void setP7_Pdesc(String p7_Pdesc) {
+		this.p7_Pdesc = p7_Pdesc;
+	}
+
+	public String getP8_Url() {
+		return p8_Url;
+	}
+
+	public void setP8_Url(String p8_Url) {
+		this.p8_Url = p8_Url;
+	}
+
+	public String getP9_SAF() {
+		return p9_SAF;
+	}
+
+	public void setP9_SAF(String p9_SAF) {
+		this.p9_SAF = p9_SAF;
+	}
+
+	public String getPa_MP() {
+		return pa_MP;
+	}
+
+	public void setPa_MP(String pa_MP) {
+		this.pa_MP = pa_MP;
+	}
+
+	public String getPd_FrpId() {
+		return pd_FrpId;
+	}
+
+	public void setPd_FrpId(String pd_FrpId) {
+		this.pd_FrpId = pd_FrpId;
+	}
+
+	public String getPr_NeedResponse() {
+		return pr_NeedResponse;
+	}
+
+	public void setPr_NeedResponse(String pr_NeedResponse) {
+		this.pr_NeedResponse = pr_NeedResponse;
+	}
+
+	public String getHmac() {
+		return hmac;
+	}
+
+	public void setHmac(String hmac) {
+		this.hmac = hmac;
 	}
 
 }
