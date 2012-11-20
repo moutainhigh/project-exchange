@@ -32,6 +32,9 @@
 								<p>用户：<span class="redTxt font14">${userObj.userId}</span></p>
 								<p>上次登录时间：${(userObj.userLastdate)?string('yyyy-MM-dd HH:mm:ss')}</p>
 								<p>当前账户余额：<span class="redTxt font14 fontBold">${userObj.userAccount?string.currency}元</span></p>
+								<#if (userObj.userIceAccount)?exists>
+								<p>冻结金额：${userObj.userIceAccount?string.currency}元</p>
+								</#if>
 								<p>当前积分：<span class="redTxt font14 fontBold">${userObj.userScore}</span></p>
 								<p><a target="_blank" title="我要充值" href="javascript:;"><img border="0" align="absmiddle" src="/img/member/cz_btn.gif"></a></p>
 							  </li>

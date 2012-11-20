@@ -28,10 +28,16 @@
 				   <div class="list_box_content">
 				   		<form action="/member_pwd.do" method="post">
 					   <table class="task_tble" border="0" cellspacing="1">
-						   <tr>
+						   	<tr>
 						   		<td>当前账户余额：</td>
-						   		<td>${userObj.userAccount?string.currency}</td>
-						   </tr>
+						   		<td>${userObj.userAccount?string.currency}元</td>
+						   	</tr>
+						   	<#if (userObj.userIceAccount)?exists>
+						   	<tr>
+						   		<td>冻结金额：</td>
+						   		<td>${userObj.userIceAccount?string.currency}元</td>
+						    </tr>
+							</#if>
 					   </table>
 					   </form>
 			       </div>

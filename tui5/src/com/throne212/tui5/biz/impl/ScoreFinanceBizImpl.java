@@ -33,9 +33,10 @@ public class ScoreFinanceBizImpl extends BaseBizImpl implements ScoreFinanceBiz 
 	}
 	
 	public void applyMoney(BigDecimal money, User user){
-		BigDecimal acct = user.getUserAccount();
-		acct = acct.subtract(money);
-		user.setUserAccount(acct);
+		//冻结金额
+		user = this.getEntityById(User.class, user.getUserNo());
+		user.setUserAccount(user.getUserAccount().subtract(money));
+		user.setUserIceAccount(user.getUserIceAccount().add(money));
 		this.saveOrUpdateEntity(user);
 		//加入记录
 		MoneyRecord r = new MoneyRecord();

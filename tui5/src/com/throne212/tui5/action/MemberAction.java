@@ -363,6 +363,8 @@ public class MemberAction extends BaseAction {
 	public String finance() {
 		// 展示数据初始化
 		currNav = 4;// 当前tab下标
+		User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+		ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, baseBiz.getEntityById(User.class, user.getUserNo()));
 		return "member/finance";
 	}
 
@@ -438,7 +440,7 @@ public class MemberAction extends BaseAction {
 			p7_Pdesc = formatString(request.getParameter("p7_Pdesc")); // 商品描述
 			p7_Pdesc = "会员充值" + p3_Amt;
 			p8_Url = formatString(request.getParameter("p8_Url")); // 商户接收支付成功数据的地址
-			p8_Url = "http://www.tui5.com/callback.jsp";
+			p8_Url = "http://www.tui5.com/member_callback.do";
 			p9_SAF = formatString(request.getParameter("p9_SAF")); // 需要填写送货信息
 																			// 0：不需要
 																			// 1:需要
@@ -559,6 +561,7 @@ public class MemberAction extends BaseAction {
 			}
 			try {
 				sfBiz.applyMoney(new BigDecimal(m), user);
+				ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, baseBiz.getEntityById(User.class, user.getUserNo()));
 				this.setMsg("申请提现成功，请等待客服处理");
 				return this.applyMoneyList();
 			} catch (AppException e) {
