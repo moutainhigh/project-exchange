@@ -97,7 +97,7 @@ public class TaskDaoImpl extends BaseDaoImpl implements TaskDao {
 				String sumHql = "select sum(money) from Gaojian where status=" + Const.GAOJIAN_STATUS_SUCC + " and task=?";
 				BigDecimal money = (BigDecimal) this.getHibernateTemplate().find(sumHql, t).get(0);
 				if(money == null)
-					money = new BigDecimal(0);
+					money = BigDecimal.valueOf(0);
 				t.setPassMoney(money);
 				String countHql = "select count(*) from Gaojian where status=" + Const.GAOJIAN_STATUS_SUCC + " and task=?";
 				Long count = (Long) this.getHibernateTemplate().find(countHql, t).get(0);

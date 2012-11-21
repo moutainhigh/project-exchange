@@ -27,8 +27,8 @@ public class Gaojian implements java.io.Serializable {
 	private String content;//内容
 	private String attachment;//附件图片列表
 	private BigDecimal money;//所得奖金
-	private Integer price123;//所属几等奖
-	private Integer fs;//粉丝数量所属范围
+	private Integer price123;//所属几等奖,多人中标使用
+	private Integer fs;//粉丝数量所属范围，weibo使用
 	
 	public String getStatusTxt(){
 		if(Const.GAOJIAN_STATUS_INIT.equals(status)){

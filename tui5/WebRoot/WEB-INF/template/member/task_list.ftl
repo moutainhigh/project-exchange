@@ -49,6 +49,7 @@
 						   		<td>${t.statusTxt}
 						   		<#if t.status==1><a href="/member_publish.do?task.id=${t.id}">正式发布</a></#if>
 						   		<#if t.status gt 1 && t.gjCount gt 0><a href="/gaojian_${t.id}.html">稿件审核(${t.gjCount})</a></#if>
+						   		<#if t.status==10><a href="/member_longer.do?task.id=${t.id}">加价延期</a></#if>
 						   		</td>
 						   </tr>
 						   </#list>

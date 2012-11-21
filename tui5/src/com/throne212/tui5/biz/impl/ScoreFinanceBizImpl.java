@@ -3,6 +3,7 @@ package com.throne212.tui5.biz.impl;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.jruby.ast.BeginNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class ScoreFinanceBizImpl extends BaseBizImpl implements ScoreFinanceBiz 
 		//冻结金额
 		user = this.getEntityById(User.class, user.getUserNo());
 		user.setUserAccount(user.getUserAccount().subtract(money));
+		if(user.getUserIceAccount() == null)
+			user.setUserIceAccount(BigDecimal.valueOf(0));
 		user.setUserIceAccount(user.getUserIceAccount().add(money));
 		this.saveOrUpdateEntity(user);
 		//加入记录

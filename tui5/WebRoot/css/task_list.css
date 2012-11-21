@@ -37,7 +37,7 @@
 .task_list ul li a{color:#2C65B5; text-decoration:none;font-size:14px;}
 .task_list ul li a:hover{color:#2C65B5; text-decoration:underline;}
 .task_list ul li.li1{width:55px;padding-left:10px;font-family:Geneva, Arial, Helvetica, sans-serif;}
-.task_list ul li.li2{width:460px; padding-left:5px;}
+.task_list ul li.li2{width:390px; padding-left:5px;}
 .task_list ul li.li3{width:69px; padding-left:5px;text-align:center;}
 .task_list ul li.li4{width:69px; padding-left:5px; text-align:center;}
 .task_list ul li.li8{width:70px; padding-left:5px; text-align:center;}
@@ -51,7 +51,7 @@
 .task_list ul.ul_list li a:visited{color:#777;text-decoration:underline;}
 .task_list ul.ul_list li a:hover{color:#2C65B5; text-decoration:underline;}
 .task_list ul.ul_list li.li1{width:55px;padding-left:10px;font-family:Geneva, Arial, Helvetica, sans-serif;}
-.task_list ul.ul_list li.li2{width:460px; padding-left:5px;}
+.task_list ul.ul_list li.li2{width:390px; padding-left:5px;}
 .task_list ul.ul_list li.li3{width:69px; padding-left:5px; text-align:center;}
 .task_list ul.ul_list li.li4{width:69px; padding-left:5px; text-align:center;}
 .task_list ul.ul_list li.li8{width:70px; padding-left:5px; text-align:center;}

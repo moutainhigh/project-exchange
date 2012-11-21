@@ -1,5 +1,7 @@
 package com.throne212.tui5.common;
 
+import java.math.BigDecimal;
+
 public class Const {
 
 	public static String SESS_RAND = "rand";
@@ -43,5 +45,8 @@ public class Const {
 	//order prefix
 	public static String ORDER_PRE_CHONG = "C";//充值
 	public static String ORDER_PRE_TIXIAN = "T";//提现
+	
+	//推手收入提成比例
+	public static BigDecimal TUI_PERCENTAGE = BigDecimal.valueOf(0.8);//80%
 	
 }

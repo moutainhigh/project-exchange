@@ -41,7 +41,7 @@ public class TaskAction extends BaseAction {
 		//weibo
 		if("weibo".equals(t.getType().getPinyin())){
 			List<Gaojian> gjList = taskBiz.getEntitiesByTwoColumn(Gaojian.class, "task", t, "status", Const.GAOJIAN_STATUS_SUCC);
-			BigDecimal m = new BigDecimal(0);
+			BigDecimal m = BigDecimal.valueOf(0);
 			int sum = 0;
 			for(Gaojian g : gjList){
 				m = m.add(g.getMoney());

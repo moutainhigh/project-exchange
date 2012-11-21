@@ -23,6 +23,7 @@ import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
 import com.throne212.tui5.domain.Alliance;
+import com.throne212.tui5.domain.Finance;
 import com.throne212.tui5.domain.Gaojian;
 import com.throne212.tui5.domain.MoneyRecord;
 import com.throne212.tui5.domain.Task;
@@ -69,6 +70,39 @@ public class MemberAction extends BaseAction {
 			t.setGjCount(baseBiz.getEntityCountByColumn(Gaojian.class, "task", t).intValue());
 		}
 		return "member/task_list";
+	}
+	
+	public String longer(){
+		if(task != null && task.getId() != null){
+			task = baseBiz.getEntityById(Task.class, task.getId());
+			//扣钱
+			BigDecimal tMoney = task.getMoney();
+			User user = (User) ActionContext.getContext().getSession().get(Const.SESS_USER_OBJ);
+			user = baseBiz.getEntityById(User.class, user.getUserNo());
+			if(user.getUserAccount().doubleValue() < tMoney.doubleValue()){
+				this.setMsg("你的余额不足以支付延期的费用，请充值以后再试");
+				return taskList();
+			}
+			user.setUserAccount(user.getUserAccount().subtract(tMoney));
+			//重新计算结束时间
+			long end = task.getEndDate().getTime();
+			end += task.getDays() * 24 * 60 * 60 * 1000;
+			task.setEndDate(new Timestamp(end));
+			task.setRepublish(0);
+			task.setMoney(tMoney.multiply(BigDecimal.valueOf(2)));//任务奖金翻倍
+			//入库
+			baseBiz.saveOrUpdateEntity(user);
+			baseBiz.saveOrUpdateEntity(task);
+			//财务记录
+			Finance f = new Finance();
+			f.setContent("任务加价延期，扣除金额：" + tMoney);
+			f.setMoney(tMoney);
+			f.setType(Const.RECORD_TYPE_0);
+			f.setUser(user);
+			f.setTime(new Date());
+			baseBiz.saveOrUpdateEntity(f);
+		}
+		return taskList();
 	}
 
 	// 发布任务
@@ -205,10 +239,10 @@ public class MemberAction extends BaseAction {
 				task.setPeople1(0);
 				task.setPeople2(0);
 				task.setPeople3(0);
-			} else if (task.getPriceClass() == 3) {
-				task.setRate1(new BigDecimal(task.getRate1()).divide(new BigDecimal(100)).doubleValue());
-				task.setRate2(new BigDecimal(task.getRate2()).divide(new BigDecimal(100)).doubleValue());
-				task.setRate3(new BigDecimal(task.getRate3()).divide(new BigDecimal(100)).doubleValue());
+			} else if (task.getPriceClass() == 3) {//多人中标
+				task.setRate1(BigDecimal.valueOf(task.getRate1()).divide(BigDecimal.valueOf(100)).doubleValue());
+				task.setRate2(BigDecimal.valueOf(task.getRate2()).divide(BigDecimal.valueOf(100)).doubleValue());
+				task.setRate3(BigDecimal.valueOf(task.getRate3()).divide(BigDecimal.valueOf(100)).doubleValue());
 				int sum = 0;
 				if (task.getRate1() > 0 && task.getPeople1() > 0)
 					sum += task.getPeople1();
@@ -217,6 +251,9 @@ public class MemberAction extends BaseAction {
 				if (task.getRate3() > 0 && task.getPeople3() > 0)
 					sum += task.getPeople3();
 				task.setGaojianMount(sum);
+				double p = task.getMoney().doubleValue() / sum;//平均价
+				p = Math.floor(p * 100);
+				task.setGaojianPrice(BigDecimal.valueOf(p).divide(BigDecimal.valueOf(100)));
 			}
 
 			if (task.getPriceClass() == 2) {// 单人中标
@@ -227,7 +264,7 @@ public class MemberAction extends BaseAction {
 			// 保存进库
 			try {
 				task.setPassGaojian(0);
-				task.setPassMoney(new BigDecimal(0));
+				task.setPassMoney(BigDecimal.valueOf(0));
 				taskBiz.publishTask(task);
 				return "member/publish_succ";
 			} catch (AppException e) {
@@ -560,7 +597,7 @@ public class MemberAction extends BaseAction {
 				return "member/apply_money";
 			}
 			try {
-				sfBiz.applyMoney(new BigDecimal(m), user);
+				sfBiz.applyMoney(BigDecimal.valueOf(m), user);
 				ActionContext.getContext().getSession().put(Const.SESS_USER_OBJ, baseBiz.getEntityById(User.class, user.getUserNo()));
 				this.setMsg("申请提现成功，请等待客服处理");
 				return this.applyMoneyList();

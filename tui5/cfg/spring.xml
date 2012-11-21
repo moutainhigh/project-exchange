@@ -76,7 +76,7 @@
 	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean" lazy-init="false">
 	    <property name="jobDetail" ref="updateTaskStatus" />
 	    <property name="startDelay" value="5000" /><!-- 启动5秒钟以后开始 -->
-	    <property name="repeatInterval" value="300000" /> <!-- 间隔5分钟 -->
+	    <property name="repeatInterval" value="60000" /> <!-- 间隔1分钟 -->
 	</bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
     	<property name="triggers">

@@ -68,6 +68,8 @@ public class Task implements java.io.Serializable {
 	private Integer passGaojian;//合格的稿件数量
 	private BigDecimal passMoney;//合格的稿件奖金合计
 	
+	private Integer republish;//重发次数,0,1,2
+	
 	//顶贴的URL
 	private String url;
 	
@@ -589,5 +591,13 @@ public class Task implements java.io.Serializable {
 
 	public void setPassMoney(BigDecimal passMoney) {
 		this.passMoney = passMoney;
+	}
+
+	public Integer getRepublish() {
+		return republish;
+	}
+
+	public void setRepublish(Integer republish) {
+		this.republish = republish;
 	}
 }

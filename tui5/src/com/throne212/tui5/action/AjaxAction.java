@@ -54,7 +54,8 @@ public class AjaxAction extends BaseAction {
 		String randInSess = (String) ActionContext.getContext().getSession().get(Const.SESS_RAND);
 		if (rand == null || !rand.equals(randInSess)) {
 			msg = "验证码错误";
-		} else if (!Util.isEmpty(username) && !Util.isEmpty(email) && !Util.isEmpty(password) && !Util.isEmpty(password2) && password.equals(password2)) {
+		} else if (!Util.isEmpty(username) && !Util.isEmpty(email) && !Util.isEmpty(password)
+				&& !Util.isEmpty(password2) && password.equals(password2)) {
 			if (baseBiz.getEntityByUnique(User.class, "userId", username) != null) {
 				msg = "用户名已经被注册，请重新填写";
 				return "msg";
@@ -70,12 +71,13 @@ public class AjaxAction extends BaseAction {
 			user.setUserRegdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserLastdate(new Timestamp(System.currentTimeMillis()));
 			user.setUserUpdate(new Timestamp(System.currentTimeMillis()));
-			user.setUserAccount(new BigDecimal(Const.USER_REG_MONEY));
+			user.setUserAccount(BigDecimal.valueOf(Const.USER_REG_MONEY));
 			user.setUserScore(Const.USER_REG_SCORE);
 			System.out.println(ActionContext.getContext().getSession());
 			// 是否为推客推荐过来的用户
 			if (ActionContext.getContext().getSession().get(Const.SESS_ALLIANCE_USER_ID) != null) {
-				String allianceUserId = (String) ActionContext.getContext().getSession().get(Const.SESS_ALLIANCE_USER_ID);
+				String allianceUserId = (String) ActionContext.getContext().getSession()
+						.get(Const.SESS_ALLIANCE_USER_ID);
 				User u = baseBiz.getEntityByUnique(User.class, "userId", allianceUserId);
 				if (u != null)
 					user.setAllianceUser(u);
@@ -94,7 +96,7 @@ public class AjaxAction extends BaseAction {
 				// 加入记录
 				Finance f = new Finance();
 				f.setContent("新用户注册奖励现金");
-				f.setMoney(new BigDecimal(Const.USER_REG_MONEY));
+				f.setMoney(BigDecimal.valueOf(Const.USER_REG_MONEY));
 				f.setTime(new Date());
 				f.setType(Const.RECORD_TYPE_1);
 				f.setUser(user);
@@ -180,7 +182,8 @@ public class AjaxAction extends BaseAction {
 			int mount = 0;
 			if (price123 != null && price123 > 0) {// 除开weibo，要检查份数
 				mount = task.getGaojianMount() == null ? 0 : task.getGaojianMount();
-				long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
+				long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status",
+						Const.GAOJIAN_STATUS_SUCC);
 				if (currMount >= mount) {
 					msg = "提交的稿件份数已经足够了";
 					return "msg";
@@ -188,25 +191,31 @@ public class AjaxAction extends BaseAction {
 			}
 			// 检查金额是否已经大于任务的总金额
 			List<Gaojian> gjList = baseBiz.getEntitiesByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
-			BigDecimal m = new BigDecimal(0);
+			BigDecimal allMoney = BigDecimal.valueOf(0);
+			int allSum = 0;
 			for (Gaojian g : gjList) {
-				m = m.add(g.getMoney());
+				allMoney = allMoney.add(g.getMoney());
+				allSum++;
 			}
-			task.setPassMoney(m);
-			if (m.add(task.getFs(fs)).doubleValue() > task.getMoney().doubleValue()) {
-				msg = "你的任务的剩余金额，不足以支付该稿件的酬劳了，请增加任务预算金额，然后再试";
-				return "msg";
+			task.setPassMoney(allMoney);
+			task.setPassGaojian(allSum);
+			if (fs != null && fs > 0) {
+				if (allMoney.add(task.getFs(fs)).doubleValue() > task.getMoney().doubleValue()) {
+					msg = "你的任务的剩余金额，不足以支付该稿件的酬劳了，请增加任务预算金额，然后再试";
+					return "msg";
+				}
 			}
 
 			// 多人中标
 			if (task.getPriceClass() != null && task.getPriceClass() == 3 && price123 != null && price123 > 0) {
-				long sum = baseBiz.getEntityCountByThreeColumn(Gaojian.class, "task", task, "price123", price123, "status", Const.GAOJIAN_STATUS_SUCC);
+				long sum = baseBiz.getEntityCountByThreeColumn(Gaojian.class, "task", task, "price123", price123,
+						"status", Const.GAOJIAN_STATUS_SUCC);
 				if (sum >= task.getPeople(price123)) {
 					msg = price123 + "等奖提交的稿件份数已经足够了";
 					return "msg";
 				}
 				gj.setPrice123(price123);
-				BigDecimal money = new BigDecimal(task.getRate(price123)).multiply(task.getMoney());
+				BigDecimal money = BigDecimal.valueOf(task.getRate(price123)).multiply(task.getMoney());
 				gj.setMoney(money);
 			} else if (task.getGaojianPrice() != null && task.getGaojianPrice().doubleValue() > 0) {// 单人中标和几件
 				gj.setMoney(task.getGaojianPrice());
@@ -217,17 +226,38 @@ public class AjaxAction extends BaseAction {
 			// 保存
 			gj.setCheckDate(new Timestamp(new Date().getTime()));
 			baseBiz.saveOrUpdateEntity(gj);
-			//任务是否该结束了
+
+			//通过以后的一些处理
 			if (status == Const.GAOJIAN_STATUS_SUCC) {
-				if (price123 != null && price123 > 0) {//按件算的
-					long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status", Const.GAOJIAN_STATUS_SUCC);
+				
+				//计算稿件已经通过的稿件数目和金额
+				task.setPassMoney(task.getPassMoney().add(gj.getMoney()));
+				task.setPassGaojian(task.getPassGaojian() + 1);
+				
+				if (price123 != null && price123 > 0) {// 按件算的,//任务是否该结束了
+					long currMount = baseBiz.getEntityCountByTwoColumn(Gaojian.class, "task", task, "status",Const.GAOJIAN_STATUS_SUCC);
 					if (task.getPriceClass() == 1 && currMount >= mount) {
 						msg += "\n已经收齐合格的稿件，任务结束";
 						task.setStatus(Const.TASK_STATUS_COMPLETE);
 					}
-					task.setPassGaojian(Long.valueOf(currMount).intValue());
 				}
 				baseBiz.saveOrUpdateEntity(task);
+
+				// 计算酬劳
+				User gjUser = baseBiz.getEntityById(User.class, gj.getUser().getUserNo());
+				BigDecimal userAcct = gj.getMoney().multiply(Const.TUI_PERCENTAGE).abs();
+				double dMoney = Math.floor(userAcct.doubleValue() * 100);
+				userAcct = BigDecimal.valueOf(dMoney).divide(BigDecimal.valueOf(100));
+				gjUser.setUserAccount(gjUser.getUserAccount().add(userAcct));
+				baseBiz.saveOrUpdateEntity(gjUser);
+				// 财务记录
+				Finance f = new Finance();
+				f.setContent("稿件通过，计入酬劳");
+				f.setMoney(userAcct);
+				f.setType(Const.RECORD_TYPE_1);
+				f.setUser(gj.getUser());
+				f.setTime(new Date());
+				baseBiz.saveOrUpdateEntity(f);
 			}
 			msg = "Y";
 		} catch (Exception e) {
@@ -235,6 +265,12 @@ public class AjaxAction extends BaseAction {
 			msg = "服务器内部错误，请稍候再试";
 		}
 		return "msg";
+	}
+
+	public static void main(String[] args) {
+		// System.out.println(BigDecimal.valueOf(0.1123).multiply(Const.TUI_PERCENTAGE));
+		double dMoney = Math.floor(0.12322 * 100);
+		System.out.println(BigDecimal.valueOf(dMoney).divide(BigDecimal.valueOf(100)));
 	}
 
 	public String getMsg() {

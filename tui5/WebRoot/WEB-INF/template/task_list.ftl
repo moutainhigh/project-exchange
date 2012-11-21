@@ -14,9 +14,9 @@
 		var tpinyin = '${typepinyin}';
 		function sort(s){
 			if(tpinyin == '')
-				self.location.href = '/tasklist.html?sort=money';
+				self.location.href = '/tasklist.html?sort=' + s;
 			else
-				self.location.href = '/tasklist_'+tpinyin+'.html?sort=money';
+				self.location.href = '/tasklist_'+tpinyin+'.html?sort=' + s;
 		}
 	</script>
 </head>
@@ -42,23 +42,27 @@
 	    <div class="zw_leibie2 zw_leibie_zhiwei">
 	    	<h2 class="clearfix">
 	        	<span>任务列表</span>
-	            <a href="/tasklist.html"<#if !sort?exists> class="now_Aaa"</#if>>最新任务</a>
-	            <a href="javascript:sort('money');"<#if !sort?exists> class="now_Aaa"</#if>><img src="/img/arrow2.gif"/>按金额排序</a>
+	            <a href="javascript:sort('');"<#if !sort?exists> class="now_Aaa"</#if>>最新任务</a>
+	            <a href="javascript:sort('money');"<#if sort == 'money'> class="now_Aaa"</#if>><img src="/img/arrow2.gif"/>按金额排序</a>
+	            <a href="javascript:sort('gaojianPrice');"<#if sort == 'gaojianPrice'> class="now_Aaa"</#if>><img src="/img/arrow2.gif"/>按单稿金额排序</a>
+	            <a href="javascript:sort('gaojianMount');"<#if sort == 'gaojianMount'> class="now_Aaa"</#if>><img src="/img/arrow2.gif"/>按稿件数排序</a>
+	            <a href="javascript:sort('endDate');"<#if sort == 'endDate'> class="now_Aaa"</#if>><img src="/img/arrow2.gif"/>按剩余时间排序</a>
 	        </h2>
 	        <div class="task_list">
 				<ul class="title2">
 				  <li class="li1">编号ID</li>
 				  <li class="li2">任务标题</li>
+				  <li class="li3">单稿价格</li>
 				  <li class="li5">金额</li>
 				  <li class="li4">需要稿件</li>
 				  <li class="li8">已合格稿件</li>
 				  <li class="li6">结束时间</li>
-				  <li class="line2"></li>
 				</ul>
 				<#list pageBean.resultList as t>
 				<ul class="ul_list" onmouseout="this.className='ul_list';$(this).find('.plusTask').hide()" onmouseover="this.className='ul_over';$(this).find('.plusTask').show()">
 					<li class="li1">${t.id}</li>
 				    <li class="li2"><a href="/task_${t.id}.html">${t.title}</a>&nbsp;&nbsp;<span class="plusTask none"><a target="_blank" href="/member_publish.do">发布类似任务</a></span></li>
+				    <li class="li3"><#if (t.gaojianPrice)?exists>${t.gaojianPrice?string.currency}</#if></li>
 					<li class="li5">${t.money?string.currency}</li>
 					<li class="li4">${t.gaojianMount}</li>
 					<li class="li8">${t.passGaojian}</li>

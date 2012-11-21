@@ -12,17 +12,18 @@
 							<div class="d_cont3">
 								<ul class="d3_tit">赏金分配</ul>
 								<ul class="d3_cont">
-									<li>5-50 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;粉丝 <span>0.1</span> 元</li>
-									<li>51-100 &nbsp;&nbsp;&nbsp;&nbsp;粉丝 <span>0.1</span> 元</li>
-									<li style="border:0;">101-200 &nbsp;&nbsp;&nbsp;粉丝 <span>0.2</span> 元</li>
-									<li>201-500 &nbsp;&nbsp;&nbsp;粉丝 <span>0.3</span> 元</li>
-									<li>501-1000 &nbsp;&nbsp;粉丝 <span>0.5</span> 元</li>
-									<li style="border:0;">1001-1500 &nbsp;粉丝 <span>0.8</span> 元</li>
-									<li>1501-2000 &nbsp;粉丝 <span>1</span> 元</li>
-									<li>2001-2500 &nbsp;粉丝 <span>1.5</span> 元</li>
-									<li style="border:0;">2501-3000 &nbsp;粉丝 <span>1.8</span> 元</li>
-									<li>3001-3500 &nbsp;粉丝 <span>2</span> 元</li>
-									<li>3500以上 &nbsp;&nbsp;粉丝 <span>2.5</span> 元</li>
+									<li>5-50 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;粉丝 <span>${t.fs1}</span> 元</li>
+									<li>51-100 &nbsp;&nbsp;&nbsp;&nbsp;粉丝 <span>${t.fs2}</span> 元</li>
+									<li style="border:0;">101-200 &nbsp;&nbsp;&nbsp;粉丝 <span>${t.fs3}</span> 元</li>
+									<li>201-500 &nbsp;&nbsp;&nbsp;粉丝 <span>${t.fs4}</span> 元</li>
+									<li>501-1000 &nbsp;&nbsp;粉丝 <span>${t.fs5}</span> 元</li>
+									<li style="border:0;">1001-1500 &nbsp;粉丝 <span>${t.fs6}</span> 元</li>
+									<li>1501-2000 &nbsp;粉丝 <span>${t.fs7}</span> 元</li>
+									<li>2001-2500 &nbsp;粉丝 <span>${t.fs8}</span> 元</li>
+									<li style="border:0;">2501-3000 &nbsp;粉丝 <span>${t.fs9}</span> 元</li>
+									<li>3001-3500 &nbsp;粉丝 <span>${t.fs10}</span> 元</li>
+									<li>3501-5000 &nbsp;&nbsp;粉丝 <span>${t.fs11}</span> 元</li>
+									<li>5001以上 &nbsp;&nbsp;粉丝 <span>${t.fs12}</span> 元</li>
 								</ul>
 							</div>
 							</li>
