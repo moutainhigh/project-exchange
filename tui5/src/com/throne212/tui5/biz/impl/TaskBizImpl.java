@@ -1,19 +1,18 @@
 package com.throne212.tui5.biz.impl;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.throne212.tui5.biz.ScoreFinanceBiz;
 import com.throne212.tui5.biz.TaskBiz;
 import com.throne212.tui5.common.AppException;
 import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.dao.BaseDao;
 import com.throne212.tui5.dao.TaskDao;
-import com.throne212.tui5.domain.Finance;
 import com.throne212.tui5.domain.Gaojian;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.Type;
@@ -26,6 +25,8 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 	private BaseDao baseDao;
 	@Autowired
 	private TaskDao taskDao;
+	@Autowired
+	private ScoreFinanceBiz sfBiz;
 
 	public Task publishTask(Task task) {
 		User user = task.getPublisher();
@@ -37,14 +38,10 @@ public class TaskBizImpl extends BaseBizImpl implements TaskBiz {
 		user.setUserAccount(newMoney);
 		baseDao.saveOrUpdate(user);
 		baseDao.saveOrUpdate(task);
-		//财务记录
-		Finance f = new Finance();
-		f.setContent("发布任务，扣除金额：" + task.getMoney());
-		f.setMoney(task.getMoney());
-		f.setType(Const.RECORD_TYPE_0);
-		f.setUser(user);
-		f.setTime(new Date());
-		this.saveOrUpdateEntity(f);
+		// 积分记录
+		sfBiz.addScore("发布任务，奖励积分", task.getMoney().intValue(), Const.RECORD_TYPE_1, user);
+		// 加入记录
+		sfBiz.addFinance("发布任务，扣除金额：" + task.getMoney(), task.getMoney(), Const.RECORD_TYPE_0, user);
 		
 		return task;
 	}

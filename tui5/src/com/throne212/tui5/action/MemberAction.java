@@ -23,7 +23,6 @@ import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.PageBean;
 import com.throne212.tui5.common.Util;
 import com.throne212.tui5.domain.Alliance;
-import com.throne212.tui5.domain.Finance;
 import com.throne212.tui5.domain.Gaojian;
 import com.throne212.tui5.domain.MoneyRecord;
 import com.throne212.tui5.domain.Task;
@@ -94,13 +93,8 @@ public class MemberAction extends BaseAction {
 			baseBiz.saveOrUpdateEntity(user);
 			baseBiz.saveOrUpdateEntity(task);
 			//财务记录
-			Finance f = new Finance();
-			f.setContent("任务加价延期，扣除金额：" + tMoney);
-			f.setMoney(tMoney);
-			f.setType(Const.RECORD_TYPE_0);
-			f.setUser(user);
-			f.setTime(new Date());
-			baseBiz.saveOrUpdateEntity(f);
+			sfBiz.addFinance("任务加价延期，扣除金额：" + tMoney, tMoney, Const.RECORD_TYPE_0, user);
+			sfBiz.addScore("任务加价延期，奖励积分：" + tMoney, tMoney.intValue(), Const.RECORD_TYPE_1, user);
 		}
 		return taskList();
 	}

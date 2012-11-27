@@ -15,4 +15,8 @@ public interface ScoreFinanceBiz extends BaseBiz {
 	
 	public void applyMoney(BigDecimal money, User user);
 	
+	public void addScore(String content,int mount, int type, User user);
+	
+	public void addFinance(String content,BigDecimal money, int type, User user);
+	
 }

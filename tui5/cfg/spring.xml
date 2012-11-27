@@ -70,6 +70,7 @@
  			<map>
    				<entry key="timeout" value="5" />
    				<entry key="taskBiz" value-ref="taskBiz"></entry>
+   				<entry key="sfBiz" value-ref="sfBiz"></entry>
  			</map>
 		</property>
 	</bean>

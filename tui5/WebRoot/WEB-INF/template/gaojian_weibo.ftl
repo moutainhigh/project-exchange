@@ -89,6 +89,7 @@
 										<option value="10">3001-3500</option>
 										<option value="11">3501-5000</option>
 										<option value="12">5000以上</option>
+										<option value="100">任务的全部余额</option>
 									</select>
 								&nbsp;<a href="javascript:;" onclick="shenhe(${g.id},1,$('#fs_${g.id}').val())">审核通过</a>&nbsp;|&nbsp;<a href="javascript:;" onclick="shenhe(${g.id},2)">审核不通过</a></span>
 								</#if>

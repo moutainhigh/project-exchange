@@ -35,7 +35,9 @@
 								<#if (userObj.userIceAccount)?exists>
 								<p>冻结金额：${userObj.userIceAccount?string.currency}元</p>
 								</#if>
-								<p>当前积分：<span class="redTxt font14 fontBold">${userObj.userScore}</span></p>
+								<p>当前积分：<span class="redTxt font14 fontBold">${userObj.userScore}</span>
+								 等级：<span class="redTxt font14 fontBold">${userObj.title}</span>
+								</p>
 								<p><a target="_blank" title="我要充值" href="javascript:;"><img border="0" align="absmiddle" src="/img/member/cz_btn.gif"></a></p>
 							  </li>
 							</ul>

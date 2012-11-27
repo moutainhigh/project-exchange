@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.tui5.biz.BaseBiz;
+import com.throne212.tui5.biz.ScoreFinanceBiz;
 import com.throne212.tui5.common.Const;
 import com.throne212.tui5.common.EncryptUtil;
 import com.throne212.tui5.common.Util;
-import com.throne212.tui5.domain.Finance;
 import com.throne212.tui5.domain.Gaojian;
-import com.throne212.tui5.domain.Score;
 import com.throne212.tui5.domain.Task;
 import com.throne212.tui5.domain.User;
 
@@ -22,6 +21,9 @@ public class AjaxAction extends BaseAction {
 
 	@Autowired
 	private BaseBiz baseBiz;
+	
+	@Autowired
+	private ScoreFinanceBiz sfBiz;
 
 	protected String msg;
 
@@ -86,21 +88,9 @@ public class AjaxAction extends BaseAction {
 				logger.debug("try to add user: " + username);
 				baseBiz.saveOrUpdateEntity(user);
 				// 积分记录
-				Score s = new Score();
-				s.setContent("新用户注册奖励积分");
-				s.setMount(Const.USER_REG_SCORE);
-				s.setTime(new Date());
-				s.setType(Const.RECORD_TYPE_1);
-				s.setUser(user);
-				baseBiz.saveOrUpdateEntity(s);
+				sfBiz.addScore("新用户注册奖励积分", Const.USER_REG_SCORE, Const.RECORD_TYPE_1, user);
 				// 加入记录
-				Finance f = new Finance();
-				f.setContent("新用户注册奖励现金");
-				f.setMoney(BigDecimal.valueOf(Const.USER_REG_MONEY));
-				f.setTime(new Date());
-				f.setType(Const.RECORD_TYPE_1);
-				f.setUser(user);
-				baseBiz.saveOrUpdateEntity(f);
+				sfBiz.addFinance("新用户注册奖励现金", BigDecimal.valueOf(Const.USER_REG_MONEY), Const.RECORD_TYPE_1, user);
 				msg = "Y";
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -199,7 +189,11 @@ public class AjaxAction extends BaseAction {
 			}
 			task.setPassMoney(allMoney);
 			task.setPassGaojian(allSum);
-			if (fs != null && fs > 0) {
+			if(allMoney.doubleValue() > task.getMoney().doubleValue()){
+				msg = "你的任务已经没有剩余金额，请增加任务预算金额，然后再试";
+				return "msg";
+			}
+			if (fs != null && fs > 0 && fs<100) {//100为使用全部余额来支付该稿件
 				if (allMoney.add(task.getFs(fs)).doubleValue() > task.getMoney().doubleValue()) {
 					msg = "你的任务的剩余金额，不足以支付该稿件的酬劳了，请增加任务预算金额，然后再试";
 					return "msg";
@@ -220,7 +214,11 @@ public class AjaxAction extends BaseAction {
 			} else if (task.getGaojianPrice() != null && task.getGaojianPrice().doubleValue() > 0) {// 单人中标和几件
 				gj.setMoney(task.getGaojianPrice());
 			} else if (fs != null && fs > 0) {// 微博类型
-				gj.setMoney(gj.getTask().getFs(fs));
+				if(fs < 100){
+					gj.setMoney(gj.getTask().getFs(fs));
+				} else if(fs == 100){
+					gj.setMoney(task.getMoney().subtract(allMoney));
+				}
 			}
 
 			// 保存
@@ -241,7 +239,24 @@ public class AjaxAction extends BaseAction {
 						task.setStatus(Const.TASK_STATUS_COMPLETE);
 					}
 				}
+				if(fs != null && fs == 100){
+					msg += "\n已经收齐合格的稿件，任务结束";
+					task.setStatus(Const.TASK_STATUS_COMPLETE);
+				}
 				baseBiz.saveOrUpdateEntity(task);
+				if(task.getStatus().equals(Const.TASK_STATUS_COMPLETE)){
+					//奖励推荐人
+					User pub = task.getPublisher();
+					User alliUser = pub.getAllianceUser();//推荐人
+					if(alliUser != null){
+						double m = task.getMoney().multiply(Const.ALLIANCE_PERCENTAGE).doubleValue();
+						int tmpM = (int) (m * 100);
+						m = tmpM / 100.0;
+						alliUser.setUserAccount(alliUser.getUserAccount().add(BigDecimal.valueOf(m)));
+						sfBiz.addFinance("推客联盟推荐收入", BigDecimal.valueOf(m), Const.RECORD_TYPE_1, alliUser);
+						sfBiz.addScore("推客联盟推荐收入积分", BigDecimal.valueOf(m).intValue(), Const.RECORD_TYPE_1, alliUser);
+					}
+				}
 
 				// 计算酬劳
 				User gjUser = baseBiz.getEntityById(User.class, gj.getUser().getUserNo());
@@ -250,14 +265,9 @@ public class AjaxAction extends BaseAction {
 				userAcct = BigDecimal.valueOf(dMoney).divide(BigDecimal.valueOf(100));
 				gjUser.setUserAccount(gjUser.getUserAccount().add(userAcct));
 				baseBiz.saveOrUpdateEntity(gjUser);
-				// 财务记录
-				Finance f = new Finance();
-				f.setContent("稿件通过，计入酬劳");
-				f.setMoney(userAcct);
-				f.setType(Const.RECORD_TYPE_1);
-				f.setUser(gj.getUser());
-				f.setTime(new Date());
-				baseBiz.saveOrUpdateEntity(f);
+				// 财务积分记录
+				sfBiz.addFinance("稿件通过，计入酬劳", userAcct, Const.RECORD_TYPE_1, gj.getUser());
+				sfBiz.addScore("稿件通过，奖励积分", userAcct.intValue(), Const.RECORD_TYPE_1, gj.getUser());
 			}
 			msg = "Y";
 		} catch (Exception e) {
@@ -351,6 +361,22 @@ public class AjaxAction extends BaseAction {
 
 	public void setFs(Integer fs) {
 		this.fs = fs;
+	}
+
+	public ScoreFinanceBiz getSfBiz() {
+		return sfBiz;
+	}
+
+	public void setSfBiz(ScoreFinanceBiz sfBiz) {
+		this.sfBiz = sfBiz;
+	}
+
+	public BaseBiz getBaseBiz() {
+		return baseBiz;
+	}
+
+	public void setBaseBiz(BaseBiz baseBiz) {
+		this.baseBiz = baseBiz;
 	}
 
 }

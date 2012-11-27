@@ -30,7 +30,7 @@ public class Const {
 	public static int FRONT_GAOJIAN_PAGE_SIZE = 30;
 	
 	//score
-	public static int USER_REG_SCORE = 20;
+	public static int USER_REG_SCORE = 100;
 	public static double USER_REG_MONEY = 1;
 	
 	//money,score,money_record type
@@ -48,5 +48,7 @@ public class Const {
 	
 	//推手收入提成比例
 	public static BigDecimal TUI_PERCENTAGE = BigDecimal.valueOf(0.8);//80%
+	//推荐人完成任务以后的提成比例
+	public static BigDecimal ALLIANCE_PERCENTAGE = BigDecimal.valueOf(0.15);//15%
 	
 }

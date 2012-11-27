@@ -39,13 +39,52 @@ public class User implements java.io.Serializable {
 	private String userFileName;// 头像
 	private String userIsvip;// 1为VIP，0不是
 	private String userAge;// 年龄
-	private String userPost;//邮政编码
-	
-	private String userSecret;//是否保密，1保密，0不保密
-	private String userCityId;//常住地区
-	private String userSign;//行签名
-	
-	private User allianceUser;//推客联盟的推荐人
+	private String userPost;// 邮政编码
+
+	private String userSecret;// 是否保密，1保密，0不保密
+	private String userCityId;// 常住地区
+	private String userSign;// 行签名
+
+	private User allianceUser;// 推客联盟的推荐人
+
+	public String getTitle() {
+		int s = 0;
+		if (userScore != null)
+			s = userScore;
+		if (0 <= s && s <= 10)
+			return "新兵";
+		else if (11 <= s && s <= 30 )
+			return "列兵";
+		else if (31 <= s && s <= 100 )
+			return "下士";
+		else if (101 <= s && s <= 200 )
+			return "中士";
+		else if (201 <= s && s <= 300)
+			return "上士";
+		else if (301 <= s && s <= 500 )
+			return "少尉";
+		else if (501 <= s && s <= 800 )
+			return "中尉";
+		else if (801 <= s && s <= 1500 )
+			return "上尉";
+		else if (1501 <= s && s <= 3000 )
+			return "少校";
+		else if (3001 <= s && s <= 6000 )
+			return "中校";
+		else if (6001 <= s && s <= 12000 )
+			return "上校";
+		else if (12001 <= s && s <= 25000 )
+			return "大校";
+		else if (25001 <= s && s <= 50000 )
+			return "少将";
+		else if (50001 <= s && s <= 100000 )
+			return "中将";
+		else if (100001 <= s && s <= 200000 )
+			return "上将";
+		else if (200001 <= s)
+			return "元帅";
+		return "";
+	}
 
 	public Integer getUserNo() {
 		return userNo;
