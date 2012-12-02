@@ -121,11 +121,11 @@ function images_update(){
 	    </c:if>
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	    menuArray[menuArray.length]="0,考评调查表填报,";
-	    menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2011";
-	    menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2011";
-	    menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2012";
-	    menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2012";
+	    //menuArray[menuArray.length]="0,考评调查表填报,";
+	    //menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2011";
+	    //menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2011";
+	    //menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2012";
+	    //menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2012";
 	    </c:if>
 	
 		menuArray[menuArray.length]="0,报表维护,";
@@ -142,26 +142,26 @@ function images_update(){
 	    </c:if>
 	    menuArray[menuArray.length]="1,贫困户类型统计,${appPath}stat_familyTypeList.action";
 	    
-	    menuArray[menuArray.length]="0,党建报表维护,";
+	    //menuArray[menuArray.length]="0,党建报表维护,";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
-	    menuArray[menuArray.length]="1,党建报表导出,${appPath}dang_report_export.action";
+	    //menuArray[menuArray.length]="1,党建报表导出,${appPath}dang_report_export.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">
-	    menuArray[menuArray.length]="1,党建工作统计,${appPath}dang_report_stat.action";
-	    menuArray[menuArray.length]="1,党建报表解锁,${appPath}dang_report_reportList.action";
+	    //menuArray[menuArray.length]="1,党建工作统计,${appPath}dang_report_stat.action";
+	    //menuArray[menuArray.length]="1,党建报表解锁,${appPath}dang_report_reportList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	    menuArray[menuArray.length]="1,党建报表填报,${appPath}dang_report_viewReport.action";
+	    //menuArray[menuArray.length]="1,党建报表填报,${appPath}dang_report_viewReport.action";
 	    </c:if>
 	    
-	    menuArray[menuArray.length]="0,民意调查表维护,";
+	    //menuArray[menuArray.length]="0,民意调查表维护,";
 	    <c:if test="${userObj.roleType=='超级管理员'}">
-	    menuArray[menuArray.length]="1,民意调查表统计,${appPath}people_summary.action";
-	    menuArray[menuArray.length]="1,民意调查表解锁,${appPath}people_lockPeopleList.action";
-	    menuArray[menuArray.length]="1,民意调查表设置,${appPath}people_peopleSetting.action";
+	    //menuArray[menuArray.length]="1,民意调查表统计,${appPath}people_summary.action";
+	    //menuArray[menuArray.length]="1,民意调查表解锁,${appPath}people_lockPeopleList.action";
+	    //menuArray[menuArray.length]="1,民意调查表设置,${appPath}people_peopleSetting.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	    menuArray[menuArray.length]="1,民意调查表填报,${appPath}people_peopleList.action";
+	    //menuArray[menuArray.length]="1,民意调查表填报,${appPath}people_peopleList.action";
 	    </c:if>
 	
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">

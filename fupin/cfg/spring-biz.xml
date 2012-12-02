@@ -88,7 +88,7 @@
 		<property name="peopleDao" ref="peopleDao"></property>
 	</bean>
 	
-	<!-- 定时器,11日，自动保存报表 -->
+	<!-- 定时器,11日，自动保存报表
 	<bean name="autoGenReport" class="org.springframework.scheduling.quartz.JobDetailBean">
   		<property name="jobClass" value="com.throne212.fupin.common.TimerBean" />
 		<property name="jobDataAsMap">
@@ -102,7 +102,7 @@
 	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean" lazy-init="false">
 	    <property name="jobDetail" ref="autoGenReport" />
 	    <property name="startDelay" value="1" />
-	    <property name="repeatInterval" value="86400000" /> <!-- 间隔一天 -->
+	    <property name="repeatInterval" value="86400000" /> 
 	</bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
     	<property name="triggers">
@@ -111,9 +111,9 @@
 	            <ref bean="simpleTrigger2" />
 	        </list>
 	    </property>
-	</bean>
+	</bean> -->
 	
-	<!-- 党建repot自动保存 -->
+	<!-- 党建repot自动保存
 	<bean name="autoGenReport2" class="org.springframework.scheduling.quartz.JobDetailBean">
   		<property name="jobClass" value="com.throne212.fupin.common.TimerBean2" />
 		<property name="jobDataAsMap">
@@ -127,7 +127,7 @@
 	<bean id="simpleTrigger2" class="org.springframework.scheduling.quartz.SimpleTriggerBean" lazy-init="false">
 	    <property name="jobDetail" ref="autoGenReport2" />
 	    <property name="startDelay" value="1" />
-	    <property name="repeatInterval" value="86400000" /> <!-- 间隔一天 -->
-	</bean>
+	    <property name="repeatInterval" value="86400000" />
+	</bean> -->
 	
 </beans>
