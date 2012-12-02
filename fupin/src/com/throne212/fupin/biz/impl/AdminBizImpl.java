@@ -108,7 +108,7 @@ public class AdminBizImpl extends BaseBizImpl implements AdminBiz {
 	}
 	
 	public List<Cun> getCunListByLike(String pinyin){
-		return baseDao.getAllLike(Cun.class, "pinyin", pinyin);
+		return baseDao.getAllLike(Cun.class, "name", pinyin);
 	}
 
 	public UserDao getUserDao() {

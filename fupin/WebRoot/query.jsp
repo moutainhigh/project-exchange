@@ -8,6 +8,8 @@
 		<style>
 body {
 	font-size: 12px;
+	padding: 0;
+	margin: 0;
 }
 </style>
 		<script type="text/javascript" src="${appPath}js/jquery.js"></script>

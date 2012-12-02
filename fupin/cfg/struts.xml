@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
@@ -17,12 +17,18 @@
     	<interceptors>
             <interceptor name="auth" class="com.throne212.fupin.filter.AccessInterceptor"/>
             <interceptor-stack name="authStack">
-            	<interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="auth" />
+                <interceptor-ref name="defaultStack"/>
+					<!--覆盖defultStack中的exception设置，启用它的日志功能-->
+					<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">info</param>
+				</interceptor-ref>
+				<interceptor-ref name="auth" />
             </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="authStack"/>
         <global-results>
+        	<result name="exception">/error/500.html</result>
 			<result name="login">/login.jsp</result>
 			<result name="excel" type="stream">  
                 <!-- 下载文件类型定义 -->  
@@ -37,6 +43,9 @@
             <result name="error">/html/error.jsp</result>
             <result name="show_pic">/upload/show.jsp</result>
 		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception"/>
+		</global-exception-mappings>
 		<!-- 登入 -->
 		<action name="baiyun">
 			<result name="success">/login.jsp</result>

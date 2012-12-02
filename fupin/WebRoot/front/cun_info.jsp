@@ -84,7 +84,7 @@ a.pp1:hover {
 	overflow: hidden;
 	border: 1px dashed #CCC;
 	width: 99%;
-	height: 170px;
+	height: 260px;
 	text-align:center;
 	background:#eee;
 	
@@ -100,7 +100,7 @@ a.pp1:hover {
 }
 
 #indemo {
-height: 160px;
+height: 240px;
 width: 10000%;
  zoom:1;
  margin-left:-5px;

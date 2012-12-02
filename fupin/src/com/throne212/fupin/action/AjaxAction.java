@@ -67,7 +67,7 @@ public class AjaxAction extends BaseAction {
 	public String getAllZhen() {
 		// 判断是不是div
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if ("Y".equals(user.getIsDiv())) {
+		if (user != null && "Y".equals(user.getIsDiv())) {
 			Area area = adminBiz.getEntityByUnique(Area.class, "name", "白云区");
 			parentId = area == null ? null : area.getId();
 		}
@@ -81,7 +81,7 @@ public class AjaxAction extends BaseAction {
 
 	public String getAllCun() {
 		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
-		if (user instanceof WorkTeam) {
+		if (user != null && user instanceof WorkTeam) {
 			if (parentId != null)
 				list = adminBiz.getEntitiesByTwoColumn(Cun.class, "zhen.id", parentId, "team.id", user.getId());
 			else
