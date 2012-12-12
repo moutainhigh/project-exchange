@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.throne212.fupin.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -1772,7 +1772,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:71.25pt'>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>（五）扶贫开发“双到”专项资金（三方共管账户累计到账资金，到账日期截止到2012年9月30日）实施使用进度<span
+  0pt'>（五）扶贫专项资金实施使用进度（三方共管账户累计到账资金，到账日期截止到2012年9月30日,含区属单位和国有企业按《实施意见》规定每村投入的50万“双到”帮扶资金）<span
   lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
@@ -2511,7 +2511,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:22.9pt'>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>（<span lang=EN-US>1</span>）参加免费农技和就业培训累计人数<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'>（<span lang=EN-US>1</span>）参加免费农技和就业培训人数<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
   solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-bottom-alt:
