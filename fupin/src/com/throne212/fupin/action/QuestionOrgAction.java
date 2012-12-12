@@ -47,6 +47,8 @@ public class QuestionOrgAction extends BaseAction {
 			q1.setYear(year);
 			questionBiz.saveOrUpdateEntity(q1);
 		}
+		if(year == 2012)
+			return "edit1_2012";
 		return "edit1";
 	}
 
@@ -60,14 +62,17 @@ public class QuestionOrgAction extends BaseAction {
 
 			boolean pass = true;
 			try {
-				validateQ1();
+				if(year != null && year == 2012)
+					validateQ1_2012();
+				else
+					validateQ1();
 			} catch (Exception e) {
 				this.setMsg(e.getMessage());
 				pass = false;
 			}
 
 			Question1 q = questionBiz.getEntityById(Question1.class, q1.getId());
-			for (int i = 1; i <= 100; i++) {
+			for (int i = 1; i <= 104; i++) {
 				q.setItem(i, q1.getItem(i) == null ? 0 : q1.getItem(i));
 			}
 			q.setWriter(q1.getWriter());
@@ -79,6 +84,8 @@ public class QuestionOrgAction extends BaseAction {
 			questionBiz.saveOrUpdateEntity(q);
 			q1 = q;
 		}
+		if(year == 2012)
+			return "edit1_2012";
 		return "edit1";
 	}
 
@@ -159,6 +166,88 @@ public class QuestionOrgAction extends BaseAction {
 		}
 	}
 	
+	//2012的新规则
+	private void validateQ1_2012() throws Exception {
+		// 校验
+		// 通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数
+		if (q1.getItem15() > q1.getItem14() || q1.getItem16() > q1.getItem14() || q1.getItem17() > q1.getItem14() || q1.getItem18() > q1.getItem14() || q1.getItem19() > q1.getItem14()
+				|| q1.getItem20() > q1.getItem14()) {
+			throw new RuntimeException("通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数");
+		}
+		//长效发展产业项目的子项目个数加总数目不一致
+		if (q1.getItem22() != (q1.getItem23() + q1.getItem24() + q1.getItem25() + q1.getItem26())) {
+			throw new RuntimeException("长效发展产业项目的子项目个数加总数目不一致");
+		}
+		// 帮扶资金总量
+		if (q1.getItem30() != (q1.getItem31() + q1.getItem32() + q1.getItem33() + q1.getItem34() + q1.getItem35() + q1.getItem36() + q1.getItem37())) {
+			throw new RuntimeException("帮扶资金总量与分量的总和不符");
+		}
+		// 扶贫专项资金,支出资金数额≤到账资金数额,到账资金支出率=支出资金数额÷到账资金数额
+		if (q1.getItem39() > q1.getItem38()) {
+			throw new RuntimeException("扶贫专项资金,支出资金数额≤到账资金数额");
+		}
+		double rate = (q1.getItem39() / q1.getItem38()) * 100;
+		if (((int) rate) != q1.getItem40().intValue()) {
+			throw new RuntimeException("扶贫专项资金,到账资金支出率=支出资金数额÷到账资金数额");
+		}
+
+		// 贫困户总户/人数
+		if (q1.getItem44() + q1.getItem46() != q1.getItem41()) {
+			throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
+		}
+		if (q1.getItem45() + q1.getItem48() != q1.getItem42()) {
+			throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
+		}
+
+		// 当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数
+		rate = (q1.getItem49() / q1.getItem44()) * 100;
+		if (((int) rate) != q1.getItem50().intValue()) {
+			throw new RuntimeException("当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数");
+		}
+
+		// 参加免费农技和就业培训累计人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
+		if (q1.getItem55() > q1.getItem53() - q1.getItem54()) {
+			throw new RuntimeException("参加免费农技和就业培训累计人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
+		}
+		// 贫困户劳动力培训率=参加免费农技和就业培训累计人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
+		rate = (q1.getItem55() / (q1.getItem53() - q1.getItem54())) * 100;
+		if (((int) rate) != q1.getItem56().intValue()) {
+			throw new RuntimeException("贫困户劳动力培训率=参加免费农技和就业培训累计人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）");
+		}
+
+		// 务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
+		if (q1.getItem58() > q1.getItem53() - q1.getItem54()) {
+			throw new RuntimeException("务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
+		}
+		// 贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
+		rate = (q1.getItem57() / (q1.getItem53() - q1.getItem54())) * 100;
+		if (((int) rate) != q1.getItem58().intValue()) {
+			throw new RuntimeException("贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）");
+		}
+
+		// 贫困户新农合参保率=当年贫困户参加新型农村合作医疗人数÷贫困户总人数
+		rate = (q1.getItem65() / q1.getItem42()) * 100;
+		if (((int) rate) != q1.getItem66().intValue()) {
+			throw new RuntimeException("贫困户新农合参保率=当年贫困户参加新型农村合作医疗人数÷贫困户总人数");
+		}
+
+		// 贫困户60岁及以上的人新农保参保率=60岁及以上参加新农保人数÷贫困户60岁及以上人数
+		rate = (q1.getItem68() / q1.getItem43()) * 100;
+		if (((int) rate) != q1.getItem69().intValue()) {
+			throw new RuntimeException("贫困户60岁及以上的人新农保参保率=60岁及以上参加新农保人数÷贫困户60岁及以上人数");
+		}
+
+		// 设施项目个数=文化室+卫生站+公厕+垃圾收集设施+室外公共文体场所+村容村貌整治改造+其他
+		if (q1.getItem86() != (q1.getItem87() + q1.getItem88() + q1.getItem89() + q1.getItem90() + q1.getItem91() + q1.getItem92() + q1.getItem93())) {
+			throw new RuntimeException("基础建设设施项目个数=文化室+卫生站+公厕+垃圾收集设施+室外公共文体场所+村容村貌整治改造+其他");
+		}
+
+		// 惠民活动=文娱体育+送医送药+科技下乡+慰问贫困户+其他
+		if (q1.getItem95() != (q1.getItem96() + q1.getItem97() + q1.getItem98() + q1.getItem99() + q1.getItem100())) {
+			throw new RuntimeException("惠民活动=文娱体育+送医送药+科技下乡+慰问贫困户+其他");
+		}
+	}
+	
 	public String unlock1(){
 		String[] id = (String[]) ActionContext.getContext().getParameters().get("id");
 		if(id != null && id.length > 0){
@@ -170,6 +259,8 @@ public class QuestionOrgAction extends BaseAction {
 				this.setSucc("Y");
 				this.setMsg("申请解锁成功，等待管理员回复");
 				this.q1 = q1;
+				if(q1.getYear()!=null && q1.getYear() == 2012)
+					return "edit1_2012";
 			}
 		}
 		return "edit1";

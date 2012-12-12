@@ -251,7 +251,7 @@ rt
  <col width=150 style='mso-width-source:userset;mso-width-alt:2560;width:120pt'>
  <tr height=74 style='mso-height-source:userset;height:55.5pt'>
   <td colspan=4 height=74 class=xl65 style='height:55.5pt;'>广州市农村扶贫开发“规划到户责任到人”工作<br>
-    2011年度调查表（二）<span style='mso-spacerun:yes'>&nbsp;</span><ruby><font
+    ${q2.year }年度调查表（二）<span style='mso-spacerun:yes'>&nbsp;</span><ruby><font
   class="font7"><rt class=font7></rt></font></ruby></td>
  </tr>
  <tr height=57 style='height:42.75pt'>

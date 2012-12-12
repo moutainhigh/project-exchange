@@ -114,6 +114,11 @@ public class Question extends MyEntity {
 	private Double item98;
 	private Double item99;
 	private Double item100;
+	private Double item101;
+	private Double item102;
+	private Double item103;
+	private Double item104;
+	private Double item105;
 	
 	public Question() {
 		super();
@@ -778,5 +783,45 @@ public class Question extends MyEntity {
 			return "调查表二";
 		}
 		return null;
+	}
+
+	public Double getItem101() {
+		return item101;
+	}
+
+	public void setItem101(Double item101) {
+		this.item101 = item101;
+	}
+
+	public Double getItem102() {
+		return item102;
+	}
+
+	public void setItem102(Double item102) {
+		this.item102 = item102;
+	}
+
+	public Double getItem103() {
+		return item103;
+	}
+
+	public void setItem103(Double item103) {
+		this.item103 = item103;
+	}
+
+	public Double getItem104() {
+		return item104;
+	}
+
+	public void setItem104(Double item104) {
+		this.item104 = item104;
+	}
+
+	public Double getItem105() {
+		return item105;
+	}
+
+	public void setItem105(Double item105) {
+		this.item105 = item105;
 	}
 }

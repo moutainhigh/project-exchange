@@ -123,6 +123,11 @@
 			<property name="item98"></property>
 			<property name="item99"></property>
 			<property name="item100"></property>
+			<property name="item101"></property>
+			<property name="item102"></property>
+			<property name="item103"></property>
+			<property name="item104"></property>
+			<property name="item105"></property>
 		</join>
 	</class>
 </hibernate-mapping>

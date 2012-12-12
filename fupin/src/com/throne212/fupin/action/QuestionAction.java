@@ -81,6 +81,8 @@ public class QuestionAction extends BaseAction {
 			q1 = questionBiz.getEntityById(Question1.class, q1.getId());
 		}
 		isShow = "Y";
+		if(q1.getYear() == 2012)
+			return "show1_2012";
 		return "show1";
 	}
 
@@ -94,13 +96,15 @@ public class QuestionAction extends BaseAction {
 		if (q1 != null && q1.getId() != null) {
 			q1 = questionBiz.getEntityById(Question1.class, q1.getId());
 		}
+		if(q1.getYear() == 2012)
+			return "edit1_2012";
 		return "edit1";
 	}
 
 	public String save1() {
 		if (q1 != null && q1.getId() != null) {
 			Question1 q = questionBiz.getEntityById(Question1.class, q1.getId());
-			for (int i = 1; i <= 100; i++) {
+			for (int i = 1; i <= 104; i++) {
 				q.setItem(i, q1.getItem(i) == null ? 0 : q1.getItem(i));
 			}
 			questionBiz.saveOrUpdateEntity(q);
