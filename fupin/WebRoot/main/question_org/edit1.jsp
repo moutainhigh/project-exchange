@@ -233,7 +233,7 @@ div.Section1
 				</tbody>
 			</table>		
 			<c:if test="${not empty msg }">
-			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center;">
+			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center; background-color: yellow;">
 			${msg }
 			</div>
 			</c:if>

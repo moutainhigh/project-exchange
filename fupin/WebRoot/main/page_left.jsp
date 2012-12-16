@@ -121,11 +121,11 @@ function images_update(){
 	    </c:if>
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
-	    //menuArray[menuArray.length]="0,考评调查表填报,";
-	    //menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2011";
-	    //menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2011";
-	    //menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2012";
-	    //menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2012";
+	    menuArray[menuArray.length]="0,考评调查表填报,";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2011";
+	    menuArray[menuArray.length]="1,2011年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2011";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2012";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2012";
 	    </c:if>
 	
 		menuArray[menuArray.length]="0,报表维护,";

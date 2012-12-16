@@ -4501,6 +4501,7 @@ div.Section1
 		<div style="text-align: center;">
 		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
 		<input type="button" onclick="exportQ1('${q1.id}');" class="button" value="导出" name="导出">
+		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">
 		</div>
 	</body>
 </html>

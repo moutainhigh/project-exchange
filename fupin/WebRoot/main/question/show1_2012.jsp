@@ -1453,7 +1453,7 @@ div.Section1
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
   mso-font-kerning:0pt'>4.</span><span style='font-size:12.0pt;font-family:
-  宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>项目具有成效辐射作用，带动周边地区经济发展和劳动力就业：（<span
+  宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>固定资产能保值增值或成效能辐射周边地区：（<span
   lang=EN-US>1</span>）是（<span lang=EN-US>2</span>）否<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
@@ -1665,7 +1665,7 @@ div.Section1
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
   mso-font-kerning:0pt'>5.</span><span style='font-size:12.0pt;font-family:
-  宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>市级职能部门（危房改造、村道、路灯、二次改水、污水处理、农田鱼塘标准化建设、新农村建设等）财政资金<span
+  宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>各级职能部门（危房改造、村道、路灯、二次改水、污水处理、农田鱼塘标准化建设、新农村建设等）财政资金<span
   lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
@@ -1772,7 +1772,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:71.25pt'>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>（五）扶贫开发“双到”专项资金（三方共管账户累计到账资金，到账日期截止到2012年9月30日）实施使用进度<span
+  0pt'>（五）扶贫专项资金实施使用进度（三方共管账户累计到账资金，到账日期截止到2012年9月30日）<span
   lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
@@ -2511,7 +2511,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:22.9pt'>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'>（<span lang=EN-US>1</span>）参加免费农技和就业培训累计人数<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'>（<span lang=EN-US>1</span>）参加免费农技和就业培训人数<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
   solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-bottom-alt:
@@ -4593,10 +4593,44 @@ div.Section1
   <o:p></o:p></span></span></p>
   </td>
  </tr>
+ <tr style='mso-yfti-irow:123;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;border:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
+  style='font-size:12.0pt;font-family:黑体;mso-hansi-font-family:宋体;mso-bidi-font-family:
+  宋体;mso-font-kerning:0pt'>　<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:124;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
+  style='font-size:12.0pt;font-family:黑体;mso-hansi-font-family:宋体;mso-bidi-font-family:
+  宋体;mso-font-kerning:0pt'>说明：<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>1.表一适用于填写贫困村帮扶工作和帮扶成效。
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>2.数据统计截止至2012年12月31日。
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>3.需填写“（1）是（2）否”的项目，“是”填“1”，“否”填“2”。
+  </td>
+ </tr>
 </table>
 
 </div>
-		
+		<div style="text-align: center;">
+		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
+		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">
+		</div>
 </form>
 	</body>
 </html>

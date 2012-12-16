@@ -125,6 +125,13 @@ public class ReportAction extends BaseAction {
 				showZanCun = true;
 			}
 		}
+		if(r != null){
+			if(r.getLock()!=null && r.getLock().equals(1) ){
+				msg = "该报表已经提交，如需修改请点击申请解锁";
+			}else if(r.getLock()!=null && r.getLock().equals(0) ){
+				msg = "该报表已解锁为可填报状态，可以填报";
+			}
+		}
 
 		return "report_edit1";
 	}
@@ -217,6 +224,14 @@ public class ReportAction extends BaseAction {
 		maxMonth = GregorianCalendar.getInstance().get(Calendar.MONTH);
 		maxSeason = maxMonth % 3 == 0 ? maxMonth / 3 : maxMonth / 3 + 1;
 
+		if(r != null){
+			if(r.getLock()!=null && r.getLock().equals(1) ){
+				msg = "该报表已经提交，如需修改请点击申请解锁";
+			}else if(r.getLock()!=null && r.getLock().equals(0) ){
+				msg = "该报表已解锁为可填报状态，可以填报";
+			}
+		}
+		
 		return "report_edit2";
 	}
 

@@ -262,7 +262,7 @@ rt
 <form method="post" action="${appPath}questionOrg_save2.action" name="searchForm">
 <input type="hidden" name="q2.id" value="${q2.id }"/>
 			<c:if test="${not empty msg }">
-			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center;">
+			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center; background-color: yellow;">
 			${msg }
 			</div>
 			</c:if>
@@ -809,6 +809,44 @@ rt
   <td width=80 style='width:60pt'></td>
  </tr>
  <![endif]>
+ <c:if test="${q2.year==2012}">
+ <tr style='mso-yfti-irow:123;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;border:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
+  style='font-size:12.0pt;font-family:黑体;mso-hansi-font-family:宋体;mso-bidi-font-family:
+  宋体;mso-font-kerning:0pt'>　<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:124;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
+  style='font-size:12.0pt;font-family:黑体;mso-hansi-font-family:宋体;mso-bidi-font-family:
+  宋体;mso-font-kerning:0pt'>说明：<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>1.表二适用于填写贫困户帮扶工作和帮扶成效，一户贫困户对应填一张表。
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>2.数据统计截止至2012年12月31日。
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>3.“贫困户类型”和“住房结构类型”填相应选项的数字“1、2、3、4”。	
+  </td>
+ </tr>
+  <tr style='mso-yfti-irow:126;height:18.75pt'>
+  <td width=741 colspan=4 style='width:556.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:18.75pt'>4.需填写“（1）是（2）否”的项目，“是”填“1”，“否”填“2”。	
+  </td>
+ </tr>
+ </c:if>
 </table>
 
 		

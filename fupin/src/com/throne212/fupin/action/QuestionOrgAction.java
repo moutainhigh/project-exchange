@@ -47,6 +47,11 @@ public class QuestionOrgAction extends BaseAction {
 			q1.setYear(year);
 			questionBiz.saveOrUpdateEntity(q1);
 		}
+		if(q1.getStatus()!=null && q1.getStatus().equals(1) ){
+			msg = "该报表已经提交，如需修改请点击申请解锁";
+		}else if(q1.getStatus()!=null && q1.getStatus().equals(2) ){
+			msg = "该报表已解锁，可以填报";
+		}
 		if(year == 2012)
 			return "edit1_2012";
 		return "edit1";
@@ -333,6 +338,11 @@ public class QuestionOrgAction extends BaseAction {
 				questionBiz.saveOrUpdateEntity(q);
 			}
 			q2 = q;
+		}
+		if(q2.getStatus()!=null && q2.getStatus().equals(1) ){
+			msg = "该报表已经提交，如需修改请点击申请解锁";
+		}else if(q2.getStatus()!=null && q2.getStatus().equals(2) ){
+			msg = "该报表已解锁，可以填报";
 		}
 		return "edit2";
 	}
