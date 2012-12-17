@@ -854,6 +854,9 @@ rt
 		<c:if test="${empty q2.status || q2.status == 0}">
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		</c:if>
+		<c:if test="${year == 2012}">
+		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">
+		</c:if>
 		</div>
 	</form>
 	</body>

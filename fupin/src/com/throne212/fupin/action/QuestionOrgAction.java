@@ -181,27 +181,27 @@ public class QuestionOrgAction extends BaseAction {
 		}
 		//长效发展产业项目的子项目个数加总数目不一致
 		if (q1.getItem22() != (q1.getItem23() + q1.getItem24() + q1.getItem25() + q1.getItem26())) {
-			throw new RuntimeException("长效发展产业项目的子项目个数加总数目不一致");
+			throw new RuntimeException("长效发展产业项目（保证贫困村5年以上每年有稳定经济收入）个数=以入股分红、逐年返利且不参与经营的+由社会企业捐赠的+投入资金参加区或镇统筹项目的+帮扶单位通过自身力量、引入企业、成立合作社等形式，形成固定资产或运作经济实体的");
 		}
 		// 帮扶资金总量
 		if (q1.getItem30() != (q1.getItem31() + q1.getItem32() + q1.getItem33() + q1.getItem34() + q1.getItem35() + q1.getItem36() + q1.getItem37())) {
-			throw new RuntimeException("帮扶资金总量与分量的总和不符");
+			throw new RuntimeException("帮扶资金总量=帮扶单位自筹资金+市农村扶贫开发“双到”专项资金+帮扶区财政“双到”资金+其他财政资金+各级职能部门（危房改造、村道、路灯、二次改水、污水处理、农田鱼塘标准化建设、新农村建设等）财政资金+社会捐赠+社会引资");
 		}
 		// 扶贫专项资金,支出资金数额≤到账资金数额,到账资金支出率=支出资金数额÷到账资金数额
 		if (q1.getItem39() > q1.getItem38()) {
-			throw new RuntimeException("扶贫专项资金,支出资金数额≤到账资金数额");
+			throw new RuntimeException("扶贫专项资金实施使用进度,支出资金数额≤到账资金数额");
 		}
 		double rate = (q1.getItem39() / q1.getItem38()) * 100;
 		if (((int) rate) != q1.getItem40().intValue()) {
-			throw new RuntimeException("扶贫专项资金,到账资金支出率=支出资金数额÷到账资金数额");
+			throw new RuntimeException("扶贫专项资金实施使用进度,到账资金支出率=支出资金数额÷到账资金数额");
 		}
 
 		// 贫困户总户/人数
 		if (q1.getItem44() + q1.getItem46() != q1.getItem41()) {
 			throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
 		}
-		if (q1.getItem45() + q1.getItem48() != q1.getItem42()) {
-			throw new RuntimeException("贫困户总户数=有劳动能力的贫困户户数+无劳动能力的贫困户户数");
+		if (q1.getItem45() + q1.getItem47() != q1.getItem42()) {
+			throw new RuntimeException("贫困户总人数=有劳动能力的贫困户人数+无劳动能力的贫困户人数");
 		}
 
 		// 当年有劳动能力的贫困户脱贫率=当年有劳动能力的贫困户实现稳定脱贫户数÷有劳动能力的贫困户户数
@@ -221,7 +221,7 @@ public class QuestionOrgAction extends BaseAction {
 		}
 
 		// 务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数
-		if (q1.getItem58() > q1.getItem53() - q1.getItem54()) {
+		if (q1.getItem57() > q1.getItem53() - q1.getItem54()) {
 			throw new RuntimeException("务农、务工人数≤贫困户劳动力人数-因长期患病和残疾不能参加劳动人数");
 		}
 		// 贫困户劳动力就业率=务农、务工人数÷（贫困户劳动力人数-因长期患病和残疾不能参加劳动人数）
@@ -409,6 +409,11 @@ public class QuestionOrgAction extends BaseAction {
 		//其他稳定性收入=财产性收入+退休养老金
 		if(q2.getItem10() != (q2.getItem11()+q2.getItem16())){
 			throw new RuntimeException("其他稳定性收入=财产性收入+退休养老金");
+		}
+		
+		//财产性收入=利息股息分红收入+出租物业收入+土地转让收入+其他财产收入
+		if(q2.getItem11() != (q2.getItem12()+q2.getItem13()+q2.getItem14()+q2.getItem15())){
+			throw new RuntimeException("财产性收入=利息股息分红收入+出租物业收入+土地转让收入+其他财产收入");
 		}
 		
 		//转移性收入=亲友赠送+慰问金+抚恤救灾救济金+低保金+农业生产补贴和临时补贴+其他转移性收入
