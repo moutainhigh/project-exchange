@@ -122,9 +122,11 @@ public class ReportAction extends BaseAction {
 			Calendar now = Calendar.getInstance();
 			int day = now.get(Calendar.DAY_OF_MONTH);
 			if(day >= 1 && day <= 10){
-				showZanCun = true;
+				//showZanCun = true;
 			}
 		}
+		showZanCun = true;
+		
 		if(r != null){
 			if(r.getLock()!=null && r.getLock().equals(1) ){
 				msg = "该报表已经提交，如需修改请点击申请解锁";

@@ -77,6 +77,9 @@
 							说明
 						</td>
 						<td width="" class="tables_headercell">
+							帐号状态
+						</td>
+						<td width="" class="tables_headercell">
 							操作
 						</td>
 					</tr>
@@ -100,15 +103,21 @@
 								&nbsp; ${f.remark}
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
+								&nbsp; 
+								<c:if test="${f.segment5=='1'}">已停用</c:if>
+								<c:if test="${f.segment5!='1'}">正常</c:if>
+							</td>
+							<td height="25" align="center" class="tables_contentcell">
 								<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 								<a href="#" onclick="winOpen('${appPath}manager_viewManager.action?org.id=${f.id}',450,220);">修改</a>
 								</c:if>
 								<a href="${appPath}login.action?username=${f.loginName}&password=${f.password}&needRand=N" target="_top">登录</a>
+								<a href="${appPath}manager_stopResume.action?org.id=${f.id}">停用/恢复</a>
 							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td height="25" align="right" class="tables_contentcell" colspan="6">
+						<td height="25" align="right" class="tables_contentcell" colspan="7">
 							<jsp:include page="../../pager.jsp"></jsp:include>
 						</td>
 					</tr>

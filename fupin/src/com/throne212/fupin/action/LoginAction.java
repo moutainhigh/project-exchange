@@ -57,6 +57,11 @@ public class LoginAction extends BaseAction {
 			this.setMsg("登录失败，请检查用户名和密码");
 			return "fail";
 		}
+		String segment5 = user.getSegment5();
+		if("1".equals(segment5)){
+			this.setMsg("您的帐号被停用了，暂时无法使用，请联系管理员");
+			return "fail";
+		}
 		User oldUser = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
 		ActionContext.getContext().getSession().put(WebConstants.SESS_USER_OBJ, user);
 		if (user instanceof Admin) {

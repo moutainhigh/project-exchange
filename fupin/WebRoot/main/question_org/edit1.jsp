@@ -11,13 +11,16 @@
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
-			function submitForm(){
+			function submitForm(tmp){
 				var inputArr = $('input[type="text"]');
 				for(var i=0; i<inputArr.length; i++){
 					if($(inputArr[i]).val().replace(/\s/ig,'') == ''){
 						alert('不能留空，请检查');
 						return false;
 					}
+				}
+				if(tmp && tmp != ''){
+					$('#tmp').val('Y');
 				}
 				document.forms[0].submit();
 			}
@@ -218,6 +221,7 @@ div.Section1
 <form method="post" action="${appPath}questionOrg_save1.action" name="searchForm">
 <input type="hidden" name="q1.id" value="${q1.id }"/>
 <input type="hidden" name="year" value="${year }"/>
+<input type="hidden" name="tmp" id="tmp" value=""/>
 		<c:set var="q" value="${q1}"></c:set>
 
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
@@ -4540,6 +4544,7 @@ div.Section1
 		
 		<div style="text-align: center;">
 		<c:if test="${empty q1.status || q1.status == 0}">
+		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		<a href="#" onclick="winOpen('${appPath}main/question_org/leader_edit.jsp',450,250);"></a>
 		<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload1.jsp?year=${year}',500,300);"/>

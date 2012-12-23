@@ -9,13 +9,16 @@
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
-			function submitForm(){
+			function submitForm(tmp){
 				var inputArr = $('input[type="text"]');
 				for(var i=0; i<inputArr.length; i++){
 					if($(inputArr[i]).val().replace(/\s/ig,'') == ''){
 						alert('不能留空，请检查');
 						return false;
 					}
+				}
+				if(tmp && tmp != ''){
+					$('#tmp').val('Y');
 				}
 				document.forms[0].submit();
 			}
@@ -261,6 +264,7 @@ rt
 <body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
 <form method="post" action="${appPath}questionOrg_save2.action" name="searchForm">
 <input type="hidden" name="q2.id" value="${q2.id }"/>
+<input type="hidden" name="tmp" id="tmp" value=""/>
 			<c:if test="${not empty msg }">
 			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center; background-color: yellow;">
 			${msg }
@@ -852,6 +856,7 @@ rt
 		
 		<div style="text-align: center;">
 		<c:if test="${empty q2.status || q2.status == 0}">
+		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		</c:if>
 		<c:if test="${year == 2012}">

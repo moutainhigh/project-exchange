@@ -109,6 +109,25 @@ public class ManagerAction extends BaseAction {
 		this.setMsg("指定扶贫单位成功");
 		return "manager_cun_mapping"; 
 	}
+	
+	public String stopResume(){
+		if(org != null && org.getId() != null){
+			Org o = orgBiz.getEntityById(Org.class, org.getId());
+			if(o != null){
+				String segment5 = o.getSegment5();
+				if(Util.isEmpty(segment5) || segment5.equals("0")){
+					o.setSegment5("1");//1代表停用了
+					orgBiz.saveOrUpdateEntity(o);
+					this.setMsg("停用帐号成功");
+				}else{
+					o.setSegment5("0");//0代表恢复回来了
+					orgBiz.saveOrUpdateEntity(o);
+					this.setMsg("恢复帐号成功");
+				}
+			}
+		}
+		return managerList();
+	}
 
 	public PageBean getPageBean() {
 		return pageBean;

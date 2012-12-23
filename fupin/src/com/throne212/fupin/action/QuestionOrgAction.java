@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
@@ -82,9 +84,13 @@ public class QuestionOrgAction extends BaseAction {
 			}
 			q.setWriter(q1.getWriter());
 			q.setDate(q1.getDate());
-			if(pass){
+			
+			String tmp = ServletActionContext.getRequest().getParameter("tmp");
+			if(pass && !"Y".equals(tmp)){
 				q.setStatus(1);
 				this.setMsg("保存成功");
+			}else if(pass){
+				this.setMsg("暂存成功");
 			}
 			questionBiz.saveOrUpdateEntity(q);
 			q1 = q;
@@ -384,11 +390,17 @@ public class QuestionOrgAction extends BaseAction {
 			}
 			q.setWriter(q2.getWriter());
 			q.setDate(q2.getDate());
-			if(pass){
+			
+			String tmp = ServletActionContext.getRequest().getParameter("tmp");
+			if(pass && !"Y".equals(tmp)){
 				q.setStatus(1);
 				this.setMsg("保存成功");
 				this.setSucc("Y");
+			}else if(pass){
+				this.setMsg("暂存成功");
+				this.setSucc("Y");
 			}
+			
 			questionBiz.saveOrUpdateEntity(q);			
 		}
 		return edit2();
