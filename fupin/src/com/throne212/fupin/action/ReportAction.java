@@ -146,7 +146,7 @@ public class ReportAction extends BaseAction {
 			if (r.getYear() > year) {
 				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
 				return viewReport1();
-			} else if (r.getYear() == year && Integer.valueOf(time) >= month) {
+			} else if (r.getYear() == year && Integer.valueOf(time) > month) {
 				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
 				return viewReport1();
 			}
@@ -267,7 +267,7 @@ public class ReportAction extends BaseAction {
 			if (r.getYear() > year) {
 				this.setMsg("对不起，您只能选择之前的年份，年份数需小于等于" + year);
 				return viewReport2();
-			} else if (r.getYear() == year && Integer.valueOf(time) >= month) {
+			} else if (r.getYear() == year && Integer.valueOf(time) > month) {
 				this.setMsg("对不起，您只能选择之前的月份，月份数需小于" + month);
 				return viewReport2();
 			}

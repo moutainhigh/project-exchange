@@ -127,6 +127,19 @@ function images_update(){
 	    menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2012";
 	    menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}questionOrg_list2.action?year=2012";
 	    </c:if>
+	    
+	    
+	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
+	    menuArray[menuArray.length]="0,扶贫资金报表,";
+	    menuArray[menuArray.length]="1,双到资金,${appPath}zijin_list.action?type=1";
+	    menuArray[menuArray.length]="1,镇建设资金,${appPath}zijin_list.action?type=2";
+	    //menuArray[menuArray.length]="1,申请修改,${appPath}zijin_lockList.action";	    
+	    </c:if>
+	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
+	    menuArray[menuArray.length]="0,扶贫资金报表填报,";
+	    menuArray[menuArray.length]="1,双到资金,${appPath}zijin_edit.action?type=1";
+	    menuArray[menuArray.length]="1,镇建设资金,${appPath}zijin_edit.action?type=2";
+	    </c:if>
 	
 		menuArray[menuArray.length]="0,报表维护,";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">

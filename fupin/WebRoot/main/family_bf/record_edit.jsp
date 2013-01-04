@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${appPath}js/common.js" language="javascript"></script>
 		<script src="${appPath}js/jquery.datepick.js" language="javascript"></script>
 		<script src="${appPath}js/jquery.datepick-zh-CN.js" language="javascript"></script>
-		<script src="${appPath}js/jquery.autocomplete.js"></script>
+		<script src="${appPath}js/jquery.autocomplete2.js"></script>
 <script language="javascript">
 <jsp:include page="../../msg.jsp"></jsp:include>
 //获取干部
@@ -45,30 +45,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					});
 				}
 			}
-			//自动填充
-			$(function(){
-				$("#familyName").autocomplete('${appPath}ajax/queryFamilyByName?time='+new Date().getTime(), {
-					multiple: false,
-					minChars: 1,
-					parse: function(data) {
-						return $.map(data['list'], function(row) {
-							return {
-								data: row['name']+'('+row['id']+')',
-								value: row['name'],
-								result: row['name']
-							}
-						});
-					},
-					formatItem: function(item) {
-						return item;
-					}
-				}).result(function(event, item) {
-					//location.href = item.url;
-					var familyId = item.substring(item.lastIndexOf('(')+1,item.length-1);
-					$('#familyId').val(familyId);
-					selectFamily(familyId);
-				});			
-			});
+			function selectOneFamily(fId, fName){
+ 				$('#familyName').val(fName);
+ 				$('#familyId').val(fId);
+ 				selectFamily(fId); 				
+ 			}
 
  
  
@@ -89,12 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
     <td class="tables_contentcell">
     <input name="record.family.id" id="familyId" value="${record.family.id}" type="hidden"/>
-    <input id="familyName" value="${record.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <input id="familyName" value="${record.family.name}" onclick="window.open('${appPath}family_bf_selectFamily.action','','width=200,height=200,scrollbars= yes,modal=yes,resizable=no');"/>
+    <font color="#cc0033">在点击输入框或<a href="javascript:;" onclick="window.open('${appPath}family_bf_selectFamily.action','','width=200,height=200,scrollbars= yes,modal=yes,resizable=no');">这里</a>，在弹出的提示框中选择贫困户</font>
     </td>
   </tr>
-  
-  <tr>
     <td height="30" align="right" class="tables_leftcell">干部名称</td>
     <td class="tables_contentcell">
     <input type="text" msg="干部名称不能为空，或该贫困户还没有指定帮扶干部" id="leaderId" datatype="Require" size="20" value="" name="leaderId" readonly="true"><font color="#666666">系统自动提取，不可更改</font>

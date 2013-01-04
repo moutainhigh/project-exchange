@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
     "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.ui.templateDir" value="template" />
 	<constant name="struts.ui.templateSuffix" value="ftl" />
@@ -17,18 +17,12 @@
     	<interceptors>
             <interceptor name="auth" class="com.throne212.fupin.filter.AccessInterceptor"/>
             <interceptor-stack name="authStack">
-                <interceptor-ref name="defaultStack"/>
-					<!--覆盖defultStack中的exception设置，启用它的日志功能-->
-					<interceptor-ref name="exception">
-					<param name="logEnabled">true</param>
-					<param name="logLevel">info</param>
-				</interceptor-ref>
-				<interceptor-ref name="auth" />
+            	<interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="auth" />
             </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="authStack"/>
         <global-results>
-        	<result name="exception">/error/500.html</result>
 			<result name="login">/login.jsp</result>
 			<result name="excel" type="stream">  
                 <!-- 下载文件类型定义 -->  
@@ -43,9 +37,6 @@
             <result name="error">/html/error.jsp</result>
             <result name="show_pic">/upload/show.jsp</result>
 		</global-results>
-		<global-exception-mappings>
-			<exception-mapping result="exception" exception="java.lang.Exception"/>
-		</global-exception-mappings>
 		<!-- 登入 -->
 		<action name="baiyun">
 			<result name="success">/login.jsp</result>
@@ -166,6 +157,7 @@
 			<result name="record_edit">/main/family_bf/record_edit.jsp</result>
 			<result name="family_mapping_list">/main/family_bf/family_mapping_list.jsp</result>
 			<result name="family_mapping_edit">/main/family_bf/family_mapping_edit.jsp</result>
+			<result name="select_family">/main/family_bf/select_family.jsp</result>
 		</action>
 		
 		<!-- 管理员账号和村帮扶指定模块 -->
@@ -362,6 +354,13 @@
 			<result name="list2">/main/question_org/list2.jsp</result>
 			<result name="upload1">/main/question_org/upload1.jsp</result>
 			<result name="upload2">/main/question_org/upload2.jsp</result>
+		</action>
+		<!-- 资金表 -->
+		<action name="zijin_*" method="{1}" class="com.throne212.fupin.action.ZijinAction">
+			<result name="list">/main/zijin/list.jsp</result>
+			<result name="edit1">/main/zijin/edit1.jsp</result>
+			<result name="edit2">/main/zijin/edit2.jsp</result>
+			<result name="lock_list">/main/zijin/lock_list.jsp</result>
 		</action>
     </package>
 	<package name="json" extends="json-default" namespace="/ajax">

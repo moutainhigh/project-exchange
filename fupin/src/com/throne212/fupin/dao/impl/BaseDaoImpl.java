@@ -46,6 +46,26 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		paramValueList.add(twoValue);
 		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
 	}
+	
+	public <T> List<T> getEntitiesByThreeColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue,String colThreeName,Object threeValue){
+		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e."+colTwoName+"=? and e."+colThreeName+"=? order by e.id desc";
+		List paramValueList = new ArrayList();
+		paramValueList.add(oneValue);
+		paramValueList.add(twoValue);
+		paramValueList.add(threeValue);
+		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
+	}
+	
+	public <T> List<T> getEntitiesByForeColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue,String colThreeName,Object threeValue,String colFourName,Object fourValue){
+		String hql = "from " + clazz.getSimpleName() + " e where e." + colOneName + "=? and e."+colTwoName+"=? and e."+colThreeName+"=? and e."+colFourName+"=? order by e.id desc";
+		List paramValueList = new ArrayList();
+		paramValueList.add(oneValue);
+		paramValueList.add(twoValue);
+		paramValueList.add(threeValue);
+		paramValueList.add(fourValue);
+		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
+	}
+	
 
 	public <T> T getEntityById(Class<T> clazz, Long id) {
 		if (id == null)

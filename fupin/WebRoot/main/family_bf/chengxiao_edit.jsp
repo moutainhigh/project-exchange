@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${appPath}js/validateForm.js" language="javascript"></script>
 		<script src="${appPath}js/sel_style.js" language="javascript"></script>
 		<script src="${appPath}js/common.js" language="javascript"></script>
-		<script src="${appPath}js/jquery.autocomplete.js"></script>
+		<script src="${appPath}js/jquery.autocomplete2.js"></script>
 <script language="javascript">
 <jsp:include page="../../msg.jsp"></jsp:include>
 //获取干部
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			//自动填充
 			$(function(){
-				$("#familyName").autocomplete('${appPath}ajax/queryFamilyByName?time='+new Date().getTime(), {
+				/*$("#familyName").autocomplete('${appPath}ajax/queryFamilyByName?time='+new Date().getTime(), {
 					multiple: false,
 					minChars: 1,
 					parse: function(data) {
@@ -74,10 +74,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var familyId = item.substring(item.lastIndexOf('(')+1,item.length-1);
 					$('#familyId').val(familyId);
 					selectFamily(familyId);
-				});			
+				});			*/
 			});
 
- 
+ 			function selectOneFamily(fId, fName){
+ 				$('#familyName').val(fName);
+ 				$('#familyId').val(fId);
+ 				selectFamily(fId); 				
+ 			}
  
 </script>
 <style>
@@ -99,8 +103,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <td height="30" align="right" width="15%" class="tables_leftcell">贫困户名称</td>
     <td class="tables_contentcell">
     <input name="chengxiao.family.id" id="familyId" value="${chengxiao.family.id}" type="hidden"/>
-    <input id="familyName" value="${chengxiao.family.name}"/>
-    <font color="#cc0033">在提示框中选择户，如：张X，将提示名字包含有张X的贫困户</font>
+    <input id="familyName" value="${chengxiao.family.name}" onclick="window.open('${appPath}family_bf_selectFamily.action','','width=200,height=200,scrollbars= yes,modal=yes,resizable=no');"/>
+    <font color="#cc0033">在点击输入框或<a href="javascript:;" onclick="window.open('${appPath}family_bf_selectFamily.action','','width=200,height=200,scrollbars= yes,modal=yes,resizable=no');">这里</a>，在弹出的提示框中选择贫困户</font>
     </td>
   </tr>
   <tr>

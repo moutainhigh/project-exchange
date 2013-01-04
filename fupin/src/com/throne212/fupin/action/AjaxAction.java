@@ -286,6 +286,8 @@ public class AjaxAction extends BaseAction {
 
 	// 根据贫困户名模糊匹配多个贫困户
 	public String queryFamilyByName() {
+		if(1 == 1)
+			return "query_family"; 
 		String[] param = (String[]) ActionContext.getContext().getParameters().get("q");
 		if (param != null && param.length > 0) {
 			String q = param[0];
