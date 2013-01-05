@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.throne212.fupin.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -1186,7 +1186,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item21" value="${q1.item21 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item21" value="<fmt:formatNumber value="${q1.item21}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:28;height:18.75pt'>
@@ -1438,7 +1438,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item27" value="${q1.item27}"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item27" value="<fmt:formatNumber value="${q1.item27}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  
@@ -1548,7 +1548,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item30" value="${q1.item30 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item30" value="<fmt:formatNumber value="${q1.item30}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:33;height:42.75pt'>
@@ -1584,7 +1584,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item31" value="${q1.item31 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item31" value="<fmt:formatNumber value="${q1.item31}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:34;height:57.0pt'>
@@ -1620,7 +1620,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:57.0pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item32" value="${q1.item32 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item32" value="<fmt:formatNumber value="${q1.item32}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:36;height:18.75pt'>
@@ -1655,7 +1655,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item33" value="${q1.item33 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item33" value="<fmt:formatNumber value="${q1.item33}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:37;height:18.75pt'>
@@ -1690,7 +1690,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item34" value="${q1.item34 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item34" value="<fmt:formatNumber value="${q1.item34}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
   <tr style='mso-yfti-irow:35;height:42.75pt'>
@@ -1726,7 +1726,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:42.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item35" value="${q1.item35 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item35" value="<fmt:formatNumber value="${q1.item35}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  
@@ -1763,7 +1763,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item36" value="${q1.item36 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item36" value="<fmt:formatNumber value="${q1.item36}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:39;height:18.75pt'>
@@ -1798,7 +1798,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item37" value="${q1.item37 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item37" value="<fmt:formatNumber value="${q1.item37}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:41;height:71.25pt'>
@@ -1867,7 +1867,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item38" value="${q1.item38 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item38" value="<fmt:formatNumber value="${q1.item38}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:43;height:18.75pt'>
@@ -1901,7 +1901,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item39" value="${q1.item39 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item39" value="<fmt:formatNumber value="${q1.item39}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:44;height:18.75pt'>
@@ -2287,7 +2287,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:18.75pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
-  0pt'><input type="text" name="q1.item48" value="${q1.item48 }"/>　<span lang=EN-US><o:p></o:p></span></span></p>
+  0pt'><input type="text" name="q1.item48" value="<fmt:formatNumber value="${q1.item48}" pattern="#.##" type="number"/>"/>　<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:55;height:28.5pt'>
@@ -4680,7 +4680,7 @@ div.Section1
 		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		<a href="#" onclick="winOpen('${appPath}main/question_org/leader_edit.jsp',450,250);"></a>
-		<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload1.jsp?year=${year}',500,300);"/>
+		
 		</c:if>
 		<c:if test="${q1.status == 1}">
 		<input type="button" class="button" value="申请修改" name="申请修改" onclick="javascript:self.location.href = '${appPath}questionOrg_unlock1.action?id=${q1.id}'">

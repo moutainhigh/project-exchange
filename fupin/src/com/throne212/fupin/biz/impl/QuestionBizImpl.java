@@ -353,7 +353,7 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 				}
 				
 				//其他稳定性收入=财产性收入+退休养老金
-				if(q2.getItem10() != (q2.getItem11()+q2.getItem16())){
+				if(q2.getItem10().intValue() != (q2.getItem11().intValue()+q2.getItem16().intValue())){
 					throw new RuntimeException("其他稳定性收入=财产性收入+退休养老金," + sheet.getName());
 				}
 				

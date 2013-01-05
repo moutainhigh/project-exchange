@@ -49,7 +49,7 @@
 							户名模糊查询：<input type="text" name="familyName" value="${param.familyName }" style="width:100px;"/>
 							&nbsp;
 							<input type="button" class="button" value="查询" onclick="query();"> 
-							<!-- <input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload2.jsp?year=${year}',500,300);"/> -->
+							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload2.jsp?year=${year}',500,300);"/>
 						</td>
 					</tr>
 				</tbody>

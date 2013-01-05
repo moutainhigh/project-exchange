@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.throne212.fupin.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -4547,7 +4547,7 @@ div.Section1
 		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
 		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		<a href="#" onclick="winOpen('${appPath}main/question_org/leader_edit.jsp',450,250);"></a>
-		<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload1.jsp?year=${year}',500,300);"/>
+		
 		</c:if>
 		<c:if test="${q1.status == 1}">
 		<input type="button" class="button" value="申请修改" name="申请修改" onclick="javascript:self.location.href = '${appPath}questionOrg_unlock1.action?id=${q1.id}'">
