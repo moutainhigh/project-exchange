@@ -2974,7 +2974,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
-  mso-font-kerning:0pt'>1.</span><span style='font-size:12.0pt;font-family:
+  mso-font-kerning:0pt'>（1）</span><span style='font-size:12.0pt;font-family:
   宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>当年贫困户参加新型农村合作医疗人数<span
   lang=EN-US><o:p></o:p></span></span></p>
   </td>
@@ -3047,7 +3047,7 @@ div.Section1
   padding:0cm 5.4pt 0cm 5.4pt;height:28.5pt'>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
-  mso-font-kerning:0pt'>2.</span><span style='font-size:12.0pt;font-family:
+  mso-font-kerning:0pt'>（2）</span><span style='font-size:12.0pt;font-family:
   宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>当年贫困户参加新型农村养老保险人数<span
   lang=EN-US><o:p></o:p></span></span></p>
   </td>
@@ -3605,7 +3605,7 @@ div.Section1
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan'><span
   lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
   mso-font-kerning:0pt'>2.</span><span style='font-size:12.0pt;font-family:
-  宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>帮扶单位资金<span lang=EN-US><o:p></o:p></span></span></p>
+  宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>帮扶单位自筹资金<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
   <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
   solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-bottom-alt:
