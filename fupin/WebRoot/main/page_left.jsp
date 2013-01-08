@@ -118,6 +118,8 @@ function images_update(){
 	    menuArray[menuArray.length]="1,2011年度考评调查表（二）统计,${appPath}question_stat2.action?year=2011";
 	    menuArray[menuArray.length]="1,2012年度考评调查表（一）统计,${appPath}question_stat1.action?year=2012";
 	    menuArray[menuArray.length]="1,2012年度考评调查表（二）统计,${appPath}question_stat2.action?year=2012";
+	    menuArray[menuArray.length]="1,考评调查表（一）填报情况,${appPath}question_state1.action";
+	    menuArray[menuArray.length]="1,考评调查表（二）填报情况,${appPath}question_state2.action";
 	    </c:if>
 	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
@@ -144,6 +146,7 @@ function images_update(){
 		menuArray[menuArray.length]="0,报表维护,";
 	    <c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='县级管理员'}">
 	    menuArray[menuArray.length]="1,报表导出,${appPath}report_export.action";
+	    menuArray[menuArray.length]="1,报表填报情况,${appPath}report_state.action";
 	    //menuArray[menuArray.length]="1,报表解锁,${appPath}report_reportList.action";
 	    </c:if>
 	    <c:if test="${userObj.roleType=='超级管理员'}">

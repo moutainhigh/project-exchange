@@ -4686,6 +4686,7 @@ div.Section1
 		<input type="button" class="button" value="申请修改" name="申请修改" onclick="javascript:self.location.href = '${appPath}questionOrg_unlock1.action?id=${q1.id}'">
 		</c:if>
 		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">
+		<input type="button" class="button" value="导出" name="导出" onclick="self.location.href = '${appPath}questionOrg_exportQ1.action?q1.id=${q1.id}'">
 		</div>
 		
 </form>

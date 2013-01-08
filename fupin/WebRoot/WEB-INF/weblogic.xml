@@ -1,4 +1,7 @@
 <weblogic-web-app>
+<session-descriptor>
+<cookie-name>JSESSIONID1</cookie-name>
+</session-descriptor>
 <container-descriptor>
 <prefer-web-inf-classes>true</prefer-web-inf-classes>
 </container-descriptor>

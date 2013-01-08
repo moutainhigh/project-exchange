@@ -861,6 +861,7 @@ rt
 		</c:if>
 		<c:if test="${year == 2012}">
 		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">
+		<input type="button" class="button" value="导出" name="导出" onclick="self.location.href = '${appPath}questionOrg_exportQ2.action?q2.id=${q2.id}'">
 		</c:if>
 		</div>
 	</form>
