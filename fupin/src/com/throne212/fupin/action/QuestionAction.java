@@ -3,13 +3,20 @@ package com.throne212.fupin.action;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.QuestionBiz;
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.Question;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
@@ -316,6 +323,51 @@ public class QuestionAction extends BaseAction {
 		}
 		return lockList();
 	}
+	
+	private Integer year;
+	
+	public String state1(){
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+			return "state1"; 
+		}
+		List<State> list = questionBiz.state(1,year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		return "state1";
+	}	
+	
+	public String state2(){
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+			return "state2";
+		}
+		List<State> list = questionBiz.state(2,year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		return "state2";
+	}
 
 	public PageBean getPageBean() {
 		return pageBean;
@@ -419,6 +471,14 @@ public class QuestionAction extends BaseAction {
 
 	public void setqType(String qType) {
 		this.qType = qType;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 }

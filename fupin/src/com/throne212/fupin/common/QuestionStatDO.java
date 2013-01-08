@@ -32,6 +32,14 @@ public class QuestionStatDO {
 	private int[] num99 = {0,0,0,0};
 	private int[] num100 = {0,0,0,0};
 	
+	private int[] num51 = {0,0,0,0};
+	private int[] num80 = {0,0,0,0};
+	private int[] num81 = {0,0,0,0};
+	private int[] num101 = {0,0,0,0};
+	private int[] num102 = {0,0,0,0};
+	private int[] num103 = {0,0,0,0};
+	private int[] num104 = {0,0,0,0};
+	
 	
 	public int[] getNum(Integer i) {
 		if (i == null || i == 0)
@@ -270,6 +278,62 @@ public class QuestionStatDO {
 
 	public void setNum29(int[] num29) {
 		this.num29 = num29;
+	}
+
+	public int[] getNum51() {
+		return num51;
+	}
+
+	public void setNum51(int[] num51) {
+		this.num51 = num51;
+	}
+
+	public int[] getNum80() {
+		return num80;
+	}
+
+	public void setNum80(int[] num80) {
+		this.num80 = num80;
+	}
+
+	public int[] getNum81() {
+		return num81;
+	}
+
+	public void setNum81(int[] num81) {
+		this.num81 = num81;
+	}
+
+	public int[] getNum101() {
+		return num101;
+	}
+
+	public void setNum101(int[] num101) {
+		this.num101 = num101;
+	}
+
+	public int[] getNum102() {
+		return num102;
+	}
+
+	public void setNum102(int[] num102) {
+		this.num102 = num102;
+	}
+
+	public int[] getNum103() {
+		return num103;
+	}
+
+	public void setNum103(int[] num103) {
+		this.num103 = num103;
+	}
+
+	public int[] getNum104() {
+		return num104;
+	}
+
+	public void setNum104(int[] num104) {
+		this.num104 = num104;
 	}
 
 	

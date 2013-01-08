@@ -1,11 +1,14 @@
 package com.throne212.fupin.dataobject;
 
+import java.lang.reflect.Method;
 
-public class QuestionStat {
+
+public class State {
 
 	private String area;
 	private String zhen;
 	private String cun;
+	private String org;
 
 	private String ok1;
 	private String ok2;
@@ -20,6 +23,29 @@ public class QuestionStat {
 	private String ok11;
 	private String ok12;
 
+	public String getOk(Integer i) {
+		if (i == null || i == 0)
+			return null;
+		try {
+			Method m = this.getClass().getMethod("getOk"+i);
+			return (String) m.invoke(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void setOk(Integer i, String val) {
+		if (i == null || i == 0)
+			return;
+		try {
+			Method m = this.getClass().getMethod("setOk"+i, String.class);
+			m.invoke(this, val);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getArea() {
 		return area;
 	}
@@ -138,6 +164,14 @@ public class QuestionStat {
 
 	public void setOk12(String ok12) {
 		this.ok12 = ok12;
+	}
+
+	public String getOrg() {
+		return org;
+	}
+
+	public void setOrg(String org) {
+		this.org = org;
 	}
 
 }

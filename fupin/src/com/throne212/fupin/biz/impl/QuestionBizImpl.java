@@ -2,6 +2,7 @@ package com.throne212.fupin.biz.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.CunDao;
 import com.throne212.fupin.dao.QuestionDao;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.Area;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
@@ -416,13 +418,18 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		
 		int num = 1;
 		//从第5行开始
-		for(int i=4;i<122;i++){
+		for(int i=4;i<126;i++){
 			if(!Util.isEmpty(sheet.getCell(0, i).getContents())){
-				sheet.addCell(new Number(3, i, q1.getItem(num++)));
+				double d = q1.getItem(num++);
+				if(d > 1000000){
+					sheet.addCell(new Label(3, i, DecimalFormat.getNumberInstance().format(d)));
+				}else{
+					sheet.addCell(new Number(3, i, d));
+				}
 			}
 		}
 		
-		sheet.addCell(new Label(0, 122, "填表人："+q1.getWriter()+"          填报日期：  " + Util.getDate2(q1.getDate())));
+		sheet.addCell(new Label(0, 126, "填表人："+q1.getWriter()+"          填报日期：  " + Util.getDate2(q1.getDate())));
 		
 		
 		// 关闭
@@ -516,9 +523,15 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		//从第5行开始
 		for(int i=4;i<56;i++){
 			if(!Util.isEmpty(sheet.getCell(0, i).getContents())){
-				sheet.addCell(new Number(3, i, q2.getItem(num++)));
+				if(i>=8 && i<=31){
+					sheet.addCell(new Label(3, i, DecimalFormat.getNumberInstance().format(q2.getItem(num++))));
+				}else{
+					sheet.addCell(new Number(3, i, q2.getItem(num++)));
+				}
 			}
 		}
+		
+		
 		
 		sheet.addCell(new Label(1, 56, q2.getWriter()));
 		sheet.addCell(new Label(3, 56, Util.getDate2(q2.getDate())));
@@ -639,6 +652,14 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 
 	public void setCunDao(CunDao cunDao) {
 		this.cunDao = cunDao;
+	}
+	
+	public List<State> state(int type, int year){
+		if(type == 1)
+			return qDao.state1(year);
+		else if(type == 2)
+			return qDao.state2(year);
+		return null;
 	}
 	
 	public static void main(String[] args) throws Exception {

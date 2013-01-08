@@ -1,5 +1,6 @@
 package com.throne212.fupin.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,10 +12,13 @@ import com.throne212.fupin.common.QuestionStatDO;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.QuestionDao;
+import com.throne212.fupin.dataobject.State;
+import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
+import com.throne212.fupin.domain.Zhen;
 
 public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 	
@@ -100,13 +104,17 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		}
 		
 		for(Question1 q1 : list){
-			for(int i=1;i<=100;i++){
+			for(int i=1;i<=104;i++){
 				if(q1.getItem(i) == null)
 					continue;
 				//统计代码
-				if(i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
+				if(q1.getYear() == 2011 && (i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
 						|| i==11 || i==12 || i==13 || i==24 || i==47 || i==76 || i==77 
-						|| i==97 || i==98 || i==99 || i==100){
+						|| i==97 || i==98 || i==99 || i==100)){
+					q.addNum(i, q1.getItem(i));
+				}else if(q1.getYear() == 2012 && (i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
+						|| i==11 || i==12 || i==13 || i==29 || i==51 || i==80 || i==81 
+						|| i==101 || i==102 || i==103 || i==104)){
 					q.addNum(i, q1.getItem(i));
 				}else{
 					//统计数字
@@ -131,7 +139,7 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		Question2 tq = new Question2();
 		q.setQ(tq);
 		
-		String hql = "from Question2 q where year=" + year;
+		String hql = "from Question2 q where family.type in (1,2,3,4) and year=" + year;
 		if(cunId != null){
 			hql += " and family.cun.id=" + cunId;
 		}else if(zhenId != null){
@@ -197,6 +205,67 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		page.setRowPerPage(WebConstants.PAGE_SIZE);// 每页记录数目
 		page.setPageIndex(pageIndex);// 当前页码
 		return page;
+	}
+	
+	public List<State> state1(int year){
+		List<State> list = new ArrayList<State>();
+		List<Cun> cunList = this.getHibernateTemplate().find("from Cun c order by c.zhen.area.id,c.zhen.id");
+		for (Cun c : cunList) {
+			State s = new State();
+			s.setArea(c.getZhen().getArea().getName());
+			s.setZhen(c.getZhen().getName());
+			s.setCun(c.getName());
+			s.setOrg(c.getOrg().getOrgName());
+			
+			String hql = "from Question1 q1 where cun=? and year=?";
+			List<Question1> q1List = this.getHibernateTemplate().find(hql, new Object[]{c, year});
+			if(q1List == null || q1List.size() == 0){
+				s.setOk1(null);
+			}else{
+				Integer status = q1List.get(0).getStatus();
+				String str = "";
+				if(status == null){
+					str = "";
+				}else if(status == 0){
+					str = "草稿";
+				}else if(status == 1){
+					str = "已提交";
+				}else if(status == 2){
+					str = "申请解锁中";
+				}
+				s.setOk1(str);
+			}
+			
+			list.add(s);
+		}
+		return list;
+	}
+	
+	public List<State> state2(int year){
+		List<State> list = new ArrayList<State>();
+		List<Cun> cunList = this.getHibernateTemplate().find("from Cun c order by c.zhen.area.id,c.zhen.id");
+		for (Cun c : cunList) {
+			State s = new State();
+			s.setArea(c.getZhen().getArea().getName());
+			s.setZhen(c.getZhen().getName());
+			s.setCun(c.getName());
+			s.setOrg(c.getOrg().getOrgName());
+			
+			String hql = "select count(*) from Family where cun=?";
+			Long count = (Long) this.getHibernateTemplate().find(hql, c).get(0);
+			s.setOk1(count + "");
+			
+			hql = "select count(*) from Question2 q2 where family.cun=? and year=? and status=1";
+			count = (Long) this.getHibernateTemplate().find(hql, new Object[]{c,year}).get(0);
+			s.setOk2(count + "");
+			
+			hql = "select count(*) from Question2 q2 where family.cun=? and year=? and status=2";
+			count = (Long) this.getHibernateTemplate().find(hql, new Object[]{c,year}).get(0);
+			s.setOk3(count + "");
+			
+			list.add(s);
+		}
+		return list;
 	}
 
 }

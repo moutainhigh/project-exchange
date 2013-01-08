@@ -19,6 +19,7 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.FamilyDao;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
@@ -415,6 +416,10 @@ public class ReportBizImpl extends BaseBizImpl implements ReportBiz {
 	
 	public void autoSaveReports(int year, int month){
 		reportDao.autoSaveReports(year, month);
+	}
+	
+	public List<State> state(int rType,int year){
+		return reportDao.state(rType, year);
 	}
 
 }

@@ -1,7 +1,10 @@
 package com.throne212.fupin.biz;
 
+import java.util.List;
+
 import com.throne212.fupin.common.PageBean;
 import com.throne212.fupin.common.QuestionStatDO;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
@@ -32,5 +35,7 @@ public interface QuestionBiz extends BaseBiz {
 	
 	//单位调查表获取用户列表
 	public PageBean<Family> getFamilyList(String familyName, Integer pageIndex, int year);
+	
+	public List<State> state(int type,int year);
 
 }

@@ -15,6 +15,7 @@ import jxl.write.Number;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -22,6 +23,7 @@ import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.ReportDao;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
@@ -1239,6 +1241,57 @@ public class ReportDaoImpl extends BaseDaoImpl implements ReportDao {
 				}
 			}
 		}
+	}
+	
+	public List<State> state(int rType,int year){
+		List<State> list = new ArrayList<State>();
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("select a.name as aName, z.name as zName, c.name as cName, ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='1' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='2' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='3' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='4' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='5' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='6' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='7' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='8' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='9' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='10' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='11' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id), ");
+		sb.append("(select count(*) from fp_report r where r.report_type="+rType+" and r.type='month' and r.time='12' and r.year="+year+" and r.lock_status=1 and r.cun_id=c.id) ");
+		sb.append("from fp_diqu c ");
+		sb.append("left outer join fp_diqu z on z.id=c.zhen_id ");
+		sb.append("left outer join fp_diqu a on a.id=z.area_id ");
+		sb.append("where c.diqu_type='cun' ");
+		
+		try {
+			Session s = this.getHibernateTemplate().getSessionFactory().openSession();
+			Connection conn = s.connection();
+			PreparedStatement ps = conn.prepareStatement(sb.toString());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				State st = new State();
+				st.setArea(rs.getString(1));
+				st.setZhen(rs.getString(2));
+				st.setCun(rs.getString(3));
+				for(int i=4;i<=15;i++){
+					int count = rs.getInt(i);
+					st.setOk(i-3, count>0?"Y":"");
+				}
+				list.add(st);
+			}
+			s.close();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
 	}
 	
 }

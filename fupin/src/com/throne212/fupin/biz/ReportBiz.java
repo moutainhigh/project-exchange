@@ -3,6 +3,7 @@ package com.throne212.fupin.biz;
 import java.util.List;
 
 import com.throne212.fupin.common.ReportParam;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.Report;
 
 public interface ReportBiz extends BaseBiz {
@@ -24,5 +25,7 @@ public interface ReportBiz extends BaseBiz {
 	public String getExcelStatFilePath(List<String[]> list) throws Exception;
 	
 	public void autoSaveReports(int year, int month);
+	
+	public List<State> state(int rType,int year);
 
 }

@@ -5,13 +5,18 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.ReportBiz;
 import com.throne212.fupin.common.ReportParam;
 import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
+import com.throne212.fupin.dataobject.State;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Report;
 import com.throne212.fupin.domain.Report1;
@@ -424,6 +429,37 @@ public class ReportAction extends BaseAction {
 		return "report_export";
 	}
 
+	private Integer year;
+	private Integer rType;
+	private String title;
+	
+	public String state(){
+		if(rType != null && rType == 1){
+			title = "表一二填报情况";
+		}else if(rType != null && rType == 2){
+			title = "表三填报情况";
+		}
+		if(year == null || year == 0){
+			Calendar c = GregorianCalendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			int m = c.get(Calendar.MONTH);
+			if(m == 0){
+				year--;
+			}
+			return "report_state"; 
+		}
+		List<State> list = reportBiz.state(rType,year);
+		Map<String, Object> mapJson = new Hashtable<String, Object>();
+		mapJson.put("total", list.size());// easyUI需要total的大小，就是list的大小
+		mapJson.put("rows", list);// 把list放到map里面，一定要写成rows
+		JSONObject jsonObject = JSONObject.fromObject(mapJson); // 这个是net.sf.json.JSONObject;下面的方法，将map转换成JSON格式的字符串
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getValueStack().set("jsonObject", jsonObject);// 将转换出来的jsonObject保存起，传到页面上去
+		logger.debug("jsonObject:" + jsonObject.toString());
+		
+		return "report_state";
+	}
+	
 	public Report getR() {
 		return r;
 	}
@@ -502,6 +538,30 @@ public class ReportAction extends BaseAction {
 
 	public void setStatList(List<String[]> statList) {
 		this.statList = statList;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getRType() {
+		return rType;
+	}
+
+	public void setRType(Integer rType) {
+		this.rType = rType;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

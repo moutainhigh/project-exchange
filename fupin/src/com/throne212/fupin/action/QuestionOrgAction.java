@@ -418,8 +418,13 @@ public class QuestionOrgAction extends BaseAction {
 			throw new RuntimeException("家庭生产经营收入=农业生产经营收入+工业建筑业生产经营收入+其他行业生产经营收入");
 		}
 		
+		////其他稳定性收入=财产性收入+退休养老金
+		//if(q2.getItem10() != (q2.getItem11()+q2.getItem16())){
+		//	throw new RuntimeException("其他稳定性收入=财产性收入+退休养老金");
+		//}
+		
 		//其他稳定性收入=财产性收入+退休养老金
-		if(q2.getItem10() != (q2.getItem11()+q2.getItem16())){
+		if(q2.getItem10().intValue() != (q2.getItem11().intValue()+q2.getItem16().intValue())){
 			throw new RuntimeException("其他稳定性收入=财产性收入+退休养老金");
 		}
 		
