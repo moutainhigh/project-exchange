@@ -156,6 +156,7 @@
 			<result name="record_edit">/main/family_bf/record_edit.jsp</result>
 			<result name="family_mapping_list">/main/family_bf/family_mapping_list.jsp</result>
 			<result name="family_mapping_edit">/main/family_bf/family_mapping_edit.jsp</result>
+			<result name="select_family">/main/family_bf/select_family.jsp</result>
 		</action>
 		
 		<!-- 管理员账号和村帮扶指定模块 -->

@@ -88,7 +88,7 @@
 					return;
 				}
 			}
-			if($("#money").val() == null || $("#money").val() == '' || !/^\d+$/.test($("#money").val())){
+			if($("#money").val() == null || $("#money").val() == '' || !/^\d+(\.\d+)?$/.test($("#money").val())){
 				alert("帮扶资金到位情况为必填项，且只能为数字，如果没有则填0");
 				return;
 			}
@@ -104,7 +104,7 @@
 					return;
 				}
 			}
-			if($("#money").val() == null || $("#money").val() == '' || !/^\d+$/.test($("#money").val())){
+			if($("#money").val() == null || $("#money").val() == '' || !/^\d+(\.\d+)?$/.test($("#money").val())){
 				alert("帮扶资金到位情况为必填项，且只能为数字，如果没有则填0");
 				return;
 			}

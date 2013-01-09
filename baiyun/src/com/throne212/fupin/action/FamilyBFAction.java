@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.throne212.fupin.biz.FamilyBFBiz;
 import com.throne212.fupin.biz.OrgBiz;
@@ -41,6 +43,25 @@ public class FamilyBFAction extends BaseAction {
 	
 	private Long zhenId;
 	private Long cunId;
+	
+	private List<Family> familyList;
+	
+	public String selectFamily(){
+		familyList = new ArrayList<Family>();
+		String fName = ServletActionContext.getRequest().getParameter("familyName");
+		Org org = (Org) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		List<Family> list = familyBFBiz.getEntitiesByColumn(Family.class, "cun", org.getCun());
+		if(!Util.isEmpty(fName)){
+			for(Family f : list){
+				if(f.getName().contains(fName)){
+					familyList.add(f);
+				}
+			}
+		}else{
+			familyList = list;
+		}
+		return "select_family";
+	}
 
 	// 户帮扶措施列表
 	public String cuoshiFamilyList() {
@@ -879,6 +900,14 @@ public class FamilyBFAction extends BaseAction {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public List<Family> getFamilyList() {
+		return familyList;
+	}
+
+	public void setFamilyList(List<Family> familyList) {
+		this.familyList = familyList;
 	}
 
 }

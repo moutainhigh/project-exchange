@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <select style="width: 135px;" name="chengxiao.year" id="year">
 			<%
 			int year = new GregorianCalendar().get(GregorianCalendar.YEAR);
-			for(int i=year;i<year+2;i++){
+			for(int i=2011;i<year+2;i++){
 			%>
 			<option value="<%=i%>"><%=i%></option>
 			<%	
