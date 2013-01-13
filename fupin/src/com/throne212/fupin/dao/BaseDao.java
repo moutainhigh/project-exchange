@@ -29,7 +29,6 @@ public interface BaseDao {
 	public <T> List<T> getEntitiesByTwoColumn(Class<T> clazz, String colOneName, Object oneValue, String colTwoName, Object twoValue);
 	
 	public <T> List<T> getEntitiesByThreeColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue,String colThreeName,Object threeValue);
-	public <T> List<T> getEntitiesByForeColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue,String colThreeName,Object threeValue,String colFourName,Object fourValue);
 
 	public <T> List<T> getEntitiesSecondColIsNull(Class<T> clazz, String colOneName, Object oneValue, String colTwoName);
 

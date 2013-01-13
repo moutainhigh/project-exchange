@@ -9,7 +9,6 @@ public class ZijinItem {
 	private Zijin zijin;
 	private String file;
 	private String content;
-	private int index;
 	
 	private BigDecimal item1;
 	private BigDecimal item2;
@@ -291,14 +290,6 @@ public class ZijinItem {
 
 	public void setZijin(Zijin zijin) {
 		this.zijin = zijin;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
 	}
 	
 	

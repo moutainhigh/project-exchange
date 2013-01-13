@@ -94,7 +94,4 @@ public class BaseBizImpl implements BaseBiz {
 	public <T> List<T> getEntitiesByThreeColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue,String colThreeName,Object threeValue){
 		return baseDao.getEntitiesByThreeColumn(clazz, colOneName, oneValue, colTwoName,twoValue, colThreeName,threeValue);
 	}
-	public <T> List<T> getEntitiesByForeColumn(Class<T> clazz, String colOneName, Object oneValue,String colTwoName,Object twoValue,String colThreeName,Object threeValue,String colFourName,Object fourValue){
-		return baseDao.getEntitiesByForeColumn(clazz, colOneName, oneValue, colTwoName,twoValue, colThreeName,threeValue, colFourName,fourValue);
-	}
 }

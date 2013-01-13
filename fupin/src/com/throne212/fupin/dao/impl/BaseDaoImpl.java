@@ -66,7 +66,6 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
 		return this.getHibernateTemplate().find(hql, paramValueList.toArray());
 	}
 	
-
 	public <T> T getEntityById(Class<T> clazz, Long id) {
 		if (id == null)
 			return null;

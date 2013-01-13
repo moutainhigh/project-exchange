@@ -9,7 +9,6 @@
 		<many-to-one name="zijin" column="zijin_id" lazy="false"></many-to-one>
 		<property name="file"></property>
 		<property name="content"></property>
-		<property name="index" column="the_index"></property>
 		<property name="item1"></property>
 		<property name="item2"></property>
 		<property name="item3"></property>

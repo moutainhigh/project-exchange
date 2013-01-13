@@ -17,7 +17,7 @@ public class ZijinBizImpl extends BaseBizImpl implements ZijinBiz {
 		this.zijinDao = zijinDao;
 	}
 
-	public PageBean<Zijin> listZijin(Long areaId, Long zhenId, Long cunId, Integer pageIndex, int type, Integer year, Integer month) {
+	public PageBean<Zijin> listZijin(Long areaId, Long zhenId, Long cunId, Integer pageIndex, int type, int year, int month) {
 		return zijinDao.listZijin(areaId, zhenId, cunId, pageIndex, type, year, month);
 	}
 

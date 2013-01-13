@@ -6,7 +6,7 @@ import com.throne212.fupin.domain.Zijin;
 
 public interface ZijinDao extends BaseDao {
 	
-	public PageBean<Zijin> listZijin(Long areaId, Long zhenId,Long cunId,Integer pageIndex, int type, Integer year, Integer month);
+	public PageBean<Zijin> listZijin(Long areaId, Long zhenId,Long cunId,Integer pageIndex, int type, int year, int month);
 	
 
 }
