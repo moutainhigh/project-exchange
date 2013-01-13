@@ -135,7 +135,7 @@ function images_update(){
 	    menuArray[menuArray.length]="0,扶贫资金报表,";
 	    menuArray[menuArray.length]="1,双到资金,${appPath}zijin_list.action?type=1";
 	    menuArray[menuArray.length]="1,镇建设资金,${appPath}zijin_list.action?type=2";
-	    //menuArray[menuArray.length]="1,申请修改,${appPath}zijin_lockList.action";	    
+	    menuArray[menuArray.length]="1,申请修改,${appPath}zijin_lockList.action";	    
 	    </c:if>
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
 	    menuArray[menuArray.length]="0,扶贫资金报表填报,";

@@ -57,8 +57,6 @@
 			}
 		}
 		function unlockReport(){
-			if(1 == 1)
-				return false;
 			if(confirm('确定需要解锁吗？')){
 				var f = document.forms[0];
 				f.action = '${appPath}zijin_requstUnlock.action';
@@ -133,7 +131,6 @@ $(function(){
 	<body>
 		<form method="post" action="${appPath}zijin_edit.action" name="searchForm">
 			<input type="hidden" name="type" value="${type}"/>
-			<input type="hidden" name="z.id" value="${z.id}"/>
 			<c:if test="${not empty msg }">
 			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center; background-color: yellow;">
 			${msg }
@@ -155,7 +152,6 @@ $(function(){
 							</select>
 						</td>
 						<td width="" class="tables_headercell">
-							<c:if test="${userObj.roleType=='帮扶单位管理员'}">
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<c:if test="${empty z.status || z.status==0}">
 							<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
@@ -163,7 +159,6 @@ $(function(){
 							</c:if>
 							<c:if test="${z.status==1}">
 							<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
-							</c:if>
 							</c:if>
 						</td>
 					</tr>
