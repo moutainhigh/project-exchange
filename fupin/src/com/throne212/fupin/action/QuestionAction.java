@@ -9,6 +9,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
+
 import net.sf.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -94,8 +96,7 @@ public class QuestionAction extends BaseAction {
 	}
 
 	public String stat1() {
-		if (areaId != null || zhenId != null)
-			q = questionBiz.statQuestion1(areaId, zhenId);
+		q = questionBiz.statQuestion1(areaId, zhenId);
 		return "stat1";
 	}
 
@@ -108,17 +109,46 @@ public class QuestionAction extends BaseAction {
 		return "edit1";
 	}
 
-	public String save1() {
+	public String save1() {	
 		if (q1 != null && q1.getId() != null) {
+			
+			for (int i = 1; i <= 104; i++) {
+				if(q1.getItem(i) == null)
+					q1.setItem(i, 0.0);
+			}
+
+			boolean pass = true;
+			try {
+				QuestionOrgAction qoa = new QuestionOrgAction();
+				qoa.setQ1(q1);
+				if(year != null && year == 2012)
+					qoa.validateQ1_2012();
+				else
+					qoa.validateQ1();
+			} catch (Exception e) {
+				this.setMsg(e.getMessage());
+				pass = false;
+			}
+
 			Question1 q = questionBiz.getEntityById(Question1.class, q1.getId());
 			for (int i = 1; i <= 104; i++) {
 				q.setItem(i, q1.getItem(i) == null ? 0 : q1.getItem(i));
 			}
+			q.setWriter(q1.getWriter());
+			q.setDate(q1.getDate());
+			
+			String tmp = ServletActionContext.getRequest().getParameter("tmp");
+			if(pass && !"Y".equals(tmp)){
+				q.setStatus(1);
+				this.setMsg("保存成功");
+			}else if(pass){
+				this.setMsg("暂存成功");
+			}
 			questionBiz.saveOrUpdateEntity(q);
-			this.setMsg("保存成功");
-			this.setSucc("Y");
+			q1 = q;
 		}
 		return edit1();
+		
 	}
 
 	public String exportQ1() {
@@ -216,8 +246,7 @@ public class QuestionAction extends BaseAction {
 	}
 
 	public String stat2() {
-		if (areaId != null || zhenId != null || cunId != null)
-			q = questionBiz.statQuestion2(areaId, zhenId, cunId);
+		q = questionBiz.statQuestion2(areaId, zhenId, cunId);
 		return "stat2";
 	}
 
@@ -230,13 +259,40 @@ public class QuestionAction extends BaseAction {
 
 	public String save2() {
 		if (q2 != null && q2.getId() != null) {
+			
+			for (int i = 1; i <= 47; i++) {
+				if(q2.getItem(i) == null)
+					q2.setItem(i, 0.0);
+			}
+			
+			boolean pass = true;
+			try {
+				QuestionOrgAction qoa = new QuestionOrgAction();
+				qoa.setQ2(q2);
+				qoa.validateQ2();
+			} catch (Exception e) {
+				this.setMsg(e.getMessage());
+				pass = false;
+			}
+			
 			Question2 q = questionBiz.getEntityById(Question2.class, q2.getId());
 			for (int i = 1; i <= 47; i++) {
 				q.setItem(i, q2.getItem(i) == null ? 0 : q2.getItem(i));
 			}
-			questionBiz.saveOrUpdateEntity(q);
-			this.setMsg("保存成功");
-			this.setSucc("Y");
+			q.setWriter(q2.getWriter());
+			q.setDate(q2.getDate());
+			
+			String tmp = ServletActionContext.getRequest().getParameter("tmp");
+			if(pass && !"Y".equals(tmp)){
+				q.setStatus(1);
+				this.setMsg("保存成功");
+				this.setSucc("Y");
+			}else if(pass){
+				this.setMsg("暂存成功");
+				this.setSucc("Y");
+			}
+			
+			questionBiz.saveOrUpdateEntity(q);			
 		}
 		return edit2();
 	}

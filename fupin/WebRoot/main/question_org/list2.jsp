@@ -49,7 +49,6 @@
 							户名模糊查询：<input type="text" name="familyName" value="${param.familyName }" style="width:100px;"/>
 							&nbsp;
 							<input type="button" class="button" value="查询" onclick="query();"> 
-							<input type="button" class="button" value="上传调查表" onclick="winOpen('${appPath}main/question_org/upload2.jsp?year=${year}',500,300);"/>
 						</td>
 					</tr>
 				</tbody>
@@ -93,7 +92,6 @@
 								&nbsp;
 								<a href="javascript:void(0);" onclick="winOpen('${appPath}questionOrg_edit2.action?q2.family.id=${f.id}&year=${param.year }',800,600);">编辑/查看</a>
 								<c:if test="${f.q2.status == 1}">
-								<a href="${appPath}questionOrg_unlock2.action?id=${f.q2.id }&year=${param.year }">申请修改</a>
 								</c:if>
 								<c:if test="${f.q2.status == 2}">&nbsp;(申请解锁中)</c:if>
 							</td>

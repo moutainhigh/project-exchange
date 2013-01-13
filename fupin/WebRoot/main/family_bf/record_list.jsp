@@ -246,8 +246,6 @@ function displayAction(sid) {
 
 		<input type="submit" class="button" value="查询" name="查询">
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
-		<input type="button" onclick="winOpen('${appPath}main/family_bf/record_edit.jsp',600,390);" class="button" value="新增">
-		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 		</c:if>
 		
 		</td>
@@ -333,7 +331,6 @@ function displayAction(sid) {
 							<a href="#" onclick="winOpen('${appPath}family_bf_saveOrUpdateRecord.action?record.id=${f.id}',600,390);">修改</a>
 						 </c:if>
 						 &nbsp;<c:if test="${f.status=='审核通过'}">
-						<a href="#" onclick="showInstr(${f.id});return false;">修改申请</a>
 						 </c:if>
 						 <c:if test="${f.status=='未提交'}">
 						<a href="#" onclick="javascript:if(confirm('确认提交吗？')){self.location.href='${appPath}family_bf_confirmRecord.action?record.id=${f.id}';}" >确认后提交</a>

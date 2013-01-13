@@ -62,7 +62,7 @@ public class QuestionOrgAction extends BaseAction {
 	public String save1() {
 		if (q1 != null && q1.getId() != null) {
 			
-			for (int i = 1; i <= 100; i++) {
+			for (int i = 1; i <= 104; i++) {
 				if(q1.getItem(i) == null)
 					q1.setItem(i, 0.0);
 			}
@@ -100,7 +100,7 @@ public class QuestionOrgAction extends BaseAction {
 		return "edit1";
 	}
 
-	private void validateQ1() throws Exception {
+	public void validateQ1() throws Exception {
 		// 校验
 		// 通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数
 		if (q1.getItem15() > q1.getItem14() || q1.getItem16() > q1.getItem14() || q1.getItem17() > q1.getItem14() || q1.getItem18() > q1.getItem14() || q1.getItem19() > q1.getItem14()
@@ -178,7 +178,7 @@ public class QuestionOrgAction extends BaseAction {
 	}
 	
 	//2012的新规则
-	private void validateQ1_2012() throws Exception {
+	public void validateQ1_2012() throws Exception {
 		// 校验
 		// 通电、通洁净水、通电话、通有线电视、通路灯、通硬底化道路100人以上的自然村≤自然村个数
 		if (q1.getItem15() > q1.getItem14() || q1.getItem16() > q1.getItem14() || q1.getItem17() > q1.getItem14() || q1.getItem18() > q1.getItem14() || q1.getItem19() > q1.getItem14()
@@ -406,7 +406,7 @@ public class QuestionOrgAction extends BaseAction {
 		return edit2();
 	}
 	
-	private void validateQ2() throws Exception{
+	public void validateQ2() throws Exception{
 		//当年家庭人均年收入=（工资收入+家庭生产经营收入+其他稳定性收入+转移性收入-家庭生产经营支出）÷家庭成员人数
 		if(Math.floor(q2.getItem4())
 				!=Math.floor((q2.getItem5()+q2.getItem6()+q2.getItem10()+q2.getItem17()-q2.getItem24())/q2.getItem2())){

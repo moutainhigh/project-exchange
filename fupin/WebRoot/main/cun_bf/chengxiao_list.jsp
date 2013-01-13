@@ -221,8 +221,6 @@ var msg = '${msg}';
 
 		<input type="submit" class="button" value="查询"> 
 		<c:if test="${userObj.roleType=='帮扶单位管理员'}">
-		<input type="button" onclick="winOpen('${appPath}cun_bf_editCunChengxiao.action',600,390);" class="button" value="新增">
-		<input type="button" onclick="deleteInfo();" class="button" value="删除">
 		</c:if>
 	</td>
 	<td width="5px" align="right"></td>

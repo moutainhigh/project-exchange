@@ -109,7 +109,7 @@
 </style>
 	</head>
 	<body>
-		<form method="get" action="${appPath}question_list2.action" name="searchForm">
+		<form method="get" action="${appPath}question_list2.action?year=${year}" name="searchForm">
 			<input type="hidden" name="year" value="${param.year}"/>
 			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="tables_search">
 				<tbody>
@@ -191,8 +191,8 @@
 							</td>
 							<td height="25" align="center" class="tables_contentcell">
 								<a href="javascript:void(0);" onclick="if(confirm('确定删除吗？')){self.location.href='${appPath}question_deleteQuestion2.action?q2.id=${f.id}'}">删除</a>
-								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_show2.action?q2.id=${f.id}',800,600);">查看</a>
-								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_edit2.action?q2.id=${f.id}',800,600);">编辑</a>
+								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_show2.action?q2.id=${f.id}&year=${year }',800,600);">查看</a>
+								<a href="javascript:void(0);" onclick="winOpen('${appPath}question_edit2.action?q2.id=${f.id}&year=${year }',800,600);">编辑</a>
 							</td>
 						</tr>
 					</c:forEach>

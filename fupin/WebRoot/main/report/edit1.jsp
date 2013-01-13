@@ -306,11 +306,8 @@
 							<input type="button" value="按条件查询" class="button" name="查询" onclick="query();">
 							<c:if test="${empty r.type || r.type=='month'}">
 								<c:if test="${empty r.lock || r.lock==0 || r.lock==3}">
-								<input type="button" value="保存" class="button" name="保存" onclick="saveReport();">
-								<c:if test="${showZanCun}"><input type="button" value="暂存" class="button" name="暂存" onclick="tmpSaveReport();"></c:if>
 								</c:if>
 								<c:if test="${not empty r.lock && r.lock==1}">
-								<input type="button" value="请求解锁" class="button" name="请求解锁" onclick="unlockReport();">
 								</c:if>
 							</c:if>
 							<input type="button" value="Excel导出" class="button" name="Excel导出" onclick="excel();">

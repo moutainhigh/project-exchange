@@ -9,6 +9,19 @@
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			function submitForm(tmp){
+				var inputArr = $('input[type="text"]');
+				for(var i=0; i<inputArr.length; i++){
+					if($(inputArr[i]).val().replace(/\s/ig,'') == ''){
+						alert('不能留空，请检查');
+						return false;
+					}
+				}
+				if(tmp && tmp != ''){
+					$('#tmp').val('Y');
+				}
+				document.forms[0].submit();
+			}
 		</script>
 <style>
 <!--
@@ -195,7 +208,15 @@ div.Section1
 <body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
 <form method="post" action="${appPath}question_save1.action" name="searchForm">
 <input type="hidden" name="q1.id" value="${q1.id }"/>
+<input type="hidden" name="tmp" id="tmp" value=""/>
+<input type="hidden" name="year" value="${year }"/>
 		<c:set var="q" value="${q1}"></c:set>
+		
+		<c:if test="${not empty msg }">
+			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center; background-color: yellow;">
+			${msg }
+			</div>
+			</c:if>
 		
 		<div class=Section1 style='layout-grid:15.6pt'>
 
@@ -4633,7 +4654,8 @@ div.Section1
 </div>
 		
 		<div style="text-align: center;">
-		<input type="submit" class="button" value="保存" name="保存">
+		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
+		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
 		</div>
 		

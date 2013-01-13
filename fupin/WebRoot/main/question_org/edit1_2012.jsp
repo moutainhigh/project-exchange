@@ -4677,13 +4677,8 @@ div.Section1
 		
 		<div style="text-align: center;">
 		<c:if test="${empty q1.status || q1.status == 0}">
-		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
-		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
-		<a href="#" onclick="winOpen('${appPath}main/question_org/leader_edit.jsp',450,250);"></a>
-		
 		</c:if>
 		<c:if test="${q1.status == 1}">
-		<input type="button" class="button" value="申请修改" name="申请修改" onclick="javascript:self.location.href = '${appPath}questionOrg_unlock1.action?id=${q1.id}'">
 		</c:if>
 		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">
 		<input type="button" class="button" value="导出" name="导出" onclick="self.location.href = '${appPath}questionOrg_exportQ1.action?q1.id=${q1.id}'">

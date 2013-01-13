@@ -215,7 +215,6 @@
 							</td>
 							<c:if test="${userObj.roleType!='县级管理员'}">
 							<td height="25" align="center" class="tables_contentcell">
-								<a href="#" onclick="winOpen('${appPath}family_bf_editFamilyMapping.action?family.id=${f.id}',550,600);">修改帮扶方式</a>
 							</td>
 							</c:if>
 						</tr>

@@ -89,12 +89,18 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		Question1 tq = new Question1();
 		q.setQ(tq);
 		
-		String hql = "from Question1 q where year=" + year;
+		String hql = "from Question1 q where status=1 and year=" + year;
 		if(zhenId != null){
 			hql += " and cun.zhen.id=" + zhenId;
 		}else if(areaId != null){
 			hql += " and cun.zhen.area.id=" + areaId;
 		}
+		
+		String[] isNS = (String[]) ActionContext.getContext().getParameters().get("is_ns");
+		if(isNS != null && isNS.length > 0 && !Util.isEmpty(isNS[0])){
+			hql += " and cun.zhen.isNS='" + isNS[0] + "'";
+		}
+		
 		List<Question1> list = this.getHibernateTemplate().find(hql);
 		if(list == null || list.size() == 0)
 			return q;
@@ -118,18 +124,28 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 					q.addNum(i, q1.getItem(i));
 				}else{
 					//统计数字
-					tq.setItem(i, q1.getItem(i) + tq.getItem(i));
+					if(tq.getItem(i) != null)
+						tq.setItem(i, q1.getItem(i) + tq.getItem(i));
 				}
 			}
 		}
 		
 		//统计百分
-		tq.setItem36((tq.getItem35() / tq.getItem34()) * 100);
-		tq.setItem46((tq.getItem45() / tq.getItem40()) * 100);
-		tq.setItem52((tq.getItem51() / (tq.getItem49()-tq.getItem50())) * 100);
-		tq.setItem54((tq.getItem53() / (tq.getItem49()-tq.getItem50())) * 100);
-		tq.setItem62((tq.getItem61() / tq.getItem38()) * 100);
-		tq.setItem65((tq.getItem64() / tq.getItem39()) * 100);
+		if(year == 2011){
+			tq.setItem36((tq.getItem35() / tq.getItem34()) * 100);
+			tq.setItem46((tq.getItem45() / tq.getItem40()) * 100);
+			tq.setItem52((tq.getItem51() / (tq.getItem49()-tq.getItem50())) * 100);
+			tq.setItem54((tq.getItem53() / (tq.getItem49()-tq.getItem50())) * 100);
+			tq.setItem62((tq.getItem61() / tq.getItem38()) * 100);
+			tq.setItem65((tq.getItem64() / tq.getItem39()) * 100);
+		}else{
+			tq.setItem40((int)(tq.getItem39() / tq.getItem38() * 10000) / 100.0);
+			tq.setItem50((int)(tq.getItem49() / tq.getItem44() * 10000) / 100.0);
+			tq.setItem56((int)(tq.getItem55() / (tq.getItem53()-tq.getItem54()) * 10000) / 100.0);
+			tq.setItem58((int)(tq.getItem57() / (tq.getItem53()-tq.getItem54()) * 10000) / 100.0);
+			tq.setItem66((int)(tq.getItem65() / tq.getItem42() * 10000) / 100.0);
+			tq.setItem69((int)(tq.getItem68() / tq.getItem43() * 10000) / 100.0);
+		}
 		
 		return q;
 	}
@@ -147,6 +163,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		}else if(areaId != null){
 			hql += " and family.cun.zhen.area.id=" + areaId;
 		}
+		
+		String[] isNS = (String[]) ActionContext.getContext().getParameters().get("is_ns");
+		if(isNS != null && isNS.length > 0 && !Util.isEmpty(isNS[0])){
+			hql += " and family.cun.zhen.isNS='" + isNS[0] + "'";
+		}
+		
 		List<Question2> list = this.getHibernateTemplate().find(hql);
 		if(list == null || list.size() == 0)
 			return q;

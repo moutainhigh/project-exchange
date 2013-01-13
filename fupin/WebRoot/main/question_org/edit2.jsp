@@ -856,8 +856,6 @@ rt
 		
 		<div style="text-align: center;">
 		<c:if test="${empty q2.status || q2.status == 0}">
-		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
-		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		</c:if>
 		<c:if test="${year == 2012}">
 		<input type="button" class="button" value="打印" name="打印" onclick="window.print();">

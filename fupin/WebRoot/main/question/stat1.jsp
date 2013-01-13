@@ -285,6 +285,12 @@ div.Section1
 			 			<select id="zhenId" name="zhenId">
 									<option value="">----------</option>
 								 </select>
+								 &nbsp;
+								 <select name="is_ns" id="is_ns">
+								 	<option value=""></option>
+								 	<option value="N" <c:if test="${param.is_ns=='N'}">selected="selected"</c:if>>北部镇</option>
+								 	<option value="S" <c:if test="${param.is_ns=='S'}">selected="selected"</c:if>>南部镇</option>
+								 </select>
 							
 							<input type="button" class="button" value="统计" onclick="stat();">
 							<input type="button" class="button" value="导出" onclick="exportQ1();">  
@@ -307,7 +313,7 @@ div.Section1
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan'><span
   style='font-size:18.0pt;font-family:黑体;mso-hansi-font-family:宋体;mso-bidi-font-family:
   宋体;mso-font-kerning:0pt'>广州市农村扶贫开发“规划到户责任到人”工作<span lang=EN-US><br>
-  2011</span>年度调查表（一）<span lang=EN-US><o:p></o:p></span></span></p>
+  2012</span>年度调查表（一）<span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:1;height:5pt'>

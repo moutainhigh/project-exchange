@@ -9,6 +9,19 @@
 		<script src="${appPath}js/jquery.js" language="javascript"></script>
 		<script>
 			<jsp:include page="../../msg.jsp"></jsp:include>
+			function submitForm(tmp){
+				var inputArr = $('input[type="text"]');
+				for(var i=0; i<inputArr.length; i++){
+					if($(inputArr[i]).val().replace(/\s/ig,'') == ''){
+						alert('不能留空，请检查');
+						return false;
+					}
+				}
+				if(tmp && tmp != ''){
+					$('#tmp').val('Y');
+				}
+				document.forms[0].submit();
+			}
 		</script>
 <style>
 tr
@@ -241,6 +254,15 @@ rt
 <body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
 <form method="post" action="${appPath}question_save2.action" name="searchForm">
 <input type="hidden" name="q2.id" value="${q2.id }"/>
+<input type="hidden" name="tmp" id="tmp" value=""/>
+<input type="hidden" name="year" value="${year }"/>
+
+<c:if test="${not empty msg }">
+			<div style="width:70%; padding: 10px 5px; margin: 5px auto; border: 1px solid red; font-size: 14px; font-weight: 600; text-align: center; background-color: yellow;">
+			${msg }
+			</div>
+			</c:if>
+
 <table border=0 cellpadding=0 cellspacing=0 width=620 style='border-collapse:
  collapse;table-layout:fixed;'>
  <col width=100 style='mso-width-source:userset;mso-width-alt:4096;width:96pt'>
@@ -821,7 +843,8 @@ rt
 
 		
 		<div style="text-align: center;">
-		<input type="submit" class="button" value="保存" name="保存">
+		<input type="button" class="button" value="暂存" name="暂存" onclick="submitForm('tmp');"/>
+		<input type="button" class="button" value="保存" name="保存" onclick="submitForm();"/>
 		<input type="button" onclick="self.close();" class="button" value="关闭" name="关闭">
 		</div>
 	</form>

@@ -455,6 +455,8 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "excel" + File.separator + "question";
 		String sourceFile = path + File.separator + "q1_stat.xls";
+		if(year == 2012)
+			sourceFile = path + File.separator + "q1_stat_2012.xls";
 		String targetFile = path + File.separator + "q1_stat_"+System.currentTimeMillis()+".xls";
 
 		// 打开excel文件
@@ -478,18 +480,27 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		
 		int i = 1;
 		//从第5行开始
-		for(int n=4;n<122;n++){
+		for(int n=4;n<126;n++){
 			if(!Util.isEmpty(sheet.getCell(0, n).getContents())){
-				if(i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
+				if(year == 2011 && (i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
 						|| i==11 || i==12 || i==13 || i==24 || i==47 || i==76 || i==77 
-						|| i==97 || i==98 || i==99 || i==100){
+						|| i==97 || i==98 || i==99 || i==100)){
+					int[] num = q.getNum(i);
+					String codeStr = "";
+					if(num!=null)
+						codeStr = "1:" + num[0] + ",2:" + num[1];
+					sheet.addCell(new Label(3, n, codeStr));
+				}else if(year == 2012 && (i==2 || i==3 || i==6 || i==7 || i==8 || i==9 || i==10 
+						|| i==11 || i==12 || i==13 || i==29 || i==51 || i==80 || i==81 
+						|| i==101 || i==102 || i==103 || i==104)){
 					int[] num = q.getNum(i);
 					String codeStr = "";
 					if(num!=null)
 						codeStr = "1:" + num[0] + ",2:" + num[1];
 					sheet.addCell(new Label(3, n, codeStr));
 				}else{
-					sheet.addCell(new Number(3, n, q.getQ().getItem(i)));
+					if(q.getQ()!=null && q.getQ().getItem(i) != null)
+						sheet.addCell(new Number(3, n, q.getQ().getItem(i)));
 				}
 				i++;
 			}
@@ -560,6 +571,8 @@ public class QuestionBizImpl extends BaseBizImpl implements QuestionBiz {
 		path = path.substring(0, path.indexOf("WEB-INF"));
 		path += "excel" + File.separator + "question";
 		String sourceFile = path + File.separator + "q2_stat.xls";
+		if(year == 2012)
+			sourceFile = path + File.separator + "q2_stat_2012.xls";
 		String targetFile = path + File.separator + "q2_stat_"+System.currentTimeMillis()+".xls";
 
 		// 打开excel文件
