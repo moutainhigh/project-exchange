@@ -155,7 +155,7 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		Question2 tq = new Question2();
 		q.setQ(tq);
 		
-		String hql = "from Question2 q where family.type in (1,2,3,4) and year=" + year;
+		String hql = "from Question2 q where family.type in (1,2,3,4) and status=1 and year=" + year;
 		if(cunId != null){
 			hql += " and family.cun.id=" + cunId;
 		}else if(zhenId != null){
@@ -190,6 +190,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 				}
 			}
 		}
+		
+		//计算平均值
+		double familyAveIn = tq.getItem5() + tq.getItem6() + tq.getItem10() + tq.getItem17() - tq.getItem24();
+		familyAveIn = familyAveIn / tq.getItem2();
+		familyAveIn = (int)(familyAveIn * 100) / 100.0;
+		tq.setItem4(familyAveIn);
 		
 		return q;
 	}
