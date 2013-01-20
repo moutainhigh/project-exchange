@@ -122,6 +122,18 @@ function images_update(){
 	    menuArray[menuArray.length]="1,考评调查表（二）填报情况,${appPath}question_state2.action";
 	    </c:if>
 	    
+	    <c:if test="${userObj.roleType=='县级管理员' && userObj.isWorkGroup=='Y'}">
+	    menuArray[menuArray.length]="0,考评调查表资料维护,";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（一）,${appPath}question_list1.action?year=2012";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（二）,${appPath}question_list2.action?year=2012";
+	    menuArray[menuArray.length]="1,申请修改,${appPath}question_lockList.action";
+	    menuArray[menuArray.length]="0,考评调查表统计,";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（一）统计,${appPath}question_stat1.action?year=2012";
+	    menuArray[menuArray.length]="1,2012年度考评调查表（二）统计,${appPath}question_stat2.action?year=2012";
+	    menuArray[menuArray.length]="1,考评调查表（一）填报情况,${appPath}question_state1.action";
+	    menuArray[menuArray.length]="1,考评调查表（二）填报情况,${appPath}question_state2.action";
+	    </c:if>
+	    
 	    <c:if test="${userObj.roleType=='帮扶单位管理员'}">
 	    menuArray[menuArray.length]="0,考评调查表填报,";
 	    menuArray[menuArray.length]="1,2011年度考评调查表（一）,${appPath}questionOrg_edit1.action?year=2011";

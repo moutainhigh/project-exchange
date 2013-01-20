@@ -129,6 +129,11 @@ public class StatDaoImpl extends BaseDaoImpl implements StatDao {
 			q += " limit " + startIndex + "," +  WebConstants.PAGE_SIZE;
 			// 开始执行
 			ps = conn.prepareStatement(q);
+			// 设置参数
+			i = 1;
+			for (String key : nameParams.keySet()) {
+				ps.setObject(i++,nameParams.get(key));
+			}
 			rs = ps.executeQuery();
 			List<FamilyTypeStatDO> rstList = new ArrayList<FamilyTypeStatDO>();
 			while (rs.next()) {

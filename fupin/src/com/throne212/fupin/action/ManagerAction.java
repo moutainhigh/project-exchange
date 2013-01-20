@@ -128,6 +128,36 @@ public class ManagerAction extends BaseAction {
 		}
 		return managerList();
 	}
+	
+	public String batchStop(){
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if(ids != null && ids.length > 0){
+			for(String id : ids){
+				Org o = orgBiz.getEntityById(Org.class, Long.parseLong(id));
+				if(o != null && !"1".equals(o.getSegment5())){
+					o.setSegment5("1");//1代表停用了
+					orgBiz.saveOrUpdateEntity(o);
+					this.setMsg("停用帐号成功");
+				}
+			}
+		}
+		return managerList();
+	}
+	
+	public String batchResume(){
+		String[] ids = (String[]) ActionContext.getContext().getParameters().get("ids");
+		if(ids != null && ids.length > 0){
+			for(String id : ids){
+				Org o = orgBiz.getEntityById(Org.class, Long.parseLong(id));
+				if(o != null && "1".equals(o.getSegment5())){
+					o.setSegment5("0");//0代表恢复回来了
+					orgBiz.saveOrUpdateEntity(o);
+					this.setMsg("恢复帐号成功");
+				}
+			}
+		}
+		return managerList();
+	}
 
 	public PageBean getPageBean() {
 		return pageBean;

@@ -82,7 +82,7 @@ select
 from fp_diqu c left outer join fp_user o on c.org=o.id
 where c.diqu_type='cun'
 	and o.user_type='org'
-	and o.loginName=:loginName
+	and o.loginName=?
  </sql-query>
  <sql-query
    name="family_type_zhen">
@@ -96,7 +96,7 @@ select
 from fp_diqu c left outer join fp_diqu z on z.id=c.zhen_id
 where c.diqu_type='cun'
 	and z.diqu_type='zhen'
-	and z.id=:zhenId
+	and z.id=?
  </sql-query>
  <sql-query
    name="family_type_team">
@@ -114,7 +114,7 @@ where c.diqu_type='cun'
 	and z.diqu_type='zhen'
 	and a.diqu_type='area'
 	and t.user_type='work_team'
-	and t.loginName=:loginName
+	and t.loginName=?
  </sql-query>
  <sql-query
    name="family_type_area">
@@ -130,7 +130,7 @@ left outer join fp_diqu a on a.id=z.area_id
 where c.diqu_type='cun'
 	and z.diqu_type='zhen'
 	and a.diqu_type='area'
-	and a.id=:areaId
+	and a.id=?
  </sql-query>
  <sql-query
    name="family_type_area_zc_ch">
@@ -146,7 +146,7 @@ left outer join fp_diqu a on a.id=z.area_id
 where c.diqu_type='cun'
 	and z.diqu_type='zhen'
 	and a.diqu_type='area'
-	and a.id=:areaId
+	and a.id=?
 	and z.is_ns='S'
  </sql-query>
  <sql-query
@@ -165,7 +165,7 @@ where c.diqu_type='cun'
 	and z.diqu_type='zhen'
 	and a.diqu_type='area'
 	and t.user_type='work_team'
-	and t.team_from_area_id=:areaId
+	and t.team_from_area_id=?
  </sql-query>
  <sql-query
    name="family_type_group_zc_ch">
@@ -181,7 +181,7 @@ left outer join fp_diqu a on a.id=z.area_id
 where c.diqu_type='cun'
 	and z.diqu_type='zhen'
 	and a.diqu_type='area'
-	and a.id=:areaId
+	and a.id=?
 	and z.is_ns='N'
  </sql-query>
  <sql-query

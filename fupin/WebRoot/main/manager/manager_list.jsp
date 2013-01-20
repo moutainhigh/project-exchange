@@ -27,6 +27,18 @@
 				document.forms[0].submit();
 			}
 		}
+		function batchStop(){
+			if(confirm('您确定停用吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}manager_batchStop.action';
+				document.forms[0].submit();
+			}
+		}
+		function batchResume(){
+			if(confirm('您确定恢复吗？') && $('input:checked').length>0){
+				document.forms[0].action = '${appPath}manager_batchResume.action';
+				document.forms[0].submit();
+			}
+		}
 		</script>
 		<style>
 .tables_search {
@@ -51,6 +63,8 @@
 							<c:if test="${userObj.roleType=='超级管理员' || userObj.roleType=='市级管理员'}">
 							<input type="button" onclick="winOpen('${appPath}main/manager/manager_edit.jsp',450,220);" class="button" value="新增">
 							<input type="button" onclick="deleteInfo();" class="button" value="删除">
+							<input type="button" onclick="batchStop();" class="button" value="批量停用帐号">
+							<input type="button" onclick="batchResume();" class="button" value="批量恢复帐号">
 							</c:if>
 						</td>
 						<td width="5px"></td>
@@ -112,7 +126,7 @@
 								<a href="#" onclick="winOpen('${appPath}manager_viewManager.action?org.id=${f.id}',450,220);">修改</a>
 								</c:if>
 								<a href="${appPath}login.action?username=${f.loginName}&password=${f.password}&needRand=N" target="_top">登录</a>
-								<a href="${appPath}manager_stopResume.action?org.id=${f.id}">停用/恢复</a>
+								<!-- a href="${appPath}manager_stopResume.action?org.id=${f.id}">停用/恢复</a> -->
 							</td>
 						</tr>
 					</c:forEach>

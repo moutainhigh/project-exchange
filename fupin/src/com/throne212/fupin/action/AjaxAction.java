@@ -57,10 +57,18 @@ public class AjaxAction extends BaseAction {
 	private Long parentId;
 
 	public String getAllArea() {
-		if (parentId != null)
-			list = adminBiz.getEntitiesByColumn(Area.class, "shi", adminBiz.getEntityById(Shi.class, parentId));
-		else
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if (parentId != null){
+			if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+				AreaWorkOrg a = (AreaWorkOrg) user;
+				list = new ArrayList();
+				list.add(a.getArea());
+			}else{
+				list = adminBiz.getEntitiesByColumn(Area.class, "shi", adminBiz.getEntityById(Shi.class, parentId));
+			}
+		} else{
 			list = adminBiz.getAll(Area.class);
+		}
 		return "list";
 	}
 
@@ -71,10 +79,13 @@ public class AjaxAction extends BaseAction {
 			Area area = adminBiz.getEntityByUnique(Area.class, "name", "白云区");
 			parentId = area == null ? null : area.getId();
 		}
-
-		if (parentId != null)
-			list = adminBiz.getEntitiesByColumn(Zhen.class, "area", adminBiz.getEntityById(Area.class, parentId));
-		else
+		if (parentId != null){
+			if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+				AreaWorkOrg a = (AreaWorkOrg) user;
+				list = adminBiz.getEntitiesByTwoColumn(Zhen.class, "area", a.getArea(), "isNS", "N");
+			}else
+				list = adminBiz.getEntitiesByColumn(Zhen.class, "area", adminBiz.getEntityById(Area.class, parentId));
+		} else
 			list = adminBiz.getAll(Zhen.class);
 		return "list";
 	}

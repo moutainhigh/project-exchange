@@ -13,12 +13,13 @@ import com.throne212.fupin.common.Util;
 import com.throne212.fupin.common.WebConstants;
 import com.throne212.fupin.dao.QuestionDao;
 import com.throne212.fupin.dataobject.State;
+import com.throne212.fupin.domain.AreaWorkOrg;
 import com.throne212.fupin.domain.Cun;
 import com.throne212.fupin.domain.Family;
 import com.throne212.fupin.domain.Org;
 import com.throne212.fupin.domain.Question1;
 import com.throne212.fupin.domain.Question2;
-import com.throne212.fupin.domain.Zhen;
+import com.throne212.fupin.domain.User;
 
 public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 	
@@ -33,6 +34,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 			hql += " and cun.zhen.id=" + zhenId;
 		}else if(areaId != null){
 			hql += " and cun.zhen.area.id=" + areaId;
+		}
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			hql += " and cun.zhen.area.id="+a.getArea().getId()+" and cun.zhen.isNS='N'";
 		}
 		
 		hql+=" order by id desc";
@@ -67,6 +74,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 			params = new Object[]{"%"+familyName+"%"};
 		}
 		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			hql += " and family.cun.zhen.area.id="+a.getArea().getId()+" and family.cun.zhen.isNS='N'";
+		}
+		
 		hql+=" order by id desc";
 		logger.debug("hql="+hql);
 		Long count = (Long) this.getHibernateTemplate().find("select count(*) " + hql,params).get(0);
@@ -99,6 +112,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 		String[] isNS = (String[]) ActionContext.getContext().getParameters().get("is_ns");
 		if(isNS != null && isNS.length > 0 && !Util.isEmpty(isNS[0])){
 			hql += " and cun.zhen.isNS='" + isNS[0] + "'";
+		}
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			hql += " and cun.zhen.area.id="+a.getArea().getId()+" and cun.zhen.isNS='N'";
 		}
 		
 		List<Question1> list = this.getHibernateTemplate().find(hql);
@@ -169,6 +188,12 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 			hql += " and family.cun.zhen.isNS='" + isNS[0] + "'";
 		}
 		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			hql += " and family.cun.zhen.area.id="+a.getArea().getId()+" and family.cun.zhen.isNS='N'";
+		}
+		
 		List<Question2> list = this.getHibernateTemplate().find(hql);
 		if(list == null || list.size() == 0)
 			return q;
@@ -237,7 +262,16 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 	
 	public List<State> state1(int year){
 		List<State> list = new ArrayList<State>();
-		List<Cun> cunList = this.getHibernateTemplate().find("from Cun c order by c.zhen.area.id,c.zhen.id");
+		String q = "from Cun c where 1=1 ";
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			q += " and zhen.area.id="+a.getArea().getId()+" and zhen.isNS='N'";
+		}
+		
+		q += " order by c.zhen.area.id,c.zhen.id";
+		List<Cun> cunList = this.getHibernateTemplate().find(q);
 		for (Cun c : cunList) {
 			State s = new State();
 			s.setArea(c.getZhen().getArea().getName());
@@ -271,7 +305,16 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 	
 	public List<State> state2(int year){
 		List<State> list = new ArrayList<State>();
-		List<Cun> cunList = this.getHibernateTemplate().find("from Cun c order by c.zhen.area.id,c.zhen.id");
+		String q = "from Cun c where 1=1";
+		
+		User user = (User) ActionContext.getContext().getSession().get(WebConstants.SESS_USER_OBJ);
+		if(user instanceof AreaWorkOrg && "Y".equals(((AreaWorkOrg) user).getIsWorkGroup())){
+			AreaWorkOrg a = (AreaWorkOrg) user;
+			q += " and zhen.area.id="+a.getArea().getId()+" and zhen.isNS='N'";
+		}
+		
+		q += " order by c.zhen.area.id,c.zhen.id";
+		List<Cun> cunList = this.getHibernateTemplate().find(q);
 		for (Cun c : cunList) {
 			State s = new State();
 			s.setArea(c.getZhen().getArea().getName());
