@@ -128,6 +128,8 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 			tq.setItem(i, 0.0);
 		}
 		
+		double avePersonIncome = 0;
+		int totalPerson = 0;
 		for(Question1 q1 : list){
 			for(int i=1;i<=104;i++){
 				if(q1.getItem(i) == null)
@@ -147,7 +149,15 @@ public class QuestionDaoImpl extends BaseDaoImpl implements QuestionDao {
 						tq.setItem(i, q1.getItem(i) + tq.getItem(i));
 				}
 			}
+			totalPerson += q1.getItem45();
+			avePersonIncome += (q1.getItem45() * q1.getItem48());
 		}
+		
+		//计算人均年收入
+		double a = avePersonIncome / totalPerson;
+		int b = (int)(a * 100.0);
+		double c = b / 100.0;
+		q.getQ().setItem48(c);
 		
 		//统计百分
 		if(year == 2011){
