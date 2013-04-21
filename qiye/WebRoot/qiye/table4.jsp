@@ -104,6 +104,9 @@
 			function saveForm(){
 				document.forms[0].submit();
 			}
+			function add(){
+				
+			}
 		</script>
 	</head>
 	<body>
@@ -112,59 +115,44 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>企业基础信息</font>
+			        <font class=caption>主要产品及专利概况</font>
 			      </td>
 			    </tr>
 			</table>
 			<div style="height: 25px;"></div>
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
-					<td>
-						企业代码（BA02）：
-						<input type="text" name="ba02" value="<%=ba02%>"/>
-					</td>
+					<td>序号</td><td>产品名称</td><td>技术水平</td>
+					<td>技术领域</td><td>专利状况</td><td>技术开发形式</td><td>投产时间</td>
+					<td>年产值（千元）</td><td>年销售收入（千元）</td><td>出口创汇额（千美元）</td><td>是否高新技术产品</td>
+					<td>产品工业增加值</td><td>产品类别代码</td><td>所属高新技术领域</td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业法人代码（BA00）：
-						<input type="text" name="ba00" value="<%=ba00%>"/>
-					</td>
+					<td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业详细名称（盖章）（BA01）：
-						<input type="text" name="ba01" value="<%=ba01%>"/>
-					</td>
-				</tr>
-				<tr class="list_td_context">
-					<td>
-						企业通讯地址（BA03）：
-						<input type="text" name="ba03" value="<%=ba03%>"/>
-					</td>
-				</tr>
-				<tr class="list_td_context">
-					<td>
-						联系电话（BA13）：
-						<input type="text" name="ba13" value="<%=ba13%>"/>&nbsp;&nbsp;
-						邮政编码（BA16）：
-						<input type="text" name="ba16" value="<%=ba16%>"/>
-					</td>
-				</tr>
-				<tr class="list_td_context">
-					<td>
-						企业负责人：
-						<input type="text" name="fuze" value="<%=fuze%>"/>&nbsp;&nbsp;
-						填表人（签章）：
-						<input type="text" name="filler" value="<%=filler%>"/>&nbsp;&nbsp;
-						填报时间：
-						<input type="text" name="date" value="<%=date%>"/>
-					</td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
+					<td><input type="text" name="p0"/></td>
 				</tr>
 			</table>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr>
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
+						<input type="button" name="" value="增加一行" onclick="add();">
 					</td>
 				</tr>
 			</table>

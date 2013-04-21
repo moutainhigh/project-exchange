@@ -168,10 +168,10 @@ A.l1:hover {
 .td_line {color: #FFFFFF; background-color: #A58433; text-align: center}
 .bodybg {background-image: url('../images/img_dot2.gif')}
 .input2 {
-	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 10pt; BORDER-BOTTOM-WIDTH: 1px; CURSOR: hand; COLOR: #000000; FONT-FAMILY: "ËÎÌå"; HEIGHT: 18; BACKGROUND-COLOR: #e7e7e7; BORDER-RIGHT-WIDTH: 1px
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 10pt; BORDER-BOTTOM-WIDTH: 1px; CURSOR: hand; COLOR: #000000; FONT-FAMILY: "ï¿½ï¿½ï¿½ï¿½"; HEIGHT: 18; BACKGROUND-COLOR: #e7e7e7; BORDER-RIGHT-WIDTH: 1px
 .haed {  font-size: 12px; color: #000000}
 .TEXTAREA {
-FONT-SIZE: 10px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: "ËÎÌå"; BACKGROUND-COLOR: #CCCCCC; BORDER-RIGHT-COLOR: #000000
+FONT-SIZE: 10px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: "ï¿½ï¿½ï¿½ï¿½"; BACKGROUND-COLOR: #CCCCCC; BORDER-RIGHT-COLOR: #000000
 ; border-style: dotted; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px
 }
 .select	{background-color: #CCCCCC; FONT-SIZE: 9pt}
@@ -190,3 +190,4 @@ scrollbar-track-color:'F8F8F8';
 scrollbar-arrow-color:'808080' }
 .wh {  font-size: 9pt; color: #FFFFFF}
 
+input {width: 80px;}

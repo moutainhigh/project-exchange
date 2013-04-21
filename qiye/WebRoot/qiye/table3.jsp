@@ -112,53 +112,91 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>企业基础信息</font>
+			        <font class=caption>企业收支情况</font>
 			      </td>
 			    </tr>
 			</table>
 			<div style="height: 25px;"></div>
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
-					<td>
-						企业代码（BA02）：
-						<input type="text" name="ba02" value="<%=ba02%>"/>
-					</td>
+					<td>&nbsp;</td>
+					<td>编  号</td>
+					<td>金    额</td>
+					<td>&nbsp;</td>
+					<td>编  号</td>
+					<td>金    额</td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业法人代码（BA00）：
-						<input type="text" name="ba00" value="<%=ba00%>"/>
-					</td>
+					<td>工业总产值</td>
+					<td>FI300</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>总支出</td>
+					<td>FE100</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业详细名称（盖章）（BA01）：
-						<input type="text" name="ba01" value="<%=ba01%>"/>
-					</td>
+					<td>工业增加值</td>
+					<td>FI310</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>科技活动经费</td>
+					<td>FE120</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业通讯地址（BA03）：
-						<input type="text" name="ba03" value="<%=ba03%>"/>
-					</td>
+					<td>总收入</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>科学研究与试验发展经费</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						联系电话（BA13）：
-						<input type="text" name="ba13" value="<%=ba13%>"/>&nbsp;&nbsp;
-						邮政编码（BA16）：
-						<input type="text" name="ba16" value="<%=ba16%>"/>
-					</td>
+					<td>技术性收入</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>上缴税金总额</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业负责人：
-						<input type="text" name="fuze" value="<%=fuze%>"/>&nbsp;&nbsp;
-						填表人（签章）：
-						<input type="text" name="filler" value="<%=filler%>"/>&nbsp;&nbsp;
-						填报时间：
-						<input type="text" name="date" value="<%=date%>"/>
-					</td>
+					<td>产品销售收入</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>所得税</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+				</tr>
+				<tr class="list_td_context">
+					<td>商品销售收入</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>增值税</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+				</tr>
+				<tr class="list_td_context">
+					<td>其他收入</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>其他税</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+				</tr>
+				<tr class="list_td_context">
+					<td>净利润</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>其它支出</td>
+					<td>编  号</td>
+					<td><input type="text" name="FI200" value=""/></td>
+				</tr>
+				<tr class="list_td_context">
+					<td>出口创汇额（千美元）</td>
+					<td>FI200</td>
+					<td><input type="text" name="FI200" value=""/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 			</table>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">

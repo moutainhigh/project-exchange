@@ -112,53 +112,84 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>企业基础信息</font>
+			        <font class=caption>人员概况</font>
 			      </td>
 			    </tr>
 			</table>
 			<div style="height: 25px;"></div>
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
-					<td>
-						企业代码（BA02）：
-						<input type="text" name="ba02" value="<%=ba02%>"/>
-					</td>
+					<td colspan="3">长期职工、技术职称及企业科技人员</td>
+					<td>文化程度构成</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td colspan="3">企业负责人（法人代表）情况</td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业法人代码（BA00）：
-						<input type="text" name="ba00" value="<%=ba00%>"/>
-					</td>
+					<td>长期职工总数</td>
+					<td>PE1010</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>博  士</td>
+					<td>PA0</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>性    别</td>
+					<td>PE01</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业详细名称（盖章）（BA01）：
-						<input type="text" name="ba01" value="<%=ba01%>"/>
-					</td>
+					<td>其中：高级职称</td>
+					<td>PE1011</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>硕  士</td>
+					<td>PA1</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>出生年份</td>
+					<td>PE02</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业通讯地址（BA03）：
-						<input type="text" name="ba03" value="<%=ba03%>"/>
-					</td>
+					<td>中级职称</td>
+					<td>PE1012</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>大  学</td>
+					<td>PA2</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>文化程度</td>
+					<td>PE04</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						联系电话（BA13）：
-						<input type="text" name="ba13" value="<%=ba13%>"/>&nbsp;&nbsp;
-						邮政编码（BA16）：
-						<input type="text" name="ba16" value="<%=ba16%>"/>
-					</td>
+					<td>初级职称</td>
+					<td>PE1013</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>大  专</td>
+					<td>PA3</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>所学专业</td>
+					<td>PE05</td>
+					<td><input type="text" name="FI200" value=""/></td>
 				</tr>
 				<tr class="list_td_context">
-					<td>
-						企业负责人：
-						<input type="text" name="fuze" value="<%=fuze%>"/>&nbsp;&nbsp;
-						填表人（签章）：
-						<input type="text" name="filler" value="<%=filler%>"/>&nbsp;&nbsp;
-						填报时间：
-						<input type="text" name="date" value="<%=date%>"/>
-					</td>
+					<td>其中：从事科技活动人员</td>
+					<td>PE1020</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>中  专</td>
+					<td>PA4</td>
+					<td><input type="text" name="FI200" value=""/>人</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="list_td_context">
+					<td>其中：研究与试验发展人员</td>
+					<td>PE1021</td>
+					<td><input type="text" name="FI200" value=""/>人年</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 			</table>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">

@@ -112,7 +112,7 @@
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>企业基础信息</font>
+			        <font class=caption>企业概况</font>
 			      </td>
 			    </tr>
 			</table>
@@ -120,44 +120,80 @@
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
 					<td>
-						企业代码（BA02）：
-						<input type="text" name="ba02" value="<%=ba02%>"/>
+						成立时间（BA06）：<input type="text" name="ba02" value="<%=ba02%>"/>年,&nbsp;
+						长期职工（BA50）：<input type="text" name="ba02" value="<%=ba02%>"/>人,&nbsp;
+						总收入（BA60）：<input type="text" name="ba02" value="<%=ba02%>"/>千元
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						企业法人代码（BA00）：
-						<input type="text" name="ba00" value="<%=ba00%>"/>
+						国民经济行业(BA07): <input type="text" name="ba02" value="<%=ba02%>"/> 指本企业从事的国民经济行业，按2007年“科技统计工作文件”中“《国民经济行业分类和代码》（GB/T4754-2002）”填写。
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						企业详细名称（盖章）（BA01）：
-						<input type="text" name="ba01" value="<%=ba01%>"/>
+						企业登记注册类型（BA08）：
+						<input type="text" name="ba01" value="<%=ba01%>"/>按说明填写 
+						&nbsp;
+						单位性质（BA18）：
+						<input type="text" name="ba01" value="<%=ba01%>"/>按说明填写 
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						企业通讯地址（BA03）：
-						<input type="text" name="ba03" value="<%=ba03%>"/>
+						是否高新企业：
+						<input type="text" name="ba03" value="<%=ba03%>"/>&nbsp;
+						 认定时间：<input type="text" name="ba02" value="<%=ba02%>"/>&nbsp;
+						 证书编号：    <input type="text" name="ba02" value="<%=ba02%>"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						联系电话（BA13）：
-						<input type="text" name="ba13" value="<%=ba13%>"/>&nbsp;&nbsp;
-						邮政编码（BA16）：
-						<input type="text" name="ba16" value="<%=ba16%>"/>
+						是否组建科技研发中心：<input type="text" name="ba02" value="<%=ba02%>"/>&nbsp;       
+						中心类别：<input type="text" name="ba02" value="<%=ba02%>"/>&nbsp;             
+						中心名称：<input type="text" name="ba02" value="<%=ba02%>"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						企业负责人：
-						<input type="text" name="fuze" value="<%=fuze%>"/>&nbsp;&nbsp;
-						填表人（签章）：
-						<input type="text" name="filler" value="<%=filler%>"/>&nbsp;&nbsp;
-						填报时间：
-						<input type="text" name="date" value="<%=date%>"/>
+						<table border="1">
+							<tr>
+								<td>年末资产总额</td><td>BA20</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>年末负债总额</td><td>D100</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+							</tr>
+							<tr>
+								<td>其中：固定资产</td><td>BA21</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>其中：流动负债</td><td>D110</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+							</tr>
+							<tr>
+								<td>无形资产</td><td>BA22</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>长期负债</td><td>D120</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+							</tr>
+							<tr>
+								<td>流动资产</td><td>BA23</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>年末所有者权益</td><td>E100</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="list_td_context">
+					<td>
+						<table border="1">
+							<caption>承担各级科技计划情况</caption>
+							<tr>
+								<td>序号</td><td>批文号</td><td>专题名称</td>
+								<td>项目编号</td><td>项目名称</td><td>项目经费</td><td>级别</td>
+							</tr>
+							<tr>
+								<td><input type="text" name="FI200" value=""/></td>
+								<td><input type="text" name="FI200" value=""/></td>
+								<td><input type="text" name="FI200" value=""/></td>
+								<td><input type="text" name="FI200" value=""/></td>
+								<td><input type="text" name="FI200" value=""/></td>
+								<td><input type="text" name="FI200" value=""/></td>
+								<td><input type="text" name="FI200" value=""/></td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>
