@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans />
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action path="/test" type="com.throne212.oa.action.TestAction">
+    	<forward name="test" path="/test.jsp"></forward>
+    	<forward name="report_test" path="/report/test.jsp"></forward>
+    </action>
+    <!-- table1 -->
+    <action path="qiye" type="com.throne212.oa.action.QiyeAction" parameter="method">
+    	<forward name="edit" path="/doctor/edit.jsp"></forward>
+    	<forward name="list" path="/doctor/list.jsp"></forward>
+    	<forward name="dic_list" path="/doctor/dic_list.jsp"></forward>
+    	<forward name="dic_edit" path="/doctor/dic_edit.jsp"></forward>
+    </action>
+  </action-mappings>
+
+  <message-resources parameter="com.throne212.oa.ApplicationResources" />
+</struts-config>
+

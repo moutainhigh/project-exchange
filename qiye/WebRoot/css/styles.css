@@ -1,0 +1,192 @@
+.new_text {
+	font-size: 14px;
+	font-weight: bold;
+	color: 0355AA;
+}
+
+.new_text2 {
+	font-size: 14px;
+	font-weight: bold;
+	color: red;
+}
+
+.new_text1 {
+	font-size: 12px;
+	font-weight: bold;
+	color: 0355AA;
+}
+.caption  {
+	font-size: 10.5pt; LINE-HEIGHT: 18pt; color: #0A5C95; word-spacing: 5; letter-spacing: 5pt; font-weight: bold; text-align: center }
+.list_td_title {
+	COLOR: #ffffff; BACKGROUND-COLOR: #6699cc; TEXT-ALIGN: center
+; font-size: 9pt}
+.list_td_title1 {
+	COLOR: #ffffff; BACKGROUND-COLOR: #6699cc; TEXT-ALIGN: left
+; font-size: 9pt}
+.list_td_tier {
+	COLOR: #000000; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: center
+; font-size: 9pt}
+.list_td_tier1 {
+	COLOR: #000000; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: left
+}
+.list_td_context {
+	COLOR: #000000; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: center; font-size: 9pt;min-height: 30px;height: 30px;}
+.list_td_context td{text-align: left;padding-left: 5px;}
+/*.list_td_context td select{width:90%;}*/
+.list_td_context .label{text-align: center;}
+.list_td_context1 {
+	COLOR: #000000; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+; font-size: 9pt}
+.list_td_context2 {
+	COLOR: #1652ab; BACKGROUND-COLOR: #e8e8e8
+; font-size: 9pt}
+.list_td_context3 { background-color: #00df00; text-align: left }
+.list_td_context4 { background-color: yellow; text-align: left }
+
+
+.list_td_position {
+	 FONT-FAMILY: ''; FONT-SIZE: 9pt;  TEXT-ALIGN: center;
+}
+td { FONT-FAMILY: ''; FONT-SIZE: 9pt; LINE-HEIGHT: 16pt }
+.gif {  background-repeat: no-repeat}
+.menu1 {  font-family: "Arial", "Helvetica", "sans-serif"; font-size: 14px; color: #FF6600; font-weight: bolder}
+.3dtext {
+	FILTER: glow(color=ffffff,strength=0) shadow(color=aaaaaa,direction:135); WIDTH: 100%; POSITION: relative
+}
+.greetxt {  font-size: 10pt; color: #33CC33}
+.bluetxt {  font-size: 10pt; color: #000099}
+.redtxt {  font-size: 10pt; color: #FF0000}
+.duan {  font-size: 12pt; line-height: 28px; color: #000000}
+.text {  font-size: 9pt; color: #000000; line-height: 18px}
+.input {  border: #000000 1px solid; color: #000000; height: 18; font-size: 10pt}
+a:link {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a:visited {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a:hover {
+	text-decoration: underline;
+; font-size: 10pt
+; color: #FF0000
+}
+a.list:link {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list:visited {
+	color: blue;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list:hover {
+	text-decoration: underline;
+; font-size: 10pt
+; color: blue
+}
+a.list1:link {
+	color: #FF0000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list1:visited {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list1:hover {
+	text-decoration: underline;
+; font-size: 10pt
+; color: blue
+}
+a.list2:link {
+	color: #990000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list2:visited {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list2:hover {
+	text-decoration: underline;
+; font-size: 10pt
+; color: blue
+}
+a.list3:link {
+	color: #9900CC;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list3:visited {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list3:hover {
+	text-decoration: underline;
+; font-size: 10pt
+; color: blue
+}
+a.list4:link {
+	color: #FF00CC;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list4:visited {
+	color: #000000;
+	text-decoration: none;
+; font-size: 10pt
+}
+a.list4:hover {
+	text-decoration: underline;
+; font-size: 10pt
+; color: blue
+}
+.caption2 {  font-size: 10pt; color: #000000}
+.name_news {  font-size: 14px; font-weight: bolder; color: #000066}
+A.l1:link {
+	FONT-WEIGHT: bolder; COLOR: #ffffff; LINE-HEIGHT: 14px; TEXT-DECORATION: none
+}
+A.l1:visited {
+	FONT-WEIGHT: bolder; COLOR: #ffffff; LINE-HEIGHT: 14px; TEXT-DECORATION: none
+}
+A.l1:hover {
+	FONT-WEIGHT: bolder; COLOR: #ffffff; LINE-HEIGHT: 14px; TEXT-DECORATION: underline
+}
+.button {
+	BORDER-RIGHT: #FF9966 1px solid; BORDER-TOP: #FF9966 1px solid; FONT-SIZE: 12px;
+	BORDER-LEFT: #FF9966 1px solid; BORDER-BOTTOM: #FF9966 1px solid;
+	BACKGROUND-COLOR: #CCCCCC;
+}
+.td_line {color: #FFFFFF; background-color: #A58433; text-align: center}
+.bodybg {background-image: url('../images/img_dot2.gif')}
+.input2 {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 10pt; BORDER-BOTTOM-WIDTH: 1px; CURSOR: hand; COLOR: #000000; FONT-FAMILY: "ËÎÌו"; HEIGHT: 18; BACKGROUND-COLOR: #e7e7e7; BORDER-RIGHT-WIDTH: 1px
+.haed {  font-size: 12px; color: #000000}
+.TEXTAREA {
+FONT-SIZE: 10px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: "ËÎÌו"; BACKGROUND-COLOR: #CCCCCC; BORDER-RIGHT-COLOR: #000000
+; border-style: dotted; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px
+}
+.select	{background-color: #CCCCCC; FONT-SIZE: 9pt}
+.TableLine{
+border-collapse: collapse}
+.bg_gif {  background-repeat: no-repeat}
+.head {  font-size: 12pt; color: #000000; text-decoration: underline}
+.CurHand {  cursor: hand}
+.body {font-size: 10pt; color:#000000;
+scrollbar-face-color:'CCCCCC';
+scrollbar-shadow-color:'CCCCCC';
+scrollbar-highlight-color:'CCCCCC';
+scrollbar-3dlight-color:'D9D9D9';
+scrollbar-darkshadow-color: '808080';
+scrollbar-track-color:'F8F8F8';
+scrollbar-arrow-color:'808080' }
+.wh {  font-size: 9pt; color: #FFFFFF}
+
