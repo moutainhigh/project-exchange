@@ -6,9 +6,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qiye", "root", "123");
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
 	String ba02 = request.getParameter("ba02");
+	System.out.println(ba02);
 	String ba00 = request.getParameter("ba00");
 	String ba01 = request.getParameter("ba01");
 	String ba03 = request.getParameter("ba03");
@@ -37,7 +38,7 @@
 			if(isNew){
 				sql = "insert into table0 values(?,?,?,?,?,?,?,?,?,?)";
 			}else{
-				sql = "update table0 set ba02=?,ba00=?,ba01=?,ba03=?,ba13=?,ba16=?,fuze=?,filler=?,date=?,user_id=?";
+				sql = "update table0 set ba02=?,ba00=?,ba01=?,ba03=?,ba13=?,ba16=?,fuze=?,filler=?,the_date=?,user_id=?";
 			}
 			ps = conn.prepareStatement(sql);
 			int i=1;
@@ -70,7 +71,7 @@
 			ba16 = rs.getString("ba16");
 			fuze = rs.getString("fuze");
 			filler = rs.getString("filler");
-			date = rs.getString("date");
+			date = rs.getString("the_date");
 		}
 		ba02 = ba02==null?"":ba02;
 		ba00 = ba00==null?"":ba00;

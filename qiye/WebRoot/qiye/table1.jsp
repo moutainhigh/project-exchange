@@ -6,26 +6,43 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qiye", "root", "123");
-	String ba02 = request.getParameter("ba02");
-	String ba00 = request.getParameter("ba00");
-	String ba01 = request.getParameter("ba01");
-	String ba03 = request.getParameter("ba03");
-	String ba13 = request.getParameter("ba13");
-	String ba16 = request.getParameter("ba16");
-	String fuze = request.getParameter("fuze");
-	String filler = request.getParameter("filler");
-	String date = request.getParameter("date");
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
+	String year = request.getParameter("year");
+	if(year==null||"".equals(year)){
+		year = (new Date().getYear()+1900) + "";
+		System.out.println("year="+year);
+	}
 	String user_id = request.getParameter("user_id");
+	String ba06 = request.getParameter("ba06");
+	String ba50 = request.getParameter("ba50");
+	String ba60 = request.getParameter("ba60");
+	String ba07 = request.getParameter("ba07");
+	String ba08 = request.getParameter("ba08");
+	String ba18 = request.getParameter("ba18");
+	String is_gaoxin = request.getParameter("is_gaoxin");
+	String rending_time = request.getParameter("rending_time");
+	String zhengshu = request.getParameter("zhengshu");
+	String is_yanfa = request.getParameter("is_yanfa");
+	String yanfa_type = request.getParameter("yanfa_type");
+	String yanfa_name = request.getParameter("yanfa_name");
+	String ba20 = request.getParameter("ba20");
+	String ba21 = request.getParameter("ba21");
+	String ba22 = request.getParameter("ba22");
+	String ba23 = request.getParameter("ba23");
+	String d100 = request.getParameter("d100");
+	String d110 = request.getParameter("d110");
+	String d120 = request.getParameter("d120");
+	String e100 = request.getParameter("e100");
 	try{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		//判断是否已经存在于库里了
 		boolean isNew = true;
-		String sql = "select * from table0 where user_id=?";
+		String sql = "select * from table1 where user_id=? and year=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, user_id);
+		ps.setInt(2, Integer.valueOf(year).intValue());
 		rs = ps.executeQuery();
 		if(rs.next()){
 			isNew = false;
@@ -33,23 +50,37 @@
 		rs.close();
 		ps.close();
 		//更新或添加
-		if(ba02 != null && !"".equals(ba02)){
+		if(ba06 != null && !"".equals(ba06)){
 			if(isNew){
-				sql = "insert into table0 values(?,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into table1(ba06,ba50,ba60,ba07,ba08,ba18,is_gaoxin,rending_time,zhengshu,is_yanfa,yanfa_type,yanfa_name,"
+						+"ba20,ba21,ba22,ba23,d100,d110,d120,e100,year,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			}else{
-				sql = "update table0 set ba02=?,ba00=?,ba01=?,ba03=?,ba13=?,ba16=?,fuze=?,filler=?,date=?,user_id=?";
+				sql = "update table0 set ba06=?,ba50=?,ba60=?,ba07=?,ba08=?,ba18,is_gaoxin=?,rending_time=?,zhengshu=?,is_yanfa=?,yanfa_type=?,yanfa_name=?,"
+						+"ba20=?,ba21=?,ba22=?,ba23=?,d100=?,d110=?,d120=?,e100=? where year=? and user_id=?";
 			}
 			ps = conn.prepareStatement(sql);
 			int i=1;
-			ps.setString(i++,ba02);
-			ps.setString(i++,ba00);
-			ps.setString(i++,ba01);
-			ps.setString(i++,ba03);
-			ps.setString(i++,ba13);
-			ps.setString(i++,ba16);
-			ps.setString(i++,fuze);
-			ps.setString(i++,filler);
-			ps.setString(i++,date);
+			ps.setString(i++,ba06);
+			ps.setString(i++,ba50);
+			ps.setString(i++,ba60);
+			ps.setString(i++,ba07);
+			ps.setString(i++,ba08);
+			ps.setString(i++,ba18);
+			ps.setString(i++,is_gaoxin);
+			ps.setString(i++,rending_time);
+			ps.setString(i++,zhengshu);
+			ps.setString(i++,is_yanfa);
+			ps.setString(i++,yanfa_type);
+			ps.setString(i++,yanfa_name);
+			ps.setString(i++,ba20);
+			ps.setString(i++,ba21);
+			ps.setString(i++,ba22);
+			ps.setString(i++,ba23);
+			ps.setString(i++,d100);
+			ps.setString(i++,d110);
+			ps.setString(i++,d120);
+			ps.setString(i++,e100);
+			ps.setString(i++,year);
 			ps.setString(i++,user_id);
 			int rst = ps.executeUpdate();
 			if(rst > 0)
@@ -57,30 +88,57 @@
 			ps.close();
 		}
 		//找出数据
-		sql = "select * from table0 where user_id=?";
+		sql = "select * from table1 where user_id=? and year=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, user_id);
+		ps.setInt(2, Integer.valueOf(year).intValue());
 		rs = ps.executeQuery();
 		if(rs.next()){
-			ba02 = rs.getString("ba02");
-			ba00 = rs.getString("ba00");
-			ba01 = rs.getString("ba01");
-			ba03 = rs.getString("ba03");
-			ba13 = rs.getString("ba13");
-			ba16 = rs.getString("ba16");
-			fuze = rs.getString("fuze");
-			filler = rs.getString("filler");
-			date = rs.getString("date");
+			ba06 = rs.getString("ba06");
+			ba50 = rs.getString("ba50");
+			ba60 = rs.getString("ba60");
+			ba07 = rs.getString("ba07");
+			ba08 = rs.getString("ba08");
+			ba18 = rs.getString("ba18");		
+			is_gaoxin = rs.getString("is_gaoxin");
+			rending_time = rs.getString("rending_time");
+			zhengshu = rs.getString("zhengshu");
+			is_yanfa = rs.getString("is_yanfa");
+			yanfa_type  = rs.getString("yanfa_type");
+			yanfa_name = rs.getString("yanfa_name");
+			ba20 = rs.getString("ba20");
+			ba21 = rs.getString("ba21");
+			ba22 = rs.getString("ba22");
+			ba23 = rs.getString("ba23");
+			d100 = rs.getString("d100");
+			d110 = rs.getString("d110");
+			d120 = rs.getString("d120");
+			e100 = rs.getString("e100");
+			year = rs.getString("year");
+			user_id = rs.getString("user_id");	
 		}
-		ba02 = ba02==null?"":ba02;
-		ba00 = ba00==null?"":ba00;
-		ba01 = ba01==null?"":ba01;
-		ba03 = ba03==null?"":ba03;
-		ba13 = ba13==null?"":ba13;
-		ba16 = ba16==null?"":ba16;
-		fuze = fuze==null?"":fuze;
-		filler = filler==null?"":filler;
-		date = date==null?"":date;
+		ba06 = ba06==null?"":ba06;
+		ba50 = ba50==null?"":ba50;
+		ba60 = ba60==null?"":ba60;
+		ba07 = ba07==null?"":ba07;
+		ba08 = ba08==null?"":ba08;
+		ba18 = ba18==null?"":ba18;
+		is_gaoxin = is_gaoxin==null?"":is_gaoxin;
+		rending_time = rending_time==null?"":rending_time;
+		zhengshu = zhengshu==null?"":zhengshu;
+		is_yanfa = is_yanfa==null?"":is_yanfa;
+		yanfa_type = yanfa_type==null?"":yanfa_type;
+		yanfa_name = yanfa_name==null?"":yanfa_name;
+		ba20 = ba20==null?"":ba20;
+		ba21 = ba21==null?"":ba21;
+		ba22 = ba22==null?"":ba22;
+		ba23 = ba23==null?"":ba23;
+		d100 = d100==null?"":d100;
+		d110 = d110==null?"":d110;
+		d120 = d120==null?"":d120;
+		e100 = e100==null?"":e100;
+		year = year==null?"":year;
+		user_id = user_id==null?"":user_id;
 	}catch(Exception ex){
 		ex.printStackTrace();
 		request.setAttribute("msg","保存成功");
@@ -107,7 +165,7 @@
 		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="get" action="table0.jsp">
+		<form name="messageForm" method="get" action="table1.jsp">
 			<input type="hidden" name="user_id" value="test002"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
@@ -120,58 +178,63 @@
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
 					<td>
-						成立时间（BA06）：<input type="text" name="ba02" value="<%=ba02%>"/>年,&nbsp;
-						长期职工（BA50）：<input type="text" name="ba02" value="<%=ba02%>"/>人,&nbsp;
-						总收入（BA60）：<input type="text" name="ba02" value="<%=ba02%>"/>千元
+						年度：<input type="text" name="year" value="<%=year%>"/>年
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						国民经济行业(BA07): <input type="text" name="ba02" value="<%=ba02%>"/> 指本企业从事的国民经济行业，按2007年“科技统计工作文件”中“《国民经济行业分类和代码》（GB/T4754-2002）”填写。
+						成立时间（BA06）：<input type="text" name="ba06" value="<%=ba06%>"/>年,&nbsp;
+						长期职工（BA50）：<input type="text" name="ba50" value="<%=ba50%>"/>人,&nbsp;
+						总收入（BA60）：<input type="text" name="ba60" value="<%=ba60%>"/>千元
+					</td>
+				</tr>
+				<tr class="list_td_context">
+					<td>
+						国民经济行业(BA07): <input type="text" name="ba07" value="<%=ba07%>"/> 指本企业从事的国民经济行业，按2007年“科技统计工作文件”中“《国民经济行业分类和代码》（GB/T4754-2002）”填写。
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
 						企业登记注册类型（BA08）：
-						<input type="text" name="ba01" value="<%=ba01%>"/>按说明填写 
+						<input type="text" name="ba08" value="<%=ba08%>"/>按说明填写 
 						&nbsp;
 						单位性质（BA18）：
-						<input type="text" name="ba01" value="<%=ba01%>"/>按说明填写 
+						<input type="text" name="ba18" value="<%=ba18%>"/>按说明填写 
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
 						是否高新企业：
-						<input type="text" name="ba03" value="<%=ba03%>"/>&nbsp;
-						 认定时间：<input type="text" name="ba02" value="<%=ba02%>"/>&nbsp;
-						 证书编号：    <input type="text" name="ba02" value="<%=ba02%>"/>
+						<input type="text" name="is_gaoxin" value="<%=is_gaoxin%>"/>&nbsp;
+						 认定时间：<input type="text" name="rending_time" value="<%=rending_time%>"/>&nbsp;
+						 证书编号：    <input type="text" name="zhengshu" value="<%=zhengshu%>"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
-						是否组建科技研发中心：<input type="text" name="ba02" value="<%=ba02%>"/>&nbsp;       
-						中心类别：<input type="text" name="ba02" value="<%=ba02%>"/>&nbsp;             
-						中心名称：<input type="text" name="ba02" value="<%=ba02%>"/>
+						是否组建科技研发中心：<input type="text" name="is_yanfa" value="<%=is_yanfa%>"/>&nbsp;       
+						中心类别：<input type="text" name="yanfa_type" value="<%=yanfa_type%>"/>&nbsp;             
+						中心名称：<input type="text" name="yanfa_name" value="<%=yanfa_name%>"/>
 					</td>
 				</tr>
 				<tr class="list_td_context">
 					<td>
 						<table border="1">
 							<tr>
-								<td>年末资产总额</td><td>BA20</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
-								<td>年末负债总额</td><td>D100</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>年末资产总额</td><td>BA20</td><td><input type="text" name="ba20" value="<%=ba20%>"/>（千元）</td>
+								<td>年末负债总额</td><td>D100</td><td><input type="text" name="d100" value="<%=d100%>"/>（千元）</td>
 							</tr>
 							<tr>
-								<td>其中：固定资产</td><td>BA21</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
-								<td>其中：流动负债</td><td>D110</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>其中：固定资产</td><td>BA21</td><td><input type="text" name="ba21" value="<%=ba21%>"/>（千元）</td>
+								<td>其中：流动负债</td><td>D110</td><td><input type="text" name="d110" value="<%=d110%>"/>（千元）</td>
 							</tr>
 							<tr>
-								<td>无形资产</td><td>BA22</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
-								<td>长期负债</td><td>D120</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>无形资产</td><td>BA22</td><td><input type="text" name="ba22" value="<%=ba22%>"/>（千元）</td>
+								<td>长期负债</td><td>D120</td><td><input type="text" name="d120" value="<%=d120%>"/>（千元）</td>
 							</tr>
 							<tr>
-								<td>流动资产</td><td>BA23</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
-								<td>年末所有者权益</td><td>E100</td><td><input type="text" name="ba02" value="<%=ba02%>"/>（千元）</td>
+								<td>流动资产</td><td>BA23</td><td><input type="text" name="ba23" value="<%=ba23%>"/>（千元）</td>
+								<td>年末所有者权益</td><td>E100</td><td><input type="text" name="e100" value="<%=e100%>"/>（千元）</td>
 							</tr>
 						</table>
 					</td>

@@ -6,26 +6,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qiye", "root", "123");
-	String ba02 = request.getParameter("ba02");
-	String ba00 = request.getParameter("ba00");
-	String ba01 = request.getParameter("ba01");
-	String ba03 = request.getParameter("ba03");
-	String ba13 = request.getParameter("ba13");
-	String ba16 = request.getParameter("ba16");
-	String fuze = request.getParameter("fuze");
-	String filler = request.getParameter("filler");
-	String date = request.getParameter("date");
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
+	String year = request.getParameter("year");
+	if(year==null||"".equals(year)){
+		year = (new Date().getYear()+1900) + "";
+		System.out.println("year="+year);
+	}
 	String user_id = request.getParameter("user_id");
+	String pe1010 = request.getParameter("pe1010");
+	String pe1011 = request.getParameter("pe1011");
+	String pe1012 = request.getParameter("pe1012");
+	String pe1013 = request.getParameter("pe1013");
+	String pe1020 = request.getParameter("pe1020");
+	String pe1021 = request.getParameter("pe1021");
+	String pa0 = request.getParameter("pa0");
+	String pa1 = request.getParameter("pa1");
+	String pa2 = request.getParameter("pa2");
+	String pa3 = request.getParameter("pa3");
+	String pa4 = request.getParameter("pa4");
+	String pe01 = request.getParameter("pe01");
+	String pe02 = request.getParameter("pe02");
+	String pe04 = request.getParameter("pe04");
+	String pe05 = request.getParameter("pe05");
 	try{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		//判断是否已经存在于库里了
 		boolean isNew = true;
-		String sql = "select * from table0 where user_id=?";
+		String sql = "select * from table2 where user_id=? and year=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, user_id);
+		ps.setInt(2, Integer.valueOf(year).intValue());
 		rs = ps.executeQuery();
 		if(rs.next()){
 			isNew = false;
@@ -33,23 +45,30 @@
 		rs.close();
 		ps.close();
 		//更新或添加
-		if(ba02 != null && !"".equals(ba02)){
+		if(pe1010 != null && !"".equals(pe1010)){
 			if(isNew){
-				sql = "insert into table0 values(?,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into table1(pe1010,pe1011,pe1012,pe1013,pe1020,pe1021,pa0,pa1,pa2,pa3,pa4,year,user_id,pe01,pe02,pe04,pe05) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			}else{
-				sql = "update table0 set ba02=?,ba00=?,ba01=?,ba03=?,ba13=?,ba16=?,fuze=?,filler=?,date=?,user_id=?";
+				sql = "update table0 set pe1010=?,pe1011=?,pe1012=?,pe1013=?,pe1020=?,pe1021=?,pa0=?,pa1=?,pa2=?,pa3=?,pa4=?,pe01=?,pe02=?,pe04=?,pe05=? where year=? and user_id=?";
 			}
 			ps = conn.prepareStatement(sql);
 			int i=1;
-			ps.setString(i++,ba02);
-			ps.setString(i++,ba00);
-			ps.setString(i++,ba01);
-			ps.setString(i++,ba03);
-			ps.setString(i++,ba13);
-			ps.setString(i++,ba16);
-			ps.setString(i++,fuze);
-			ps.setString(i++,filler);
-			ps.setString(i++,date);
+			ps.setString(i++,pe1010);
+			ps.setString(i++,pe1011);
+			ps.setString(i++,pe1012);
+			ps.setString(i++,pe1013);
+			ps.setString(i++,pe1020);
+			ps.setString(i++,pe1021);
+			ps.setString(i++,pa0);
+			ps.setString(i++,pa1);
+			ps.setString(i++,pa2);
+			ps.setString(i++,pa3);
+			ps.setString(i++,pa4);
+			ps.setString(i++,pe01);
+			ps.setString(i++,pe02);
+			ps.setString(i++,pe04);
+			ps.setString(i++,pe05);
+			ps.setString(i++,year);
 			ps.setString(i++,user_id);
 			int rst = ps.executeUpdate();
 			if(rst > 0)
@@ -57,30 +76,47 @@
 			ps.close();
 		}
 		//找出数据
-		sql = "select * from table0 where user_id=?";
+		sql = "select * from table2 where user_id=? and year=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, user_id);
+		ps.setInt(2, Integer.valueOf(year).intValue());
 		rs = ps.executeQuery();
 		if(rs.next()){
-			ba02 = rs.getString("ba02");
-			ba00 = rs.getString("ba00");
-			ba01 = rs.getString("ba01");
-			ba03 = rs.getString("ba03");
-			ba13 = rs.getString("ba13");
-			ba16 = rs.getString("ba16");
-			fuze = rs.getString("fuze");
-			filler = rs.getString("filler");
-			date = rs.getString("date");
+			pe1010 = rs.getString("pe1010");
+			pe1011 = rs.getString("pe1011");
+			pe1012 = rs.getString("pe1012");
+			pe1013 = rs.getString("pe1013");
+			pe1020 = rs.getString("pe1020");
+			pe1021 = rs.getString("pe1021");		
+			pa0 = rs.getString("pa0");
+			pa1 = rs.getString("pa1");
+			pa2 = rs.getString("pa2");
+			pa3 = rs.getString("pa3");
+			pa4 = rs.getString("pa4");	
+			pe01 = rs.getString("pe01");
+			pe02 = rs.getString("pe02");
+			pe04 = rs.getString("pe04");
+			pe05 = rs.getString("pe05");			
+			year = rs.getString("year");
+			user_id = rs.getString("user_id");	
 		}
-		ba02 = ba02==null?"":ba02;
-		ba00 = ba00==null?"":ba00;
-		ba01 = ba01==null?"":ba01;
-		ba03 = ba03==null?"":ba03;
-		ba13 = ba13==null?"":ba13;
-		ba16 = ba16==null?"":ba16;
-		fuze = fuze==null?"":fuze;
-		filler = filler==null?"":filler;
-		date = date==null?"":date;
+		pe1010 = pe1010==null?"":pe1010;
+		pe1011 = pe1011==null?"":pe1011;
+		pe1012 = pe1012==null?"":pe1012;
+		pe1013 = pe1013==null?"":pe1013;
+		pe1020 = pe1020==null?"":pe1020;
+		pe1021 = pe1021==null?"":pe1021;
+		pa0 = pa0==null?"":pa0;
+		pa1 = pa1==null?"":pa1;
+		pa2 = pa2==null?"":pa2;
+		pa3 = pa3==null?"":pa3;
+		pa4 = pa4==null?"":pa4;
+		pe01 = pe01==null?"":pe01;
+		pe02 = pe02==null?"":pe02;
+		pe04 = pe04==null?"":pe04;
+		pe05 = pe05==null?"":pe05;
+		year = year==null?"":year;
+		user_id = user_id==null?"":user_id;
 	}catch(Exception ex){
 		ex.printStackTrace();
 		request.setAttribute("msg","保存成功");
@@ -107,7 +143,7 @@
 		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="get" action="table0.jsp">
+		<form name="messageForm" method="get" action="table2.jsp">
 			<input type="hidden" name="user_id" value="test002"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
@@ -119,6 +155,11 @@
 			<div style="height: 25px;"></div>
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
+					<td colspan="9">
+						年度：<input type="text" name="year" value="<%=year%>"/>年
+					</td>
+				</tr>
+				<tr class="list_td_context">
 					<td colspan="3">长期职工、技术职称及企业科技人员</td>
 					<td>文化程度构成</td>
 					<td>&nbsp;</td>
@@ -128,54 +169,54 @@
 				<tr class="list_td_context">
 					<td>长期职工总数</td>
 					<td>PE1010</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pe1010" value="<%=pe1010%>"/>人</td>
 					<td>博  士</td>
 					<td>PA0</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pa0" value="<%=pa0%>"/>人</td>
 					<td>性    别</td>
 					<td>PE01</td>
-					<td><input type="text" name="FI200" value=""/></td>
+					<td><input type="text" name="pe01" value="<%=pe01%>"/></td>
 				</tr>
 				<tr class="list_td_context">
 					<td>其中：高级职称</td>
 					<td>PE1011</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pe1011" value="<%=pe1011%>"/>人</td>
 					<td>硕  士</td>
 					<td>PA1</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pa1" value="<%=pa1%>"/>人</td>
 					<td>出生年份</td>
 					<td>PE02</td>
-					<td><input type="text" name="FI200" value=""/></td>
+					<td><input type="text" name="pe02" value="<%=pe02%>"/></td>
 				</tr>
 				<tr class="list_td_context">
 					<td>中级职称</td>
 					<td>PE1012</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pe1012" value="<%=pe1012%>"/>人</td>
 					<td>大  学</td>
 					<td>PA2</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pa2" value="<%=pa2%>"/>人</td>
 					<td>文化程度</td>
 					<td>PE04</td>
-					<td><input type="text" name="FI200" value=""/></td>
+					<td><input type="text" name="pe04" value="<%=pe04%>"/></td>
 				</tr>
 				<tr class="list_td_context">
 					<td>初级职称</td>
 					<td>PE1013</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pe1013" value="<%=pe1013%>"/>人</td>
 					<td>大  专</td>
 					<td>PA3</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pa3" value="<%=pa3%>"/>人</td>
 					<td>所学专业</td>
 					<td>PE05</td>
-					<td><input type="text" name="FI200" value=""/></td>
+					<td><input type="text" name="pe05" value="<%=pe05%>"/></td>
 				</tr>
 				<tr class="list_td_context">
 					<td>其中：从事科技活动人员</td>
 					<td>PE1020</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pe1020" value="<%=pe1020%>"/>人</td>
 					<td>中  专</td>
 					<td>PA4</td>
-					<td><input type="text" name="FI200" value=""/>人</td>
+					<td><input type="text" name="pa4" value="<%=pa4%>"/>人</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -183,7 +224,7 @@
 				<tr class="list_td_context">
 					<td>其中：研究与试验发展人员</td>
 					<td>PE1021</td>
-					<td><input type="text" name="FI200" value=""/>人年</td>
+					<td><input type="text" name="pe1021" value="<%=pe1021%>"/>人年</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
