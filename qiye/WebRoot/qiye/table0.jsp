@@ -84,7 +84,7 @@
 		date = date==null?"":date;
 	}catch(Exception ex){
 		ex.printStackTrace();
-		request.setAttribute("msg","±£´æ³É¹¦");
+		request.setAttribute("msg",ex.getMessage().trim());
 	}finally{
 		if(conn != null && !conn.isClosed()){
 			conn.close();

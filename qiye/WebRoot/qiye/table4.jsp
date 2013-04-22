@@ -6,84 +6,74 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qiye", "root", "123");
-	String ba02 = request.getParameter("ba02");
-	String ba00 = request.getParameter("ba00");
-	String ba01 = request.getParameter("ba01");
-	String ba03 = request.getParameter("ba03");
-	String ba13 = request.getParameter("ba13");
-	String ba16 = request.getParameter("ba16");
-	String fuze = request.getParameter("fuze");
-	String filler = request.getParameter("filler");
-	String date = request.getParameter("date");
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
+	String year = request.getParameter("year");
+	if(year==null||"".equals(year)){
+		year = (new Date().getYear()+1900) + "";
+		System.out.println("year="+year);
+	}
 	String user_id = request.getParameter("user_id");
+	String p1 = request.getParameter("p1");
+	String p2 = request.getParameter("p2");
+	String p3 = request.getParameter("p3");
+	String p4 = request.getParameter("p4");
+	String p5 = request.getParameter("p5");
+	String p6 = request.getParameter("p6");
+	String p7 = request.getParameter("p7");
+	String p8 = request.getParameter("p8");
+	String p9 = request.getParameter("p9");
+	String is_high = request.getParameter("is_high");
+	String gong_zengjia = request.getParameter("gong_zengjia");
+	String type_no = request.getParameter("type_no");
+	String lingyu = request.getParameter("lingyu");
+	
+	List list = new ArrayList();
+	
 	try{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		//判断是否已经存在于库里了
-		boolean isNew = true;
-		String sql = "select * from table0 where user_id=?";
-		ps = conn.prepareStatement(sql);
-		ps.setString(1, user_id);
-		rs = ps.executeQuery();
-		if(rs.next()){
-			isNew = false;
-		}
-		rs.close();
-		ps.close();
 		//更新或添加
-		if(ba02 != null && !"".equals(ba02)){
-			if(isNew){
-				sql = "insert into table0 values(?,?,?,?,?,?,?,?,?,?)";
-			}else{
-				sql = "update table0 set ba02=?,ba00=?,ba01=?,ba03=?,ba13=?,ba16=?,fuze=?,filler=?,date=?,user_id=?";
-			}
+		if(p1 != null && !"".equals(p1)){
+			String sql = "insert into table4(p1,p2,p3,p4,p5,p6,p7,p8,p9,is_high,gong_zengjia,type_no,lingyu,year,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			int i=1;
-			ps.setString(i++,ba02);
-			ps.setString(i++,ba00);
-			ps.setString(i++,ba01);
-			ps.setString(i++,ba03);
-			ps.setString(i++,ba13);
-			ps.setString(i++,ba16);
-			ps.setString(i++,fuze);
-			ps.setString(i++,filler);
-			ps.setString(i++,date);
-			ps.setString(i++,user_id);
+			ps.setString(i++,p1);
+			ps.setString(i++,p2);
+			ps.setString(i++,p3);
+			ps.setString(i++,p4);
+			ps.setString(i++,p5);
+			ps.setString(i++,p6);
+			ps.setString(i++,p7);
+			ps.setString(i++,p8);
+			ps.setString(i++,p9);
+			ps.setString(i++,is_high);
+			ps.setString(i++,gong_zengjia);
+			ps.setString(i++,type_no);
+			ps.setString(i++,lingyu);
+			ps.setString(i++,year);
+			ps.setString(i++,user_id);			
 			int rst = ps.executeUpdate();
 			if(rst > 0)
 				request.setAttribute("msg","保存成功");
 			ps.close();
 		}
 		//找出数据
-		sql = "select * from table0 where user_id=?";
+		
+		String sql = "select * from table4 where user_id=? and year=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, user_id);
+		ps.setInt(2, Integer.valueOf(year).intValue());
 		rs = ps.executeQuery();
-		if(rs.next()){
-			ba02 = rs.getString("ba02");
-			ba00 = rs.getString("ba00");
-			ba01 = rs.getString("ba01");
-			ba03 = rs.getString("ba03");
-			ba13 = rs.getString("ba13");
-			ba16 = rs.getString("ba16");
-			fuze = rs.getString("fuze");
-			filler = rs.getString("filler");
-			date = rs.getString("date");
+		while(rs.next()){
+			String[] arr = new String[15]; 
+			for(int i=0;i<arr.length;i++)
+				arr[i] = rs.getString(i + 1);
+			list.add(arr);
 		}
-		ba02 = ba02==null?"":ba02;
-		ba00 = ba00==null?"":ba00;
-		ba01 = ba01==null?"":ba01;
-		ba03 = ba03==null?"":ba03;
-		ba13 = ba13==null?"":ba13;
-		ba16 = ba16==null?"":ba16;
-		fuze = fuze==null?"":fuze;
-		filler = filler==null?"":filler;
-		date = date==null?"":date;
 	}catch(Exception ex){
 		ex.printStackTrace();
-		request.setAttribute("msg","保存成功");
+		request.setAttribute("msg",ex.getMessage().trim());
 	}finally{
 		if(conn != null && !conn.isClosed()){
 			conn.close();
@@ -110,7 +100,7 @@
 		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="get" action="table0.jsp">
+		<form name="messageForm" method="get" action="table4.jsp">
 			<input type="hidden" name="user_id" value="test002"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
@@ -118,6 +108,11 @@
 			        <font class=caption>主要产品及专利概况</font>
 			      </td>
 			    </tr>
+			    <tr class="list_td_context">
+					<td colspan="1">
+						年度：<input type="text" name="year" value="<%=year%>"/>年
+					</td>
+				</tr>
 			</table>
 			<div style="height: 25px;"></div>
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
@@ -131,28 +126,39 @@
 					<td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td><td>P0</td>
 					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
 				</tr>
+				<%
+				for(int i=0;i<list.size();i++){
+					String[] a = (String[])list.get(i);
+					int j=0;
+				%>
 				<tr class="list_td_context">
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
-					<td><input type="text" name="p0"/></td>
+					<td><%=i+1%></td><td><%=a[j++]%></td><td><%=a[j++]%></td><td><%=a[j++]%></td>
+					<td><%=a[j++]%></td><td><%=a[j++]%></td><td><%=a[j++]%></td><td><%=a[j++]%></td>
+					<td><%=a[j++]%></td><td><%=a[j++]%></td>
+					<td><%=a[j++]%></td><td><%=a[j++]%></td><td><%=a[j++]%></td><td><%=a[j++]%></td>
+				</tr>
+				<%}%>
+				<tr class="list_td_context">
+					<td>&nbsp;</td>
+					<td><input type="text" name="p1" size="10"/></td>
+					<td><input type="text" name="p2" size="10"/></td>
+					<td><input type="text" name="p3" size="10"/></td>
+					<td><input type="text" name="p4" size="10"/></td>
+					<td><input type="text" name="p5" size="10"/></td>
+					<td><input type="text" name="p6" size="10"/></td>
+					<td><input type="text" name="p7" size="10"/></td>
+					<td><input type="text" name="p8" size="10"/></td>
+					<td><input type="text" name="p9" size="10"/></td>
+					<td><input type="text" name="is_high" size="10"/></td>
+					<td><input type="text" name="gong_zengjia" size="10"/></td>
+					<td><input type="text" name="type_no" size="10"/></td>
+					<td><input type="text" name="lingyu" size="10"/></td>
 				</tr>
 			</table>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr>
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
-						<input type="button" name="" value="增加一行" onclick="add();">
 					</td>
 				</tr>
 			</table>

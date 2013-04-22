@@ -47,9 +47,9 @@
 		//更新或添加
 		if(pe1010 != null && !"".equals(pe1010)){
 			if(isNew){
-				sql = "insert into table1(pe1010,pe1011,pe1012,pe1013,pe1020,pe1021,pa0,pa1,pa2,pa3,pa4,year,user_id,pe01,pe02,pe04,pe05) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into table2(pe1010,pe1011,pe1012,pe1013,pe1020,pe1021,pa0,pa1,pa2,pa3,pa4,pe01,pe02,pe04,pe05,year,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			}else{
-				sql = "update table0 set pe1010=?,pe1011=?,pe1012=?,pe1013=?,pe1020=?,pe1021=?,pa0=?,pa1=?,pa2=?,pa3=?,pa4=?,pe01=?,pe02=?,pe04=?,pe05=? where year=? and user_id=?";
+				sql = "update table2 set pe1010=?,pe1011=?,pe1012=?,pe1013=?,pe1020=?,pe1021=?,pa0=?,pa1=?,pa2=?,pa3=?,pa4=?,pe01=?,pe02=?,pe04=?,pe05=? where year=? and user_id=?";
 			}
 			ps = conn.prepareStatement(sql);
 			int i=1;
@@ -119,7 +119,7 @@
 		user_id = user_id==null?"":user_id;
 	}catch(Exception ex){
 		ex.printStackTrace();
-		request.setAttribute("msg","保存成功");
+		request.setAttribute("msg",ex.getMessage().trim());
 	}finally{
 		if(conn != null && !conn.isClosed()){
 			conn.close();

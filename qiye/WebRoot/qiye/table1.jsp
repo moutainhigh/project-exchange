@@ -34,6 +34,14 @@
 	String d110 = request.getParameter("d110");
 	String d120 = request.getParameter("d120");
 	String e100 = request.getParameter("e100");
+	
+	String piwen = request.getParameter("piwen");
+	String zhuanti_name = request.getParameter("zhuanti_name");
+	String bianhao = request.getParameter("bianhao");
+	String pro_name = request.getParameter("pro_name");
+	String pro_money = request.getParameter("pro_money");
+	String grade = request.getParameter("grade");
+	
 	try{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -55,37 +63,54 @@
 				sql = "insert into table1(ba06,ba50,ba60,ba07,ba08,ba18,is_gaoxin,rending_time,zhengshu,is_yanfa,yanfa_type,yanfa_name,"
 						+"ba20,ba21,ba22,ba23,d100,d110,d120,e100,year,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			}else{
-				sql = "update table0 set ba06=?,ba50=?,ba60=?,ba07=?,ba08=?,ba18,is_gaoxin=?,rending_time=?,zhengshu=?,is_yanfa=?,yanfa_type=?,yanfa_name=?,"
+				sql = "update table1 set ba06=?,ba50=?,ba60=?,ba07=?,ba08=?,ba18=?,is_gaoxin=?,rending_time=?,zhengshu=?,is_yanfa=?,yanfa_type=?,yanfa_name=?,"
 						+"ba20=?,ba21=?,ba22=?,ba23=?,d100=?,d110=?,d120=?,e100=? where year=? and user_id=?";
 			}
 			ps = conn.prepareStatement(sql);
 			int i=1;
-			ps.setString(i++,ba06);
-			ps.setString(i++,ba50);
-			ps.setString(i++,ba60);
-			ps.setString(i++,ba07);
-			ps.setString(i++,ba08);
-			ps.setString(i++,ba18);
+			ps.setInt(i++,Integer.valueOf(ba06).intValue());
+			ps.setInt(i++,Integer.valueOf(ba50).intValue());
+			ps.setInt(i++,Integer.valueOf(ba60).intValue());
+			ps.setInt(i++,Integer.valueOf(ba07).intValue());
+			ps.setInt(i++,Integer.valueOf(ba08).intValue());
+			ps.setInt(i++,Integer.valueOf(ba18).intValue());
 			ps.setString(i++,is_gaoxin);
 			ps.setString(i++,rending_time);
 			ps.setString(i++,zhengshu);
 			ps.setString(i++,is_yanfa);
 			ps.setString(i++,yanfa_type);
 			ps.setString(i++,yanfa_name);
-			ps.setString(i++,ba20);
-			ps.setString(i++,ba21);
-			ps.setString(i++,ba22);
-			ps.setString(i++,ba23);
-			ps.setString(i++,d100);
-			ps.setString(i++,d110);
-			ps.setString(i++,d120);
-			ps.setString(i++,e100);
-			ps.setString(i++,year);
+			ps.setInt(i++,Integer.valueOf(ba20).intValue());
+			ps.setInt(i++,Integer.valueOf(ba21).intValue());
+			ps.setInt(i++,Integer.valueOf(ba22).intValue());
+			ps.setInt(i++,Integer.valueOf(ba23).intValue());
+			ps.setInt(i++,Integer.valueOf(d100).intValue());
+			ps.setInt(i++,Integer.valueOf(d110).intValue());
+			ps.setInt(i++,Integer.valueOf(d120).intValue());
+			ps.setInt(i++,Integer.valueOf(e100).intValue());
+			ps.setInt(i++,Integer.valueOf(year).intValue());
 			ps.setString(i++,user_id);
 			int rst = ps.executeUpdate();
 			if(rst > 0)
 				request.setAttribute("msg","保存成功");
 			ps.close();
+			if(piwen != null && !"".equals(piwen)){
+				sql = "insert into table1_plan(piwen,zhuanti_name,bianhao,pro_name,pro_money,grade,user_id,year) values(?,?,?,?,?,?,?,?)";
+				ps = conn.prepareStatement(sql);
+				i=1;
+				ps.setString(i++,piwen);
+				ps.setString(i++,zhuanti_name);
+				ps.setString(i++,bianhao);
+				ps.setString(i++,pro_name);
+				ps.setString(i++,pro_money);
+				ps.setString(i++,grade);
+				ps.setString(i++,user_id);
+				ps.setString(i++,year);
+				rst = ps.executeUpdate();
+				if(rst > 0)
+					request.setAttribute("msg","保存成功");
+				ps.close();
+			}
 		}
 		//找出数据
 		sql = "select * from table1 where user_id=? and year=?";
@@ -141,7 +166,7 @@
 		user_id = user_id==null?"":user_id;
 	}catch(Exception ex){
 		ex.printStackTrace();
-		request.setAttribute("msg","保存成功");
+		request.setAttribute("msg",ex.getMessage().trim());
 	}finally{
 		if(conn != null && !conn.isClosed()){
 			conn.close();
@@ -247,14 +272,42 @@
 								<td>序号</td><td>批文号</td><td>专题名称</td>
 								<td>项目编号</td><td>项目名称</td><td>项目经费</td><td>级别</td>
 							</tr>
+<% 
+	Connection conn2 = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
+	try{
+		PreparedStatement ps2 = null;
+		ResultSet rs2 = null;
+		String sql2 = "select * from table1_plan where user_id=? and year=?";
+		ps2 = conn2.prepareStatement(sql2);
+		ps2.setString(1, user_id);
+		ps2.setInt(2, Integer.valueOf(year).intValue());
+		rs2 = ps2.executeQuery();
+		int index = 0;
+		while(rs2.next()){
+%>
 							<tr>
-								<td><input type="text" name="FI200" value=""/></td>
-								<td><input type="text" name="FI200" value=""/></td>
-								<td><input type="text" name="FI200" value=""/></td>
-								<td><input type="text" name="FI200" value=""/></td>
-								<td><input type="text" name="FI200" value=""/></td>
-								<td><input type="text" name="FI200" value=""/></td>
-								<td><input type="text" name="FI200" value=""/></td>
+								<td><%=++index %></td><td><%=rs2.getString("piwen") %></td><td><%=rs2.getString("zhuanti_name") %></td>
+								<td><%=rs2.getString("bianhao") %></td><td><%=rs2.getString("pro_name") %></td>
+								<td><%=rs2.getString("pro_money") %></td><td><%=rs2.getString("grade") %></td>
+							</tr>
+<%
+		}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}finally{
+		if(conn2 != null && !conn2.isClosed()){
+			conn2.close();
+		}
+	}
+%>
+							<tr>
+								<td>&nbsp;</td>
+								<td><input type="text" name="piwen" value=""/></td>
+								<td><input type="text" name="zhuanti_name" value=""/></td>
+								<td><input type="text" name="bianhao" value=""/></td>
+								<td><input type="text" name="pro_name" value=""/></td>
+								<td><input type="text" name="pro_money" value=""/></td>
+								<td><input type="text" name="grade" value=""/></td>
 							</tr>
 						</table>
 					</td>
