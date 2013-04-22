@@ -3,8 +3,6 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
@@ -14,6 +12,9 @@
 		System.out.println("year="+year);
 	}
 	String user_id = request.getParameter("user_id");
+	if(user_id == null || user_id.equals("")){
+		user_id = (String)session.getAttribute("userid");
+	}
 	String fi300 = request.getParameter("fi300");
 	String fi310 = request.getParameter("fi310");
 	String fi100 = request.getParameter("fi100");
@@ -139,11 +140,11 @@
 	<head>
 		<title>企业基础信息</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../css/qiye.css">
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type="text/javascript">
-			var msg = '${msg}';
-			if(msg != '')
+			var msg = '<%=request.getAttribute("msg")%>';
+			if(msg != '' && msg != 'null')
 				alert(msg);
 			function saveForm(){
 				document.forms[0].submit();
@@ -152,7 +153,7 @@
 	</head>
 	<body>
 		<form name="messageForm" method="get" action="table3.jsp">
-			<input type="hidden" name="user_id" value="test002"/>
+			<input type="hidden" name="user_id" value="<%=user_id%>"/>
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
