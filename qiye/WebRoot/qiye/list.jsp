@@ -1,30 +1,47 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
+	String year = request.getParameter("year");
+	if(year==null||"".equals(year)){
+		year = (new Date().getYear()+1900) + "";
+	}
+	String q_name = request.getParameter("q_name");
+	
+	
+	try{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select t0.ba01,(select count(*) from table1 where t0.user_id=user_id and year="+year+"),"
+						+"(select count(*) from table2 where t0.user_id=user_id and year="+year+"),"
+						+"(select count(*) from table3 where t0.user_id=user_id and year="+year+"),"
+						+"(select count(*) from table4 where t0.user_id=user_id and year="+year+"),"
+						+"(select count(*) from table5 where t0.user_id=user_id and year="+year+"),t0.user_id "
+						+"from table0 t0";
+		if(q_name==null||"".equals(q_name)){
+			q_name = "";
+		}else{
+			sql += " where t0.ba01 like '%"+q_name+"%'";
+		}
+		
+ %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<title></title>
+		<title>企业基础信息</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-		<link rel="stylesheet" type="text/css" href="${appPath}/css/styles.css">
-		<link rel="stylesheet" type="text/css" href="${appPath}/css/jquery.datepick.css" />
-		<script type="text/javascript" src="${appPath}/js/jquery.js"></script>
-		<script type="text/javascript" src="${appPath}/js/jquery.datepick.js"></script>
-		<script type="text/javascript" src="${appPath}/js/jquery.datepick-zh-CN.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/qiye.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type="text/javascript">
-			var msg = '${requestScope.msg}';
-			if(msg != ''){
+			var msg = '<%=request.getAttribute("msg")%>';
+			if(msg != '' && msg != 'null')
 				alert(msg);
-			}
 			function saveForm(){
 				document.forms[0].submit();
-			}
-			$(function(){
-				$('.datetime').datepick({dateFormat: 'yy-mm-dd'}); 
-			});
-			function deleteTable(id){
-				if(confirm('您确定删除吗？\n本操作将不可以恢复'))
-					self.location.href = '${appPath}/table1.do?method=delete&id='+id;
 			}
 			function gotoPage(pageIndex,url){
 				if(!url){
@@ -46,12 +63,11 @@
 		</script>
 	</head>
 	<body>
-		<form name="messageForm" method="get" action="${appPath}/table1.do">
-			<input type="hidden" name="method" value="list"/>
+		<form name="messageForm" method="get" action="list.jsp">
 			<table width="90%" border="0" cellspacing="1" cellpadding="0" align="center">
 			    <tr>
 			      <td height="18" align=center>
-			        <font class=caption>企业概括信息查询</font>
+			        <font class=caption>企业信息填报查询</font>
 			      </td>
 			    </tr>
 			</table>
@@ -63,18 +79,19 @@
 					     <table width="100%" class="cx_tabble">
 					       <tbody>
 					       <tr>
-					         <td width="80" align="right">单位：</td>
-					         <td align="left" width="300">
-					         	<select name="worker.workOrg.id" class="WorkOrg">
-									<option value=""></option>
-									<c:forEach items="${orgList}" var="o">
-									<option value="${o.id}" <c:if test="${o.id==param['worker.workOrg.id']}">selected="selected"</c:if>>${o.name}</option>
-									</c:forEach>
-								</select>
+					         <td width="80" align="right">企业名称：</td>
+					         <td align="left" >
+					         	<input type="text" name="q_name" value="<%=q_name %>"/>
 					         </td>
-					         <td width="150" align="right">&nbsp;</td>
+					         <td width="80" align="right">年度：</td>
 					         <td align="left">
-								&nbsp;
+								
+								<select name="year">
+									<%for(int i=2010;i<=new Date().getYear()+1900+1;i++){ %>
+									<option value="<%=i %>" <%if(Integer.parseInt(year)==i){ %>selected="selected"<%} %>><%=i %></option>
+									<%} %>
+								</select>
+								年
 							 </td>
 							</tr>
 					       <tr>
@@ -95,27 +112,48 @@
 						序号
 					</td>
 					<td align="center">
-						单位						
+						单位名称				
 					</td>
 					<td align="center">
-						详细&删除
+						企业概况
+					</td>
+					<td align="center">
+						人员概况
+					</td>
+					<td align="center">
+						收支概况
+					</td>
+					<td align="center">
+						主要产品
+					</td>
+					<td align="center">
+						专利概况 
 					</td>
 				</tr>
-				<c:forEach items="${pageBean.resultList}" var="d" varStatus="status">
+<%
+ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		int i=1;
+		while(rs.next()){
+ %>
 				<tr class="list_td_context">
 					<td>
-						${status.count}
+						<%=i++ %>
 					</td>
 					<td>
-						${d.workOrg.name }
+						<%=rs.getString(1) %>
 					</td>
+					<%for(int j=1;j<=5;j++) {%>
 					<td>
-						<a href="${appPath}/table1.do?method=view&id=${d.id}">详细</a>&nbsp;
-						<a href="javascript:deleteTable(${d.id})">删除</a>
+						<%if(rs.getInt(j+1)>0){ %>
+						<a href="table<%=j %>.jsp?year=<%=year %>&user_id=<%=rs.getString("user_id") %>">详细</a><%} %>
+						&nbsp;
 					</td>
+					<%} %>
 				</tr>
-				</c:forEach>
+<%} %>
 			</table>
+			<!--  
 			<table cellspacing="0" cellpadding="0" border="0" align="center" style="margin-top: 5px;">
 				<tbody>
 					<tr>
@@ -184,6 +222,16 @@
 					</tr>
 				</tbody>
 			</table>
+			-->
 		</form>
 	</body>
 </html>
+<%
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}finally{
+		if(conn != null && !conn.isClosed()){
+			conn.close();
+		}
+	}
+%>

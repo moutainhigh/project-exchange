@@ -111,7 +111,13 @@
 			    </tr>
 			    <tr class="list_td_context">
 					<td colspan="1">
-						年度：<input type="text" name="year" value="<%=year%>"/>年
+						年度：
+						<select name="year" onchange="self.location.href='table4.jsp?user_id=<%=user_id%>&year='+this.value;">
+							<%for(int i=2010;i<=new Date().getYear()+1900+1;i++){ %>
+							<option value="<%=i %>" <%if(Integer.parseInt(year)==i){ %>selected="selected"<%} %>><%=i %></option>
+							<%} %>
+						</select>
+						年
 					</td>
 				</tr>
 			</table>
@@ -160,6 +166,7 @@
 				<tr>
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
+						<input type="button" name="" value="返 回" onclick="history.go(-1)">
 					</td>
 				</tr>
 			</table>

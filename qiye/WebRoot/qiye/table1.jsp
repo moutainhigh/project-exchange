@@ -7,10 +7,11 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	Connection conn = DriverManager.getConnection("jdbc:oracle:oci8:@ora9i", "mzoanew", "mzoanew");
 	String year = request.getParameter("year");
+	System.out.println("year="+year);
 	if(year==null||"".equals(year)){
 		year = (new Date().getYear()+1900) + "";
-		System.out.println("year="+year);
 	}
+	System.out.println("year="+year);
 	String user_id = request.getParameter("user_id");
 	if(user_id == null || user_id.equals("")){
 		user_id = (String)session.getAttribute("userid");
@@ -51,11 +52,14 @@
 		String sql = "select * from table1 where user_id=? and year=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, user_id);
+		System.out.println("user_id=" + user_id);
 		ps.setInt(2, Integer.valueOf(year).intValue());
+		System.out.println("year=" + year);
 		rs = ps.executeQuery();
 		if(rs.next()){
 			isNew = false;
 		}
+		System.out.println("isNew=" + isNew);
 		rs.close();
 		ps.close();
 		//更新或添加
@@ -204,7 +208,13 @@
 			<table width="95%" border="0" cellspacing="1" cellpadding="0" class=table align="center">
 				<tr class="list_td_context">
 					<td>
-						年度：<input type="text" name="year" value="<%=year%>"/>年
+						年度：
+						<select name="year" onchange="self.location.href='table1.jsp?user_id=<%=user_id%>&year='+this.value;">
+							<%for(int i=2010;i<=new Date().getYear()+1900+1;i++){ %>
+							<option value="<%=i %>" <%if(Integer.parseInt(year)==i){ %>selected="selected"<%} %>><%=i %></option>
+							<%} %>
+						</select>
+						年
 					</td>
 				</tr>
 				<tr class="list_td_context">
@@ -318,6 +328,7 @@
 				<tr>
 					<td align="center">
 						<input type="button" name="" value="保 存" onclick="saveForm();">
+						<input type="button" name="" value="返 回" onclick="history.go(-1)">
 					</td>
 				</tr>
 			</table>
